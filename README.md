@@ -45,6 +45,10 @@ skill manualmente.
 - `INSTALACAO.md`: como `thothfy-setup` instala o framework num projeto novo
   — a estrutura de `.thothfy/` e `content/`, o ajuste de `AGENTS.md`/
   `CLAUDE.md` e o preenchimento do contexto inicial.
+- `examples/`: pacotes de demonstração já preenchidos, com dado fictício,
+  mostrando o resultado real de cada fase do pipeline — leitura de
+  referência, nunca lida por skill em tempo de execução. Veja
+  `examples/README.md`.
 
 ## Ordem de leitura
 
