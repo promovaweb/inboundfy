@@ -1,0 +1,62 @@
+---
+name: thothfy-especialista-podcast
+description: >
+  Escreve pauta e shownotes de episódio de podcast a partir de um brief
+  aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de
+  context/marca-voz.md.
+---
+
+# Thothfy Podcast Redator
+
+Skill de canal para podcast — pauta de gravação e shownotes de publicação.
+
+## Escopo
+
+Cobre pauta e shownotes. Não produz áudio nem edição.
+
+## Contexto exigido
+
+- `context/pessoas.md`: apresentador(es) e convidado(s), quando houver.
+- `context/marca-voz.md`: tom do programa.
+- `context/publico.md`: persona ouvinte.
+- `context/proibicoes.md`: vetos.
+- `context/estruturas-proibidas.md`: catálogo genérico de padrões de texto com cara de IA, aplicado junto com `context/proibicoes.md`.
+
+## Entrada esperada
+
+Um brief com: tema do episódio, apresentador(es), convidado (se houver),
+ativos de apoio e objetivo do episódio.
+
+## Fluxo
+
+1. Leia o brief e confirme apresentador(es)/convidado em `context/pessoas.md`.
+2. Escreva a pauta: blocos de conversa em ordem lógica, com o objetivo de
+   cada bloco e perguntas-guia — não um roteiro fechado palavra por palavra,
+   já que o formato pressupõe fala natural. Use o template de pauta de
+   `REFERENCIA.md`.
+3. Após a gravação (quando o brief indicar que já existe áudio/transcrição),
+   escreva os shownotes: resumo do episódio, principais pontos abordados,
+   e links citados durante a conversa, cada um confirmado contra
+   `context/ferramentas.md` ou `context/produtos.md` quando aplicável.
+4. Rode `thothfy-base-editor` nos shownotes (texto de prosa) — ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md` — e corrija trechos
+   abaixo de 90%. A pauta, por ser guia interno de blocos, não passa pela
+   mesma auditoria de prosa pública.
+5. Salve com frontmatter incluindo `apresentadores`, `convidado` (se
+   houver), `data` e `brief` quando fizer parte de um pacote.
+6. Encaminhe para `thothfy-planejamento-06-auditoria`.
+
+## Saída
+
+Arquivo Markdown de pauta e, separadamente ou na mesma peça, os shownotes,
+salvos no caminho de `context/canais.md` para o canal podcast.
+
+## Validação
+
+- Apresentador(es)/convidado conferem com `context/pessoas.md`.
+- Links citados nos shownotes conferem com `context/ferramentas.md` ou
+  `context/produtos.md`.
+- Nenhum trecho de shownotes abaixo de 90% na auditoria de `thothfy-base-editor`.
+
+## Idempotência
+
+Editar pauta ou shownotes já existentes altera apenas o campo indicado.

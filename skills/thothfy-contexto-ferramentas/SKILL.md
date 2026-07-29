@@ -1,0 +1,51 @@
+---
+name: thothfy-contexto-ferramentas
+description: >
+  Preenche e mantém context/ferramentas.md. Ative quando o usuário informar
+  uma ferramenta da stack, parceiro técnico ou integração que pode (ou não)
+  ser citada em conteúdo público.
+---
+
+# Thothfy Contexto — Ferramentas
+
+Mantém o cadastro de ferramentas mencionáveis em conteúdo. Skills de canal
+consultam este arquivo antes de citar ou linkar uma ferramenta de terceiro.
+
+## Escopo
+
+Cobre exclusivamente `context/ferramentas.md`.
+
+## Contexto exigido
+
+Nenhum outro arquivo é pré-requisito.
+
+## Entrada esperada
+
+Uma ferramenta nova, correção de relação (fornecedor, parceiro, tecnologia
+própria), ou definição de página própria para link na primeira menção.
+
+## Fluxo
+
+1. Leia `context/ferramentas.md` atual para não duplicar uma entrada.
+2. Registre para que a empresa usa a ferramenta e se ela pode ser citada em
+   conteúdo público — nunca assuma "sim" por padrão sem confirmação. Use o
+   roteiro de entrevista de `REFERENCIA.md`.
+3. Registre o link oficial da ferramenta e, se existir, a página própria do
+   usuário para onde a primeira menção deve apontar.
+4. Atualize a relação (fornecedor, parceiro, tecnologia própria) sempre que
+   ela mudar.
+
+## Saída
+
+Atualização de `context/ferramentas.md`.
+
+## Validação
+
+- Checklist de completude de `REFERENCIA.md` cumprido.
+- Permissão de citação pública está definida explicitamente.
+- Link oficial está presente e correto.
+- Nenhuma entrada existente foi removida sem pedido explícito.
+
+## Idempotência
+
+Atualiza apenas a ferramenta indicada na execução atual.
