@@ -16,6 +16,14 @@ Skill de canal para LinkedIn — post nativo curto e artigo longo.
 Cobre texto de post e de artigo de LinkedIn. Imagem correspondente é
 `thothfy-especialista-linkedin-imagem`.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/marca-voz.md`: tom e pessoa gramatical.
@@ -33,7 +41,7 @@ Cobre texto de post e de artigo de LinkedIn. Imagem correspondente é
 Post de LinkedIn com objetivo de gerar lead ou clique (não apenas construir
 autoridade) normalmente cabe em **AIDA**: a primeira linha antes do "ver
 mais" é o bloco de Atenção — precisa parar o scroll com o objeto real, não
-com frase de efeito; o corpo sustenta o Interesse com um fato ou experiência
+com frase de efeito; o corpo desenvolve o Interesse com um fato ou experiência
 concreta; o parágrafo seguinte cria o Desejo ligando o fato ao ganho da
 persona (`context/publico.md`); o fechamento é a Ação, um único CTA.
 
@@ -75,6 +83,12 @@ ativos de apoio e CTA.
 8. Encaminhe para `thothfy-especialista-linkedin-imagem` quando o canal exigir imagem, e
    depois para `thothfy-planejamento-06-auditoria`.
 
+## Encaminhamento obrigatório
+
+Antes de considerar o asset pronto, acione `thothfy-validador-linkedin`.
+Em caso de reprovação, aplique as correções do relatório e reenvie o arquivo
+inteiro até a aprovação.
+
 ## Saída
 
 Arquivo Markdown (ou texto puro para post nativo) salvo no caminho definido
@@ -86,6 +100,7 @@ em `context/canais.md` para LinkedIn.
 - Autor, quando definido, está falando dentro da competência registrada em
   `context/pessoas.md`.
 - Nenhum parágrafo abaixo de 90% na auditoria de `thothfy-base-editor`.
+- Aprovação registrada por `thothfy-validador-linkedin`.
 
 ## Idempotência
 

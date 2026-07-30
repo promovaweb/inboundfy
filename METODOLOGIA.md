@@ -4,18 +4,21 @@ Este arquivo descreve o pipeline que toda skill de produção do Thothfy segue.
 Ele é agnóstico de canal e de negócio: qualquer artefato de texto ou imagem
 passa pelas mesmas fases, na mesma ordem, trocando apenas o material de
 entrada, o `context/` consultado e a skill de canal usada na produção.
+Cada fase também consulta `.thothfy/FONTES-PROJETO.md` e carrega os Markdown
+locais classificados como relevantes para o trabalho atual.
 
 Este pipeline processa um pacote que **já tem** material bruto ou um item
-alocado no calendário. A decisão de por que uma campanha existe, para quem,
-em que canais e quando — antes de qualquer material existir — é a camada
-descrita em `ESTRATEGIA.md`, do grupo `thothfy-estrategia-*`. Um pacote pode
-nascer direto de material bruto trazido pelo usuário (sem campanha) ou de um
-item alocado por `thothfy-estrategia-calendario`; nos dois casos, a partir da
-fase 0 abaixo o fluxo é o mesmo.
+alocado no calendário. A estratégia define a finalidade da campanha, o
+público, os canais e o período sem depender de material prévio. Essa camada
+está descrita em `ESTRATEGIA.md`, no grupo
+`thothfy-estrategia-<NN>-*`. Um pacote pode começar com material bruto trazido
+pelo usuário, sem campanha, ou com um item alocado por
+`thothfy-estrategia-03-calendario`; nos dois casos, o fluxo segue igual a
+partir da fase 0.
 
 ## Regra central
 
-Nenhum artefato final nasce de resposta direta, resumo apressado ou
+Nenhum artefato final é criado por resposta direta, resumo apressado ou
 reaproveitamento literal de outro material. Toda peça preserva a origem,
 passa por saneamento, extrai ativos reutilizáveis, é planejada antes de
 escrita, ganha um brief, é produzida pela skill do canal certo e é auditada
@@ -26,17 +29,25 @@ entregar.
 
 Cada fase corresponde a exatamente uma skill do grupo
 `thothfy-planejamento-<NN>-<nome>` — o número no nome da skill é a própria
-ordem de execução (ver `SKILL-AUTORIA.md`). `thothfy-iniciar` é a skill
-mestra que aciona as sete fases em sequência automaticamente; use as skills
-individuais quando quiser controlar ou retomar uma fase específica.
+ordem de execução (ver `SKILL-AUTORIA.md`). `thothfy-iniciar` é a wrapper
+que aciona as sete fases automaticamente; use as skills individuais quando
+quiser controlar ou retomar uma fase específica. Quando a entrada for apenas
+uma ideia, `thothfy-iniciar` chama primeiro `thothfy-brainstorm` e usa o
+`brainstorm.md` aprovado como material do pacote.
+
+As skills deste pipeline não reparam a instalação. Quando metodologia,
+template, inventário de fontes, arquivo de contexto ou diretório registrado
+estiver ausente ou fora do caminho canônico, a fase interrompe a escrita e
+aciona `thothfy-setup`. Depois da reconciliação, o pipeline retoma do último
+artefato preservado.
 
 ## Fases
 
 ### 0. Intake (`thothfy-planejamento-00-triagem`)
 
-Recebe material bruto — transcrição, ideia solta, briefing informal, dado de
+Recebe material bruto — transcrição, peça-base, briefing informal, dado de
 pesquisa, release de produto — ou um item alocado por
-`thothfy-estrategia-calendario`, e decide o caminho: pacote completo (todas
+`thothfy-estrategia-03-calendario`, e decide o caminho: pacote completo (todas
 as fases abaixo) ou peça avulsa (produção direta a partir de um brief
 mínimo). Cria o diretório de trabalho do pacote, registra a campanha de
 origem quando houver (`context/campanhas.md`) e preserva o material original
@@ -55,13 +66,15 @@ próprio mal transcrito vive em `TRADUCAO.md`.
 
 Extrai da base limpa e do `context/` os ativos reutilizáveis: teses, exemplos,
 dados, dores, objeções, perguntas frequentes, citações e entidades (produtos,
-pessoas, ferramentas) mencionadas. Esses ativos alimentam qualquer peça futura
-do mesmo pacote, mesmo em canais diferentes.
+pessoas, ferramentas) mencionadas. Quando o material depende de informação
+externa ou sensível ao tempo, também faz pesquisa com fonte e data de acesso.
+Esses ativos alimentam qualquer peça futura do mesmo pacote, mesmo em canais
+diferentes.
 
 ### 3. Planejamento de oportunidades (`thothfy-planejamento-03-oportunidades`)
 
 Cruza os ativos extraídos com os canais disponíveis em `context/canais.md` e
-decide quais peças valem a pena, em que ordem e com qual prioridade. O
+decide quais peças valem a pena, além da ordem e da prioridade. O
 resultado é uma lista de oportunidades, não peças prontas.
 
 ### 4. Briefing (`thothfy-planejamento-04-briefing`)
@@ -69,34 +82,50 @@ resultado é uma lista de oportunidades, não peças prontas.
 Transforma cada oportunidade aprovada em um brief formal por peça: canal,
 formato, público-alvo (`context/publico.md`), objetivo, ângulo, ativos de
 apoio, restrições de marca (`context/marca-voz.md` e `context/proibicoes.md`),
-estrutura persuasiva quando aplicável (`ESTRUTURAS-PERSUASIVAS.md`) e critério
-de pronto. Nenhuma peça final deve existir sem um brief que a originou.
+estrutura persuasiva quando aplicável (`ESTRUTURAS-PERSUASIVAS.md`) e
+condições de aprovação. Nenhuma peça final deve existir sem um brief que a
+originou.
 
 ### 5. Produção (`thothfy-planejamento-05-producao` + skill especialista)
 
 `thothfy-planejamento-05-producao` roteia o brief para a skill
 `thothfy-especialista-<canal>` correta (blog, email, LinkedIn, vídeo, ebook,
 infográfico, webinar, changelog, podcast) e garante que ela leu `context/` e
-`ESCRITA.md` antes de escrever. A skill especialista produz o artefato final
-— texto, imagem ou os dois.
+`ESCRITA.md` antes de escrever. A skill especialista produz o artefato
+candidato — texto, imagem ou os dois — e o encaminha para a
+`thothfy-validador-<canal>[-imagem]` de mesmo sufixo. A validadora aplica
+`thothfy-base-validador`, todos os contextos e as regras específicas. Se
+reprovar, devolve o relatório à produtora e o ciclo se repete.
+
+Proibições são hard gates: a validadora faz um passe literal e outro
+semântico/estrutural sobre o asset inteiro. Uma única ocorrência reprova a
+peça, mesmo que a nota média, o SEO ou os demais critérios estejam
+aprovados. Depois da correção, os dois passes recomeçam do zero. Se `brand/`
+existir, as diretrizes e os ativos aplicáveis da pasta também entram na
+aprovação.
 
 ### 6. Auditoria (`thothfy-planejamento-06-auditoria`)
 
-Audita o artefato final contra o brief, `ESCRITA.md`, `context/proibicoes.md`
-e a validação própria do canal (SEO, formato de imagem, tamanho de legenda).
-Aprova, reprova com correção guiada ou devolve para replanejamento quando o
-brief estava errado.
+Consolida os relatórios individuais já aprovados, verifica coerência entre
+assets e audita o pacote contra o brief. Relatório ausente ou reprovado
+devolve o item à produção; divergência estratégica volta ao briefing.
 
 ## Ordem entre fases
 
 ```text
-0 Intake → 1 Saneamento → 2 Pesquisa/Ativos → 3 Planejamento → 4 Briefing → 5 Produção → 6 Auditoria
+0 Intake → 1 Saneamento → 2 Pesquisa/Ativos → 3 Planejamento → 4 Briefing → 5 Produção ⇄ Validação do asset → 6 Auditoria
+```
+
+Ideia curta passa primeiro pelo brainstorm:
+
+```text
+Ideia → thothfy-brainstorm → brainstorm.md aprovado → fases 0 a 6
 ```
 
 Peça avulsa (sem pacote completo) ainda percorre um caminho mínimo:
 
 ```text
-Brief direto do usuário → 5 Produção → 6 Auditoria
+Brief direto do usuário → 5 Produção ⇄ Validação do asset → 6 Auditoria
 ```
 
 ## Estrutura de pacote
@@ -120,6 +149,8 @@ usuário em `context/canais.md`):
 ├── 04-briefs/
 │   └── <canal>-<slug>.md
 ├── 06-auditoria/
+│   ├── assets/
+│   │   └── <canal>-<item>.md
 │   └── auditoria-final.md
 └── 97-ativos-finais/
     └── <canal>/
@@ -135,7 +166,9 @@ Regras:
   diretório próprio — nunca um `.md` solto direto na pasta do canal.
 - Todo artefato final em Markdown carrega no frontmatter o campo `brief`,
   apontando para o brief que o originou em `04-briefs/`.
-- Quando o pacote nascer de uma campanha, o `README.md` do pacote referencia
+- Todo asset possui relatório aprovado em `06-auditoria/assets/` antes de
+  entrar na consolidação final.
+- Quando uma campanha originar o pacote, o `README.md` referencia
   o nome da campanha e o caminho do plano em
   `<pacote-de-campanha>/01-plano/plano-de-campanha.md` (ver `ESTRATEGIA.md`).
 

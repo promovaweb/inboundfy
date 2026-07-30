@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-30T20:46:09.148Z",
+  "assets": [
+    {
+      "path": "logo/icon-dark.png",
+      "format": "png",
+      "role": "icon-dark",
+      "sha256": "aa53f17d7a9a558707d9363cde66acb2fd267c83400b05f3975b60f890cb1aed"
+    },
+    {
+      "path": "logo/icon-dark.svg",
+      "format": "svg",
+      "role": "icon-dark",
+      "sha256": "54e489aef45a9e636382f66e6c7ba92dc36be6ca6dcf5930b6c2bf39af8c2a98"
+    },
+    {
+      "path": "logo/icon-light.png",
+      "format": "png",
+      "role": "icon-light",
+      "sha256": "64ab25af49fcf898afb310875f07b531fe6456855e892e414b1104644186c57f"
+    },
+    {
+      "path": "logo/icon-light.svg",
+      "format": "svg",
+      "role": "icon-light",
+      "sha256": "456e31d60e7ae64351b47e253d993e5cc684b23319b704e83ec9a7d7bb7ea108"
+    },
+    {
+      "path": "logo/icon.png",
+      "format": "png",
+      "role": "icon",
+      "sha256": "242a26b4c28c48d3fdcc05b686f20e8430a61890d8214df53a29f28d8abbc7ff"
+    },
+    {
+      "path": "logo/icon.svg",
+      "format": "svg",
+      "role": "icon",
+      "sha256": "7350f324195ede348a77a3ae9e34323fe217ecbcd3e1cc961eece1d6afa23279"
+    },
+    {
+      "path": "logo/logo-dark.png",
+      "format": "png",
+      "role": "logo-dark",
+      "sha256": "52e7abdcf0e8ac4618087682fb04327b060c680b7b098ff7ac7c7e7db919f546"
+    },
+    {
+      "path": "logo/logo-dark.svg",
+      "format": "svg",
+      "role": "logo-dark",
+      "sha256": "087ae5ea5d2f45903fd02d8cb89ac0bde5468d10156def9ec937eafb53e9efac"
+    },
+    {
+      "path": "logo/logo-light.png",
+      "format": "png",
+      "role": "logo-light",
+      "sha256": "7149df457054cda283033f4c9f00d8026bdd2be75f66f3ad6ce1d2e60d2cf22b"
+    },
+    {
+      "path": "logo/logo-light.svg",
+      "format": "svg",
+      "role": "logo-light",
+      "sha256": "45f8a2bc9aa42bdffb73973321a384492aabe545218cc58af486f220f31a01f9"
+    }
+  ]
+}

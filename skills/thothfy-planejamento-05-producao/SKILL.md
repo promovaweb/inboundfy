@@ -17,6 +17,14 @@ peça.
 Roteia e verifica pré-condição. A escrita e geração acontecem na skill de
 canal, não aqui.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 `context/canais.md`, para identificar a skill de redação e de imagem
@@ -45,7 +53,12 @@ peça avulsa.
 5. Acione a skill de redação do canal com o brief completo.
 6. Se o canal exigir imagem, acione a skill de imagem do canal depois do
    texto estar pronto, salvo quando o brief pedir imagem antes do texto.
-7. Encaminhe o resultado para `thothfy-planejamento-06-auditoria`.
+7. Para cada asset produzido, acione a `thothfy-validador-*` de mesmo
+   sufixo da produtora, conforme `REFERENCIA.md`. Se houver reprovação,
+   devolva o relatório à produtora pareada e repita produção e validação até
+   aprovar ou encontrar bloqueio factual que exija o usuário.
+8. Encaminhe para `thothfy-planejamento-06-auditoria` somente assets com
+   relatório individual aprovado.
 
 ## Saída
 
@@ -60,6 +73,7 @@ contexto.
 - Nenhuma skill de canal foi acionada com `context/` incompleto sem antes
   passar pela skill de manutenção correspondente.
 - O resultado foi encaminhado para `thothfy-planejamento-06-auditoria`.
+- Cada asset possui aprovação da validadora pareada.
 
 ## Idempotência
 

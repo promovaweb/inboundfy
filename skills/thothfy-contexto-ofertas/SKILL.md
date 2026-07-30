@@ -17,6 +17,14 @@ primeiro — é o único lugar do Thothfy onde esse dado é fonte de verdade.
 Cobre exclusivamente `context/ofertas.md`. Não cobre descrição funcional de
 produto (`thothfy-contexto-produtos`).
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 `context/produtos.md` e/ou `context/servicos.md`, para vincular cada oferta a

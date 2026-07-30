@@ -6,8 +6,9 @@ parágrafo. Use isto ao avaliar nota e ao reescrever trecho abaixo de 90%.
 O checklist abaixo cobre os princípios de `ESCRITA.md`. Para violação
 específica e catalogada — palavra, fórmula de abertura/fechamento,
 estrutura de parágrafo — cruze sempre com `context/estruturas-proibidas.md`,
-que também impõe teto de nota 69 quando violado (mesmo peso de
-`context/proibicoes.md`).
+que impõe reprovação automática e teto de nota 69 quando violado (mesmo peso
+de `context/proibicoes.md`). O teto registra a gravidade do parágrafo; não
+autoriza aprovação pela média.
 
 ## Checklist objetivo por parágrafo
 
@@ -63,6 +64,10 @@ Diferença: objeto nomeado (cobrança manual em planilha), avanço real
   problema (fragmentação) por outro (perda de prosa).
 - Aplicar o teto de nota 69 por violação de proibição, mas esquecer de
   registrar qual regra de `context/proibicoes.md` foi violada.
+- Aprovar o texto porque a média passou de 90 mesmo com uma ocorrência
+  proibida.
+- Buscar só a frase literal e ignorar paráfrase, variação ou estrutura
+  equivalente.
 - Penalizar vocabulário técnico legítimo do domínio como se fosse jargão —
   confira o objeto real do texto antes de marcar um termo como problema (ver
   nota sobre vocabulário técnico válido em `ESCRITA.md`).

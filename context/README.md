@@ -7,7 +7,7 @@ sequência), mas seu conteúdo é genérico e pré-preenchido pelo framework, n�
 dado específico de negócio — ver `../ESCRITA.md`. Veja `../CONTEXTO.md` para
 o que cada arquivo resolve, a precedência entre eles e o formato esperado.
 
-Todos os arquivos abaixo chegam como template com placeholders entre `< >` e
+Todos os arquivos abaixo chegam como template com placeholders entre `{ }` e
 comentários `<!-- -->` explicando o que preencher. Preencha sob demanda: o
 mínimo para começar é `empresa.md`, `marca-voz.md`, um item em `produtos.md`
 (ou `servicos.md`) e um canal em `canais.md` — `thothfy-setup` conduz esse
@@ -26,6 +26,7 @@ preenchimento inicial.
 | `enderecos.md` | Endereços, registro legal, contatos oficiais. |
 | `canais.md` | Canais ativos, cadência, diretório de trabalho. |
 | `ferramentas.md` | Stack e ferramentas mencionáveis. |
+| `campanhas.md` | Campanhas, objetivos, período e estado. |
 | `glossario.md` | Grafia oficial de marcas e termos. |
 | `proibicoes.md` | Vetos editoriais específicos do usuário. |
 | `estruturas-proibidas.md` | Catálogo genérico (pré-preenchido) de palavras, frases e estruturas de parágrafo com cara de IA. |

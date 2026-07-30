@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thothfy Validador changelog"
+  short_description: "Valida o asset changelog antes da entrega"
+  default_prompt: "Use $thothfy-validador-changelog para validar este asset e devolver correções à skill produtora quando necessário."

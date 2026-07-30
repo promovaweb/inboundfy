@@ -24,6 +24,14 @@ busca de banco de fotos em vez desta skill, seguindo o padrão de
 Cobre a imagem que acompanha post nativo e a capa de artigo longo de
 LinkedIn. O texto é `thothfy-especialista-linkedin`.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/canais.md`: proporção exigida (post e capa de artigo costumam ter
@@ -50,6 +58,12 @@ artigo) do brief.
    contraste e presença de logo quando o canal exigir.
 5. Salve junto ao artefato de texto do mesmo item.
 
+## Encaminhamento obrigatório
+
+Antes de considerar a imagem pronta, acione
+`thothfy-validador-linkedin-imagem`. Em caso de reprovação, corrija os
+achados e reenvie a peça até a aprovação.
+
 ## Saída
 
 Arquivo de imagem salvo em `97-ativos-finais/linkedin/<item>/`, junto ao
@@ -60,6 +74,7 @@ texto correspondente.
 - Proporção confere exatamente com `context/canais.md` para o formato usado.
 - Texto da imagem é legível em miniatura de feed.
 - Identidade visual confere com a definição do usuário.
+- Aprovação registrada por `thothfy-validador-linkedin-imagem`.
 
 ## Idempotência
 

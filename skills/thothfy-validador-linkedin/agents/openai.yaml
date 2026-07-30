@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thothfy Validador linkedin"
+  short_description: "Valida o asset linkedin antes da entrega"
+  default_prompt: "Use $thothfy-validador-linkedin para validar este asset e devolver correções à skill produtora quando necessário."

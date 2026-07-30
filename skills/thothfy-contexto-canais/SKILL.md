@@ -2,8 +2,8 @@
 name: thothfy-contexto-canais
 description: >
   Preenche e mantém context/canais.md. Ative quando o usuário definir o
-  diretório de trabalho do pipeline ou configurar um canal — ativo/inativo,
-  skill de redação e imagem, cadência, formato, limites técnicos.
+  diretórios de brainstorm e do pipeline ou configurar um canal —
+  ativo/inativo, skill de redação e imagem, cadência, formato e limites.
 ---
 
 # Thothfy Contexto — Canais
@@ -15,6 +15,14 @@ de canal, que consultam este arquivo para saber onde salvar o artefato final.
 ## Escopo
 
 Cobre exclusivamente `context/canais.md`.
+
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
 
 ## Contexto exigido
 
@@ -30,14 +38,14 @@ canal, ou ajuste de cadência e limites técnicos de um canal já ativo.
 ## Fluxo
 
 1. Leia `context/canais.md` atual.
-2. Se o diretório de trabalho do pipeline ainda não estiver definido, exija
-   essa definição antes de qualquer outra configuração de canal — é o
-   pré-requisito de `thothfy-planejamento-00-triagem`. Use o roteiro de
-   entrevista de `REFERENCIA.md`.
+2. Se os diretórios de brainstorm e do pipeline não estiverem definidos,
+   use `brainstorms/` e `content/` como padrões ou registre caminhos
+   informados pelo usuário. Eles são exigidos por `thothfy-brainstorm-00-triagem`
+   e `thothfy-planejamento-00-triagem`. Use `REFERENCIA.md`.
 3. Para cada canal configurado, registre: se está ativo, a skill de redação
    e de imagem correspondente (usando os nomes exatos de `SKILLS.md`),
    cadência de publicação, formato e limites técnicos (tamanho de título,
-   contagem de caracteres, proporção de imagem) e onde o artefato final é
+limite de caracteres, proporção de imagem) e onde o artefato final é
    publicado fora do Thothfy.
 4. Não invente skill de canal inexistente — verifique em `SKILLS.md` antes de
    registrar o nome.
@@ -49,6 +57,7 @@ Atualização de `context/canais.md`.
 ## Validação
 
 - Checklist de completude de `REFERENCIA.md` cumprido.
+- Os diretórios de brainstorm e do pipeline estão definidos.
 - O diretório de trabalho do pipeline está definido antes de qualquer canal
   ser marcado como ativo.
 - Toda skill de redação/imagem referenciada existe em `SKILLS.md`.

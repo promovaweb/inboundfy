@@ -2,7 +2,7 @@
 name: thothfy-planejamento-00-triagem
 description: >
   Porta de entrada da fase 0 do pipeline (METODOLOGIA.md). Recebe material
-  bruto — transcrição, ideia solta, briefing informal, dado de pesquisa — e
+  bruto — transcrição, peça-base, briefing informal, dado de pesquisa — e
   decide entre pacote completo ou peça avulsa, criando a estrutura de
   diretório e preservando a origem sem edição.
 ---
@@ -13,6 +13,14 @@ Primeira skill do pipeline editorial. Não escreve copy nem produz artefato
 final — decide o caminho e prepara o terreno para `thothfy-planejamento-01-saneamento`,
 `thothfy-planejamento-02-pesquisa`, `thothfy-planejamento-03-oportunidades` e `thothfy-planejamento-04-briefing`.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/canais.md`: define o diretório de trabalho onde o pacote será
@@ -21,14 +29,18 @@ final — decide o caminho e prepara o terreno para `thothfy-planejamento-01-san
 
 ## Entrada esperada
 
-Material bruto de qualquer natureza: transcrição de reunião ou aula, ideia em
-texto livre, print ou nota de pesquisa, release de produto, briefing informal
-do usuário.
+Material bruto de qualquer natureza: transcrição de reunião ou aula, peça-base,
+print ou nota de pesquisa, release de produto, briefing informal do usuário.
+Uma ideia curta sem tese ou evidência deve chegar por `thothfy-brainstorm`.
 
 ## Fluxo
 
-1. Confirme que `context/canais.md` tem o diretório de trabalho definido.
-2. Avalie o material recebido e decida:
+1. Confirme que `context/canais.md` tem o diretório de trabalho definido e
+   que o caminho existe. Se o diretório ou arquivo de apoio estiver ausente,
+   acione `thothfy-setup`; não recrie a estrutura nesta skill.
+2. Avalie o material recebido e encaminhe ideia curta para
+   `thothfy-brainstorm` antes de abrir o pacote. Para as demais entradas,
+   decida:
    - **Pacote completo**: quando o material é substancial o suficiente para
      gerar múltiplas peças em múltiplos canais (ex.: transcrição de aula,
      pesquisa extensa, lançamento de produto).
@@ -38,17 +50,19 @@ do usuário.
      brief) e depois `thothfy-planejamento-05-producao`, pulando as fases 1-3.
 3. Para pacote completo, crie a estrutura de diretório definida em
    `METODOLOGIA.md`, dentro do caminho de `context/canais.md`:
+
    ```text
    <diretório-de-trabalho>/<slug-do-pacote>/
    ├── README.md
    └── 00-entrada/
        └── material-original.md
    ```
+
 4. Salve o material bruto, sem edição, em `00-entrada/material-original.md`.
    Este arquivo nunca é reescrito depois.
 5. Escreva um `README.md` do pacote com: data, origem do material, decisão de
    pacote completo, e status inicial `00-entrada`, seguindo o template e o
-   critério objetivo de decisão de `REFERENCIA.md`.
+   parâmetro objetivo de decisão de `REFERENCIA.md`.
 6. Informe ao usuário o próximo passo: `thothfy-planejamento-01-saneamento` para pacote
    completo, ou `thothfy-planejamento-04-briefing` para peça avulsa.
 

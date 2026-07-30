@@ -16,6 +16,14 @@ imagem (`thothfy-especialista-infografico-imagem`) vai compor visualmente.
 Cobre apenas o texto: título, blocos, legenda e alt text. A composição
 visual é `thothfy-especialista-infografico-imagem`.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/marca-voz.md`: tom, mesmo em formato curto.
@@ -35,7 +43,7 @@ AIDA, PAS ou PASTOR. Quando o brief for um infográfico comparativo ou de
 apresentação de produto (ex.: "por que usar X"), aplique **FAB** por bloco
 visual: cada bloco nomeia uma característica, o texto mínimo do bloco indica
 a vantagem, e a legenda de acompanhamento (que passa por `thothfy-base-editor`)
-fecha no benefício real para quem lê — sem transformar o bloco visual em
+fecha no benefício real para o leitor — sem transformar o bloco visual em
 parágrafo longo.
 
 ## Entrada esperada
@@ -64,6 +72,12 @@ e fonte do dado.
 7. Encaminhe para `thothfy-especialista-infografico-imagem` e depois para
    `thothfy-planejamento-06-auditoria`.
 
+## Encaminhamento obrigatório
+
+Antes de considerar a copy pronta, acione
+`thothfy-validador-infografico`. Em caso de reprovação, aplique as correções
+do relatório e reenvie o arquivo inteiro até a aprovação.
+
 ## Saída
 
 Arquivo Markdown com título, blocos, legenda e alt text, salvo no caminho de
@@ -74,6 +88,7 @@ Arquivo Markdown com título, blocos, legenda e alt text, salvo no caminho de
 - Todo dado numérico tem fonte rastreável registrada.
 - Legenda passou pela auditoria de `thothfy-base-editor`.
 - Alt text descreve a imagem de forma útil para leitor de tela.
+- Aprovação registrada por `thothfy-validador-infografico`.
 
 ## Idempotência
 

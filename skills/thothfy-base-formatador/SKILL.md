@@ -16,6 +16,14 @@ para `thothfy-planejamento-06-auditoria`.
 Formata e valida estrutura Markdown. Não corrige conteúdo, tom ou voz — isso
 é `thothfy-base-editor`.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 Nenhum arquivo de `context/` é obrigatório. Consulte `context/glossario.md`

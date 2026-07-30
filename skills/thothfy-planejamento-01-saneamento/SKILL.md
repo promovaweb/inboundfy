@@ -18,6 +18,14 @@ Cobre a limpeza mecânica e estrutural do material. Não reescreve com a voz de
 `context/marca-voz.md` — isso é papel das skills de canal na fase 5. Não
 extrai ativos reutilizáveis — isso é `thothfy-planejamento-02-pesquisa`.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 Nenhum arquivo de `context/` é estritamente obrigatório para limpeza
@@ -25,7 +33,7 @@ mecânica, mas leia `context/glossario.md` para corrigir grafia de marcas e
 termos técnicos durante a limpeza. Leia também `LIMPEZA-MATERIAL-BRUTO.md`
 (regras completas do que pode e não pode ser alterado, por tipo de
 material) e `TRADUCAO.md` (lógica de correção canônica de termo e nome
-próprio mal transcrito) antes de tocar em qualquer material bruto — essa
+próprio mal transcrito) como requisito para alterar material bruto — essa
 leitura é obrigatória, não apenas `REFERENCIA.md` desta skill.
 
 ## Entrada esperada

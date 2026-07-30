@@ -28,6 +28,14 @@ com texto sobreposto (card, slide, thumbnail com título) usa
 Cobre apenas a imagem de capa e thumbnail do artigo. O texto é
 `thothfy-especialista-blog`.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/canais.md`: dimensão de cover e thumbnail exigida pelo canal.
@@ -54,6 +62,12 @@ central do artigo para orientar a busca da foto.
    de nota junto ao item, conforme exigido pela licença.
 5. Atualize o frontmatter do artigo com o caminho da imagem de capa.
 
+## Encaminhamento obrigatório
+
+Antes de considerar o conjunto pronto, acione
+`thothfy-validador-blog-imagem`. Em caso de reprovação, corrija os achados e
+reenvie cover, thumbnail e crédito até a aprovação.
+
 ## Saída
 
 Arquivo de imagem de cover e thumbnail salvos junto ao artefato de texto, no
@@ -64,6 +78,7 @@ diretório do item (`97-ativos-finais/blog/<slug>/`), mais a nota de crédito.
 - A imagem é uma foto real de banco de fotos, nunca gerada por IA.
 - Dimensões batem exatamente com o exigido em `context/canais.md`.
 - Crédito da foto está registrado conforme a licença exige.
+- Aprovação registrada por `thothfy-validador-blog-imagem`.
 
 ## Idempotência
 

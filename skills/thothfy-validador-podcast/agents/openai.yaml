@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thothfy Validador podcast"
+  short_description: "Valida o asset podcast antes da entrega"
+  default_prompt: "Use $thothfy-validador-podcast para validar este asset e devolver correções à skill produtora quando necessário."

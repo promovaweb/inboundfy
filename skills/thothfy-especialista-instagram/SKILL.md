@@ -17,6 +17,14 @@ carrossel (slide a slide) e roteiro falado de vídeo curto.
 Cobre texto e roteiro. Imagem de feed e pacote de carrossel são
 `thothfy-especialista-instagram-imagem`.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/marca-voz.md`: tom e nível de informalidade permitido.
@@ -72,6 +80,12 @@ ativos de apoio e CTA.
 8. Encaminhe para `thothfy-especialista-instagram-imagem` quando o formato exigir peça
    visual, e depois para `thothfy-planejamento-06-auditoria`.
 
+## Encaminhamento obrigatório
+
+Antes de considerar o asset pronto, acione
+`thothfy-validador-instagram`. Em caso de reprovação, aplique as correções
+do relatório e reenvie o conjunto inteiro até a aprovação.
+
 ## Saída
 
 Arquivo Markdown salvo no caminho definido em `context/canais.md` para
@@ -82,6 +96,7 @@ Instagram, com um arquivo por slide quando o formato for carrossel.
 - Formato de saída corresponde exatamente ao indicado no brief.
 - Nenhum trecho abaixo de 90% na auditoria de `thothfy-base-editor`.
 - Carrossel tem progressão lógica entre slides, não blocos desconectados.
+- Aprovação registrada por `thothfy-validador-instagram`.
 
 ## Idempotência
 

@@ -42,7 +42,7 @@ Template, exemplo preenchido e checklist para `context/campanhas.md`.
 ## Erros comuns
 
 - Registrar objetivo vago ("fortalecer marca") sem KPI mensurável associado —
-  isso impede `thothfy-estrategia-campanha` de priorizar canal e cadência.
+  isso impede `thothfy-estrategia-02-campanha` de priorizar canal e cadência.
 - Apagar campanha encerrada em vez de mudar o status — perde-se o histórico
   que embasa a próxima campanha do mesmo cliente.
 - Citar canal ou persona que ainda não existe em `context/`, criando

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Brainstorm Thothfy"
+  short_description: "Transforma uma ideia em brainstorm validado"
+  default_prompt: "Use $thothfy-brainstorm para transformar minha ideia em um brainstorm pesquisado e validado."

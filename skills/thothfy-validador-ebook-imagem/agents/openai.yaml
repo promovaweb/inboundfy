@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thothfy Validador ebook-imagem"
+  short_description: "Valida o asset ebook-imagem antes da entrega"
+  default_prompt: "Use $thothfy-validador-ebook-imagem para validar este asset e devolver correções à skill produtora quando necessário."

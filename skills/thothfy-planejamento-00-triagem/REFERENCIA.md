@@ -5,7 +5,7 @@
 ```markdown
 # Pacote: <slug-do-pacote>
 
-- **Origem do material:** <transcrição de reunião, ideia solta, release de produto, pesquisa, etc.>
+- **Origem do material:** <transcrição, peça-base, release, pesquisa, etc.>
 - **Data de criação:** <data>
 - **Decisão:** <pacote completo | peça avulsa>
 - **Motivo da decisão:** <por que o material sustenta múltiplas peças, ou por que já é um brief específico>

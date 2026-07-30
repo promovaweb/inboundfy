@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thothfy Base Validador"
+  short_description: "Audita regras transversais de qualquer asset"
+  default_prompt: "Use $thothfy-base-validador para auditar este asset contra todas as fontes aplicáveis."

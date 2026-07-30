@@ -22,6 +22,14 @@ usa `thothfy-base-imagem` como motor.
 Cobre capa e imagem OpenGraph derivada. O texto do ebook é
 `thothfy-especialista-ebook`.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/canais.md`: dimensão de capa e de OpenGraph exigidas.
@@ -48,6 +56,12 @@ Título e subtítulo final do ebook, definidos por `thothfy-especialista-ebook`.
 5. Confira grafia do título contra `context/glossario.md`.
 6. Salve capa e OpenGraph junto ao artefato de texto do ebook.
 
+## Encaminhamento obrigatório
+
+Antes de considerar capa e OpenGraph prontos, acione
+`thothfy-validador-ebook-imagem`. Em caso de reprovação, corrija os achados
+e reenvie o conjunto até a aprovação.
+
 ## Saída
 
 Arquivo de capa e arquivo de OpenGraph, salvos em
@@ -59,6 +73,7 @@ Arquivo de capa e arquivo de OpenGraph, salvos em
 - Título na capa confere com o título final do ebook e com
   `context/glossario.md`.
 - Capa e OpenGraph mantêm a mesma identidade visual.
+- Aprovação registrada por `thothfy-validador-ebook-imagem`.
 
 ## Idempotência
 

@@ -2,7 +2,7 @@
 name: thothfy-contexto-campanhas
 description: >
   Preenche e mantém context/campanhas.md. Ative quando uma campanha nova for
-  aprovada em thothfy-estrategia-briefing-cliente ou thothfy-estrategia-campanha,
+  aprovada em thothfy-estrategia-00-briefing-cliente ou thothfy-estrategia-02-campanha,
   quando o status de uma campanha mudar, ou quando o usuário corrigir KPI,
   período ou orçamento de uma campanha já registrada.
 ---
@@ -11,13 +11,21 @@ description: >
 
 Mantém o registro de campanhas — ativas e encerradas. Não decide objetivo,
 KPI ou plano de canal; apenas guarda o que já foi decidido pelas skills do
-grupo `thothfy-estrategia-*`.
+grupo `thothfy-estrategia-<NN>-*`.
 
 ## Escopo
 
 Cobre exclusivamente `context/campanhas.md`. Não escreve brief de campanha
-(`thothfy-estrategia-briefing-cliente`) nem plano de campanha
-(`thothfy-estrategia-campanha`) — apenas registra o resultado deles.
+(`thothfy-estrategia-00-briefing-cliente`) nem plano de campanha
+(`thothfy-estrategia-02-campanha`) — apenas registra o resultado deles.
+
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
 
 ## Contexto exigido
 

@@ -26,6 +26,14 @@ sintética quando o canal ou `context/canais.md` exigir explicitamente foto
 real, e nunca use busca de foto quando a peça exigir texto grande, legível e
 posicionado com precisão sobre um fundo de marca.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/marca-voz.md`: para tom do texto que vai na peça.

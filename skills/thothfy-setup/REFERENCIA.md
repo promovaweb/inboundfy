@@ -3,14 +3,37 @@
 Checklist e roteiro de entrevista para conduzir uma instalação nova do
 Thothfy do início ao fim.
 
+## Tabela de propriedade
+
+| Grupo | Caminho | Ação do setup | Ação das demais skills |
+| --- | --- | --- | --- |
+| Skills | diretório de skills detectado | Instalar, atualizar, migrar e reparar | Ler e executar |
+| Metodologia | `.thothfy/*.md` | Instalar, atualizar e restaurar | Ler |
+| Templates | `.thothfy/templates/` | Instalar, atualizar e restaurar | Ler |
+| Fontes do projeto | `.thothfy/FONTES-PROJETO.md` | Descobrir, classificar e atualizar o inventário | Ler as fontes relevantes |
+| Contexto do usuário | `.thothfy/context/` | Criar ausentes e preservar existentes | Preencher pela skill `thothfy-contexto-*` |
+| Configuração de canais | `.thothfy/context/canais.md` | Garantir presença e caminhos de saída | Preencher pela skill de contexto |
+| Brainstorms | caminho registrado, padrão `brainstorms/` | Criar ou reparar o diretório | Escrever brainstorms |
+| Conteúdo | caminho registrado, padrão `content/` | Criar ou reparar o diretório | Escrever pacotes e ativos |
+| Instruções | bloco delimitado em `AGENTS.md`/`CLAUDE.md` | Inserir, atualizar e reparar o bloco | Respeitar, sem reescrever |
+| Versão | `.thothfy/VERSAO.md` | Criar e atualizar | Ler |
+| Migrações | `.thothfy/migracoes/` | Preservar versões legadas ou customizadas | Não alterar |
+
 ## Checklist de instalação completa
 
 - [ ] Diretório de skills do agente detectado ou definido pelo usuário.
 - [ ] `skills/thothfy-*/` copiadas para esse diretório.
 - [ ] `.thothfy/` criado com `VERSAO.md`, arquivos de metodologia,
-      `templates/context/` e `context/`.
+      `FONTES-PROJETO.md`, `templates/brainstorm.md`,
+      `templates/fontes-projeto.md`, `templates/context/` e `context/`.
+- [ ] Markdown em maiúsculas pesquisados com as exclusões definidas.
+- [ ] Se `brand/` existe, todos os Markdown internos foram inventariados,
+      inclusive os nomes em minúsculas.
+- [ ] `.thothfy/FONTES-PROJETO.md` registra caminhos relativos, classes,
+      assuntos, uso e conflitos.
+- [ ] `brainstorms/` criado (ou confirmado) na raiz do projeto.
 - [ ] `content/` criado (ou confirmado) na raiz do projeto.
-- [ ] `.thothfy/context/canais.md` registra o caminho de `content/`.
+- [ ] `.thothfy/context/canais.md` registra os dois caminhos.
 - [ ] `AGENTS.md` e/ou `CLAUDE.md` ajustado com a seção do Thothfy, sem
       remover instrução prévia.
 - [ ] `.thothfy/context/empresa.md` preenchido (nome, missão, modelo de
@@ -21,8 +44,49 @@ Thothfy do início ao fim.
       `.thothfy/context/servicos.md`.
 - [ ] Ao menos um canal ativo em `.thothfy/context/canais.md`.
 - [ ] `.thothfy/VERSAO.md` registra versão e data.
+- [ ] Nomes estratégicos antigos foram migrados para
+      `.thothfy/migracoes/`, quando existiam.
 - [ ] Usuário recebeu a lista do que ainda falta preencher no restante de
       `.thothfy/context/`.
+- [ ] Inventário final não contém item gerenciado ausente ou divergente.
+
+## Comando de descoberta
+
+Execute o utilitário a partir do diretório da skill instalada, apontando para
+a raiz do projeto consumidor:
+
+```bash
+python3 scripts/inventariar-fontes-projeto.py /caminho/do/projeto \
+  --excluir brainstorms \
+  --excluir content
+```
+
+O JSON retorna somente caminho relativo, título, headings e SHA-256. O
+utilitário não classifica autoridade, não copia conteúdo e não escreve no
+projeto. Use a saída para preencher `FONTES-PROJETO.md`.
+
+Além dos Markdown em maiúsculas, o comando inclui todo arquivo `.md` sob
+`brand/`. Logos, fontes, tokens e imagens não entram no JSON, mas continuam
+disponíveis no próprio diretório para inspeção pelas skills que validam
+identidade visual.
+
+## Relatório de reconciliação
+
+```markdown
+# Reconciliação do Thothfy
+
+- **Modo:** {instalação | atualização | reparo}
+- **Versão:** {versão}
+- **Criados:** {caminhos ou nenhum}
+- **Atualizados:** {caminhos ou nenhum}
+- **Restaurados:** {caminhos ou nenhum}
+- **Preservados:** {caminhos com conteúdo do usuário}
+- **Migrados:** {caminhos ou nenhum}
+- **Pendentes de preenchimento:** {arquivos de context/ ou nenhum}
+- **Fontes Markdown descobertas:** {quantidade e caminhos ou nenhuma}
+- **Conflitos entre fontes:** {assuntos ou nenhum}
+- **Resultado:** {aprovado | reprovado com motivo}
+```
 
 ## Roteiro de entrevista (instalação nova)
 
@@ -39,10 +103,10 @@ sem inventar dado:
    `produtos.md` ou `servicos.md`.
 5. "Em qual canal você quer produzir conteúdo primeiro — blog, LinkedIn,
    e-mail, outro?" → `canais.md`.
-6. "Prefere manter os pacotes de trabalho em `content/` na raiz do projeto,
-   ou já existe uma pasta equivalente que devo usar?" → `canais.md`.
+6. "Há motivo para não usar `brainstorms/` e `content/` na raiz do projeto?
+   Se houver, quais caminhos devo registrar?" → `canais.md`.
 
-Perguntas de aprofundamento (podem esperar, não bloqueiam a liberação das
+Perguntas de aprofundamento (podem esperar, não impedem a liberação das
 skills de produção): pessoas/porta-vozes, ofertas e preços, público e
 personas, concorrentes, endereços oficiais, ferramentas citáveis,
 proibições específicas além das genéricas já pré-preenchidas.
@@ -55,10 +119,12 @@ proibições específicas além das genéricas já pré-preenchidas.
 
 Este projeto usa o Thothfy para copy, conteúdo e artefatos visuais de
 marketing. Antes de produzir qualquer peça, leia `.thothfy/CONTEXTO.md`
-(dados do usuário e precedência), `.thothfy/METODOLOGIA.md` (pipeline
-editorial) e `.thothfy/SKILLS.md` (catálogo de skills). Use
-`thothfy-iniciar` para o fluxo completo automático a partir de material
-bruto, ou acione a skill especialista do canal diretamente com um brief.
+(dados do usuário e precedência), `.thothfy/BRAINSTORM.md` (ideias),
+`.thothfy/FONTES-PROJETO.md` (Markdown locais relevantes),
+`.thothfy/METODOLOGIA.md` (pipeline editorial) e `.thothfy/SKILLS.md`
+(catálogo de skills). Leia no inventário as fontes ligadas à tarefa. Use
+`thothfy-iniciar` para o fluxo automático a partir de uma ideia ou peça-base,
+ou acione a skill especialista diretamente com um brief.
 <!-- thothfy:fim -->
 ```
 
@@ -80,3 +146,14 @@ bruto, ou acione a skill especialista do canal diretamente com um brief.
   marcada — sempre preserve o que já existia.
 - Detectar `.claude/skills/` e `.codex/skills/` ao mesmo tempo e copiar para
   os dois sem perguntar — se ambos existirem, pergunte qual é o ativo.
+- Deixar os nomes estratégicos antigos junto aos numerados — isso cria dois
+  gatilhos para a mesma fase.
+- Permitir que uma skill de produção crie `.thothfy/`, restaure template ou
+  escolha outro caminho de apoio — ela deve acionar `thothfy-setup`.
+- Confundir restauração estrutural com preenchimento: o setup repõe o
+  template ausente; a skill de contexto registra a informação do negócio.
+- Copiar os Markdown descobertos para `.thothfy/` ou reescrevê-los durante o
+  inventário. O setup registra caminhos relativos e preserva as fontes.
+- Tratar todo arquivo em maiúsculas como fato confirmado. O setup classifica
+  a finalidade e registra divergências antes de propor atualização do
+  `context/`.

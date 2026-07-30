@@ -23,6 +23,14 @@ banco de fotos em vez desta skill, seguindo o padrão de `thothfy-especialista-b
 Cobre imagem de post único e o pacote completo de slides de carrossel. O
 texto é `thothfy-especialista-instagram`.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/canais.md`: proporção de post (geralmente quadrada ou 4:5) e de
@@ -51,6 +59,12 @@ cada slide) e o formato indicado no brief.
    quando o canal usar esse recurso.
 5. Salve o pacote completo junto ao artefato de texto do mesmo item.
 
+## Encaminhamento obrigatório
+
+Antes de considerar o conjunto pronto, acione
+`thothfy-validador-instagram-imagem`. Em caso de reprovação, corrija os
+achados e reenvie todos os arquivos até a aprovação.
+
 ## Saída
 
 Um arquivo de imagem por slide (ou um único arquivo para post simples),
@@ -61,6 +75,7 @@ salvo em `97-ativos-finais/instagram/<item>/`.
 - Proporção confere exatamente com `context/canais.md`.
 - Todos os slides de um mesmo carrossel mantêm consistência visual entre si.
 - Identidade visual confere com a definição do usuário.
+- Aprovação registrada por `thothfy-validador-instagram-imagem`.
 
 ## Idempotência
 

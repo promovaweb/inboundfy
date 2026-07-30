@@ -18,6 +18,14 @@ Cobre `context/empresa.md` e `context/glossario.md`. Não cobre pessoas
 (`thothfy-contexto-pessoas`), produtos (`thothfy-contexto-produtos`) nem
 preço (`thothfy-contexto-ofertas`).
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 Nenhum outro arquivo de `context/` é pré-requisito. Esta skill é uma das
@@ -40,7 +48,7 @@ apresentação, documento) que o usuário quer transformar em dado estruturado.
    template.
 4. Quando o novo dado divergir de algo já publicado em outro artefato do
    projeto, sinalize a divergência ao usuário (ver precedência em
-   `CONTEXTO.md`); não corrija o artefato publicado por conta própria nesta
+`CONTEXTO.md`); não corrija o artefato publicado sozinha nesta
    skill.
 5. Ao criar ou confirmar grafia de marca, produto, ferramenta ou sigla,
    registre a linha correspondente em `context/glossario.md`.

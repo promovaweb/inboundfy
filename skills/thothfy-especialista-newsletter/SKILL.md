@@ -17,6 +17,14 @@ Cobre newsletter editorial longa, seja distribuída por e-mail ou publicada
 como artigo próprio. E-mail curto avulso ou de nutrição é
 `thothfy-especialista-email`.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/marca-voz.md`: tom, pessoa gramatical, exemplos de voz.
@@ -39,7 +47,7 @@ preservando o tom editorial e o tamanho maior do canal.
 Sempre que a edição apresentar um produto, serviço ou ferramenta dentro do
 texto corrido, aplique **FAB**: nomeie a característica (do `context/`
 correspondente), explique a vantagem prática e feche no benefício real para
-quem lê — nunca liste a característica e siga em frente sem completar a
+o leitor — nunca liste a característica e siga em frente sem completar a
 tradução.
 
 ## Entrada esperada
@@ -64,6 +72,12 @@ Um brief com: tema da edição, ângulo, ativos de apoio (de
    `description` e `brief` quando fizer parte de um pacote.
 8. Encaminhe para `thothfy-planejamento-06-auditoria`.
 
+## Encaminhamento obrigatório
+
+Antes de considerar a edição pronta, acione
+`thothfy-validador-newsletter`. Em caso de reprovação, aplique as correções
+do relatório e reenvie o arquivo inteiro até a aprovação.
+
 ## Saída
 
 Arquivo Markdown com frontmatter, salvo no caminho definido em
@@ -74,6 +88,7 @@ Arquivo Markdown com frontmatter, salvo no caminho definido em
 - Corpo em prosa contínua, sem fragmentação artificial.
 - Nenhum parágrafo abaixo de 90% na auditoria de `thothfy-base-editor`.
 - Toda menção institucional confere com `context/`.
+- Aprovação registrada por `thothfy-validador-newsletter`.
 
 ## Idempotência
 

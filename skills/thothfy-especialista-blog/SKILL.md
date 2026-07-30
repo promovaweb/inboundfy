@@ -22,6 +22,14 @@ página institucional ou landing page, esta skill não se aplica — o Thothfy
 trata isso como um canal próprio a ser definido em `context/canais.md` do
 projeto, não como blog.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/marca-voz.md`: tom, pessoa gramatical, vocabulário, exemplos de
@@ -85,6 +93,13 @@ específicas da peça.
 11. Encaminhe para `thothfy-especialista-blog-imagem` quando o canal exigir imagem, e depois
     para `thothfy-planejamento-06-auditoria`.
 
+## Encaminhamento obrigatório
+
+Antes de considerar o artigo pronto, acione `thothfy-validador-blog`. Em
+caso de reprovação, aplique as correções do relatório e reenvie o artigo
+inteiro à mesma validadora até a aprovação. Só então avance para imagem e
+auditoria do pacote.
+
 ## Saída
 
 Artigo em Markdown com frontmatter, salvo no caminho definido em
@@ -98,6 +113,7 @@ Artigo em Markdown com frontmatter, salvo no caminho definido em
 - Toda afirmação sobre produto, serviço, preço ou ferramenta confere com
   `context/`.
 - Frontmatter completo, incluindo `brief` quando aplicável.
+- Aprovação registrada por `thothfy-validador-blog`.
 
 ## Idempotência
 

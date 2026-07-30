@@ -22,6 +22,14 @@ Cobre `context/marca-voz.md`, `context/proibicoes.md` e
 (`thothfy-contexto-empresa`) nem persona de público
 (`thothfy-contexto-publico`).
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 Nenhum outro arquivo é pré-requisito.
@@ -43,8 +51,9 @@ editorial (termo, promessa ou comparação que nunca deve aparecer).
    promessa ou comparação proibida com o motivo. Se o veto for específico de
    um canal ou público, registre na seção "Canais ou públicos com regra
    própria".
-5. Para ajuste do catálogo de estruturas proibidas: `context/estruturas-
-   proibidas.md` já vem pré-preenchido com padrões genéricos. Edite apenas
+5. Para ajuste do catálogo de estruturas proibidas:
+   `context/estruturas-proibidas.md` já vem pré-preenchido com padrões
+   genéricos. Edite apenas
    quando o usuário quiser adicionar um padrão específico observado na
    própria produção, remover um item que a voz da marca aceita de propósito
    (ex.: marca que usa emoji deliberadamente), ou ajustar por preferência

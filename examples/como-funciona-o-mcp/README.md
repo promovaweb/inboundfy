@@ -43,11 +43,12 @@ fase em ação. Não representam nenhum cliente real do Thothfy. Ver
 ## O que este exemplo não mostra
 
 Por ser um pacote avulso (sem campanha associada), ele não passa pelo grupo
-`thothfy-estrategia-*` — não há `thothfy-estrategia-briefing-cliente` nem
-`thothfy-estrategia-campanha` aqui, porque este conteúdo nasceu de uma ideia
+`thothfy-estrategia-<NN>-*` — não há
+`thothfy-estrategia-00-briefing-cliente` nem
+`thothfy-estrategia-02-campanha` aqui, porque este conteúdo nasceu de uma ideia
 solta do time, não de uma campanha com objetivo de negócio e KPI. Ver
 `ESTRATEGIA.md` para quando um pacote como este nasceria, em vez disso, de
-um item alocado por `thothfy-estrategia-calendario`.
+um item alocado por `thothfy-estrategia-03-calendario`.
 
 A Oportunidade 2 do plano (post de LinkedIn divulgando o artigo) foi
 registrada, mas deliberadamente não produzida neste exemplo, para manter o

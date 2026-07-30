@@ -1,10 +1,10 @@
 ---
 name: thothfy-planejamento-02-pesquisa
 description: >
-  Fase 2 do pipeline (METODOLOGIA.md). Extrai da base limpa e do context/ os
-  ativos reutilizáveis — teses, exemplos, dados, dores, objeções, perguntas
-  frequentes, citações e entidades — para alimentar qualquer peça futura do
-  pacote. Não escreve copy final.
+  Fase 2 do pipeline. Extrai ativos da base limpa e do context/ e pesquisa
+  fontes externas quando houver afirmação atual, lacuna factual ou chance de
+  enriquecimento, registrando proveniência para várias peças. Não escreve
+  copy final.
 ---
 
 # Thothfy Pesquisa
@@ -17,6 +17,14 @@ disponível para produzir um repertório de ativos que `thothfy-planejamento-03-
 
 Extrai e organiza ativos reutilizáveis. Não decide quais peças produzir
 (`thothfy-planejamento-03-oportunidades`) nem escreve brief (`thothfy-planejamento-04-briefing`).
+
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
 
 ## Contexto exigido
 
@@ -34,7 +42,7 @@ Extrai e organiza ativos reutilizáveis. Não decide quais peças produzir
 
 1. Leia `01-saneamento/base-limpa.md` por completo.
 2. Extraia teses defendidas no material, com a frase ou trecho exato que as
-   sustenta.
+comprova.
 3. Extraia exemplos concretos, dados e números citados, sempre com a
    referência de onde apareceram no material.
 4. Extraia dores e objeções mencionadas, e associe a uma persona de
@@ -42,8 +50,12 @@ Extrai e organiza ativos reutilizáveis. Não decide quais peças produzir
 5. Extraia perguntas frequentes implícitas ou explícitas no material.
 6. Extraia entidades citadas — produtos, serviços, pessoas, ferramentas — e
    confirme cada uma contra o `context/` correspondente; sinalize entidade
-   não cadastrada em vez de descrevê-la por conta própria.
-7. Salve tudo em `02-pesquisa-e-ativos/ativos.md`, organizado por tipo de
+não cadastrada em vez de descrevê-la sem confirmação.
+7. Identifique afirmações externas, dúvidas ou contrapontos que precisam de
+   pesquisa. Use fontes atuais, prefira a origem primária e registre título,
+   URL, responsável, publicação e data de acesso. Separe o que a fonte
+   confirma da interpretação editorial.
+8. Salve tudo em `02-pesquisa-e-ativos/ativos.md`, organizado por tipo de
    ativo (teses, exemplos, dores, objeções, FAQ, entidades), seguindo o
    template de `REFERENCIA.md`.
 
@@ -55,6 +67,7 @@ Extrai e organiza ativos reutilizáveis. Não decide quais peças produzir
 
 - Todo ativo extraído tem referência rastreável ao trecho de origem na base
   limpa.
+- Todo ativo vindo de pesquisa externa tem fonte e data de acesso.
 - Toda entidade citada foi checada contra `context/`; entidades não
   cadastradas estão sinalizadas, não inventadas.
 - Nenhum ativo é uma reescrita com voz editorial — ainda é material bruto de

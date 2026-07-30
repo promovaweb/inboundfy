@@ -17,6 +17,14 @@ peça específica sem pacote completo.
 Formaliza o brief. Não produz o artefato final — isso é
 `thothfy-planejamento-05-producao` + skill de canal.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/publico.md`: para definir o público-alvo do brief.
@@ -65,7 +73,7 @@ um pedido direto de peça avulsa vindo de `thothfy-planejamento-00-triagem`.
 3. Defina o público-alvo do brief a partir de `context/publico.md` — se
    nenhuma persona cadastrada corresponder, sinalize ao usuário antes de
    prosseguir.
-4. Defina ângulo, formato e critério de pronto da peça, alinhados ao formato
+4. Defina ângulo, formato e condição de aprovação da peça, alinhados ao formato
    e limite técnico do canal em `context/canais.md`.
 5. Registre restrições de voz (`context/marca-voz.md`) e vetos aplicáveis
    (`context/proibicoes.md` e `context/estruturas-proibidas.md`) diretamente no brief, para que a skill de canal
@@ -85,12 +93,13 @@ pacote de trabalho aberto.
 
 ## Validação
 
-- Todo brief tem canal, público, objetivo, ângulo e critério de pronto
+- Todo brief tem canal, público, objetivo, ângulo e condição de aprovação
   preenchidos.
 - Restrições de marca e vetos aplicáveis estão explícitos no brief.
 - Todo brief comercial declara a estrutura persuasiva escolhida (ou justifica
   a ausência); nenhuma peça comercial sai sem essa decisão registrada.
-- Nenhum brief foi criado para oportunidade não aprovada pelo usuário.
+- Nenhum brief foi criado para oportunidade sem aprovação manual ou seleção
+  automática registrada por `thothfy-iniciar`.
 
 ## Idempotência
 

@@ -20,6 +20,14 @@ e alto contraste, otimizada para ser lida em miniatura — caso central de
 
 Cobre apenas a thumbnail. O roteiro é `thothfy-especialista-video`.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/canais.md`: dimensão exata exigida (geralmente `1280x720`).
@@ -47,6 +55,12 @@ thumbnail.
 5. Confira grafia contra `context/glossario.md`.
 6. Salve junto ao roteiro do mesmo item.
 
+## Encaminhamento obrigatório
+
+Antes de considerar a thumbnail pronta, acione
+`thothfy-validador-video-imagem`. Em caso de reprovação, corrija os achados
+e reenvie a peça até a aprovação.
+
 ## Saída
 
 Arquivo de imagem salvo em `97-ativos-finais/video/<item>/`, junto ao
@@ -57,6 +71,7 @@ roteiro correspondente.
 - Dimensão confere exatamente com `context/canais.md`.
 - Texto permanece legível em simulação de tamanho de miniatura.
 - Grafia confere com `context/glossario.md`.
+- Aprovação registrada por `thothfy-validador-video-imagem`.
 
 ## Idempotência
 

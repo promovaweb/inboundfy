@@ -4,8 +4,8 @@ Roteiro de entrevista, exemplo preenchido e checklist para `context/canais.md`.
 
 ## Roteiro de entrevista
 
-1. "Onde os pacotes de trabalho do pipeline devem ser criados? (padrão
-   recomendado: `content/` na raiz do projeto)"
+1. "Há motivo para não usar `brainstorms/` e `content/` como diretórios
+   padrão? Se houver, quais caminhos devem ser usados?"
 2. "Quais canais estão ativos agora — blog, e-mail, LinkedIn, Instagram,
    vídeo, ebook, infográfico, webinar, changelog, podcast?"
 3. Para cada canal ativo: "Qual é a cadência de publicação esperada?"
@@ -20,6 +20,7 @@ Roteiro de entrevista, exemplo preenchido e checklist para `context/canais.md`.
 ## Diretório de trabalho do pipeline
 
 - **Caminho onde os pacotes são criados:** content/
+- **Caminho onde os brainstorms são criados:** brainstorms/
 
 ## Blog
 
@@ -46,8 +47,7 @@ Roteiro de entrevista, exemplo preenchido e checklist para `context/canais.md`.
 
 ## Checklist de completude
 
-- [ ] Diretório de trabalho do pipeline definido antes de qualquer canal
-      ser marcado como ativo.
+- [ ] Diretórios de brainstorm e do pipeline definidos.
 - [ ] Cada canal ativo tem skill de redação (e de imagem, se aplicável)
       referenciando um nome real de `SKILLS.md`.
 - [ ] Cadência e limites técnicos preenchidos para canais ativos — canal

@@ -3,7 +3,7 @@ name: thothfy-contexto-produtos
 description: >
   Preenche e mantém context/produtos.md e context/servicos.md. Ative quando o
   usuário fornecer ou corrigir dado sobre um produto, funcionalidade ou
-  serviço prestado — o que é, para quem, como funciona, limites reais.
+  serviço prestado — definição, público, funcionamento e limites reais.
 ---
 
 # Thothfy Contexto — Produtos e Serviços
@@ -17,6 +17,14 @@ precisão.
 
 Cobre `context/produtos.md` e `context/servicos.md`. Não cobre preço nem
 condição comercial — isso é `thothfy-contexto-ofertas`.
+
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
 
 ## Contexto exigido
 

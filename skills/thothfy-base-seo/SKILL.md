@@ -18,6 +18,14 @@ escrito.
 Define metadata e estrutura de SEO. Não escreve o corpo do texto — isso é
 responsabilidade da skill de canal.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/publico.md`: jargão e nível técnico da persona, para alinhar
@@ -34,7 +42,7 @@ conteúdo).
 
 1. Classifique a intenção de busca por trás do tema usando a tabela de
    `REFERENCIA.md`: informativa, comparativa, transacional ou investigativa.
-   Se nenhuma pergunta real do público sustentar o tema, sinalize que a peça
+Quando nenhuma pergunta real do público justificar o tema, sinalize que a peça
    não deve ser escrita a partir de tema solto sem validação de busca.
 2. Registre a pergunta-mãe e variações da busca, usando o jargão real de
    `context/publico.md`.
@@ -55,7 +63,7 @@ conteúdo).
 
 Pacote de metadata (intenção, title, description, slug, outline de headings,
 pontos de linkagem) devolvido para a skill de canal que chamou. Não salva
-arquivo final por conta própria.
+arquivo final sozinha.
 
 ## Validação
 

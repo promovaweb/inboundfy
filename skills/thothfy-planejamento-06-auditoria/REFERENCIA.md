@@ -7,6 +7,9 @@
 
 - **Brief de origem:** 04-briefs/<canal>-<slug>.md
 - **Veredito:** <aprovado | reprovado | devolvido para replanejamento>
+- **Relatório individual:** 06-auditoria/assets/<canal>-<item>.md
+- **Validadora pareada:** <thothfy-validador-*>
+- **Veredito individual:** <aprovado | ausente | reprovado>
 - **Nota média de thothfy-base-editor:** <nota>
 - **Parágrafos abaixo de 90%:** <lista ou "nenhum">
 - **Verificação de context/proibicoes.md:** <sem violação | violação encontrada em: ...>
@@ -56,6 +59,8 @@
 
 - [ ] Todo campo do template está preenchido, mesmo quando o valor é
       "nenhum" ou "não aplicável".
+- [ ] Cada asset possui relatório individual aprovado e manifesto de fontes
+      completo.
 - [ ] Reprovação sempre lista pendências específicas e acionáveis, nunca só
       "revisar de novo".
 - [ ] Divergência de estratégia (brief mal formulado) é devolvida para

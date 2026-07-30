@@ -5,16 +5,16 @@ condição comercial — nenhuma skill de canal deve inventar valor.
 
 # Ofertas
 
-## <Nome do plano ou oferta>
+## {Nome do plano ou oferta}
 
-- **Preço:** <valor e moeda> <!-- deixe em branco e marque <sob consulta> se
+- **Preço:** {valor e moeda} <!-- deixe em branco e marque {sob consulta} se
   a política comercial não permitir preço público -->
-- **Periodicidade:** <mensal, anual, único>
-- **O que está incluso:** <lista>
-- **O que não está incluso:** <lista>
-- **Público-alvo do plano:** <perfil>
-- **Condição de upgrade/downgrade, se houver:** <condição>
-- **Data da última confirmação deste preço:** <data>
+- **Periodicidade:** {mensal, anual, único}
+- **O que está incluso:** {lista}
+- **O que não está incluso:** {lista}
+- **Público-alvo do plano:** {perfil}
+- **Condição de upgrade/downgrade, se houver:** {condição}
+- **Data da última confirmação deste preço:** {data}
 
 <!-- Repita o bloco acima para cada plano/oferta. -->
 
@@ -24,4 +24,4 @@ condição comercial — nenhuma skill de canal deve inventar valor.
 
 | Plano | Preço | Público | Diferencial principal |
 | --- | --- | --- | --- |
-| <plano> | <preço> | <público> | <diferencial> |
+| {plano} | {preço} | {público} | {diferencial} |

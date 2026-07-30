@@ -7,23 +7,23 @@ antes de publicar em rodapé, página de contato ou termos legais.
 
 ## Endereço principal
 
-- **Endereço completo:** <rua, número, complemento, cidade, estado, CEP, país>
-- **Tipo:** <sede, escritório comercial, endereço fiscal>
+- **Endereço completo:** {rua, número, complemento, cidade, estado, CEP, país}
+- **Tipo:** {sede, escritório comercial, endereço fiscal}
 
 ## Registro legal
 
-- **Razão social:** <razão social>
-- **Registro/CNPJ ou equivalente local:** <número>
-- **Regime tributário, se relevante para copy institucional:** <regime>
+- **Razão social:** {razão social}
+- **Registro/CNPJ ou equivalente local:** {número}
+- **Regime tributário, se relevante para copy institucional:** {regime}
 
 ## Contatos oficiais
 
-- **E-mail institucional:** <email>
-- **Telefone/WhatsApp oficial:** <número>
-- **Canais de suporte:** <link/descrição>
+- **E-mail institucional:** {email}
+- **Telefone/WhatsApp oficial:** {número}
+- **Canais de suporte:** {link/descrição}
 
 ## Perfis oficiais em redes e diretórios
 
-- <rede> — <url>
+- {rede} — {url}
 
 <!-- Repita para endereços adicionais (filiais, escritórios por país). -->

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Brainstorm 04 Validação"
+  short_description: "Valida fatos, escrita e proibições"
+  default_prompt: "Use $thothfy-brainstorm-04-validacao para validar este brainstorm contra fontes, escrita e proibições."

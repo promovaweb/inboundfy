@@ -13,20 +13,28 @@ Mantém o cadastro de pessoas que podem ser citadas, entrevistadas ou
 assinar conteúdo. Não escreve conteúdo público; registra o fato que as
 skills de canal (em especial `thothfy-especialista-linkedin`,
 `thothfy-especialista-video` e `thothfy-especialista-podcast`) vão consumir para
-calibrar voz e legitimidade de quem fala.
+calibrar voz e legitimidade dos porta-vozes.
 
 ## Escopo
 
 Cobre exclusivamente `context/pessoas.md`. Não cobre identidade institucional
 (`thothfy-contexto-empresa`) nem persona de público-alvo
-(`thothfy-contexto-publico`) — pessoas aqui são quem fala pela marca, não
-quem a marca tenta atingir.
+(`thothfy-contexto-publico`) — este arquivo registra os porta-vozes da marca,
+não o público que ela pretende atingir.
+
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
 
 ## Contexto exigido
 
 Nenhum outro arquivo é pré-requisito. `context/empresa.md` pode ser
 consultado para consistência de papel com a estrutura da empresa, mas não
-bloqueia esta skill.
+impede a execução desta skill.
 
 ## Entrada esperada
 

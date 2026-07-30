@@ -22,6 +22,14 @@ múltiplos blocos em vez de um único foco visual.
 Cobre a peça visual final. O texto (título, blocos, legenda, alt text) é
 `thothfy-especialista-infografico`.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/canais.md`: dimensão exigida (geralmente `9:16`).
@@ -48,6 +56,12 @@ O texto final de `thothfy-especialista-infografico`: título, blocos e alt text.
 5. Confira grafia contra `context/glossario.md`.
 6. Salve junto ao artefato de texto do mesmo item.
 
+## Encaminhamento obrigatório
+
+Antes de considerar a imagem pronta, acione
+`thothfy-validador-infografico-imagem`. Em caso de reprovação, corrija os
+achados e reenvie a imagem completa até a aprovação.
+
 ## Saída
 
 Arquivo de imagem final salvo em `97-ativos-finais/infografico/<item>/`.
@@ -57,6 +71,7 @@ Arquivo de imagem final salvo em `97-ativos-finais/infografico/<item>/`.
 - Dimensão confere exatamente com `context/canais.md`.
 - Todo dado numérico na imagem é idêntico ao texto aprovado.
 - Hierarquia visual segue a sequência de leitura definida no texto.
+- Aprovação registrada por `thothfy-validador-infografico-imagem`.
 
 ## Idempotência
 

@@ -14,6 +14,14 @@ Skill de canal para podcast — pauta de gravação e shownotes de publicação.
 
 Cobre pauta e shownotes. Não produz áudio nem edição.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/pessoas.md`: apresentador(es) e convidado(s), quando houver.
@@ -45,6 +53,12 @@ ativos de apoio e objetivo do episódio.
    houver), `data` e `brief` quando fizer parte de um pacote.
 6. Encaminhe para `thothfy-planejamento-06-auditoria`.
 
+## Encaminhamento obrigatório
+
+Antes de considerar pauta e shownotes prontos, acione
+`thothfy-validador-podcast`. Em caso de reprovação, aplique as correções do
+relatório e reenvie o conjunto inteiro até a aprovação.
+
 ## Saída
 
 Arquivo Markdown de pauta e, separadamente ou na mesma peça, os shownotes,
@@ -56,6 +70,7 @@ salvos no caminho de `context/canais.md` para o canal podcast.
 - Links citados nos shownotes conferem com `context/ferramentas.md` ou
   `context/produtos.md`.
 - Nenhum trecho de shownotes abaixo de 90% na auditoria de `thothfy-base-editor`.
+- Aprovação registrada por `thothfy-validador-podcast`.
 
 ## Idempotência
 

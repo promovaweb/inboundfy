@@ -1,11 +1,12 @@
-<!-- EXEMPLO ILUSTRATIVO — ver README.md do pacote e do repositório de exemplos. -->
-
 ---
 title: "Como funciona o MCP (e por que ele virou o padrão de integração de IA)"
 description: "Entenda o MCP (Model Context Protocol) na prática: o que ele resolve, como cliente e servidor se conectam e o que muda para quem constrói agentes de IA."
 slug: como-funciona-o-mcp
 brief: 04-briefs/blog-como-funciona-o-mcp.md
 ---
+
+<!-- markdownlint-disable MD025 -->
+<!-- EXEMPLO ILUSTRATIVO — ver README.md do pacote e do repositório de exemplos. -->
 
 # Como funciona o MCP (e por que ele virou o padrão de integração de IA)
 

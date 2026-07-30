@@ -49,14 +49,14 @@ ainda está incompleto.
 
 ### Proibições específicas
 
-10. "Existe algum termo ou promessa que a marca nunca pode usar, além das
+1. "Existe algum termo ou promessa que a marca nunca pode usar, além das
     proibições genéricas já pré-preenchidas?"
-11. "Existe comparação que nunca deve ser feita (concorrente específico,
+2. "Existe comparação que nunca deve ser feita (concorrente específico,
     categoria de produto)?"
-12. "Existe tipo de afirmação (dado médico, jurídico, financeiro,
+3. "Existe tipo de afirmação (dado médico, jurídico, financeiro,
     estatística de terceiro) que sempre precisa de confirmação humana antes
     de publicar? Quem confirma?"
-13. "Algum canal ou público tem regra própria (ex.: sem humor em canal
+4. "Algum canal ou público tem regra própria (ex.: sem humor em canal
     institucional)?"
 
 ## Exemplo preenchido (fictício — "Estoquely")

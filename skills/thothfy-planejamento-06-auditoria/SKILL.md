@@ -15,8 +15,16 @@ Thothfy.
 
 ## Escopo
 
-Audita o artefato já produzido. Não corrige copy diretamente — aponta a
-correção e devolve para a skill de canal quando necessário.
+Consolida a auditoria do pacote a partir das aprovações individuais. Não
+substitui `thothfy-validador-*` e não corrige copy diretamente.
+
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
 
 ## Contexto exigido
 
@@ -36,16 +44,18 @@ O artefato final produzido por `thothfy-planejamento-05-producao` e o brief que 
    correspondente em `97-ativos-finais/<canal>/<item>/`.
 2. Confira se o artefato responde ao objetivo, ângulo e público do brief —
    se não responder, devolva para `thothfy-planejamento-04-briefing` com a divergência
-   registrada, não corrija a estratégia por conta própria.
+registrada, não corrija a estratégia sem devolver o item ao planejamento.
 3. Se o brief declarar estrutura persuasiva (`ESTRUTURAS-PERSUASIVAS.md`),
    confira se todos os blocos previstos estão presentes e na ordem certa, e
-   se nenhum bloco de prova social ou testemunho foi preenchido sem lastro em
+se nenhum bloco de prova social ou testemunho foi preenchido sem evidência em
    `context/` — se estiver, reprove e devolva para a skill de canal.
-4. Rode `thothfy-base-editor` no texto (quando houver texto) — ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md` — e confirme que
-   nenhum parágrafo está abaixo de 90%.
-5. Confira `context/proibicoes.md` e `context/estruturas-proibidas.md` linha a linha contra o artefato.
-6. Confira a validação própria do canal (formato de imagem, contagem de
-   caracteres, metadata de SEO quando aplicável).
+4. Localize o relatório da `thothfy-validador-*` pareada em
+   `06-auditoria/assets/` e confirme veredito aprovado. Se estiver ausente
+   ou reprovado, devolva à produção antes de continuar.
+5. Confira se o manifesto do relatório inclui todos os `context/`, as fontes
+   locais relevantes, proibições e validação própria do canal.
+6. Faça a leitura consolidada do pacote para detectar contradição entre
+   assets que as validações individuais não poderiam perceber.
 7. Registre o resultado em `06-auditoria/auditoria-final.md`: aprovado,
    reprovado com lista de correções, ou devolvido para replanejamento,
    seguindo o template de `REFERENCIA.md`.
@@ -63,9 +73,10 @@ veredito e as pendências, se houver.
   `thothfy-base-editor`, ou a pendência de correção está listada.
 - Nenhuma violação de `context/proibicoes.md` ou `context/estruturas-proibidas.md` passou sem registro.
 - O campo `brief` está presente no artefato aprovado, quando aplicável.
+- Todo asset tem relatório individual aprovado da validadora pareada.
 
 ## Idempotência
 
 Reauditar um artefato já aprovado não gera um segundo veredito duplicado —
-atualiza `auditoria-final.md` com a nova rodada, preservando o histórico da
+atualiza `auditoria-final.md` com a nova avaliação, preservando o histórico da
 anterior quando relevante para o usuário.

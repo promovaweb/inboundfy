@@ -18,13 +18,25 @@ a `context/<arquivo>.md` no corpo de uma skill resolve para
 `.thothfy/context/<arquivo>.md` em tempo de execução (ver
 `SKILL-AUTORIA.md`).
 
+O setup também pesquisa os Markdown em maiúsculas já existentes no projeto e
+registra os candidatos em `.thothfy/FONTES-PROJETO.md`. Esse inventário aponta
+para as fontes originais, sem duplicá-las. As skills consultam os arquivos
+relevantes para a tarefa, mas não tratam um documento descoberto como
+substituto automático do `context/`.
+
+Quando `brand/` existir na raiz, o setup inventaria todos os Markdown dessa
+pasta, inclusive nomes em minúsculas. As skills consultam ali manual, voz,
+tokens, logos, tipografia e aplicações relevantes sem copiar nem modificar os
+ativos. Divergência entre `brand/` e `.thothfy/context/` bloqueia a aprovação
+até a fonte responsável ser confirmada; nenhuma skill escolhe silenciosamente.
+
 ## Arquivos e o que cada um resolve
 
 | Arquivo | Resolve | Skill de manutenção |
 | --- | --- | --- |
 | `context/empresa.md` | Nome, missão, história, modelo de negócio, diferenciais. | `thothfy-contexto-empresa` |
 | `context/pessoas.md` | Fundadores, time, autores, porta-vozes e seus papéis. | `thothfy-contexto-pessoas` |
-| `context/produtos.md` | Produtos e funcionalidades — o que fazem, para quem, como se usam. | `thothfy-contexto-produtos` |
+| `context/produtos.md` | Produtos e funcionalidades — o que fazem, qual público atendem, como se usam. | `thothfy-contexto-produtos` |
 | `context/servicos.md` | Serviços prestados, formato de entrega, escopo. | `thothfy-contexto-produtos` |
 | `context/ofertas.md` | Planos, preços, condições comerciais, comparativos. | `thothfy-contexto-ofertas` |
 | `context/marca-voz.md` | Tom, voz, vocabulário preferido, exemplos de bom e mau texto. | `thothfy-contexto-marca` |
@@ -42,14 +54,21 @@ a `context/<arquivo>.md` no corpo de uma skill resolve para
 
 Quando duas fontes conflitarem, resolva nesta ordem:
 
-1. **Fato confirmado no `context/`** — preço, nome oficial, endereço, dado de
+1. **Instrução do projeto** — `AGENTS.md` ou `CLAUDE.md` governa o
+   comportamento do agente no escopo correspondente.
+2. **Fato confirmado no `context/`** — preço, nome oficial, endereço, dado de
    produto. Sempre vence.
-2. **Regra editorial explícita** — `ESCRITA.md`, `context/proibicoes.md`,
+3. **Regra editorial explícita** — `ESCRITA.md`, `context/proibicoes.md`,
    validação do canal.
-3. **Voz e preferência registradas** — `context/marca-voz.md`.
-4. **Hipótese de pesquisa da fase 2 do pipeline** (`thothfy-planejamento-02-pesquisa`) — só
+4. **Fonte de marca responsável** — arquivos de `brand/` para identidade,
+   logos, cores, tipografia, voz e aplicações que documentarem.
+5. **Voz e preferência registradas** — `context/marca-voz.md`.
+6. **Fonte descoberta responsável pelo domínio** — Markdown classificado
+   como factual ou editorial em `.thothfy/FONTES-PROJETO.md`; complementa o
+   contexto e sinaliza divergência.
+7. **Hipótese de pesquisa da fase 2 do pipeline** (`thothfy-planejamento-02-pesquisa`) — só
    vale para o pacote em andamento, nunca sobrescreve fato confirmado.
-5. **Suposição da skill na ausência de dado** — só é aceitável em rascunho
+8. **Suposição da skill na ausência de dado** — só é aceitável em rascunho
    explicitamente marcado como pendente de confirmação; nunca em artefato
    final auditado como pronto.
 
@@ -58,8 +77,7 @@ Ao encontrar divergência entre `context/` e um artefato já publicado:
 1. corrija o artefato publicado, não o `context/`, salvo se o próprio dado em
    `context/` estiver desatualizado;
 2. se o dado em `context/` estiver desatualizado, acione a skill de
-   manutenção de contexto correspondente antes de tocar em qualquer outro
-   artefato;
+   manutenção de contexto correspondente antes de alterar outro artefato;
 3. registre a mudança no próprio arquivo de contexto, não em um artefato
    avulso.
 
@@ -71,6 +89,16 @@ a estrutura, perguntam o que falta, preenchem e nunca removem uma seção
 inteira — apenas atualizam o conteúdo dela. Um arquivo pode ficar
 parcialmente preenchido; a skill que o consome deve tratar campo vazio como
 "não informado", nunca inventar valor.
+
+`thothfy-setup` mantém a presença e a localização dos arquivos. As skills
+`thothfy-contexto-*` mantêm o conteúdo preenchido. Quando um arquivo estiver
+ausente, a skill consumidora aciona `thothfy-setup`, que restaura o template
+sem preencher informação de negócio; depois, a skill de contexto responsável
+conduz o preenchimento necessário.
+
+`thothfy-setup` também mantém `.thothfy/FONTES-PROJETO.md`. As demais skills
+leem o inventário e os documentos aplicáveis, mas nunca atualizam a lista nem
+alteram as fontes durante uma tarefa de produção.
 
 ## Primeira adoção
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Brainstorm 03 Síntese"
+  short_description: "Consolida a ideia em um brainstorm útil"
+  default_prompt: "Use $thothfy-brainstorm-03-sintese para consolidar entrevista e pesquisa no modelo de brainstorm."

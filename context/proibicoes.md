@@ -71,11 +71,11 @@ negócio. Edite livremente. -->
 
 <!-- Específico do usuário — preenchido por thothfy-contexto-marca. -->
 
-- <termo ou promessa> — motivo: <motivo>
+- {termo ou promessa} — motivo: {motivo}
 
 ## Comparações proibidas
 
-- <o que não pode ser comparado ou como não comparar> — motivo: <motivo>
+- {o que não pode ser comparado ou como não comparar} — motivo: {motivo}
 
 ## Afirmações que exigem confirmação antes de publicar
 
@@ -83,11 +83,11 @@ negócio. Edite livremente. -->
 humana mesmo com dado presente em context/, ex.: dado médico, jurídico,
 financeiro, estatística de terceiro. -->
 
-- <categoria> — quem confirma: <papel responsável>
+- {categoria} — quem confirma: {papel responsável}
 
 ## Canais ou públicos com regra própria
 
 <!-- Ex.: não usar humor em canal institucional, não citar concorrente por
 nome em anúncio pago, sempre incluir disclaimer em conteúdo financeiro. -->
 
-- <canal/público> — regra: <regra>
+- {canal/público} — regra: {regra}

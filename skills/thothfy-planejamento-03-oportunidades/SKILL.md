@@ -13,8 +13,16 @@ em uma lista de oportunidades de conteúdo por canal, priorizadas.
 
 ## Escopo
 
-Decide o quê e em que ordem, não o como — o brief formal por peça é
+Decide as peças e a ordem, não a execução — o brief formal por peça é
 `thothfy-planejamento-04-briefing`.
+
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
 
 ## Contexto exigido
 
@@ -29,7 +37,7 @@ Decide o quê e em que ordem, não o como — o brief formal por peça é
 ## Fluxo
 
 1. Leia `02-pesquisa-e-ativos/ativos.md` e `context/canais.md`.
-2. Para cada canal ativo, avalie se o repertório de ativos sustenta uma peça
+2. Para cada canal ativo, avalie se o repertório de ativos justifica uma peça
    nesse canal — não force peça em canal sem ativo suficiente.
 3. Liste as oportunidades identificadas, cada uma com: canal, ângulo,
    ativo(s) de apoio usados, e uma prioridade (alta, média, baixa) justificada
@@ -38,8 +46,11 @@ Decide o quê e em que ordem, não o como — o brief formal por peça é
    `context/` (ex.: menção a produto sem entrada em `context/produtos.md`).
 5. Salve o plano em `03-planejamento/plano-de-oportunidades.md`, seguindo o
    template de `REFERENCIA.md`.
-6. Apresente o plano ao usuário para aprovação antes de acionar
-   `thothfy-planejamento-04-briefing` — não gere brief de oportunidade não aprovada.
+6. Em execução manual, apresente o plano para aprovação. Quando
+   `thothfy-iniciar` tiver sido chamado, marque automaticamente até cinco
+   oportunidades de prioridade alta ou média como selecionadas, seguindo a
+   política da wrapper, e encaminhe-as para
+   `thothfy-planejamento-04-briefing`.
 
 ## Saída
 
@@ -50,6 +61,8 @@ Decide o quê e em que ordem, não o como — o brief formal por peça é
 - Toda oportunidade lista o(s) ativo(s) de apoio usados.
 - Nenhuma oportunidade foi criada para canal sem ativo suficiente.
 - Prioridade tem justificativa, não é apenas uma ordem arbitrária.
+- Seleção automática respeita canal pedido, ativos disponíveis e limite de
+  cinco peças.
 
 ## Idempotência
 

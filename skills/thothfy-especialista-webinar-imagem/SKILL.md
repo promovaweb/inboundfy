@@ -21,6 +21,14 @@ visual de marca, caso de `thothfy-base-imagem`.
 Cobre apenas a thumbnail. O texto da página/convite é
 `thothfy-especialista-webinar`.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/canais.md`: dimensão quadrada exigida pela plataforma de evento.
@@ -47,6 +55,12 @@ apresentador quando aplicável.
    da data em miniatura, contraste e logo quando o canal exigir.
 6. Salve junto ao artefato de texto do mesmo item.
 
+## Encaminhamento obrigatório
+
+Antes de considerar a thumbnail pronta, acione
+`thothfy-validador-webinar-imagem`. Em caso de reprovação, corrija os
+achados e reenvie a peça até a aprovação.
+
 ## Saída
 
 Arquivo de imagem salvo em `97-ativos-finais/webinar/<item>/`.
@@ -56,6 +70,7 @@ Arquivo de imagem salvo em `97-ativos-finais/webinar/<item>/`.
 - Dimensão confere exatamente com `context/canais.md`.
 - Apresentador, quando presente na peça, confere com `context/pessoas.md`.
 - Título e data legíveis em miniatura.
+- Aprovação registrada por `thothfy-validador-webinar-imagem`.
 
 ## Idempotência
 

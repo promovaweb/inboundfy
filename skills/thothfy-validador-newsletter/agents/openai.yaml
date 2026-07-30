@@ -1,0 +1,4 @@
+interface:
+  display_name: "Thothfy Validador newsletter"
+  short_description: "Valida o asset newsletter antes da entrega"
+  default_prompt: "Use $thothfy-validador-newsletter para validar este asset e devolver correções à skill produtora quando necessário."

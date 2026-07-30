@@ -2,21 +2,29 @@
 name: thothfy-contexto-publico
 description: >
   Preenche e mantém context/publico.md. Ative quando o usuário definir ou
-  corrigir uma persona ou segmento — quem é, dor principal, objeção comum,
+  corrigir uma persona ou segmento — perfil, dor principal, objeção comum,
   onde consome conteúdo, jargão próprio.
 ---
 
 # Thothfy Contexto — Público
 
 Mantém as personas e segmentos que orientam planejamento (`thothfy-planejamento-03-oportunidades`)
-e briefing (`thothfy-planejamento-04-briefing`). Não escreve conteúdo público; registra quem
-a empresa tenta atingir para que as skills de canal calibrem nível técnico,
-jargão e ângulo.
+e briefing (`thothfy-planejamento-04-briefing`). Não escreve conteúdo público;
+registra o público que a empresa pretende atingir para que as skills de canal
+calibrem nível técnico, jargão e ângulo.
 
 ## Escopo
 
 Cobre exclusivamente `context/publico.md`. Não cobre pessoas que falam pela
 marca (`thothfy-contexto-pessoas`).
+
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
 
 ## Contexto exigido
 
@@ -33,7 +41,7 @@ público (entrevista, dado de suporte, comentário recorrente) a estruturar.
 
 1. Leia `context/publico.md` atual para não duplicar uma persona existente.
 2. Exija do usuário ou do material fornecido, seguindo o roteiro de
-   entrevista de `REFERENCIA.md`: quem é, o que já sabe sobre o problema,
+entrevista de `REFERENCIA.md`: perfil, conhecimento atual sobre o problema,
    dor principal concreta (não abstrata), o que já tentou e não resolveu,
    objeção mais comum, gatilho de ação e onde consome conteúdo.
 3. Registre jargão próprio da persona — isso alimenta `thothfy-base-seo` na

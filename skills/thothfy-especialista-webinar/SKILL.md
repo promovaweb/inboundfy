@@ -15,6 +15,14 @@ da sessão e CTA de inscrição.
 
 Cobre o texto da página/convite. Thumbnail é `thothfy-especialista-webinar-imagem`.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/marca-voz.md`: tom.
@@ -62,7 +70,7 @@ promessa da sessão e CTA de inscrição.
 2. Escreva o título do evento, curto e específico sobre o que será
    entregue, sem promessa vaga de "transformação" genérica — funciona como o
    gancho do bloco de Problema/Atenção.
-3. Escreva a descrição seguindo os blocos da estrutura escolhida: para quem
+3. Escreva a descrição seguindo os blocos da estrutura escolhida: público
    é, o que a pessoa vai saber fazer depois, e por que vale reservar o
    horário, sem pular bloco sem justificativa. Use o template PASTOR
    completo de `REFERENCIA.md`.
@@ -77,6 +85,12 @@ promessa da sessão e CTA de inscrição.
 8. Encaminhe para `thothfy-especialista-webinar-imagem` e depois para
    `thothfy-planejamento-06-auditoria`.
 
+## Encaminhamento obrigatório
+
+Antes de considerar a copy pronta, acione `thothfy-validador-webinar`. Em
+caso de reprovação, aplique as correções do relatório e reenvie o arquivo
+inteiro até a aprovação.
+
 ## Saída
 
 Arquivo Markdown com a copy da página/convite, salvo no caminho de
@@ -87,6 +101,7 @@ Arquivo Markdown com a copy da página/convite, salvo no caminho de
 - Apresentador confere com `context/pessoas.md`.
 - Nenhum parágrafo abaixo de 90% na auditoria de `thothfy-base-editor`.
 - Agenda ou tópicos são específicos, não genéricos.
+- Aprovação registrada por `thothfy-validador-webinar`.
 
 ## Idempotência
 

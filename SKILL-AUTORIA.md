@@ -3,46 +3,50 @@
 Toda skill em `skills/` segue esta estrutura. Use este arquivo ao criar uma
 skill nova ou ao revisar uma existente.
 
-## Os cinco grupos
+## Os sete grupos
 
-Toda skill pertence a exatamente um destes grupos, identificado pelo próprio
-nome do diretório. Os cinco grupos respondem a quatro perguntas diferentes:
-apoio mecânico, dado de negócio, estratégia de agência (o quê e por quê, sem
-material ainda), fluxo de um pacote já iniciado (como, passo a passo) e
-item avulso (produção de uma peça específica de um canal). Ver `ESTRATEGIA.md`
-e `METODOLOGIA.md` para a relação entre os grupos 3, 4 e 5 na prática.
+Toda skill funcional pertence a exatamente um destes grupos, identificado
+pelo nome do diretório. Eles cobrem apoio mecânico, dados do negócio,
+desenvolvimento de ideia, estratégia de campanha, pipeline de produção e
+especialidade de canal. Ver `BRAINSTORM.md`, `ESTRATEGIA.md` e
+`METODOLOGIA.md`.
 
 1. **`thothfy-base-*`** — capacidades fundamentais reutilizadas por qualquer
    skill de canal: escrita/auditoria de parágrafo, formatação, SEO, motor de
    imagem. Não citam canal nem fase do pipeline. Não escrevem peça final
-   sozinhas — são chamadas por quem escreve.
+   sozinhas — são chamadas pelas skills responsáveis pela redação.
 2. **`thothfy-contexto-*`** (mais `thothfy-setup`) — preenchem e mantêm os
    arquivos de `context/` e o próprio ambiente instalado (`.thothfy/`). Não
    produzem artefato de conteúdo nem decidem estratégia — apenas guardam o
-   que já foi decidido pelos grupos 3 e 4.
-3. **`thothfy-estrategia-*`** — planejamento estratégico de agência, anterior
+   que já foi estabelecido pelos fluxos seguintes.
+3. **`thothfy-brainstorm-<NN>-<nome>`** — desenvolvimento sequencial de uma
+   ideia, da triagem à validação, nas fases 00 a 04 de `BRAINSTORM.md`. Não
+   escreve peça final. `thothfy-brainstorm`, sem número, é a wrapper deste
+   grupo.
+4. **`thothfy-estrategia-<NN>-<nome>`** — planejamento estratégico de agência, anterior
    a qualquer material bruto ou pacote de conteúdo: kickoff de campanha,
    pesquisa de mercado, plano de campanha multicanal e calendário editorial
-   recorrente. Decidem o quê, por quê e quando em nível de campanha ou de
-   agenda — nunca escrevem copy final nem entram no passo a passo de uma
-   peça específica. Ver `ESTRATEGIA.md`.
-4. **`thothfy-planejamento-<NN>-<nome>`** — as fases sequenciais de
+   recorrente. A sequência 00 a 03 registra a abertura da campanha; uma fase
+   pode ser reaberta depois. Ver `ESTRATEGIA.md`.
+5. **`thothfy-planejamento-<NN>-<nome>`** — as fases sequenciais de
    `METODOLOGIA.md`, da 00 à 06, que processam um pacote de conteúdo já
-   iniciado a partir de material bruto (ou de um item alocado pelo grupo 3).
+   iniciado a partir de material bruto ou de um item alocado pelo grupo 4.
    O número no nome é a própria ordem de execução; não é decorativo. Não
    escrevem copy final — preparam, roteiam ou auditam o que a skill
    especialista produz.
-5. **`thothfy-especialista-<canal>[-imagem]`** — recebem um brief pronto (de
+6. **`thothfy-especialista-<canal>[-imagem]`** — recebem um brief pronto (de
    `thothfy-planejamento-04-briefing` ou de um item avulso apontado
-   diretamente pelo grupo 3) e produzem o artefato final de um canal
+   diretamente pelo grupo 4) e produzem o artefato final de um canal
    específico. Não decidem estratégia.
+7. **`thothfy-validador-<canal>[-imagem]`** — validam exatamente o asset da
+   especialista de mesmo sufixo. Aplicam `thothfy-base-validador`, todos os
+   contextos, as fontes locais e a referência do canal; se reprovarem,
+   devolvem um relatório acionável à produtora pareada até nova aprovação.
 
-Existe ainda uma skill fora dos cinco grupos, por natureza: `thothfy-iniciar`,
-a skill mestra que aciona toda a sequência de `thothfy-planejamento-<NN>-*` e
-os especialistas necessários automaticamente — ver
-`skills/thothfy-iniciar/SKILL.md`. `thothfy-iniciar` parte de um pacote com
-material bruto já definido; não substitui o grupo 3 quando a campanha ainda
-não tem material nenhum.
+`thothfy-setup`, `thothfy-brainstorm` e `thothfy-iniciar` são pontos de
+entrada: instalação, desenvolvimento de ideia e produção. As wrappers devem
+acionar skills existentes, registrar escolhas automáticas e evitar perguntas
+sobre preferências reversíveis.
 
 ## Nome
 
@@ -50,10 +54,10 @@ não tem material nenhum.
 - Grupo contexto: `thothfy-contexto-<arquivo-que-mantém>` (ex.:
   `thothfy-contexto-produtos`); `thothfy-setup` é a exceção de nome sem
   prefixo de arquivo, por ser onboarding geral.
-- Grupo estratégia: `thothfy-estrategia-<nome>` (ex.:
-  `thothfy-estrategia-campanha`). Sem número — as skills deste grupo não
-  formam uma sequência fixa de fases; `ESTRATEGIA.md` descreve a ordem
-  típica de uso.
+- Grupo brainstorm: `thothfy-brainstorm-<NN>-<nome-da-fase>`, com `NN` de
+  `00` a `04`, conforme `BRAINSTORM.md`.
+- Grupo estratégia: `thothfy-estrategia-<NN>-<nome-da-fase>`, com `NN` de
+  `00` a `03`, conforme `ESTRATEGIA.md`.
 - Grupo planejamento: `thothfy-planejamento-<NN>-<nome-da-fase>`, com `NN`
   de dois dígitos, na mesma ordem de `METODOLOGIA.md` (`00` a `06`). Nunca
   reordene ou pule número ao adicionar uma fase nova — insira uma fase
@@ -62,6 +66,9 @@ não tem material nenhum.
 - Grupo especialista: `thothfy-especialista-<canal>` para o texto do canal e
   `thothfy-especialista-<canal>-imagem` para a imagem do mesmo canal, quando
   existir. Use o mesmo `<canal>` nos dois nomes para deixar o par óbvio.
+- Grupo validador: `thothfy-validador-<canal>` e
+  `thothfy-validador-<canal>-imagem`, espelhando exatamente o sufixo da
+  produtora correspondente.
 
 Nomes são sempre em português, curtos e comuns — sem sigla que exija
 explicação adicional.
@@ -95,7 +102,7 @@ skill:
    skill produz (não repita o genérico já coberto por `ESCRITA.md`).
 5. **Fórmulas, estruturas ou vocabulário de apoio** quando o tipo de
    artefato tiver convenção própria (ganchos, aberturas, proporção de
-   imagem, estrutura de linha, contagem de caracteres).
+   imagem, estrutura de linha, limite de caracteres).
 
 `SKILL.md` referencia `REFERENCIA.md` explicitamente no passo do `Fluxo` em
 que ele deve ser consultado — nunca deixe o material de apoio órfão, sem
@@ -119,22 +126,35 @@ description: >
 
 1. **Título e uma linha de escopo.** O que a skill faz e o que ela
    explicitamente não faz (link para a skill certa quando aplicável).
-2. **Contexto exigido.** Lista dos arquivos de `context/` que a skill lê
+2. **Verificação do setup.** Toda skill, exceto `thothfy-setup`, confere
+   `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Quando um
+   deles não existir, apresenta o alerta canônico abaixo e encerra sem criar
+   nem alterar artefatos.
+3. **Contexto exigido.** Lista dos arquivos de `context/` que a skill lê
    antes de produzir qualquer coisa, e o que fazer quando um deles estiver
    incompleto (parar e acionar a skill de manutenção correspondente, listada
    em `CONTEXTO.md`).
-3. **Entrada esperada.** O que o usuário fornece para ativar a skill: brief,
+4. **Entrada esperada.** O que o usuário fornece para ativar a skill: brief,
    material bruto, slug, arquivo existente.
-4. **Fluxo.** Passo a passo verificável, incluindo em que ponto a skill lê
+5. **Fluxo.** Passo a passo verificável, incluindo o ponto no qual a skill lê
    `ESCRITA.md` (para redação) ou a validação própria do canal.
-5. **Saída.** Onde o artefato final é salvo, em que formato, e o campo
+6. **Saída.** Onde o artefato final é salvo, qual formato usa e o campo
    `brief` obrigatório em Markdown final quando fizer parte de um pacote
    (ver `METODOLOGIA.md`).
-6. **Validação.** Critério objetivo de pronto: o que reprova o artefato e o
-   que a skill deve fazer diante da reprovação (corrigir, devolver para
-   briefing, ou perguntar ao usuário).
-7. **Idempotência.** O que a skill nunca sobrescreve sem pedido explícito
+7. **Validação.** Condições objetivas de aprovação: o que reprova o artefato
+   e como a skill responde à reprovação (corrigir, devolver para briefing ou
+   perguntar ao usuário).
+8. **Idempotência.** O que a skill nunca sobrescreve sem pedido explícito
    (ex.: imagem já gerada, arquivo de contexto já preenchido).
+
+O alerta canônico é:
+
+> O setup do Thothfy ainda não foi concluído ou precisa de reparo neste
+> projeto. Execute `thothfy-setup` para preparar os arquivos de apoio.
+
+Os dois arquivos confirmam que o setup preparou o ambiente e pesquisou as
+fontes locais. A presença das skills no diretório do agente não comprova essa
+preparação.
 
 ## Regras transversais
 
@@ -150,16 +170,42 @@ description: >
   artefato — ver `thothfy-base-imagem` como referência.
 - Toda skill que cria ou altera um arquivo de `context/` segue o formato
   descrito em `CONTEXTO.md` e nunca apaga seção inteira, só atualiza conteúdo.
-- Skills do grupo `thothfy-estrategia-*` não escrevem copy final e não abrem
+- Somente `thothfy-setup` cria, move, restaura ou reconcilia arquivos de
+  apoio, metodologia, templates, estrutura de `context/`, diretórios de saída
+  e o bloco do Thothfy em `AGENTS.md`/`CLAUDE.md`. Outra skill que encontrar
+  instalação parcial deve acionar o setup, sem improvisar caminhos.
+- `thothfy-contexto-*` altera o conteúdo de `.thothfy/context/`, mas não move
+  nem reinstala esses arquivos. O setup restaura arquivo ausente como
+  template e preserva todo arquivo existente.
+- Toda skill lê `.thothfy/FONTES-PROJETO.md` depois do preflight e carrega os
+  Markdown marcados como relevantes para sua tarefa. Ela não copia, altera ou
+  atribui autoridade automática às fontes descobertas.
+- Skills do grupo `thothfy-brainstorm-<NN>-*` preservam a ideia, separam
+  fatos de hipóteses e validam a prosa contra os dois arquivos de proibições.
+- Skills do grupo `thothfy-estrategia-<NN>-*` não escrevem copy final e não abrem
   pacote de pipeline sozinhas — elas produzem brief de campanha, pesquisa,
   plano ou calendário, e apontam para `thothfy-planejamento-00-triagem` ou
-  para `thothfy-especialista-*` quando o pacote ou a peça precisa nascer.
+  para `thothfy-especialista-*` quando o pacote ou a peça precisa ser criado.
 - Skills do grupo `thothfy-planejamento-<NN>-*` não escrevem copy final — elas
   orquestram e preparam material para a skill especialista escrever.
 - Skills do grupo `thothfy-especialista-*` não decidem estratégia — elas
-  recebem um brief já aprovado e produzem o artefato dentro dele.
+  recebem um brief já aprovado, produzem o artefato dentro dele e o enviam à
+  validadora pareada antes de declará-lo pronto.
+- Skills do grupo `thothfy-validador-*` não corrigem o asset: registram
+  evidência, regra violada e correção verificável, então devolvem à
+  `thothfy-especialista-*` de mesmo sufixo. A nova versão volta à validadora
+  até aprovação ou bloqueio factual apresentado ao usuário.
+- Toda validadora aplica `context/proibicoes.md` e
+  `context/estruturas-proibidas.md` como hard gates. Qualquer ocorrência
+  literal, semântica ou estrutural reprova o asset, sem compensação por nota,
+  SEO, estética ou outro critério aprovado. Depois da correção, os dois
+  passes são repetidos sobre o asset inteiro.
+- Toda validadora procura `brand/`. Quando a pasta existir, lê seus Markdown
+  e inspeciona logos, tokens, cores, tipografia e aplicações relevantes. Uma
+  divergência de marca reprova o asset ou bloqueia a decisão quando houver
+  conflito entre fontes.
 - Skills do grupo `thothfy-base-*` não conhecem canal nem fase — são
-  utilitário puro, chamado por quem precisar.
+  utilitários puros, chamados pelas skills que precisam deles.
 
 ## Caminhos de arquivo
 
@@ -190,10 +236,22 @@ Antes de considerar uma skill pronta:
 
 1. O nome do diretório e o frontmatter `name` seguem a convenção do grupo a
    que a skill pertence.
-2. A skill declara todo `context/` de que depende.
-3. O fluxo é verificável passo a passo, sem etapa vaga como "escreva bem".
-4. A saída tem local e formato definidos.
-5. Existe critério objetivo de validação, não apenas "revise antes de
+2. A skill, quando não for o setup, confere `.thothfy/VERSAO.md` e
+   `.thothfy/FONTES-PROJETO.md`, apresenta o alerta canônico quando necessário
+   e lê as fontes relevantes.
+3. A skill declara todo `context/` de que depende.
+4. O fluxo é verificável passo a passo, sem etapa vaga como "escreva bem".
+5. A saída tem local e formato definidos.
+6. Existem condições objetivas de validação, não apenas "revise antes de
    publicar".
-6. `REFERENCIA.md` existe, tem pelo menos um template ou exemplo completo, e
+7. `REFERENCIA.md` existe, tem pelo menos um template ou exemplo completo, e
    é citado em algum passo do `Fluxo`.
+
+Depois da revisão manual, execute:
+
+```bash
+python3 scripts/validar-framework.py
+```
+
+O comando confirma nomes, frontmatter, seções, referências, dependências de
+`context/` e continuidade numérica dos três fluxos.

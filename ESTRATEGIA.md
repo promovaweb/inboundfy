@@ -11,37 +11,35 @@ qualquer transcrição, ideia ou rascunho entrar no pipeline.
 ## Por que este grupo é separado do pipeline
 
 `thothfy-planejamento-<NN>-*` é sequencial e por peça: cada fase avança um
-único pacote, da entrada de material até a auditoria final. As skills de
-`thothfy-estrategia-*` operam em outro nível — o de campanha e agenda — e
-não seguem uma sequência numerada fixa, porque uma agência real revisita
-pesquisa de mercado, ajusta calendário e abre campanha nova em paralelo,
-não em fases estanques. Separar os dois grupos evita que decisão de negócio
-(objetivo, KPI, orçamento) fique misturada com decisão de execução de peça
-(ângulo, brief, produção).
+único pacote, da entrada de material até a auditoria final. As skills
+`thothfy-estrategia-00-*` a `thothfy-estrategia-03-*` operam no nível de
+campanha e agenda. A numeração registra a ordem de abertura de uma campanha;
+pesquisa, plano e calendário podem ser reabertos depois sem repetir etapas
+que continuam válidas.
 
 ## As quatro skills do grupo
 
-### 1. Kickoff (`thothfy-estrategia-briefing-cliente`)
+### 00. Kickoff (`thothfy-estrategia-00-briefing-cliente`)
 
 Traduz uma conversa de kickoff — com cliente externo ou com o dono do
 negócio — em objetivo de negócio, KPI com meta e prazo, público prioritário,
 orçamento e restrições. Não decide canal nem tema.
 
-### 2. Pesquisa de mercado (`thothfy-estrategia-pesquisa-mercado`)
+### 01. Pesquisa de mercado (`thothfy-estrategia-01-pesquisa-mercado`)
 
 Investiga o que concorrentes e o mercado estão publicando agora sobre o
 tema da campanha, identificando lacunas acionáveis. Diferente de
 `thothfy-contexto-concorrentes`, que só guarda cadastro estático, esta skill
 produz análise viva para uma campanha específica.
 
-### 3. Plano de campanha (`thothfy-estrategia-campanha`)
+### 02. Plano de campanha (`thothfy-estrategia-02-campanha`)
 
 Cruza o brief e a pesquisa em fases, temas, mix de canal e volume
 aproximado de peças. É o documento que decide o quê a campanha vai
 precisar — cada pacote de conteúdo listado aqui alimenta o pipeline
 (`thothfy-planejamento-00-triagem`) ou um especialista direto.
 
-### 4. Calendário editorial (`thothfy-estrategia-calendario`)
+### 03. Calendário editorial (`thothfy-estrategia-03-calendario`)
 
 Distribui no tempo os pacotes de todas as campanhas ativas somados à
 cadência orgânica de cada canal (conteúdo recorrente sem campanha
@@ -67,12 +65,12 @@ orgânica.
 ## Quando pular etapas
 
 - Peça avulsa fora de qualquer campanha (pedido pontual do usuário): pula
-  todo o grupo `thothfy-estrategia-*` e vai direto para
+  todo o grupo `thothfy-estrategia-<NN>-*` e vai direto para
   `thothfy-especialista-<canal>`, como já previsto em `METODOLOGIA.md`.
 - Campanha recorrente já madura, sem pesquisa nova necessária: pode reabrir
-  direto em `thothfy-estrategia-campanha` para uma fase nova, sem repetir
-  `thothfy-estrategia-pesquisa-mercado` — mas nunca pule
-  `thothfy-estrategia-briefing-cliente` para campanha que ainda não tem
+  direto em `thothfy-estrategia-02-campanha` para uma fase nova, sem repetir
+  `thothfy-estrategia-01-pesquisa-mercado` — mas nunca pule
+  `thothfy-estrategia-00-briefing-cliente` para campanha que ainda não tem
   brief aprovado registrado em `context/campanhas.md`.
 
 ## Contexto envolvido

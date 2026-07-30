@@ -16,6 +16,14 @@ texto legível para o usuário final.
 Cobre a entrada de changelog. Não decide o que entra na entrada — parte do
 release ou brief fornecido.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/produtos.md`: para descrever a funcionalidade afetada com
@@ -30,12 +38,14 @@ dependência) ou um brief já formalizado.
 
 ## Fluxo
 
-1. Leia o material de entrada e identifique: o que mudou, para quem importa
+1. Leia o material de entrada e identifique: o que mudou, qual público é
+   afetado
    e qual ação, se alguma, o usuário precisa tomar.
 2. Confirme o nome da funcionalidade ou produto contra `context/produtos.md`
    e a grafia contra `context/glossario.md`.
 3. Escreva a entrada em linguagem direta: o que mudou, por que importa para
-   quem usa, e eventual ação necessária — sem jargão de commit interno, sem
+as pessoas afetadas e eventual ação necessária — sem jargão de commit
+interno, sem
    prosa decorativa. Use o template de entrada de `REFERENCIA.md`.
 4. Classifique o tipo de mudança quando o formato do canal pedir (novidade,
    melhoria, correção).
@@ -44,6 +54,12 @@ dependência) ou um brief já formalizado.
 6. Salve com frontmatter incluindo `data`, `tipo` e `brief` quando fizer
    parte de um pacote.
 7. Encaminhe para `thothfy-planejamento-06-auditoria`.
+
+## Encaminhamento obrigatório
+
+Antes de considerar a entrada pronta, acione
+`thothfy-validador-changelog`. Em caso de reprovação, aplique as correções
+do relatório e reenvie o arquivo inteiro até a aprovação.
 
 ## Saída
 
@@ -54,8 +70,9 @@ Arquivo Markdown da entrada de changelog, salvo no caminho de
 
 - Nome de produto/funcionalidade confere com `context/produtos.md` e
   `context/glossario.md`.
-- Entrada diz claramente o que muda para quem usa.
+- Entrada diz claramente o que muda para as pessoas afetadas.
 - Nenhum trecho abaixo de 90% na auditoria de `thothfy-base-editor`.
+- Aprovação registrada por `thothfy-validador-changelog`.
 
 ## Idempotência
 

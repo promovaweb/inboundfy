@@ -15,6 +15,14 @@ outline de talking head.
 
 Cobre roteiro e outline de cena. Thumbnail é `thothfy-especialista-video-imagem`.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/marca-voz.md`: tom e pessoa gramatical.
@@ -42,7 +50,7 @@ objeto real do vídeo. Use estrutura quando o brief marcar objetivo comercial:
   e incluir depoimento real de cliente (nunca encenado ou inventado).
 - Toda cena que demonstra uma funcionalidade aplica **FAB**: mostrar a
   característica na tela, narrar a vantagem prática e fechar a cena no
-  benefício real para quem assiste.
+benefício real para o espectador.
 
 ## Entrada esperada
 
@@ -71,6 +79,12 @@ apresentador (se houver), ativos de apoio e duração aproximada.
    `brief` quando fizer parte de um pacote.
 9. Encaminhe para `thothfy-especialista-video-imagem` e depois para `thothfy-planejamento-06-auditoria`.
 
+## Encaminhamento obrigatório
+
+Antes de considerar o roteiro pronto, acione `thothfy-validador-video`. Em
+caso de reprovação, aplique as correções do relatório e reenvie o arquivo
+inteiro até a aprovação.
+
 ## Saída
 
 Arquivo Markdown com cenas ou outline, salvo no caminho definido em
@@ -81,6 +95,7 @@ Arquivo Markdown com cenas ou outline, salvo no caminho definido em
 - Apresentador, quando definido, está dentro da competência registrada.
 - Nenhum trecho abaixo de 90% na auditoria de `thothfy-base-editor`.
 - Cena com apoio visual indicado não prescreve edição fora do escopo.
+- Aprovação registrada por `thothfy-validador-video`.
 
 ## Idempotência
 

@@ -15,6 +15,14 @@ público, capítulos) quanto a escrita do corpo dos capítulos.
 
 Cobre texto de ebook. Capa e imagem OpenGraph são `thothfy-especialista-ebook-imagem`.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/marca-voz.md`: tom e voz de formato longo.
@@ -70,6 +78,12 @@ pacote, quando existir) e, se já definida, a estrutura de capítulos.
    capítulos e `brief` quando fizer parte de um pacote.
 8. Encaminhe para `thothfy-especialista-ebook-imagem` e depois para `thothfy-planejamento-06-auditoria`.
 
+## Encaminhamento obrigatório
+
+Antes de considerar o ebook pronto, acione `thothfy-validador-ebook`. Em
+caso de reprovação, aplique as correções do relatório e reenvie o ebook
+inteiro até a aprovação. Só então avance para imagem e auditoria do pacote.
+
 ## Saída
 
 Arquivo Markdown do ebook (um arquivo por capítulo ou um único arquivo com
@@ -81,6 +95,7 @@ ebook.
 - Progressão de capítulos é lógica, sem repetição de conteúdo entre eles.
 - Nenhum parágrafo abaixo de 90% na auditoria de `thothfy-base-editor`.
 - Menção institucional confere com `context/`.
+- Aprovação registrada por `thothfy-validador-ebook`.
 
 ## Idempotência
 

@@ -1,41 +1,43 @@
 # SKILLS.md — Catálogo de Skills do Thothfy
 
-Este índice organiza as skills de `skills/` nos cinco grupos definidos em
-`SKILL-AUTORIA.md`, mais a skill mestra e a de instalação. Toda skill segue
+Este índice organiza as skills de `skills/` nos sete grupos definidos em
+`SKILL-AUTORIA.md`, mais as wrappers e a instalação. Toda skill segue
 o contrato de `SKILL-AUTORIA.md`. Use a tabela para escolher a skill certa
 por grupo, fase sequencial (`METODOLOGIA.md`), etapa estratégica
 (`ESTRATEGIA.md`) ou canal de entrega.
 
-As 46 skills do catálogo estão prontas (SKILL.md completo, seguindo o
-contrato de `SKILL-AUTORIA.md`): 2 de instalação/orquestração, 4 de base, 11
-de contexto, 4 de estratégia de agência, 7 de fluxo/pipeline sequenciado e
-18 de especialista de canal. Aprofundamento futuro (scripts de apoio
-mecânico, exemplos adicionais) pode ser adicionado sem quebrar o contrato
-atual.
+O catálogo contém 71 skills: 3 pontos de entrada, 5 de base, 11 de contexto,
+5 fases de brainstorm, 4 fases de estratégia, 7 fases de planejamento, 18
+especialistas de canal e 18 validadoras de asset.
 
 ## Como escolher o grupo certo
 
-- A campanha ainda não tem objetivo, KPI ou plano definido → grupo 3
-  (`thothfy-estrategia-*`).
-- Já existe material bruto (transcrição, ideia, rascunho) ou um item do
-  calendário para processar do zero → grupo 4 (`thothfy-planejamento-<NN>-*`,
+- Existe apenas uma ideia, sem tese e pesquisa → grupo 3
+  (`thothfy-brainstorm-<NN>-*`) ou wrapper `thothfy-brainstorm`.
+- A campanha ainda não tem objetivo, KPI ou plano definido → grupo 4
+  (`thothfy-estrategia-<NN>-*`).
+- Já existe material bruto (transcrição, peça-base, rascunho) ou um item do
+  calendário para processar do zero → grupo 5 (`thothfy-planejamento-<NN>-*`,
   começando por `thothfy-planejamento-00-triagem`).
 - É um pedido pontual e rápido, sem pacote completo, com brief mínimo já
-  claro → grupo 5 (`thothfy-especialista-<canal>`) direto.
+  claro → grupo 6 (`thothfy-especialista-<canal>`) direto.
 - Falta dado de negócio (produto, preço, concorrente, campanha) → grupo 2
   (`thothfy-contexto-*`).
 - É uma capacidade mecânica reutilizável (SEO, formatação, edição, imagem)
   → grupo 1 (`thothfy-base-*`).
+- Existe um asset candidato aguardando aprovação → grupo 7
+  (`thothfy-validador-<canal>[-imagem]`) de mesmo sufixo da produtora.
 
 ## 0. Instalação e orquestração
 
-Fora dos cinco grupos, por natureza: instalam o framework e orquestram o
+Fora dos sete grupos, por natureza: instalam o framework e orquestram o
 resto do catálogo.
 
 | Skill | Papel |
 | --- | --- |
-| [thothfy-setup](skills/thothfy-setup/SKILL.md) | Instala o Thothfy no projeto: copia skills, cria `.thothfy/` e `content/`, ajusta `AGENTS.md`/`CLAUDE.md`, conduz o preenchimento mínimo de contexto. |
-| [thothfy-iniciar](skills/thothfy-iniciar/SKILL.md) | Skill mestra: roda a sequência completa de `thothfy-planejamento-*` e os especialistas necessários automaticamente, a partir de material bruto. |
+| [thothfy-setup](skills/thothfy-setup/SKILL.md) | Instala, atualiza e repara os arquivos de apoio, além de inventariar os Markdown em maiúsculas do projeto sem alterar as fontes. |
+| [thothfy-brainstorm](skills/thothfy-brainstorm/SKILL.md) | Executa automaticamente as fases 00 a 04 do brainstorm e entrega `brainstorm.md` aprovado. |
+| [thothfy-iniciar](skills/thothfy-iniciar/SKILL.md) | Recebe ideia ou peça-base, aciona o fluxo necessário e entrega uma ou várias peças auditadas. |
 
 ## 1. `thothfy-base-*` — Fundamentos reutilizáveis
 
@@ -48,6 +50,7 @@ skill de planejamento ou especialista.
 | [thothfy-base-seo](skills/thothfy-base-seo/SKILL.md) | Intenção de busca, metadata, headings, linkagem interna. |
 | [thothfy-base-formatador](skills/thothfy-base-formatador/SKILL.md) | Lint e formatação Markdown final. |
 | [thothfy-base-imagem](skills/thothfy-base-imagem/SKILL.md) | Motor genérico de card/slide gerado por IA (capa social, thumbnail, slide de carrossel). |
+| [thothfy-base-validador](skills/thothfy-base-validador/SKILL.md) | Contrato transversal de fontes, contextos, regras, relatório e reenvio. |
 
 ## 2. `thothfy-contexto-*` — Manutenção de dados do usuário
 
@@ -67,7 +70,19 @@ Preenchem e mantêm os arquivos de `context/` descritos em `CONTEXTO.md`.
 | [thothfy-contexto-ferramentas](skills/thothfy-contexto-ferramentas/SKILL.md) | `context/ferramentas.md`. |
 | [thothfy-contexto-campanhas](skills/thothfy-contexto-campanhas/SKILL.md) | `context/campanhas.md`. |
 
-## 3. `thothfy-estrategia-*` — Planejamento estratégico de agência
+## 3. `thothfy-brainstorm-<NN>-*` — Desenvolvimento sequencial de ideia
+
+Transformam uma ideia curta em `brainstorm.md` pesquisado e validado.
+
+| Skill | Fase |
+| --- | --- |
+| [thothfy-brainstorm-00-triagem](skills/thothfy-brainstorm-00-triagem/SKILL.md) | 00 — Preserva a ideia e abre o diretório datado. |
+| [thothfy-brainstorm-01-entrevista](skills/thothfy-brainstorm-01-entrevista/SKILL.md) | 01 — Investiga lacunas essenciais em uma conversa. |
+| [thothfy-brainstorm-02-pesquisa](skills/thothfy-brainstorm-02-pesquisa/SKILL.md) | 02 — Pesquisa fontes e contrapontos. |
+| [thothfy-brainstorm-03-sintese](skills/thothfy-brainstorm-03-sintese/SKILL.md) | 03 — Preenche tese, argumentos, ativos e oportunidades. |
+| [thothfy-brainstorm-04-validacao](skills/thothfy-brainstorm-04-validacao/SKILL.md) | 04 — Valida fontes, escrita e proibições. |
+
+## 4. `thothfy-estrategia-<NN>-*` — Planejamento estratégico de agência
 
 Decidem o quê, por quê e quando em nível de campanha ou agenda, antes de
 qualquer material bruto ou pacote existir. Ver `ESTRATEGIA.md` para a ordem
@@ -75,12 +90,12 @@ típica de uso.
 
 | Skill | Papel |
 | --- | --- |
-| [thothfy-estrategia-briefing-cliente](skills/thothfy-estrategia-briefing-cliente/SKILL.md) | Kickoff: objetivo de negócio, KPI, público, orçamento e prazo da campanha. |
-| [thothfy-estrategia-pesquisa-mercado](skills/thothfy-estrategia-pesquisa-mercado/SKILL.md) | Pesquisa ativa de mercado e concorrência para embasar a campanha. |
-| [thothfy-estrategia-campanha](skills/thothfy-estrategia-campanha/SKILL.md) | Plano de campanha multicanal: fases, temas, mix de canal e volume de peças. |
-| [thothfy-estrategia-calendario](skills/thothfy-estrategia-calendario/SKILL.md) | Calendário editorial recorrente: distribui no tempo peças de campanha e cadência orgânica. |
+| [thothfy-estrategia-00-briefing-cliente](skills/thothfy-estrategia-00-briefing-cliente/SKILL.md) | Kickoff: objetivo de negócio, KPI, público, orçamento e prazo da campanha. |
+| [thothfy-estrategia-01-pesquisa-mercado](skills/thothfy-estrategia-01-pesquisa-mercado/SKILL.md) | Pesquisa ativa de mercado e concorrência para embasar a campanha. |
+| [thothfy-estrategia-02-campanha](skills/thothfy-estrategia-02-campanha/SKILL.md) | Plano de campanha multicanal: fases, temas, mix de canal e volume de peças. |
+| [thothfy-estrategia-03-calendario](skills/thothfy-estrategia-03-calendario/SKILL.md) | Calendário editorial recorrente: distribui no tempo peças de campanha e cadência orgânica. |
 
-## 4. `thothfy-planejamento-<NN>-*` — Fluxo/pipeline editorial sequenciado
+## 5. `thothfy-planejamento-<NN>-*` — Fluxo/pipeline editorial sequenciado
 
 Orquestram as fases de `METODOLOGIA.md`, na ordem exata do número no nome.
 Não escrevem copy final.
@@ -95,7 +110,7 @@ Não escrevem copy final.
 | [thothfy-planejamento-05-producao](skills/thothfy-planejamento-05-producao/SKILL.md) | 5 — Roteamento para skill especialista. |
 | [thothfy-planejamento-06-auditoria](skills/thothfy-planejamento-06-auditoria/SKILL.md) | 6 — Auditoria final do pacote. |
 
-## 5. `thothfy-especialista-<canal>[-imagem]` — Item avulso por canal de entrega
+## 6. `thothfy-especialista-<canal>[-imagem]` — Item avulso por canal de entrega
 
 Recebem um brief já aprovado e produzem o artefato final.
 
@@ -127,13 +142,24 @@ Recebem um brief já aprovado e produzem o artefato final.
 | [thothfy-especialista-infografico-imagem](skills/thothfy-especialista-infografico-imagem/SKILL.md) | Peça final de infográfico. |
 | [thothfy-especialista-webinar-imagem](skills/thothfy-especialista-webinar-imagem/SKILL.md) | Thumbnail quadrada de evento/webinar. |
 
+## 7. `thothfy-validador-<canal>[-imagem]` — Aprovação por asset
+
+Cada especialista acima possui uma validadora de mesmo sufixo. O pareamento
+é direto para blog, changelog, ebook, email, infográfico, Instagram,
+LinkedIn, newsletter, podcast, vídeo e webinar, incluindo as sete
+especialistas de imagem.
+
+As 18 validadoras aplicam `thothfy-base-validador`, leem todos os arquivos
+de `.thothfy/context/`, o inventário e as fontes locais relevantes, além do
+brief e dos contratos da produtora. Uma reprovação retorna à produtora
+pareada com localização, evidência, regra violada e correção verificável. O
+asset só avança após nova rodada aprovada.
+
 ## Regra central
 
-Use `thothfy-setup` antes de qualquer outra skill num projeto novo. Para
-campanha nova, comece por `thothfy-estrategia-briefing-cliente` e siga a
-ordem de `ESTRATEGIA.md`. Para um pacote de conteúdo com material bruto já
-definido, use `thothfy-iniciar` para o fluxo completo automático, ou acione
-`thothfy-contexto-*` quando faltar dado, `thothfy-planejamento-<NN>-*` na
-ordem de `METODOLOGIA.md`, e a skill `thothfy-especialista-*` do canal só
-depois de existir um brief aprovado — ou direto, para peça avulsa sem
-pacote completo.
+Use `thothfy-setup` num projeto novo. Para uma ideia, use
+`thothfy-brainstorm` ou chame `thothfy-iniciar`, que escolhe esse caminho
+automaticamente. Para campanha nova, comece por
+`thothfy-estrategia-00-briefing-cliente`. Para peça-base ou material bruto,
+use `thothfy-iniciar`. Skills individuais servem para controlar ou retomar
+uma fase específica.

@@ -18,6 +18,14 @@ editorial é `thothfy-especialista-newsletter`. Não define a estratégia da
 sequência de nutrição — isso é decidido em `thothfy-planejamento-03-oportunidades` e
 registrado no brief.
 
+## Verificação do setup
+
+Confirme `.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md` no início. Na
+ausência de qualquer um, informe: "O setup do Thothfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `thothfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o inventário e os Markdown relevantes para a tarefa.
+
 ## Contexto exigido
 
 - `context/marca-voz.md`: tom e assinatura padrão de e-mail.
@@ -42,10 +50,10 @@ orienta como aplicá-la especificamente em e-mail:
 - **E-mail avulso ou convite com uma única oferta clara** (ex.: convite para
   um evento, anúncio de uma condição por tempo limitado): use **AIDA**. O
   assunto e a primeira linha do corpo já carregam a Atenção; o corpo curto
-  sustenta o Interesse com um fato concreto; o parágrafo seguinte cria o
+desenvolve o Interesse com um fato concreto; o parágrafo seguinte cria o
   Desejo conectando o fato ao ganho real da persona; o fechamento é a Ação —
   um único CTA, nunca dois pedidos concorrentes no mesmo e-mail.
-- **E-mail de nutrição** em que a persona ainda está no início da jornada
+- **E-mail de nutrição** destinado à persona no início da jornada
   (`context/publico.md`): use **PAS**. Abra nomeando o problema real que essa
   etapa da jornada enfrenta, agite a consequência concreta de não resolver
   agora (sem inflar além do que é verificável) e feche apresentando a
@@ -89,6 +97,12 @@ ativos de apoio e CTA esperado.
    parte de um pacote, seguindo o template de `REFERENCIA.md`.
 8. Encaminhe para `thothfy-planejamento-06-auditoria`.
 
+## Encaminhamento obrigatório
+
+Antes de considerar o email pronto, acione `thothfy-validador-email`. Em
+caso de reprovação, aplique as correções do relatório e reenvie o arquivo
+inteiro até a aprovação.
+
 ## Saída
 
 Arquivo Markdown com frontmatter, salvo no caminho definido em
@@ -104,6 +118,7 @@ Arquivo Markdown com frontmatter, salvo no caminho definido em
 - Quando o brief declarar estrutura persuasiva, todos os blocos dela estão
   presentes e na ordem certa; testemunho ausente foi sinalizado, não
   inventado.
+- Aprovação registrada por `thothfy-validador-email`.
 
 ## Idempotência
 

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Ícone do Thothfy para fundo escuro</title>
+  <desc id="desc">Letra T clara com blocos editoriais laranja.</desc>
+  <rect x="82" y="104" width="348" height="66" rx="33" fill="#F2F8F9"/>
+  <rect x="218" y="138" width="76" height="270" rx="38" fill="#F2F8F9"/>
+  <rect x="326" y="212" width="104" height="70" rx="22" fill="#FDBA74"/>
+  <path d="M326 322h68c20 0 36 16 36 36v50h-68c-20 0-36-16-36-36v-50z" fill="#FDBA74"/>
+</svg>
