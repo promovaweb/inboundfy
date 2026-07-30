@@ -136,10 +136,12 @@ autorização de redistribuição.
 Execute na raiz do repositório:
 
 ```bash
+python3 -m unittest discover -s tests -v
 python3 scripts/validar-framework.py
 ```
 
-O comando confere o contrato das skills, a continuidade das três sequências,
-as dependências de `context/`, as referências editoriais obrigatórias e as
-chamadas das wrappers. Também exige o hard gate de proibições, o pareamento
-entre produtoras e validadoras e o consumo opcional de `brand/`.
+A suíte executa os cenários de pareamento, hard gate, retorno à produtora,
+segunda rodada aprovada e descoberta de Markdown minúsculo em `brand/`. O
+validador estrutural confere o contrato das skills, a continuidade das três
+sequências, as dependências de `context/`, as referências editoriais, as
+chamadas das wrappers e a presença das fixtures executáveis.

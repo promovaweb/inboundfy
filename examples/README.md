@@ -16,6 +16,7 @@ se uma skill nova segue o padrão esperado.
 | Pacote | O que demonstra |
 | --- | --- |
 | [como-funciona-o-mcp](como-funciona-o-mcp/README.md) | Pipeline completo de `METODOLOGIA.md` (fases 0 a 6) aplicado a um artigo de blog técnico avulso, sem campanha — da nota de reunião crua ao artigo auditado. |
+| [validacao-assets](validacao-assets/README.md) | Hard gate com asset reprovado, relatório acionável, retorno à produtora, segunda rodada aprovada e descoberta de `brand/`. |
 
 ## Regras deste diretório
 
@@ -29,3 +30,5 @@ se uma skill nova segue o padrão esperado.
   oportunidades do plano, mas deve registrar e justificar o corte no
   próprio pacote (ver `03-planejamento/plano-de-oportunidades.md` do
   exemplo `como-funciona-o-mcp` para o formato).
+- Fixtures reprovadas precisam declarar que contêm violações propositais e
+  devem ter testes que comprovem os achados e a correção.

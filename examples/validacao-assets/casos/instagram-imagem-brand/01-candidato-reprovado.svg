@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="fundo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FF00FF"/>
+      <stop offset="1" stop-color="#6A00FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#fundo)"/>
+  <text x="70" y="430" fill="#FFFFFF" font-family="sans-serif" font-size="74">
+    Quem responde pelo
+  </text>
+  <text x="70" y="520" fill="#FFFFFF" font-family="sans-serif" font-size="74">
+    próximo contrato?
+  </text>
+  <text x="70" y="980" fill="#FFFFFF" font-family="sans-serif" font-size="34">
+    OFICINA CLARA
+  </text>
+</svg>

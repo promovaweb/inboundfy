@@ -409,6 +409,94 @@ def validar_metodologia() -> list[str]:
     return erros
 
 
+def validar_testes_e_exemplos() -> list[str]:
+    """Confere a evidência executável do ciclo de validação de assets."""
+    erros: list[str] = []
+    teste = RAIZ / "tests" / "test_validacao_assets.py"
+    if not teste.is_file():
+        erros.append("tests/test_validacao_assets.py: teste ausente")
+    else:
+        texto_teste = teste.read_text(encoding="utf-8")
+        for trecho in (
+            "test_framework_completo_e_pareado",
+            "test_brand_minuscula_entra_no_inventario",
+            "test_candidato_exercita_proibicoes_reais",
+            "test_correcao_remove_ocorrencias_e_aprova_hard_gate",
+            "test_email_reprova_preco_e_cta_concorrente",
+            "test_blog_reprova_molde_semantico_repetido",
+            "test_imagem_reprova_dimensao_gradiente_e_paleta",
+        ):
+            if trecho not in texto_teste:
+                erros.append(f"teste de validação ausente: {trecho}")
+    exemplo = RAIZ / "examples" / "validacao-assets"
+    arquivos_exemplo = {
+        "README.md",
+        "brand/manual-da-marca.md",
+        "brief.md",
+        "01-candidato-reprovado.md",
+        "02-relatorio-reprovacao.md",
+        "03-asset-corrigido.md",
+        "04-relatorio-aprovacao.md",
+        "05-evidencia-testes.md",
+        "casos/email-oferta/README.md",
+        "casos/email-oferta/brief.md",
+        "casos/email-oferta/fonte-oferta.md",
+        "casos/email-oferta/01-candidato-reprovado.md",
+        "casos/email-oferta/02-relatorio-reprovacao.md",
+        "casos/email-oferta/03-asset-corrigido.md",
+        "casos/email-oferta/04-relatorio-aprovacao.md",
+        "casos/blog-estrutura-semantica/README.md",
+        "casos/blog-estrutura-semantica/brief.md",
+        "casos/blog-estrutura-semantica/01-candidato-reprovado.md",
+        "casos/blog-estrutura-semantica/02-relatorio-reprovacao.md",
+        "casos/blog-estrutura-semantica/03-asset-corrigido.md",
+        "casos/blog-estrutura-semantica/04-relatorio-aprovacao.md",
+        "casos/instagram-imagem-brand/README.md",
+        "casos/instagram-imagem-brand/brief.md",
+        "casos/instagram-imagem-brand/01-candidato-reprovado.svg",
+        "casos/instagram-imagem-brand/02-relatorio-reprovacao.md",
+        "casos/instagram-imagem-brand/03-asset-corrigido.svg",
+        "casos/instagram-imagem-brand/04-relatorio-aprovacao.md",
+    }
+    for relativo in sorted(arquivos_exemplo):
+        if not (exemplo / relativo).is_file():
+            erros.append(f"exemplo de validação ausente: {relativo}")
+    if (exemplo / "02-relatorio-reprovacao.md").is_file():
+        reprovacao = (
+            exemplo / "02-relatorio-reprovacao.md"
+        ).read_text(encoding="utf-8")
+        for trecho in (
+            "**Veredito:** reprovado",
+            "## Hard gate de proibições",
+            "`thothfy-especialista-linkedin`",
+        ):
+            if trecho not in reprovacao:
+                erros.append(f"relatório reprovado sem evidência: {trecho}")
+    if (exemplo / "04-relatorio-aprovacao.md").is_file():
+        aprovacao = (
+            exemplo / "04-relatorio-aprovacao.md"
+        ).read_text(encoding="utf-8")
+        for trecho in (
+            "**Veredito:** aprovado",
+            "**Ocorrências remanescentes:** zero",
+            "brand/manual-da-marca.md",
+        ):
+            if trecho not in aprovacao:
+                erros.append(f"relatório aprovado sem evidência: {trecho}")
+    if (exemplo / "05-evidencia-testes.md").is_file():
+        evidencia = (
+            exemplo / "05-evidencia-testes.md"
+        ).read_text(encoding="utf-8")
+        for trecho in (
+            "2026-07-30",
+            "Ran 9 tests",
+            "Thothfy aprovado: 71 skills",
+        ):
+            if trecho not in evidencia:
+                erros.append(f"execução de testes sem registro: {trecho}")
+    return erros
+
+
 def validar_links() -> list[str]:
     """Confere destinos locais declarados em links Markdown."""
     erros: list[str] = []
@@ -440,6 +528,7 @@ def main() -> int:
     erros.extend(validar_sequencias())
     erros.extend(validar_pares_de_asset())
     erros.extend(validar_metodologia())
+    erros.extend(validar_testes_e_exemplos())
     erros.extend(validar_links())
     if erros:
         print("Thothfy reprovado:")
