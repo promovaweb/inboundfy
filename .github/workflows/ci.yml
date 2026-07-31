@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    name: Validar Node.js e pacote npm
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obter código
+        uses: actions/checkout@v7
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Instalar ferramentas de verificação do ebook
+        run: sudo apt-get update && sudo apt-get install -y libxml2-utils poppler-utils unzip
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Validar framework e CLI
+        run: npm run validar
+
+      - name: Empacotar distribuição npm
+        run: |
+          mkdir -p artifacts
+          npm pack --pack-destination artifacts
+
+      - name: Validar instalação isolada
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          npm run npm:validate-package -- "artifacts/promovaweb-thothfy-${version}.tgz"
+
+      - name: Guardar pacote validado
+        uses: actions/upload-artifact@v7
+        with:
+          name: pacote-npm
+          path: artifacts/*.tgz
+          if-no-files-found: error

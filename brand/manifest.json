@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-30T20:46:09.148Z",
+  "generatedAt": "2026-07-31T10:48:23.885Z",
   "assets": [
     {
       "path": "logo/icon-dark.png",
@@ -30,13 +30,13 @@
       "path": "logo/icon.png",
       "format": "png",
       "role": "icon",
-      "sha256": "242a26b4c28c48d3fdcc05b686f20e8430a61890d8214df53a29f28d8abbc7ff"
+      "sha256": "a8260fb07e3fff4cd70cd62a9a01c84b68ee93096a45756b2790ec0a7017e4bd"
     },
     {
       "path": "logo/icon.svg",
       "format": "svg",
       "role": "icon",
-      "sha256": "7350f324195ede348a77a3ae9e34323fe217ecbcd3e1cc961eece1d6afa23279"
+      "sha256": "cdfb549946d3c07c202aa71537b8eab1361b07f547227b261cdd34e8e21608cd"
     },
     {
       "path": "logo/logo-dark.png",

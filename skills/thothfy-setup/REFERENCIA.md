@@ -5,12 +5,19 @@ Thothfy do início ao fim.
 
 ## Tabela de propriedade
 
+<!-- markdownlint-disable MD013 -->
+
 | Grupo | Caminho | Ação do setup | Ação das demais skills |
 | --- | --- | --- | --- |
-| Skills | diretório de skills detectado | Instalar, atualizar, migrar e reparar | Ler e executar |
-| Metodologia | `.thothfy/*.md` | Instalar, atualizar e restaurar | Ler |
-| Templates | `.thothfy/templates/` | Instalar, atualizar e restaurar | Ler |
-| Fontes do projeto | `.thothfy/FONTES-PROJETO.md` | Descobrir, classificar e atualizar o inventário | Ler as fontes relevantes |
+| Skills | diretório de skills detectado | Escolher destino e mandar o CLI instalar, atualizar ou reparar | Ler e executar |
+| Metodologia | `.thothfy/*.md` | Mandar o CLI instalar, atualizar ou restaurar | Ler |
+| Documentação | `.thothfy/docs/` | Mandar o CLI instalar, atualizar ou restaurar | Consultar |
+| Ebook do usuário | `.thothfy/ebook/` | Mandar o CLI instalar, atualizar ou restaurar | Consultar |
+| Identidade do framework | `.thothfy/brand/` | Mandar o CLI instalar, atualizar ou restaurar | Consultar |
+| Templates | `.thothfy/templates/` | Mandar o CLI instalar, atualizar ou restaurar | Ler |
+| Manifestos | `.thothfy/install.json` e `.thothfy/manifest.json` | Conferir versão, escolhas e integridade registradas pelo CLI | Não alterar |
+| Candidatos | `.thothfy/fontes-candidatas.json` | Mandar o CLI descobrir caminhos, headings e hashes | Não alterar |
+| Fontes do projeto | `.thothfy/FONTES-PROJETO.md` | Classificar candidatos e atualizar o inventário sem perder decisões anteriores | Ler as fontes relevantes |
 | Contexto do usuário | `.thothfy/context/` | Criar ausentes e preservar existentes | Preencher pela skill `thothfy-contexto-*` |
 | Configuração de canais | `.thothfy/context/canais.md` | Garantir presença e caminhos de saída | Preencher pela skill de contexto |
 | Brainstorms | caminho registrado, padrão `brainstorms/` | Criar ou reparar o diretório | Escrever brainstorms |
@@ -19,13 +26,20 @@ Thothfy do início ao fim.
 | Versão | `.thothfy/VERSAO.md` | Criar e atualizar | Ler |
 | Migrações | `.thothfy/migracoes/` | Preservar versões legadas ou customizadas | Não alterar |
 
+<!-- markdownlint-enable MD013 -->
+
 ## Checklist de instalação completa
 
 - [ ] Diretório de skills do agente detectado ou definido pelo usuário.
 - [ ] `skills/thothfy-*/` copiadas para esse diretório.
+- [ ] `.thothfy/install.json` registra a mesma versão exibida pelo CLI.
+- [ ] `.thothfy/manifest.json` contém os hashes dos arquivos gerenciados.
 - [ ] `.thothfy/` criado com `VERSAO.md`, arquivos de metodologia,
       `FONTES-PROJETO.md`, `templates/brainstorm.md`,
       `templates/fontes-projeto.md`, `templates/context/` e `context/`.
+- [ ] `.thothfy/docs/` contém o percurso completo de `user/` e `method/`.
+- [ ] `.thothfy/ebook/` contém `VERSION`, `build.json`, PDF e EPUB da edição.
+- [ ] `.thothfy/brand/` contém o manifesto e os arquivos de logo da versão.
 - [ ] Markdown em maiúsculas pesquisados com as exclusões definidas.
 - [ ] Se `brand/` existe, todos os Markdown internos foram inventariados,
       inclusive os nomes em minúsculas.
@@ -49,26 +63,34 @@ Thothfy do início ao fim.
 - [ ] Usuário recebeu a lista do que ainda falta preencher no restante de
       `.thothfy/context/`.
 - [ ] Inventário final não contém item gerenciado ausente ou divergente.
+- [ ] `thothfy doctor --strict` terminou com código de saída zero.
 
-## Comando de descoberta
+## Comandos do executor
 
-Execute o utilitário a partir do diretório da skill instalada, apontando para
-a raiz do projeto consumidor:
+O CLI executa as alterações que esta skill conduz. Sempre faça a simulação
+antes de uma instalação, atualização ou reparo:
 
 ```bash
-python3 scripts/inventariar-fontes-projeto.py /caminho/do/projeto \
-  --excluir brainstorms \
-  --excluir content
+thothfy init --dry-run
+thothfy init --yes
+thothfy update --dry-run
+thothfy update --yes
+thothfy repair --dry-run
+thothfy repair --yes
+thothfy context scan
+thothfy context ready --yes
+thothfy doctor --strict
 ```
 
-O JSON retorna somente caminho relativo, título, headings e SHA-256. O
-utilitário não classifica autoridade, não copia conteúdo e não escreve no
-projeto. Use a saída para preencher `FONTES-PROJETO.md`.
+Quando o pacote não estiver instalado localmente, use
+`npx @promovaweb/thothfy@latest` antes do subcomando. Em automações, acrescente
+`--json` antes do subcomando para receber saída estruturada.
 
-Além dos Markdown em maiúsculas, o comando inclui todo arquivo `.md` sob
-`brand/`. Logos, fontes, tokens e imagens não entram no JSON, mas continuam
-disponíveis no próprio diretório para inspeção pelas skills que validam
-identidade visual.
+`context scan` registra somente caminho relativo, título, headings e SHA-256
+em `.thothfy/fontes-candidatas.json`. O comando não classifica autoridade,
+não copia conteúdo e não escreve nas fontes. Além dos Markdown em maiúsculas,
+inclui todo arquivo `.md` sob `brand/`. Logos, fontes, tokens e imagens não
+entram no JSON, mas continuam disponíveis no próprio diretório.
 
 ## Relatório de reconciliação
 
@@ -122,7 +144,8 @@ marketing. Antes de produzir qualquer peça, leia `.thothfy/CONTEXTO.md`
 (dados do usuário e precedência), `.thothfy/BRAINSTORM.md` (ideias),
 `.thothfy/FONTES-PROJETO.md` (Markdown locais relevantes),
 `.thothfy/METODOLOGIA.md` (pipeline editorial) e `.thothfy/SKILLS.md`
-(catálogo de skills). Leia no inventário as fontes ligadas à tarefa. Use
+(catálogo de skills). Comece por `.thothfy/docs/user/README.md` quando
+precisar do guia passo a passo. Leia no inventário as fontes ligadas à tarefa. Use
 `thothfy-iniciar` para o fluxo automático a partir de uma ideia ou peça-base,
 ou acione a skill especialista diretamente com um brief.
 <!-- thothfy:fim -->

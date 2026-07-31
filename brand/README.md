@@ -10,6 +10,9 @@ O símbolo é um **T construído como fluxo editorial**. A barra e a haste
 turquesa formam a estrutura; os dois módulos laranja representam entrada e
 saída, da orientação à peça produzida.
 
+A versão principal usa a placa de `512 × 512 px`, com cantos de raio `112 px`,
+adotada pelos ícones do SetupVibe e do Specsfy.
+
 ## Arquivos oficiais
 
 | Arquivo | Uso |
@@ -21,7 +24,7 @@ saída, da orientação à peça produzida.
 | `logo/logo-dark.svg` | assinatura horizontal sobre fundo escuro |
 | `logo/icon.png` | fallback raster de 512 × 512 px |
 
-Preserve 12,5% de área livre ao redor do ativo. O tamanho mínimo é 24 px para
+Preserve 12,5% de área livre ao redor do ativo. O tamanho mínimo é 28 px para
 o ícone e 120 px para a assinatura horizontal.
 
 ## Sistema digital

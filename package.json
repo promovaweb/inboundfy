@@ -1,0 +1,83 @@
+{
+  "name": "@promovaweb/thothfy",
+  "version": "1.0.0",
+  "description": "CLI e framework de skills para instalar, validar e manter o Thothfy em projetos.",
+  "type": "module",
+  "bin": {
+    "thothfy": "bin/thothfy.cjs"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "skills",
+    "context",
+    "templates",
+    "docs",
+    "ebook",
+    "brand",
+    "examples",
+    "BRAINSTORM.md",
+    "CONTEXTO.md",
+    "ESCRITA.md",
+    "ESTRATEGIA.md",
+    "ESTRUTURAS-PERSUASIVAS.md",
+    "INSTALACAO.md",
+    "LIMPEZA-MATERIAL-BRUTO.md",
+    "METODOLOGIA.md",
+    "README.md",
+    "RELEASING.md",
+    "SKILL-AUTORIA.md",
+    "SKILLS.md",
+    "TRADUCAO.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/cli.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run && python3 -B -m unittest discover -s tests -v && python3 -B scripts/validar-framework.py",
+    "ebook": "bash .ebook/build-ebook.sh",
+    "ebook:verify": "bash .ebook/build-ebook.sh --check",
+    "release:sync": "node scripts/sync-release-version.mjs && npm run ebook",
+    "release:check": "node scripts/validate-release.mjs",
+    "npm:validate-package": "node scripts/validate-npm-package.mjs",
+    "publish:npm": "node scripts/publish-npm-package.mjs",
+    "prepack": "npm run build && npm run release:check",
+    "validar": "npm run typecheck && npm test && npm run build && npm run ebook:verify && npm run release:check"
+  },
+  "engines": {
+    "node": ">=22.14.0"
+  },
+  "keywords": [
+    "ai-agents",
+    "cli",
+    "content",
+    "copywriting",
+    "marketing",
+    "skills"
+  ],
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/promovaweb/thothfy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/promovaweb/thothfy/issues"
+  },
+  "homepage": "https://github.com/promovaweb/thothfy#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^8.5.2",
+    "commander": "^15.0.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "tsx": "^4.20.6",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.0"
+  }
+}

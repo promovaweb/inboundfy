@@ -1,0 +1,67 @@
+# Contexto, fontes e marca
+
+O Thothfy combina três camadas sem copiá-las para um único arquivo:
+
+1. `.thothfy/context/`: dados estruturados do negócio.
+2. `.thothfy/FONTES-PROJETO.md`: inventário das fontes que já existiam.
+3. `brand/`: manual, tokens, logos, tipografia e aplicações de marca, quando
+   a pasta existir.
+
+Durante o setup, arquivos Markdown com nome em maiúsculas, como `PRODUCT.md`,
+`COPY.md` e `PROHIBITED.md`, são descobertos em todo o projeto. Dentro de
+`brand/`, todos os Markdown são inventariados, inclusive nomes em minúsculas.
+O setup registra caminho, assunto e possíveis conflitos, mas não move nem
+reescreve as fontes.
+
+Antes de produzir, cada skill lê o inventário e carrega somente os arquivos
+relevantes. Fatos confirmados no contexto prevalecem sobre exemplos; conflitos
+entre fontes são explicitados e não podem ser resolvidos por invenção.
+
+## Proibições são hard gates
+
+`context/proibicoes.md` reúne vetos do negócio.
+`context/estruturas-proibidas.md` reúne padrões genéricos de escrita
+artificial. A validação faz um passe literal e outro semântico. Uma ocorrência
+reprova o asset, independentemente de nota, estética ou SEO.
+
+Detalhes de precedência estão em [CONTEXTO.md](../../CONTEXTO.md).
+
+## Arquivos de contexto
+
+| Arquivo | Informação mantida |
+| --- | --- |
+| `empresa.md` | identidade, missão e modelo de negócio |
+| `pessoas.md` | porta-vozes e pessoas citáveis |
+| `produtos.md` | produtos, recursos e limites |
+| `servicos.md` | serviços e condições |
+| `ofertas.md` | preço, validade, garantia e CTA |
+| `marca-voz.md` | idioma, tom e exemplos de voz |
+| `publico.md` | públicos, dores e objeções |
+| `concorrentes.md` | referências e diferenças confirmadas |
+| `enderecos.md` | URLs e endereços oficiais |
+| `canais.md` | formatos, caminhos e canais ativos |
+| `ferramentas.md` | ferramentas que podem ser citadas |
+| `glossario.md` | termos e grafias preferidas |
+| `campanhas.md` | campanhas ativas e seus estados |
+| `proibicoes.md` | vetos específicos do negócio |
+| `estruturas-proibidas.md` | padrões genéricos de escrita artificial |
+
+## Quando um dado estiver faltando
+
+Use a skill `thothfy-contexto-*` ligada ao arquivo. Ela pergunta, registra a
+origem e atualiza o conteúdo sem mudar o caminho. Quando o próprio arquivo
+estiver ausente, execute primeiro `thothfy-setup` para restaurar o template.
+
+## Como conferir a marca
+
+Quando `brand/` existir, abra o manual e os ativos usados pela tarefa. Uma peça
+visual precisa respeitar logo, proporção, paleta, tipografia e aplicação. Uma
+peça textual também pode depender da voz e das proibições registradas ali.
+
+## Classificação
+
+| Campo | Valor |
+| --- | --- |
+| Natureza | normativo |
+| Escopo | contexto, fontes descobertas, marca e proibições |
+| Autoridade | `CONTEXTO.md` e contrato de descoberta do setup |

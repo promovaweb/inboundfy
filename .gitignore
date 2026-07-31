@@ -1,0 +1,8 @@
+.ebook/build/
+**/__pycache__/
+*.pyc
+node_modules/
+dist/
+artifacts/
+release-assets/
+*.tgz

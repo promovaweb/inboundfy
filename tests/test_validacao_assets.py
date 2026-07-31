@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import re
 import subprocess
 import sys
 import unittest
 import xml.etree.ElementTree as ET
+import zipfile
 from pathlib import Path
 
 
@@ -27,6 +29,30 @@ PROIBICOES_FIXTURE = (
     "Não é apenas",
     "Em suma",
 )
+SEQUENCIAS_ESPERADAS = {
+    "brainstorm": (
+        "thothfy-brainstorm-00-triagem",
+        "thothfy-brainstorm-01-entrevista",
+        "thothfy-brainstorm-02-pesquisa",
+        "thothfy-brainstorm-03-sintese",
+        "thothfy-brainstorm-04-validacao",
+    ),
+    "estrategia": (
+        "thothfy-estrategia-00-briefing-cliente",
+        "thothfy-estrategia-01-pesquisa-mercado",
+        "thothfy-estrategia-02-campanha",
+        "thothfy-estrategia-03-calendario",
+    ),
+    "planejamento": (
+        "thothfy-planejamento-00-triagem",
+        "thothfy-planejamento-01-saneamento",
+        "thothfy-planejamento-02-pesquisa",
+        "thothfy-planejamento-03-oportunidades",
+        "thothfy-planejamento-04-briefing",
+        "thothfy-planejamento-05-producao",
+        "thothfy-planejamento-06-auditoria",
+    ),
+}
 
 
 def carregar_inventario():
@@ -109,8 +135,135 @@ class ValidacaoAssetsTest(unittest.TestCase):
             encoding="utf-8"
         )
         self.assertIn("2026-07-30", evidencia)
-        self.assertIn("Ran 9 tests", evidencia)
+        self.assertIn("Ran 14 tests", evidencia)
         self.assertIn("Thothfy aprovado: 71 skills", evidencia)
+
+    def test_sequencias_possuem_nomes_exatos(self) -> None:
+        """Impede lacunas, sufixos trocados e numeração em outro grupo."""
+        nomes = {
+            item.name
+            for item in (RAIZ / "skills").iterdir()
+            if item.is_dir()
+        }
+        esperados = {
+            nome
+            for sequencia in SEQUENCIAS_ESPERADAS.values()
+            for nome in sequencia
+        }
+        numerados = {
+            nome
+            for nome in nomes
+            if any(f"-{numero:02d}-" in nome for numero in range(100))
+        }
+        self.assertEqual(numerados, esperados)
+
+    def test_documentacao_completa_e_instalada_pelo_setup(self) -> None:
+        """Confere percursos numerados e propriedade documental do setup."""
+        user = sorted(
+            item.name
+            for item in (RAIZ / "docs" / "user").glob("[0-9][0-9]-*.md")
+        )
+        method = sorted(
+            item.name
+            for item in (RAIZ / "docs" / "method").glob("[0-9][0-9]-*.md")
+        )
+        self.assertEqual(len(user), 11)
+        self.assertEqual(len(method), 9)
+        self.assertTrue(user[0].startswith("00-"))
+        self.assertTrue(user[-1].startswith("10-"))
+        self.assertTrue(method[0].startswith("00-"))
+        self.assertTrue(method[-1].startswith("08-"))
+        setup = (
+            RAIZ / "skills" / "thothfy-setup" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        instalacao = (RAIZ / "INSTALACAO.md").read_text(encoding="utf-8")
+        self.assertIn(".thothfy/docs/", setup)
+        self.assertIn(".thothfy/ebook/", setup)
+        self.assertIn(".thothfy/docs/", instalacao)
+        self.assertIn(".thothfy/ebook/", instalacao)
+        exemplo = RAIZ / "examples" / "primeiro-projeto"
+        self.assertEqual(
+            {
+                item.name
+                for item in exemplo.glob("*.md")
+            },
+            {
+                "README.md",
+                "01-entrada.md",
+                "02-relatorio-setup.md",
+                "03-pedido.md",
+                "04-resultado.md",
+            },
+        )
+
+    def test_ebook_ordena_todos_os_capitulos(self) -> None:
+        """Impede capítulo ausente, repetido ou fora da ordem canônica."""
+        ordem = [
+            linha.strip()
+            for linha in (
+                RAIZ / "docs" / "user" / "reading-order.txt"
+            ).read_text(encoding="utf-8").splitlines()
+            if linha.strip()
+        ]
+        encontrados = {
+            str(item.relative_to(RAIZ))
+            for item in (RAIZ / "docs" / "user").glob("*.md")
+        }
+        self.assertEqual(len(ordem), len(set(ordem)))
+        self.assertEqual(set(ordem), encontrados)
+        self.assertEqual(ordem[0], "docs/user/README.md")
+        self.assertEqual(ordem[-1], "docs/user/10-solucao-de-problemas.md")
+
+    def test_ebook_publicado_esta_sincronizado(self) -> None:
+        """Executa a mesma verificação sem escrita oferecida ao mantenedor."""
+        resultado = subprocess.run(
+            ["bash", ".ebook/build-ebook.sh", "--check"],
+            cwd=RAIZ,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(
+            resultado.returncode,
+            0,
+            resultado.stdout + resultado.stderr,
+        )
+        self.assertIn(
+            "edição v1.0.0 sincronizada com docs/user/",
+            resultado.stdout,
+        )
+        manifesto = json.loads(
+            (RAIZ / "ebook" / "build.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(manifesto["version"], "1.0.0")
+        self.assertEqual(len(manifesto["document_metadata"]), 12)
+
+    def test_ebook_remove_classificacao_interna(self) -> None:
+        """Mantém metadados no manifesto, sem exibi-los ao leitor."""
+        versao_match = re.search(
+            r"^\d+\.\d+\.\d+$",
+            (RAIZ / "ebook" / "VERSION").read_text(encoding="utf-8"),
+            flags=re.MULTILINE,
+        )
+        self.assertIsNotNone(versao_match)
+        versao = versao_match.group(0)
+        stem = f"Thothfy-Guia-do-Usuario-v{versao}"
+        pdf = RAIZ / "ebook" / f"{stem}.pdf"
+        epub = RAIZ / "ebook" / f"{stem}.epub"
+        texto_pdf = subprocess.run(
+            ["pdftotext", str(pdf), "-"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout
+        self.assertNotIn("Classificação", texto_pdf)
+        with zipfile.ZipFile(epub) as pacote:
+            texto_epub = "\n".join(
+                pacote.read(nome).decode("utf-8")
+                for nome in pacote.namelist()
+                if nome.endswith((".xhtml", ".html"))
+            )
+        self.assertNotIn("Classificação", texto_epub)
 
     def test_email_reprova_preco_e_cta_concorrente(self) -> None:
         """Confere correção factual e de CTA no exemplo de email."""

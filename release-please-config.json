@@ -1,0 +1,47 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "packages": {
+    ".": {
+      "release-type": "node",
+      "package-name": "@promovaweb/thothfy",
+      "include-v-in-tag": true,
+      "include-component-in-tag": false,
+      "extra-files": [
+        {
+          "type": "generic",
+          "path": "ebook/VERSION"
+        }
+      ],
+      "changelog-sections": [
+        {
+          "type": "feat",
+          "section": "Funcionalidades"
+        },
+        {
+          "type": "fix",
+          "section": "Correções"
+        },
+        {
+          "type": "perf",
+          "section": "Desempenho"
+        },
+        {
+          "type": "refactor",
+          "section": "Refatorações"
+        },
+        {
+          "type": "docs",
+          "section": "Documentação"
+        },
+        {
+          "type": "build",
+          "section": "Build"
+        },
+        {
+          "type": "ci",
+          "section": "Integração contínua"
+        }
+      ]
+    }
+  }
+}

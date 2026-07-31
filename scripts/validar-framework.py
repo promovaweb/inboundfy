@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import hashlib
+import json
 import re
 import sys
 from pathlib import Path
@@ -19,9 +21,28 @@ HEADINGS = (
     "## Idempotência",
 )
 SEQUENCIAS = {
-    "thothfy-estrategia": range(4),
-    "thothfy-brainstorm": range(5),
-    "thothfy-planejamento": range(7),
+    "thothfy-brainstorm": (
+        "thothfy-brainstorm-00-triagem",
+        "thothfy-brainstorm-01-entrevista",
+        "thothfy-brainstorm-02-pesquisa",
+        "thothfy-brainstorm-03-sintese",
+        "thothfy-brainstorm-04-validacao",
+    ),
+    "thothfy-estrategia": (
+        "thothfy-estrategia-00-briefing-cliente",
+        "thothfy-estrategia-01-pesquisa-mercado",
+        "thothfy-estrategia-02-campanha",
+        "thothfy-estrategia-03-calendario",
+    ),
+    "thothfy-planejamento": (
+        "thothfy-planejamento-00-triagem",
+        "thothfy-planejamento-01-saneamento",
+        "thothfy-planejamento-02-pesquisa",
+        "thothfy-planejamento-03-oportunidades",
+        "thothfy-planejamento-04-briefing",
+        "thothfy-planejamento-05-producao",
+        "thothfy-planejamento-06-auditoria",
+    ),
 }
 NOMES_LEGADOS = {
     "thothfy-estrategia-briefing-cliente",
@@ -140,23 +161,45 @@ def validar_skill(diretorio: Path) -> list[str]:
 
 
 def validar_sequencias() -> list[str]:
-    """Confere presença contínua e unicidade dos números de cada fluxo."""
+    """Confere nomes exatos e limita a numeração aos fluxos cronológicos."""
     erros: list[str] = []
-    nomes = [item.name for item in SKILLS.iterdir() if item.is_dir()]
+    nomes = {item.name for item in SKILLS.iterdir() if item.is_dir()}
     legados = sorted(set(nomes) & NOMES_LEGADOS)
     if legados:
         erros.append(f"skills estratégicas sem número: {legados}")
-    for prefixo, esperados in SEQUENCIAS.items():
-        encontrados: list[int] = []
-        padrao = re.compile(rf"^{re.escape(prefixo)}-(\d{{2}})-")
-        for nome in nomes:
-            match = padrao.match(nome)
-            if match:
-                encontrados.append(int(match.group(1)))
-        if sorted(encontrados) != list(esperados):
+    sequenciadas = {
+        nome
+        for prefixo in SEQUENCIAS
+        for nome in nomes
+        if nome.startswith(f"{prefixo}-")
+        and re.match(rf"^{re.escape(prefixo)}-\d{{2}}-", nome)
+    }
+    esperadas = {
+        nome for sequencia in SEQUENCIAS.values() for nome in sequencia
+    }
+    if sequenciadas != esperadas:
+        erros.append(
+            "skills sequenciadas divergentes; esperado "
+            f"{sorted(esperadas)}, encontrado {sorted(sequenciadas)}"
+        )
+    numeradas_fora_dos_fluxos = sorted(
+        nome
+        for nome in nomes
+        if re.search(r"-\d{2}-", nome) and nome not in esperadas
+    )
+    if numeradas_fora_dos_fluxos:
+        erros.append(
+            "numeração fora dos três fluxos cronológicos: "
+            f"{numeradas_fora_dos_fluxos}"
+        )
+    for prefixo, sequencia in SEQUENCIAS.items():
+        numeros = [
+            int(re.search(r"-(\d{2})-", nome).group(1))
+            for nome in sequencia
+        ]
+        if numeros != list(range(len(sequencia))):
             erros.append(
-                f"{prefixo}: sequência esperada {list(esperados)}, "
-                f"encontrada {sorted(encontrados)}"
+                f"{prefixo}: sequência interna inválida: {numeros}"
             )
     return erros
 
@@ -258,13 +301,88 @@ def validar_metodologia() -> list[str]:
         "METODOLOGIA.md",
         "SKILL-AUTORIA.md",
         "SKILLS.md",
+        "brand/README.md",
+        "brand/manifest.json",
+        "brand/logo/icon.svg",
+        "brand/logo/icon.png",
+        "docs/README.md",
+        "docs/user/README.md",
+        "docs/user/00-visao-geral.md",
+        "docs/user/01-pre-requisitos.md",
+        "docs/user/02-instalacao.md",
+        "docs/user/03-contexto-e-marca.md",
+        "docs/user/04-primeiro-brainstorm.md",
+        "docs/user/05-primeira-campanha.md",
+        "docs/user/06-primeiro-pacote.md",
+        "docs/user/07-peca-avulsa.md",
+        "docs/user/08-validacao-e-correcoes.md",
+        "docs/user/09-atualizacao-e-reparo.md",
+        "docs/user/10-solucao-de-problemas.md",
+        "docs/user/reading-order.txt",
+        "docs/method/README.md",
+        "docs/method/00-arquitetura.md",
+        "docs/method/01-setup-e-runtime.md",
+        "docs/method/02-contexto-fontes-e-precedencia.md",
+        "docs/method/03-catalogo-e-pareamento.md",
+        "docs/method/04-sequencias-e-numeracao.md",
+        "docs/method/05-artefatos-e-estados.md",
+        "docs/method/06-contrato-de-skill.md",
+        "docs/method/07-validacao-e-testes.md",
+        "docs/method/08-evolucao-do-framework.md",
         "templates/brainstorm.md",
         "templates/fontes-projeto.md",
+        ".ebook/build-ebook.sh",
+        ".ebook/metadata.yaml",
+        ".ebook/pdf.css",
+        ".ebook/epub.css",
+        ".ebook/template.html",
+        "ebook/README.md",
+        "ebook/VERSION",
+        "ebook/build.json",
+        "package.json",
+        "RELEASING.md",
+        "examples/cli/README.md",
+        "src/cli.ts",
+        "tests/cli.test.ts",
+        ".github/workflows/ci.yml",
+        ".github/workflows/release.yml",
+        "release-please-config.json",
+        ".release-please-manifest.json",
         "skills/thothfy-setup/scripts/inventariar-fontes-projeto.py",
     )
     for relativo in exigidos:
         if not (RAIZ / relativo).is_file():
             erros.append(f"arquivo metodológico ausente: {relativo}")
+    documento_sequencias = (
+        RAIZ / "docs" / "method" / "04-sequencias-e-numeracao.md"
+    )
+    if documento_sequencias.is_file():
+        texto_sequencias = documento_sequencias.read_text(encoding="utf-8")
+        for sequencia in SEQUENCIAS.values():
+            for nome in sequencia:
+                if nome not in texto_sequencias:
+                    erros.append(
+                        "documentação de sequência sem skill: "
+                        f"{nome}"
+                    )
+    indice_usuario = RAIZ / "docs" / "user" / "README.md"
+    if indice_usuario.is_file():
+        texto_indice_usuario = indice_usuario.read_text(encoding="utf-8")
+        for numero in range(11):
+            if f"]({numero:02d}-" not in texto_indice_usuario:
+                erros.append(
+                    "índice do usuário sem capítulo: "
+                    f"{numero:02d}"
+                )
+    indice_metodo = RAIZ / "docs" / "method" / "README.md"
+    if indice_metodo.is_file():
+        texto_indice_metodo = indice_metodo.read_text(encoding="utf-8")
+        for numero in range(9):
+            if f"]({numero:02d}-" not in texto_indice_metodo:
+                erros.append(
+                    "índice do método sem capítulo: "
+                    f"{numero:02d}"
+                )
     if not (RAIZ / "brainstorms").is_dir():
         erros.append("diretório de saída ausente: brainstorms/")
     esperados_contexto = {
@@ -380,6 +498,10 @@ def validar_metodologia() -> list[str]:
     )
     for trecho in (
         "Reparo e reconciliação",
+        "thothfy doctor --json",
+        "thothfy init --dry-run",
+        "thothfy context scan",
+        "thothfy doctor --strict",
         ".thothfy/templates/",
         ".thothfy/context/",
         "brainstorms/",
@@ -389,11 +511,13 @@ def validar_metodologia() -> list[str]:
         "FONTES-PROJETO.md",
         "Descoberta de contexto do projeto",
         "templates/fontes-projeto.md",
-        "inventariar-fontes-projeto.py",
         "submódulos Git",
         "nunca sobrescreve",
         "`brand/` existir",
         "todos os Markdown do diretório",
+        ".thothfy/docs/",
+        ".thothfy/ebook/",
+        ".thothfy/brand/",
     ):
         if trecho not in setup:
             erros.append(f"thothfy-setup: responsabilidade ausente: {trecho}")
@@ -406,6 +530,189 @@ def validar_metodologia() -> list[str]:
         erros.append(
             "SKILL-AUTORIA.md: consumo das fontes locais não declarado"
         )
+    return erros
+
+
+def validar_cli_e_release() -> list[str]:
+    """Confere o pacote público e a versão única de todos os artefatos."""
+    erros: list[str] = []
+    pacote = json.loads((RAIZ / "package.json").read_text(encoding="utf-8"))
+    lock = json.loads((RAIZ / "package-lock.json").read_text(encoding="utf-8"))
+    manifesto_release = json.loads(
+        (RAIZ / ".release-please-manifest.json").read_text(encoding="utf-8")
+    )
+    versao_match = re.search(
+        r"^\d+\.\d+\.\d+$",
+        (RAIZ / "ebook" / "VERSION").read_text(encoding="utf-8"),
+        flags=re.MULTILINE,
+    )
+    versao_ebook = versao_match.group(0) if versao_match else ""
+    versao = pacote.get("version")
+    if not re.fullmatch(r"\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?", versao or ""):
+        erros.append(f"package.json: SemVer inválido: {versao}")
+    fontes_versao = {
+        "package-lock.json": lock.get("version"),
+        "package-lock.json#packages": lock.get("packages", {})
+        .get("", {})
+        .get("version"),
+        ".release-please-manifest.json": manifesto_release.get("."),
+        "ebook/VERSION": versao_ebook,
+    }
+    for fonte, valor in fontes_versao.items():
+        if valor != versao:
+            erros.append(
+                f"versão única divergente em {fonte}: {valor}; esperado {versao}"
+            )
+    if pacote.get("name") != "@promovaweb/thothfy":
+        erros.append("package.json: nome público precisa ser @promovaweb/thothfy")
+    if pacote.get("private") is not None:
+        erros.append("package.json: pacote público não pode declarar private")
+    if pacote.get("bin", {}).get("thothfy") != "bin/thothfy.cjs":
+        erros.append("package.json: bin thothfy divergente")
+    scripts = pacote.get("scripts", {})
+    for nome in (
+        "build",
+        "test",
+        "release:sync",
+        "release:check",
+        "npm:validate-package",
+        "publish:npm",
+        "prepack",
+        "validar",
+    ):
+        if nome not in scripts:
+            erros.append(f"package.json: script ausente: {nome}")
+    arquivos_publicos = set(pacote.get("files", []))
+    for caminho in (
+        "bin",
+        "dist",
+        "skills",
+        "docs",
+        "ebook",
+        "brand",
+        "examples",
+    ):
+        if caminho not in arquivos_publicos:
+            erros.append(f"package.json: payload público ausente: {caminho}")
+    teste_cli = (RAIZ / "tests" / "cli.test.ts").read_text(encoding="utf-8")
+    for trecho in (
+        "dry-run apresenta o plano",
+        "init instala o framework",
+        "preserva arquivos do usuário",
+        "doctor não altera nenhum arquivo",
+        "context ready exige empresa",
+        "instalação recusa .thothfy",
+        "sem alterar FONTES-PROJETO.md",
+    ):
+        if trecho not in teste_cli:
+            erros.append(f"tests/cli.test.ts: cenário ausente: {trecho}")
+    workflow = (
+        RAIZ / ".github" / "workflows" / "release.yml"
+    ).read_text(encoding="utf-8")
+    for trecho in (
+        "googleapis/release-please-action@v5",
+        "npm run release:sync",
+        "npm run npm:validate-package",
+        "npm run publish:npm",
+        "id-token: write",
+    ):
+        if trecho not in workflow:
+            erros.append(f"workflow de release sem contrato: {trecho}")
+    return erros
+
+
+def sha256(arquivo: Path) -> str:
+    """Calcula o digest usado pelo manifesto público do ebook."""
+    digest = hashlib.sha256()
+    with arquivo.open("rb") as entrada:
+        for bloco in iter(lambda: entrada.read(1024 * 1024), b""):
+            digest.update(bloco)
+    return digest.hexdigest()
+
+
+def validar_ebook() -> list[str]:
+    """Confere ordem, edição, artefatos e manifesto do guia do usuário."""
+    erros: list[str] = []
+    ordem_path = RAIZ / "docs" / "user" / "reading-order.txt"
+    if not ordem_path.is_file():
+        return ["ebook: reading-order.txt ausente"]
+    ordem = [
+        linha.strip()
+        for linha in ordem_path.read_text(encoding="utf-8").splitlines()
+        if linha.strip() and not linha.lstrip().startswith("#")
+    ]
+    encontrados = {
+        str(item.relative_to(RAIZ))
+        for item in (RAIZ / "docs" / "user").glob("*.md")
+    }
+    if len(ordem) != len(set(ordem)):
+        erros.append("ebook: reading-order.txt contém caminhos repetidos")
+    if set(ordem) != encontrados:
+        erros.append(
+            "ebook: ordem de leitura diverge dos Markdown de docs/user/"
+        )
+    if ordem and ordem[0] != "docs/user/README.md":
+        erros.append("ebook: primeiro documento deve ser docs/user/README.md")
+
+    versao_path = RAIZ / "ebook" / "VERSION"
+    if not versao_path.is_file():
+        return erros + ["ebook: VERSION ausente"]
+    versao_match = re.search(
+        r"^\d+\.\d+\.\d+$",
+        versao_path.read_text(encoding="utf-8"),
+        flags=re.MULTILINE,
+    )
+    versao = versao_match.group(0) if versao_match else ""
+    if not re.fullmatch(r"\d+\.\d+\.\d+", versao):
+        erros.append(f"ebook: versão inválida: {versao}")
+    stem = f"Thothfy-Guia-do-Usuario-v{versao}"
+    artefatos = {
+        "pdf": RAIZ / "ebook" / f"{stem}.pdf",
+        "epub": RAIZ / "ebook" / f"{stem}.epub",
+    }
+    for formato, arquivo in artefatos.items():
+        if not arquivo.is_file():
+            erros.append(f"ebook: artefato {formato.upper()} ausente")
+
+    pacote_path = RAIZ / "package.json"
+    if pacote_path.is_file():
+        pacote = json.loads(pacote_path.read_text(encoding="utf-8"))
+        scripts = pacote.get("scripts", {})
+        if scripts.get("ebook") != "bash .ebook/build-ebook.sh":
+            erros.append("ebook: script npm ebook divergente")
+        if scripts.get("ebook:verify") != "bash .ebook/build-ebook.sh --check":
+            erros.append("ebook: script npm ebook:verify divergente")
+
+    css_path = RAIZ / ".ebook" / "pdf.css"
+    if css_path.is_file():
+        css = css_path.read_text(encoding="utf-8")
+        for trecho in (
+            "pdf-design-system: 1.0.0",
+            "font-family: var(--sans)",
+            "background: var(--brand-white)",
+        ):
+            if trecho not in css:
+                erros.append(f"ebook: contrato visual ausente: {trecho}")
+
+    manifesto_path = RAIZ / "ebook" / "build.json"
+    if not manifesto_path.is_file():
+        return erros + ["ebook: build.json ausente"]
+    manifesto = json.loads(manifesto_path.read_text(encoding="utf-8"))
+    if manifesto.get("version") != versao:
+        erros.append("ebook: versão do manifesto diverge de VERSION")
+    metadados = set(manifesto.get("document_metadata", {}))
+    if metadados != encontrados:
+        erros.append("ebook: classificação documental incompleta")
+    for formato, arquivo in artefatos.items():
+        if not arquivo.is_file():
+            continue
+        registrado = (
+            manifesto.get("artifacts", {})
+            .get(formato, {})
+            .get("sha256")
+        )
+        if registrado != sha256(arquivo):
+            erros.append(f"ebook: hash {formato.upper()} divergente")
     return erros
 
 
@@ -425,6 +732,11 @@ def validar_testes_e_exemplos() -> list[str]:
             "test_email_reprova_preco_e_cta_concorrente",
             "test_blog_reprova_molde_semantico_repetido",
             "test_imagem_reprova_dimensao_gradiente_e_paleta",
+            "test_sequencias_possuem_nomes_exatos",
+            "test_documentacao_completa_e_instalada_pelo_setup",
+            "test_ebook_ordena_todos_os_capitulos",
+            "test_ebook_publicado_esta_sincronizado",
+            "test_ebook_remove_classificacao_interna",
         ):
             if trecho not in texto_teste:
                 erros.append(f"teste de validação ausente: {trecho}")
@@ -459,8 +771,18 @@ def validar_testes_e_exemplos() -> list[str]:
         "casos/instagram-imagem-brand/04-relatorio-aprovacao.md",
     }
     for relativo in sorted(arquivos_exemplo):
-        if not (exemplo / relativo).is_file():
-            erros.append(f"exemplo de validação ausente: {relativo}")
+            if not (exemplo / relativo).is_file():
+                erros.append(f"exemplo de validação ausente: {relativo}")
+    exemplo_inicial = RAIZ / "examples" / "primeiro-projeto"
+    for relativo in (
+        "README.md",
+        "01-entrada.md",
+        "02-relatorio-setup.md",
+        "03-pedido.md",
+        "04-resultado.md",
+    ):
+        if not (exemplo_inicial / relativo).is_file():
+            erros.append(f"exemplo inicial ausente: {relativo}")
     if (exemplo / "02-relatorio-reprovacao.md").is_file():
         reprovacao = (
             exemplo / "02-relatorio-reprovacao.md"
@@ -489,7 +811,7 @@ def validar_testes_e_exemplos() -> list[str]:
         ).read_text(encoding="utf-8")
         for trecho in (
             "2026-07-30",
-            "Ran 9 tests",
+            "Ran 14 tests",
             "Thothfy aprovado: 71 skills",
         ):
             if trecho not in evidencia:
@@ -502,6 +824,15 @@ def validar_links() -> list[str]:
     erros: list[str] = []
     padrao = re.compile(r"\]\(([^)]+)\)")
     for arquivo in RAIZ.rglob("*.md"):
+        relativo_arquivo = arquivo.relative_to(RAIZ)
+        if set(relativo_arquivo.parts) & {
+            ".git",
+            "node_modules",
+            "dist",
+            "artifacts",
+            "release-assets",
+        }:
+            continue
         for destino in padrao.findall(arquivo.read_text(encoding="utf-8")):
             caminho = destino.split("#", 1)[0].strip()
             if (
@@ -528,6 +859,8 @@ def main() -> int:
     erros.extend(validar_sequencias())
     erros.extend(validar_pares_de_asset())
     erros.extend(validar_metodologia())
+    erros.extend(validar_cli_e_release())
+    erros.extend(validar_ebook())
     erros.extend(validar_testes_e_exemplos())
     erros.extend(validar_links())
     if erros:

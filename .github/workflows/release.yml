@@ -1,0 +1,145 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release-please:
+    name: Preparar ou publicar release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      sha: ${{ steps.release.outputs.sha }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+      version: ${{ steps.release.outputs.version }}
+    steps:
+      - name: Executar Release Please
+        id: release
+        uses: googleapis/release-please-action@v5
+        with:
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.GITHUB_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+      - name: Identificar branch da Release PR
+        id: release-pr
+        if: steps.release.outputs.prs_created == 'true'
+        env:
+          RELEASE_PR: ${{ steps.release.outputs.pr }}
+        run: echo "branch=$(jq -r .headBranchName <<< "$RELEASE_PR")" >> "$GITHUB_OUTPUT"
+
+      - name: Obter Release PR
+        if: steps.release.outputs.prs_created == 'true'
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ steps.release-pr.outputs.branch }}
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Configurar Node.js da Release PR
+        if: steps.release.outputs.prs_created == 'true'
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Instalar compiladores do ebook
+        if: steps.release.outputs.prs_created == 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fontconfig imagemagick jq libxml2-utils pandoc pipx poppler-utils unzip
+          pipx install weasyprint==69.0
+          mkdir -p "$RUNNER_TEMP/thothfy-bin"
+          printf '#!/bin/sh\nexec convert "$@"\n' > "$RUNNER_TEMP/thothfy-bin/magick"
+          chmod +x "$RUNNER_TEMP/thothfy-bin/magick"
+          echo "$RUNNER_TEMP/thothfy-bin" >> "$GITHUB_PATH"
+
+      - name: Sincronizar framework e ebook
+        if: steps.release.outputs.prs_created == 'true'
+        run: |
+          npm ci
+          npm run release:sync
+
+      - name: Registrar artefatos da versão na Release PR
+        if: steps.release.outputs.prs_created == 'true'
+        run: |
+          if git diff --quiet; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/user ebook
+          git commit -m "build: sincroniza framework e ebook da release"
+          git push
+
+  publicar:
+    name: Publicar npm e ativos
+    if: needs.release-please.outputs.release_created == 'true'
+    needs: release-please
+    runs-on: ubuntu-latest
+    permissions:
+      attestations: write
+      contents: write
+      id-token: write
+    env:
+      GH_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN || github.token }}
+    steps:
+      - name: Obter commit da release
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.release-please.outputs.sha }}
+
+      - name: Configurar Node.js e npm
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+
+      - name: Atualizar npm para Trusted Publishing
+        run: npm install --global npm@latest
+
+      - name: Instalar ferramentas de verificação
+        run: sudo apt-get update && sudo apt-get install -y libxml2-utils poppler-utils unzip
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Validar versão, tag e implementação
+        run: npm run validar && npm run release:check -- "${{ needs.release-please.outputs.tag_name }}"
+
+      - name: Empacotar distribuição pública
+        run: |
+          mkdir -p release-assets
+          npm pack --pack-destination release-assets
+
+      - name: Validar pacote em isolamento
+        run: npm run npm:validate-package -- "release-assets/promovaweb-thothfy-${{ needs.release-please.outputs.version }}.tgz"
+
+      - name: Reunir ebook e checksums
+        run: |
+          cp "ebook/Thothfy-Guia-do-Usuario-v${{ needs.release-please.outputs.version }}.pdf" release-assets/
+          cp "ebook/Thothfy-Guia-do-Usuario-v${{ needs.release-please.outputs.version }}.epub" release-assets/
+          node scripts/generate-checksums.mjs release-assets
+
+      - name: Atestar ativos publicados
+        if: github.event.repository.visibility == 'public'
+        uses: actions/attest@v4
+        with:
+          subject-path: release-assets/*
+
+      - name: Anexar arquivos à GitHub Release
+        run: gh release upload "${{ needs.release-please.outputs.tag_name }}" release-assets/* --clobber
+
+      - name: Publicar pacote no npm
+        run: npm run publish:npm -- "release-assets/promovaweb-thothfy-${{ needs.release-please.outputs.version }}.tgz"

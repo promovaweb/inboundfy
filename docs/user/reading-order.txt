@@ -1,0 +1,12 @@
+docs/user/README.md
+docs/user/00-visao-geral.md
+docs/user/01-pre-requisitos.md
+docs/user/02-instalacao.md
+docs/user/03-contexto-e-marca.md
+docs/user/04-primeiro-brainstorm.md
+docs/user/05-primeira-campanha.md
+docs/user/06-primeiro-pacote.md
+docs/user/07-peca-avulsa.md
+docs/user/08-validacao-e-correcoes.md
+docs/user/09-atualizacao-e-reparo.md
+docs/user/10-solucao-de-problemas.md

@@ -10,6 +10,24 @@ O catálogo contém 71 skills: 3 pontos de entrada, 5 de base, 11 de contexto,
 5 fases de brainstorm, 4 fases de estratégia, 7 fases de planejamento, 18
 especialistas de canal e 18 validadoras de asset.
 
+## Mapa de execução canônico
+
+```text
+instalação ausente ──→ setup
+ideia ──→ brainstorm 00–04 ──┐
+campanha ──→ estratégia 00–03├──→ planejamento 00–04
+material bruto ──────────────┘        ↓
+                              produção 05
+                                  ↓
+                     especialista ⇄ validadora
+                                  ↓
+                              auditoria 06
+```
+
+Os números representam ordem obrigatória apenas em brainstorm, estratégia e
+planejamento. Base, contexto, especialistas e validadoras são selecionadas
+pela responsabilidade. Numerá-las criaria uma ordem que não existe.
+
 ## Como escolher o grupo certo
 
 - Existe apenas uma ideia, sem tese e pesquisa → grupo 3
@@ -144,10 +162,32 @@ Recebem um brief já aprovado e produzem o artefato final.
 
 ## 7. `thothfy-validador-<canal>[-imagem]` — Aprovação por asset
 
-Cada especialista acima possui uma validadora de mesmo sufixo. O pareamento
-é direto para blog, changelog, ebook, email, infográfico, Instagram,
-LinkedIn, newsletter, podcast, vídeo e webinar, incluindo as sete
-especialistas de imagem.
+Cada especialista acima possui uma validadora de mesmo sufixo:
+
+<!-- markdownlint-disable MD013 -->
+
+| Produtora | Validadora |
+| --- | --- |
+| `thothfy-especialista-blog` | `thothfy-validador-blog` |
+| `thothfy-especialista-blog-imagem` | `thothfy-validador-blog-imagem` |
+| `thothfy-especialista-changelog` | `thothfy-validador-changelog` |
+| `thothfy-especialista-ebook` | `thothfy-validador-ebook` |
+| `thothfy-especialista-ebook-imagem` | `thothfy-validador-ebook-imagem` |
+| `thothfy-especialista-email` | `thothfy-validador-email` |
+| `thothfy-especialista-infografico` | `thothfy-validador-infografico` |
+| `thothfy-especialista-infografico-imagem` | `thothfy-validador-infografico-imagem` |
+| `thothfy-especialista-instagram` | `thothfy-validador-instagram` |
+| `thothfy-especialista-instagram-imagem` | `thothfy-validador-instagram-imagem` |
+| `thothfy-especialista-linkedin` | `thothfy-validador-linkedin` |
+| `thothfy-especialista-linkedin-imagem` | `thothfy-validador-linkedin-imagem` |
+| `thothfy-especialista-newsletter` | `thothfy-validador-newsletter` |
+| `thothfy-especialista-podcast` | `thothfy-validador-podcast` |
+| `thothfy-especialista-video` | `thothfy-validador-video` |
+| `thothfy-especialista-video-imagem` | `thothfy-validador-video-imagem` |
+| `thothfy-especialista-webinar` | `thothfy-validador-webinar` |
+| `thothfy-especialista-webinar-imagem` | `thothfy-validador-webinar-imagem` |
+
+<!-- markdownlint-enable MD013 -->
 
 As 18 validadoras aplicam `thothfy-base-validador`, leem todos os arquivos
 de `.thothfy/context/`, o inventário e as fontes locais relevantes, além do

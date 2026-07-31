@@ -2,19 +2,18 @@
 
 ## Pré-requisito
 
-O Thothfy é consumido como skills de agente de IA (compatível com o formato
-`SKILL.md` usado por Claude Code, Codex e ferramentas equivalentes). Ele não
-exige runtime próprio: precisa apenas de um agente capaz de ler `SKILL.md`,
-ler arquivos Markdown de contexto e escrever arquivos no projeto.
+O Thothfy exige Node.js 22.14.0 ou superior para executar o CLI
+`@promovaweb/thothfy`. As skills usam o formato `SKILL.md` de Claude Code,
+Codex e ferramentas equivalentes.
 
 ## O que `thothfy-setup` instala
 
-`thothfy-setup` é a única skill responsável por instalar, atualizar, mover,
-restaurar e reconciliar arquivos de apoio do framework. Ela também ajusta o
-bloco delimitado no arquivo de instrução do agente (`AGENTS.md` e/ou
-`CLAUDE.md`). As skills de contexto preenchem informação do negócio; as
-skills de produção apenas leem o ambiente e escrevem nos destinos
-registrados.
+`thothfy-setup` é a única skill responsável por conduzir e conferir a
+instalação, a atualização, a restauração e a reconciliação dos arquivos de
+apoio. O CLI é seu executor: escreve arquivos, calcula hashes, mantém
+manifestos e ajusta somente o bloco delimitado no arquivo de instrução do
+agente. As skills de contexto preenchem informação do negócio; as skills de
+produção apenas leem o ambiente e escrevem nos destinos registrados.
 
 ```text
 <projeto-do-usuário>/
@@ -25,6 +24,9 @@ registrados.
 │                                  ver METODOLOGIA.md e context/canais.md)
 └── .thothfy/
     ├── VERSAO.md                 versão do framework instalada e data
+    ├── install.json              versão, agente e caminhos escolhidos
+    ├── manifest.json             hashes dos arquivos gerenciados
+    ├── fontes-candidatas.json    descoberta técnica de fontes locais
     ├── FONTES-PROJETO.md         inventário dos Markdown locais em maiúsculas
     ├── BRAINSTORM.md             fluxo da ideia ao brainstorm aprovado
     ├── METODOLOGIA.md            cópia dos arquivos de metodologia
@@ -35,6 +37,18 @@ registrados.
     ├── TRADUCAO.md
     ├── SKILL-AUTORIA.md
     ├── SKILLS.md
+    ├── docs/                      documentação da versão instalada
+    │   ├── README.md
+    │   ├── user/                  uso passo a passo, do zero à operação
+    │   └── method/                arquitetura e contratos técnicos
+    ├── ebook/                     guia do usuário em PDF e EPUB
+    │   ├── VERSION
+    │   ├── build.json
+    │   └── Thothfy-Guia-do-Usuario-v<versão>.{pdf,epub}
+    ├── brand/                     identidade visual usada pela documentação
+    │   ├── README.md
+    │   ├── manifest.json
+    │   └── logo/
     ├── templates/                 cópia read-only dos templates originais
     │   ├── brainstorm.md
     │   ├── fontes-projeto.md
@@ -67,12 +81,13 @@ diretório de saída ausente ou fora desses caminhos, ela aciona
 instalação incompleta.
 
 Instalar somente as skills no diretório do agente ainda não prepara o projeto.
-Toda skill operacional confere `.thothfy/VERSAO.md` e
-`.thothfy/FONTES-PROJETO.md` ao começar. Enquanto um deles não existir, a
-execução não cria artefatos e apresenta este aviso:
+Toda skill operacional confere `.thothfy/install.json`,
+`.thothfy/manifest.json` e `.thothfy/FONTES-PROJETO.md` ao começar. Enquanto
+um deles não existir, a execução não cria artefatos e apresenta este aviso:
 
 > O setup do Thothfy ainda não foi concluído ou precisa de reparo neste
-> projeto. Execute `thothfy-setup` para preparar os arquivos de apoio.
+> projeto. Peça ao agente para executar `thothfy-setup` ou rode
+> `npx @promovaweb/thothfy@latest repair --yes`.
 
 ## Descoberta dos Markdown do projeto
 
@@ -92,16 +107,29 @@ ignora os diretórios do agente, dependências, builds, saídas geradas, a próp
 
 ## Passos
 
-1. Ative `thothfy-setup` dentro do projeto que vai adotar o framework, com o
-   Thothfy disponível como fonte (submódulo Git, pasta versionada ou
-   referência remota).
-2. `thothfy-setup`:
+1. Na raiz do projeto, simule a instalação:
+
+   ```bash
+   npx @promovaweb/thothfy@latest init --dry-run
+   ```
+
+2. Revise o plano e instale. Este exemplo usa Codex e `AGENTS.md`:
+
+   ```bash
+   npx @promovaweb/thothfy@latest init \
+     --agent codex \
+     --instruction-file AGENTS.md \
+     --yes
+   ```
+
+3. Ative `thothfy-setup`. A skill:
    - detecta o diretório de skills do agente do usuário
      (`.claude/skills/`, `.codex/skills/` ou o que já existir) e copia
      `skills/thothfy-*/` para lá;
    - cria `.thothfy/` com a estrutura acima, copiando `templates/context/` a
      partir de `context/`, `templates/brainstorm.md` e os arquivos de
-     metodologia;
+     metodologia, `docs/user/`, `docs/method/` e a edição publicada de
+     `ebook/`, além da identidade visual de `brand/`;
    - pesquisa os Markdown em maiúsculas e gera
      `.thothfy/FONTES-PROJETO.md`;
    - cria `brainstorms/` para ideias pesquisadas;
@@ -110,31 +138,33 @@ ignora os diretórios do agente, dependências, builds, saídas geradas, a próp
    - confere se o projeto já tem `AGENTS.md` e/ou `CLAUDE.md` na raiz; se
      tiver, insere (ou atualiza) uma seção curta apontando para
      `.thothfy/CONTEXTO.md`, `.thothfy/METODOLOGIA.md` e `.thothfy/SKILLS.md`
-     como fonte de instrução do Thothfy, sem remover nenhuma instrução já
-     existente do projeto; se não tiver nenhum dos dois, pergunta ao usuário
-     qual criar;
+     como fonte de instrução do Thothfy e `.thothfy/docs/user/README.md`
+     como manual inicial, sem remover nenhuma instrução já existente do
+     projeto; se não tiver nenhum dos dois, pergunta ao usuário qual criar;
    - conduz o preenchimento mínimo obrigatório em `.thothfy/context/`:
      `empresa.md`, `marca-voz.md`, um item em `produtos.md` ou
      `servicos.md`, e um canal em `canais.md`;
    - não libera nenhuma skill de produção enquanto esse mínimo não existir.
    - instala as validadoras pareadas; cada asset reprovado volta à skill
      produtora de mesmo sufixo com o relatório de correções.
-3. Preencha o restante de `.thothfy/context/` sob demanda, usando a skill de
+4. Ao concluir o contexto mínimo, a skill executa
+   `thothfy context ready --yes` e `thothfy doctor --strict`.
+5. Preencha o restante de `.thothfy/context/` sob demanda, usando a skill de
    manutenção correspondente (`CONTEXTO.md`) — não é preciso preencher tudo
    antes de produzir a primeira peça.
-4. Confirme em `.thothfy/context/canais.md` onde os pacotes de trabalho
+6. Confirme em `.thothfy/context/canais.md` onde os pacotes de trabalho
    serão salvos no projeto. `thothfy-planejamento-00-triagem` usa esse
    caminho para criar a estrutura descrita em `METODOLOGIA.md`.
-5. A partir daqui, use `thothfy-brainstorm` para desenvolver uma ideia,
+7. A partir daqui, use `thothfy-brainstorm` para desenvolver uma ideia,
    `thothfy-iniciar` para gerar uma ou várias peças, ou uma skill especialista
    com brief simples para peça avulsa.
 
 ## Reparo da instalação
 
 Ative `thothfy-setup` também quando a versão já estiver atualizada, mas um
-arquivo tiver sido removido, movido ou corrompido. A skill inventaria os
-caminhos, restaura metodologia e templates a partir da fonte atual, reinstala
-skills ausentes e garante os diretórios de saída.
+arquivo tiver sido removido, movido ou corrompido. A skill conduz
+`thothfy repair --dry-run` e `thothfy repair --yes`, interpreta o inventário e
+confere o resultado com `thothfy doctor --strict`.
 
 Arquivos existentes em `.thothfy/context/` nunca são substituídos. Se um
 arquivo estiver ausente, o setup copia o template correspondente e informa
@@ -157,14 +187,27 @@ reparar a estrutura sem apagar nem inventar informação do usuário.
 
 ## Atualizando o Thothfy
 
-Ao atualizar a versão do framework em um projeto, `.thothfy/context/` nunca
-é sobrescrito. O setup atualiza `.thothfy/templates/`, metodologia e skills,
-preserva customizações em `.thothfy/migracoes/`, atualiza o inventário de
-fontes e registra a versão em `.thothfy/VERSAO.md`.
+Ao atualizar, simule e aplique:
+
+```bash
+npx @promovaweb/thothfy@latest update --dry-run
+npx @promovaweb/thothfy@latest update --yes
+npx @promovaweb/thothfy@latest doctor --strict
+```
+
+`.thothfy/context/` nunca é sobrescrito. O setup confere templates,
+metodologia, skills, documentação em `.thothfy/docs/`, ebook em
+`.thothfy/ebook/`, identidade visual em `.thothfy/brand/` e inventário. O CLI
+preserva customizações em `.thothfy/migracoes/`.
+
+CLI, framework, tag `vX.Y.Z`, GitHub Release, pacote npm e ebook usam sempre o
+mesmo SemVer.
 
 ### Migração dos nomes estratégicos
 
 A sequência estratégica usa números desde esta versão:
+
+<!-- markdownlint-disable MD013 -->
 
 | Nome anterior | Nome atual |
 | --- | --- |
@@ -172,6 +215,8 @@ A sequência estratégica usa números desde esta versão:
 | `thothfy-estrategia-pesquisa-mercado` | `thothfy-estrategia-01-pesquisa-mercado` |
 | `thothfy-estrategia-campanha` | `thothfy-estrategia-02-campanha` |
 | `thothfy-estrategia-calendario` | `thothfy-estrategia-03-calendario` |
+
+<!-- markdownlint-enable MD013 -->
 
 Durante uma atualização, `thothfy-setup` copia os nomes atuais e move
 diretórios antigos para `.thothfy/migracoes/skills-legadas/<data>/`. O

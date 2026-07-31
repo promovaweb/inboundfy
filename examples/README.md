@@ -13,10 +13,16 @@ se uma skill nova segue o padrão esperado.
 
 ## Pacotes
 
+<!-- markdownlint-disable MD013 -->
+
 | Pacote | O que demonstra |
 | --- | --- |
+| [cli](cli/README.md) | Testes executáveis de instalação, reparo, diagnóstico, descoberta de contexto e segurança de caminhos. |
 | [como-funciona-o-mcp](como-funciona-o-mcp/README.md) | Pipeline completo de `METODOLOGIA.md` (fases 0 a 6) aplicado a um artigo de blog técnico avulso, sem campanha — da nota de reunião crua ao artigo auditado. |
+| [primeiro-projeto](primeiro-projeto/README.md) | Percurso introdutório do setup ao primeiro pacote, com entradas, relatório, roteamento e resumo final. |
 | [validacao-assets](validacao-assets/README.md) | Hard gate com asset reprovado, relatório acionável, retorno à produtora, segunda rodada aprovada e descoberta de `brand/`. |
+
+<!-- markdownlint-enable MD013 -->
 
 ## Regras deste diretório
 

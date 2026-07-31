@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "version": "1.0.0",
+  "edition": "v1.0.0",
+  "generated_at": "2026-07-31T10:51:56Z",
+  "source_sha256": "5ad02426a7437c8dcfc0acf294e07a3e782806f4ae0a2b2cfcfbf6fc3193af6c",
+  "sources": [
+    ".ebook/build-ebook.sh",
+    ".ebook/epub.css",
+    ".ebook/external-links.lua",
+    ".ebook/extract-document-metadata.py",
+    ".ebook/metadata.yaml",
+    ".ebook/pdf.css",
+    ".ebook/prune-editions.py",
+    ".ebook/strip-document-metadata.lua",
+    ".ebook/template.html",
+    "brand/fonts/fonts.css",
+    "brand/fonts/inter-latin.woff2",
+    "brand/fonts/manrope-latin.woff2",
+    "brand/logo/icon.png",
+    "brand/logo/icon.svg",
+    "docs/user/00-visao-geral.md",
+    "docs/user/01-pre-requisitos.md",
+    "docs/user/02-instalacao.md",
+    "docs/user/03-contexto-e-marca.md",
+    "docs/user/04-primeiro-brainstorm.md",
+    "docs/user/05-primeira-campanha.md",
+    "docs/user/06-primeiro-pacote.md",
+    "docs/user/07-peca-avulsa.md",
+    "docs/user/08-validacao-e-correcoes.md",
+    "docs/user/09-atualizacao-e-reparo.md",
+    "docs/user/10-solucao-de-problemas.md",
+    "docs/user/README.md",
+    "docs/user/reading-order.txt",
+    "ebook/VERSION"
+  ],
+  "document_metadata": {
+    "docs/user/00-visao-geral.md": {
+      "autoridade": "wrappers, catálogo e contratos das sequências",
+      "escopo": "escolha do fluxo e pontos de entrada",
+      "natureza": "normativo"
+    },
+    "docs/user/01-pre-requisitos.md": {
+      "autoridade": "contrato executável de `thothfy-setup`",
+      "escopo": "condições necessárias antes da instalação",
+      "natureza": "referência"
+    },
+    "docs/user/02-instalacao.md": {
+      "autoridade": "`thothfy-setup` e `INSTALACAO.md`",
+      "escopo": "instalação inicial e sentinelas do ambiente",
+      "natureza": "normativo"
+    },
+    "docs/user/03-contexto-e-marca.md": {
+      "autoridade": "`CONTEXTO.md` e contrato de descoberta do setup",
+      "escopo": "contexto, fontes descobertas, marca e proibições",
+      "natureza": "normativo"
+    },
+    "docs/user/04-primeiro-brainstorm.md": {
+      "autoridade": "`BRAINSTORM.md` e skills `thothfy-brainstorm-*`",
+      "escopo": "desenvolvimento sequencial de uma ideia",
+      "natureza": "normativo"
+    },
+    "docs/user/05-primeira-campanha.md": {
+      "autoridade": "`ESTRATEGIA.md` e skills `thothfy-estrategia-*`",
+      "escopo": "planejamento de campanha e calendário",
+      "natureza": "normativo"
+    },
+    "docs/user/06-primeiro-pacote.md": {
+      "autoridade": "`METODOLOGIA.md` e skills `thothfy-planejamento-*`",
+      "escopo": "pipeline editorial completo e seus artefatos",
+      "natureza": "normativo"
+    },
+    "docs/user/07-peca-avulsa.md": {
+      "autoridade": "especialistas, briefing e validadoras pareadas",
+      "escopo": "produção direta de uma peça com brief aprovado",
+      "natureza": "normativo"
+    },
+    "docs/user/08-validacao-e-correcoes.md": {
+      "autoridade": "`thothfy-base-validador` e validadoras de asset",
+      "escopo": "aprovação individual, reprovação e retorno à produtora",
+      "natureza": "normativo"
+    },
+    "docs/user/09-atualizacao-e-reparo.md": {
+      "autoridade": "modos de reconciliação de `thothfy-setup`",
+      "escopo": "atualização, reparo, preservação e migração",
+      "natureza": "normativo"
+    },
+    "docs/user/10-solucao-de-problemas.md": {
+      "autoridade": "mensagens e condições de interrupção das skills",
+      "escopo": "diagnóstico de setup, contexto, fontes e fases",
+      "natureza": "referência"
+    },
+    "docs/user/README.md": {
+      "autoridade": "interfaces públicas das skills e metodologia instalada",
+      "escopo": "percurso completo do usuário do Thothfy",
+      "natureza": "normativo"
+    }
+  },
+  "artifacts": {
+    "pdf": {
+      "file": "Thothfy-Guia-do-Usuario-v1.0.0.pdf",
+      "sha256": "9aa54c6a273e2840921321b2b94f1b28e8dda4c4e48adfba2ac0c463e67fa2a0"
+    },
+    "epub": {
+      "file": "Thothfy-Guia-do-Usuario-v1.0.0.epub",
+      "sha256": "279fc3f783d6dba3b98dcf009d47f99f5b1d4d4fdc181dbb44e954749f3dedf8"
+    }
+  }
+}

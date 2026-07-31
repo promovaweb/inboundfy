@@ -4,7 +4,8 @@ O Thothfy é um framework agnóstico de skills e metodologia para produzir copy,
 conteúdo e artefatos visuais de marketing — texto e imagem — para qualquer
 empresa, produto ou pessoa. Ele surgiu da extração e generalização do
 método editorial usado internamente pela Promovaweb e virou um sistema
-portável: `thothfy-setup` instala o framework num projeto novo, criando
+portável: o pacote npm fornece o CLI `thothfy`, e `thothfy-setup` conduz sua
+instalação num projeto novo, criando
 `.thothfy/` (metodologia, templates e dados do usuário), `brainstorms/`
 (ideias pesquisadas) e `content/` (os ativos gerados). A partir daí,
 `thothfy-brainstorm` desenvolve uma ideia curta e `thothfy-iniciar` roda o
@@ -12,18 +13,26 @@ fluxo completo até os artefatos auditados, sem coordenação manual das fases.
 
 ## Como o Thothfy é organizado
 
+- `docs/user/`: manual passo a passo, da preparação do projeto à atualização,
+  com percursos completos para brainstorm, campanha, pacote e peça avulsa.
+- `docs/method/`: documentação técnica da arquitetura, runtime instalado,
+  sequências, contratos, estados, validação, testes e evolução.
+- `ebook/`: edição versionada do guia do usuário em PDF e EPUB, compilada a
+  partir de `docs/user/` na ordem declarada em `reading-order.txt`.
 - `context/`: templates de origem dos arquivos de dados do usuário —
   empresa, pessoas, produtos, serviços, ofertas, marca, público,
   concorrentes, endereços, canais, ferramentas, glossário, proibições e
   estruturas proibidas. `thothfy-setup` copia esses templates para
   `.thothfy/context/` em cada projeto instalado — é lá que o dado real de
   cada negócio vive. Veja `CONTEXTO.md`.
-- `thothfy-setup`: responsável exclusiva por manter skills, metodologia,
+- `thothfy-setup`: responsável exclusiva por conduzir e conferir skills,
+  metodologia,
   templates, arquivos de contexto e diretórios de saída nos caminhos
-  canônicos. Também repara instalações parciais sem sobrescrever informação
-  preenchida pelo usuário e inventaria os Markdown em maiúsculas encontrados
-  no projeto. Se `brand/` existir, inventaria todos os Markdown da pasta,
-  inclusive nomes em minúsculas, sem copiar ou alterar os ativos.
+  canônicos. Usa o CLI como executor, repara instalações parciais sem
+  sobrescrever informação preenchida pelo usuário e classifica os Markdown em
+  maiúsculas encontrados no projeto. Se `brand/` existir, considera todos os
+  Markdown da pasta, inclusive nomes em minúsculas, sem copiar ou alterar os
+  ativos.
 - `skills/`: biblioteca de skills prefixadas com `thothfy-`, organizada em
   sete grupos — base, contexto, brainstorm sequenciado, estratégia
   sequenciada, planejamento sequenciado, especialista por canal e
@@ -70,22 +79,41 @@ a tarefa e mantém a precedência definida em `CONTEXTO.md`.
 
 ## Ordem de leitura
 
-1. `INSTALACAO.md` na primeira adoção do framework em um projeto novo.
-2. `CONTEXTO.md` para entender os arquivos de dados e a precedência entre eles.
-3. `BRAINSTORM.md` quando a entrada for uma ideia ainda sem brief ou material
+1. `docs/user/README.md` para adotar e operar o framework desde o começo.
+2. `docs/method/README.md` para implementar, auditar ou evoluir o framework.
+3. `INSTALACAO.md` na primeira adoção do framework em um projeto novo.
+4. `CONTEXTO.md` para entender os arquivos de dados e a precedência entre eles.
+5. `BRAINSTORM.md` quando a entrada for uma ideia ainda sem brief ou material
    suficiente para produção.
-4. `ESTRATEGIA.md` quando a tarefa envolver campanha nova, pesquisa de
+6. `ESTRATEGIA.md` quando a tarefa envolver campanha nova, pesquisa de
    mercado, plano multicanal ou calendário editorial — antes de existir
    material bruto ou pacote.
-5. `METODOLOGIA.md` para entender as fases do pipeline antes de produzir
+7. `METODOLOGIA.md` para entender as fases do pipeline antes de produzir
    qualquer peça a partir de material já existente.
-6. `ESCRITA.md` sempre que a tarefa envolver redação, revisão ou auditoria de
+8. `ESCRITA.md` sempre que a tarefa envolver redação, revisão ou auditoria de
    texto, `ESTRUTURAS-PERSUASIVAS.md` quando a peça tiver objetivo
    comercial, `LIMPEZA-MATERIAL-BRUTO.md` ao processar material bruto e
    `TRADUCAO.md` ao decidir se um termo deve ser traduzido.
-7. `SKILLS.md` para escolher a skill certa por grupo, fase estratégica ou do
+9. `SKILLS.md` para escolher a skill certa por grupo, fase estratégica ou do
    pipeline, ou canal.
-8. `SKILL-AUTORIA.md` somente quando a tarefa for criar ou alterar uma skill.
+10. `SKILL-AUTORIA.md` somente quando a tarefa for criar ou alterar uma skill.
+
+## Instalação pelo npm
+
+Na raiz do projeto consumidor:
+
+```bash
+npx @promovaweb/thothfy@latest init --dry-run
+npx @promovaweb/thothfy@latest init \
+  --agent codex \
+  --instruction-file AGENTS.md \
+  --yes
+npx @promovaweb/thothfy@latest doctor
+```
+
+Depois, peça ao agente para executar `thothfy-setup` e preencher o contexto
+inicial. O guia completo está em
+[Instalação e preparação](docs/user/02-instalacao.md).
 
 ## Escopo
 
@@ -127,21 +155,27 @@ o artefato final auditado de cada canal (`METODOLOGIA.md`).
 O Thothfy possui metodologia, contrato de skill, sete grupos funcionais,
 sequências numeradas, wrappers autônomas, arquivos de contexto, estruturas
 persuasivas e validação estrutural executável. `SKILLS.md` lista o catálogo
-completo. Regras de contribuição e licença open source continuam pendentes
-de publicação; até lá, este repositório documenta escopo e uso, não
-autorização de redistribuição.
+completo. A licença é proprietária e não concede redistribuição ou uso
+comercial ao público; consulte [LICENSE](LICENSE).
 
 ## Validação
 
 Execute na raiz do repositório:
 
 ```bash
-python3 -m unittest discover -s tests -v
-python3 scripts/validar-framework.py
+npm run validar
 ```
 
-A suíte executa os cenários de pareamento, hard gate, retorno à produtora,
-segunda rodada aprovada e descoberta de Markdown minúsculo em `brand/`. O
+A suíte executa os cenários do CLI, pareamento, hard gate, retorno à produtora,
+segundo ciclo aprovado e descoberta de Markdown minúsculo em `brand/`. O
 validador estrutural confere o contrato das skills, a continuidade das três
 sequências, as dependências de `context/`, as referências editoriais, as
-chamadas das wrappers e a presença das fixtures executáveis.
+chamadas das wrappers e a presença das fixtures executáveis. A verificação
+do ebook confere a ordem de leitura, os hashes das fontes e dos artefatos, a
+navegação interna e a edição publicada em PDF e EPUB.
+
+## Versões e releases
+
+CLI e framework não possuem versões independentes. O SemVer de `package.json`
+também identifica a edição do ebook, a tag `vX.Y.Z`, a GitHub Release e o
+pacote público `@promovaweb/thothfy`. Consulte [RELEASING.md](RELEASING.md).
