@@ -2,8 +2,8 @@
   "schema_version": 1,
   "version": "1.0.0",
   "edition": "v1.0.0",
-  "generated_at": "2026-07-31T10:51:56Z",
-  "source_sha256": "5ad02426a7437c8dcfc0acf294e07a3e782806f4ae0a2b2cfcfbf6fc3193af6c",
+  "generated_at": "2026-08-14T23:47:32Z",
+  "source_sha256": "96e1c207099b8ecaa046601ad689cbff11a6a502c67cdf34c862926c865d07b6",
   "sources": [
     ".ebook/build-ebook.sh",
     ".ebook/epub.css",
@@ -99,11 +99,11 @@
   "artifacts": {
     "pdf": {
       "file": "Thothfy-Guia-do-Usuario-v1.0.0.pdf",
-      "sha256": "9aa54c6a273e2840921321b2b94f1b28e8dda4c4e48adfba2ac0c463e67fa2a0"
+      "sha256": "22140479607e72a3ff640d247f6473013390baf07d91f24ac4e8dd72e9be8a4b"
     },
     "epub": {
       "file": "Thothfy-Guia-do-Usuario-v1.0.0.epub",
-      "sha256": "279fc3f783d6dba3b98dcf009d47f99f5b1d4d4fdc181dbb44e954749f3dedf8"
+      "sha256": "6e80eb13733c5bf148d4084e76db7b4e0e1b06de7429e907278a948093f48032"
     }
   }
 }

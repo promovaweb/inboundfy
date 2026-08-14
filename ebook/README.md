@@ -26,6 +26,11 @@ Baixe a edição `v1.0.0`:
 - [PDF do guia do usuário](Thothfy-Guia-do-Usuario-v1.0.0.pdf);
 - [EPUB do guia do usuário](Thothfy-Guia-do-Usuario-v1.0.0.epub).
 
+Para links permanentes, use os aliases da edição mais recente:
+
+- [PDF vigente](ebook-thothfy.pdf): `ebook-thothfy.pdf`;
+- [EPUB vigente](ebook-thothfy.epub): `ebook-thothfy.epub`.
+
 Cada build mantém somente as cinco edições SemVer mais recentes.
 [`build.json`](build.json) registra a versão, o digest das fontes, os
 metadados documentais e os hashes dos dois formatos.
