@@ -35,7 +35,7 @@ describe("CLI do Thothfy", () => {
     const project = await createProject();
     const result = await executeInstallation({
       projectRoot: project,
-      mode: "init",
+      mode: "install",
       dryRun: true,
       yes: true,
       agent: "codex",
@@ -51,7 +51,7 @@ describe("CLI do Thothfy", () => {
     });
   });
 
-  test("init instala o framework e doctor acusa somente o setup pendente", async () => {
+  test("install instala o framework e doctor acusa somente o setup pendente", async () => {
     const project = await createProject();
     await writeFile(join(project, "PRODUCT.md"), "# Produto\n");
     await mkdir(join(project, "brand"));
@@ -212,7 +212,7 @@ O serviço funciona por assinatura mensal.
     await expect(
       executeInstallation({
         projectRoot: project,
-        mode: "init",
+        mode: "install",
         yes: true,
         agent: "codex",
         skillsDirectory: "apoio/../../fora",
@@ -246,7 +246,7 @@ async function createProject(): Promise<string> {
 async function install(projectRoot: string) {
   return executeInstallation({
     projectRoot,
-    mode: "init",
+    mode: "install",
     yes: true,
     agent: "codex",
     instructionFile: "AGENTS.md",

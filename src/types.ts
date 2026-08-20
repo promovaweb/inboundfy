@@ -3,7 +3,7 @@
  */
 
 export type AgentKind = "codex" | "claude" | "agents";
-export type OperationMode = "init" | "update" | "repair" | "agent-install";
+export type OperationMode = "install" | "update" | "repair" | "agent-install";
 
 export interface ManagedFile {
   path: string;

@@ -70,7 +70,7 @@ export async function executeInstallation(
   validateMode(options, previousState, version);
 
   const selectedAgent =
-    previousState && options.mode !== "init"
+    previousState && options.mode !== "install"
       ? {
           agent: previousState.agent,
           skillsDirectory: previousState.skillsDirectory,
@@ -84,7 +84,7 @@ export async function executeInstallation(
           ...(options.yes !== undefined ? { yes: options.yes } : {}),
         });
   const instructionFile =
-    previousState && options.mode !== "init"
+    previousState && options.mode !== "install"
       ? previousState.instructionFile
       : await resolveInstructionFile({
           projectRoot: options.projectRoot,
@@ -213,7 +213,7 @@ async function applyPayload(input: InstallOptions & {
       const canReplace =
         Boolean(input.force) ||
         (old !== undefined && sha256(existing) === old.sha256);
-      if (!canReplace && input.mode === "init") {
+      if (!canReplace && input.mode === "install") {
         throw new CliError(
           `O arquivo ${file.targetRelative} já existe e não pertence a uma instalação conhecida. Use --force para preservá-lo em migrações e continuar.`,
         );
@@ -469,14 +469,14 @@ function validateMode(
   state: InstallationState | null,
   version: string,
 ): void {
-  if (options.mode === "init" && state && !options.force) {
+  if (options.mode === "install" && state && !options.force) {
     throw new CliError(
-      "O Thothfy já está instalado. Use update, repair ou init --force.",
+      "O Thothfy já está instalado. Use update, repair ou install --force.",
     );
   }
-  if (options.mode !== "init" && !state) {
+  if (options.mode !== "install" && !state) {
     throw new CliError(
-      "A instalação não foi encontrada. Execute thothfy init primeiro.",
+      "A instalação não foi encontrada. Execute thothfy install primeiro.",
     );
   }
   if (

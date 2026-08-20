@@ -110,13 +110,13 @@ ignora os diretórios do agente, dependências, builds, saídas geradas, a próp
 1. Na raiz do projeto, simule a instalação:
 
    ```bash
-   npx @promovaweb/thothfy@latest init --dry-run
+   npx @promovaweb/thothfy@latest install --dry-run
    ```
 
 2. Revise o plano e instale. Este exemplo usa Codex e `AGENTS.md`:
 
    ```bash
-   npx @promovaweb/thothfy@latest init \
+   npx @promovaweb/thothfy@latest install \
      --agent codex \
      --instruction-file AGENTS.md \
      --yes

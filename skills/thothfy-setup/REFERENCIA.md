@@ -71,8 +71,8 @@ O CLI executa as alterações que esta skill conduz. Sempre faça a simulação
 antes de uma instalação, atualização ou reparo:
 
 ```bash
-thothfy init --dry-run
-thothfy init --yes
+thothfy install --dry-run
+thothfy install --yes
 thothfy update --dry-run
 thothfy update --yes
 thothfy repair --dry-run

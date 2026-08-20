@@ -100,7 +100,7 @@ mínimo, ou pedir uma atualização de versão em um projeto já instalado.
    (`.claude/skills/`, `.codex/skills/` ou equivalente). Se nenhum existir,
    pergunte ao usuário qual convenção adotar antes de copiar qualquer
    skill.
-3. Execute `thothfy init --dry-run` com as opções de agente e arquivo de
+3. Execute `thothfy install --dry-run` com as opções de agente e arquivo de
    instrução escolhidas; revise o plano e repita com `--yes`.
 4. O CLI cria `.thothfy/` na raiz do projeto com a estrutura descrita em
    `INSTALACAO.md`: `VERSAO.md`, os arquivos de metodologia

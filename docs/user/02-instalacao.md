@@ -9,13 +9,13 @@ arquivos.
 Na raiz do projeto, faça primeiro uma simulação:
 
 ```bash
-npx @promovaweb/thothfy@latest init --dry-run
+npx @promovaweb/thothfy@latest install --dry-run
 ```
 
 Revise o plano. Depois, instale escolhendo o agente e o arquivo de instruções:
 
 ```bash
-npx @promovaweb/thothfy@latest init \
+npx @promovaweb/thothfy@latest install \
   --agent codex \
   --instruction-file AGENTS.md \
   --yes
@@ -72,7 +72,7 @@ O contrato integral está em [INSTALACAO.md](../../INSTALACAO.md).
 ## Passo a passo da primeira instalação
 
 1. Abra o terminal na raiz do projeto.
-2. Rode `npx @promovaweb/thothfy@latest init --dry-run`.
+2. Rode `npx @promovaweb/thothfy@latest install --dry-run`.
 3. Repita com as opções escolhidas e `--yes`.
 4. Peça ao agente para executar `thothfy-setup`.
 5. Revise os Markdown descobertos e a classificação proposta.

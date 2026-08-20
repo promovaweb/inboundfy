@@ -31,8 +31,8 @@ const program = new Command()
   .option("--json", "imprime saída estruturada em JSON");
 
 configureMutationCommand(
-  program.command("init").description("instala o Thothfy no projeto"),
-  "init",
+  program.command("install").description("instala o Thothfy no projeto"),
+  "install",
   true,
 );
 configureMutationCommand(

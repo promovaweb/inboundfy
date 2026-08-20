@@ -7,8 +7,8 @@ sem alterar um projeto real.
 ## Fluxo exercitado
 
 ```bash
-npx @promovaweb/thothfy@latest init --dry-run
-npx @promovaweb/thothfy@latest init \
+npx @promovaweb/thothfy@latest install --dry-run
+npx @promovaweb/thothfy@latest install \
   --agent codex \
   --instruction-file AGENTS.md \
   --yes

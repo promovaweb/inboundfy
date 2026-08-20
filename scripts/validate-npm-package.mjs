@@ -65,7 +65,7 @@ try {
     [
       "--project",
       consumer,
-      "init",
+      "install",
       "--agent",
       "codex",
       "--instruction-file",

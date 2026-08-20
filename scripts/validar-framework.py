@@ -499,7 +499,7 @@ def validar_metodologia() -> list[str]:
     for trecho in (
         "Reparo e reconciliação",
         "thothfy doctor --json",
-        "thothfy init --dry-run",
+        "thothfy install --dry-run",
         "thothfy context scan",
         "thothfy doctor --strict",
         ".thothfy/templates/",
@@ -597,7 +597,7 @@ def validar_cli_e_release() -> list[str]:
     teste_cli = (RAIZ / "tests" / "cli.test.ts").read_text(encoding="utf-8")
     for trecho in (
         "dry-run apresenta o plano",
-        "init instala o framework",
+        "install instala o framework",
         "preserva arquivos do usuário",
         "doctor não altera nenhum arquivo",
         "context ready exige empresa",
