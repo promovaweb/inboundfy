@@ -18,3 +18,5 @@ mesma.
 
 - Inclui o guia completo do usuário em PDF e EPUB.
 - Documenta a arquitetura técnica, a instalação e a manutenção do framework.
+
+[1.0.0]: https://github.com/promovaweb/thothfy/releases/tag/v1.0.0
