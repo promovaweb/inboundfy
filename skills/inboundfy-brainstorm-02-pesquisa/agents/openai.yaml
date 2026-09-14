@@ -1,0 +1,4 @@
+interface:
+  display_name: "Brainstorm 02 Pesquisa"
+  short_description: "Pesquisa fontes para enriquecer a ideia"
+  default_prompt: "Use $inboundfy-brainstorm-02-pesquisa para pesquisar fontes atuais e enriquecer este brainstorm."

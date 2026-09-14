@@ -3,9 +3,9 @@
 Toda especialista possui uma validadora de mesmo sufixo:
 
 ```text
-thothfy-especialista-linkedin
+inboundfy-especialista-linkedin
               ↓
-thothfy-validador-linkedin
+inboundfy-validador-linkedin
 ```
 
 A validadora lê o brief, o contexto completo, as fontes relevantes, as
@@ -20,7 +20,7 @@ reprovação, registra:
 
 A produtora cria nova versão e a validadora repete todos os passes. Só uma
 ciclo aprovado permite que o asset entre em `97-ativos-finais/`. Em pacotes,
-`thothfy-planejamento-06-auditoria` consolida as aprovações e verifica a
+`inboundfy-planejamento-06-auditoria` consolida as aprovações e verifica a
 coerência do conjunto.
 
 Os casos em
@@ -72,4 +72,4 @@ não avança com um placeholder apresentado como definitivo.
 | --- | --- |
 | Natureza | normativo |
 | Escopo | aprovação individual, reprovação e retorno à produtora |
-| Autoridade | `thothfy-base-validador` e validadoras de asset |
+| Autoridade | `inboundfy-base-validador` e validadoras de asset |

@@ -3,13 +3,32 @@
 Uma mudança só está completa quando implementação, metodologia, instalação,
 documentação, exemplos e validação descrevem o mesmo comportamento.
 
+## Biblioteca de capacidades
+
+O núcleo do Inboundfy combina o pipeline editorial com capacidades nativas de
+produto, estratégia, pesquisa, SEO, GEO, copy, conversão, medição e revisão
+anti-slop. Cada capacidade é uma skill independente, possui referência própria
+e recebe o mesmo contexto vivo do projeto.
+
+| Camada | Arquivos | Responsabilidade |
+| --- | --- | --- |
+| Framework | `skills/`, `context/`, `templates/`, `docs/` | Método reutilizável. |
+| Configuração | `.inboundfy/*.md` | Empresa, voz, personas e regras. |
+| Fonte de trabalho | `acervo/<id>-<data>-<slug>/` | Bruto, processado, FAQ e pesquisa. |
+| Saída | `canais/<canal>/<id>-<data>-<slug>/` | Peça com README e vínculos. |
+| Agenda | `calendario/AAAA-MM.md` | Checklist mensal por ID. |
+
+Toda skill que produz conteúdo lê a configuração antes do acervo. Toda peça
+passa por voz, persona, proibições, dicionário, anti-slop e validador de canal.
+Toda pesquisa que altera uma afirmação salva fonte e data no item do acervo.
+
 ## Versão única
 
 `package.json` é a fonte canônica da versão. O mesmo SemVer identifica:
 
-- pacote npm e binário `thothfy`;
+- pacote npm e binário `inboundfy`;
 - framework e skills presentes no pacote;
-- runtime instalado em `.thothfy/`;
+- runtime instalado em `.inboundfy/`;
 - tag Git `vX.Y.Z` e GitHub Release;
 - PDF e EPUB do guia do usuário.
 
@@ -33,7 +52,7 @@ release se algum número divergir. Não crie versão separada para o CLI.
 1. Crie a especialista com sufixo estável.
 2. Crie a validadora com exatamente o mesmo sufixo.
 3. Faça a produtora chamar a validadora.
-4. Faça a validadora aplicar `thothfy-base-validador` e devolver à produtora.
+4. Faça a validadora aplicar `inboundfy-base-validador` e devolver à produtora.
 5. Registre o par no catálogo e no conjunto esperado pelo validador.
 6. Documente formato, caminho, brief, fonte visual quando aplicável e
    condições verificáveis.

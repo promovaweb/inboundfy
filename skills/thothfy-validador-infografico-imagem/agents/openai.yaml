@@ -1,4 +1,0 @@
-interface:
-  display_name: "Thothfy Validador infografico-imagem"
-  short_description: "Valida o asset infografico-imagem antes da entrega"
-  default_prompt: "Use $thothfy-validador-infografico-imagem para validar este asset e devolver correções à skill produtora quando necessário."

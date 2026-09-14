@@ -1,5 +1,5 @@
 <!--
-Preenchido por thothfy-contexto-pessoas. Uma entrada por pessoa relevante
+Preenchido por inboundfy-contexto-pessoas. Uma entrada por pessoa relevante
 para conteúdo (fundadores, autores, porta-vozes, especialistas citáveis).
 -->
 

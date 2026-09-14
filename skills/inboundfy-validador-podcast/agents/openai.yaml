@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Validador podcast"
+  short_description: "Valida o asset podcast antes da entrega"
+  default_prompt: "Use $inboundfy-validador-podcast para validar este asset e devolver correções à skill produtora quando necessário."

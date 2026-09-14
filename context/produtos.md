@@ -1,5 +1,5 @@
 <!--
-Preenchido por thothfy-contexto-produtos. Uma entrada por produto ou
+Preenchido por inboundfy-contexto-produtos. Uma entrada por produto ou
 funcionalidade que pode virar tema de conteúdo.
 -->
 

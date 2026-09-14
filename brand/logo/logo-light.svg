@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" role="img" aria-labelledby="title desc">
-  <title id="title">Logo do Thothfy para fundo claro</title>
-  <desc id="desc">Símbolo editorial e nome Thothfy em assinatura horizontal.</desc>
+  <title id="title">Logo do Inboundfy para fundo claro</title>
+  <desc id="desc">Símbolo editorial e nome Inboundfy em assinatura horizontal.</desc>
   <g transform="translate(24 24) scale(.53125)">
     <rect x="82" y="104" width="348" height="66" rx="33" fill="#00161E"/>
     <rect x="218" y="138" width="76" height="270" rx="38" fill="#00161E"/>
     <rect x="326" y="212" width="104" height="70" rx="22" fill="#9A3412"/>
     <path d="M326 322h68c20 0 36 16 36 36v50h-68c-20 0-36-16-36-36v-50z" fill="#9A3412"/>
   </g>
-  <text x="350" y="213" fill="#00161E" font-family="Manrope, Inter, Arial, sans-serif" font-size="150" font-weight="750" letter-spacing="-5">Thothfy</text>
+  <text x="350" y="213" fill="#00161E" font-family="Manrope, Inter, Arial, sans-serif" font-size="150" font-weight="750" letter-spacing="-5">Inboundfy</text>
 </svg>

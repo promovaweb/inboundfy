@@ -1,6 +1,6 @@
 # BRAINSTORM.md — Da Ideia ao Material Editorial
 
-O brainstorm do Thothfy transforma uma ideia curta em uma base pesquisada,
+O brainstorm do Inboundfy transforma uma ideia curta em uma base pesquisada,
 registrada e pronta para alimentar `METODOLOGIA.md`. Ele atende pedidos como
 “quero falar sobre retenção em SaaS” sem exigir que a pessoa saiba escolher
 canal, ângulo ou estrutura de copy.
@@ -15,8 +15,8 @@ ativos. A validação final cruza a escrita com `ESCRITA.md`,
 
 O brainstorm aprovado pode seguir por dois caminhos:
 
-- `thothfy-iniciar`, quando deve gerar várias peças a partir da mesma base;
-- `thothfy-planejamento-04-briefing`, quando a ideia já aponta uma única
+- `inboundfy-iniciar`, quando deve gerar várias peças a partir da mesma base;
+- `inboundfy-planejamento-04-briefing`, quando a ideia já aponta uma única
   peça e um único canal.
 
 ## Sequência
@@ -25,8 +25,8 @@ O brainstorm aprovado pode seguir por dois caminhos:
 00 Triagem → 01 Entrevista → 02 Pesquisa → 03 Síntese → 04 Validação
 ```
 
-Cada fase pertence a uma skill `thothfy-brainstorm-<NN>-*`. A wrapper
-`thothfy-brainstorm` executa as cinco na ordem e entrega o arquivo aprovado.
+Cada fase pertence a uma skill `inboundfy-brainstorm-<NN>-*`. A wrapper
+`inboundfy-brainstorm` executa as cinco na ordem e entrega o arquivo aprovado.
 
 ### 00. Triagem
 

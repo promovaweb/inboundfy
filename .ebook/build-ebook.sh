@@ -40,11 +40,11 @@ VERSION="$(
 [[ "$VERSION" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]] \
   || fail "ebook/VERSION deve conter SemVer estável, por exemplo 1.0.0."
 
-STEM="Thothfy-Guia-do-Usuario-v$VERSION"
+STEM="Inboundfy-Guia-do-Usuario-v$VERSION"
 PDF_OUT="$EBOOK_ROOT/$STEM.pdf"
 EPUB_OUT="$EBOOK_ROOT/$STEM.epub"
-PDF_ALIAS="$EBOOK_ROOT/ebook-thothfy.pdf"
-EPUB_ALIAS="$EBOOK_ROOT/ebook-thothfy.epub"
+PDF_ALIAS="$EBOOK_ROOT/ebook-inboundfy.pdf"
+EPUB_ALIAS="$EBOOK_ROOT/ebook-inboundfy.epub"
 
 required_sources=(
   "$VERSION_FILE"
@@ -119,10 +119,10 @@ check_manifest() {
   [ -f "$MANIFEST" ] || fail "ebook/build.json ausente; execute make ebook."
   [ -f "$PDF_OUT" ] || fail "$(basename "$PDF_OUT") ausente; execute make ebook."
   [ -f "$EPUB_OUT" ] || fail "$(basename "$EPUB_OUT") ausente; execute make ebook."
-  [ -f "$PDF_ALIAS" ] || fail "ebook-thothfy.pdf ausente; execute make ebook."
-  [ -f "$EPUB_ALIAS" ] || fail "ebook-thothfy.epub ausente; execute make ebook."
-  cmp -s "$PDF_OUT" "$PDF_ALIAS" || fail "ebook-thothfy.pdf não corresponde à edição vigente."
-  cmp -s "$EPUB_OUT" "$EPUB_ALIAS" || fail "ebook-thothfy.epub não corresponde à edição vigente."
+  [ -f "$PDF_ALIAS" ] || fail "ebook-inboundfy.pdf ausente; execute make ebook."
+  [ -f "$EPUB_ALIAS" ] || fail "ebook-inboundfy.epub ausente; execute make ebook."
+  cmp -s "$PDF_OUT" "$PDF_ALIAS" || fail "ebook-inboundfy.pdf não corresponde à edição vigente."
+  cmp -s "$EPUB_OUT" "$EPUB_ALIAS" || fail "ebook-inboundfy.epub não corresponde à edição vigente."
 
   VERSION="$VERSION" SOURCE_SHA="$SOURCE_SHA" PDF_OUT="$PDF_OUT" \
     EPUB_OUT="$EPUB_OUT" MANIFEST="$MANIFEST" python3 - <<'PY'
@@ -306,7 +306,7 @@ magick \
   -size 1600x2560 xc:'#FFFFFF' \
   \( "$LOGO_PNG" -resize 300x300 \) -geometry +150+170 -composite \
   -font "$BODY_FONT" -fill '#171717' -pointsize 34 \
-  -annotate +150+850 'THOTHFY' \
+  -annotate +150+850 'INBOUNDFY' \
   -font "$SANS_FONT" -fill '#000000' -pointsize 116 \
   -annotate +150+1050 'Guia completo' \
   -annotate +150+1190 'do usuário' \
@@ -335,7 +335,7 @@ magick \
     --toc-depth=2 \
     --resource-path="$SCRIPT_DIR:$ROOT:$DOCS_ROOT" \
     --metadata-file="$METADATA" \
-    --metadata title="Thothfy — Guia completo do usuário · v$VERSION" \
+    --metadata title="Inboundfy — Guia completo do usuário · v$VERSION" \
     --metadata version="$VERSION" \
     --metadata date="$PT_DATE" \
     --output "$HTML_OUT"
@@ -363,7 +363,7 @@ weasyprint \
     --css="$EPUB_STYLE" \
     --resource-path="$SCRIPT_DIR:$ROOT:$DOCS_ROOT" \
     --metadata-file="$METADATA" \
-    --metadata title="Thothfy — Guia completo do usuário · v$VERSION" \
+    --metadata title="Inboundfy — Guia completo do usuário · v$VERSION" \
     --metadata version="$VERSION" \
     --metadata date="$(date +%F)" \
     --output "$EPUB_OUT"

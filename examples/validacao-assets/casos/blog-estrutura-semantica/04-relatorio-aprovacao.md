@@ -1,8 +1,8 @@
 # Validação de asset — Blog/contratos-parados
 
 - **Asset:** `03-asset-corrigido.md`
-- **Produtora:** `thothfy-especialista-blog`
-- **Validadora:** `thothfy-validador-blog`
+- **Produtora:** `inboundfy-especialista-blog`
+- **Validadora:** `inboundfy-validador-blog`
 - **Rodada:** 2
 - **Veredito:** aprovado
 - **Ocorrências remanescentes:** zero

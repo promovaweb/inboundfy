@@ -1,4 +1,4 @@
-# Paleta do Thothfy
+# Paleta do Inboundfy
 
 | Família | Base | Papel |
 | --- | --- | --- |

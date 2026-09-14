@@ -13,7 +13,7 @@ export interface ManagedFile {
 }
 
 export interface InstallationManifest {
-  schemaVersion: 1;
+  schemaVersion: 2;
   packageName: string;
   frameworkVersion: string;
   generatedAt: string;
@@ -21,7 +21,7 @@ export interface InstallationManifest {
 }
 
 export interface InstallationState {
-  schemaVersion: 1;
+  schemaVersion: 2;
   packageName: string;
   frameworkVersion: string;
   installedAt: string;
@@ -32,9 +32,59 @@ export interface InstallationState {
   instructionFile: "AGENTS.md" | "CLAUDE.md" | null;
   setupStatus: "pending-context" | "ready";
   paths: {
-    brainstorms: string;
-    content: string;
+    acervo: string;
+    canais: string;
+    calendario: string;
   };
+}
+
+export type ChannelId =
+  | "blog"
+  | "email"
+  | "linkedin"
+  | "instagram"
+  | "substack"
+  | "youtube";
+
+export interface AcervoRecord {
+  id: string;
+  slug: string;
+  title: string;
+  directory: string;
+  createdAt: string;
+  status: "recebido" | "processando" | "processado" | "arquivado";
+  source?: string;
+  channels: ChannelId[];
+}
+
+export interface ContentRecord {
+  id: string;
+  channel: ChannelId;
+  title: string;
+  slug: string;
+  directory: string;
+  createdAt: string;
+  status: "rascunho" | "revisao" | "aprovado" | "agendado" | "publicado" | "arquivado";
+  personas: string[];
+  acervo: string[];
+  baseEditorial: string[];
+  publishedAt?: string;
+  url?: string;
+}
+
+export interface CalendarRecord {
+  id: string;
+  date: string;
+  contentId: string;
+  channel: ChannelId;
+  path: string;
+  status: ContentRecord["status"];
+}
+
+export interface ProjectIndex<T> {
+  schemaVersion: 1;
+  generatedAt: string;
+  items: T[];
 }
 
 export interface PlannedAction {
@@ -67,7 +117,7 @@ export interface DoctorCheck {
 }
 
 export interface DoctorReport {
-  schemaVersion: 1;
+  schemaVersion: 2;
   healthy: boolean;
   installedVersion: string | null;
   cliVersion: string;

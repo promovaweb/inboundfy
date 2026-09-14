@@ -1,4 +1,4 @@
-# Documentação do Thothfy
+# Documentação do Inboundfy
 
 A documentação é dividida pelo tipo de decisão que o leitor precisa tomar:
 

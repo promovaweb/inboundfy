@@ -1,8 +1,8 @@
 <!--
-Preenchido por thothfy-contexto-campanhas. Registra campanhas ativas e
+Preenchido por inboundfy-contexto-campanhas. Registra campanhas ativas e
 encerradas — não decide estratégia, apenas guarda o estado combinado com o
 cliente. Estratégia e planejamento vivem nas skills
-`thothfy-estrategia-{NN}-*`.
+`inboundfy-estrategia-{NN}-*`.
 -->
 
 # Campanhas
@@ -20,9 +20,9 @@ cliente. Estratégia e planejamento vivem nas skills
 - **Período:** {início e fim, ou "contínua"}
 - **Orçamento de mídia paga, se houver:** {valor ou "sem mídia paga"}
 - **Brief de origem:** {caminho do brief criado por
-  thothfy-estrategia-00-briefing-cliente}
+  inboundfy-estrategia-00-briefing-cliente}
 - **Plano de campanha:** {caminho do plano criado por
-  thothfy-estrategia-02-campanha}
+  inboundfy-estrategia-02-campanha}
 
 <!-- Repita o bloco acima para cada campanha registrada, ativa ou encerrada.
 Não apague campanha encerrada — mude o status e mantenha o histórico. -->

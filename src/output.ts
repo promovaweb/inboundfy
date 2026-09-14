@@ -16,7 +16,7 @@ export function printOperation(result: OperationResult, json: boolean): void {
   }
   const label = result.dryRun ? "Simulação" : "Concluído";
   process.stdout.write(
-    `${label}: ${result.mode} do Thothfy ${result.version}.\n`,
+    `${label}: ${result.mode} do Inboundfy ${result.version}.\n`,
   );
   const relevant = result.actions.filter((action) => action.action !== "unchanged");
   if (relevant.length === 0) {
@@ -38,7 +38,7 @@ export function printDoctor(
     return;
   }
   process.stdout.write(
-    `Thothfy ${report.installedVersion ?? "não instalado"}; CLI ${report.cliVersion}.\n`,
+    `Inboundfy ${report.installedVersion ?? "não instalado"}; CLI ${report.cliVersion}.\n`,
   );
   process.stdout.write(
     `${report.summary.errors} erro(s), ${report.summary.warnings} aviso(s), ${report.summary.ok} verificação(ões) aprovada(s).\n`,

@@ -6,7 +6,7 @@ Dados fictícios:
 - **Atuação:** manutenção de bicicletas urbanas
 - **Voz:** direta, cuidadosa e didática
 - **Canal inicial:** blog
-- **Caminhos desejados:** `brainstorms/` e `content/`
+- **Caminhos desejados:** `acervo/`, `canais/` e `calendario/`
 
 Arquivo Markdown preexistente:
 

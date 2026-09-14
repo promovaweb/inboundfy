@@ -1,4 +1,4 @@
-# examples/ — Pacotes de Demonstração do Thothfy
+# examples/ — Pacotes de Demonstração do Inboundfy
 
 Este diretório existe só para leitura e aprendizado: cada subpasta é um
 pacote de conteúdo completo, gerado seguindo `METODOLOGIA.md` e/ou

@@ -21,6 +21,10 @@ import {
   refreshContextSources,
 } from "../src/installer.js";
 import { runDoctor } from "../src/doctor.js";
+import { addAcervo, processAcervo } from "../src/acervo.js";
+import { createContent } from "../src/content.js";
+import { addToCalendar } from "../src/calendar.js";
+import { updateContentStatus } from "../src/pipeline.js";
 
 const temporaryProjects: string[] = [];
 
@@ -30,8 +34,8 @@ afterEach(async () => {
   }
 });
 
-describe("CLI do Thothfy", () => {
-  test("dry-run apresenta o plano sem criar .thothfy", async () => {
+describe("CLI do Inboundfy", () => {
+  test("dry-run apresenta o plano sem criar .inboundfy", async () => {
     const project = await createProject();
     const result = await executeInstallation({
       projectRoot: project,
@@ -43,10 +47,10 @@ describe("CLI do Thothfy", () => {
     });
 
     expect(result.dryRun).toBe(true);
-    expect(result.actions.some((item) => item.path === ".thothfy/VERSAO.md")).toBe(
+    expect(result.actions.some((item) => item.path === ".inboundfy/framework/VERSAO.md")).toBe(
       true,
     );
-    await expect(stat(join(project, ".thothfy"))).rejects.toMatchObject({
+    await expect(stat(join(project, ".inboundfy"))).rejects.toMatchObject({
       code: "ENOENT",
     });
   });
@@ -61,7 +65,7 @@ describe("CLI do Thothfy", () => {
     const report = await runDoctor(project);
     const candidates = JSON.parse(
       await readFile(
-        join(project, ".thothfy", "fontes-candidatas.json"),
+        join(project, ".inboundfy", "fontes-candidatas.json"),
         "utf8",
       ),
     ) as { sources: Array<{ path: string }> };
@@ -73,24 +77,24 @@ describe("CLI do Thothfy", () => {
       new Set(["PRODUCT.md", "brand/manual.md"]),
     );
     expect(
-      await readFile(join(project, ".thothfy", "context", "empresa.md"), "utf8"),
+      await readFile(join(project, ".inboundfy", "context", "empresa.md"), "utf8"),
     ).toContain("{nome legal completo}");
     expect(
       await readFile(
-        join(project, ".thothfy", "brand", "logo", "icon.svg"),
+        join(project, ".inboundfy", "framework", "brand", "logo", "icon.svg"),
         "utf8",
       ),
     ).toContain('<rect width="512" height="512" rx="112"');
     expect(await readFile(join(project, "AGENTS.md"), "utf8")).toContain(
-      "<!-- thothfy:inicio -->",
+      "<!-- inboundfy:inicio -->",
     );
   });
 
   test("repair restaura gerenciados e preserva arquivos do usuário", async () => {
     const project = await createProject();
     await install(project);
-    const managed = join(project, ".thothfy", "BRAINSTORM.md");
-    const userFile = join(project, ".thothfy", "context", "empresa.md");
+    const managed = join(project, ".inboundfy", "framework", "BRAINSTORM.md");
+    const userFile = join(project, ".inboundfy", "context", "empresa.md");
     await writeFile(managed, "customização local\n");
     await writeFile(userFile, "# Empresa\n\nInformação preservada.\n");
 
@@ -106,19 +110,19 @@ describe("CLI do Thothfy", () => {
       expect.arrayContaining([
         expect.objectContaining({
           action: "backup",
-          path: ".thothfy/BRAINSTORM.md",
+          path: ".inboundfy/framework/BRAINSTORM.md",
         }),
         expect.objectContaining({
           action: "preserve",
-          path: ".thothfy/context/empresa.md",
+          path: ".inboundfy/context/empresa.md",
         }),
       ]),
     );
     const migrationFiles = await listFiles(
-      join(project, ".thothfy", "migracoes"),
+      join(project, ".inboundfy", "migracoes"),
     );
     expect(
-      migrationFiles.some((path) => path.endsWith(".thothfy/BRAINSTORM.md")),
+      migrationFiles.some((path) => path.endsWith(".inboundfy/framework/BRAINSTORM.md")),
     ).toBe(true);
   });
 
@@ -131,64 +135,28 @@ describe("CLI do Thothfy", () => {
     expect(after).toEqual(before);
   });
 
-  test("context ready exige empresa, voz, oferta e canal preenchidos", async () => {
+  test("context ready exige empresa, voz, persona e canal preenchidos", async () => {
     const project = await createProject();
     await install(project);
     await expect(markContextReady(project)).rejects.toThrow(
       "O preenchimento mínimo ainda está incompleto",
     );
-    const context = join(project, ".thothfy", "context");
+    const context = join(project, ".inboundfy");
     await writeFile(
-      join(context, "empresa.md"),
-      `# Empresa
-
-## Identidade
-
-- **Nome oficial:** Acme Ltda.
-
-## Missão e o que a empresa faz
-
-A empresa mantém sistemas de atendimento para pequenas agências.
-
-## Modelo de negócio
-
-O serviço funciona por assinatura mensal.
-`,
+      join(context, "inbound.md"),
+      `# Inboundfy\n\n- **Nome da empresa:** Acme Ltda.\n- **Descrição curta:** Sistemas de atendimento para agências.\n- **Site principal:** https://acme.example\n`,
     );
     await writeFile(
-      join(context, "marca-voz.md"),
-      `# Marca e Voz
-
-## Tom
-
-- **Em três adjetivos:** direta, técnica e próxima
-- **Idioma padrão de produção:** Português do Brasil
-
-## Exemplos de bom texto
-
-> Abra o relatório e confira qual conversa ainda não recebeu resposta.
-`,
+      join(context, "voz.md"),
+      `# Voz\n\n- **Três a cinco adjetivos:** direta, técnica e próxima\n- **Pessoa verbal:** primeira pessoa\n- **Idioma e variante:** pt-BR\n\n## Exemplo aprovado\n\n> Abra o relatório e confira qual conversa ainda não recebeu resposta.\n`,
     );
     await writeFile(
-      join(context, "produtos.md"),
-      `# Produtos
-
-## Atendimento Acme
-
-- **O que é, em uma frase:** uma aplicação para organizar conversas.
-`,
+      join(context, "personas.md"),
+      `# Personas\n\n## Persona 01: Gestora de agência\n\n- **Quem é:** lidera uma agência pequena.\n- **Contexto de compra:** procura organizar o atendimento.\n- **Problema que tenta resolver:** perde conversas importantes.\n- **Resultado que procura:** responder com clareza e rapidez.\n`,
     );
     await writeFile(
-      join(context, "canais.md"),
-      `# Canais
-
-- **Caminho onde os pacotes são criados:** content/
-- **Caminho onde os brainstorms são criados:** brainstorms/
-
-## Blog
-
-- **Ativo?** sim
-`,
+      join(context, "estrategia.md"),
+      `# Estratégia\n\n- **Objetivo de negócio:** gerar demonstrações qualificadas.\n\n## Canais ativos\n\n- [x] Blog\n`,
     );
 
     await markContextReady(project);
@@ -197,10 +165,10 @@ O serviço funciona por assinatura mensal.
     expect(report.healthy).toBe(true);
   });
 
-  test("a instalação recusa .thothfy apontando para fora por symlink", async () => {
+  test("a instalação recusa .inboundfy apontando para fora por symlink", async () => {
     const project = await createProject();
     const outside = await createProject();
-    await symlink(outside, join(project, ".thothfy"));
+    await symlink(outside, join(project, ".inboundfy"));
     await expect(install(project)).rejects.toThrow(
       "O CLI não grava por link simbólico",
     );
@@ -221,10 +189,10 @@ O serviço funciona por assinatura mensal.
     ).rejects.toThrow("Diretório de skills inválido");
   });
 
-  test("context scan atualiza as fontes sem alterar FONTES-PROJETO.md", async () => {
+  test("context scan atualiza as fontes sem alterar fontes-projeto.md", async () => {
     const project = await createProject();
     await install(project);
-    const classified = join(project, ".thothfy", "FONTES-PROJETO.md");
+    const classified = join(project, ".inboundfy", "fontes-projeto.md");
     await writeFile(classified, "# Classificação feita pela skill\n");
     await writeFile(join(project, "REGRAS.md"), "# Regras locais\n");
 
@@ -235,10 +203,78 @@ O serviço funciona por assinatura mensal.
       "# Classificação feita pela skill\n",
     );
   });
+
+  test("fluxo do acervo cria bruto, processado, índices e saída ligada ao calendário", async () => {
+    const project = await createProject();
+    await install(project);
+    await selectChannel(project, "Blog");
+    const raw = "\uFEFFUma anotação sobre como responder clientes.  \r\n\nLinha dois\0\n";
+    const acervo = await addAcervo(project, {
+      title: "Aula sobre atendimento",
+      raw,
+      source: "nota interna",
+    });
+    await processAcervo(project, acervo.id);
+    const content = await createContent(project, {
+      channel: "blog",
+      title: "Como responder com contexto",
+      personas: ["persona-01"],
+      acervo: [acervo.id],
+    });
+    const calendar = await addToCalendar(project, "2026-09-20", content.id);
+    expect(acervo.directory).toMatch(/^acervo\/0001-/u);
+    expect(content.directory).toMatch(/^canais\/blog\/0001-/u);
+    expect(content.baseEditorial).toEqual([
+      `${acervo.directory}/base-editorial.md`,
+    ]);
+    expect(calendar.path).toBe("calendario/2026-09.md");
+    expect(await readFile(join(project, acervo.directory, "bruto.md"))).toEqual(
+      Buffer.from(raw),
+    );
+    expect(await readFile(join(project, content.directory, "README.md"), "utf8")).toContain("bases_editoriais:");
+    expect(await readFile(join(project, content.directory, "README.md"), "utf8")).toContain("persona-01");
+    expect(await readFile(join(project, "calendario", "2026-09.md"), "utf8")).toContain("0001");
+    expect(await readFile(join(project, "calendario", "2026-09.md"), "utf8")).toContain("personas: persona-01");
+  });
+
+  test("pipeline exige URL e data para marcar uma peça como publicada", async () => {
+    const project = await createProject();
+    await install(project);
+    await selectChannel(project, "LinkedIn");
+    const content = await createContent(project, {
+      channel: "linkedin",
+      title: "Nota de produto",
+      personas: ["persona-01"],
+      acervo: [],
+    });
+    await expect(updateContentStatus(project, content.id, { status: "publicado" })).rejects.toThrow("URL e data");
+    const updated = await updateContentStatus(project, content.id, {
+      status: "publicado",
+      url: "https://example.test/nota",
+      publishedAt: "2026-09-20",
+    });
+    expect(updated.status).toBe("publicado");
+    expect(await readFile(join(project, content.directory, "README.md"), "utf8")).toContain("estado: publicado");
+  });
+
+  test("content recusa canal fora da estratégia", async () => {
+    const project = await createProject();
+    await install(project);
+    await selectChannel(project, "Blog");
+
+    await expect(
+      createContent(project, {
+        channel: "linkedin",
+        title: "Peça não autorizada",
+        personas: ["persona-01"],
+        acervo: [],
+      }),
+    ).rejects.toThrow("não está selecionado");
+  });
 });
 
 async function createProject(): Promise<string> {
-  const path = await mkdtemp(join(tmpdir(), "thothfy-cli-test-"));
+  const path = await mkdtemp(join(tmpdir(), "inboundfy-cli-test-"));
   temporaryProjects.push(path);
   return path;
 }
@@ -251,6 +287,13 @@ async function install(projectRoot: string) {
     agent: "codex",
     instructionFile: "AGENTS.md",
   });
+}
+
+async function selectChannel(projectRoot: string, channel: string): Promise<void> {
+  await writeFile(
+    join(projectRoot, ".inboundfy", "estrategia.md"),
+    `# Estratégia\n\n- **Objetivo de negócio:** validar o fluxo.\n\n## Canais ativos\n\n- [x] ${channel}\n`,
+  );
 }
 
 async function listFiles(root: string, base = root): Promise<string[]> {

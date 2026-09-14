@@ -1,8 +1,8 @@
 # Caso — Email com oferta divergente
 
-Exemplo fictício de `thothfy-validador-email`. A primeira versão usa um preço
+Exemplo fictício de `inboundfy-validador-email`. A primeira versão usa um preço
 que contradiz a fonte comercial e encerra com dois CTAs. A segunda versão
-volta da `thothfy-especialista-email` com preço confirmado e uma única ação.
+volta da `inboundfy-especialista-email` com preço confirmado e uma única ação.
 
 | Etapa | Arquivo |
 | --- | --- |

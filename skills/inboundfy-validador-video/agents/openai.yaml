@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Validador video"
+  short_description: "Valida o asset video antes da entrega"
+  default_prompt: "Use $inboundfy-validador-video para validar este asset e devolver correções à skill produtora quando necessário."

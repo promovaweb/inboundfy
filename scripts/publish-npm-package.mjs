@@ -16,7 +16,7 @@ const tarball = resolve(
     join(
       root,
       "release-assets",
-      `promovaweb-thothfy-${packageJson.version}.tgz`,
+      `promovaweb-inboundfy-${packageJson.version}.tgz`,
     ),
 );
 const reference = `${packageJson.name}@${packageJson.version}`;

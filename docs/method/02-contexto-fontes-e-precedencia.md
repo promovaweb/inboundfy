@@ -2,21 +2,21 @@
 
 ## Fontes gerenciadas
 
-`.thothfy/context/` contém 15 arquivos de dados estruturados. O setup garante
-a presença dos templates; `thothfy-contexto-*` preenche e atualiza o conteúdo.
+`.inboundfy/context/` contém 15 arquivos de dados estruturados. O setup garante
+a presença dos templates; `inboundfy-contexto-*` preenche e atualiza o conteúdo.
 Arquivos existentes nunca são substituídos numa atualização.
 
 ## Fontes descobertas
 
 O utilitário do setup percorre o projeto sem seguir symlinks, ignorando
-dependências, builds, saídas, diretórios de agente, `.thothfy/` e submódulos
+dependências, builds, saídas, diretórios de agente, `.inboundfy/` e submódulos
 Git. Inclui:
 
 - Markdown cujo nome é composto em maiúsculas;
 - todos os Markdown dentro de `brand/`, qualquer que seja a capitalização.
 
 O inventário registra caminho relativo, headings e hash. A classificação e os
-conflitos ficam em `.thothfy/FONTES-PROJETO.md`. Nenhuma fonte é copiada ou
+conflitos ficam em `.inboundfy/fontes-projeto.md`. Nenhuma fonte é copiada ou
 alterada.
 
 ## Precedência operacional

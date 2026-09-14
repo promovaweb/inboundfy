@@ -1,6 +1,6 @@
 # Caso — Blog com estrutura semanticamente proibida
 
-Exemplo fictício de `thothfy-validador-blog`. O candidato evita as expressões
+Exemplo fictício de `inboundfy-validador-blog`. O candidato evita as expressões
 literais mais conhecidas, mas repete o mesmo molde em todas as seções. O passe
 semântico reprova a arquitetura completa e devolve o artigo à produtora.
 

@@ -1,6 +1,6 @@
 # Arquitetura
 
-O Thothfy é um framework de arquivos, não um runtime. O agente interpreta
+O Inboundfy é um framework de arquivos, não um runtime. O agente interpreta
 `SKILL.md`, consulta contratos Markdown e grava artefatos no projeto
 consumidor.
 
@@ -8,7 +8,7 @@ consumidor.
 
 | Componente | Responsabilidade |
 | --- | --- |
-| `thothfy-setup` | Instala e reconcilia o ambiente |
+| `inboundfy-setup` | Instala e reconcilia o ambiente |
 | Wrappers | Classificam a entrada e orquestram fases |
 | Fases numeradas | Transformam estado em ordem cronológica |
 | Skills base | Fornecem capacidades transversais |
@@ -27,5 +27,6 @@ validadora corrija o próprio objeto auditado.
 ## Instalação no projeto consumidor
 
 O código das skills fica no diretório de skills já adotado pelo agente. Os
-contratos e dados instalados ficam em `.thothfy/`. Saídas ficam fora desse
-diretório, normalmente em `brainstorms/` e `content/`.
+contratos e dados instalados ficam em `.inboundfy/`. Saídas ficam fora desse
+diretório, em `acervo/`, `canais/` e `calendario/`; `brainstorms/` continua
+disponível para ideias que ainda não viraram material do acervo.

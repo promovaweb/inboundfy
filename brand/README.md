@@ -1,6 +1,6 @@
-# Marca Thothfy
+# Marca Inboundfy
 
-O Thothfy organiza sistemas de copy, marketing e SEO para uso por pessoas e
+O Inboundfy organiza sistemas de copy, marketing e SEO para uso por pessoas e
 agentes. Sua identidade combina o petróleo e o turquesa da Promovaweb com
 laranja, variação associada a conteúdo, energia editorial e decisão.
 

@@ -1,8 +1,8 @@
 # Validação de asset — Instagram/contrato-responsavel
 
 - **Asset:** `03-asset-corrigido.svg`
-- **Produtora:** `thothfy-especialista-instagram-imagem`
-- **Validadora:** `thothfy-validador-instagram-imagem`
+- **Produtora:** `inboundfy-especialista-instagram-imagem`
+- **Validadora:** `inboundfy-validador-instagram-imagem`
 - **Rodada:** 2
 - **Veredito:** aprovado
 - **Ocorrências remanescentes:** zero

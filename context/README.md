@@ -2,7 +2,7 @@
 
 Esta pasta concentra a informação de negócio real do usuário. A única
 exceção é `estruturas-proibidas.md`: vive aqui por conveniência operacional
-(a mesma auditoria de `thothfy-base-editor` lê os arquivos desta pasta em
+(a mesma auditoria de `inboundfy-base-editor` lê os arquivos desta pasta em
 sequência), mas seu conteúdo é genérico e pré-preenchido pelo framework, não
 dado específico de negócio — ver `../ESCRITA.md`. Veja `../CONTEXTO.md` para
 o que cada arquivo resolve, a precedência entre eles e o formato esperado.
@@ -10,7 +10,7 @@ o que cada arquivo resolve, a precedência entre eles e o formato esperado.
 Todos os arquivos abaixo chegam como template com placeholders entre `{ }` e
 comentários `<!-- -->` explicando o que preencher. Preencha sob demanda: o
 mínimo para começar é `empresa.md`, `marca-voz.md`, um item em `produtos.md`
-(ou `servicos.md`) e um canal em `canais.md` — `thothfy-setup` conduz esse
+(ou `servicos.md`) e um canal em `canais.md` — `inboundfy-setup` conduz esse
 preenchimento inicial.
 
 | Arquivo | Conteúdo |

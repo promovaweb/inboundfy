@@ -1,5 +1,5 @@
 <!--
-Preenchido por thothfy-contexto-publico. Uma entrada por persona/segmento
+Preenchido por inboundfy-contexto-publico. Uma entrada por persona/segmento
 relevante para planejamento e briefing.
 -->
 

@@ -25,8 +25,8 @@ for (const relative of ["ebook/README.md", "docs/user/README.md"]) {
   const path = join(root, relative);
   const current = await readFile(path, "utf8");
   const updated = current.replaceAll(
-    /Thothfy-Guia-do-Usuario-v\d+\.\d+\.\d+\.(pdf|epub)/g,
-    `Thothfy-Guia-do-Usuario-v${version}.$1`,
+    /Inboundfy-Guia-do-Usuario-v\d+\.\d+\.\d+\.(pdf|epub)/g,
+    `Inboundfy-Guia-do-Usuario-v${version}.$1`,
   );
   await writeFile(path, updated);
 }

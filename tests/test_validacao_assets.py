@@ -1,4 +1,4 @@
-"""Testes executáveis do contrato de validação de assets do Thothfy."""
+"""Testes executáveis do contrato de validação de assets do Inboundfy."""
 
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ EXEMPLO = RAIZ / "examples" / "validacao-assets"
 SCRIPT_INVENTARIO = (
     RAIZ
     / "skills"
-    / "thothfy-setup"
+    / "inboundfy-setup"
     / "scripts"
     / "inventariar-fontes-projeto.py"
 )
@@ -31,26 +31,26 @@ PROIBICOES_FIXTURE = (
 )
 SEQUENCIAS_ESPERADAS = {
     "brainstorm": (
-        "thothfy-brainstorm-00-triagem",
-        "thothfy-brainstorm-01-entrevista",
-        "thothfy-brainstorm-02-pesquisa",
-        "thothfy-brainstorm-03-sintese",
-        "thothfy-brainstorm-04-validacao",
+        "inboundfy-brainstorm-00-triagem",
+        "inboundfy-brainstorm-01-entrevista",
+        "inboundfy-brainstorm-02-pesquisa",
+        "inboundfy-brainstorm-03-sintese",
+        "inboundfy-brainstorm-04-validacao",
     ),
     "estrategia": (
-        "thothfy-estrategia-00-briefing-cliente",
-        "thothfy-estrategia-01-pesquisa-mercado",
-        "thothfy-estrategia-02-campanha",
-        "thothfy-estrategia-03-calendario",
+        "inboundfy-estrategia-00-briefing-cliente",
+        "inboundfy-estrategia-01-pesquisa-mercado",
+        "inboundfy-estrategia-02-campanha",
+        "inboundfy-estrategia-03-calendario",
     ),
     "planejamento": (
-        "thothfy-planejamento-00-triagem",
-        "thothfy-planejamento-01-saneamento",
-        "thothfy-planejamento-02-pesquisa",
-        "thothfy-planejamento-03-oportunidades",
-        "thothfy-planejamento-04-briefing",
-        "thothfy-planejamento-05-producao",
-        "thothfy-planejamento-06-auditoria",
+        "inboundfy-planejamento-00-triagem",
+        "inboundfy-planejamento-01-saneamento",
+        "inboundfy-planejamento-02-pesquisa",
+        "inboundfy-planejamento-03-oportunidades",
+        "inboundfy-planejamento-04-briefing",
+        "inboundfy-planejamento-05-producao",
+        "inboundfy-planejamento-06-auditoria",
     ),
 }
 
@@ -80,7 +80,29 @@ class ValidacaoAssetsTest(unittest.TestCase):
             text=True,
         )
         self.assertEqual(resultado.returncode, 0, resultado.stdout)
-        self.assertIn("Thothfy aprovado: 71 skills", resultado.stdout)
+        self.assertIn("Framework Inboundfy válido", resultado.stdout)
+
+    def test_acervo_e_a_skill_mestre_do_fluxo(self) -> None:
+        """Confere as etapas que a skill mestre precisa coordenar."""
+        skill = (RAIZ / "skills" / "inboundfy-acervo" / "SKILL.md").read_text(
+            encoding="utf-8"
+        )
+        for etapa in (
+            "inboundfy-processar-acervo",
+            "inboundfy-extrair-faq",
+            "inboundfy-pesquisa-acervo",
+            "inboundfy-base-editorial",
+            "inboundfy-estrategia-acervo",
+            "inboundfy-producao",
+            "inboundfy-anti-slop",
+            "inboundfy-pipeline",
+            "inboundfy-catalogo",
+            ".inboundfy/voz.md",
+            ".inboundfy/personas.md",
+            ".inboundfy/proibicoes.md",
+            ".inboundfy/dicionario.md",
+        ):
+            self.assertIn(etapa, skill)
 
     def test_brand_minuscula_entra_no_inventario(self) -> None:
         """Inclui Markdown minúsculo de brand/ e exclui equivalente externo."""
@@ -113,7 +135,7 @@ class ValidacaoAssetsTest(unittest.TestCase):
             self.assertIn(trecho, candidato)
             self.assertIn(f"`{trecho}`", relatorio)
         self.assertIn("**Veredito:** reprovado", relatorio)
-        self.assertIn("thothfy-especialista-linkedin", relatorio)
+        self.assertIn("inboundfy-especialista-linkedin", relatorio)
 
     def test_correcao_remove_ocorrencias_e_aprova_hard_gate(self) -> None:
         """Comprova que a segunda rodada remove os vetos e registra zero."""
@@ -135,8 +157,8 @@ class ValidacaoAssetsTest(unittest.TestCase):
             encoding="utf-8"
         )
         self.assertIn("2026-07-30", evidencia)
-        self.assertIn("Ran 14 tests", evidencia)
-        self.assertIn("Thothfy aprovado: 71 skills", evidencia)
+        self.assertIn("Ran 15 tests", evidencia)
+        self.assertIn("Framework Inboundfy válido: 135 skills", evidencia)
 
     def test_sequencias_possuem_nomes_exatos(self) -> None:
         """Impede lacunas, sufixos trocados e numeração em outro grupo."""
@@ -174,13 +196,13 @@ class ValidacaoAssetsTest(unittest.TestCase):
         self.assertTrue(method[0].startswith("00-"))
         self.assertTrue(method[-1].startswith("08-"))
         setup = (
-            RAIZ / "skills" / "thothfy-setup" / "SKILL.md"
+            RAIZ / "skills" / "inboundfy-setup" / "SKILL.md"
         ).read_text(encoding="utf-8")
         instalacao = (RAIZ / "INSTALACAO.md").read_text(encoding="utf-8")
-        self.assertIn(".thothfy/docs/", setup)
-        self.assertIn(".thothfy/ebook/", setup)
-        self.assertIn(".thothfy/docs/", instalacao)
-        self.assertIn(".thothfy/ebook/", instalacao)
+        self.assertIn(".inboundfy/framework/docs/", setup)
+        self.assertIn(".inboundfy/framework/ebook/", setup)
+        self.assertIn(".inboundfy/framework/docs/", instalacao)
+        self.assertIn(".inboundfy/framework/ebook/", instalacao)
         exemplo = RAIZ / "examples" / "primeiro-projeto"
         self.assertEqual(
             {
@@ -229,13 +251,13 @@ class ValidacaoAssetsTest(unittest.TestCase):
             resultado.stdout + resultado.stderr,
         )
         self.assertIn(
-            "edição v1.0.0 sincronizada com docs/user/",
+            "edição v1.1.0 sincronizada com docs/user/",
             resultado.stdout,
         )
         manifesto = json.loads(
             (RAIZ / "ebook" / "build.json").read_text(encoding="utf-8")
         )
-        self.assertEqual(manifesto["version"], "1.0.0")
+        self.assertEqual(manifesto["version"], "1.1.0")
         self.assertEqual(len(manifesto["document_metadata"]), 12)
 
     def test_ebook_remove_classificacao_interna(self) -> None:
@@ -247,7 +269,7 @@ class ValidacaoAssetsTest(unittest.TestCase):
         )
         self.assertIsNotNone(versao_match)
         versao = versao_match.group(0)
-        stem = f"Thothfy-Guia-do-Usuario-v{versao}"
+        stem = f"Inboundfy-Guia-do-Usuario-v{versao}"
         pdf = RAIZ / "ebook" / f"{stem}.pdf"
         epub = RAIZ / "ebook" / f"{stem}.epub"
         texto_pdf = subprocess.run(

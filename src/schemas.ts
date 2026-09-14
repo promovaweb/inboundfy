@@ -29,16 +29,16 @@ const managedFile = z.object({
 });
 
 export const installationManifestSchema = z.object({
-  schemaVersion: z.literal(1),
-  packageName: z.literal("@promovaweb/thothfy"),
+  schemaVersion: z.literal(2),
+  packageName: z.literal("@promovaweb/inboundfy"),
   frameworkVersion: z.string().min(1),
   generatedAt: z.string().datetime(),
   managedFiles: z.array(managedFile),
 });
 
 export const installationStateSchema = z.object({
-  schemaVersion: z.literal(1),
-  packageName: z.literal("@promovaweb/thothfy"),
+  schemaVersion: z.literal(2),
+  packageName: z.literal("@promovaweb/inboundfy"),
   frameworkVersion: z.string().min(1),
   installedAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
@@ -48,7 +48,8 @@ export const installationStateSchema = z.object({
   instructionFile: z.enum(["AGENTS.md", "CLAUDE.md"]).nullable(),
   setupStatus: z.enum(["pending-context", "ready"]),
   paths: z.object({
-    brainstorms: portablePath,
-    content: portablePath,
+    acervo: portablePath,
+    canais: portablePath,
+    calendario: portablePath,
   }),
 });

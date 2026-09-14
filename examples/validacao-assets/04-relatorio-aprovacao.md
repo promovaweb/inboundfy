@@ -2,8 +2,8 @@
 
 - **Asset:** `03-asset-corrigido.md`
 - **Brief:** `brief.md`
-- **Produtora:** `thothfy-especialista-linkedin`
-- **Validadora:** `thothfy-validador-linkedin`
+- **Produtora:** `inboundfy-especialista-linkedin`
+- **Validadora:** `inboundfy-validador-linkedin`
 - **Rodada:** 2
 - **Veredito:** aprovado
 - **Ocorrências remanescentes:** zero

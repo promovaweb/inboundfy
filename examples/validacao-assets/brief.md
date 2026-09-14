@@ -1,8 +1,8 @@
 # Brief fictício — Fila de contratos
 
 - **Canal:** LinkedIn.
-- **Produtora:** `thothfy-especialista-linkedin`.
-- **Validadora:** `thothfy-validador-linkedin`.
+- **Produtora:** `inboundfy-especialista-linkedin`.
+- **Validadora:** `inboundfy-validador-linkedin`.
 - **Objetivo:** explicar por que um contrato sem responsável permanece
   parado, mesmo quando o time usa uma ferramenta de gestão.
 - **Público:** responsáveis por operações administrativas em equipes

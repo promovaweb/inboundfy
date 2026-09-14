@@ -11,7 +11,7 @@ from pathlib import Path
 
 
 ARTIFACT_PATTERN = re.compile(
-    r"Thothfy-Guia-do-Usuario-v"
+    r"Inboundfy-Guia-do-Usuario-v"
     r"(?P<major>0|[1-9]\d*)\."
     r"(?P<minor>0|[1-9]\d*)\."
     r"(?P<patch>0|[1-9]\d*)\."

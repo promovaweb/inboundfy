@@ -1,7 +1,7 @@
 # ESTRUTURAS-PERSUASIVAS.md — Frameworks de Copy Persuasiva
 
 Este arquivo cataloga as estruturas clássicas de escrita persuasiva que as
-skills de canal do Thothfy podem usar para organizar um brief antes de
+skills de canal do Inboundfy podem usar para organizar um brief antes de
 escrever. Ele complementa `ESCRITA.md`: a estrutura decide a ordem dos
 blocos de ideia; `ESCRITA.md` decide como cada bloco é escrito (prosa
 humana, sem slop, sem fragmentação artificial). Uma estrutura nunca dispensa
@@ -9,14 +9,14 @@ humana, sem slop, sem fragmentação artificial). Uma estrutura nunca dispensa
 
 ## Quando usar estrutura persuasiva
 
-Nem toda peça do Thothfy é uma peça de venda. Artigo de blog informativo,
+Nem toda peça do Inboundfy é uma peça de venda. Artigo de blog informativo,
 changelog, shownotes de podcast e capítulo de ebook explicativo normalmente
 não precisam de AIDA, PAS, PASTOR ou FAB — eles seguem a lógica de
 `ESCRITA.md` diretamente (mostrar o objeto, explicar, exemplificar,
 interpretar, apontar limite). Use uma das estruturas abaixo quando o brief
 tiver objetivo comercial explícito: anúncio, e-mail de vendas, página de
 oferta, script de vídeo de conversão, post com CTA de compra, convite de
-webinar pago. `thothfy-planejamento-04-briefing` decide, ao criar o brief, se a peça exige
+webinar pago. `inboundfy-planejamento-04-briefing` decide, ao criar o brief, se a peça exige
 estrutura persuasiva e qual delas, com base em `context/publico.md` e
 `context/ofertas.md`.
 
@@ -94,14 +94,14 @@ na característica sozinha.
 
 ## Como as skills de canal aplicam este arquivo
 
-- `thothfy-planejamento-04-briefing` registra no brief, quando aplicável, qual estrutura
+- `inboundfy-planejamento-04-briefing` registra no brief, quando aplicável, qual estrutura
   (AIDA, PAS, PASTOR) a peça deve seguir e se FAB deve ser aplicado nos
   blocos de produto/serviço.
-- A skill de canal (`thothfy-especialista-email`, `thothfy-especialista-linkedin`,
-  `thothfy-especialista-webinar`, `thothfy-especialista-instagram`, entre outras com
+- A skill de canal (`inboundfy-especialista-email`, `inboundfy-especialista-linkedin`,
+  `inboundfy-especialista-webinar`, `inboundfy-especialista-instagram`, entre outras com
   objetivo comercial) lê a estrutura indicada no brief e organiza os blocos
   antes de escrever, aplicando `ESCRITA.md` dentro de cada bloco.
-- `thothfy-base-editor` e `thothfy-planejamento-06-auditoria` continuam avaliando por parágrafo
+- `inboundfy-base-editor` e `inboundfy-planejamento-06-auditoria` continuam avaliando por parágrafo
   como de costume — a estrutura persuasiva não isenta nenhum parágrafo do
   padrão de `ESCRITA.md` nem do teto de nota imposto por
   `context/proibicoes.md`.

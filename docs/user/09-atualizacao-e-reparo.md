@@ -1,8 +1,8 @@
 # Atualização e reparo
 
-Peça ao agente para executar `thothfy-setup` sempre que:
+Peça ao agente para executar `inboundfy-setup` sempre que:
 
-- a versão-fonte do Thothfy mudar;
+- a versão-fonte do Inboundfy mudar;
 - uma skill ou arquivo de apoio desaparecer;
 - o inventário de fontes ficar desatualizado;
 - um diretório de saída gerenciado estiver ausente;
@@ -14,19 +14,19 @@ Peça ao agente para executar `thothfy-setup` sempre que:
 2. Simule a atualização:
 
    ```bash
-   npx @promovaweb/thothfy@latest update --dry-run
+   npx @promovaweb/inboundfy@latest update --dry-run
    ```
 
 3. Aplique a atualização:
 
    ```bash
-   npx @promovaweb/thothfy@latest update --yes
+   npx @promovaweb/inboundfy@latest update --yes
    ```
 
-4. Peça à skill `thothfy-setup` para revisar as fontes e o contexto.
-5. Confirme que `.thothfy/context/` permaneceu intacto.
-6. Confira os conflitos atualizados em `.thothfy/FONTES-PROJETO.md`.
-7. Execute `npx @promovaweb/thothfy@latest doctor --strict`.
+4. Peça à skill `inboundfy-setup` para revisar as fontes e o contexto.
+5. Confirme que `.inboundfy/context/` permaneceu intacto.
+6. Confira os conflitos atualizados em `.inboundfy/fontes-projeto.md`.
+7. Execute `npx @promovaweb/inboundfy@latest doctor --strict`.
 8. Preencha qualquer template restaurado com a skill de contexto indicada.
 
 Metodologia, templates, documentação e skills gerenciadas acompanham a versão.
@@ -36,8 +36,8 @@ Dados vivos, instruções externas e fontes descobertas permanecem no lugar.
 
 | O setup pode atualizar | O setup preserva |
 | --- | --- |
-| skills gerenciadas | dados existentes em `.thothfy/context/` |
-| metodologia instalada | instruções fora do bloco do Thothfy |
+| skills gerenciadas | dados existentes em `.inboundfy/context/` |
+| metodologia instalada | instruções fora do bloco do Inboundfy |
 | documentação instalada | fontes Markdown descobertas |
 | templates read-only | customizações antes da migração |
 | inventário de fontes | assets originais em `brand/` |
@@ -46,7 +46,7 @@ Dados vivos, instruções externas e fontes descobertas permanecem no lugar.
 
 Uma atualização não deixa dois gatilhos para a mesma fase. Os antigos nomes
 estratégicos sem número são movidos para
-`.thothfy/migracoes/skills-legadas/<data>/`, e os nomes `00–03` permanecem no
+`.inboundfy/migracoes/skills-legadas/<data>/`, e os nomes `00–03` permanecem no
 diretório ativo.
 
 ## Como conferir o reparo
@@ -54,9 +54,9 @@ diretório ativo.
 Primeiro simule e depois aplique:
 
 ```bash
-npx @promovaweb/thothfy@latest repair --dry-run
-npx @promovaweb/thothfy@latest repair --yes
-npx @promovaweb/thothfy@latest doctor --strict
+npx @promovaweb/inboundfy@latest repair --dry-run
+npx @promovaweb/inboundfy@latest repair --yes
+npx @promovaweb/inboundfy@latest doctor --strict
 ```
 
 O reparo termina quando o diagnóstico não encontra erro ou aviso, o contexto
@@ -64,7 +64,7 @@ vivo foi preservado e o inventário reflete as fontes atuais.
 
 ## Uma versão para tudo
 
-O número mostrado por `thothfy --version` é o mesmo do framework instalado,
+O número mostrado por `inboundfy --version` é o mesmo do framework instalado,
 do pacote npm, da tag Git `vX.Y.Z`, da GitHub Release e da edição do ebook.
 Não existe versão independente para o CLI.
 
@@ -74,4 +74,4 @@ Não existe versão independente para o CLI.
 | --- | --- |
 | Natureza | normativo |
 | Escopo | atualização, reparo, preservação e migração |
-| Autoridade | modos de reconciliação de `thothfy-setup` |
+| Autoridade | modos de reconciliação de `inboundfy-setup` |

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Validador changelog"
+  short_description: "Valida o asset changelog antes da entrega"
+  default_prompt: "Use $inboundfy-validador-changelog para validar este asset e devolver correções à skill produtora quando necessário."

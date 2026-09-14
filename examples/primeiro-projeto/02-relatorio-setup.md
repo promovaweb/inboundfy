@@ -1,8 +1,8 @@
-# Reconciliação do Thothfy
+# Reconciliação do Inboundfy
 
 - **Modo:** instalação
 - **Versão:** exemplo fictício
-- **Criados:** `.thothfy/`, `brainstorms/` e `content/`
+- **Criados:** `.inboundfy/`, `acervo/`, `canais/` e `calendario/`
 - **Atualizados:** bloco delimitado em `AGENTS.md`
 - **Restaurados:** nenhum
 - **Preservados:** `PRODUCT.md`, `brand/logo.svg` e `brand/manual.md`
@@ -14,4 +14,4 @@
 
 O contexto mínimo foi preenchido com os dados fictícios de empresa, voz,
 serviço e canal. A documentação está disponível em
-`.thothfy/docs/user/README.md`.
+`.inboundfy/framework/docs/user/README.md`.

@@ -2,8 +2,8 @@
 
 - **Asset:** `01-candidato-reprovado.md`
 - **Brief:** `brief.md`
-- **Produtora:** `thothfy-especialista-linkedin`
-- **Validadora:** `thothfy-validador-linkedin`
+- **Produtora:** `inboundfy-especialista-linkedin`
+- **Validadora:** `inboundfy-validador-linkedin`
 - **Rodada:** 1
 - **Veredito:** reprovado
 
@@ -36,6 +36,6 @@
 
 ## Encaminhamento
 
-- **Destino:** `thothfy-especialista-linkedin`.
+- **Destino:** `inboundfy-especialista-linkedin`.
 - **Instrução:** corrigir todas as ocorrências, procurar o mesmo padrão no
-  asset inteiro e reenviar à `thothfy-validador-linkedin`.
+  asset inteiro e reenviar à `inboundfy-validador-linkedin`.

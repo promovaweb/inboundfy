@@ -17,7 +17,7 @@ explica ativação e resultado. O corpo contém:
 7. validação;
 8. idempotência.
 
-Somente `thothfy-setup` não faz o preflight das sentinelas, pois é responsável
+Somente `inboundfy-setup` não faz o preflight das sentinelas, pois é responsável
 por criá-las. Toda outra skill interrompe a execução quando o setup estiver
 ausente ou incompleto.
 

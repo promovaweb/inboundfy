@@ -59,10 +59,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y fontconfig imagemagick jq libxml2-utils pandoc pipx poppler-utils unzip
           pipx install weasyprint==69.0
-          mkdir -p "$RUNNER_TEMP/thothfy-bin"
-          printf '#!/bin/sh\nexec convert "$@"\n' > "$RUNNER_TEMP/thothfy-bin/magick"
-          chmod +x "$RUNNER_TEMP/thothfy-bin/magick"
-          echo "$RUNNER_TEMP/thothfy-bin" >> "$GITHUB_PATH"
+          mkdir -p "$RUNNER_TEMP/inboundfy-bin"
+          printf '#!/bin/sh\nexec convert "$@"\n' > "$RUNNER_TEMP/inboundfy-bin/magick"
+          chmod +x "$RUNNER_TEMP/inboundfy-bin/magick"
+          echo "$RUNNER_TEMP/inboundfy-bin" >> "$GITHUB_PATH"
 
       - name: Sincronizar framework e ebook
         if: steps.release.outputs.prs_created == 'true'
@@ -124,12 +124,12 @@ jobs:
           npm pack --pack-destination release-assets
 
       - name: Validar pacote em isolamento
-        run: npm run npm:validate-package -- "release-assets/promovaweb-thothfy-${{ needs.release-please.outputs.version }}.tgz"
+        run: npm run npm:validate-package -- "release-assets/promovaweb-inboundfy-${{ needs.release-please.outputs.version }}.tgz"
 
       - name: Reunir ebook e checksums
         run: |
-          cp "ebook/Thothfy-Guia-do-Usuario-v${{ needs.release-please.outputs.version }}.pdf" release-assets/
-          cp "ebook/Thothfy-Guia-do-Usuario-v${{ needs.release-please.outputs.version }}.epub" release-assets/
+          cp "ebook/Inboundfy-Guia-do-Usuario-v${{ needs.release-please.outputs.version }}.pdf" release-assets/
+          cp "ebook/Inboundfy-Guia-do-Usuario-v${{ needs.release-please.outputs.version }}.epub" release-assets/
           node scripts/generate-checksums.mjs release-assets
 
       - name: Atestar ativos publicados
@@ -142,4 +142,4 @@ jobs:
         run: gh release upload "${{ needs.release-please.outputs.tag_name }}" release-assets/* --clobber
 
       - name: Publicar pacote no npm
-        run: npm run publish:npm -- "release-assets/promovaweb-thothfy-${{ needs.release-please.outputs.version }}.tgz"
+        run: npm run publish:npm -- "release-assets/promovaweb-inboundfy-${{ needs.release-please.outputs.version }}.tgz"

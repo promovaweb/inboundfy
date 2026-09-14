@@ -1,0 +1,52 @@
+---
+name: inboundfy-validador-newsletter
+description: >
+  Valida newsletter produzida por inboundfy-especialista-newsletter contra
+  brief, fontes, todos os contextos, escrita, proibições, fluidez editorial,
+  menções institucionais e contrato do canal.
+---
+
+# Inboundfy Validador Newsletter
+
+Valida a edição e devolve correções à `inboundfy-especialista-newsletter`.
+
+## Verificação do setup
+
+Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md` no início. Na
+ausência de qualquer um, informe: "O setup do Inboundfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
+arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
+preflight, leia o catalogo e os Markdown relevantes para a tarefa.
+
+## Contexto exigido
+
+Todos os Markdown de `context/`, com atenção a `context/marca-voz.md`,
+`context/publico.md`, `context/produtos.md`, `context/servicos.md`,
+`context/ferramentas.md`, `context/proibicoes.md` e
+`context/estruturas-proibidas.md`.
+
+## Entrada esperada
+
+Newsletter candidata, brief e fontes.
+
+## Fluxo
+
+1. Leia `REFERENCIA.md`, `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md` e os
+   contratos da produtora.
+2. Acione `inboundfy-base-validador`.
+3. Confira prosa contínua, progressão editorial, menções, FAB, CTA e
+   frontmatter.
+4. Reprovando, envie o relatório à `inboundfy-especialista-newsletter` e
+   revalide a edição inteira.
+
+## Saída
+
+Relatório no caminho definido por `inboundfy-base-validador`.
+
+## Validação
+
+Aprove apenas sem fragmentação artificial, afirmação sem fonte ou achado.
+
+## Idempotência
+
+Atualize o relatório por rodada; não altere a edição.

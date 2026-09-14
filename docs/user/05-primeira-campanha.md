@@ -5,13 +5,13 @@ público, KPI, canais, fases e calendário.
 
 ## Passo a passo
 
-1. `thothfy-estrategia-00-briefing-cliente` registra objetivo de negócio,
+1. `inboundfy-estrategia-00-briefing-cliente` registra objetivo de negócio,
    público, oferta, orçamento, prazo, restrições e indicadores.
-2. `thothfy-estrategia-01-pesquisa-mercado` reúne evidências de mercado,
+2. `inboundfy-estrategia-01-pesquisa-mercado` reúne evidências de mercado,
    categoria, concorrência e comportamento.
-3. `thothfy-estrategia-02-campanha` transforma briefing e pesquisa em tese,
+3. `inboundfy-estrategia-02-campanha` transforma briefing e pesquisa em tese,
    fases, mensagens, mix de canais e volume de peças.
-4. `thothfy-estrategia-03-calendario` distribui campanha e cadência orgânica
+4. `inboundfy-estrategia-03-calendario` distribui campanha e cadência orgânica
    no tempo, com dependências e responsáveis.
 5. Cada item aprovado do calendário entra no planejamento editorial ou numa
    especialista, conforme sua complexidade.
@@ -54,4 +54,4 @@ especialista do canal.
 | --- | --- |
 | Natureza | normativo |
 | Escopo | planejamento de campanha e calendário |
-| Autoridade | `ESTRATEGIA.md` e skills `thothfy-estrategia-*` |
+| Autoridade | `ESTRATEGIA.md` e skills `inboundfy-estrategia-*` |

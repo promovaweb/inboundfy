@@ -1,8 +1,8 @@
 # Validação de asset — Email/convite-plano-equipe
 
 - **Asset:** `01-candidato-reprovado.md`
-- **Produtora:** `thothfy-especialista-email`
-- **Validadora:** `thothfy-validador-email`
+- **Produtora:** `inboundfy-especialista-email`
+- **Validadora:** `inboundfy-validador-email`
 - **Rodada:** 1
 - **Veredito:** reprovado
 
@@ -15,6 +15,6 @@
 
 ## Encaminhamento
 
-- **Destino:** `thothfy-especialista-email`.
+- **Destino:** `inboundfy-especialista-email`.
 - **Instrução:** corrigir o preço, remover o CTA concorrente e reenviar o
   email inteiro à validadora.

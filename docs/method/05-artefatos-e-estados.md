@@ -6,42 +6,30 @@ Uma ideia abre `brainstorms/<data>-<slug>/brainstorm.md`. O arquivo preserva
 a entrada original e acumula entrevista, pesquisa, tese, oportunidades,
 restrições e validação.
 
-## Pacote editorial
+## Acervo e peças
 
-O planejamento cria a estrutura:
+O registro principal cria a estrutura:
 
 ```text
-content/<pacote>/
+acervo/<id>-<data>-<slug>/
 ├── README.md
-├── 00-entrada/
-│   └── material-original.md
-├── 01-saneamento/
-│   ├── base-limpa.md
-│   └── relatorio-saneamento.md
-├── 02-pesquisa-e-ativos/
-│   └── ativos.md
-├── 03-planejamento/
-│   └── plano-de-oportunidades.md
-├── 04-briefs/
-│   └── <canal>-<slug>.md
-├── 06-auditoria/
-│   ├── assets/
-│   │   └── <canal>-<item>.md
-│   └── auditoria-final.md
-└── 97-ativos-finais/
-    └── <canal>/
-        └── <item>/
-            ├── README.md
-            └── <arquivos visuais>
+├── bruto.md
+├── processado.md
+├── faq.md
+├── base-editorial.md
+├── pesquisa.md
+└── estrategia.md
+
+canais/<canal>/<id>-<data>-<slug>/
+└── README.md
 ```
 
-Não existe diretório `05-producao/`: versões candidatas e o ciclo de
-validação pertencem ao diretório próprio do item final e aos relatórios de
-auditoria. O número `05` identifica a fase de roteamento, não um estado
-obrigatório em disco.
+O bruto permanece preservado. O processado, a FAQ, a base editorial, a
+pesquisa e as possibilidades alimentam a produção. Cada peça final fica em
+uma pasta de canal e relaciona acervo, persona, estado e calendário.
 
-Todo Markdown final declara o brief de origem no frontmatter. Todo item em
-`97-ativos-finais/` possui relatório aprovado em `06-auditoria/assets/`.
+Todo Markdown final declara canal, persona, acervo, estado e fontes no
+frontmatter. O calendário mensal aponta para o README da peça.
 
 ## Artefatos estratégicos
 

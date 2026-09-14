@@ -43,7 +43,7 @@ tudo em inglês" — é reconhecer a categoria certa para cada termo.
 
 ## Exemplo ilustrativo (termos da Promovaweb, empresa de origem do método)
 
-Estes termos não pertencem ao usuário do Thothfy — servem apenas para
+Estes termos não pertencem ao usuário do Inboundfy — servem apenas para
 mostrar como um dicionário de termos fica preenchido na prática. Substitua
 por termos reais do seu próprio negócio em `context/glossario.md`.
 
@@ -92,8 +92,8 @@ a pendência com o usuário antes da fase de produção (ver `METODOLOGIA.md`).
 
 - `context/glossario.md` é o registro vivo e específico do usuário — este
   arquivo é o guia de raciocínio para populá-lo corretamente.
-- `thothfy-contexto-empresa` mantém `context/glossario.md`.
-- `thothfy-planejamento-01-saneamento` aplica as correções canônicas de
+- `inboundfy-contexto-empresa` mantém `context/glossario.md`.
+- `inboundfy-planejamento-01-saneamento` aplica as correções canônicas de
   transcrição durante a limpeza do material bruto.
 - `context/estruturas-proibidas.md` cobre o problema oposto: não o termo
   certo mal grafado, mas o clichê ou fórmula vazia que não deveria existir

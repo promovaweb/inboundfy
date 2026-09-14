@@ -7,7 +7,7 @@ Antes de instalar, confirme:
 - o agente consegue carregar skills no formato `SKILL.md`;
 - o projeto possui uma raiz bem definida;
 - existe um diretório de skills ativo ou o usuário pode indicar um;
-- o projeto permite criar `.thothfy/`, `brainstorms/` e `content/`;
+- o projeto permite criar `.inboundfy/`, `acervo/`, `canais/` e `calendario/`;
 - as instruções existentes em `AGENTS.md` ou `CLAUDE.md` podem ser
   preservadas e complementadas por um bloco delimitado.
 
@@ -18,9 +18,9 @@ apenas quando uma skill específica os usar.
 ## Antes de executar o setup
 
 1. Abra o agente na raiz do projeto consumidor.
-2. Confira o CLI com `npx @promovaweb/thothfy@latest --version`.
+2. Confira o CLI com `npx @promovaweb/inboundfy@latest --version`.
 3. Preserve mudanças locais do projeto.
-4. Peça ao agente para usar `thothfy-setup`; ela conduzirá o CLI.
+4. Peça ao agente para usar `inboundfy-setup`; ela conduzirá o CLI.
 
 Se `.claude/skills/` e `.codex/skills/` existirem ao mesmo tempo, o setup
 deve perguntar qual diretório está ativo. Ele não instala em ambos por
@@ -53,4 +53,4 @@ produção ficará suspensa até o contexto mínimo ser confirmado.
 | --- | --- |
 | Natureza | referência |
 | Escopo | condições necessárias antes da instalação |
-| Autoridade | contrato executável de `thothfy-setup` |
+| Autoridade | contrato executável de `inboundfy-setup` |

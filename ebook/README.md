@@ -4,7 +4,7 @@
 <p align="center">
   <picture>
     <source srcset="../brand/logo/icon.svg" type="image/svg+xml">
-    <img src="../brand/logo/icon.png" alt="Logo do Thothfy" width="128">
+    <img src="../brand/logo/icon.png" alt="Logo do Inboundfy" width="128">
   </picture>
 </p>
 <!-- markdownlint-enable MD033 -->
@@ -23,13 +23,13 @@ do framework, do pacote npm, da tag Git e da GitHub Release:
 
 Baixe a edição `v1.0.0`:
 
-- [PDF do guia do usuário](Thothfy-Guia-do-Usuario-v1.0.0.pdf);
-- [EPUB do guia do usuário](Thothfy-Guia-do-Usuario-v1.0.0.epub).
+- [PDF do guia do usuário](Inboundfy-Guia-do-Usuario-v1.1.0.pdf);
+- [EPUB do guia do usuário](Inboundfy-Guia-do-Usuario-v1.1.0.epub).
 
 Para links permanentes, use os aliases da edição mais recente:
 
-- [PDF vigente](ebook-thothfy.pdf): `ebook-thothfy.pdf`;
-- [EPUB vigente](ebook-thothfy.epub): `ebook-thothfy.epub`.
+- [PDF vigente](ebook-inboundfy.pdf): `ebook-inboundfy.pdf`;
+- [EPUB vigente](ebook-inboundfy.epub): `ebook-inboundfy.epub`.
 
 Cada build mantém somente as cinco edições SemVer mais recentes.
 [`build.json`](build.json) registra a versão, o digest das fontes, os
@@ -37,7 +37,7 @@ metadados documentais e os hashes dos dois formatos.
 
 ## Gerar
 
-Na raiz do Thothfy:
+Na raiz do Inboundfy:
 
 ```bash
 npm run ebook
@@ -58,6 +58,6 @@ A verificação compara as fontes com o manifesto, recalcula hashes, valida o
 EPUB, confere a navegação interna e confirma que o PDF possui páginas
 legíveis.
 
-Toda mudança publicada em `docs/user/` exige uma nova versão do Thothfy, novo
+Toda mudança publicada em `docs/user/` exige uma nova versão do Inboundfy, novo
 build, verificação automatizada e inspeção visual do PDF. O número nunca é
 alterado apenas no ebook.

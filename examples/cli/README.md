@@ -7,20 +7,20 @@ sem alterar um projeto real.
 ## Fluxo exercitado
 
 ```bash
-npx @promovaweb/thothfy@latest install --dry-run
-npx @promovaweb/thothfy@latest install \
+npx @promovaweb/inboundfy@latest install --dry-run
+npx @promovaweb/inboundfy@latest install \
   --agent codex \
   --instruction-file AGENTS.md \
   --yes
-npx @promovaweb/thothfy@latest doctor
-npx @promovaweb/thothfy@latest context scan
-npx @promovaweb/thothfy@latest repair --yes
+npx @promovaweb/inboundfy@latest doctor
+npx @promovaweb/inboundfy@latest context scan
+npx @promovaweb/inboundfy@latest repair --yes
 ```
 
 Os testes confirmam:
 
 - a simulação não escreve arquivos;
-- a instalação cria manifestos, metodologia, documentação, ebook e 71 skills;
+- a instalação cria manifestos, método, documentação, ebook e 135 skills;
 - Markdown em maiúsculas e Markdown sob `brand/` entram na descoberta;
 - o contexto do usuário não é sobrescrito;
 - um arquivo gerenciado alterado é preservado antes do reparo;

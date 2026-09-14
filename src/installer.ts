@@ -1,5 +1,5 @@
 /**
- * Planeja e aplica instalação, atualização, reparo e skills do Thothfy.
+ * Planeja e aplica instalação, atualização, reparo e skills do Inboundfy.
  */
 
 import { readFile, mkdir, rename } from "node:fs/promises";
@@ -7,6 +7,7 @@ import { dirname, join, resolve } from "node:path";
 import {
   collectContextTemplates,
   collectFrameworkPayload,
+  collectProjectTemplates,
   collectSkillsPayload,
   readPackageVersion,
   sha256,
@@ -31,6 +32,10 @@ import {
 import { scanContextSources } from "./context-scan.js";
 import { CliError } from "./errors.js";
 import { validateMinimumContext } from "./context-readiness.js";
+import {
+  ensureChannelDirectories,
+  ensureProjectStructure,
+} from "./project-structure.js";
 import {
   installationManifestSchema,
   installationStateSchema,
@@ -63,8 +68,8 @@ export async function executeInstallation(
   options: InstallOptions,
 ): Promise<OperationResult> {
   const version = await readPackageVersion();
-  const statePath = join(options.projectRoot, ".thothfy", "install.json");
-  const manifestPath = join(options.projectRoot, ".thothfy", "manifest.json");
+  const statePath = join(options.projectRoot, ".inboundfy", "install.json");
+  const manifestPath = join(options.projectRoot, ".inboundfy", "manifest.json");
   const previousState = await loadStateIfPresent(statePath);
   const previousManifest = await loadManifestIfPresent(manifestPath);
   validateMode(options, previousState, version);
@@ -96,8 +101,8 @@ export async function executeInstallation(
 
   const now = new Date().toISOString();
   const state: InstallationState = {
-    schemaVersion: 1,
-    packageName: "@promovaweb/thothfy",
+    schemaVersion: 2,
+    packageName: "@promovaweb/inboundfy",
     frameworkVersion: version,
     installedAt: previousState?.installedAt ?? now,
     updatedAt: now,
@@ -107,8 +112,9 @@ export async function executeInstallation(
     instructionFile,
     setupStatus: previousState?.setupStatus ?? "pending-context",
     paths: previousState?.paths ?? {
-      brainstorms: "brainstorms",
-      content: "content",
+      acervo: "acervo",
+      canais: "canais",
+      calendario: "calendario",
     },
   };
 
@@ -142,8 +148,8 @@ export async function executeInstallation(
       );
     }
     const manifest: InstallationManifest = {
-      schemaVersion: 1,
-      packageName: "@promovaweb/thothfy",
+      schemaVersion: 2,
+      packageName: "@promovaweb/inboundfy",
       frameworkVersion: version,
       generatedAt: now,
       managedFiles:
@@ -165,7 +171,7 @@ export async function executeInstallation(
     }
     actions.push({
       action: options.dryRun ? "preserve" : previousState ? "update" : "create",
-      path: ".thothfy/install.json",
+      path: ".inboundfy/install.json",
       detail: options.dryRun ? "seria atualizado" : "estado da instalação",
     });
     actions.push({
@@ -174,7 +180,7 @@ export async function executeInstallation(
         : previousManifest
           ? "update"
           : "create",
-      path: ".thothfy/manifest.json",
+      path: ".inboundfy/manifest.json",
       detail: options.dryRun ? "seria atualizado" : "hashes gerenciados",
     });
     return {
@@ -241,7 +247,15 @@ async function ensureUserSpace(
   state: InstallationState,
   actions: PlannedAction[],
 ): Promise<void> {
-  for (const directory of [state.paths.brainstorms, state.paths.content]) {
+  await ensureProjectStructure(
+    options.projectRoot,
+    options.dryRun === undefined ? {} : { dryRun: options.dryRun },
+  );
+  for (const directory of [
+    state.paths.acervo,
+    state.paths.canais,
+    state.paths.calendario,
+  ]) {
     const target = resolvePortable(options.projectRoot, directory);
     if (await exists(target)) {
       actions.push({ action: "unchanged", path: directory });
@@ -253,6 +267,22 @@ async function ensureUserSpace(
       }
     }
   }
+  for (const template of await collectProjectTemplates()) {
+    const target = resolvePortable(options.projectRoot, template.targetRelative);
+    if (await exists(target)) {
+      actions.push({
+        action: "preserve",
+        path: template.targetRelative,
+        detail: "arquivo do projeto preservado",
+      });
+    } else {
+      actions.push({ action: "create", path: template.targetRelative });
+      if (!options.dryRun) {
+        await writeAtomic(options.projectRoot, target, template.content);
+      }
+    }
+  }
+  await ensureChannelDirectories(options.projectRoot, []);
   for (const template of await collectContextTemplates()) {
     const target = resolvePortable(options.projectRoot, template.targetRelative);
     if (await exists(target)) {
@@ -270,17 +300,18 @@ async function ensureUserSpace(
   }
 
   const candidates = await scanContextSources(options.projectRoot, [
-    state.paths.brainstorms,
-    state.paths.content,
+    state.paths.acervo,
+    state.paths.canais,
+    state.paths.calendario,
     state.skillsDirectory,
   ]);
   const candidatesPath = resolvePortable(
     options.projectRoot,
-    ".thothfy/fontes-candidatas.json",
+    ".inboundfy/fontes-candidatas.json",
   );
   actions.push({
     action: (await exists(candidatesPath)) ? "update" : "create",
-    path: ".thothfy/fontes-candidatas.json",
+    path: ".inboundfy/fontes-candidatas.json",
     detail: `${candidates.length} fonte(s) encontrada(s)`,
   });
   if (!options.dryRun) {
@@ -301,16 +332,16 @@ async function ensureUserSpace(
 
   const sourcesPath = resolvePortable(
     options.projectRoot,
-    ".thothfy/FONTES-PROJETO.md",
+    ".inboundfy/fontes-projeto.md",
   );
   if (await exists(sourcesPath)) {
     actions.push({
       action: "preserve",
-      path: ".thothfy/FONTES-PROJETO.md",
+      path: ".inboundfy/fontes-projeto.md",
       detail: "classificação mantida",
     });
   } else {
-    actions.push({ action: "create", path: ".thothfy/FONTES-PROJETO.md" });
+    actions.push({ action: "create", path: ".inboundfy/fontes-projeto.md" });
     if (!options.dryRun) {
       await writeAtomic(
         options.projectRoot,
@@ -337,7 +368,7 @@ async function reconcileInstructions(
   actions.push({
     action: current ? "update" : "create",
     path: state.instructionFile,
-    detail: "somente o bloco delimitado do Thothfy",
+    detail: "somente o bloco delimitado do Inboundfy",
   });
   if (!options.dryRun) {
     await writeAtomic(options.projectRoot, path, desired);
@@ -395,20 +426,20 @@ async function backupFile(
 
 function backupRelative(group: string, path: string): string {
   const stamp = new Date().toISOString().replace(/[:.]/g, "-");
-  return `.thothfy/migracoes/${group}/${stamp}/${path}`;
+  return `.inboundfy/migracoes/${group}/${stamp}/${path}`;
 }
 
 function virtualVersionFile(version: string): PayloadFile {
-  const content = Buffer.from(`# Versão do Thothfy instalada
+  const content = Buffer.from(`# Versão do Inboundfy instalada
 
 - Versão: ${version}
-- Pacote: @promovaweb/thothfy@${version}
+- Pacote: @promovaweb/inboundfy@${version}
 - Gerenciado pelo CLI: sim
 `);
   return {
     sourcePath: "generated",
     sourceRelative: "generated:VERSAO.md",
-    targetRelative: ".thothfy/VERSAO.md",
+  targetRelative: ".inboundfy/framework/VERSAO.md",
     content,
     sha256: sha256(content),
     category: "framework",
@@ -430,7 +461,7 @@ function renderProjectSources(
   return `# Fontes do projeto
 
 O CLI encontrou os arquivos abaixo sem alterar as fontes. A skill
-\`thothfy-setup\` deve classificar finalidade, autoridade, assuntos e
+\`inboundfy-setup\` deve classificar finalidade, autoridade, assuntos e
 divergências antes que outra skill use uma fonte na produção.
 
 | Caminho | Título | Classificação |
@@ -438,7 +469,7 @@ divergências antes que outra skill use uma fonte na produção.
 ${rows}
 
 O inventário técnico completo, com headings e SHA-256, está em
-\`.thothfy/fontes-candidatas.json\`.
+\`.inboundfy/fontes-candidatas.json\`.
 `;
 }
 
@@ -471,12 +502,12 @@ function validateMode(
 ): void {
   if (options.mode === "install" && state && !options.force) {
     throw new CliError(
-      "O Thothfy já está instalado. Use update, repair ou install --force.",
+      "O Inboundfy já está instalado. Use update, repair ou install --force.",
     );
   }
   if (options.mode !== "install" && !state) {
     throw new CliError(
-      "A instalação não foi encontrada. Execute thothfy install primeiro.",
+      "A instalação não foi encontrada. Execute inboundfy install primeiro.",
     );
   }
   if (
@@ -507,7 +538,7 @@ function mergeManagedFiles(
 
 /** Marca o preenchimento semântico concluído depois da entrevista da skill. */
 export async function markContextReady(projectRoot: string): Promise<void> {
-  const path = join(projectRoot, ".thothfy", "install.json");
+  const path = join(projectRoot, ".inboundfy", "install.json");
   const state = installationStateSchema.parse(
     await readJson<InstallationState>(path),
   ) as InstallationState;
@@ -526,18 +557,19 @@ export async function markContextReady(projectRoot: string): Promise<void> {
 export async function refreshContextSources(
   projectRoot: string,
 ): Promise<number> {
-  const path = join(projectRoot, ".thothfy", "install.json");
+  const path = join(projectRoot, ".inboundfy", "install.json");
   const state = installationStateSchema.parse(
     await readJson<InstallationState>(path),
   ) as InstallationState;
   const candidates = await scanContextSources(projectRoot, [
-    state.paths.brainstorms,
-    state.paths.content,
+    state.paths.acervo,
+    state.paths.canais,
+    state.paths.calendario,
     state.skillsDirectory,
   ]);
   await writeAtomic(
     projectRoot,
-    join(projectRoot, ".thothfy", "fontes-candidatas.json"),
+    join(projectRoot, ".inboundfy", "fontes-candidatas.json"),
     `${JSON.stringify(
       {
         schemaVersion: 1,

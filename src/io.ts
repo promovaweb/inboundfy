@@ -101,7 +101,7 @@ export async function writeAtomic(
   await mkdir(dirname(target), { recursive: true });
   const temp = resolve(
     dirname(target),
-    `.${randomUUID()}-${process.pid}.thothfy.tmp`,
+    `.${randomUUID()}-${process.pid}.inboundfy.tmp`,
   );
   assertInside(root, temp);
   try {
@@ -126,7 +126,7 @@ export async function readJson<T>(path: string): Promise<T> {
 
 /** Cria uma trava exclusiva e devolve a função que a remove. */
 export async function acquireLock(root: string): Promise<() => Promise<void>> {
-  const directory = resolve(root, ".thothfy");
+  const directory = resolve(root, ".inboundfy");
   await assertNoSymlink(root, directory);
   await mkdir(directory, { recursive: true });
   const path = resolve(directory, ".cli.lock");
@@ -138,7 +138,7 @@ export async function acquireLock(root: string): Promise<() => Promise<void>> {
     );
   } catch (error) {
     throw new CliError(
-      `Outra operação do Thothfy está ativa ou deixou uma trava em ${path}.`,
+      `Outra operação do Inboundfy está ativa ou deixou uma trava em ${path}.`,
       1,
       { cause: error },
     );

@@ -15,6 +15,11 @@ evoluído.
 8. [Validação e testes](07-validacao-e-testes.md)
 9. [Evolução e checklist de mudança](08-evolucao-do-framework.md)
 
+O contrato de separação entre método e dados do projeto está descrito no
+[README principal](../../README.md#separação-entre-framework-e-projeto). As
+capacidades de SEO, GEO, estratégia, copy, métricas e anti-slop usam esse
+contrato e os arquivos canônicos de `.inboundfy/`.
+
 As especificações normativas permanecem em
 [METODOLOGIA.md](../../METODOLOGIA.md),
 [ESTRATEGIA.md](../../ESTRATEGIA.md),

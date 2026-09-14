@@ -1,5 +1,5 @@
 <!--
-Preenchido por thothfy-contexto-produtos. Uma entrada por serviço prestado
+Preenchido por inboundfy-contexto-produtos. Uma entrada por serviço prestado
 (consultoria, implementação, suporte, treinamento).
 -->
 

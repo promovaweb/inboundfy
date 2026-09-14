@@ -1,5 +1,5 @@
 /**
- * Detecta o agente local e mantém somente o bloco de instruções do Thothfy.
+ * Detecta o agente local e mantém somente o bloco de instruções do Inboundfy.
  */
 
 import { select } from "@inquirer/prompts";
@@ -54,7 +54,7 @@ export async function resolveAgent(options: {
     return { agent: "codex", skillsDirectory: AGENT_DIRECTORIES.codex };
   }
   const agent = await select<AgentKind>({
-    message: "Qual agente vai usar as skills do Thothfy?",
+    message: "Qual agente vai usar as skills do Inboundfy?",
     choices: [
       { name: "Codex (.codex/skills)", value: "codex" },
       { name: "Claude Code (.claude/skills)", value: "claude" },
@@ -80,7 +80,7 @@ export async function resolveInstructionFile(options: {
   if (agents && claude) return "AGENTS.md";
   if (options.yes || !process.stdin.isTTY) return "AGENTS.md";
   return select({
-    message: "Onde o Thothfy deve registrar suas instruções?",
+    message: "Onde o Inboundfy deve registrar suas instruções?",
     choices: [
       { name: "AGENTS.md", value: "AGENTS.md" as const },
       { name: "CLAUDE.md", value: "CLAUDE.md" as const },
@@ -89,21 +89,24 @@ export async function resolveInstructionFile(options: {
   });
 }
 
-export const INSTRUCTION_START = "<!-- thothfy:inicio -->";
-export const INSTRUCTION_END = "<!-- thothfy:fim -->";
+export const INSTRUCTION_START = "<!-- inboundfy:inicio -->";
+export const INSTRUCTION_END = "<!-- inboundfy:fim -->";
 
 /** Gera o bloco cujo conteúdo pode ser reconciliado sem tocar no restante. */
 export function instructionBlock(): string {
   return `${INSTRUCTION_START}
-## Thothfy
+## Inboundfy
 
-Este projeto usa o Thothfy para produzir e validar materiais de marketing.
-Consulte \`.thothfy/CONTEXTO.md\`, \`.thothfy/FONTES-PROJETO.md\`,
-\`.thothfy/METODOLOGIA.md\` e \`.thothfy/SKILLS.md\` antes de produzir.
-O guia inicial está em \`.thothfy/docs/user/README.md\`.
+Este projeto usa o Inboundfy para produzir e validar materiais de inbound
+marketing baseado em IA. Consulte \`.inboundfy/inbound.md\`,
+\`.inboundfy/estrategia.md\`, \`.inboundfy/voz.md\`,
+\`.inboundfy/personas.md\` e \`.inboundfy/proibicoes.md\` antes de produzir.
+As regras do framework ficam em \`.inboundfy/framework/\`; os dados do projeto
+ficam em \`.inboundfy/\`, \`.inboundfy/context/\`, \`acervo/\`, \`canais/\` e
+\`calendario/\`.
 
-Execute \`npx @promovaweb/thothfy@latest doctor\` quando a instalação parecer
-incompleta. A skill \`thothfy-setup\` conduz o preenchimento das informações
+Execute \`npx @promovaweb/inboundfy@latest doctor\` quando a instalação parecer
+incompleta. A skill \`inboundfy-setup\` conduz o preenchimento das informações
 do negócio depois que o CLI instala ou repara os arquivos.
 ${INSTRUCTION_END}`;
 }

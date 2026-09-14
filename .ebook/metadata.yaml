@@ -1,18 +1,18 @@
 ---
-title: "Thothfy — Guia completo do usuário"
+title: "Inboundfy — Guia completo do usuário"
 subtitle: "Da primeira ideia ao conteúdo aprovado"
 author:
-  - "Thothfy"
+  - "Inboundfy"
 publisher: "Promovaweb"
 lang: "pt-BR"
-rights: "Documentação oficial do projeto Thothfy"
-description: "Edição portátil da documentação oficial para usuários do Thothfy."
+rights: "Documentação oficial do projeto Inboundfy"
+description: "Edição portátil da documentação oficial para usuários do Inboundfy."
 subject:
   - "copy"
   - "marketing"
   - "SEO"
   - "agentes de IA"
-identifier: "https://github.com/promovaweb/thothfy"
+identifier: "https://github.com/promovaweb/inboundfy"
 tagline: "Contexto. Método. Validação."
 # Identidade canônica: brand/logo/icon.svg
 ---

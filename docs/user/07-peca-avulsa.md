@@ -5,8 +5,8 @@ claro: canal, objetivo, público, mensagem, CTA, formato e restrições.
 
 ## Passo a passo
 
-1. Escolha `thothfy-especialista-<canal>` ou
-   `thothfy-especialista-<canal>-imagem`.
+1. Escolha `inboundfy-especialista-<canal>` ou
+   `inboundfy-especialista-<canal>-imagem`.
 2. A especialista verifica setup, contexto, fontes, marca e brief.
 3. Se faltar decisão estratégica, retorne ao briefing; não a invente dentro
    da produção.
@@ -45,13 +45,13 @@ esses campos por inferência.
 
 ## Exemplo de pedido
 
-> Use `thothfy-especialista-email` para produzir um email de convite a partir
+> Use `inboundfy-especialista-email` para produzir um email de convite a partir
 > deste brief. Salve a primeira versão, envie à validadora pareada e me mostre
 > apenas a versão aprovada e o relatório final.
 
 ## Quando usar o pacote completo
 
-Use `thothfy-iniciar` quando ainda for necessário pesquisar, comparar canais,
+Use `inboundfy-iniciar` quando ainda for necessário pesquisar, comparar canais,
 extrair várias oportunidades ou criar mais de uma peça. O caminho avulso
 economiza orquestração, mas não substitui decisões ausentes.
 

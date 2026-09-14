@@ -1,27 +1,30 @@
 <!--
-Preenchido por thothfy-contexto-canais. Define onde o pipeline salva
-pacotes e como cada canal se comporta neste projeto específico.
+Preenchido por inboundfy-contexto-canais. Complementa a seleção principal de
+`.inboundfy/estrategia.md` com limites técnicos e destinos de cada canal.
 -->
 
 # Canais
 
-## Diretório de trabalho do pipeline
+O arquivo principal de canais do projeto é `.inboundfy/estrategia.md`. Este
+template guarda detalhes técnicos adicionais por canal.
 
-- **Caminho onde os pacotes são criados:** {caminho — padrão recomendado:
-  `content/` na raiz do projeto; ver INSTALACAO.md}
-- **Caminho onde os brainstorms são criados:** {caminho — padrão recomendado:
-  `brainstorms/` na raiz do projeto; ver BRAINSTORM.md}
+## Diretórios de trabalho
+
+- **Caminho do acervo:** `acervo/`
+- **Caminho das peças:** `canais/`
+- **Caminho do calendário:** `calendario/`
 
 ## {Nome do canal, ex.: Blog}
 
 - **Ativo?** {sim/não}
-- **Skill de redação:** {thothfy-especialista-blog ou equivalente}
-- **Skill de imagem, se houver:** {thothfy-especialista-blog-imagem ou equivalente}
+- **Formato:** {artigo, e-mail, post, carrossel, newsletter ou vídeo}
+- **Skill de redação:** {nome exato}
+- **Skill de imagem, se houver:** {nome exato ou não se aplica}
 - **Cadência de publicação:** {frequência}
 - **Formato e limites técnicos:** {tamanho de título, contagem de caracteres,
   proporção de imagem}
-- **Onde o artefato final é publicado (fora do Thothfy):** {CMS, planilha,
+- **Onde o artefato final é publicado (fora do Inboundfy):** {CMS, planilha,
   pasta de handoff}
 
-<!-- Repita o bloco acima para cada canal ativo: email, LinkedIn, Instagram,
-YouTube, ebook, infográfico, webinar, changelog, podcast, etc. -->
+<!-- Repita o bloco acima para Blog, Email, LinkedIn, Instagram, Substack e
+YouTube. -->

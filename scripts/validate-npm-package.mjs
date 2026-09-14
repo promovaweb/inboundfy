@@ -24,7 +24,7 @@ const tarball = resolve(
 );
 await access(tarball);
 
-const sandbox = await mkdtemp(join(tmpdir(), "thothfy-npm-package-"));
+const sandbox = await mkdtemp(join(tmpdir(), "inboundfy-npm-package-"));
 try {
   execFileSync(commandNpm(), ["init", "-y"], {
     cwd: sandbox,
@@ -38,7 +38,7 @@ try {
     sandbox,
     "node_modules",
     ".bin",
-    process.platform === "win32" ? "thothfy.cmd" : "thothfy",
+    process.platform === "win32" ? "inboundfy.cmd" : "inboundfy",
   );
   const version = execFileSync(bin, ["--version"], {
     cwd: sandbox,
@@ -78,9 +78,11 @@ try {
     cwd: consumer,
     stdio: "ignore",
   });
-  await access(join(consumer, ".thothfy", "install.json"));
-  await access(join(consumer, ".thothfy", "brand", "logo", "icon.svg"));
-  await access(join(consumer, ".codex", "skills", "thothfy-setup", "SKILL.md"));
+  await access(join(consumer, ".inboundfy", "install.json"));
+  await access(
+    join(consumer, ".inboundfy", "framework", "brand", "logo", "icon.svg"),
+  );
+  await access(join(consumer, ".codex", "skills", "inboundfy-setup", "SKILL.md"));
   process.stdout.write(
     `${basename(tarball)} instalou e diagnosticou um projeto isolado.\n`,
   );

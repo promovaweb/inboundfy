@@ -1,9 +1,9 @@
 # Contexto, fontes e marca
 
-O Thothfy combina três camadas sem copiá-las para um único arquivo:
+O Inboundfy combina três camadas sem copiá-las para um único arquivo:
 
-1. `.thothfy/context/`: dados estruturados do negócio.
-2. `.thothfy/FONTES-PROJETO.md`: inventário das fontes que já existiam.
+1. `.inboundfy/context/`: dados estruturados do negócio.
+2. `.inboundfy/fontes-projeto.md`: inventário das fontes que já existiam.
 3. `brand/`: manual, tokens, logos, tipografia e aplicações de marca, quando
    a pasta existir.
 
@@ -48,9 +48,9 @@ Detalhes de precedência estão em [CONTEXTO.md](../../CONTEXTO.md).
 
 ## Quando um dado estiver faltando
 
-Use a skill `thothfy-contexto-*` ligada ao arquivo. Ela pergunta, registra a
+Use a skill `inboundfy-contexto-*` ligada ao arquivo. Ela pergunta, registra a
 origem e atualiza o conteúdo sem mudar o caminho. Quando o próprio arquivo
-estiver ausente, execute primeiro `thothfy-setup` para restaurar o template.
+estiver ausente, execute primeiro `inboundfy-setup` para restaurar o template.
 
 ## Como conferir a marca
 

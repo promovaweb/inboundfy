@@ -1,5 +1,5 @@
 <!--
-Preenchido por thothfy-contexto-marca. Define tom e voz; ESCRITA.md define o
+Preenchido por inboundfy-contexto-marca. Define tom e voz; ESCRITA.md define o
 padrão de qualidade humana que vale independentemente da voz escolhida aqui.
 -->
 

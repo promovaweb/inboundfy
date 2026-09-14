@@ -1,0 +1,4 @@
+interface:
+  display_name: "Brainstorm 01 Entrevista"
+  short_description: "Investiga lacunas relevantes da ideia"
+  default_prompt: "Use $inboundfy-brainstorm-01-entrevista para investigar as lacunas desta ideia em um único bloco."

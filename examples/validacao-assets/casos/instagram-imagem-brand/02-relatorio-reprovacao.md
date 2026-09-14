@@ -1,8 +1,8 @@
 # Validação de asset — Instagram/contrato-responsavel
 
 - **Asset:** `01-candidato-reprovado.svg`
-- **Produtora:** `thothfy-especialista-instagram-imagem`
-- **Validadora:** `thothfy-validador-instagram-imagem`
+- **Produtora:** `inboundfy-especialista-instagram-imagem`
+- **Validadora:** `inboundfy-validador-instagram-imagem`
 - **Rodada:** 1
 - **Veredito:** reprovado
 
@@ -16,6 +16,6 @@
 
 ## Encaminhamento
 
-- **Destino:** `thothfy-especialista-instagram-imagem`.
+- **Destino:** `inboundfy-especialista-instagram-imagem`.
 - **Instrução:** corrigir dimensão, fundo e paleta; reenviar o SVG completo
   para inspeção visual.

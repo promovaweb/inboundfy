@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Validador blog"
+  short_description: "Valida o asset blog antes da entrega"
+  default_prompt: "Use $inboundfy-validador-blog para validar este asset e devolver correções à skill produtora quando necessário."

@@ -3,8 +3,8 @@
 ## Camadas
 
 1. Cada skill valida sua entrada e saída.
-2. `thothfy-base-editor` verifica escrita e proibições em texto.
-3. `thothfy-base-validador` define o relatório e os hard gates.
+2. `inboundfy-base-editor` verifica escrita e proibições em texto.
+3. `inboundfy-base-validador` define o relatório e os hard gates.
 4. A validadora do asset aplica regras de canal, contexto e marca.
 5. A auditoria final verifica o pacote.
 6. O validador do repositório confere a integridade do framework.
@@ -24,10 +24,10 @@ npm run validar
 
 O validador verifica:
 
-- 71 skills e seu contrato estrutural;
+- 135 skills e seu contrato estrutural;
 - nomes exatos e continuidade das três sequências;
 - ausência de numeração em grupos não sequenciais;
-- 18 pares produtora–validadora;
+- 20 pares produtora–validadora;
 - preflight obrigatório e responsabilidade do setup;
 - catálogo de contexto, descoberta de Markdown e `brand/`;
 - documentação de usuário e método;
@@ -42,7 +42,7 @@ Para conferir exatamente o arquivo que será publicado:
 ```bash
 mkdir -p artifacts
 npm pack --pack-destination artifacts
-npm run npm:validate-package -- artifacts/promovaweb-thothfy-1.0.0.tgz
+npm run npm:validate-package -- artifacts/promovaweb-inboundfy-1.1.0.tgz
 ```
 
 ## Regra para mudança

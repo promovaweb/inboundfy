@@ -1,5 +1,5 @@
 <!--
-Preenchido por thothfy-contexto-ofertas. Fonte única de verdade para preço e
+Preenchido por inboundfy-contexto-ofertas. Fonte única de verdade para preço e
 condição comercial — nenhuma skill de canal deve inventar valor.
 -->
 

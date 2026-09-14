@@ -44,8 +44,8 @@ equal(
   "A edição do ebook diverge da versão do framework.",
 );
 equal(
-  packageJson.bin?.thothfy,
-  "bin/thothfy.cjs",
+  packageJson.bin?.inboundfy,
+  "bin/inboundfy.cjs",
   "O bin público do npm está incorreto.",
 );
 equal(
@@ -73,12 +73,12 @@ for (const extension of ["pdf", "epub"]) {
     join(
       root,
       "ebook",
-      `Thothfy-Guia-do-Usuario-v${packageJson.version}.${extension}`,
+      `Inboundfy-Guia-do-Usuario-v${packageJson.version}.${extension}`,
     ),
   );
 }
 for (const path of [
-  "bin/thothfy.cjs",
+  "bin/inboundfy.cjs",
   "dist/cli.js",
   "scripts/sync-release-version.mjs",
   "scripts/validate-npm-package.mjs",

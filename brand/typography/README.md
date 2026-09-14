@@ -1,4 +1,4 @@
-# Tipografia do Thothfy
+# Tipografia do Inboundfy
 
 ## Famílias
 

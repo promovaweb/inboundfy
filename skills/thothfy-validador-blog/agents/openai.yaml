@@ -1,4 +1,0 @@
-interface:
-  display_name: "Thothfy Validador blog"
-  short_description: "Valida o asset blog antes da entrega"
-  default_prompt: "Use $thothfy-validador-blog para validar este asset e devolver correções à skill produtora quando necessário."

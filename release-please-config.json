@@ -3,7 +3,7 @@
   "packages": {
     ".": {
       "release-type": "node",
-      "package-name": "@promovaweb/thothfy",
+      "package-name": "@promovaweb/inboundfy",
       "include-v-in-tag": true,
       "include-component-in-tag": false,
       "extra-files": [

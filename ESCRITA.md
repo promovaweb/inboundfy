@@ -1,7 +1,7 @@
-# ESCRITA.md — Princípios de Escrita Humana do Thothfy
+# ESCRITA.md — Princípios de Escrita Humana do Inboundfy
 
 Este arquivo define o padrão de escrita que toda skill de redação e auditoria
-do Thothfy aplica, em qualquer canal e qualquer voz de marca. Ele não
+do Inboundfy aplica, em qualquer canal e qualquer voz de marca. Ele não
 substitui `context/marca-voz.md`: a voz específica do usuário ajusta tom,
 vocabulário e formato; este arquivo garante que o texto continue humano,
 verificável e livre de padrões mecânicos de IA, seja qual for a voz.
@@ -55,7 +55,7 @@ verificaria ou corrigiria.
 
 ## Auditoria por parágrafo
 
-Toda peça final passa por `thothfy-base-editor` antes de ser considerada pronta.
+Toda peça final passa por `inboundfy-base-editor` antes de ser considerada pronta.
 A auditoria atribui uma nota de `0` a `100` por parágrafo, contra:
 
 1. `context/proibicoes.md` — vetos específicos do usuário, se existirem.

@@ -2,20 +2,20 @@
 
 ## A skill pede setup
 
-Execute `npx @promovaweb/thothfy@latest doctor`. A presença das skills no
+Execute `npx @promovaweb/inboundfy@latest doctor`. A presença das skills no
 agente não substitui uma instalação válida. Depois, peça ao agente para usar
-`thothfy-setup`.
+`inboundfy-setup`.
 
 ## Um arquivo de contexto sumiu
 
-Execute `thothfy repair --yes` por meio de `thothfy-setup` para restaurar o
+Execute `inboundfy repair --yes` por meio de `inboundfy-setup` para restaurar o
 template. Depois, use a skill
-`thothfy-contexto-*` correspondente para preencher o dado. O setup não
+`inboundfy-contexto-*` correspondente para preencher o dado. O setup não
 inventa nem sobrescreve informação do negócio.
 
 ## Duas fontes discordam
 
-Consulte a seção de conflitos em `.thothfy/FONTES-PROJETO.md`. A execução
+Consulte a seção de conflitos em `.inboundfy/fontes-projeto.md`. A execução
 deve impedir a afirmação afetada ou pedir uma decisão; nunca escolher uma
 versão silenciosamente.
 
@@ -26,7 +26,7 @@ Proibições exigem novo passe literal e semântico sobre o asset inteiro.
 
 ## A marca não aparece no inventário
 
-Rode `thothfy context scan` e peça ao setup para reconciliar a classificação.
+Rode `inboundfy context scan` e peça ao setup para reconciliar a classificação.
 Todo Markdown sob `brand/` deve aparecer,
 mesmo com nome em minúsculas. Ativos binários não entram no inventário, mas
 permanecem disponíveis no caminho original.
@@ -41,7 +41,7 @@ pipeline completo.
 
 | Sintoma | Próxima ação |
 | --- | --- |
-| Aviso de setup | Rode `thothfy doctor` e execute `thothfy-setup` |
+| Aviso de setup | Rode `inboundfy doctor` e execute `inboundfy-setup` |
 | Contexto ausente | Repare o template e preencha com a skill de contexto |
 | Fonte conflitante | Resolva o conflito no inventário |
 | Asset reprovado | Volte à especialista indicada |
@@ -51,7 +51,7 @@ pipeline completo.
 
 ## O agente não encontra uma skill
 
-Execute `thothfy repair --yes` por meio do setup e confira o diretório de
+Execute `inboundfy repair --yes` por meio do setup e confira o diretório de
 skills ativo. Se o
 projeto usa mais de uma convenção, indique explicitamente qual agente está em
 uso. Não copie uma skill isolada para um segundo diretório, pois isso pode
@@ -68,7 +68,7 @@ auditoria final liberam o item para `97-ativos-finais/`.
 Gere um diagnóstico estruturado:
 
 ```bash
-npx @promovaweb/thothfy@latest --json doctor
+npx @promovaweb/inboundfy@latest --json doctor
 ```
 
 Reúna esse resultado, o caminho do pacote e a fase atual. Com esses elementos,

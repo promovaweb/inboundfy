@@ -12,7 +12,7 @@ const DEFAULT_IGNORED = new Set([
   ".claude",
   ".codex",
   ".git",
-  ".thothfy",
+  ".inboundfy",
   ".venv",
   "build",
   "coverage",

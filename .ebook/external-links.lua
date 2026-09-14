@@ -54,7 +54,7 @@ function Pandoc(document)
       and closing.text:match("</p>")
     then
       local image = pandoc.Image(
-        {pandoc.Str("Logo do Thothfy")},
+        {pandoc.Str("Logo do Inboundfy")},
         "brand/logo/icon.png",
         "",
         pandoc.Attr("", {"ebook-logo"}, {{"width", "128"}})

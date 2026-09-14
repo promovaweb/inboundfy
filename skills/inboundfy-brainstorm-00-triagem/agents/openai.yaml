@@ -1,0 +1,4 @@
+interface:
+  display_name: "Brainstorm 00 Triagem"
+  short_description: "Classifica a ideia e prepara o brainstorm"
+  default_prompt: "Use $inboundfy-brainstorm-00-triagem para classificar esta ideia e abrir o diretório de brainstorm."

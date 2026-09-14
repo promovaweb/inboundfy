@@ -11,11 +11,11 @@ exatamente três sequências.
 
 Diretórios canônicos:
 
-1. `thothfy-brainstorm-00-triagem`
-2. `thothfy-brainstorm-01-entrevista`
-3. `thothfy-brainstorm-02-pesquisa`
-4. `thothfy-brainstorm-03-sintese`
-5. `thothfy-brainstorm-04-validacao`
+1. `inboundfy-brainstorm-00-triagem`
+2. `inboundfy-brainstorm-01-entrevista`
+3. `inboundfy-brainstorm-02-pesquisa`
+4. `inboundfy-brainstorm-03-sintese`
+5. `inboundfy-brainstorm-04-validacao`
 
 ## Estratégia
 
@@ -25,10 +25,10 @@ Diretórios canônicos:
 
 Diretórios canônicos:
 
-1. `thothfy-estrategia-00-briefing-cliente`
-2. `thothfy-estrategia-01-pesquisa-mercado`
-3. `thothfy-estrategia-02-campanha`
-4. `thothfy-estrategia-03-calendario`
+1. `inboundfy-estrategia-00-briefing-cliente`
+2. `inboundfy-estrategia-01-pesquisa-mercado`
+3. `inboundfy-estrategia-02-campanha`
+4. `inboundfy-estrategia-03-calendario`
 
 ## Planejamento
 
@@ -39,13 +39,13 @@ Diretórios canônicos:
 
 Diretórios canônicos:
 
-1. `thothfy-planejamento-00-triagem`
-2. `thothfy-planejamento-01-saneamento`
-3. `thothfy-planejamento-02-pesquisa`
-4. `thothfy-planejamento-03-oportunidades`
-5. `thothfy-planejamento-04-briefing`
-6. `thothfy-planejamento-05-producao`
-7. `thothfy-planejamento-06-auditoria`
+1. `inboundfy-planejamento-00-triagem`
+2. `inboundfy-planejamento-01-saneamento`
+3. `inboundfy-planejamento-02-pesquisa`
+4. `inboundfy-planejamento-03-oportunidades`
+5. `inboundfy-planejamento-04-briefing`
+6. `inboundfy-planejamento-05-producao`
+7. `inboundfy-planejamento-06-auditoria`
 
 ## Invariantes
 

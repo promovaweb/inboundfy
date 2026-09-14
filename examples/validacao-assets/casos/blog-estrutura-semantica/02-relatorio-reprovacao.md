@@ -1,8 +1,8 @@
 # Validação de asset — Blog/contratos-parados
 
 - **Asset:** `01-candidato-reprovado.md`
-- **Produtora:** `thothfy-especialista-blog`
-- **Validadora:** `thothfy-validador-blog`
+- **Produtora:** `inboundfy-especialista-blog`
+- **Validadora:** `inboundfy-validador-blog`
 - **Rodada:** 1
 - **Veredito:** reprovado
 
@@ -16,7 +16,7 @@
 
 ## Encaminhamento
 
-- **Destino:** `thothfy-especialista-blog`.
+- **Destino:** `inboundfy-especialista-blog`.
 - **Instrução:** reorganizar o artigo por mecanismo e consequência, depois
   reenviar o arquivo inteiro. Trocar sinônimos sem mudar o molde não corrige
   a reprovação.

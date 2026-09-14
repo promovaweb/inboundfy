@@ -1,7 +1,7 @@
 # Exemplos — Validação rígida de assets
 
 Este pacote fictício mostra o ciclo completo entre
-`thothfy-especialista-linkedin` e `thothfy-validador-linkedin`. Ele existe
+`inboundfy-especialista-linkedin` e `inboundfy-validador-linkedin`. Ele existe
 como fixture documental e executável; não representa empresa ou produto real.
 
 Além do caso principal, `casos/` cobre falha factual/comercial, estrutura
@@ -23,9 +23,9 @@ semanticamente proibida e divergência visual de marca.
 
 | Caso | Validadora | O que reprova |
 | --- | --- | --- |
-| `casos/email-oferta/` | `thothfy-validador-email` | Preço divergente da fonte e dois CTAs concorrentes. |
-| `casos/blog-estrutura-semantica/` | `thothfy-validador-blog` | Molde repetido de definição, exemplo e benefício, mesmo sem expressão literal proibida. |
-| `casos/instagram-imagem-brand/` | `thothfy-validador-instagram-imagem` | Dimensão errada, gradiente proibido e cor fora da paleta de `brand/`. |
+| `casos/email-oferta/` | `inboundfy-validador-email` | Preço divergente da fonte e dois CTAs concorrentes. |
+| `casos/blog-estrutura-semantica/` | `inboundfy-validador-blog` | Molde repetido de definição, exemplo e benefício, mesmo sem expressão literal proibida. |
+| `casos/instagram-imagem-brand/` | `inboundfy-validador-instagram-imagem` | Dimensão errada, gradiente proibido e cor fora da paleta de `brand/`. |
 
 ## O que o teste comprova
 

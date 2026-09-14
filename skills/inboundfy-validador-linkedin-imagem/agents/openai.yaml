@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Validador linkedin-imagem"
+  short_description: "Valida o asset linkedin-imagem antes da entrega"
+  default_prompt: "Use $inboundfy-validador-linkedin-imagem para validar este asset e devolver correções à skill produtora quando necessário."

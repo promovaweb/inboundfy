@@ -19,22 +19,16 @@ import type {
 } from "./types.js";
 import { validateMinimumContext } from "./context-readiness.js";
 
-const EXPECTED_CONTEXT_FILES = [
-  "campanhas.md",
-  "canais.md",
-  "concorrentes.md",
-  "empresa.md",
-  "enderecos.md",
-  "estruturas-proibidas.md",
-  "ferramentas.md",
-  "glossario.md",
-  "marca-voz.md",
-  "ofertas.md",
-  "pessoas.md",
-  "produtos.md",
-  "proibicoes.md",
-  "publico.md",
-  "servicos.md",
+const EXPECTED_PROJECT_FILES = [
+  ".inboundfy/inbound.md",
+  ".inboundfy/estrategia.md",
+  ".inboundfy/voz.md",
+  ".inboundfy/personas.md",
+  ".inboundfy/proibicoes.md",
+  ".inboundfy/dicionario.md",
+  ".inboundfy/pipeline.md",
+  ".inboundfy/fontes-projeto.md",
+  ".inboundfy/fontes-candidatas.json",
 ] as const;
 
 /** Confere todos os arquivos sem criar diretório, trava ou cache. */
@@ -52,7 +46,7 @@ export async function runDoctor(projectRoot: string): Promise<DoctorReport> {
         : warning(
             "version",
             `O projeto usa ${state.frameworkVersion}; o CLI atual usa ${cliVersion}. Execute update com a versão desejada.`,
-            ".thothfy/install.json",
+            ".inboundfy/install.json",
           ),
     );
     checks.push(
@@ -62,15 +56,19 @@ export async function runDoctor(projectRoot: string): Promise<DoctorReport> {
           ? error(
               "setup-status",
               `O setup está marcado como concluído, mas faltam: ${readiness.missing.join("; ")}.`,
-              ".thothfy/context",
+              ".inboundfy",
             )
         : warning(
             "setup-status",
-            "Os arquivos foram instalados, mas a skill thothfy-setup ainda precisa concluir o preenchimento inicial.",
-            ".thothfy/install.json",
+            "Os arquivos foram instalados, mas a skill inboundfy-setup ainda precisa concluir o preenchimento inicial.",
+            ".inboundfy/install.json",
           ),
     );
-    for (const directory of [state.paths.brainstorms, state.paths.content]) {
+    for (const directory of [
+      state.paths.acervo,
+      state.paths.canais,
+      state.paths.calendario,
+    ]) {
       checks.push(
         (await exists(resolvePortable(projectRoot, directory)))
           ? ok(`directory:${directory}`, `Diretório presente: ${directory}`)
@@ -86,11 +84,11 @@ export async function runDoctor(projectRoot: string): Promise<DoctorReport> {
         (await hasInstructionBlock(join(projectRoot, state.instructionFile)))
           ? ok(
               "instruction-block",
-              `Bloco do Thothfy íntegro em ${state.instructionFile}.`,
+              `Bloco do Inboundfy íntegro em ${state.instructionFile}.`,
             )
           : error(
               "instruction-block",
-              `O bloco delimitado do Thothfy está ausente ou divergente em ${state.instructionFile}.`,
+              `O bloco delimitado do Inboundfy está ausente ou divergente em ${state.instructionFile}.`,
               state.instructionFile,
             ),
       );
@@ -103,7 +101,7 @@ export async function runDoctor(projectRoot: string): Promise<DoctorReport> {
         error(
           "manifest-version",
           "A versão do manifesto diverge do estado da instalação.",
-          ".thothfy/manifest.json",
+          ".inboundfy/manifest.json",
         ),
       );
     } else {
@@ -134,28 +132,13 @@ export async function runDoctor(projectRoot: string): Promise<DoctorReport> {
     }
   }
 
-  for (const name of EXPECTED_CONTEXT_FILES) {
-    const path = `.thothfy/context/${name}`;
+  for (const path of EXPECTED_PROJECT_FILES) {
     checks.push(
       (await isRegularFile(resolvePortable(projectRoot, path)))
-        ? ok(`context:${name}`, `Arquivo do usuário preservado: ${path}`)
+        ? ok(`project:${path}`, `Arquivo do projeto presente: ${path}`)
         : error(
-            `context:${name}`,
-            `Arquivo do usuário ausente: ${path}`,
-            path,
-          ),
-    );
-  }
-  for (const path of [
-    ".thothfy/FONTES-PROJETO.md",
-    ".thothfy/fontes-candidatas.json",
-  ]) {
-    checks.push(
-      (await isRegularFile(resolvePortable(projectRoot, path)))
-        ? ok(`support:${path}`, `Arquivo de apoio presente: ${path}`)
-        : error(
-            `support:${path}`,
-            `Arquivo de apoio ausente: ${path}`,
+            `project:${path}`,
+            `Arquivo do projeto ausente: ${path}`,
             path,
           ),
     );
@@ -167,7 +150,7 @@ export async function runDoctor(projectRoot: string): Promise<DoctorReport> {
     ok: checks.filter((check) => check.level === "ok").length,
   };
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     healthy: summary.errors === 0,
     installedVersion: state?.frameworkVersion ?? null,
     cliVersion,
@@ -181,13 +164,13 @@ async function loadState(
   projectRoot: string,
   checks: DoctorCheck[],
 ): Promise<InstallationState | null> {
-  const path = join(projectRoot, ".thothfy", "install.json");
+  const path = join(projectRoot, ".inboundfy", "install.json");
   if (!(await isRegularFile(path))) {
     checks.push(
       error(
         "install-state",
-        "A instalação não possui .thothfy/install.json.",
-        ".thothfy/install.json",
+        "A instalação não possui .inboundfy/install.json.",
+        ".inboundfy/install.json",
       ),
     );
     return null;
@@ -202,8 +185,8 @@ async function loadState(
     checks.push(
       error(
         "install-state",
-        "O arquivo .thothfy/install.json é inválido.",
-        ".thothfy/install.json",
+        "O arquivo .inboundfy/install.json é inválido.",
+        ".inboundfy/install.json",
       ),
     );
     return null;
@@ -214,13 +197,13 @@ async function loadManifest(
   projectRoot: string,
   checks: DoctorCheck[],
 ): Promise<InstallationManifest | null> {
-  const path = join(projectRoot, ".thothfy", "manifest.json");
+  const path = join(projectRoot, ".inboundfy", "manifest.json");
   if (!(await isRegularFile(path))) {
     checks.push(
       error(
         "manifest",
-        "A instalação não possui .thothfy/manifest.json.",
-        ".thothfy/manifest.json",
+        "A instalação não possui .inboundfy/manifest.json.",
+        ".inboundfy/manifest.json",
       ),
     );
     return null;
@@ -235,8 +218,8 @@ async function loadManifest(
     checks.push(
       error(
         "manifest",
-        "O arquivo .thothfy/manifest.json é inválido.",
-        ".thothfy/manifest.json",
+        "O arquivo .inboundfy/manifest.json é inválido.",
+        ".inboundfy/manifest.json",
       ),
     );
     return null;

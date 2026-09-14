@@ -1,8 +1,8 @@
 # Validação de asset — Email/convite-plano-equipe
 
 - **Asset:** `03-asset-corrigido.md`
-- **Produtora:** `thothfy-especialista-email`
-- **Validadora:** `thothfy-validador-email`
+- **Produtora:** `inboundfy-especialista-email`
+- **Validadora:** `inboundfy-validador-email`
 - **Rodada:** 2
 - **Veredito:** aprovado
 - **Ocorrências remanescentes:** zero

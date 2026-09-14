@@ -1,5 +1,5 @@
 <!--
-Preenchido por thothfy-contexto-marca. Vetos duros — violação aqui reprova a
+Preenchido por inboundfy-contexto-marca. Vetos duros — violação aqui reprova a
 peça independentemente de qualidade de escrita (ver ESCRITA.md).
 
 Este arquivo já vem com uma seção de proibições genéricas pré-preenchida
@@ -69,7 +69,7 @@ negócio. Edite livremente. -->
 
 ## Termos e promessas proibidas
 
-<!-- Específico do usuário — preenchido por thothfy-contexto-marca. -->
+<!-- Específico do usuário — preenchido por inboundfy-contexto-marca. -->
 
 - {termo ou promessa} — motivo: {motivo}
 

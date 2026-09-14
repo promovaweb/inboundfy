@@ -1,4 +1,0 @@
-interface:
-  display_name: "Thothfy Validador video"
-  short_description: "Valida o asset video antes da entrega"
-  default_prompt: "Use $thothfy-validador-video para validar este asset e devolver correções à skill produtora quando necessário."

@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "version": "1.0.0",
-  "edition": "v1.0.0",
-  "generated_at": "2026-08-20T12:36:11Z",
-  "source_sha256": "5452c00f97be83e8037b11851c6f9a6db8c9eb8d805debe4db16dbccea86d10d",
+  "version": "1.1.0",
+  "edition": "v1.1.0",
+  "generated_at": "2026-09-14T10:50:13Z",
+  "source_sha256": "ed87bf3c36902bdad66143f7858abe50de735b77e85ca787ac7cac555654ed10",
   "sources": [
     ".ebook/build-ebook.sh",
     ".ebook/epub.css",
@@ -41,13 +41,13 @@
       "natureza": "normativo"
     },
     "docs/user/01-pre-requisitos.md": {
-      "autoridade": "contrato executável de `thothfy-setup`",
+      "autoridade": "contrato executável de `inboundfy-setup`",
       "escopo": "condições necessárias antes da instalação",
       "natureza": "referência"
     },
     "docs/user/02-instalacao.md": {
-      "autoridade": "`thothfy-setup` e `INSTALACAO.md`",
-      "escopo": "instalação inicial e sentinelas do ambiente",
+      "autoridade": "`inboundfy-setup` e `INSTALACAO.md`",
+      "escopo": "instalação, configuração e primeira operação",
       "natureza": "normativo"
     },
     "docs/user/03-contexto-e-marca.md": {
@@ -56,17 +56,17 @@
       "natureza": "normativo"
     },
     "docs/user/04-primeiro-brainstorm.md": {
-      "autoridade": "`BRAINSTORM.md` e skills `thothfy-brainstorm-*`",
+      "autoridade": "`BRAINSTORM.md` e skills `inboundfy-brainstorm-*`",
       "escopo": "desenvolvimento sequencial de uma ideia",
       "natureza": "normativo"
     },
     "docs/user/05-primeira-campanha.md": {
-      "autoridade": "`ESTRATEGIA.md` e skills `thothfy-estrategia-*`",
+      "autoridade": "`ESTRATEGIA.md` e skills `inboundfy-estrategia-*`",
       "escopo": "planejamento de campanha e calendário",
       "natureza": "normativo"
     },
     "docs/user/06-primeiro-pacote.md": {
-      "autoridade": "`METODOLOGIA.md` e skills `thothfy-planejamento-*`",
+      "autoridade": "`METODOLOGIA.md` e skills `inboundfy-planejamento-*`",
       "escopo": "pipeline editorial completo e seus artefatos",
       "natureza": "normativo"
     },
@@ -76,12 +76,12 @@
       "natureza": "normativo"
     },
     "docs/user/08-validacao-e-correcoes.md": {
-      "autoridade": "`thothfy-base-validador` e validadoras de asset",
+      "autoridade": "`inboundfy-base-validador` e validadoras de asset",
       "escopo": "aprovação individual, reprovação e retorno à produtora",
       "natureza": "normativo"
     },
     "docs/user/09-atualizacao-e-reparo.md": {
-      "autoridade": "modos de reconciliação de `thothfy-setup`",
+      "autoridade": "modos de reconciliação de `inboundfy-setup`",
       "escopo": "atualização, reparo, preservação e migração",
       "natureza": "normativo"
     },
@@ -92,18 +92,18 @@
     },
     "docs/user/README.md": {
       "autoridade": "interfaces públicas das skills e metodologia instalada",
-      "escopo": "percurso completo do usuário do Thothfy",
+      "escopo": "percurso completo do usuário do Inboundfy",
       "natureza": "normativo"
     }
   },
   "artifacts": {
     "pdf": {
-      "file": "Thothfy-Guia-do-Usuario-v1.0.0.pdf",
-      "sha256": "91ae16884237a2d97a7b7752dbf5a64ac724d74306246cc0bf7b0a510151ebdf"
+      "file": "Inboundfy-Guia-do-Usuario-v1.1.0.pdf",
+      "sha256": "64de0040573483774118881fbfd65123e4e043276a0317f5eb245e2b3c7a37dd"
     },
     "epub": {
-      "file": "Thothfy-Guia-do-Usuario-v1.0.0.epub",
-      "sha256": "69b3bfeaecfedd6df453dc6f34665ed3f4000ec5c712532c5048583e4f594c8b"
+      "file": "Inboundfy-Guia-do-Usuario-v1.1.0.epub",
+      "sha256": "2c3bd21b6fb3b3e82905fec6b49ac8ee3b086a1176b121ed913db561217e2e47"
     }
   }
 }

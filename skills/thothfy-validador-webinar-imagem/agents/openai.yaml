@@ -1,4 +1,0 @@
-interface:
-  display_name: "Thothfy Validador webinar-imagem"
-  short_description: "Valida o asset webinar-imagem antes da entrega"
-  default_prompt: "Use $thothfy-validador-webinar-imagem para validar este asset e devolver correções à skill produtora quando necessário."

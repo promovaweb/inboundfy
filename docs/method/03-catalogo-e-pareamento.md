@@ -1,22 +1,23 @@
 # Catálogo e pareamento
 
-O catálogo possui 71 skills:
+O catálogo possui 135 skills:
 
 | Grupo | Quantidade | Ordenação |
 | --- | ---: | --- |
-| Entradas e setup | 3 | Por responsabilidade |
-| Base | 5 | Por capacidade |
+| Entradas e setup | 5 | Por responsabilidade |
+| Base | 6 | Por capacidade |
 | Contexto | 11 | Por domínio de dado |
 | Brainstorm | 5 | Sequência `00–04` |
-| Estratégia | 4 | Sequência `00–03` |
+| Estratégia | 6 | Sequência `00–03` e capacidade transversal |
 | Planejamento | 7 | Sequência `00–06` |
-| Especialistas | 18 | Por sufixo de asset |
-| Validadoras | 18 | Mesmo sufixo da especialista |
+| Especialistas | 20 | Por sufixo de asset |
+| Validadoras | 20 | Mesmo sufixo da especialista |
+| Capacidades transversais | 47 | Estratégia, aquisição, SEO, GEO, copy e qualidade. |
 
 ## Pares de asset
 
 Cada sufixo abaixo gera exatamente um par
-`thothfy-especialista-<sufixo>` ⇄ `thothfy-validador-<sufixo>`:
+`inboundfy-especialista-<sufixo>` ⇄ `inboundfy-validador-<sufixo>`:
 
 - `blog` e `blog-imagem`;
 - `changelog`;
@@ -31,7 +32,7 @@ Cada sufixo abaixo gera exatamente um par
 - `webinar` e `webinar-imagem`.
 
 Uma produtora precisa citar sua validadora. Uma validadora precisa citar a
-produtora, `thothfy-base-validador`, contexto completo e os estados aprovado e
+produtora, `inboundfy-base-validador`, contexto completo e os estados aprovado e
 reprovado. Divergências no conjunto ou no pareamento reprovam o framework.
 
 O catálogo navegável está em [SKILLS.md](../../SKILLS.md).

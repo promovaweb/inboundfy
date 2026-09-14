@@ -6,7 +6,7 @@ bruto ao artefato final auditado, usando como tema um conteúdo técnico real:
 
 **Tudo neste pacote é ilustrativo.** A empresa ("Nimbus"), o produto interno
 ("Nimbus Copilot") e a persona são fictícios, criados só para mostrar cada
-fase em ação. Não representam nenhum cliente real do Thothfy. Ver
+fase em ação. Não representam nenhum cliente real do Inboundfy. Ver
 `examples/README.md` para o contrato deste diretório.
 
 ## Fases percorridas
@@ -26,29 +26,29 @@ fase em ação. Não representam nenhum cliente real do Thothfy. Ver
 - Como uma nota de reunião crua (com ruído, sem pontuação, com falas
   misturadas) vira `00-entrada/material-original.md` e é preservada intocada
   por todas as fases seguintes.
-- Como `thothfy-planejamento-01-saneamento` limpa sem reescrever com voz
+- Como `inboundfy-planejamento-01-saneamento` limpa sem reescrever com voz
   editorial, e documenta cada decisão em `relatorio-saneamento.md`.
 - Como uma pendência técnica identificada cedo (segurança e escopo de
   permissão do MCP, mencionada de forma incerta na reunião original) é
   registrada, herdada fase a fase e resolvida no artigo final sem virar
   afirmação inventada — em vez de ser ignorada ou silenciosamente
   "resolvida" com suposição.
-- Como o brief de `thothfy-planejamento-04-briefing` traduz ângulo, público
+- Como o brief de `inboundfy-planejamento-04-briefing` traduz ângulo, público
   e restrição em critério de pronto objetivo, e como
-  `thothfy-especialista-blog` produz o artigo dentro exatamente desse
+  `inboundfy-especialista-blog` produz o artigo dentro exatamente desse
   critério.
-- Como `thothfy-planejamento-06-auditoria` confere o artefato final contra o
+- Como `inboundfy-planejamento-06-auditoria` confere o artefato final contra o
   brief e contra `ESCRITA.md` antes de aprovar.
 
 ## O que este exemplo não mostra
 
 Por ser um pacote avulso (sem campanha associada), ele não passa pelo grupo
-`thothfy-estrategia-<NN>-*` — não há
-`thothfy-estrategia-00-briefing-cliente` nem
-`thothfy-estrategia-02-campanha` aqui, porque este conteúdo nasceu de uma ideia
+`inboundfy-estrategia-<NN>-*` — não há
+`inboundfy-estrategia-00-briefing-cliente` nem
+`inboundfy-estrategia-02-campanha` aqui, porque este conteúdo nasceu de uma ideia
 solta do time, não de uma campanha com objetivo de negócio e KPI. Ver
 `ESTRATEGIA.md` para quando um pacote como este nasceria, em vez disso, de
-um item alocado por `thothfy-estrategia-03-calendario`.
+um item alocado por `inboundfy-estrategia-03-calendario`.
 
 A Oportunidade 2 do plano (post de LinkedIn divulgando o artigo) foi
 registrada, mas deliberadamente não produzida neste exemplo, para manter o

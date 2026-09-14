@@ -1,26 +1,26 @@
-# Guia do usuário do Thothfy
+# Guia do usuário do Inboundfy
 
 <!-- markdownlint-disable MD033 -->
 <p align="center">
   <picture>
     <source srcset="../../brand/logo/icon.svg" type="image/svg+xml">
-    <img src="../../brand/logo/icon.png" alt="Logo do Thothfy" width="128">
+    <img src="../../brand/logo/icon.png" alt="Logo do Inboundfy" width="128">
   </picture>
 </p>
 <!-- markdownlint-enable MD033 -->
 
-Este guia acompanha uma instalação do Thothfy e ensina a operar o framework
+Este guia acompanha uma instalação do Inboundfy e ensina a operar o framework
 sem exigir conhecimento da implementação das skills.
 
 ## Leia online ou como ebook
 
 Os capítulos deste diretório também formam o
-**Thothfy — Guia completo do usuário**. O PDF preserva a diagramação para
+**Inboundfy — Guia completo do usuário**. O PDF preserva a diagramação para
 leitura, compartilhamento e impressão. O EPUB permite ajustar fonte e tamanho
 no leitor digital.
 
-- [Baixe o PDF](../../ebook/Thothfy-Guia-do-Usuario-v1.0.0.pdf).
-- [Baixe o EPUB](../../ebook/Thothfy-Guia-do-Usuario-v1.0.0.epub).
+- [Baixe o PDF](../../ebook/Inboundfy-Guia-do-Usuario-v1.1.0.pdf).
+- [Baixe o EPUB](../../ebook/Inboundfy-Guia-do-Usuario-v1.1.0.epub).
 - [Consulte a edição e os hashes](../../ebook/README.md).
 
 ## Percurso completo
@@ -44,9 +44,10 @@ reprovações, correções e aprovações preenchidos com dados fictícios.
 
 ## Três comandos conceituais
 
-- `thothfy-setup`: instala, atualiza ou repara o ambiente.
-- `thothfy-brainstorm`: desenvolve uma ideia até uma base pesquisada.
-- `thothfy-iniciar`: escolhe e executa o fluxo de produção completo.
+- `inboundfy-setup`: instala, atualiza ou repara o ambiente.
+- `inboundfy-brainstorm`: desenvolve uma ideia até uma base pesquisada.
+- `inboundfy-acervo`: conduz o fluxo mestre, da entrada bruta às saídas finais.
+- `inboundfy-iniciar`: atalho compatível que encaminha para o fluxo mestre.
 
 Uma skill especialista pode ser chamada diretamente quando já existe um brief
 claro para uma única peça.
@@ -56,13 +57,14 @@ claro para uma única peça.
 Imagine que você quer transformar uma anotação sobre manutenção preventiva em
 um artigo e um post. Depois do setup, o percurso fica assim:
 
-1. Você entrega a anotação a `thothfy-brainstorm`.
-2. O brainstorm preserva a ideia, pesquisa o tema e registra oportunidades.
-3. `thothfy-iniciar` abre um pacote e prepara um brief para cada peça.
+1. Você entrega a anotação a `inboundfy-acervo`.
+2. A skill preserva o original, processa o texto, pesquisa o tema e registra
+   FAQ, base editorial e possibilidades.
+3. Você escolhe canais, personas e direção editorial.
 4. As especialistas produzem o artigo e o post.
 5. Cada validadora confronta sua peça com o brief, o contexto e a marca.
 6. Uma reprovação volta à especialista com a correção necessária.
-7. A auditoria libera somente as versões aprovadas.
+7. O fluxo registra somente as versões aprovadas no calendário e no catálogo.
 
 Você acompanha esse trabalho pelos arquivos criados. A resposta do agente
 resume o resultado, mas os artefatos do projeto são a evidência que permite
@@ -73,5 +75,5 @@ retomar, revisar e auditar a execução.
 | Campo | Valor |
 | --- | --- |
 | Natureza | normativo |
-| Escopo | percurso completo do usuário do Thothfy |
+| Escopo | percurso completo do usuário do Inboundfy |
 | Autoridade | interfaces públicas das skills e metodologia instalada |

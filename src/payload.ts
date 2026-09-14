@@ -27,6 +27,17 @@ const FRAMEWORK_FILES = [
   "TRADUCAO.md",
 ] as const;
 
+const PROJECT_TEMPLATES = [
+  "inbound.md",
+  "estrategia.md",
+  "voz.md",
+  "personas.md",
+  "proibicoes.md",
+  "dicionario.md",
+  "pipeline.md",
+  "README.md",
+] as const;
+
 export interface PayloadFile {
   sourcePath: string;
   sourceRelative: string;
@@ -47,28 +58,30 @@ export async function readPackageVersion(): Promise<string> {
     await readFile(join(PACKAGE_ROOT, "package.json"), "utf8"),
   ) as { name?: string; version?: string };
   if (
-    packageJson.name !== "@promovaweb/thothfy" ||
+    packageJson.name !== "@promovaweb/inboundfy" ||
     !packageJson.version?.match(/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/)
   ) {
-    throw new CliError("O package.json do Thothfy possui nome ou versão inválida.");
+    throw new CliError("O package.json do Inboundfy possui nome ou versão inválida.");
   }
   return packageJson.version;
 }
 
-/** Monta metodologia, documentação, ebook, identidade e templates. */
+/** Monta somente arquivos do framework, separados dos dados do consumidor. */
 export async function collectFrameworkPayload(): Promise<PayloadFile[]> {
   const payload: PayloadFile[] = [];
   for (const name of FRAMEWORK_FILES) {
-    payload.push(await payloadFile(name, `.thothfy/${name}`, "framework"));
+    payload.push(
+      await payloadFile(name, `.inboundfy/framework/${name}`, "framework"),
+    );
   }
-  await appendTree(payload, "docs", ".thothfy/docs", "documentation");
-  await appendTree(payload, "ebook", ".thothfy/ebook", "ebook");
-  await appendTree(payload, "brand", ".thothfy/brand", "documentation");
+  await appendTree(payload, "docs", ".inboundfy/framework/docs", "documentation");
+  await appendTree(payload, "ebook", ".inboundfy/framework/ebook", "ebook");
+  await appendTree(payload, "brand", ".inboundfy/framework/brand", "documentation");
   for (const name of ["brainstorm.md", "fontes-projeto.md"]) {
     payload.push(
       await payloadFile(
         `templates/${name}`,
-        `.thothfy/templates/${name}`,
+        `.inboundfy/framework/templates/${name}`,
         "template",
       ),
     );
@@ -79,7 +92,7 @@ export async function collectFrameworkPayload(): Promise<PayloadFile[]> {
     payload.push(
       await payloadFile(
         `context/${portable(rel)}`,
-        `.thothfy/templates/context/${portable(rel)}`,
+        `.inboundfy/framework/context/${portable(rel)}`,
         "template",
       ),
     );
@@ -89,13 +102,35 @@ export async function collectFrameworkPayload(): Promise<PayloadFile[]> {
   );
 }
 
+/** Lista os templates que recebem dados específicos do projeto consumidor. */
+export async function collectProjectTemplates(): Promise<PayloadFile[]> {
+  const payload: PayloadFile[] = [];
+  for (const name of PROJECT_TEMPLATES) {
+    payload.push(
+      await payloadFile(
+        `templates/project/${name}`,
+        `.inboundfy/${name}`,
+        "template",
+      ),
+    );
+  }
+  for (const [source, target] of [
+    ["templates/acervo-readme.md", "acervo/README.md"],
+    ["templates/canais-readme.md", "canais/README.md"],
+    ["templates/calendario-readme.md", "calendario/README.md"],
+  ] as const) {
+    payload.push(await payloadFile(source, target, "template"));
+  }
+  return payload;
+}
+
 /** Monta todas as skills publicadas e aponta para o diretório selecionado. */
 export async function collectSkillsPayload(
   skillsDirectory: string,
 ): Promise<PayloadFile[]> {
   const root = join(PACKAGE_ROOT, "skills");
   const directories = (await readdir(root, { withFileTypes: true }))
-    .filter((entry) => entry.isDirectory() && entry.name.startsWith("thothfy-"))
+    .filter((entry) => entry.isDirectory() && entry.name.startsWith("inboundfy-"))
     .sort((left, right) => left.name.localeCompare(right.name));
   const payload: PayloadFile[] = [];
   for (const directory of directories) {
@@ -121,7 +156,7 @@ export async function collectContextTemplates(): Promise<PayloadFile[]> {
     if (source.endsWith(`${sep}README.md`)) continue;
     const rel = portable(relative(sourceRoot, source));
     payload.push(
-      await payloadFile(`context/${rel}`, `.thothfy/context/${rel}`, "template"),
+      await payloadFile(`context/${rel}`, `.inboundfy/context/${rel}`, "template"),
     );
   }
   return payload;

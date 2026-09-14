@@ -1,5 +1,5 @@
 <!--
-Preenchido por thothfy-contexto-concorrentes. Usar apenas para posicionamento
+Preenchido por inboundfy-contexto-concorrentes. Usar apenas para posicionamento
 relativo, nunca para comparação difamatória (ver proibicoes.md).
 -->
 

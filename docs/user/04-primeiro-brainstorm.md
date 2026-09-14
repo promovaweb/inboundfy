@@ -5,7 +5,7 @@ tese, evidência ou brief.
 
 ## Passo a passo
 
-1. Ative `thothfy-brainstorm` e forneça a ideia sem tentar estruturá-la.
+1. Ative `inboundfy-brainstorm` e forneça a ideia sem tentar estruturá-la.
 2. A fase `00-triagem` preserva a entrada original e abre um diretório datado.
 3. A fase `01-entrevista` identifica lacunas. Perguntas só são feitas quando
    uma resposta muda materialmente o resultado.
@@ -23,7 +23,7 @@ O arquivo
 ideia original intacta, fontes identificadas e suposições explícitas.
 
 Se o pedido já mencionar uma peça, o brainstorm aprovado segue para briefing.
-Se houver várias oportunidades, segue para `thothfy-iniciar`.
+Se houver várias oportunidades, segue para `inboundfy-iniciar`.
 
 O contrato de campos está em [BRAINSTORM.md](../../BRAINSTORM.md).
 
@@ -57,4 +57,4 @@ brainstorm pode preservar uma hipótese, mas não apresentá-la como fato.
 | --- | --- |
 | Natureza | normativo |
 | Escopo | desenvolvimento sequencial de uma ideia |
-| Autoridade | `BRAINSTORM.md` e skills `thothfy-brainstorm-*` |
+| Autoridade | `BRAINSTORM.md` e skills `inboundfy-brainstorm-*` |

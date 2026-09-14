@@ -1,7 +1,7 @@
 # Fontes Markdown do Projeto
 
-> Inventário gerado por `thothfy-setup`. Os arquivos originais permanecem em
-> seus caminhos e não são copiados para `.thothfy/`.
+> Inventário gerado por `inboundfy-setup`. Os arquivos originais permanecem em
+> seus caminhos e não são copiados para `.inboundfy/`.
 
 ## Metadados
 
@@ -22,7 +22,7 @@ manual, voz, tokens, aplicações, logos e outras fontes canônicas de marca.
 Ativos não Markdown permanecem no caminho original e são consultados pelas
 skills visuais quando relevantes; o setup não os copia.
 
-A busca não entra em `.git/`, `.thothfy/`, `.codex/`, `.claude/`, `.agents/`,
+A busca não entra em `.git/`, `.inboundfy/`, `.codex/`, `.claude/`, `.agents/`,
 `node_modules/`, `vendor/`, `.venv/`, `dist/`, `build/`, `coverage/`, nos
 diretórios de brainstorm e conteúdo gerado, nem em submódulos Git. Um caminho
 ignorado só entra quando o usuário solicitar sua inclusão.
@@ -46,7 +46,7 @@ no lugar da tabela.
 
 1. `AGENTS.md` e `CLAUDE.md` governam o comportamento do agente no escopo em
    que se aplicam.
-2. `.thothfy/context/` guarda os fatos de negócio já confirmados.
+2. `.inboundfy/context/` guarda os fatos de negócio já confirmados.
 3. `brand/`, quando existir, governa identidade, voz, logos, cores,
    tipografia e aplicações de marca no domínio que documentar.
 4. Um Markdown descoberto que declare responsabilidade explícita por um

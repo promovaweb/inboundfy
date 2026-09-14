@@ -1,12 +1,12 @@
-# Releases do Thothfy
+# Releases do Inboundfy
 
-O Thothfy publica CLI e framework como um único produto. `package.json` é a
+O Inboundfy publica CLI e framework como um único produto. `package.json` é a
 fonte canônica do SemVer. O mesmo número identifica:
 
-- o pacote npm `@promovaweb/thothfy`;
-- o binário `thothfy`;
+- o pacote npm `@promovaweb/inboundfy`;
+- o binário `inboundfy`;
 - o framework, as skills e a metodologia;
-- a instalação registrada em `.thothfy/`;
+- a instalação registrada em `.inboundfy/`;
 - a tag Git `vX.Y.Z` e a GitHub Release;
 - a edição PDF e EPUB do guia do usuário.
 
@@ -15,10 +15,10 @@ entrega quando encontra qualquer divergência.
 
 ## Preparação única dos serviços
 
-1. Crie o pacote público `@promovaweb/thothfy` na organização `promovaweb` do
+1. Crie o pacote público `@promovaweb/inboundfy` na organização `promovaweb` do
    npm.
 2. No npm, configure Trusted Publishing para o repositório
-   `promovaweb/thothfy` e o workflow `.github/workflows/release.yml`.
+   `promovaweb/inboundfy` e o workflow `.github/workflows/release.yml`.
 3. No GitHub, permita que GitHub Actions crie pull requests.
 4. Quando a proteção de branch impedir o `GITHUB_TOKEN` de atualizar a Release
    PR, configure `RELEASE_PLEASE_TOKEN` com acesso somente ao repositório.
@@ -60,7 +60,7 @@ npm ci
 npm run validar
 mkdir -p artifacts
 npm pack --pack-destination artifacts
-npm run npm:validate-package -- artifacts/promovaweb-thothfy-1.0.0.tgz
+npm run npm:validate-package -- artifacts/promovaweb-inboundfy-1.1.0.tgz
 ```
 
 Substitua `1.0.0` pela versão atual. Para validar uma tag:

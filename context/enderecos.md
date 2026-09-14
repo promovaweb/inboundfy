@@ -1,5 +1,5 @@
 <!--
-Preenchido por thothfy-contexto-enderecos. Dado factual sensível — confirme
+Preenchido por inboundfy-contexto-enderecos. Dado factual sensível — confirme
 antes de publicar em rodapé, página de contato ou termos legais.
 -->
 

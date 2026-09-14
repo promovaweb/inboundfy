@@ -1,6 +1,6 @@
 # Caso — Imagem de Instagram contra a marca
 
-Exemplo fictício de `thothfy-validador-instagram-imagem`. A primeira arte usa
+Exemplo fictício de `inboundfy-validador-instagram-imagem`. A primeira arte usa
 proporção quadrada, gradiente e magenta fora da paleta. A segunda usa 4:5,
 cores do manual e hierarquia legível.
 

@@ -34,7 +34,7 @@ Brief de origem: `04-briefs/blog-como-funciona-o-mcp.md`.
   fictício neste exemplo — em projeto real, checar contra o arquivo real do
   usuário).
 
-## Nota por parágrafo (thothfy-base-editor)
+## Nota por parágrafo (inboundfy-base-editor)
 
 Todos os parágrafos avaliados acima de 90%, sem violação de
 `context/proibicoes.md` nem de `context/estruturas-proibidas.md` — nenhum

@@ -4,18 +4,20 @@
 
 | O que já existe | Ponto de entrada | Resultado |
 | --- | --- | --- |
-| Uma ideia curta | `thothfy-brainstorm` | Brainstorm validado |
+| Uma ideia curta | `inboundfy-brainstorm` | Brainstorm validado |
 | Uma campanha a definir | Estratégia `00` | Plano e calendário |
-| Material bruto ou peça-base | `thothfy-iniciar` | Pacote auditado |
+| Material bruto ou peça-base | `inboundfy-acervo` | Pacote auditado e saídas por canal |
 | Brief de uma peça | Especialista do canal | Peça avulsa validada |
-| Instalação ausente ou parcial | `thothfy-setup` | Ambiente reconciliado |
+| Instalação ausente ou parcial | `inboundfy-setup` | Ambiente reconciliado |
 
 ## Sequências automáticas
 
-`thothfy-brainstorm` executa `00` a `04`. `thothfy-iniciar` pode encaminhar
-uma ideia ao brainstorm e, para um pacote completo, executa planejamento
-`00` a `06`. Cada asset produzido passa pela validadora de mesmo sufixo antes
-da auditoria final.
+`inboundfy-brainstorm` executa `00` a `04`. `inboundfy-acervo` conduz o ciclo
+completo de um material: registro, processamento, FAQ, pesquisa, base
+editorial, possibilidades, escolha de canais e personas, produção, revisão,
+calendário e catálogo. `inboundfy-iniciar` permanece como atalho que encaminha
+esse fluxo. Cada asset produzido passa pela validadora do canal antes da
+auditoria final.
 
 Não chame uma fase numerada fora de ordem, exceto para retomar um pacote no
 estado registrado. Skills base, de contexto, especialistas e validadoras não
@@ -24,10 +26,11 @@ têm numeração porque são escolhidas por responsabilidade, não por cronologi
 ## Saídas
 
 - Ideias desenvolvidas: `brainstorms/<data>-<slug>/brainstorm.md`.
-- Pacotes: `content/<pacote>/`.
-- Ativos aprovados: `content/<pacote>/97-ativos-finais/`.
+- Itens de conhecimento: `acervo/<id>-<data>-<slug>/`.
+- Peças finais: `canais/<canal>/<id>-<data>-<slug>/README.md`.
+- Agenda mensal: `calendario/AAAA-MM.md`.
 
-Os caminhos podem ser alterados em `.thothfy/context/canais.md`.
+Os caminhos podem ser alterados em `.inboundfy/context/canais.md`.
 
 ## O que você informa
 
@@ -40,10 +43,11 @@ Exemplo:
 > Tenho a transcrição de uma conversa com um cliente. Quero encontrar ideias
 > para blog e LinkedIn, sem publicar nada automaticamente.
 
-`thothfy-iniciar` identifica que existe material bruto, abre o pipeline
-completo e respeita os dois canais informados.
+`inboundfy-acervo` identifica o material bruto, abre o pipeline completo e
+respeita os dois canais informados. Se você chamar `inboundfy-iniciar`, ele
+encaminhará a mesma execução.
 
-## O que o Thothfy não faz sozinho
+## O que o Inboundfy não faz sozinho
 
 O framework não publica em CMS ou rede social, não escolhe uma versão quando
 duas fontes factuais discordam e não inventa preço, promessa, pessoa, produto

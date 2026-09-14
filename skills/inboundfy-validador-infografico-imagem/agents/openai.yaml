@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Validador infografico-imagem"
+  short_description: "Valida o asset infografico-imagem antes da entrega"
+  default_prompt: "Use $inboundfy-validador-infografico-imagem para validar este asset e devolver correções à skill produtora quando necessário."

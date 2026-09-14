@@ -1,10 +1,10 @@
 {
-  "name": "@promovaweb/thothfy",
-  "version": "1.0.0",
-  "description": "CLI e framework de skills para instalar, validar e manter o Thothfy em projetos.",
+  "name": "@promovaweb/inboundfy",
+  "version": "1.1.0",
+  "description": "CLI e framework de skills para instalar, validar e manter o Inboundfy em projetos.",
   "type": "module",
   "bin": {
-    "thothfy": "bin/thothfy.cjs"
+    "inboundfy": "bin/inboundfy.cjs"
   },
   "files": [
     "bin",
@@ -60,12 +60,12 @@
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/promovaweb/thothfy.git"
+    "url": "git+https://github.com/promovaweb/inboundfy.git"
   },
   "bugs": {
-    "url": "https://github.com/promovaweb/thothfy/issues"
+    "url": "https://github.com/promovaweb/inboundfy/issues"
   },
-  "homepage": "https://github.com/promovaweb/thothfy#readme",
+  "homepage": "https://github.com/promovaweb/inboundfy#readme",
   "publishConfig": {
     "access": "public"
   },

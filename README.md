@@ -1,17 +1,25 @@
-# Thothfy
+# Inboundfy
 
-O Thothfy é um framework agnóstico de skills e metodologia para produzir copy,
-conteúdo e artefatos visuais de marketing — texto e imagem — para qualquer
-empresa, produto ou pessoa. Ele surgiu da extração e generalização do
-método editorial usado internamente pela Promovaweb e virou um sistema
-portável: o pacote npm fornece o CLI `thothfy`, e `thothfy-setup` conduz sua
-instalação num projeto novo, criando
-`.thothfy/` (metodologia, templates e dados do usuário), `brainstorms/`
-(ideias pesquisadas) e `content/` (os ativos gerados). A partir daí,
-`thothfy-brainstorm` desenvolve uma ideia curta e `thothfy-iniciar` roda o
-fluxo completo até os artefatos auditados, sem coordenação manual das fases.
+O Inboundfy é um framework de inbound marketing baseado em IA para pesquisar,
+organizar, planejar, escrever, revisar e distribuir conteúdo. O pacote npm
+fornece o CLI `inboundfy`, e `inboundfy-setup` conduz sua instalação num
+projeto novo. As skills organizam acervo, estratégia, copy, SEO, GEO,
+anti-slop, canais, calendário e pipeline sem misturar método reutilizável com
+dados de um negócio.
 
-## Como o Thothfy é organizado
+## Separação entre framework e projeto
+
+O repositório `inboundfy/` guarda método, skills, templates, código e
+documentação reutilizável. Ao instalar, o framework vai para
+`.inboundfy/framework/`. As informações da empresa e as escolhas do projeto
+ficam nos arquivos canônicos de `.inboundfy/`; o trabalho e as saídas ficam em
+`acervo/`, `canais/` e `calendario/`.
+
+O setup conduz a entrevista de empresa, produtos, serviços, endereços, pessoas,
+redes sociais, personas, voz, proibições, dicionário, pipeline e canais. Ele
+preserva preenchimentos existentes e cria somente o que estiver ausente.
+
+## Como o Inboundfy é organizado
 
 - `docs/user/`: manual passo a passo, da preparação do projeto à atualização,
   com percursos completos para brainstorm, campanha, pacote e peça avulsa.
@@ -22,10 +30,10 @@ fluxo completo até os artefatos auditados, sem coordenação manual das fases.
 - `context/`: templates de origem dos arquivos de dados do usuário —
   empresa, pessoas, produtos, serviços, ofertas, marca, público,
   concorrentes, endereços, canais, ferramentas, glossário, proibições e
-  estruturas proibidas. `thothfy-setup` copia esses templates para
-  `.thothfy/context/` em cada projeto instalado — é lá que o dado real de
+  estruturas proibidas. `inboundfy-setup` copia esses templates para
+  `.inboundfy/context/` em cada projeto instalado — é lá que o dado real de
   cada negócio vive. Veja `CONTEXTO.md`.
-- `thothfy-setup`: responsável exclusiva por conduzir e conferir skills,
+- `inboundfy-setup`: responsável exclusiva por conduzir e conferir skills,
   metodologia,
   templates, arquivos de contexto e diretórios de saída nos caminhos
   canônicos. Usa o CLI como executor, repara instalações parciais sem
@@ -33,10 +41,10 @@ fluxo completo até os artefatos auditados, sem coordenação manual das fases.
   maiúsculas encontrados no projeto. Se `brand/` existir, considera todos os
   Markdown da pasta, inclusive nomes em minúsculas, sem copiar ou alterar os
   ativos.
-- `skills/`: biblioteca de skills prefixadas com `thothfy-`, organizada em
+- `skills/`: biblioteca de skills prefixadas com `inboundfy-`, organizada em
   sete grupos — base, contexto, brainstorm sequenciado, estratégia
   sequenciada, planejamento sequenciado, especialista por canal e
-  validadora por asset — mais as wrappers e `thothfy-setup`. Veja
+  validadora por asset — mais as wrappers e `inboundfy-setup`. Veja
   `SKILLS.md` e `SKILL-AUTORIA.md`.
 - `BRAINSTORM.md`: fluxo que recebe uma ideia, consulta os dados do negócio,
   faz perguntas somente quando necessário, pesquisa fontes e salva
@@ -57,10 +65,10 @@ fluxo completo até os artefatos auditados, sem coordenação manual das fases.
 - `TRADUCAO.md`: quando manter um termo no idioma original e quando
   traduzir, com exemplo ilustrativo e lógica de correção canônica de termo
   mal transcrito.
-- `SKILL-AUTORIA.md`: o contrato que toda skill do Thothfy precisa seguir —
+- `SKILL-AUTORIA.md`: o contrato que toda skill do Inboundfy precisa seguir —
   grupo, sequência, frontmatter, contexto exigido e condições de aprovação.
-- `INSTALACAO.md`: como `thothfy-setup` instala o framework num projeto novo
-  — a estrutura de `.thothfy/` e `content/`, o ajuste de `AGENTS.md`/
+- `INSTALACAO.md`: como `inboundfy-setup` instala o framework num projeto novo
+  — a estrutura de `.inboundfy/`, `acervo/`, `canais/` e `calendario/`, o ajuste de `AGENTS.md`/
   `CLAUDE.md` e o preenchimento do contexto inicial.
 - `examples/`: pacotes de demonstração já preenchidos, com dado fictício,
   mostrando o resultado real de cada fase do pipeline — leitura de
@@ -68,14 +76,32 @@ fluxo completo até os artefatos auditados, sem coordenação manual das fases.
   `examples/README.md`.
 
 As skills podem aparecer no agente antes da preparação do projeto. Nesse
-estado, qualquer skill que não seja `thothfy-setup` confere
-`.thothfy/VERSAO.md` e `.thothfy/FONTES-PROJETO.md`, avisa que o setup precisa
+estado, qualquer skill que não seja `inboundfy-setup` confere
+`.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md`, avisa que o setup precisa
 ser concluído ou reparado e encerra sem criar artefatos.
 
-O inventário `.thothfy/FONTES-PROJETO.md` referencia arquivos como
+O registro `.inboundfy/fontes-projeto.md` referencia arquivos como
 `README.md`, `PRODUCT.md`, `BRAND.md` e `COPY.md` sem tirá-los dos caminhos
 originais. Cada skill lê somente as fontes classificadas como relevantes para
 a tarefa e mantém a precedência definida em `CONTEXTO.md`.
+
+## Capacidades estratégicas nativas
+
+Além das sequências e dos especialistas de canal, o Inboundfy inclui skills de
+produto e mercado, estratégia, copywriting, edição, pesquisa de cliente,
+concorrência, oferta, psicologia aplicada, SEO, GEO, CRO, métricas,
+atribuição, experimentação, lançamento, materiais ricos e anti-slop editorial.
+Todas leem os mesmos arquivos de voz, personas, proibições e dicionário.
+
+```bash
+inboundfy project sync
+inboundfy acervo add "Título" --file entrada.md
+inboundfy acervo process 0001
+inboundfy content create blog "Título da peça" --persona persona-01 --acervo 0001
+inboundfy content status 0001 aprovado
+inboundfy calendario add 2026-09-20 0001
+inboundfy doctor --strict
+```
 
 ## Ordem de leitura
 
@@ -103,15 +129,15 @@ a tarefa e mantém a precedência definida em `CONTEXTO.md`.
 Na raiz do projeto consumidor:
 
 ```bash
-npx @promovaweb/thothfy@latest install --dry-run
-npx @promovaweb/thothfy@latest install \
+npx @promovaweb/inboundfy@latest install --dry-run
+npx @promovaweb/inboundfy@latest install \
   --agent codex \
   --instruction-file AGENTS.md \
   --yes
-npx @promovaweb/thothfy@latest doctor
+npx @promovaweb/inboundfy@latest doctor
 ```
 
-Depois, peça ao agente para executar `thothfy-setup` e preencher o contexto
+Depois, peça ao agente para executar `inboundfy-setup` e preencher o contexto
 inicial. O guia completo está em
 [Instalação e preparação](docs/user/02-instalacao.md).
 
@@ -152,7 +178,7 @@ o artefato final auditado de cada canal (`METODOLOGIA.md`).
 
 ## Estado do projeto
 
-O Thothfy possui metodologia, contrato de skill, sete grupos funcionais,
+O Inboundfy possui metodologia, contrato de skill, sete grupos funcionais,
 sequências numeradas, wrappers autônomas, arquivos de contexto, estruturas
 persuasivas e validação estrutural executável. `SKILLS.md` lista o catálogo
 completo. A licença é proprietária e não concede redistribuição ou uso
@@ -178,4 +204,4 @@ navegação interna e a edição publicada em PDF e EPUB.
 
 CLI e framework não possuem versões independentes. O SemVer de `package.json`
 também identifica a edição do ebook, a tag `vX.Y.Z`, a GitHub Release e o
-pacote público `@promovaweb/thothfy`. Consulte [RELEASING.md](RELEASING.md).
+pacote público `@promovaweb/inboundfy`. Consulte [RELEASING.md](RELEASING.md).

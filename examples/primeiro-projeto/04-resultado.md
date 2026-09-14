@@ -1,18 +1,18 @@
 # Resumo da execução
 
-- **Brainstorm:** `brainstorms/AAAA-MM-DD-revisao-bicicleta/brainstorm.md`
-- **Pacote:** `content/revisao-bicicleta/`
+- **Acervo:** `acervo/0001-AAAA-MM-DD-revisao-bicicleta/`
+- **Arquivos de base:** bruto, processado, FAQ, base editorial, pesquisa e estratégia
 - **Asset:** artigo de blog
-- **Validação individual:** aprovada
-- **Auditoria do pacote:** aprovada
+- **Persona:** `persona-01`
+- **Estado:** aprovado
 - **Saída final:**
-  `content/revisao-bicicleta/97-ativos-finais/blog/revisao-bicicleta/`
+  `canais/blog/0001-AAAA-MM-DD-revisao-bicicleta/README.md`
 
 ## Evidências esperadas
 
 - ideia original preservada;
 - fontes e suposições separadas;
-- brief ligado ao artigo;
-- relatório da `thothfy-validador-blog`;
+- acervo e persona ligados ao artigo;
+- relatório da `inboundfy-validador-blog`;
 - zero ocorrência de proibições após a última rodada;
 - conteúdo final compatível com a voz e a marca fictícias.

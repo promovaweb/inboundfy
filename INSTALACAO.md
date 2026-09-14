@@ -1,224 +1,156 @@
-# INSTALACAO.md — Adotando o Thothfy em um Projeto Novo
+# INSTALACAO.md — Adotando o Inboundfy em um projeto
 
 ## Pré-requisito
 
-O Thothfy exige Node.js 22.14.0 ou superior para executar o CLI
-`@promovaweb/thothfy`. As skills usam o formato `SKILL.md` de Claude Code,
-Codex e ferramentas equivalentes.
+O Inboundfy exige Node.js 22.14.0 ou superior para executar o CLI
+`@promovaweb/inboundfy`. As skills usam o formato `SKILL.md` de Codex,
+Claude Code e agentes compatíveis.
 
-## O que `thothfy-setup` instala
+## Regra de separação
 
-`thothfy-setup` é a única skill responsável por conduzir e conferir a
-instalação, a atualização, a restauração e a reconciliação dos arquivos de
-apoio. O CLI é seu executor: escreve arquivos, calcula hashes, mantém
-manifestos e ajusta somente o bloco delimitado no arquivo de instrução do
-agente. As skills de contexto preenchem informação do negócio; as skills de
-produção apenas leem o ambiente e escrevem nos destinos registrados.
+O pacote instalado separa o método, que é reutilizável, dos dados do negócio,
+que pertencem ao projeto consumidor:
 
 ```text
-<projeto-do-usuário>/
-├── AGENTS.md / CLAUDE.md         (ajustado por thothfy-setup, ver abaixo)
-├── brainstorms/                  ideias pesquisadas e validadas
-├── content/                      ativos gerados: pacotes de trabalho e
-│                                  artefatos finais do pipeline (padrão —
-│                                  ver METODOLOGIA.md e context/canais.md)
-└── .thothfy/
-    ├── VERSAO.md                 versão do framework instalada e data
-    ├── install.json              versão, agente e caminhos escolhidos
-    ├── manifest.json             hashes dos arquivos gerenciados
-    ├── fontes-candidatas.json    descoberta técnica de fontes locais
-    ├── FONTES-PROJETO.md         inventário dos Markdown locais em maiúsculas
-    ├── BRAINSTORM.md             fluxo da ideia ao brainstorm aprovado
-    ├── METODOLOGIA.md            cópia dos arquivos de metodologia
-    ├── ESCRITA.md
-    ├── CONTEXTO.md
-    ├── ESTRUTURAS-PERSUASIVAS.md
-    ├── LIMPEZA-MATERIAL-BRUTO.md
-    ├── TRADUCAO.md
-    ├── SKILL-AUTORIA.md
-    ├── SKILLS.md
-    ├── docs/                      documentação da versão instalada
-    │   ├── README.md
-    │   ├── user/                  uso passo a passo, do zero à operação
-    │   └── method/                arquitetura e contratos técnicos
-    ├── ebook/                     guia do usuário em PDF e EPUB
-    │   ├── VERSION
-    │   ├── build.json
-    │   └── Thothfy-Guia-do-Usuario-v<versão>.{pdf,epub}
-    ├── brand/                     identidade visual usada pela documentação
-    │   ├── README.md
-    │   ├── manifest.json
-    │   └── logo/
-    ├── templates/                 cópia read-only dos templates originais
-    │   ├── brainstorm.md
-    │   ├── fontes-projeto.md
-    │   └── context/                (mesmos 15 arquivos de thothfy/context/)
-    └── context/                    dado ao vivo do usuário — cópia editável
-        └── (os mesmos 15 arquivos, preenchidos por thothfy-setup e pelas
-             skills thothfy-contexto-*)
+<projeto>/
+├── AGENTS.md ou CLAUDE.md
+├── acervo/
+│   └── 0001-AAAA-MM-DD-slug/
+├── canais/
+│   ├── README.md
+│   └── <canal>/0001-AAAA-MM-DD-slug/README.md
+├── calendario/
+│   ├── README.md
+│   └── AAAA-MM.md
+└── .inboundfy/
+    ├── inbound.md
+    ├── estrategia.md
+    ├── voz.md
+    ├── personas.md
+    ├── proibicoes.md
+    ├── dicionario.md
+    ├── pipeline.md
+    ├── install.json
+    ├── manifest.json
+    ├── fontes-candidatas.json
+    ├── fontes-projeto.md
+    ├── indices/
+    └── framework/
+        ├── VERSAO.md
+        ├── docs/
+        ├── ebook/
+        ├── brand/
+        ├── templates/
+        ├── context/
+        └── arquivos de metodologia
 ```
 
-`templates/` nunca é editado depois da instalação — é a referência para
-comparar o que mudou ou para restaurar um arquivo de `context/` corrompido.
-`.thothfy/context/` é o único diretório de configuração que muda de projeto
-para projeto. `content/` fica fora de `.thothfy/` de propósito: é o
-diretório de saída voltado ao usuário — pacotes de trabalho
-(`00-entrada/` até `97-ativos-finais/`, ver `METODOLOGIA.md`) e o resultado
-final de cada peça — não configuração do framework. `brainstorms/` guarda
-ideias pesquisadas antes de elas entrarem no pipeline.
-`thothfy-planejamento-00-triagem` cria pacotes dentro de `content/` por
-padrão; `context/canais.md` pode apontar outro caminho já existente no
-projeto quando fizer sentido.
+`inboundfy/` é o repositório do framework. `.inboundfy/framework/` é a cópia
+read-only do método instalado. Os arquivos diretamente em `.inboundfy/` são a
+configuração viva do projeto. `acervo/`, `canais/` e `calendario/` guardam
+trabalho e saída. `.inboundfy/context/` continua disponível para detalhes de
+domínio e compatibilidade com os contextos anteriores.
 
-As skills (`skills/thothfy-*/SKILL.md`) são copiadas para o diretório de
-skills que o agente do usuário já usa (`.claude/skills/`, `.codex/skills/`
-ou equivalente) — `thothfy-setup` detecta qual convenção o projeto já segue
-e usa a mesma, sem criar uma terceira convenção.
+O material de referência instalado fica em `.inboundfy/framework/docs/`,
+`.inboundfy/framework/ebook/`, `.inboundfy/framework/brand/` e
+`.inboundfy/framework/templates/`. Esses arquivos pertencem ao framework e
+não recebem dados específicos do projeto.
 
-Se qualquer skill encontrar metodologia, template, arquivo de contexto ou
-diretório de saída ausente ou fora desses caminhos, ela aciona
-`thothfy-setup`. Nenhuma skill cria uma segunda estrutura para contornar a
-instalação incompleta.
+## O que o setup pergunta
 
-Instalar somente as skills no diretório do agente ainda não prepara o projeto.
-Toda skill operacional confere `.thothfy/install.json`,
-`.thothfy/manifest.json` e `.thothfy/FONTES-PROJETO.md` ao começar. Enquanto
-um deles não existir, a execução não cria artefatos e apresenta este aviso:
+`inboundfy-setup` conduz uma entrevista por blocos:
 
-> O setup do Thothfy ainda não foi concluído ou precisa de reparo neste
-> projeto. Peça ao agente para executar `thothfy-setup` ou rode
-> `npx @promovaweb/thothfy@latest repair --yes`.
+1. empresa: nome, descrição, site, país, região, idioma, endereços, contatos,
+   pessoas autorizadas e redes sociais;
+2. oferta: produtos, serviços, público, problema, resultado, mecanismo, preço,
+   condições, provas, limites e próxima ação;
+3. personas: identidade, cargo ou situação, tarefa, contexto de compra,
+   problema, resultado, objeções, vocabulário, canais e oferta pertinente;
+4. voz: adjetivos, pessoa verbal, tempo, formalidade, ritmo, humor, aberturas,
+   fechamentos, tamanho de parágrafo e exemplos aprovados e rejeitados;
+5. regras: termos proibidos, promessas vetadas, estruturas a evitar, grafia
+   oficial, termos preferidos e correções aprovadas;
+6. estratégia: objetivo, oferta principal, horizonte, cadência, datas e canais
+   entre Blog, Email, LinkedIn, Instagram, Substack e YouTube;
+7. pipeline: estados, responsáveis, campos para agendamento e dados exigidos
+   para marcar uma peça como publicada.
 
-## Descoberta dos Markdown do projeto
+O setup exige ao menos uma persona. Uma resposta local pode valer para uma
+peça, um canal ou o projeto inteiro; registre o alcance antes de alimentar o
+dicionário.
 
-Durante instalação, atualização e reparo, o setup pesquisa arquivos `.md`
-cujo nome use letras maiúsculas, além de números, hífens e sublinhados.
-Quando `brand/` existir, todos os Markdown internos entram no inventário,
-mesmo com nomes em minúsculas. Logos, fontes, tokens e imagens permanecem na
-pasta original para consulta das skills visuais.
-Arquivos como `README.md`, `AGENTS.md`, `PRODUCT.md` e `COPY-GUIDE.md` entram
-como candidatos. O resultado fica em `.thothfy/FONTES-PROJETO.md`.
+## Instalação
 
-O setup não copia nem altera essas fontes. Ele registra o caminho relativo,
-classifica a finalidade, resume os assuntos e aponta divergências. A busca
-ignora os diretórios do agente, dependências, builds, saídas geradas, a própria
-`.thothfy/` e submódulos Git. O arquivo descoberto só complementa
-`.thothfy/context/`; qualquer conflito com um fato confirmado exige revisão.
-
-## Passos
-
-1. Na raiz do projeto, simule a instalação:
-
-   ```bash
-   npx @promovaweb/thothfy@latest install --dry-run
-   ```
-
-2. Revise o plano e instale. Este exemplo usa Codex e `AGENTS.md`:
-
-   ```bash
-   npx @promovaweb/thothfy@latest install \
-     --agent codex \
-     --instruction-file AGENTS.md \
-     --yes
-   ```
-
-3. Ative `thothfy-setup`. A skill:
-   - detecta o diretório de skills do agente do usuário
-     (`.claude/skills/`, `.codex/skills/` ou o que já existir) e copia
-     `skills/thothfy-*/` para lá;
-   - cria `.thothfy/` com a estrutura acima, copiando `templates/context/` a
-     partir de `context/`, `templates/brainstorm.md` e os arquivos de
-     metodologia, `docs/user/`, `docs/method/` e a edição publicada de
-     `ebook/`, além da identidade visual de `brand/`;
-   - pesquisa os Markdown em maiúsculas e gera
-     `.thothfy/FONTES-PROJETO.md`;
-   - cria `brainstorms/` para ideias pesquisadas;
-   - cria `content/` na raiz do projeto (ou confirma que já existe) e
-     registra os dois caminhos em `.thothfy/context/canais.md`;
-   - confere se o projeto já tem `AGENTS.md` e/ou `CLAUDE.md` na raiz; se
-     tiver, insere (ou atualiza) uma seção curta apontando para
-     `.thothfy/CONTEXTO.md`, `.thothfy/METODOLOGIA.md` e `.thothfy/SKILLS.md`
-     como fonte de instrução do Thothfy e `.thothfy/docs/user/README.md`
-     como manual inicial, sem remover nenhuma instrução já existente do
-     projeto; se não tiver nenhum dos dois, pergunta ao usuário qual criar;
-   - conduz o preenchimento mínimo obrigatório em `.thothfy/context/`:
-     `empresa.md`, `marca-voz.md`, um item em `produtos.md` ou
-     `servicos.md`, e um canal em `canais.md`;
-   - não libera nenhuma skill de produção enquanto esse mínimo não existir.
-   - instala as validadoras pareadas; cada asset reprovado volta à skill
-     produtora de mesmo sufixo com o relatório de correções.
-4. Ao concluir o contexto mínimo, a skill executa
-   `thothfy context ready --yes` e `thothfy doctor --strict`.
-5. Preencha o restante de `.thothfy/context/` sob demanda, usando a skill de
-   manutenção correspondente (`CONTEXTO.md`) — não é preciso preencher tudo
-   antes de produzir a primeira peça.
-6. Confirme em `.thothfy/context/canais.md` onde os pacotes de trabalho
-   serão salvos no projeto. `thothfy-planejamento-00-triagem` usa esse
-   caminho para criar a estrutura descrita em `METODOLOGIA.md`.
-7. A partir daqui, use `thothfy-brainstorm` para desenvolver uma ideia,
-   `thothfy-iniciar` para gerar uma ou várias peças, ou uma skill especialista
-   com brief simples para peça avulsa.
-
-## Reparo da instalação
-
-Ative `thothfy-setup` também quando a versão já estiver atualizada, mas um
-arquivo tiver sido removido, movido ou corrompido. A skill conduz
-`thothfy repair --dry-run` e `thothfy repair --yes`, interpreta o inventário e
-confere o resultado com `thothfy doctor --strict`.
-
-Arquivos existentes em `.thothfy/context/` nunca são substituídos. Se um
-arquivo estiver ausente, o setup copia o template correspondente e informa
-qual skill `thothfy-contexto-*` deve preenchê-lo. Essa separação permite
-reparar a estrutura sem apagar nem inventar informação do usuário.
-
-## O que o Thothfy nunca assume por padrão
-
-- Idioma da peça final: segue o que estiver em `context/marca-voz.md`. Sem
-  essa definição, a skill pergunta antes de escrever.
-- Canal de publicação automática: o Thothfy produz o artefato, não publica em
-  CMS, rede social ou provedor de e-mail. Integração de publicação é
-  responsabilidade do projeto que adota o framework.
-- Chave de API de serviço de imagem ou busca de foto: cada skill de imagem
-  documenta a variável de ambiente que espera e o que fazer quando ela
-  estiver ausente.
-- Convenção de diretório de skills do agente do usuário: `thothfy-setup`
-  detecta e reaproveita a que já existir, nunca cria uma nova convenção
-  concorrente.
-
-## Atualizando o Thothfy
-
-Ao atualizar, simule e aplique:
+Na raiz do projeto consumidor, simule primeiro:
 
 ```bash
-npx @promovaweb/thothfy@latest update --dry-run
-npx @promovaweb/thothfy@latest update --yes
-npx @promovaweb/thothfy@latest doctor --strict
+npx @promovaweb/inboundfy@latest install --dry-run
 ```
 
-`.thothfy/context/` nunca é sobrescrito. O setup confere templates,
-metodologia, skills, documentação em `.thothfy/docs/`, ebook em
-`.thothfy/ebook/`, identidade visual em `.thothfy/brand/` e inventário. O CLI
-preserva customizações em `.thothfy/migracoes/`.
+Depois instale escolhendo o agente:
 
-CLI, framework, tag `vX.Y.Z`, GitHub Release, pacote npm e ebook usam sempre o
-mesmo SemVer.
+```bash
+npx @promovaweb/inboundfy@latest install \
+  --agent codex \
+  --instruction-file AGENTS.md \
+  --yes
+```
 
-### Migração dos nomes estratégicos
+O CLI instala as skills no diretório usado pelo agente, copia o método para
+`.inboundfy/framework/`, cria os sete arquivos de configuração, os diretórios
+de trabalho, os índices e o bloco delimitado em `AGENTS.md` ou `CLAUDE.md`.
+Arquivos preenchidos pelo projeto permanecem intactos.
 
-A sequência estratégica usa números desde esta versão:
+Ative `inboundfy-setup` para preencher os arquivos canônicos. Depois rode:
 
-<!-- markdownlint-disable MD013 -->
+```bash
+inboundfy project sync
+inboundfy context ready --yes
+inboundfy doctor --strict
+```
 
-| Nome anterior | Nome atual |
-| --- | --- |
-| `thothfy-estrategia-briefing-cliente` | `thothfy-estrategia-00-briefing-cliente` |
-| `thothfy-estrategia-pesquisa-mercado` | `thothfy-estrategia-01-pesquisa-mercado` |
-| `thothfy-estrategia-campanha` | `thothfy-estrategia-02-campanha` |
-| `thothfy-estrategia-calendario` | `thothfy-estrategia-03-calendario` |
+## Operação diária
 
-<!-- markdownlint-enable MD013 -->
+Registre material bruto sem edição:
 
-Durante uma atualização, `thothfy-setup` copia os nomes atuais e move
-diretórios antigos para `.thothfy/migracoes/skills-legadas/<data>/`. O
-conteúdo antigo permanece disponível para comparação, mas sai do diretório
-ativo de skills para não criar dois gatilhos para a mesma fase.
+```bash
+inboundfy acervo add "Título do material" --file entrada.md --source "nota interna"
+inboundfy acervo process 0001
+```
+
+O item recebe `bruto.md`, `processado.md`, `faq.md`, `base-editorial.md`,
+`pesquisa.md` e `estrategia.md`. As skills preenchem os quatro últimos a partir
+do material, do contexto, de outras bases editoriais e de pesquisa atualizada.
+
+Crie e mova uma peça pelo pipeline:
+
+```bash
+inboundfy content create blog "Título da peça" \
+  --persona persona-01 --acervo 0001
+inboundfy content status 0001 revisao
+inboundfy content status 0001 aprovado
+inboundfy calendario add 2026-09-20 0001
+inboundfy content status 0001 publicado \
+  --url https://exemplo.test/artigo \
+  --published-at 2026-09-20
+```
+
+Cada saída fica em uma pasta do canal com `README.md`, frontmatter, IDs,
+personas, acervos, base editorial, estado e checklist. A publicação exige URL
+e data confirmadas.
+
+## Atualização e reparo
+
+Use `inboundfy-setup` para atualizar ou reparar. O CLI preserva dados de
+`.inboundfy/`, acervo, canais, calendário e customizações, registra cópias em
+`.inboundfy/migracoes/` quando necessário e atualiza somente os arquivos do
+framework gerenciados pelo manifesto.
+
+```bash
+npx @promovaweb/inboundfy@latest update --dry-run
+npx @promovaweb/inboundfy@latest update --yes
+npx @promovaweb/inboundfy@latest doctor --strict
+```
+
+Se o doctor apontar arquivo ausente ou divergente, faça a simulação de reparo,
+revise o relatório e execute `repair --yes`.

@@ -1,9 +1,9 @@
 <!--
-Preenchido e mantido por thothfy-contexto-marca. Diferente de proibicoes.md
+Preenchido e mantido por inboundfy-contexto-marca. Diferente de proibicoes.md
 (vetos de negócio: termo, promessa, comparação específica do usuário), este
 arquivo cataloga padrões de escrita que denunciam texto gerado por IA sem
 revisão humana — válido para qualquer negócio, em qualquer canal. Use os
-dois arquivos juntos: thothfy-base-editor aplica ambos na mesma auditoria de
+dois arquivos juntos: inboundfy-base-editor aplica ambos na mesma auditoria de
 parágrafo, e uma violação aqui também pode impor teto de nota (ver
 ESCRITA.md).
 
@@ -142,7 +142,7 @@ arquivo cataloga o padrão negativo (o que evitar) em detalhe operacional.
   X") — todo dado precisa de origem rastreável (`context/` ou fonte
   externa citada).
 
-## Checklist rápido para thothfy-base-editor
+## Checklist rápido para inboundfy-base-editor
 
 - [ ] Nenhuma abertura da seção 1 presente.
 - [ ] Nenhum fechamento da seção 2 presente.
