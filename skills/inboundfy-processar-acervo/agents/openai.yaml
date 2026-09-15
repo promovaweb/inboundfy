@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Processar Acervo"
+  short_description: "Executa processar acervo no Inboundfy"
+  default_prompt: "Use $inboundfy-processar-acervo para executar processar acervo com as fontes do projeto."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Especialista Ebook"
+  short_description: "Executa especialista ebook no Inboundfy"
+  default_prompt: "Use $inboundfy-especialista-ebook para executar especialista ebook com as fontes do projeto."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Especialista Webinar"
+  short_description: "Executa especialista webinar no Inboundfy"
+  default_prompt: "Use $inboundfy-especialista-webinar para executar especialista webinar com as fontes do projeto."

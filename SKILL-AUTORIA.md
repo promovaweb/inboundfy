@@ -3,7 +3,7 @@
 Toda skill em `skills/` segue esta estrutura. Use este arquivo ao criar uma
 skill nova ou ao revisar uma existente.
 
-## Os sete grupos
+## As famílias de skills
 
 Toda skill funcional pertence a exatamente um destes grupos, identificado
 pelo nome do diretório. Eles cobrem apoio mecânico, dados do negócio,
@@ -12,36 +12,36 @@ especialidade de canal. Ver `BRAINSTORM.md`, `ESTRATEGIA.md` e
 `METODOLOGIA.md`.
 
 1. **`inboundfy-base-*`** — capacidades fundamentais reutilizadas por qualquer
-   skill de canal: escrita/auditoria de parágrafo, formatação, SEO, motor de
-   imagem. Não citam canal nem fase do pipeline. Não escrevem peça final
-   sozinhas — são chamadas pelas skills responsáveis pela redação.
+   skill de canal: formatação, SEO, motor de imagem e validação. Não citam
+   canal nem fase do pipeline.
 2. **`inboundfy-contexto-*`** (mais `inboundfy-setup`) — preenchem e mantêm os
    arquivos de `context/` e o próprio ambiente instalado (`.inboundfy/`). Não
    produzem artefato de conteúdo nem decidem estratégia — apenas guardam o
    que já foi estabelecido pelos fluxos seguintes.
-3. **`inboundfy-brainstorm-<NN>-<nome>`** — desenvolvimento sequencial de uma
-   ideia, da triagem à validação, nas fases 00 a 04 de `BRAINSTORM.md`. Não
-   escreve peça final. `inboundfy-brainstorm`, sem número, é a wrapper deste
-   grupo.
-4. **`inboundfy-estrategia-<NN>-<nome>`** — planejamento estratégico de agência, anterior
-   a qualquer material bruto ou pacote de conteúdo: kickoff de campanha,
-   pesquisa de mercado, plano de campanha multicanal e calendário editorial
-   recorrente. A sequência 00 a 03 registra a abertura da campanha; uma fase
-   pode ser reaberta depois. Ver `ESTRATEGIA.md`.
-5. **`inboundfy-planejamento-<NN>-<nome>`** — as fases sequenciais de
-   `METODOLOGIA.md`, da 00 à 06, que processam um pacote de conteúdo já
-   iniciado a partir de material bruto ou de um item alocado pelo grupo 4.
-   O número no nome é a própria ordem de execução; não é decorativo. Não
-   escrevem copy final — preparam, roteiam ou auditam o que a skill
-   especialista produz.
+3. **`inboundfy-brainstorm`** — desenvolvimento sequencial de uma ideia, da
+   triagem à validação, nas etapas 00 a 04 de `BRAINSTORM.md`. As etapas ficam
+   em `references/etapas/` e não são IDs públicos.
+4. **`inboundfy-estrategia`** — planejamento estratégico de agência, anterior
+   a qualquer material bruto ou pacote de conteúdo. Suas etapas 00 a 03 ficam
+   em `references/etapas/`; ver `ESTRATEGIA.md`.
+5. **`inboundfy-planejamento`** — fases sequenciais de `METODOLOGIA.md`, da 00
+   à 06, reunidas em `references/etapas/`. Não escreve copy final.
 6. **`inboundfy-especialista-<canal>[-imagem]`** — recebem um brief pronto (de
-   `inboundfy-planejamento-04-briefing` ou de um item avulso apontado
+   `inboundfy-planejamento` ou de um item avulso apontado
    diretamente pelo grupo 4) e produzem o artefato final de um canal
    específico. Não decidem estratégia.
 7. **`inboundfy-validador-<canal>[-imagem]`** — validam exatamente o asset da
    especialista de mesmo sufixo. Aplicam `inboundfy-base-validador`, todos os
    contextos, as fontes locais e a referência do canal; se reprovarem,
    devolvem um relatório acionável à produtora pareada até nova aprovação.
+
+8. **`inboundfy-copy-*`** — concentram redação, edição, oferta, persuasão,
+   posicionamento e auditoria de texto.
+9. **`inboundfy-growth-*`** — concentram aquisição, ativação, retenção,
+   distribuição, conversão e operação de crescimento.
+10. **Qualidade e capacidades** — `inboundfy-anti-slop`,
+    `inboundfy-anti-slop-codigo` e as capacidades de pesquisa, SEO, GEO,
+    métricas e operação.
 
 `inboundfy-setup`, `inboundfy-brainstorm` e `inboundfy-iniciar` são pontos de
 entrada: instalação, desenvolvimento de ideia e produção. As wrappers devem
@@ -50,19 +50,18 @@ sobre preferências reversíveis.
 
 ## Nome
 
-- Grupo base: `inboundfy-base-<capacidade>` (ex.: `inboundfy-base-editor`).
+- Grupo base: `inboundfy-base-<capacidade>`.
 - Grupo contexto: `inboundfy-contexto-<arquivo-que-mantém>` (ex.:
-  `inboundfy-contexto-produtos`); `inboundfy-setup` é a exceção de nome sem
-  prefixo de arquivo, por ser onboarding geral.
-- Grupo brainstorm: `inboundfy-brainstorm-<NN>-<nome-da-fase>`, com `NN` de
-  `00` a `04`, conforme `BRAINSTORM.md`.
-- Grupo estratégia: `inboundfy-estrategia-<NN>-<nome-da-fase>`, com `NN` de
-  `00` a `03`, conforme `ESTRATEGIA.md`.
-- Grupo planejamento: `inboundfy-planejamento-<NN>-<nome-da-fase>`, com `NN`
-  de dois dígitos, na mesma ordem de `METODOLOGIA.md` (`00` a `06`). Nunca
-  reordene ou pule número ao adicionar uma fase nova — insira uma fase
-  intermediária como `03a` apenas em último caso, documentando a exceção em
-  `METODOLOGIA.md`.
+  `inboundfy-contexto-oferta`); a skill agrupadora carrega as referências do
+  domínio em `references/`.
+- Grupo brainstorm: `inboundfy-brainstorm`; etapas numeradas ficam em
+  `references/etapas/`.
+- Grupo estratégia: `inboundfy-estrategia`; etapas numeradas ficam em
+  `references/etapas/`.
+- Grupo planejamento: `inboundfy-planejamento`; etapas numeradas ficam em
+  `references/etapas/`.
+- Grupo copy: `inboundfy-copy-<capacidade>`.
+- Grupo growth: `inboundfy-growth-<capacidade>`.
 - Grupo especialista: `inboundfy-especialista-<canal>` para o texto do canal e
   `inboundfy-especialista-<canal>-imagem` para a imagem do mesmo canal, quando
   existir. Use o mesmo `<canal>` nos dois nomes para deixar o par óbvio.
@@ -79,8 +78,39 @@ explicação adicional.
 skills/inboundfy-<nome>/
 ├── SKILL.md
 ├── REFERENCIA.md    (obrigatório — ver seção própria abaixo)
+├── agents/
+│   └── openai.yaml   (interface do agente)
 └── scripts/          (opcional, apoio mecânico não substitui julgamento)
 ```
+
+## Arquitetura comum de execução
+
+Toda skill do catálogo usa três camadas:
+
+1. `SKILL.md` é o contrato curto de execução. Ele apresenta preflight,
+   contexto, entrada, fluxo, saída, validação, idempotência e grupo.
+2. `REFERENCIA.md` expande o contrato com template, exemplo preenchido,
+   checklist, erros comuns, campos próprios e referências de leitura.
+3. `agents/openai.yaml` fornece nome visível, resumo e prompt de ativação para
+   interfaces de agente. A interface não substitui o frontmatter nem o corpo
+   da skill.
+
+As cinco referências de `skills/_shared/` são obrigatórias para todas as
+skills: preflight e fontes, contrato de artefato, interação e handoff,
+validação e retomada, contexto editorial. O catálogo `skills/catalogo.json`
+mantém o pareamento entre ID, grupo, arquivos, interface e perfil de entrada,
+saída, validação e encaminhamento.
+
+Use `scripts/gerenciar-skills.mjs` para aplicar ou conferir a arquitetura:
+
+```bash
+npm run skills:enriquecer
+npm run skills:check
+```
+
+O modo de escrita mantém conteúdo específico já existente, acrescenta somente
+blocos ausentes e atualiza o catálogo. O modo de conferência não altera
+arquivos.
 
 ## `REFERENCIA.md` — material de apoio obrigatório
 
@@ -110,6 +140,11 @@ menção no fluxo. `REFERENCIA.md` nunca substitui `ESCRITA.md`,
 `ESTRUTURAS-PERSUASIVAS.md` ou `CONTEXTO.md`; ele é específico da skill,
 enquanto aqueles são regra transversal do framework.
 
+Além dos cinco blocos compartilhados, cada referência precisa mostrar como o
+grupo opera com os campos próprios da skill, um exemplo de entrada e saída,
+perguntas de conferência e uma trilha de documentos internos. O exemplo usa
+dados fictícios e não vira contexto do projeto.
+
 ## Frontmatter obrigatório
 
 ```yaml
@@ -127,7 +162,8 @@ description: >
 1. **Título e uma linha de escopo.** O que a skill faz e o que ela
    explicitamente não faz (link para a skill certa quando aplicável).
 2. **Verificação do setup.** Toda skill, exceto `inboundfy-setup`, confere
-   `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md` no início. Quando um
+   `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md` no
+   início. Quando um
    deles não existir, apresenta o alerta canônico abaixo e encerra sem criar
    nem alterar artefatos.
 3. **Contexto exigido.** Lista dos arquivos de `context/` que a skill lê
@@ -161,8 +197,8 @@ preparação.
 - Nenhuma skill cita nome de empresa, produto, pessoa, preço ou promessa
   comercial fora de exemplo genérico claramente marcado como ilustrativo.
 - Toda skill de redação ou revisão de texto lê `ESCRITA.md` e aciona
-  `inboundfy-base-editor` antes de aprovar qualquer parágrafo.
-  `inboundfy-base-editor` sempre cruza `context/proibicoes.md` (vetos de
+  `inboundfy-copy-editor` antes de aprovar qualquer parágrafo.
+  `inboundfy-copy-editor` sempre cruza `context/proibicoes.md` (vetos de
   negócio) com `context/estruturas-proibidas.md` (padrões genéricos de
   texto com cara de IA) na mesma auditoria.
 - Toda skill de geração de imagem declara o motor ou fonte usada (busca de
@@ -180,13 +216,13 @@ preparação.
 - Toda skill lê `.inboundfy/fontes-projeto.md` depois do preflight e carrega os
   Markdown marcados como relevantes para sua tarefa. Ela não copia, altera ou
   atribui autoridade automática às fontes descobertas.
-- Skills do grupo `inboundfy-brainstorm-<NN>-*` preservam a ideia, separam
+- A skill `inboundfy-brainstorm` preserva a ideia, separa
   fatos de hipóteses e validam a prosa contra os dois arquivos de proibições.
-- Skills do grupo `inboundfy-estrategia-<NN>-*` não escrevem copy final e não abrem
+- A skill `inboundfy-estrategia` não escreve copy final e não abre
   pacote de pipeline sozinhas — elas produzem brief de campanha, pesquisa,
-  plano ou calendário, e apontam para `inboundfy-planejamento-00-triagem` ou
+  plano ou calendário, e apontam para `inboundfy-planejamento` ou
   para `inboundfy-especialista-*` quando o pacote ou a peça precisa ser criado.
-- Skills do grupo `inboundfy-planejamento-<NN>-*` não escrevem copy final — elas
+- A skill `inboundfy-planejamento` não escreve copy final — ela
   orquestram e preparam material para a skill especialista escrever.
 - Skills do grupo `inboundfy-especialista-*` não decidem estratégia — elas
   recebem um brief já aprovado, produzem o artefato dentro dele e o enviam à
@@ -246,12 +282,21 @@ Antes de considerar uma skill pronta:
    publicar".
 7. `REFERENCIA.md` existe, tem pelo menos um template ou exemplo completo, e
    é citado em algum passo do `Fluxo`.
+8. `REFERENCIA.md` descreve a especificação operacional, campos mínimos,
+   perguntas de conferência e referências de execução.
+9. `agents/openai.yaml` existe, usa o nome da skill no prompt e mantém a
+   interface compatível com o agente adotado.
+10. A skill aparece em `skills/catalogo.json` com grupo e perfil completos.
 
 Depois da revisão manual, execute:
 
 ```bash
-python3 scripts/validar-framework.py
+node scripts/validar-framework.mjs
+npm run skills:check
+npm run validar:skills-prohibited
 ```
 
 O comando confirma nomes, frontmatter, seções, referências, dependências de
-`context/` e continuidade numérica dos três fluxos.
+`context/`, interfaces, catálogo e continuidade numérica dos três fluxos. A
+segunda conferência valida a arquitetura comum; a terceira mantém as skills
+livres dos padrões proibidos do framework.

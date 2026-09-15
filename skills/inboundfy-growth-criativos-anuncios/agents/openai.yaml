@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Criativos Anuncios"
+  short_description: "Executa growth criativos anuncios no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-criativos-anuncios para executar growth criativos anuncios com as fontes do projeto."

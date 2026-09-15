@@ -9,12 +9,12 @@ description: >
 # Inboundfy Formatador
 
 Última etapa mecânica antes de um artefato Markdown ser considerado pronto
-para `inboundfy-planejamento-06-auditoria`.
+para `inboundfy-planejamento`.
 
 ## Escopo
 
 Formata e valida estrutura Markdown. Não corrige conteúdo, tom ou voz; isso
-é `inboundfy-base-editor`.
+é `inboundfy-copy-editor`.
 
 ## Verificação do setup
 
@@ -24,6 +24,20 @@ ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
 arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
 preflight, leia o catalogo e os Markdown relevantes para a tarefa.
 
+## Arquitetura de execução
+
+Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
+específica desta pasta.
+
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
+- [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): conduza escolhas e entregue o pacote seguinte.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
+
+Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
+artefato. O grupo desta skill é **base**.
+
 ## Contexto exigido
 
 Nenhum arquivo de `context/` é obrigatório. Consulte `context/glossario.md`
@@ -32,7 +46,7 @@ apenas para confirmar grafia em link e texto âncora.
 ## Entrada esperada
 
 Um artefato Markdown já com o corpo definido, geralmente aprovado por
-`inboundfy-base-editor`.
+`inboundfy-copy-editor`.
 
 ## Fluxo
 
@@ -61,6 +75,18 @@ O mesmo artefato Markdown, com estrutura corrigida, salvo no mesmo caminho.
 - Um único H1 por documento.
 - Nenhum link com texto âncora genérico.
 - Frontmatter válido e completo para o canal.
+
+## Responsabilidade do grupo
+
+Entregue uma função reutilizável, sem assumir canal ou negócio. Receba um artefato claro e devolva um registro consumível pela skill chamadora.
+
+Antes do handoff, confirme os campos próprios deste grupo:
+
+- **grupo:** base
+- **entrada:** caminho ou ID ligado ao pedido;
+- **transformação:** ação principal descrita no fluxo;
+- **saída:** arquivo, resposta ou relatório com formato definido;
+- **handoff:** próxima skill, estado e pendências.
 
 ## Idempotência
 

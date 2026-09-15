@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Loops"
+  short_description: "Executa growth loops no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-loops para executar growth loops com as fontes do projeto."

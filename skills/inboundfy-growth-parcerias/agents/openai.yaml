@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Parcerias"
+  short_description: "Executa growth parcerias no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-parcerias para executar growth parcerias com as fontes do projeto."

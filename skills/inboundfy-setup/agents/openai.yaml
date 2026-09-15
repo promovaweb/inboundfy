@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Setup"
+  short_description: "Executa setup no Inboundfy"
+  default_prompt: "Use $inboundfy-setup para executar setup com as fontes do projeto."

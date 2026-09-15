@@ -10,10 +10,10 @@ locais classificados como relevantes para o trabalho atual.
 Este pipeline processa um pacote que **já tem** material bruto ou um item
 alocado no calendário. A estratégia define a finalidade da campanha, o
 público, os canais e o período sem depender de material prévio. Essa camada
-está descrita em `ESTRATEGIA.md`, no grupo
-`inboundfy-estrategia-<NN>-*`. Um pacote pode começar com material bruto trazido
+está descrita em `ESTRATEGIA.md`, na skill
+`inboundfy-estrategia`. Um pacote pode começar com material bruto trazido
 pelo usuário, sem campanha, ou com um item alocado por
-`inboundfy-estrategia-03-calendario`; nos dois casos, o fluxo segue igual a
+`inboundfy-estrategia`; nos dois casos, o fluxo segue igual a
 partir da fase 0.
 
 ## Regra central
@@ -27,13 +27,38 @@ usuário pedir explicitamente uma peça avulsa e rápida — nesse caso, a skill
 de canal ainda deve consultar `context/` e aplicar `ESCRITA.md` antes de
 entregar.
 
-Cada fase corresponde a exatamente uma skill do grupo
-`inboundfy-planejamento-<NN>-<nome>` — o número no nome da skill é a própria
-ordem de execução (ver `SKILL-AUTORIA.md`). `inboundfy-iniciar` é a wrapper
-que aciona as sete fases automaticamente; use as skills individuais quando
+Cada fase corresponde a uma referência interna de
+`inboundfy-planejamento/references/etapas/`. `inboundfy-iniciar` é a wrapper
+que aciona as sete fases automaticamente; informe o nome da etapa quando
 quiser controlar ou retomar uma fase específica. Quando a entrada for apenas
 uma ideia, `inboundfy-iniciar` chama primeiro `inboundfy-brainstorm` e usa o
 `brainstorm.md` aprovado como material do pacote.
+
+## Cadência anti-slop
+
+`inboundfy-anti-slop` acompanha o pacote em sete marcos. A0 lê a entrada sem
+alterá-la; A1 confere o saneamento; A2 confere pesquisa, FAQ e ativos; A3
+confere oportunidades e brief; A4 audita outline, abertura e primeira unidade;
+A5 audita a peça completa antes da validadora; A6 compara o pacote aprovado
+antes do pipeline. Os detalhes e os nomes dos registros estão em
+`skills/inboundfy-anti-slop/ETAPAS.md`.
+
+Cada ciclo registra código, entrada, número do ciclo, fontes, achados, estado
+e próxima ação. Uma alteração em fonte, configuração, brief ou asset invalida
+os ciclos posteriores ao ponto alterado. O registro anterior permanece no
+histórico e o novo ciclo começa pela etapa afetada.
+
+## Aprendizado do projeto
+
+`.inboundfy/context/aprendizado.md` registra sugestões, correções, alinhamentos e dicas
+recebidos durante a conversa. Cada entrada conserva o texto original, a regra
+interpretada, o alcance e o arquivo alterado. A orientação só se torna geral
+quando o usuário confirma o alcance `projeto`. Regras de voz, grafia e
+proibição também são copiadas para seus arquivos canônicos quando aplicável.
+
+Antes de cada produção, as skills consultam os registros confirmados para o
+canal, a persona e o projeto. Uma mudança confirmada depois da produção
+aciona a revisão do asset e os marcos anti-slop posteriores.
 
 As skills deste pipeline não reparam a instalação. Quando metodologia,
 template, inventário de fontes, arquivo de contexto ou diretório registrado
@@ -43,17 +68,19 @@ artefato preservado.
 
 ## Fases
 
-### 0. Intake (`inboundfy-planejamento-00-triagem`)
+### 0. Intake (`inboundfy-planejamento`)
 
 Recebe material bruto — transcrição, peça-base, briefing informal, dado de
 pesquisa, release de produto — ou um item alocado por
-`inboundfy-estrategia-03-calendario`, e decide o caminho: pacote completo (todas
+`inboundfy-estrategia`, e decide o caminho: pacote completo (todas
 as fases abaixo) ou peça avulsa (produção direta a partir de um brief
 mínimo). Cria o diretório de trabalho do pacote, registra a campanha de
 origem quando houver (`context/campanhas.md`) e preserva o material original
 sem edição.
 
-### 1. Saneamento (`inboundfy-planejamento-01-saneamento`)
+Após preservar a entrada, execute o marco A0 em modo somente leitura.
+
+### 1. Saneamento (`inboundfy-planejamento`)
 
 Produz uma versão limpa do material de entrada: corrige transcrição, remove
 ruído, organiza estrutura, sem reescrever com voz editorial ainda. Documenta
@@ -62,7 +89,9 @@ regras completas do que pode e não pode ser alterado vivem em
 `LIMPEZA-MATERIAL-BRUTO.md`; a lógica de correção de termo técnico ou nome
 próprio mal transcrito vive em `TRADUCAO.md`.
 
-### 2. Pesquisa e extração de ativos (`inboundfy-planejamento-02-pesquisa`)
+Depois de salvar a base limpa, execute o marco A1.
+
+### 2. Pesquisa e extração de ativos (`inboundfy-planejamento`)
 
 Extrai da base limpa e do `context/` os ativos reutilizáveis: teses, exemplos,
 dados, dores, objeções, perguntas frequentes, citações e entidades (produtos,
@@ -71,13 +100,18 @@ externa ou sensível ao tempo, também faz pesquisa com fonte e data de acesso.
 Esses ativos alimentam qualquer peça futura do mesmo pacote, mesmo em canais
 diferentes.
 
-### 3. Planejamento de oportunidades (`inboundfy-planejamento-03-oportunidades`)
+Depois de salvar os ativos, execute o marco A2 para conferir se a extração
+continua específica e ligada às fontes.
+
+### 3. Planejamento de oportunidades (`inboundfy-planejamento`)
 
 Cruza os ativos extraídos com os canais disponíveis em `context/canais.md` e
 decide quais peças valem a pena, além da ordem e da prioridade. O
 resultado é uma lista de oportunidades, não peças prontas.
 
-### 4. Briefing (`inboundfy-planejamento-04-briefing`)
+O marco A3 acontece depois das oportunidades e novamente depois de cada brief.
+
+### 4. Briefing (`inboundfy-planejamento`)
 
 Transforma cada oportunidade aprovada em um brief formal por peça: canal,
 formato, público-alvo (`context/publico.md`), objetivo, ângulo, ativos de
@@ -86,9 +120,11 @@ estrutura persuasiva quando aplicável (`ESTRUTURAS-PERSUASIVAS.md`) e
 condições de aprovação. Nenhuma peça final deve existir sem um brief que a
 originou.
 
-### 5. Produção (`inboundfy-planejamento-05-producao` + skill especialista)
+O brief só segue para produção depois de passar pelo marco A3.
 
-`inboundfy-planejamento-05-producao` roteia o brief para a skill
+### 5. Produção (`inboundfy-planejamento` + skill especialista)
+
+`inboundfy-planejamento` roteia o brief para a skill
 `inboundfy-especialista-<canal>` correta (blog, email, LinkedIn, vídeo, ebook,
 infográfico, webinar, changelog, podcast) e garante que ela leu `context/` e
 `ESCRITA.md` antes de escrever. A skill especialista produz o artefato
@@ -99,21 +135,28 @@ reprovar, devolve o relatório à produtora e o ciclo se repete.
 
 Proibições são hard gates: a validadora faz um passe literal e outro
 semântico/estrutural sobre o asset inteiro. Uma única ocorrência reprova a
-peça, mesmo que a nota média, o SEO ou os demais critérios estejam
+peça, mesmo que a nota média, o SEO ou as demais regras estejam
 aprovados. Depois da correção, os dois passes recomeçam do zero. Se `brand/`
 existir, as diretrizes e os ativos aplicáveis da pasta também entram na
 aprovação.
 
-### 6. Auditoria (`inboundfy-planejamento-06-auditoria`)
+Para peça longa, A4 acontece antes da expansão do texto. Depois da redação
+completa, A5 acontece antes da validadora. A validadora repete A5 após cada
+correção.
+
+### 6. Auditoria (`inboundfy-planejamento`)
 
 Consolida os relatórios individuais já aprovados, verifica coerência entre
 assets e audita o pacote contra o brief. Relatório ausente ou reprovado
 devolve o item à produção; divergência estratégica volta ao briefing.
 
+Antes do veredito, execute A6 e compare as peças relacionadas para retirar
+repetições e contradições do conjunto.
+
 ## Ordem entre fases
 
 ```text
-0 Intake → 1 Saneamento → 2 Pesquisa/Ativos → 3 Planejamento → 4 Briefing → 5 Produção ⇄ Validação do asset → 6 Auditoria
+0 Intake → A0 → 1 Saneamento → A1 → 2 Pesquisa/Ativos → A2 → 3 Planejamento → A3 → 4 Briefing → A3 → 5 Produção → A4 → A5 → Validação do asset → A6 → 6 Auditoria
 ```
 
 Ideia curta passa primeiro pelo brainstorm:
@@ -149,6 +192,13 @@ usuário em `context/canais.md`):
 ├── 04-briefs/
 │   └── <canal>-<slug>.md
 ├── 06-auditoria/
+│   ├── anti-slop-00-entrada.md
+│   ├── anti-slop-01-processado.md
+│   ├── anti-slop-02-base-editorial.md
+│   ├── anti-slop-03-estrategia-brief.md
+│   ├── anti-slop-04-rascunho.md
+│   ├── anti-slop-05-peca.md
+│   ├── anti-slop-06-pacote.md
 │   ├── assets/
 │   │   └── <canal>-<item>.md
 │   └── auditoria-final.md

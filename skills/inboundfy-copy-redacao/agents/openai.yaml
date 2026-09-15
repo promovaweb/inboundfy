@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Copy Redacao"
+  short_description: "Executa copy redacao no Inboundfy"
+  default_prompt: "Use $inboundfy-copy-redacao para executar copy redacao com as fontes do projeto."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Base Imagem"
+  short_description: "Executa base imagem no Inboundfy"
+  default_prompt: "Use $inboundfy-base-imagem para executar base imagem com as fontes do projeto."

@@ -28,12 +28,7 @@ const FRAMEWORK_FILES = [
 ] as const;
 
 const PROJECT_TEMPLATES = [
-  "inbound.md",
   "estrategia.md",
-  "voz.md",
-  "personas.md",
-  "proibicoes.md",
-  "dicionario.md",
   "pipeline.md",
   "README.md",
 ] as const;
@@ -130,7 +125,11 @@ export async function collectSkillsPayload(
 ): Promise<PayloadFile[]> {
   const root = join(PACKAGE_ROOT, "skills");
   const directories = (await readdir(root, { withFileTypes: true }))
-    .filter((entry) => entry.isDirectory() && entry.name.startsWith("inboundfy-"))
+    .filter(
+      (entry) =>
+        entry.isDirectory() &&
+        (entry.name === "inboundfy" || entry.name.startsWith("inboundfy-")),
+    )
     .sort((left, right) => left.name.localeCompare(right.name));
   const payload: PayloadFile[] = [];
   for (const directory of directories) {

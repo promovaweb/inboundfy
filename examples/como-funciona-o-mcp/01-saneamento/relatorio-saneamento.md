@@ -31,7 +31,7 @@ pontuação e capitalização consistentes, com fala e observações misturadas.
 ## Pendências levantadas (não resolvidas nesta fase)
 
 - A resposta sobre segurança e escopo de permissão do MCP foi dada "por
-  cima" na reunião. `inboundfy-planejamento-02-pesquisa` deve tratar isso como
+  cima" na reunião. `inboundfy-planejamento` deve tratar isso como
   lacuna a validar tecnicamente antes de qualquer afirmação de segurança
   entrar em um artefato final — nunca assumir a resposta informal como fato
   confirmado.

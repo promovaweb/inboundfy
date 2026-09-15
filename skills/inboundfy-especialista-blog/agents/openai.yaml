@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Especialista Blog"
+  short_description: "Executa especialista blog no Inboundfy"
+  default_prompt: "Use $inboundfy-especialista-blog para executar especialista blog com as fontes do projeto."

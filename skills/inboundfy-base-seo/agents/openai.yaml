@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Base Seo"
+  short_description: "Executa base seo no Inboundfy"
+  default_prompt: "Use $inboundfy-base-seo para executar base seo com as fontes do projeto."

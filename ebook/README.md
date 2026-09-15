@@ -21,10 +21,10 @@ do framework, do pacote npm, da tag Git e da GitHub Release:
 - `MINOR` registra um capítulo novo ou ampliação material;
 - `MAJOR` registra uma reorganização incompatível do percurso.
 
-Baixe a edição `v1.0.0`:
+Baixe a edição `v1.2.0`:
 
-- [PDF do guia do usuário](Inboundfy-Guia-do-Usuario-v1.1.0.pdf);
-- [EPUB do guia do usuário](Inboundfy-Guia-do-Usuario-v1.1.0.epub).
+- [PDF do guia do usuário](Inboundfy-Guia-do-Usuario-v1.2.0.pdf);
+- [EPUB do guia do usuário](Inboundfy-Guia-do-Usuario-v1.2.0.epub).
 
 Para links permanentes, use os aliases da edição mais recente:
 
@@ -43,8 +43,8 @@ Na raiz do Inboundfy:
 npm run ebook
 ```
 
-O build exige Pandoc, WeasyPrint, Python, `xmllint`, `pdfinfo`, `pdftotext`,
-`pdftohtml`, `jq`, ImageMagick, Fontconfig e `unzip`.
+O build é orquestrado por Node.js e exige Pandoc, WeasyPrint, `xmllint`,
+`pdftotext`, `pdftohtml`, ImageMagick, Fontconfig e `unzip`.
 `docs/user/reading-order.txt` precisa listar cada página Markdown exatamente
 uma vez.
 

@@ -7,6 +7,11 @@ O Inboundfy combina três camadas sem copiá-las para um único arquivo:
 3. `brand/`: manual, tokens, logos, tipografia e aplicações de marca, quando
    a pasta existir.
 
+O arquivo `.inboundfy/context/aprendizado.md` mantém as orientações dadas durante as
+revisões. Cada registro informa se vale para uma peça, canal, persona ou todo o
+projeto. A skill lê esse arquivo antes de produzir e encaminha regras
+confirmadas de voz, grafia ou proibição para o arquivo normativo correspondente.
+
 Durante o setup, arquivos Markdown com nome em maiúsculas, como `PRODUCT.md`,
 `COPY.md` e `PROHIBITED.md`, são descobertos em todo o projeto. Dentro de
 `brand/`, todos os Markdown são inventariados, inclusive nomes em minúsculas.
@@ -38,13 +43,15 @@ Detalhes de precedência estão em [CONTEXTO.md](../../CONTEXTO.md).
 | `marca-voz.md` | idioma, tom e exemplos de voz |
 | `publico.md` | públicos, dores e objeções |
 | `concorrentes.md` | referências e diferenças confirmadas |
-| `enderecos.md` | URLs e endereços oficiais |
+| `enderecos.md` | Endereço físico, registro legal e contatos oficiais |
+| `links.md` | URLs oficiais, perfis sociais, páginas e destinos de conversão |
 | `canais.md` | formatos, caminhos e canais ativos |
 | `ferramentas.md` | ferramentas que podem ser citadas |
 | `glossario.md` | termos e grafias preferidas |
 | `campanhas.md` | campanhas ativas e seus estados |
 | `proibicoes.md` | vetos específicos do negócio |
 | `estruturas-proibidas.md` | padrões genéricos de escrita artificial |
+| `.inboundfy/context/aprendizado.md` | sugestões, correções, alinhamentos e dicas confirmadas |
 
 ## Quando um dado estiver faltando
 

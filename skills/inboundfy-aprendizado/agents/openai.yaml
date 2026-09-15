@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Aprendizado"
+  short_description: "Registra feedback e aplica regras confirmadas"
+  default_prompt: "Use $inboundfy-aprendizado para registrar e reaplicar esta orientação com o alcance confirmado."

@@ -15,19 +15,19 @@ export interface ContextReadiness {
 export async function validateMinimumContext(
   projectRoot: string,
 ): Promise<ContextReadiness> {
-  const directory = join(projectRoot, ".inboundfy");
+  const directory = join(projectRoot, ".inboundfy", "context");
   const missing: string[] = [];
-  const company = await read(join(directory, "inbound.md"));
+  const company = await read(join(directory, "empresa.md"));
   if (
     !company ||
     !filledField(company, "Nome da empresa") ||
     !filledField(company, "Descrição curta") ||
     !filledField(company, "Site principal")
   ) {
-    missing.push("inbound.md: empresa, descrição e site");
+    missing.push("context/empresa.md: empresa, descrição e site");
   }
 
-  const voice = await read(join(directory, "voz.md"));
+  const voice = await read(join(directory, "marca-voz.md"));
   if (
     !voice ||
     !filledField(voice, "Três a cinco adjetivos") ||
@@ -35,15 +35,15 @@ export async function validateMinimumContext(
     !filledField(voice, "Idioma e variante") ||
     hasPlaceholder(voice)
   ) {
-    missing.push("voz.md: identidade, pessoa verbal, idioma e exemplos");
+    missing.push("context/marca-voz.md: identidade, pessoa verbal, idioma e exemplos");
   }
 
-  const personas = await read(join(directory, "personas.md"));
+  const personas = await read(join(directory, "publico.md"));
   if (!personas || !hasCompletedPersona(personas)) {
-    missing.push("personas.md: ao menos uma persona completa");
+    missing.push("context/publico.md: ao menos uma persona completa");
   }
 
-  const channels = await read(join(directory, "estrategia.md"));
+  const channels = await read(join(projectRoot, ".inboundfy", "estrategia.md"));
   if (
     !channels ||
     !/^- \[[xX]\] (Blog|Email|LinkedIn|Instagram|Substack|YouTube)\s*$/mu.test(channels) ||

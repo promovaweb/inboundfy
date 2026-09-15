@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Validador Substack"
+  short_description: "Executa validador substack no Inboundfy"
+  default_prompt: "Use $inboundfy-validador-substack para executar validador substack com as fontes do projeto."

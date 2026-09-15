@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Onboarding"
+  short_description: "Executa growth onboarding no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-onboarding para executar growth onboarding com as fontes do projeto."

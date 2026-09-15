@@ -23,6 +23,20 @@ ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
 arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
 preflight, leia o catalogo e os Markdown relevantes para a tarefa.
 
+## Arquitetura de execução
+
+Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
+específica desta pasta.
+
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
+- [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): conduza escolhas e entregue o pacote seguinte.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
+
+Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
+artefato. O grupo desta skill é **especialista**.
+
 ## Contexto exigido
 
 - `context/marca-voz.md`: tom.
@@ -77,12 +91,12 @@ promessa da sessão e CTA de inscrição.
 4. Se o evento tiver agenda ou tópicos, liste-os de forma verificável;    evite tópico genérico que qualquer webinar do mercado poderia anunciar.
 5. Escreva o CTA de inscrição, claro sobre o próximo passo (bloco de
    Resposta do PASTOR).
-6. Rode `inboundfy-base-editor`; ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija parágrafos abaixo de 90%.
+6. Rode `inboundfy-copy-editor`; ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija parágrafos abaixo de 90%.
 7. Salve com frontmatter incluindo `data`, `apresentador`, `formato`,
    `estrutura` (pastor/aida/nenhuma) e `brief` quando fizer parte de um
    pacote.
 8. Encaminhe para `inboundfy-especialista-webinar-imagem` e depois para
-   `inboundfy-planejamento-06-auditoria`.
+   `inboundfy-planejamento`.
 
 ## Encaminhamento obrigatório
 
@@ -98,9 +112,21 @@ Arquivo Markdown com a copy da página/convite, salvo no caminho de
 ## Validação
 
 - Apresentador confere com `context/pessoas.md`.
-- Nenhum parágrafo abaixo de 90% na auditoria de `inboundfy-base-editor`.
+- Nenhum parágrafo abaixo de 90% na auditoria de `inboundfy-copy-editor`.
 - Agenda ou tópicos são específicos, não genéricos.
 - Aprovação registrada por `inboundfy-validador-webinar`.
+
+## Responsabilidade do grupo
+
+Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+
+Antes do handoff, confirme os campos próprios deste grupo:
+
+- **grupo:** especialista
+- **entrada:** caminho ou ID ligado ao pedido;
+- **transformação:** ação principal descrita no fluxo;
+- **saída:** arquivo, resposta ou relatório com formato definido;
+- **handoff:** próxima skill, estado e pendências.
 
 ## Idempotência
 

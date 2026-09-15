@@ -31,13 +31,15 @@ export const INDEX_PATHS = {
 } as const;
 
 export const PROJECT_CONFIG_FILES = [
-  ".inboundfy/inbound.md",
+  ".inboundfy/context/empresa.md",
   ".inboundfy/estrategia.md",
-  ".inboundfy/voz.md",
-  ".inboundfy/personas.md",
-  ".inboundfy/proibicoes.md",
-  ".inboundfy/dicionario.md",
+  ".inboundfy/context/marca-voz.md",
+  ".inboundfy/context/publico.md",
+  ".inboundfy/context/proibicoes.md",
+  ".inboundfy/context/glossario.md",
+  ".inboundfy/context/links.md",
   ".inboundfy/pipeline.md",
+  ".inboundfy/context/aprendizado.md",
 ] as const;
 
 export async function ensureProjectStructure(

@@ -6,7 +6,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { hasInstructionBlock } from "./agent.js";
 import { exists, isRegularFile, readJson, resolvePortable } from "./io.js";
-import { readPackageVersion, sha256 } from "./payload.js";
+import { collectContextTemplates, readPackageVersion, sha256 } from "./payload.js";
 import {
   installationManifestSchema,
   installationStateSchema,
@@ -20,15 +20,14 @@ import type {
 import { validateMinimumContext } from "./context-readiness.js";
 
 const EXPECTED_PROJECT_FILES = [
-  ".inboundfy/inbound.md",
+  ".inboundfy/README.md",
   ".inboundfy/estrategia.md",
-  ".inboundfy/voz.md",
-  ".inboundfy/personas.md",
-  ".inboundfy/proibicoes.md",
-  ".inboundfy/dicionario.md",
   ".inboundfy/pipeline.md",
   ".inboundfy/fontes-projeto.md",
   ".inboundfy/fontes-candidatas.json",
+  ".inboundfy/indices/acervo.json",
+  ".inboundfy/indices/conteudos.json",
+  ".inboundfy/indices/calendario.json",
 ] as const;
 
 /** Confere todos os arquivos sem criar diretório, trava ou cache. */
@@ -140,6 +139,21 @@ export async function runDoctor(projectRoot: string): Promise<DoctorReport> {
             `project:${path}`,
             `Arquivo do projeto ausente: ${path}`,
             path,
+          ),
+    );
+  }
+
+  for (const template of await collectContextTemplates()) {
+    checks.push(
+      (await isRegularFile(resolvePortable(projectRoot, template.targetRelative)))
+        ? ok(
+            `context:${template.targetRelative}`,
+            `Contexto presente: ${template.targetRelative}`,
+          )
+        : error(
+            `context:${template.targetRelative}`,
+            `Contexto ausente: ${template.targetRelative}`,
+            template.targetRelative,
           ),
     );
   }

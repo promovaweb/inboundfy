@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Distribuicao"
+  short_description: "Executa growth distribuicao no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-distribuicao para executar growth distribuicao com as fontes do projeto."

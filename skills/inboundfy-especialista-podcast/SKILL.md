@@ -22,6 +22,20 @@ ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
 arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
 preflight, leia o catalogo e os Markdown relevantes para a tarefa.
 
+## Arquitetura de execução
+
+Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
+específica desta pasta.
+
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
+- [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): conduza escolhas e entregue o pacote seguinte.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
+
+Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
+artefato. O grupo desta skill é **especialista**.
+
 ## Contexto exigido
 
 - `context/pessoas.md`: apresentador(es) e convidado(s), quando houver.
@@ -46,12 +60,12 @@ ativos de apoio e objetivo do episódio.
    escreva os shownotes: resumo do episódio, principais pontos abordados,
    e links citados durante a conversa, cada um confirmado contra
    `context/ferramentas.md` ou `context/produtos.md` quando aplicável.
-4. Rode `inboundfy-base-editor` nos shownotes (texto de prosa); ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija trechos
+4. Rode `inboundfy-copy-editor` nos shownotes (texto de prosa); ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija trechos
    abaixo de 90%. A pauta, por ser guia interno de blocos, não passa pela
    mesma auditoria de prosa pública.
 5. Salve com frontmatter incluindo `apresentadores`, `convidado` (se
    houver), `data` e `brief` quando fizer parte de um pacote.
-6. Encaminhe para `inboundfy-planejamento-06-auditoria`.
+6. Encaminhe para `inboundfy-planejamento`.
 
 ## Encaminhamento obrigatório
 
@@ -69,8 +83,20 @@ salvos no caminho de `context/canais.md` para o canal podcast.
 - Apresentador(es)/convidado conferem com `context/pessoas.md`.
 - Links citados nos shownotes conferem com `context/ferramentas.md` ou
   `context/produtos.md`.
-- Nenhum trecho de shownotes abaixo de 90% na auditoria de `inboundfy-base-editor`.
+- Nenhum trecho de shownotes abaixo de 90% na auditoria de `inboundfy-copy-editor`.
 - Aprovação registrada por `inboundfy-validador-podcast`.
+
+## Responsabilidade do grupo
+
+Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+
+Antes do handoff, confirme os campos próprios deste grupo:
+
+- **grupo:** especialista
+- **entrada:** caminho ou ID ligado ao pedido;
+- **transformação:** ação principal descrita no fluxo;
+- **saída:** arquivo, resposta ou relatório com formato definido;
+- **handoff:** próxima skill, estado e pendências.
 
 ## Idempotência
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Revops"
+  short_description: "Executa growth revops no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-revops para executar growth revops com as fontes do projeto."

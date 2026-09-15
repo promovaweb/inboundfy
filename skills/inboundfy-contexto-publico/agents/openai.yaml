@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Contexto Publico"
+  short_description: "Executa contexto publico no Inboundfy"
+  default_prompt: "Use $inboundfy-contexto-publico para executar contexto publico com as fontes do projeto."

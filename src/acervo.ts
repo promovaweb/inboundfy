@@ -12,6 +12,27 @@ import {
 } from "./project-structure.js";
 import type { AcervoRecord } from "./types.js";
 
+/** Mantém os registros visíveis para cada marco da cadência anti-slop. */
+const ANTI_SLOP_AUDITS = [
+  { file: "00-entrada.md", etapa: "A0", titulo: "Entrada", entrada: "bruto.md" },
+  { file: "01-processado.md", etapa: "A1", titulo: "Processado", entrada: "processado.md" },
+  {
+    file: "02-base-editorial.md",
+    etapa: "A2",
+    titulo: "Base editorial",
+    entrada: "base-editorial.md, faq.md e pesquisa.md",
+  },
+  {
+    file: "03-estrategia-brief.md",
+    etapa: "A3",
+    titulo: "Estratégia e brief",
+    entrada: "estrategia.md e brief da peça",
+  },
+  { file: "04-rascunho.md", etapa: "A4", titulo: "Rascunho", entrada: "outline e abertura" },
+  { file: "05-peca.md", etapa: "A5", titulo: "Peça", entrada: "peça completa" },
+  { file: "06-pacote.md", etapa: "A6", titulo: "Pacote", entrada: "peças relacionadas" },
+] as const;
+
 export interface AddAcervoOptions {
   title: string;
   raw: string;
@@ -78,8 +99,15 @@ export async function addAcervo(
   await writeAtomic(
     projectRoot,
     resolvePortable(projectRoot, join(directory, "estrategia.md")),
-    renderPending("Possibilidades de distribuição", "inboundfy-estrategia-acervo"),
+    renderPending("Possibilidades de distribuição", "inboundfy-acervo"),
   );
+  for (const audit of ANTI_SLOP_AUDITS) {
+    await writeAtomic(
+      projectRoot,
+      resolvePortable(projectRoot, join(directory, "auditorias", "anti-slop", audit.file)),
+      renderAntiSlopPending(record, audit),
+    );
+  }
   await writeIndex(projectRoot, INDEX_PATHS.acervo, [...index.items, record]);
   return record;
 }
@@ -132,6 +160,10 @@ function renderReadme(record: AcervoRecord): string {
 | [pesquisa.md](pesquisa.md) | Fontes externas consultadas e relação com o material. |
 | [estrategia.md](estrategia.md) | Possibilidades de canais e reaproveitamentos. |
 
+Os registros dos marcos anti-slop A0 a A6 ficam em
+\`auditorias/anti-slop/\`. Cada arquivo começa pendente e recebe a análise da
+skill correspondente durante o fluxo.
+
 ## Checklist do ciclo mestre
 
 - [ ] Entrada registrada e bruto preservado.
@@ -159,6 +191,30 @@ Estado: pendente de execução da skill \`${skill}\`.
 Este arquivo pertence ao projeto consumidor. O framework fornece a estrutura;
 o agente deve preencher o conteúdo a partir do material, das fontes e das
     configurações em \`.inboundfy/\`.
+`;
+}
+
+function renderAntiSlopPending(
+  record: AcervoRecord,
+  audit: (typeof ANTI_SLOP_AUDITS)[number],
+): string {
+  return `---
+id: ${record.id}
+tipo: auditoria-anti-slop
+etapa: ${audit.etapa}
+estado: pendente
+entrada: "${audit.entrada}"
+---
+
+# Auditoria anti-slop ${audit.etapa}: ${audit.titulo}
+
+- **Estado:** pendente
+- **Entrada prevista:** \`${audit.entrada}\`
+- **Skill:** \`inboundfy-anti-slop\`
+- **Próxima ação:** executar o ciclo ${audit.etapa} quando a entrada estiver disponível.
+
+Este registro foi criado pelo CLI para manter a sequência visível. A skill
+deve substituir este conteúdo pela análise do ciclo e pela ação necessária.
 `;
 }
 

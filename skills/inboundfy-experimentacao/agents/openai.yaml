@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Experimentacao"
+  short_description: "Executa experimentacao no Inboundfy"
+  default_prompt: "Use $inboundfy-experimentacao para executar experimentacao com as fontes do projeto."

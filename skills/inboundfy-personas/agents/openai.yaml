@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Personas"
+  short_description: "Executa personas no Inboundfy"
+  default_prompt: "Use $inboundfy-personas para executar personas com as fontes do projeto."

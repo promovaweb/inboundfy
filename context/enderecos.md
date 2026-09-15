@@ -1,5 +1,5 @@
 <!--
-Preenchido por inboundfy-contexto-enderecos. Dado factual sensível — confirme
+Preenchido por inboundfy-contexto-institucional. Dado factual sensível — confirme
 antes de publicar em rodapé, página de contato ou termos legais.
 -->
 
@@ -20,10 +20,6 @@ antes de publicar em rodapé, página de contato ou termos legais.
 
 - **E-mail institucional:** {email}
 - **Telefone/WhatsApp oficial:** {número}
-- **Canais de suporte:** {link/descrição}
-
-## Perfis oficiais em redes e diretórios
-
-- {rede} — {url}
+- **Canais de suporte:** {descrição; a URL fica em `links.md`}
 
 <!-- Repita para endereços adicionais (filiais, escritórios por país). -->

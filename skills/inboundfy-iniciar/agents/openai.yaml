@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Iniciar"
+  short_description: "Executa iniciar no Inboundfy"
+  default_prompt: "Use $inboundfy-iniciar para executar iniciar com as fontes do projeto."

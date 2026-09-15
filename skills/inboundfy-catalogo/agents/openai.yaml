@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Catalogo"
+  short_description: "Executa catalogo no Inboundfy"
+  default_prompt: "Use $inboundfy-catalogo para executar catalogo com as fontes do projeto."

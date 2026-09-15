@@ -18,7 +18,16 @@ acervo/<id>-<data>-<slug>/
 ├── faq.md
 ├── base-editorial.md
 ├── pesquisa.md
-└── estrategia.md
+├── estrategia.md
+└── auditorias/
+    └── anti-slop/
+        ├── 00-entrada.md
+        ├── 01-processado.md
+        ├── 02-base-editorial.md
+        ├── 03-estrategia-brief.md
+        ├── 04-rascunho.md
+        ├── 05-peca.md
+        └── 06-pacote.md
 
 canais/<canal>/<id>-<data>-<slug>/
 └── README.md
@@ -30,6 +39,10 @@ uma pasta de canal e relaciona acervo, persona, estado e calendário.
 
 Todo Markdown final declara canal, persona, acervo, estado e fontes no
 frontmatter. O calendário mensal aponta para o README da peça.
+
+Os registros da cadência anti-slop ficam em `auditorias/anti-slop/`. Cada
+código representa somente o marco registrado; `aprovado` em um ciclo não
+aprova os ciclos seguintes.
 
 ## Artefatos estratégicos
 

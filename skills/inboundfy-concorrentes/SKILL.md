@@ -9,9 +9,23 @@ Use para analisar sites, ofertas, mensagens, provas, lacunas e páginas de
 concorrentes. O resultado serve para estratégia e conteúdo útil, não para
 copiar linguagem alheia.
 
+## Arquitetura de execução
+
+Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
+específica desta pasta.
+
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
+- [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): conduza escolhas e entregue o pacote seguinte.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
+
+Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
+artefato. O grupo desta skill é **capacidade**.
+
 ## Contexto exigido
 
-Consulte `.inboundfy/inbound.md`, `.inboundfy/framework/` e
+Consulte `.inboundfy/context/empresa.md`, `.inboundfy/framework/` e
 `inboundfy-setup` antes de continuar quando a instalação ou a configuração
 estiver incompleta.
 
@@ -48,6 +62,18 @@ briefing de página alternativa com fontes e data.
 Confirme que nenhuma vantagem foi inventada, que fatos antigos estão
 identificados, que o texto não difama e que a comparação usa o mesmo recorte
 para todas as ofertas.
+
+## Responsabilidade do grupo
+
+Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
+
+Antes do handoff, confirme os campos próprios deste grupo:
+
+- **grupo:** capacidade
+- **entrada:** caminho ou ID ligado ao pedido;
+- **transformação:** ação principal descrita no fluxo;
+- **saída:** arquivo, resposta ou relatório com formato definido;
+- **handoff:** próxima skill, estado e pendências.
 
 ## Idempotência
 

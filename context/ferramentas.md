@@ -1,5 +1,5 @@
 <!--
-Preenchido por inboundfy-contexto-ferramentas. Ferramentas que podem ser
+Preenchido por inboundfy-contexto-operacao. Ferramentas que podem ser
 citadas em conteúdo (stack própria, integrações, parceiros técnicos).
 -->
 

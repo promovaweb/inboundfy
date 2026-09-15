@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Social"
+  short_description: "Executa growth social no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-social para executar growth social com as fontes do projeto."

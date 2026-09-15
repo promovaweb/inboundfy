@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Copy Editor"
+  short_description: "Executa copy editor no Inboundfy"
+  default_prompt: "Use $inboundfy-copy-editor para executar copy editor com as fontes do projeto."

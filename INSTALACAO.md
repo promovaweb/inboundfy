@@ -23,18 +23,21 @@ que pertencem ao projeto consumidor:
 │   ├── README.md
 │   └── AAAA-MM.md
 └── .inboundfy/
-    ├── inbound.md
     ├── estrategia.md
-    ├── voz.md
-    ├── personas.md
-    ├── proibicoes.md
-    ├── dicionario.md
     ├── pipeline.md
     ├── install.json
     ├── manifest.json
     ├── fontes-candidatas.json
     ├── fontes-projeto.md
     ├── indices/
+    ├── context/
+    │   ├── empresa.md
+    │   ├── marca-voz.md
+    │   ├── publico.md
+    │   ├── glossario.md
+    │   ├── proibicoes.md
+    │   ├── links.md
+    │   └── aprendizado.md
     └── framework/
         ├── VERSAO.md
         ├── docs/
@@ -46,10 +49,10 @@ que pertencem ao projeto consumidor:
 ```
 
 `inboundfy/` é o repositório do framework. `.inboundfy/framework/` é a cópia
-read-only do método instalado. Os arquivos diretamente em `.inboundfy/` são a
-configuração viva do projeto. `acervo/`, `canais/` e `calendario/` guardam
-trabalho e saída. `.inboundfy/context/` continua disponível para detalhes de
-domínio e compatibilidade com os contextos anteriores.
+read-only do método instalado. `.inboundfy/context/` concentra os dados da
+empresa e as regras globais de copy; os arquivos diretamente em `.inboundfy/`
+mantêm estratégia, pipeline e estado técnico. `acervo/`, `canais/` e
+`calendario/` guardam trabalho e saída.
 
 O material de referência instalado fica em `.inboundfy/framework/docs/`,
 `.inboundfy/framework/ebook/`, `.inboundfy/framework/brand/` e

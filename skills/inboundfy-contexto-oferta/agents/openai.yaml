@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Contexto de Oferta"
+  short_description: "Mantém produtos, serviços e ofertas comerciais"
+  default_prompt: "Use $inboundfy-contexto-oferta para atualizar o domínio de produto, serviço ou oferta com dados confirmados."

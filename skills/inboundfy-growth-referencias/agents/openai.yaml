@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Referencias"
+  short_description: "Executa growth referencias no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-referencias para executar growth referencias com as fontes do projeto."

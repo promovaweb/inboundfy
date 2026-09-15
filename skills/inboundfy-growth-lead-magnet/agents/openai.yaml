@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Lead Magnet"
+  short_description: "Executa growth lead magnet no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-lead-magnet para executar growth lead magnet com as fontes do projeto."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Acervo"
+  short_description: "Executa acervo no Inboundfy"
+  default_prompt: "Use $inboundfy-acervo para executar acervo com as fontes do projeto."

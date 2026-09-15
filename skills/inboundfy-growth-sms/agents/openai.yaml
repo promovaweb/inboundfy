@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Sms"
+  short_description: "Executa growth sms no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-sms para executar growth sms com as fontes do projeto."

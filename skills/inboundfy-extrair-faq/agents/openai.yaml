@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Extrair Faq"
+  short_description: "Executa extrair faq no Inboundfy"
+  default_prompt: "Use $inboundfy-extrair-faq para executar extrair faq com as fontes do projeto."

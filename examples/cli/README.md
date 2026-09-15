@@ -20,7 +20,7 @@ npx @promovaweb/inboundfy@latest repair --yes
 Os testes confirmam:
 
 - a simulação não escreve arquivos;
-- a instalação cria manifestos, método, documentação, ebook e 135 skills;
+- a instalação cria manifestos, método, documentação, ebook e 114 skills;
 - Markdown em maiúsculas e Markdown sob `brand/` entram na descoberta;
 - o contexto do usuário não é sobrescrito;
 - um arquivo gerenciado alterado é preservado antes do reparo;

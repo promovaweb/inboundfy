@@ -57,4 +57,4 @@ brainstorm pode preservar uma hipótese, mas não apresentá-la como fato.
 | --- | --- |
 | Natureza | normativo |
 | Escopo | desenvolvimento sequencial de uma ideia |
-| Autoridade | `BRAINSTORM.md` e skills `inboundfy-brainstorm-*` |
+| Autoridade | `BRAINSTORM.md`, `inboundfy-brainstorm` e `references/etapas/` |

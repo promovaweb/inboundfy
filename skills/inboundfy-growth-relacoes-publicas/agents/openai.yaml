@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Relacoes Publicas"
+  short_description: "Executa growth relacoes publicas no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-relacoes-publicas para executar growth relacoes publicas com as fontes do projeto."

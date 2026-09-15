@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Email Frio"
+  short_description: "Executa growth email frio no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-email-frio para executar growth email frio com as fontes do projeto."

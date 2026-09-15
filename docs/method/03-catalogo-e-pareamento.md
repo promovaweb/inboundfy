@@ -1,18 +1,24 @@
 # Catálogo e pareamento
 
-O catálogo possui 135 skills:
+O catálogo estruturado em `skills/catalogo.json` possui 114 skills. O índice
+humano em `SKILLS.md` mantém a mesma lista em formato navegável.
 
 | Grupo | Quantidade | Ordenação |
 | --- | ---: | --- |
-| Entradas e setup | 5 | Por responsabilidade |
-| Base | 6 | Por capacidade |
-| Contexto | 11 | Por domínio de dado |
-| Brainstorm | 5 | Sequência `00–04` |
-| Estratégia | 6 | Sequência `00–03` e capacidade transversal |
-| Planejamento | 7 | Sequência `00–06` |
+| Orquestrador | 1 | Fluxo completo e próxima ação |
+| Entrada | 2 | Setup e encaminhamento inicial |
+| Acervo | 4 | Material, derivados, FAQ, pesquisa e base |
+| Base | 5 | Capacidades reutilizáveis |
+| Contexto | 7 | Domínios de configuração agrupados |
+| Brainstorm | 1 | Uma skill com referências `00–04` |
+| Copy | 6 | Redação, edição e posicionamento |
+| Estratégia | 1 | Uma skill com referências `00–03` |
+| Growth | 25 | Crescimento e distribuição |
+| Planejamento | 1 | Uma skill com referências `00–06` |
 | Especialistas | 20 | Por sufixo de asset |
 | Validadoras | 20 | Mesmo sufixo da especialista |
-| Capacidades transversais | 47 | Estratégia, aquisição, SEO, GEO, copy e qualidade. |
+| Qualidade | 2 | Anti-slop de conteúdo e código |
+| Capacidades | 19 | Produto, pesquisa, SEO, GEO e operação |
 
 ## Pares de asset
 
@@ -36,3 +42,14 @@ produtora, `inboundfy-base-validador`, contexto completo e os estados aprovado e
 reprovado. Divergências no conjunto ou no pareamento reprovam o framework.
 
 O catálogo navegável está em [SKILLS.md](../../SKILLS.md).
+
+## Perfil de pareamento
+
+Cada item de `skills/catalogo.json` também informa `perfil.entrada`,
+`perfil.saida`, `perfil.validacao` e `perfil.handoff`. Esses campos dão ao
+orquestrador uma ficha curta para localizar a skill adequada sem remover as
+instruções completas do `SKILL.md`.
+
+Toda skill possui ainda `REFERENCIA.md` e `agents/openai.yaml`. A referência
+explica a operação com template, exemplo, checklist, erros comuns e fontes
+internas. O YAML fornece a interface de ativação do agente.

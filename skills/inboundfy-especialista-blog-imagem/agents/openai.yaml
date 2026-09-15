@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Especialista Blog Imagem"
+  short_description: "Executa especialista blog imagem no Inboundfy"
+  default_prompt: "Use $inboundfy-especialista-blog-imagem para executar especialista blog imagem com as fontes do projeto."

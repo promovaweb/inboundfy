@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Especialista Video Imagem"
+  short_description: "Executa especialista video imagem no Inboundfy"
+  default_prompt: "Use $inboundfy-especialista-video-imagem para executar especialista video imagem com as fontes do projeto."

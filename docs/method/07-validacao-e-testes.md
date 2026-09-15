@@ -3,17 +3,22 @@
 ## Camadas
 
 1. Cada skill valida sua entrada e saída.
-2. `inboundfy-base-editor` verifica escrita e proibições em texto.
+2. `inboundfy-copy-editor` verifica escrita e proibições em texto.
 3. `inboundfy-base-validador` define o relatório e os hard gates.
 4. A validadora do asset aplica regras de canal, contexto e marca.
 5. A auditoria final verifica o pacote.
 6. O validador do repositório confere a integridade do framework.
+
+Além dessas camadas, `inboundfy-anti-slop` roda nos marcos A0 a A6. Os
+registros ficam ligados ao pacote e uma alteração invalida os marcos
+posteriores ao ponto alterado.
 
 ## Comandos
 
 Execute na raiz do repositório:
 
 ```bash
+npm run skills:check
 npm run typecheck
 npm test
 npm run build
@@ -22,11 +27,18 @@ npm run release:check
 npm run validar
 ```
 
+Para aplicar blocos de arquitetura ausentes antes da conferência:
+
+```bash
+npm run skills:enriquecer
+```
+
 O validador verifica:
 
-- 135 skills e seu contrato estrutural;
-- nomes exatos e continuidade das três sequências;
-- ausência de numeração em grupos não sequenciais;
+- 114 skills, seus contratos individuais e a arquitetura compartilhada;
+- cinco referências comuns, 114 interfaces de agente e o catálogo estruturado;
+- referências internas e continuidade das três sequências;
+- ausência de diretórios públicos para etapas agrupadas;
 - 20 pares produtora–validadora;
 - preflight obrigatório e responsabilidade do setup;
 - catálogo de contexto, descoberta de Markdown e `brand/`;

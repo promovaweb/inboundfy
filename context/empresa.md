@@ -1,5 +1,5 @@
 <!--
-Preenchido por inboundfy-contexto-empresa. Fato confirmado aqui tem precedência
+Preenchido por inboundfy-contexto-institucional. Fato confirmado aqui tem precedência
 sobre qualquer texto já publicado (ver CONTEXTO.md). Não apague seções.
 -->
 

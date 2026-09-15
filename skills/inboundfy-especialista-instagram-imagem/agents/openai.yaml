@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Especialista Instagram Imagem"
+  short_description: "Executa especialista instagram imagem no Inboundfy"
+  default_prompt: "Use $inboundfy-especialista-instagram-imagem para executar especialista instagram imagem com as fontes do projeto."

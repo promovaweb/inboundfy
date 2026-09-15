@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Paywall"
+  short_description: "Executa growth paywall no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-paywall para executar growth paywall com as fontes do projeto."

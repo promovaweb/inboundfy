@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Planejamento"
+  short_description: "Executa planejamento no Inboundfy"
+  default_prompt: "Use $inboundfy-planejamento para executar planejamento com as fontes do projeto."

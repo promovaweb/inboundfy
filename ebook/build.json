@@ -1,18 +1,16 @@
 {
   "schema_version": 1,
-  "version": "1.1.0",
-  "edition": "v1.1.0",
-  "generated_at": "2026-09-14T10:50:13Z",
-  "source_sha256": "ed87bf3c36902bdad66143f7858abe50de735b77e85ca787ac7cac555654ed10",
+  "version": "1.2.0",
+  "edition": "v1.2.0",
+  "generated_at": "2026-09-15T18:26:06Z",
+  "source_sha256": "85acaeb614fd7fcda2a223e91b64f21b3cf6438682dafdb0ad30832227198051",
   "sources": [
-    ".ebook/build-ebook.sh",
+    ".ebook/build-ebook.mjs",
     ".ebook/epub.css",
-    ".ebook/external-links.lua",
-    ".ebook/extract-document-metadata.py",
+    ".ebook/extract-document-metadata.mjs",
     ".ebook/metadata.yaml",
     ".ebook/pdf.css",
-    ".ebook/prune-editions.py",
-    ".ebook/strip-document-metadata.lua",
+    ".ebook/prune-editions.mjs",
     ".ebook/template.html",
     "brand/fonts/fonts.css",
     "brand/fonts/inter-latin.woff2",
@@ -35,75 +33,75 @@
     "ebook/VERSION"
   ],
   "document_metadata": {
+    "docs/user/README.md": {
+      "natureza": "normativo",
+      "escopo": "percurso completo do usuário do Inboundfy",
+      "autoridade": "interfaces públicas das skills e metodologia instalada"
+    },
     "docs/user/00-visao-geral.md": {
-      "autoridade": "wrappers, catálogo e contratos das sequências",
+      "natureza": "normativo",
       "escopo": "escolha do fluxo e pontos de entrada",
-      "natureza": "normativo"
+      "autoridade": "wrappers, catálogo e contratos das sequências"
     },
     "docs/user/01-pre-requisitos.md": {
-      "autoridade": "contrato executável de `inboundfy-setup`",
+      "natureza": "referência",
       "escopo": "condições necessárias antes da instalação",
-      "natureza": "referência"
+      "autoridade": "contrato executável de `inboundfy-setup`"
     },
     "docs/user/02-instalacao.md": {
-      "autoridade": "`inboundfy-setup` e `INSTALACAO.md`",
+      "natureza": "normativo",
       "escopo": "instalação, configuração e primeira operação",
-      "natureza": "normativo"
+      "autoridade": "`inboundfy-setup` e `INSTALACAO.md`"
     },
     "docs/user/03-contexto-e-marca.md": {
-      "autoridade": "`CONTEXTO.md` e contrato de descoberta do setup",
+      "natureza": "normativo",
       "escopo": "contexto, fontes descobertas, marca e proibições",
-      "natureza": "normativo"
+      "autoridade": "`CONTEXTO.md` e contrato de descoberta do setup"
     },
     "docs/user/04-primeiro-brainstorm.md": {
-      "autoridade": "`BRAINSTORM.md` e skills `inboundfy-brainstorm-*`",
+      "natureza": "normativo",
       "escopo": "desenvolvimento sequencial de uma ideia",
-      "natureza": "normativo"
+      "autoridade": "`BRAINSTORM.md`, `inboundfy-brainstorm` e `references/etapas/`"
     },
     "docs/user/05-primeira-campanha.md": {
-      "autoridade": "`ESTRATEGIA.md` e skills `inboundfy-estrategia-*`",
+      "natureza": "normativo",
       "escopo": "planejamento de campanha e calendário",
-      "natureza": "normativo"
+      "autoridade": "`ESTRATEGIA.md`, `inboundfy-estrategia` e `references/etapas/`"
     },
     "docs/user/06-primeiro-pacote.md": {
-      "autoridade": "`METODOLOGIA.md` e skills `inboundfy-planejamento-*`",
+      "natureza": "normativo",
       "escopo": "pipeline editorial completo e seus artefatos",
-      "natureza": "normativo"
+      "autoridade": "`METODOLOGIA.md`, `inboundfy-planejamento` e `references/etapas/`"
     },
     "docs/user/07-peca-avulsa.md": {
-      "autoridade": "especialistas, briefing e validadoras pareadas",
+      "natureza": "normativo",
       "escopo": "produção direta de uma peça com brief aprovado",
-      "natureza": "normativo"
+      "autoridade": "especialistas, briefing e validadoras pareadas"
     },
     "docs/user/08-validacao-e-correcoes.md": {
-      "autoridade": "`inboundfy-base-validador` e validadoras de asset",
+      "natureza": "normativo",
       "escopo": "aprovação individual, reprovação e retorno à produtora",
-      "natureza": "normativo"
+      "autoridade": "`inboundfy-base-validador` e validadoras de asset"
     },
     "docs/user/09-atualizacao-e-reparo.md": {
-      "autoridade": "modos de reconciliação de `inboundfy-setup`",
+      "natureza": "normativo",
       "escopo": "atualização, reparo, preservação e migração",
-      "natureza": "normativo"
+      "autoridade": "modos de reconciliação de `inboundfy-setup`"
     },
     "docs/user/10-solucao-de-problemas.md": {
-      "autoridade": "mensagens e condições de interrupção das skills",
+      "natureza": "referência",
       "escopo": "diagnóstico de setup, contexto, fontes e fases",
-      "natureza": "referência"
-    },
-    "docs/user/README.md": {
-      "autoridade": "interfaces públicas das skills e metodologia instalada",
-      "escopo": "percurso completo do usuário do Inboundfy",
-      "natureza": "normativo"
+      "autoridade": "mensagens e condições de interrupção das skills"
     }
   },
   "artifacts": {
     "pdf": {
-      "file": "Inboundfy-Guia-do-Usuario-v1.1.0.pdf",
-      "sha256": "64de0040573483774118881fbfd65123e4e043276a0317f5eb245e2b3c7a37dd"
+      "file": "Inboundfy-Guia-do-Usuario-v1.2.0.pdf",
+      "sha256": "8721c91e5eb70ba641a23486a6579ecd4d2081d3b27371b51436deaabb917747"
     },
     "epub": {
-      "file": "Inboundfy-Guia-do-Usuario-v1.1.0.epub",
-      "sha256": "2c3bd21b6fb3b3e82905fec6b49ac8ee3b086a1176b121ed913db561217e2e47"
+      "file": "Inboundfy-Guia-do-Usuario-v1.2.0.epub",
+      "sha256": "4c3d1bafcb02244cd712497f857d2902e19d4536138d9e1d1ef3bf8408ce953b"
     }
   }
 }

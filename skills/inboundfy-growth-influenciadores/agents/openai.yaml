@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Influenciadores"
+  short_description: "Executa growth influenciadores no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-influenciadores para executar growth influenciadores com as fontes do projeto."

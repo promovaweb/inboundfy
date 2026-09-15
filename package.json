@@ -1,6 +1,6 @@
 {
   "name": "@promovaweb/inboundfy",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "CLI e framework de skills para instalar, validar e manter o Inboundfy em projetos.",
   "type": "module",
   "bin": {
@@ -36,15 +36,17 @@
     "build": "tsc -p tsconfig.json",
     "dev": "tsx src/cli.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "vitest run && python3 -B -m unittest discover -s tests -v && python3 -B scripts/validar-framework.py",
-    "ebook": "bash .ebook/build-ebook.sh",
-    "ebook:verify": "bash .ebook/build-ebook.sh --check",
+    "skills:check": "node scripts/gerenciar-skills.mjs --check",
+    "skills:enriquecer": "node scripts/gerenciar-skills.mjs --write",
+    "test": "vitest run && node scripts/validar-framework.mjs",
+    "ebook": "node .ebook/build-ebook.mjs",
+    "ebook:verify": "node .ebook/build-ebook.mjs --check",
     "release:sync": "node scripts/sync-release-version.mjs && npm run ebook",
     "release:check": "node scripts/validate-release.mjs",
     "npm:validate-package": "node scripts/validate-npm-package.mjs",
     "publish:npm": "node scripts/publish-npm-package.mjs",
     "prepack": "npm run build && npm run release:check",
-    "validar": "npm run typecheck && npm test && npm run build && npm run ebook:verify && npm run release:check"
+    "validar": "npm run skills:check && npm run typecheck && npm test && npm run build && npm run ebook:verify && npm run release:check"
   },
   "engines": {
     "node": ">=22.14.0"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Especialista Youtube"
+  short_description: "Executa especialista youtube no Inboundfy"
+  default_prompt: "Use $inboundfy-especialista-youtube para executar especialista youtube com as fontes do projeto."

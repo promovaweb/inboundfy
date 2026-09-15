@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Seo Programatico"
+  short_description: "Executa seo programatico no Inboundfy"
+  default_prompt: "Use $inboundfy-seo-programatico para executar seo programatico com as fontes do projeto."

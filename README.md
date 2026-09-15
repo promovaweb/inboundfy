@@ -12,11 +12,13 @@ dados de um negócio.
 O repositório `inboundfy/` guarda método, skills, templates, código e
 documentação reutilizável. Ao instalar, o framework vai para
 `.inboundfy/framework/`. As informações da empresa e as escolhas do projeto
-ficam nos arquivos canônicos de `.inboundfy/`; o trabalho e as saídas ficam em
+ficam em `.inboundfy/context/`; estratégia, pipeline, índices e estado da
+instalação ficam diretamente em `.inboundfy/`. O trabalho e as saídas ficam em
 `acervo/`, `canais/` e `calendario/`.
 
-O setup conduz a entrevista de empresa, produtos, serviços, endereços, pessoas,
-redes sociais, personas, voz, proibições, dicionário, pipeline e canais. Ele
+O setup conduz a entrevista de empresa, produtos, serviços, endereço físico,
+dados legais, contatos, URLs oficiais, redes sociais, personas, voz,
+proibições, dicionário, aprendizado, pipeline e canais. Ele
 preserva preenchimentos existentes e cria somente o que estiver ausente.
 
 ## Como o Inboundfy é organizado
@@ -25,12 +27,16 @@ preserva preenchimentos existentes e cria somente o que estiver ausente.
   com percursos completos para brainstorm, campanha, pacote e peça avulsa.
 - `docs/method/`: documentação técnica da arquitetura, runtime instalado,
   sequências, contratos, estados, validação, testes e evolução.
+- `skills/inboundfy-anti-slop/ETAPAS.md`: cadência A0 a A6, com uma auditoria
+  própria para entrada, processado, base, estratégia, rascunho, peça e pacote.
+- `.inboundfy/context/aprendizado.md`: memória do projeto para sugestões, correções,
+  alinhamentos e dicas, sempre com alcance confirmado.
 - `ebook/`: edição versionada do guia do usuário em PDF e EPUB, compilada a
   partir de `docs/user/` na ordem declarada em `reading-order.txt`.
 - `context/`: templates de origem dos arquivos de dados do usuário —
   empresa, pessoas, produtos, serviços, ofertas, marca, público,
-  concorrentes, endereços, canais, ferramentas, glossário, proibições e
-  estruturas proibidas. `inboundfy-setup` copia esses templates para
+  concorrentes, endereços, links, canais, ferramentas, glossário, proibições,
+  aprendizado e estruturas proibidas. `inboundfy-setup` copia esses templates para
   `.inboundfy/context/` em cada projeto instalado — é lá que o dado real de
   cada negócio vive. Veja `CONTEXTO.md`.
 - `inboundfy-setup`: responsável exclusiva por conduzir e conferir skills,
@@ -41,11 +47,12 @@ preserva preenchimentos existentes e cria somente o que estiver ausente.
   maiúsculas encontrados no projeto. Se `brand/` existir, considera todos os
   Markdown da pasta, inclusive nomes em minúsculas, sem copiar ou alterar os
   ativos.
-- `skills/`: biblioteca de skills prefixadas com `inboundfy-`, organizada em
-  sete grupos — base, contexto, brainstorm sequenciado, estratégia
-  sequenciada, planejamento sequenciado, especialista por canal e
-  validadora por asset — mais as wrappers e `inboundfy-setup`. Veja
-  `SKILLS.md` e `SKILL-AUTORIA.md`.
+- `skills/`: biblioteca de 114 skills prefixadas com `inboundfy-`, com etapas
+  agrupadas em referências internas, namespaces `inboundfy-copy-*` e
+  `inboundfy-growth-*`, referências compartilhadas em `skills/_shared/`,
+  catálogo estruturado em `skills/catalogo.json` e interface de agente em
+  `agents/openai.yaml` dentro de cada skill. Veja `SKILLS.md`,
+  `SKILL-AUTORIA.md` e `docs/method/09-arquitetura-das-skills.md`.
 - `BRAINSTORM.md`: fluxo que recebe uma ideia, consulta os dados do negócio,
   faz perguntas somente quando necessário, pesquisa fontes e salva
   `brainstorms/<data>-<slug>/brainstorm.md`.
@@ -68,7 +75,8 @@ preserva preenchimentos existentes e cria somente o que estiver ausente.
 - `SKILL-AUTORIA.md`: o contrato que toda skill do Inboundfy precisa seguir —
   grupo, sequência, frontmatter, contexto exigido e condições de aprovação.
 - `INSTALACAO.md`: como `inboundfy-setup` instala o framework num projeto novo
-  — a estrutura de `.inboundfy/`, `acervo/`, `canais/` e `calendario/`, o ajuste de `AGENTS.md`/
+  — a estrutura de `.inboundfy/`, `acervo/`, `canais/` e `calendario/`,
+  o ajuste de `AGENTS.md`/
   `CLAUDE.md` e o preenchimento do contexto inicial.
 - `examples/`: pacotes de demonstração já preenchidos, com dado fictício,
   mostrando o resultado real de cada fase do pipeline — leitura de
@@ -77,7 +85,8 @@ preserva preenchimentos existentes e cria somente o que estiver ausente.
 
 As skills podem aparecer no agente antes da preparação do projeto. Nesse
 estado, qualquer skill que não seja `inboundfy-setup` confere
-`.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md`, avisa que o setup precisa
+`.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md`, avisa que o
+setup precisa
 ser concluído ou reparado e encerra sem criar artefatos.
 
 O registro `.inboundfy/fontes-projeto.md` referencia arquivos como
@@ -91,7 +100,18 @@ Além das sequências e dos especialistas de canal, o Inboundfy inclui skills de
 produto e mercado, estratégia, copywriting, edição, pesquisa de cliente,
 concorrência, oferta, psicologia aplicada, SEO, GEO, CRO, métricas,
 atribuição, experimentação, lançamento, materiais ricos e anti-slop editorial.
-Todas leem os mesmos arquivos de voz, personas, proibições e dicionário.
+Todas leem os mesmos arquivos de voz, personas, proibições, dicionário e
+aprendizado aplicável.
+
+O aprendizado começa no arquivo `.inboundfy/context/aprendizado.md`. Uma sugestão
+local pode alterar apenas uma peça; uma orientação confirmada para o projeto
+também atualiza `context/marca-voz.md`, `context/glossario.md` ou
+`context/proibicoes.md` quando esse for o domínio correto. O histórico preserva
+a mensagem original, a aplicação e o alcance confirmado.
+
+O anti-slop não fica restrito à revisão final. A orquestração usa os marcos A0
+a A6 para conferir a entrada, os derivados do acervo, a direção de conteúdo,
+o início da redação, a peça completa e o conjunto de peças antes do pipeline.
 
 ```bash
 inboundfy project sync
@@ -102,6 +122,32 @@ inboundfy content status 0001 aprovado
 inboundfy calendario add 2026-09-20 0001
 inboundfy doctor --strict
 ```
+
+## Arquitetura das skills
+
+Cada skill tem três camadas complementares:
+
+1. `SKILL.md` define ativação, contexto, entrada, fluxo, saída, validação,
+   idempotência e responsabilidade do grupo.
+2. `REFERENCIA.md` traz o template, o exemplo preenchido, a lista binária,
+   erros comuns, campos específicos e referências para leitura.
+3. `agents/openai.yaml` descreve a interface que o agente pode apresentar, e
+   `skills/catalogo.json` registra o grupo e o contrato de entrada, saída,
+   validação e encaminhamento.
+
+As cinco referências de `skills/_shared/` padronizam preflight, artefatos,
+interação, handoff, validação, retomada e contexto editorial. O script
+`scripts/gerenciar-skills.mjs` mantém esse padrão. Todos os scripts próprios e
+comandos de linha do pacote usam Node.js:
+
+```bash
+npm run skills:check
+npm run skills:enriquecer
+```
+
+O primeiro comando só confere a biblioteca. O segundo amplia arquivos
+existentes e atualiza o catálogo; ele preserva referências já presentes e cria
+somente interfaces ausentes.
 
 ## Ordem de leitura
 
@@ -178,27 +224,30 @@ o artefato final auditado de cada canal (`METODOLOGIA.md`).
 
 ## Estado do projeto
 
-O Inboundfy possui metodologia, contrato de skill, sete grupos funcionais,
-sequências numeradas, wrappers autônomas, arquivos de contexto, estruturas
-persuasivas e validação estrutural executável. `SKILLS.md` lista o catálogo
-completo. A licença é proprietária e não concede redistribuição ou uso
-comercial ao público; consulte [LICENSE](LICENSE).
+O Inboundfy possui metodologia, contrato de skill, 114 skills distribuídas em
+grupos de entrada, acervo, base, contexto, brainstorm, estratégia,
+planejamento, especialistas, validadoras, qualidade e capacidades, além do
+orquestrador. Cada skill tem referência, interface e registro no catálogo.
+`SKILLS.md` lista o catálogo completo. A licença é proprietária e não concede
+redistribuição ou uso comercial ao público; consulte [LICENSE](LICENSE).
 
 ## Validação
 
 Execute na raiz do repositório:
 
 ```bash
+npm run skills:check
 npm run validar
 ```
 
 A suíte executa os cenários do CLI, pareamento, hard gate, retorno à produtora,
 segundo ciclo aprovado e descoberta de Markdown minúsculo em `brand/`. O
-validador estrutural confere o contrato das skills, a continuidade das três
-sequências, as dependências de `context/`, as referências editoriais, as
-chamadas das wrappers e a presença das fixtures executáveis. A verificação
-do ebook confere a ordem de leitura, os hashes das fontes e dos artefatos, a
-navegação interna e a edição publicada em PDF e EPUB.
+validador estrutural confere o contrato das skills, a arquitetura comum, as
+interfaces, o catálogo, a continuidade das três sequências, as dependências de
+`context/`, as referências editoriais, as chamadas das wrappers e a presença
+das fixtures executáveis. A verificação do ebook confere a ordem de leitura, os
+hashes das fontes e dos artefatos, a navegação interna e a edição publicada em
+PDF e EPUB.
 
 ## Versões e releases
 

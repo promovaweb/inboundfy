@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Metricas"
+  short_description: "Executa metricas no Inboundfy"
+  default_prompt: "Use $inboundfy-metricas para executar metricas com as fontes do projeto."

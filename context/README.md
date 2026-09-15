@@ -2,7 +2,7 @@
 
 Esta pasta concentra a informação de negócio real do usuário. A única
 exceção é `estruturas-proibidas.md`: vive aqui por conveniência operacional
-(a mesma auditoria de `inboundfy-base-editor` lê os arquivos desta pasta em
+(a mesma auditoria de `inboundfy-copy-editor` lê os arquivos desta pasta em
 sequência), mas seu conteúdo é genérico e pré-preenchido pelo framework, não
 dado específico de negócio — ver `../ESCRITA.md`. Veja `../CONTEXTO.md` para
 o que cada arquivo resolve, a precedência entre eles e o formato esperado.
@@ -24,12 +24,14 @@ preenchimento inicial.
 | `publico.md` | Personas, dores, objeções, jornada. |
 | `concorrentes.md` | Concorrentes e posicionamento relativo. |
 | `enderecos.md` | Endereços, registro legal, contatos oficiais. |
+| `links.md` | URLs oficiais, perfis sociais, páginas e destinos de conversão. |
 | `canais.md` | Canais ativos, cadência, diretório de trabalho. |
 | `ferramentas.md` | Stack e ferramentas mencionáveis. |
 | `campanhas.md` | Campanhas, objetivos, período e estado. |
 | `glossario.md` | Grafia oficial de marcas e termos. |
 | `proibicoes.md` | Vetos editoriais específicos do usuário. |
 | `estruturas-proibidas.md` | Catálogo genérico (pré-preenchido) de palavras, frases e estruturas de parágrafo com cara de IA. |
+| `aprendizado.md` | Sugestões, correções, alinhamentos e dicas confirmadas. |
 
 Nunca apague uma seção inteira de um desses arquivos ao atualizar — edite o
 conteúdo da seção e preserve a estrutura, para que qualquer skill que leia o

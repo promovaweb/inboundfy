@@ -27,22 +27,28 @@ canais e calendário, os índices e o bloco do agente.
 
 ## Arquivos canônicos do projeto
 
-Preencha os sete arquivos diretamente em `.inboundfy/`:
+Preencha os arquivos operacionais em `.inboundfy/` e os dados de empresa e copy
+em `.inboundfy/context/`:
 
 ```text
 .inboundfy/
-├── inbound.md
 ├── estrategia.md
-├── voz.md
-├── personas.md
-├── proibicoes.md
-├── dicionario.md
 ├── pipeline.md
+├── context/
+│   ├── empresa.md
+│   ├── marca-voz.md
+│   ├── publico.md
+│   ├── glossario.md
+│   ├── proibicoes.md
+│   ├── links.md
+│   └── aprendizado.md
 └── indices/
 ```
 
 O setup pergunta sobre empresa, produtos, serviços, endereços, pessoas,
-redes sociais, oferta, personas, voz, regras, canais, calendário e estados.
+endereço físico, URLs oficiais, redes sociais, oferta, personas, voz, regras,
+aprendizados prévios, canais,
+calendário e estados.
 Antes de liberar produção, exige empresa, site, voz, uma persona completa,
 objetivo e pelo menos um canal.
 
@@ -74,6 +80,15 @@ acervo/0001-AAAA-MM-DD-slug/
 ├── base-editorial.md
 ├── pesquisa.md
 └── estrategia.md
+
+auditorias/anti-slop/
+├── 00-entrada.md
+├── 01-processado.md
+├── 02-base-editorial.md
+├── 03-estrategia-brief.md
+├── 04-rascunho.md
+├── 05-peca.md
+└── 06-pacote.md
 ```
 
 As skills completam FAQ, base editorial, pesquisa e possibilidades de uso com
@@ -81,7 +96,8 @@ o contexto do projeto, outras bases e pesquisa atualizada.
 
 ## Primeira peça
 
-Liste as personas e escolha uma ou mais antes de escrever. Crie a pasta final:
+Apresente as personas com número, ID, nome e detalhes de contexto, problema e
+resultado. Escolha uma ou mais antes de escrever. Crie a pasta final:
 
 ```bash
 inboundfy content create blog "Título da peça" \

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Contexto Concorrentes"
+  short_description: "Executa contexto concorrentes no Inboundfy"
+  default_prompt: "Use $inboundfy-contexto-concorrentes para executar contexto concorrentes com as fontes do projeto."

@@ -12,9 +12,9 @@ e recebe o mesmo contexto vivo do projeto.
 
 | Camada | Arquivos | Responsabilidade |
 | --- | --- | --- |
-| Framework | `skills/`, `context/`, `templates/`, `docs/` | Método reutilizável. |
+| Framework | `skills/` e `skills/_shared/` | Método e catálogo. |
 | Configuração | `.inboundfy/*.md` | Empresa, voz, personas e regras. |
-| Fonte de trabalho | `acervo/<id>-<data>-<slug>/` | Bruto, processado, FAQ e pesquisa. |
+| Fonte de trabalho | `acervo/` | Bruto, derivados, FAQ e pesquisa. |
 | Saída | `canais/<canal>/<id>-<data>-<slug>/` | Peça com README e vínculos. |
 | Agenda | `calendario/AAAA-MM.md` | Checklist mensal por ID. |
 
@@ -41,11 +41,23 @@ release se algum número divergir. Não crie versão separada para o CLI.
 1. Classifique a responsabilidade no grupo correto.
 2. Preserve o nome se o comportamento continuar compatível.
 3. Atualize `SKILL.md` e `REFERENCIA.md`.
-4. Atualize a especificação metodológica relacionada.
-5. Atualize `SKILLS.md` e esta documentação.
-6. Acrescente ou ajuste um caso em `tests/` e, quando o comportamento for
+4. Atualize `agents/openai.yaml` e o perfil correspondente no catálogo.
+5. Atualize a especificação metodológica relacionada.
+6. Atualize `SKILLS.md` e esta documentação.
+7. Acrescente ou ajuste um caso em `tests/` e, quando o comportamento for
    observável, um pacote fictício em `examples/`.
-7. Execute toda a validação.
+8. Execute `npm run skills:check` e toda a validação.
+
+Para uma ampliação mecânica da biblioteca, use:
+
+```bash
+npm run skills:enriquecer
+npm run skills:check
+```
+
+O script adiciona apenas blocos ausentes, preserva material específico e
+recompõe `skills/catalogo.json`. Uma ampliação automática ainda exige leitura
+manual da skill, da referência e dos exemplos.
 
 ## Adicionar um tipo de asset
 

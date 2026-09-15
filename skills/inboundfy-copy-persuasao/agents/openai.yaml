@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Copy Persuasao"
+  short_description: "Executa copy persuasao no Inboundfy"
+  default_prompt: "Use $inboundfy-copy-persuasao para executar copy persuasao com as fontes do projeto."

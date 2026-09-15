@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Enablement Vendas"
+  short_description: "Executa enablement vendas no Inboundfy"
+  default_prompt: "Use $inboundfy-enablement-vendas para executar enablement vendas com as fontes do projeto."

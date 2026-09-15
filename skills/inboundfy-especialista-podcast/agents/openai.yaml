@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Especialista Podcast"
+  short_description: "Executa especialista podcast no Inboundfy"
+  default_prompt: "Use $inboundfy-especialista-podcast para executar especialista podcast com as fontes do projeto."

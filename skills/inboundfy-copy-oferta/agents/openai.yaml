@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Copy Oferta"
+  short_description: "Executa copy oferta no Inboundfy"
+  default_prompt: "Use $inboundfy-copy-oferta para executar copy oferta com as fontes do projeto."

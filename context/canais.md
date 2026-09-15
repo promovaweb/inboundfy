@@ -1,5 +1,5 @@
 <!--
-Preenchido por inboundfy-contexto-canais. Complementa a seleção principal de
+Preenchido por inboundfy-contexto-operacao. Complementa a seleção principal de
 `.inboundfy/estrategia.md` com limites técnicos e destinos de cada canal.
 -->
 

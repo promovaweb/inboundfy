@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Especialista Changelog"
+  short_description: "Executa especialista changelog no Inboundfy"
+  default_prompt: "Use $inboundfy-especialista-changelog para executar especialista changelog com as fontes do projeto."

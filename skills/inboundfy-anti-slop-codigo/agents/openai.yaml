@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Anti Slop Codigo"
+  short_description: "Executa anti slop codigo no Inboundfy"
+  default_prompt: "Use $inboundfy-anti-slop-codigo para executar anti slop codigo com as fontes do projeto."

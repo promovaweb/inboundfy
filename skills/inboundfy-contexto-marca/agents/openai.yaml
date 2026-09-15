@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Contexto Marca"
+  short_description: "Executa contexto marca no Inboundfy"
+  default_prompt: "Use $inboundfy-contexto-marca para executar contexto marca com as fontes do projeto."

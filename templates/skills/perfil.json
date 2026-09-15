@@ -1,0 +1,20 @@
+{
+  "id": "inboundfy-{{nome}}",
+  "grupo": "{{grupo}}",
+  "skill": "skills/inboundfy-{{nome}}/SKILL.md",
+  "referencia": "skills/inboundfy-{{nome}}/REFERENCIA.md",
+  "interface": "skills/inboundfy-{{nome}}/agents/openai.yaml",
+  "perfil": {
+    "entrada": "{{caminho ou campo}}",
+    "saida": "{{arquivo ou resposta}}",
+    "validacao": "{{regra binária}}",
+    "handoff": "{{nome da próxima skill ou pergunta pendente}}"
+  },
+  "referencias_compartilhadas": [
+    "skills/_shared/01-preflight-e-fontes.md",
+    "skills/_shared/02-contrato-de-artefato.md",
+    "skills/_shared/03-interacao-e-handoff.md",
+    "skills/_shared/04-validacao-e-retomada.md",
+    "skills/_shared/05-contexto-editorial.md"
+  ]
+}

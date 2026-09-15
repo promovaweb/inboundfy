@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Especialista Newsletter"
+  short_description: "Executa especialista newsletter no Inboundfy"
+  default_prompt: "Use $inboundfy-especialista-newsletter para executar especialista newsletter com as fontes do projeto."

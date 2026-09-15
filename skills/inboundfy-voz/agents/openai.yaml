@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Voz"
+  short_description: "Executa voz no Inboundfy com contexto"
+  default_prompt: "Use $inboundfy-voz para executar voz com as fontes do projeto."

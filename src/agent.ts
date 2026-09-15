@@ -98,9 +98,11 @@ export function instructionBlock(): string {
 ## Inboundfy
 
 Este projeto usa o Inboundfy para produzir e validar materiais de inbound
-marketing baseado em IA. Consulte \`.inboundfy/inbound.md\`,
-\`.inboundfy/estrategia.md\`, \`.inboundfy/voz.md\`,
-\`.inboundfy/personas.md\` e \`.inboundfy/proibicoes.md\` antes de produzir.
+marketing baseado em IA. Consulte \`.inboundfy/context/empresa.md\`,
+\`.inboundfy/estrategia.md\`, \`.inboundfy/context/marca-voz.md\`,
+\`.inboundfy/context/publico.md\`, \`.inboundfy/context/links.md\`,
+\`.inboundfy/context/proibicoes.md\` e \`.inboundfy/context/aprendizado.md\`
+antes de produzir.
 As regras do framework ficam em \`.inboundfy/framework/\`; os dados do projeto
 ficam em \`.inboundfy/\`, \`.inboundfy/context/\`, \`acervo/\`, \`canais/\` e
 \`calendario/\`.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Copy Edicao"
+  short_description: "Executa copy edicao no Inboundfy"
+  default_prompt: "Use $inboundfy-copy-edicao para executar copy edicao com as fontes do projeto."

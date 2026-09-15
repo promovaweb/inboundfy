@@ -16,7 +16,7 @@ ativos. A validação final cruza a escrita com `ESCRITA.md`,
 O brainstorm aprovado pode seguir por dois caminhos:
 
 - `inboundfy-iniciar`, quando deve gerar várias peças a partir da mesma base;
-- `inboundfy-planejamento-04-briefing`, quando a ideia já aponta uma única
+- `inboundfy-planejamento`, quando a ideia já aponta uma única
   peça e um único canal.
 
 ## Sequência
@@ -25,7 +25,7 @@ O brainstorm aprovado pode seguir por dois caminhos:
 00 Triagem → 01 Entrevista → 02 Pesquisa → 03 Síntese → 04 Validação
 ```
 
-Cada fase pertence a uma skill `inboundfy-brainstorm-<NN>-*`. A wrapper
+Cada fase é uma referência interna de `inboundfy-brainstorm/references/etapas/`.
 `inboundfy-brainstorm` executa as cinco na ordem e entrega o arquivo aprovado.
 
 ### 00. Triagem

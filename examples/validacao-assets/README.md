@@ -35,7 +35,7 @@ as ocorrências da primeira rodada com o relatório e exige zero ocorrência na
 aprovação:
 
 ```bash
-python3 -m unittest discover -s tests -v
+npm test
 ```
 
 O candidato reprovado contém linguagem ruim de propósito. Ele não é modelo

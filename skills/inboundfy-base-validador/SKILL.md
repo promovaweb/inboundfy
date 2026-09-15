@@ -21,11 +21,27 @@ ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
 arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
 preflight, leia o catalogo e os Markdown relevantes para a tarefa.
 
+## Arquitetura de execução
+
+Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
+específica desta pasta.
+
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
+- [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): conduza escolhas e entregue o pacote seguinte.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
+
+Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
+artefato. O grupo desta skill é **base**.
+
 ## Contexto exigido
 
-- `.inboundfy/inbound.md`, `.inboundfy/estrategia.md`, `.inboundfy/voz.md`,
-  `.inboundfy/personas.md`, `.inboundfy/proibicoes.md`,
-  `.inboundfy/dicionario.md` e `.inboundfy/pipeline.md`.
+- `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`, `.inboundfy/context/marca-voz.md`,
+  `.inboundfy/context/publico.md`, `.inboundfy/context/links.md`,
+  `.inboundfy/context/proibicoes.md`, `.inboundfy/context/glossario.md`,
+  `.inboundfy/context/aprendizado.md` e
+  `.inboundfy/pipeline.md`.
 - Todos os arquivos Markdown de `.inboundfy/context/`, sem limitar a leitura
   aos declarados pela produtora.
 - `.inboundfy/fontes-projeto.md` e cada fonte local marcada como relevante.
@@ -34,6 +50,9 @@ preflight, leia o catalogo e os Markdown relevantes para a tarefa.
 - `CONTEXTO.md`, `METODOLOGIA.md`, `ESCRITA.md`,
   `ESTRUTURAS-PERSUASIVAS.md` e demais regras aplicáveis ao asset.
 - `context/proibicoes.md` e `context/estruturas-proibidas.md`, sempre.
+- `skills/inboundfy-anti-slop/ETAPAS.md` ou a cópia instalada em
+  `.inboundfy/framework/skills/inboundfy-anti-slop/ETAPAS.md`, para confirmar
+  que a auditoria do asset está no marco A5.
 
 Não atribua autoridade automática a uma fonte descoberta. Aplique a
 precedência de `CONTEXTO.md` e registre conflitos sem inventar uma síntese.
@@ -70,10 +89,11 @@ nome da validadora específica que solicitou a auditoria.
 6. Aplique exceção somente quando o próprio arquivo canônico declarar de
    forma explícita a condição permitida e o asset provar que a satisfaz.
    Registre regra, condição e prova; não crie exceção por interpretação.
-7. Para texto público, acione `inboundfy-base-editor`, leia parágrafo por
+7. Para texto público, acione `inboundfy-copy-editor`, leia parágrafo por
    parágrafo e reprove qualquer trecho abaixo de 90%.
-8. Acione `inboundfy-anti-slop` para a leitura de generalidades, ritmo,
-   voz, persona, fonte e canal.
+8. Acione `inboundfy-anti-slop` no marco A5 para a leitura de generalidades,
+   ritmo, voz, persona, fonte e canal. Confirme o registro
+   `auditorias/anti-slop/05-peca.md` ou seu equivalente no pacote.
 9. Produza um relatório com comprovação localizada, regra ou fonte violada,
    correção verificável e destino de retorno.
 10. Depois da correção, descarte o resultado anterior como base de
@@ -101,8 +121,21 @@ como `<nome-do-asset>.auditoria.md`.
 - Nenhum asset recebe aprovação condicional.
 - Nenhuma nota ou aprovação em outro regra compensa hard gate reprovado.
 - A skill de destino está registrada de forma inequívoca.
+- O relatório identifica o marco A5 e o ciclo executado.
+
+## Responsabilidade do grupo
+
+Entregue uma função reutilizável, sem assumir canal ou negócio. Receba um artefato claro e devolva um registro consumível pela skill chamadora.
+
+Antes do handoff, confirme os campos próprios deste grupo:
+
+- **grupo:** base
+- **entrada:** caminho ou ID ligado ao pedido;
+- **transformação:** ação principal descrita no fluxo;
+- **saída:** arquivo, resposta ou relatório com formato definido;
+- **handoff:** próxima skill, estado e pendências.
 
 ## Idempotência
 
-Reauditar atualiza o mesmo relatório e acrescenta uma rodada ao histórico.
+Reauditar atualiza o mesmo relatório e acrescenta um ciclo ao histórico.
 Não cria relatórios paralelos nem altera o asset candidato.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Cro"
+  short_description: "Executa growth cro no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-cro para executar growth cro com as fontes do projeto."

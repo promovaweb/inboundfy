@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Copy Posicionamento"
+  short_description: "Executa copy posicionamento no Inboundfy"
+  default_prompt: "Use $inboundfy-copy-posicionamento para executar copy posicionamento com as fontes do projeto."

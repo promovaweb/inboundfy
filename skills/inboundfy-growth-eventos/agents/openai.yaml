@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Eventos"
+  short_description: "Executa growth eventos no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-eventos para executar growth eventos com as fontes do projeto."

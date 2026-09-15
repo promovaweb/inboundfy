@@ -2,7 +2,7 @@
 
 Este arquivo define como limpar material bruto — texto colado, transcrição
 de áudio/vídeo, nota solta, print transcrito manualmente — na fase 1 do
-pipeline (`inboundfy-planejamento-01-saneamento`, ver `METODOLOGIA.md`).
+pipeline (`inboundfy-planejamento`, ver `METODOLOGIA.md`).
 Limpar não é reescrever: o objetivo aqui é remover ruído e corrigir erro
 mecânico, preservando exatamente o que foi dito e a ordem em que foi dito.
 Voz editorial, estrutura de peça final e persuasão vêm depois, nas fases de
@@ -43,7 +43,7 @@ mecânico, ela pertence à fase de produção, não ao saneamento.
 
 - Resumir, condensar ou remover trecho por julgar irrelevante — julgamento
   editorial de relevância é da fase de pesquisa/planejamento
-  (`inboundfy-planejamento-02-pesquisa`), não do saneamento.
+  (`inboundfy-planejamento`), não do saneamento.
 - Reescrever frase com vocabulário diferente do que foi dito, mesmo que a
   reescrita pareça "mais clara" — isso já é redação, não limpeza.
 - Aplicar `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md` ou a voz de

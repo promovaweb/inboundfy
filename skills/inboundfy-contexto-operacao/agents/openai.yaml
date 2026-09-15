@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Contexto de Operação"
+  short_description: "Mantém canais, ferramentas e campanhas"
+  default_prompt: "Use $inboundfy-contexto-operacao para atualizar canais, ferramentas ou campanhas com dados do projeto."

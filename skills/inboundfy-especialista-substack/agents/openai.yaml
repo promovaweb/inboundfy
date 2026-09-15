@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Especialista Substack"
+  short_description: "Executa especialista substack no Inboundfy"
+  default_prompt: "Use $inboundfy-especialista-substack para executar especialista substack com as fontes do projeto."

@@ -99,9 +99,10 @@ PREENCHER. A skill produtora do canal deve redigir a peça aqui.
 
 ## Revisão
 
-- [ ] Voz conferida em \`.inboundfy/voz.md\`
-- [ ] Persona conferida em \`.inboundfy/personas.md\`
-- [ ] Proibições conferidas em \`.inboundfy/proibicoes.md\`
+- [ ] Voz conferida em \`.inboundfy/context/marca-voz.md\`
+- [ ] Persona conferida em \`.inboundfy/context/publico.md\`
+- [ ] Proibições conferidas em \`.inboundfy/context/proibicoes.md\`
+- [ ] Aprendizado aplicável conferido em \`.inboundfy/context/aprendizado.md\`
 - [ ] Acervo e base editorial vinculados
 - [ ] Validador do canal executado
 `;

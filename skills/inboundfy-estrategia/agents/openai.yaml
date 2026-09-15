@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Estrategia"
+  short_description: "Executa estrategia no Inboundfy"
+  default_prompt: "Use $inboundfy-estrategia para executar estrategia com as fontes do projeto."

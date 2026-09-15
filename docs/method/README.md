@@ -14,6 +14,7 @@ evoluído.
 7. [Contrato de skill](06-contrato-de-skill.md)
 8. [Validação e testes](07-validacao-e-testes.md)
 9. [Evolução e checklist de mudança](08-evolucao-do-framework.md)
+10. [Arquitetura das skills](09-arquitetura-das-skills.md)
 
 O contrato de separação entre método e dados do projeto está descrito no
 [README principal](../../README.md#separação-entre-framework-e-projeto). As

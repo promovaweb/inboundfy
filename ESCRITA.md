@@ -55,7 +55,7 @@ verificaria ou corrigiria.
 
 ## Auditoria por parágrafo
 
-Toda peça final passa por `inboundfy-base-editor` antes de ser considerada pronta.
+Toda peça final passa por `inboundfy-copy-editor` antes de ser considerada pronta.
 A auditoria atribui uma nota de `0` a `100` por parágrafo, contra:
 
 1. `context/proibicoes.md` — vetos específicos do usuário, se existirem.

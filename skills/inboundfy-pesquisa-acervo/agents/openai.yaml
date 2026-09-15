@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Pesquisa Acervo"
+  short_description: "Executa pesquisa acervo no Inboundfy"
+  default_prompt: "Use $inboundfy-pesquisa-acervo para executar pesquisa acervo com as fontes do projeto."

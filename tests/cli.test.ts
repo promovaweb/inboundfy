@@ -90,6 +90,48 @@ describe("CLI do Inboundfy", () => {
     );
   });
 
+  test("mantém toda a configuração e o contexto dentro de .inboundfy", async () => {
+    const project = await createProject();
+    await install(project);
+
+    const configNames = [
+      "README.md",
+      "estrategia.md",
+      "pipeline.md",
+      "fontes-projeto.md",
+      "fontes-candidatas.json",
+    ];
+    for (const name of configNames) {
+      await expect(stat(join(project, ".inboundfy", name))).resolves.toBeTruthy();
+      await expect(stat(join(project, name))).rejects.toMatchObject({ code: "ENOENT" });
+    }
+    for (const name of [
+      "empresa.md",
+      "pessoas.md",
+      "produtos.md",
+      "servicos.md",
+      "ofertas.md",
+      "marca-voz.md",
+      "publico.md",
+      "concorrentes.md",
+      "enderecos.md",
+      "links.md",
+      "canais.md",
+      "ferramentas.md",
+      "campanhas.md",
+      "glossario.md",
+      "proibicoes.md",
+      "estruturas-proibidas.md",
+      "aprendizado.md",
+    ]) {
+      await expect(stat(join(project, ".inboundfy", "context", name))).resolves.toBeTruthy();
+      await expect(stat(join(project, "context", name))).rejects.toMatchObject({ code: "ENOENT" });
+    }
+    for (const name of ["acervo.json", "conteudos.json", "calendario.json"]) {
+      await expect(stat(join(project, ".inboundfy", "indices", name))).resolves.toBeTruthy();
+    }
+  });
+
   test("repair restaura gerenciados e preserva arquivos do usuário", async () => {
     const project = await createProject();
     await install(project);
@@ -143,15 +185,15 @@ describe("CLI do Inboundfy", () => {
     );
     const context = join(project, ".inboundfy");
     await writeFile(
-      join(context, "inbound.md"),
+      join(context, "context", "empresa.md"),
       `# Inboundfy\n\n- **Nome da empresa:** Acme Ltda.\n- **Descrição curta:** Sistemas de atendimento para agências.\n- **Site principal:** https://acme.example\n`,
     );
     await writeFile(
-      join(context, "voz.md"),
+      join(context, "context", "marca-voz.md"),
       `# Voz\n\n- **Três a cinco adjetivos:** direta, técnica e próxima\n- **Pessoa verbal:** primeira pessoa\n- **Idioma e variante:** pt-BR\n\n## Exemplo aprovado\n\n> Abra o relatório e confira qual conversa ainda não recebeu resposta.\n`,
     );
     await writeFile(
-      join(context, "personas.md"),
+      join(context, "context", "publico.md"),
       `# Personas\n\n## Persona 01: Gestora de agência\n\n- **Quem é:** lidera uma agência pequena.\n- **Contexto de compra:** procura organizar o atendimento.\n- **Problema que tenta resolver:** perde conversas importantes.\n- **Resultado que procura:** responder com clareza e rapidez.\n`,
     );
     await writeFile(
@@ -224,6 +266,22 @@ describe("CLI do Inboundfy", () => {
     const calendar = await addToCalendar(project, "2026-09-20", content.id);
     expect(acervo.directory).toMatch(/^acervo\/0001-/u);
     expect(content.directory).toMatch(/^canais\/blog\/0001-/u);
+    for (const [index, file] of [
+      "00-entrada.md",
+      "01-processado.md",
+      "02-base-editorial.md",
+      "03-estrategia-brief.md",
+      "04-rascunho.md",
+      "05-peca.md",
+      "06-pacote.md",
+    ].entries()) {
+      const audit = await readFile(
+        join(project, acervo.directory, "auditorias", "anti-slop", file),
+        "utf8",
+      );
+      expect(audit).toContain(`etapa: A${index}`);
+      expect(audit).toContain("estado: pendente");
+    }
     expect(content.baseEditorial).toEqual([
       `${acervo.directory}/base-editorial.md`,
     ]);

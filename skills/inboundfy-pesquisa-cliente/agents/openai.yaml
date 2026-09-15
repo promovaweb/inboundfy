@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Pesquisa Cliente"
+  short_description: "Executa pesquisa cliente no Inboundfy"
+  default_prompt: "Use $inboundfy-pesquisa-cliente para executar pesquisa cliente com as fontes do projeto."

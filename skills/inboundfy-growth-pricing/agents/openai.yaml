@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Pricing"
+  short_description: "Executa growth pricing no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-pricing para executar growth pricing com as fontes do projeto."

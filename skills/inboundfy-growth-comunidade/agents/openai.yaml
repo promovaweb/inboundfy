@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Comunidade"
+  short_description: "Executa growth comunidade no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-comunidade para executar growth comunidade com as fontes do projeto."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Arquitetura Site"
+  short_description: "Executa arquitetura site no Inboundfy"
+  default_prompt: "Use $inboundfy-arquitetura-site para executar arquitetura site com as fontes do projeto."

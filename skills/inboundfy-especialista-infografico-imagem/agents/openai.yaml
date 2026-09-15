@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Especialista Infografico Imagem"
+  short_description: "Executa especialista infografico imagem no Inboundfy"
+  default_prompt: "Use $inboundfy-especialista-infografico-imagem para executar especialista infografico imagem com as fontes do projeto."

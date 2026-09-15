@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Popups"
+  short_description: "Executa growth popups no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-popups para executar growth popups com as fontes do projeto."

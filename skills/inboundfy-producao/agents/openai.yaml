@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Producao"
+  short_description: "Executa producao no Inboundfy"
+  default_prompt: "Use $inboundfy-producao para executar producao com as fontes do projeto."

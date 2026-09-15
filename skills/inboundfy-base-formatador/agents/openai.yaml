@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Base Formatador"
+  short_description: "Executa base formatador no Inboundfy"
+  default_prompt: "Use $inboundfy-base-formatador para executar base formatador com as fontes do projeto."

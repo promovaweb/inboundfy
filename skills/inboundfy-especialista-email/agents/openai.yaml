@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Especialista Email"
+  short_description: "Executa especialista email no Inboundfy"
+  default_prompt: "Use $inboundfy-especialista-email para executar especialista email com as fontes do projeto."

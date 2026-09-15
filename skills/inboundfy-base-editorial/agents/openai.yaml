@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Base Editorial"
+  short_description: "Executa base editorial no Inboundfy"
+  default_prompt: "Use $inboundfy-base-editorial para executar base editorial com as fontes do projeto."

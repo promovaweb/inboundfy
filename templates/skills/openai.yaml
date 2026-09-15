@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy {{nome legível}}"
+  short_description: "Executa {{capacidade}} no Inboundfy"
+  default_prompt: "Use $inboundfy-{{nome}} para executar {{capacidade}} com as fontes do projeto."

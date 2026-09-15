@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Signup"
+  short_description: "Executa growth signup no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-signup para executar growth signup com as fontes do projeto."

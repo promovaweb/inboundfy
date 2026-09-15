@@ -23,6 +23,20 @@ ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
 arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
 preflight, leia o catalogo e os Markdown relevantes para a tarefa.
 
+## Arquitetura de execução
+
+Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
+específica desta pasta.
+
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
+- [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): conduza escolhas e entregue o pacote seguinte.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
+
+Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
+artefato. O grupo desta skill é **especialista**.
+
 ## Contexto exigido
 
 - `context/marca-voz.md`: tom e voz de formato longo.
@@ -73,10 +87,10 @@ pacote, quando existir) e, se já definida, a estrutura de capítulos.
    quando o brief indicar que o ebook tem função de geração de demanda.
 5. Feche cada capítulo com transição para o próximo, e o ebook inteiro com
    CTA único e claro.
-6. Rode `inboundfy-base-editor` por capítulo; ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija parágrafos abaixo de 90%.
+6. Rode `inboundfy-copy-editor` por capítulo; ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija parágrafos abaixo de 90%.
 7. Salve com frontmatter incluindo `titulo`, `promessa`, sumário de
    capítulos e `brief` quando fizer parte de um pacote.
-8. Encaminhe para `inboundfy-especialista-ebook-imagem` e depois para `inboundfy-planejamento-06-auditoria`.
+8. Encaminhe para `inboundfy-especialista-ebook-imagem` e depois para `inboundfy-planejamento`.
 
 ## Encaminhamento obrigatório
 
@@ -93,9 +107,21 @@ ebook.
 ## Validação
 
 - Progressão de capítulos é lógica, sem repetição de conteúdo entre eles.
-- Nenhum parágrafo abaixo de 90% na auditoria de `inboundfy-base-editor`.
+- Nenhum parágrafo abaixo de 90% na auditoria de `inboundfy-copy-editor`.
 - Menção institucional confere com `context/`.
 - Aprovação registrada por `inboundfy-validador-ebook`.
+
+## Responsabilidade do grupo
+
+Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+
+Antes do handoff, confirme os campos próprios deste grupo:
+
+- **grupo:** especialista
+- **entrada:** caminho ou ID ligado ao pedido;
+- **transformação:** ação principal descrita no fluxo;
+- **saída:** arquivo, resposta ou relatório com formato definido;
+- **handoff:** próxima skill, estado e pendências.
 
 ## Idempotência
 

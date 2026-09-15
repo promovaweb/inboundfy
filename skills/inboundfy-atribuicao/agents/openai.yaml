@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Atribuicao"
+  short_description: "Executa atribuicao no Inboundfy"
+  default_prompt: "Use $inboundfy-atribuicao para executar atribuicao com as fontes do projeto."

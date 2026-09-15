@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Dados Estruturados"
+  short_description: "Executa dados estruturados no Inboundfy"
+  default_prompt: "Use $inboundfy-dados-estruturados para executar dados estruturados com as fontes do projeto."

@@ -25,6 +25,20 @@ ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
 arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
 preflight, leia o catalogo e os Markdown relevantes para a tarefa.
 
+## Arquitetura de execução
+
+Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
+específica desta pasta.
+
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
+- [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): conduza escolhas e entregue o pacote seguinte.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
+
+Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
+artefato. O grupo desta skill é **especialista**.
+
 ## Contexto exigido
 
 - `context/marca-voz.md`: tom e nível de informalidade permitido.
@@ -73,11 +87,11 @@ ativos de apoio e CTA.
    falado; sem indicação de corte técnico fora do escopo desta skill.
 5. Aplique `ESCRITA.md` ajustando densidade ao formato curto, sem
    reintroduzir slop ou fragmentação vazia.
-6. Rode `inboundfy-base-editor`; ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija trechos abaixo de 90%.
+6. Rode `inboundfy-copy-editor`; ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija trechos abaixo de 90%.
 7. Salve com frontmatter incluindo `formato` (post/carrossel/video-curto) e
    `brief` quando fizer parte de um pacote.
 8. Encaminhe para `inboundfy-especialista-instagram-imagem` quando o formato exigir peça
-   visual, e depois para `inboundfy-planejamento-06-auditoria`.
+   visual, e depois para `inboundfy-planejamento`.
 
 ## Encaminhamento obrigatório
 
@@ -93,9 +107,21 @@ Instagram, com um arquivo por slide quando o formato for carrossel.
 ## Validação
 
 - Formato de saída corresponde exatamente ao indicado no brief.
-- Nenhum trecho abaixo de 90% na auditoria de `inboundfy-base-editor`.
+- Nenhum trecho abaixo de 90% na auditoria de `inboundfy-copy-editor`.
 - Carrossel tem progressão lógica entre slides, não blocos desconectados.
 - Aprovação registrada por `inboundfy-validador-instagram`.
+
+## Responsabilidade do grupo
+
+Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+
+Antes do handoff, confirme os campos próprios deste grupo:
+
+- **grupo:** especialista
+- **entrada:** caminho ou ID ligado ao pedido;
+- **transformação:** ação principal descrita no fluxo;
+- **saída:** arquivo, resposta ou relatório com formato definido;
+- **handoff:** próxima skill, estado e pendências.
 
 ## Idempotência
 

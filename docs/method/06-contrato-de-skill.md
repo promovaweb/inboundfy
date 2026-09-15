@@ -1,7 +1,7 @@
 # Contrato de skill
 
-Cada diretório contém `SKILL.md` e `REFERENCIA.md`. Scripts são opcionais e
-servem apenas a operações mecânicas.
+Cada diretório contém `SKILL.md`, `REFERENCIA.md` e `agents/openai.yaml`.
+Scripts são opcionais e servem apenas a operações mecânicas.
 
 ## `SKILL.md`
 
@@ -25,6 +25,19 @@ ausente ou incompleto.
 
 Registra templates, exemplo preenchido, checklist binário, erros comuns e
 convenções específicas. Precisa ser citado pelo fluxo do `SKILL.md`.
+
+Também registra os cinco blocos compartilhados, os campos mínimos do grupo,
+perguntas de conferência e referências de leitura adequadas à função.
+
+## Camada de interface e catálogo
+
+`agents/openai.yaml` contém `display_name`, `short_description` e
+`default_prompt`. O prompt deve chamar o ID com `$`, mantendo a ativação
+alinhada ao frontmatter.
+
+`skills/catalogo.json` liga o ID aos três arquivos e ao perfil de entrada,
+saída, validação e handoff. A entrada só é válida quando os caminhos existem e
+o grupo coincide com a arquitetura registrada.
 
 ## Limites de responsabilidade
 

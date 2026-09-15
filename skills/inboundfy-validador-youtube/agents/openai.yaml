@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Validador Youtube"
+  short_description: "Executa validador youtube no Inboundfy"
+  default_prompt: "Use $inboundfy-validador-youtube para executar validador youtube com as fontes do projeto."

@@ -10,7 +10,7 @@ description: >
 # Inboundfy Blog Redator
 
 Skill de canal para artigos de blog. Recebe um brief já aprovado (de
-`inboundfy-planejamento-04-briefing` ou fornecido diretamente pelo usuário em peça avulsa) e
+`inboundfy-planejamento` ou fornecido diretamente pelo usuário em peça avulsa) e
 produz o artigo final. Não escolhe tema, não define estratégia de SEO
 sozinha e não publica em CMS; isso é integração do projeto que adota o
 Inboundfy.
@@ -29,6 +29,20 @@ ausência de qualquer um, informe: "O setup do Inboundfy ainda não foi concluí
 ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
 arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
 preflight, leia o catalogo e os Markdown relevantes para a tarefa.
+
+## Arquitetura de execução
+
+Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
+específica desta pasta.
+
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
+- [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): conduza escolhas e entregue o pacote seguinte.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
+
+Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
+artefato. O grupo desta skill é **especialista**.
 
 ## Contexto exigido
 
@@ -60,7 +74,7 @@ menção solta como propaganda.
 ## Entrada esperada
 
 Um brief com: canal (blog), ângulo, objetivo, público-alvo, ativos de apoio
-(dados, exemplos, citações vindos de `inboundfy-planejamento-02-pesquisa` quando existir
+(dados, exemplos, citações vindos de `inboundfy-planejamento` quando existir
 pacote), palavra-chave ou intenção de busca já validada, e restrições
 específicas da peça.
 
@@ -83,14 +97,14 @@ específicas da peça.
    funcionalidade ou preço.
 7. Feche com uma ação real, não uma frase decorativa. Use CTA definido em
    `context/marca-voz.md` quando existir um padrão.
-8. Rode `inboundfy-base-editor` no rascunho; ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija todo parágrafo abaixo de 90%.
+8. Rode `inboundfy-copy-editor` no rascunho; ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija todo parágrafo abaixo de 90%.
 9. Rode `inboundfy-base-seo` no perfil de metadata para confirmar title, description
    e slug finais.
 10. Salve o artigo com frontmatter incluindo, no mínimo: `title`,
     `description`, `slug`, e; se fizer parte de um pacote; `brief` apontando
     para o arquivo em `04-briefs/`, seguindo o template de `REFERENCIA.md`.
 11. Encaminhe para `inboundfy-especialista-blog-imagem` quando o canal exigir imagem, e depois
-    para `inboundfy-planejamento-06-auditoria`.
+    para `inboundfy-planejamento`.
 
 ## Encaminhamento obrigatório
 
@@ -107,12 +121,24 @@ Artigo em Markdown com frontmatter, salvo no caminho definido em
 
 ## Validação
 
-- Nenhum parágrafo abaixo de 90% na auditoria de `inboundfy-base-editor`.
+- Nenhum parágrafo abaixo de 90% na auditoria de `inboundfy-copy-editor`.
 - Título, description e slug validados por `inboundfy-base-seo`.
 - Toda afirmação sobre produto, serviço, preço ou ferramenta confere com
   `context/`.
 - Frontmatter completo, incluindo `brief` quando aplicável.
 - Aprovação registrada por `inboundfy-validador-blog`.
+
+## Responsabilidade do grupo
+
+Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+
+Antes do handoff, confirme os campos próprios deste grupo:
+
+- **grupo:** especialista
+- **entrada:** caminho ou ID ligado ao pedido;
+- **transformação:** ação principal descrita no fluxo;
+- **saída:** arquivo, resposta ou relatório com formato definido;
+- **handoff:** próxima skill, estado e pendências.
 
 ## Idempotência
 

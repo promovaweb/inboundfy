@@ -16,7 +16,7 @@ não precisam de AIDA, PAS, PASTOR ou FAB — eles seguem a lógica de
 interpretar, apontar limite). Use uma das estruturas abaixo quando o brief
 tiver objetivo comercial explícito: anúncio, e-mail de vendas, página de
 oferta, script de vídeo de conversão, post com CTA de compra, convite de
-webinar pago. `inboundfy-planejamento-04-briefing` decide, ao criar o brief, se a peça exige
+webinar pago. `inboundfy-planejamento` decide, ao criar o brief, se a peça exige
 estrutura persuasiva e qual delas, com base em `context/publico.md` e
 `context/ofertas.md`.
 
@@ -94,14 +94,14 @@ na característica sozinha.
 
 ## Como as skills de canal aplicam este arquivo
 
-- `inboundfy-planejamento-04-briefing` registra no brief, quando aplicável, qual estrutura
+- `inboundfy-planejamento` registra no brief, quando aplicável, qual estrutura
   (AIDA, PAS, PASTOR) a peça deve seguir e se FAB deve ser aplicado nos
   blocos de produto/serviço.
 - A skill de canal (`inboundfy-especialista-email`, `inboundfy-especialista-linkedin`,
   `inboundfy-especialista-webinar`, `inboundfy-especialista-instagram`, entre outras com
   objetivo comercial) lê a estrutura indicada no brief e organiza os blocos
   antes de escrever, aplicando `ESCRITA.md` dentro de cada bloco.
-- `inboundfy-base-editor` e `inboundfy-planejamento-06-auditoria` continuam avaliando por parágrafo
+- `inboundfy-copy-editor` e `inboundfy-planejamento` continuam avaliando por parágrafo
   como de costume — a estrutura persuasiva não isenta nenhum parágrafo do
   padrão de `ESCRITA.md` nem do teto de nota imposto por
   `context/proibicoes.md`.

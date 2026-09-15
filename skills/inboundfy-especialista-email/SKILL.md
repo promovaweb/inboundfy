@@ -15,7 +15,7 @@ assunto, pré-header e corpo.
 
 Cobre e-mail avulso, de nutrição, convite e follow-up. Newsletter longa e
 editorial é `inboundfy-especialista-newsletter`. Não define a estratégia da
-sequência de nutrição; isso é decidido em `inboundfy-planejamento-03-oportunidades` e
+sequência de nutrição; isso é decidido em `inboundfy-planejamento` e
 registrado no brief.
 
 ## Verificação do setup
@@ -25,6 +25,20 @@ ausência de qualquer um, informe: "O setup do Inboundfy ainda não foi concluí
 ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
 arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
 preflight, leia o catalogo e os Markdown relevantes para a tarefa.
+
+## Arquitetura de execução
+
+Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
+específica desta pasta.
+
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
+- [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): conduza escolhas e entregue o pacote seguinte.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
+
+Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
+artefato. O grupo desta skill é **especialista**.
 
 ## Contexto exigido
 
@@ -44,7 +58,7 @@ pare e acione a skill de manutenção correspondente.
 
 ## Estrutura persuasiva por tipo de e-mail
 
-`inboundfy-planejamento-04-briefing` já decide e registra a estrutura no brief; esta seção
+`inboundfy-planejamento` já decide e registra a estrutura no brief; esta seção
 orienta como aplicá-la especificamente em e-mail:
 
 - **E-mail avulso ou convite com uma única oferta clara** (ex.: convite para
@@ -77,7 +91,7 @@ ativos de apoio e CTA esperado.
 
 1. Leia o brief, `ESCRITA.md` e a estrutura persuasiva registrada no brief
    (se houver); se o brief não declarar estrutura e o e-mail tiver objetivo
-   comercial, volte para `inboundfy-planejamento-04-briefing` antes de escrever.
+   comercial, volte para `inboundfy-planejamento` antes de escrever.
 2. Escreva o assunto e o pré-header primeiro, curtos e específicos, sem
    clickbait vazio; no AIDA, o assunto já é o bloco de Atenção. Use as
    fórmulas de assunto de `REFERENCIA.md`.
@@ -90,11 +104,11 @@ ativos de apoio e CTA esperado.
    correspondente, nunca por suposição, aplicando FAB quando for o caso.
 5. Feche com um único CTA claro, usando a assinatura padrão de
    `context/marca-voz.md` quando existir.
-6. Rode `inboundfy-base-editor`; ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija parágrafos abaixo de 90%.
+6. Rode `inboundfy-copy-editor`; ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija parágrafos abaixo de 90%.
 7. Salve o e-mail com frontmatter incluindo, no mínimo, `assunto`,
    `pre-header`, `estrutura` (aida/pas/pastor/nenhuma) e `brief` quando fizer
    parte de um pacote, seguindo o template de `REFERENCIA.md`.
-8. Encaminhe para `inboundfy-planejamento-06-auditoria`.
+8. Encaminhe para `inboundfy-planejamento`.
 
 ## Encaminhamento obrigatório
 
@@ -111,13 +125,25 @@ Arquivo Markdown com frontmatter, salvo no caminho definido em
 ## Validação
 
 - Assunto e pré-header presentes e alinhados ao objetivo do brief.
-- Nenhum parágrafo abaixo de 90% na auditoria de `inboundfy-base-editor`.
+- Nenhum parágrafo abaixo de 90% na auditoria de `inboundfy-copy-editor`.
 - CTA único e claro.
 - Toda afirmação sobre produto, serviço ou oferta confere com `context/`.
 - Quando o brief declarar estrutura persuasiva, todos os blocos dela estão
   presentes e na ordem certa; testemunho ausente foi sinalizado, não
   inventado.
 - Aprovação registrada por `inboundfy-validador-email`.
+
+## Responsabilidade do grupo
+
+Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+
+Antes do handoff, confirme os campos próprios deste grupo:
+
+- **grupo:** especialista
+- **entrada:** caminho ou ID ligado ao pedido;
+- **transformação:** ação principal descrita no fluxo;
+- **saída:** arquivo, resposta ou relatório com formato definido;
+- **handoff:** próxima skill, estado e pendências.
 
 ## Idempotência
 

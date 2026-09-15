@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Retencao"
+  short_description: "Executa growth retencao no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-retencao para executar growth retencao com as fontes do projeto."

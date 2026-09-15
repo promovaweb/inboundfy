@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Growth Lancamento"
+  short_description: "Executa growth lancamento no Inboundfy"
+  default_prompt: "Use $inboundfy-growth-lancamento para executar growth lancamento com as fontes do projeto."

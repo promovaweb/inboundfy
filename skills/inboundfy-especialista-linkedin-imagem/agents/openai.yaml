@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Especialista Linkedin Imagem"
+  short_description: "Executa especialista linkedin imagem no Inboundfy"
+  default_prompt: "Use $inboundfy-especialista-linkedin-imagem para executar especialista linkedin imagem com as fontes do projeto."

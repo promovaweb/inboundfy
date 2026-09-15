@@ -34,19 +34,19 @@ até a fonte responsável ser confirmada; nenhuma skill escolhe silenciosamente.
 
 | Arquivo | Resolve | Skill de manutenção |
 | --- | --- | --- |
-| `context/empresa.md` | Nome, missão, história, modelo de negócio, diferenciais. | `inboundfy-contexto-empresa` |
-| `context/pessoas.md` | Fundadores, time, autores, porta-vozes e seus papéis. | `inboundfy-contexto-pessoas` |
-| `context/produtos.md` | Produtos e funcionalidades — o que fazem, qual público atendem, como se usam. | `inboundfy-contexto-produtos` |
-| `context/servicos.md` | Serviços prestados, formato de entrega, escopo. | `inboundfy-contexto-produtos` |
-| `context/ofertas.md` | Planos, preços, condições comerciais, comparativos. | `inboundfy-contexto-ofertas` |
+| `context/empresa.md` | Nome, missão, história, modelo de negócio, diferenciais. | `inboundfy-contexto-institucional` |
+| `context/pessoas.md` | Fundadores, time, autores, porta-vozes e seus papéis. | `inboundfy-contexto-institucional` |
+| `context/produtos.md` | Produtos e funcionalidades — o que fazem, qual público atendem, como se usam. | `inboundfy-contexto-oferta` |
+| `context/servicos.md` | Serviços prestados, formato de entrega, escopo. | `inboundfy-contexto-oferta` |
+| `context/ofertas.md` | Planos, preços, condições comerciais, comparativos. | `inboundfy-contexto-oferta` |
 | `context/marca-voz.md` | Tom, voz, vocabulário preferido, exemplos de bom e mau texto. | `inboundfy-contexto-marca` |
 | `context/publico.md` | Personas, dores, objeções, nível de maturidade, jornada. | `inboundfy-contexto-publico` |
 | `context/concorrentes.md` | Concorrentes diretos, posicionamento relativo, diferenciação. | `inboundfy-contexto-concorrentes` |
-| `context/enderecos.md` | Endereços físicos, CNPJ/registro, contatos oficiais, redes sociais. | `inboundfy-contexto-enderecos` |
-| `context/canais.md` | Canais ativos, formato por canal, cadência, diretório de trabalho. | `inboundfy-contexto-canais` |
-| `context/ferramentas.md` | Stack, ferramentas mencionáveis, links oficiais. | `inboundfy-contexto-ferramentas` |
-| `context/campanhas.md` | Registro de campanhas — objetivo, KPI, público, canais, período, status. | `inboundfy-contexto-campanhas` |
-| `context/glossario.md` | Grafia oficial de marcas, termos técnicos e siglas. | `inboundfy-contexto-empresa` |
+| `context/enderecos.md` | Endereços físicos, CNPJ/registro, contatos oficiais, redes sociais. | `inboundfy-contexto-institucional` |
+| `context/canais.md` | Canais ativos, formato por canal, cadência, diretório de trabalho. | `inboundfy-contexto-operacao` |
+| `context/ferramentas.md` | Stack, ferramentas mencionáveis, links oficiais. | `inboundfy-contexto-operacao` |
+| `context/campanhas.md` | Registro de campanhas — objetivo, KPI, público, canais, período, status. | `inboundfy-contexto-operacao` |
+| `context/glossario.md` | Grafia oficial de marcas, termos técnicos e siglas. | `inboundfy-contexto-institucional` |
 | `context/proibicoes.md` | Vetos editoriais específicos do usuário — termos, promessas, comparações proibidas. | `inboundfy-contexto-marca` |
 | `context/estruturas-proibidas.md` | Catálogo genérico de palavras, frases e estruturas de parágrafo que denunciam texto gerado por IA — usado junto com `proibicoes.md`, mas não específico de negócio. | `inboundfy-contexto-marca` |
 
@@ -66,7 +66,7 @@ Quando duas fontes conflitarem, resolva nesta ordem:
 6. **Fonte descoberta responsável pelo domínio** — Markdown classificado
    como factual ou editorial em `.inboundfy/fontes-projeto.md`; complementa o
    contexto e sinaliza divergência.
-7. **Hipótese de pesquisa da fase 2 do pipeline** (`inboundfy-planejamento-02-pesquisa`) — só
+7. **Hipótese de pesquisa da fase 2 do pipeline** (`inboundfy-planejamento`) — só
    vale para o pacote em andamento, nunca sobrescreve fato confirmado.
 8. **Suposição da skill na ausência de dado** — só é aceitável em rascunho
    explicitamente marcado como pendente de confirmação; nunca em artefato

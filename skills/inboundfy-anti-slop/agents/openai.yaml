@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Anti Slop"
+  short_description: "Executa anti slop no Inboundfy"
+  default_prompt: "Use $inboundfy-anti-slop para executar o marco A0 a A6 aplicável, com as fontes do projeto."

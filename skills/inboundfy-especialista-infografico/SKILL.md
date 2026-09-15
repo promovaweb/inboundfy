@@ -24,6 +24,20 @@ ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
 arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
 preflight, leia o catalogo e os Markdown relevantes para a tarefa.
 
+## Arquitetura de execução
+
+Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
+específica desta pasta.
+
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
+- [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): conduza escolhas e entregue o pacote seguinte.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
+
+Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
+artefato. O grupo desta skill é **especialista**.
+
 ## Contexto exigido
 
 - `context/marca-voz.md`: tom, mesmo em formato curto.
@@ -42,7 +56,7 @@ Infográfico é factual e telegráfico por natureza; não força blocos de
 AIDA, PAS ou PASTOR. Quando o brief for um infográfico comparativo ou de
 apresentação de produto (ex.: "por que usar X"), aplique **FAB** por bloco
 visual: cada bloco nomeia uma característica, o texto mínimo do bloco indica
-a vantagem, e a legenda de acompanhamento (que passa por `inboundfy-base-editor`)
+a vantagem, e a legenda de acompanhamento (que passa por `inboundfy-copy-editor`)
 fecha no benefício real para o leitor; sem transformar o bloco visual em
 parágrafo longo.
 
@@ -62,7 +76,7 @@ e fonte do dado.
    `REFERENCIA.md`.
 4. Escreva a legenda de acompanhamento (para uso em post que compartilha o
    infográfico) e o alt text descritivo da imagem.
-5. Rode `inboundfy-base-editor` na legenda (o texto de prosa contínua do
+5. Rode `inboundfy-copy-editor` na legenda (o texto de prosa contínua do
    conjunto; ele cruza `context/proibicoes.md` e
    `context/estruturas-proibidas.md`),
    não nos blocos curtos do infográfico, que são intencionalmente
@@ -70,7 +84,7 @@ e fonte do dado.
 6. Salve com frontmatter incluindo `titulo`, `fonte-dos-dados` e `brief`
    quando fizer parte de um pacote.
 7. Encaminhe para `inboundfy-especialista-infografico-imagem` e depois para
-   `inboundfy-planejamento-06-auditoria`.
+   `inboundfy-planejamento`.
 
 ## Encaminhamento obrigatório
 
@@ -86,9 +100,21 @@ Arquivo Markdown com título, blocos, legenda e alt text, salvo no caminho de
 ## Validação
 
 - Todo dado numérico tem fonte rastreável registrada.
-- Legenda passou pela auditoria de `inboundfy-base-editor`.
+- Legenda passou pela auditoria de `inboundfy-copy-editor`.
 - Alt text descreve a imagem de forma útil para leitor de tela.
 - Aprovação registrada por `inboundfy-validador-infografico`.
+
+## Responsabilidade do grupo
+
+Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+
+Antes do handoff, confirme os campos próprios deste grupo:
+
+- **grupo:** especialista
+- **entrada:** caminho ou ID ligado ao pedido;
+- **transformação:** ação principal descrita no fluxo;
+- **saída:** arquivo, resposta ou relatório com formato definido;
+- **handoff:** próxima skill, estado e pendências.
 
 ## Idempotência
 

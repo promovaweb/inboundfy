@@ -1,0 +1,2407 @@
+{
+  "versao_contrato": 2,
+  "quantidade": 114,
+  "referencias_compartilhadas": [
+    "skills/_shared/01-preflight-e-fontes.md",
+    "skills/_shared/02-contrato-de-artefato.md",
+    "skills/_shared/03-interacao-e-handoff.md",
+    "skills/_shared/04-validacao-e-retomada.md",
+    "skills/_shared/05-contexto-editorial.md"
+  ],
+  "skills": [
+    {
+      "id": "inboundfy",
+      "grupo": "orquestrador",
+      "descricao": "Orquestra inbound marketing baseado em IA, desde o setup do projeto e a entrada no acervo até a produção, revisão, calendário e registro das peças por canal.",
+      "skill": "skills/inboundfy/SKILL.md",
+      "referencia": "skills/inboundfy/REFERENCIA.md",
+      "interface": "skills/inboundfy/agents/openai.yaml",
+      "perfil": {
+        "entrada": "pedido do usuário, estado do projeto e IDs relacionados",
+        "saida": "pacote coordenado ou próxima ação explícita",
+        "validacao": "ordem das etapas, fontes, escolhas, estados e pendências",
+        "handoff": "skill de entrada, acervo ou planejamento indicada pelo pedido"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-acervo",
+      "grupo": "acervo",
+      "descricao": "Orquestra o ciclo completo do Inboundfy",
+      "skill": "skills/inboundfy-acervo/SKILL.md",
+      "referencia": "skills/inboundfy-acervo/REFERENCIA.md",
+      "interface": "skills/inboundfy-acervo/agents/openai.yaml",
+      "perfil": {
+        "entrada": "texto bruto, ID do item e fontes locais ou externas",
+        "saida": "bruto preservado, processado, FAQ, pesquisa e base editorial",
+        "validacao": "origem preservada, regras aplicadas, perguntas separadas e relações registradas",
+        "handoff": "estratégia do acervo, planejamento ou produção indicada pelo usuário"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-anti-slop",
+      "grupo": "qualidade",
+      "descricao": "Audita textos de marketing para remover generalidades, sinais sintéticos e promessas sem base, respeitando voz, persona e canal.",
+      "skill": "skills/inboundfy-anti-slop/SKILL.md",
+      "referencia": "skills/inboundfy-anti-slop/REFERENCIA.md",
+      "interface": "skills/inboundfy-anti-slop/agents/openai.yaml",
+      "perfil": {
+        "entrada": "texto técnico ou público, fonte, voz e regras aplicáveis",
+        "saida": "relatório de qualidade ou versão revisada preservando o original",
+        "validacao": "clareza, naturalidade, contexto, proibições e dicionário",
+        "handoff": "produtora, validadora ou solicitante conforme o estado"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-anti-slop-codigo",
+      "grupo": "qualidade",
+      "descricao": "Revisa código e documentação do CLI para remover complexidade sem função, tipos frouxos e comentários genéricos sem mudar comportamento.",
+      "skill": "skills/inboundfy-anti-slop-codigo/SKILL.md",
+      "referencia": "skills/inboundfy-anti-slop-codigo/REFERENCIA.md",
+      "interface": "skills/inboundfy-anti-slop-codigo/agents/openai.yaml",
+      "perfil": {
+        "entrada": "texto técnico ou público, fonte, voz e regras aplicáveis",
+        "saida": "relatório de qualidade ou versão revisada preservando o original",
+        "validacao": "clareza, naturalidade, contexto, proibições e dicionário",
+        "handoff": "produtora, validadora ou solicitante conforme o estado"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-aprendizado",
+      "grupo": "contexto",
+      "descricao": "Registra sugestões, correções, alinhamentos e dicas do usuário, confirma o alcance e transforma aprendizados aprovados em regras reutilizáveis do projeto.",
+      "skill": "skills/inboundfy-aprendizado/SKILL.md",
+      "referencia": "skills/inboundfy-aprendizado/REFERENCIA.md",
+      "interface": "skills/inboundfy-aprendizado/agents/openai.yaml",
+      "perfil": {
+        "entrada": "resposta do usuário ou arquivo canônico do domínio",
+        "saida": "arquivo de contexto atualizado e registro da alteração",
+        "validacao": "seções preservadas, fatos separados de preferências e fonte registrada",
+        "handoff": "setup, orquestrador ou outra skill que dependa desse contexto"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-arquitetura-site",
+      "grupo": "capacidade",
+      "descricao": "Planeja hierarquia, navegação, hubs, páginas, URLs e links internos para conectar intenção, oferta e conteúdo.",
+      "skill": "skills/inboundfy-arquitetura-site/SKILL.md",
+      "referencia": "skills/inboundfy-arquitetura-site/REFERENCIA.md",
+      "interface": "skills/inboundfy-arquitetura-site/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-aso",
+      "grupo": "capacidade",
+      "descricao": "Melhora título, descrição, imagens, prova e descoberta de páginas de aplicativo sem prometer funções não confirmadas.",
+      "skill": "skills/inboundfy-aso/SKILL.md",
+      "referencia": "skills/inboundfy-aso/REFERENCIA.md",
+      "interface": "skills/inboundfy-aso/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-atribuicao",
+      "grupo": "capacidade",
+      "descricao": "Organiza a leitura de origem, jornada e receita do conteúdo sem confundir fonte, modelo, proxy e contribuição real de cada canal.",
+      "skill": "skills/inboundfy-atribuicao/SKILL.md",
+      "referencia": "skills/inboundfy-atribuicao/REFERENCIA.md",
+      "interface": "skills/inboundfy-atribuicao/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-auditoria-seo",
+      "grupo": "capacidade",
+      "descricao": "Audita descoberta, intenção, metadata, conteúdo, links, rastreabilidade e saúde editorial de uma peça ou conjunto de páginas.",
+      "skill": "skills/inboundfy-auditoria-seo/SKILL.md",
+      "referencia": "skills/inboundfy-auditoria-seo/REFERENCIA.md",
+      "interface": "skills/inboundfy-auditoria-seo/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-base-editorial",
+      "grupo": "base",
+      "descricao": "Constrói a base editorial de um acervo a partir do material processado, pesquisa, FAQ e fontes relacionadas para orientar futuras peças de marketing.",
+      "skill": "skills/inboundfy-base-editorial/SKILL.md",
+      "referencia": "skills/inboundfy-base-editorial/REFERENCIA.md",
+      "interface": "skills/inboundfy-base-editorial/agents/openai.yaml",
+      "perfil": {
+        "entrada": "artefato, regra de transformação e contexto mínimo",
+        "saida": "resultado reutilizável com formato, fontes e pendências",
+        "validacao": "função executada, formato íntegro e origem ligada ao resultado",
+        "handoff": "skill chamadora, com o caminho do resultado e a próxima ação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-base-formatador",
+      "grupo": "base",
+      "descricao": "Skill transversal de lint e formatação Markdown final; heading, listas, links, tabelas e frontmatter. Sempre a última ação antes de considerar um artefato Markdown pronto. Não altera conteúdo editorial.",
+      "skill": "skills/inboundfy-base-formatador/SKILL.md",
+      "referencia": "skills/inboundfy-base-formatador/REFERENCIA.md",
+      "interface": "skills/inboundfy-base-formatador/agents/openai.yaml",
+      "perfil": {
+        "entrada": "artefato, regra de transformação e contexto mínimo",
+        "saida": "resultado reutilizável com formato, fontes e pendências",
+        "validacao": "função executada, formato íntegro e origem ligada ao resultado",
+        "handoff": "skill chamadora, com o caminho do resultado e a próxima ação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-base-imagem",
+      "grupo": "base",
+      "descricao": "Motor genérico de geração de card, slide ou thumbnail sintético para peças sociais (LinkedIn, Instagram, capa de carrossel, thumbnail de vídeo, webinar). Usa geração de imagem por IA com a identidade visual registrada em context/marca-voz.md. É a base que as skills de imagem por canal (inboundfy-especialista-linkedin-imagem, inboundfy-especialista-instagram-imagem, etc.) reaproveitam.",
+      "skill": "skills/inboundfy-base-imagem/SKILL.md",
+      "referencia": "skills/inboundfy-base-imagem/REFERENCIA.md",
+      "interface": "skills/inboundfy-base-imagem/agents/openai.yaml",
+      "perfil": {
+        "entrada": "artefato, regra de transformação e contexto mínimo",
+        "saida": "resultado reutilizável com formato, fontes e pendências",
+        "validacao": "função executada, formato íntegro e origem ligada ao resultado",
+        "handoff": "skill chamadora, com o caminho do resultado e a próxima ação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-base-seo",
+      "grupo": "base",
+      "descricao": "Skill transversal de SEO e intenção de busca. Classifica a intenção (informativa, comparativa, transacional, investigativa), define title (50-60 caracteres), description (145-155 caracteres), slug, headings e linkagem interna. Usada por skills de canal de texto antes de escrever.",
+      "skill": "skills/inboundfy-base-seo/SKILL.md",
+      "referencia": "skills/inboundfy-base-seo/REFERENCIA.md",
+      "interface": "skills/inboundfy-base-seo/agents/openai.yaml",
+      "perfil": {
+        "entrada": "artefato, regra de transformação e contexto mínimo",
+        "saida": "resultado reutilizável com formato, fontes e pendências",
+        "validacao": "função executada, formato íntegro e origem ligada ao resultado",
+        "handoff": "skill chamadora, com o caminho do resultado e a próxima ação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-base-validador",
+      "grupo": "base",
+      "descricao": "Aplica o contrato transversal de validação a qualquer asset produzido pelo Inboundfy. Use como base obrigatória das skills inboundfy-validador-* para confrontar brief, metodologia, todos os contextos, fontes locais, regras e contrato da skill produtora. Proibições e estruturas proibidas são hard gates com reprovação automática, sem compensação por nota.",
+      "skill": "skills/inboundfy-base-validador/SKILL.md",
+      "referencia": "skills/inboundfy-base-validador/REFERENCIA.md",
+      "interface": "skills/inboundfy-base-validador/agents/openai.yaml",
+      "perfil": {
+        "entrada": "artefato, regra de transformação e contexto mínimo",
+        "saida": "resultado reutilizável com formato, fontes e pendências",
+        "validacao": "função executada, formato íntegro e origem ligada ao resultado",
+        "handoff": "skill chamadora, com o caminho do resultado e a próxima ação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-brainstorm",
+      "grupo": "brainstorm",
+      "descricao": "Orquestra uma ideia até brainstorm.md pesquisado e aprovado, executando as etapas 00 a 04, consultando context/, ESCRITA.md e os dois arquivos de proibições. Use quando o usuário trouxer uma ideia curta e quiser desenvolvê-la sem coordenar skills manualmente.",
+      "skill": "skills/inboundfy-brainstorm/SKILL.md",
+      "referencia": "skills/inboundfy-brainstorm/REFERENCIA.md",
+      "interface": "skills/inboundfy-brainstorm/agents/openai.yaml",
+      "perfil": {
+        "entrada": "ideia, material inicial, perguntas e fontes disponíveis",
+        "saida": "pacote de ideia com tese, recorte, perguntas e oportunidades",
+        "validacao": "fatos separados de hipóteses, fontes ligadas e proibições aplicadas",
+        "handoff": "fase seguinte do brainstorm ou planejamento de conteúdo"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-catalogo",
+      "grupo": "capacidade",
+      "descricao": "Reconstrói e mantém os índices de acervo, bases editoriais, peças por canal e calendário para localizar rapidamente todo material do projeto.",
+      "skill": "skills/inboundfy-catalogo/SKILL.md",
+      "referencia": "skills/inboundfy-catalogo/REFERENCIA.md",
+      "interface": "skills/inboundfy-catalogo/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-concorrentes",
+      "grupo": "capacidade",
+      "descricao": "Pesquisa concorrentes e alternativas para orientar posicionamento, páginas comparativas, diferenciação, conteúdo SEO e argumentos de venda.",
+      "skill": "skills/inboundfy-concorrentes/SKILL.md",
+      "referencia": "skills/inboundfy-concorrentes/REFERENCIA.md",
+      "interface": "skills/inboundfy-concorrentes/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-conselho-marketing",
+      "grupo": "capacidade",
+      "descricao": "Organiza uma leitura executiva do marketing com contexto, perguntas, opções, próximos passos e registro das escolhas do projeto.",
+      "skill": "skills/inboundfy-conselho-marketing/SKILL.md",
+      "referencia": "skills/inboundfy-conselho-marketing/REFERENCIA.md",
+      "interface": "skills/inboundfy-conselho-marketing/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-contexto-concorrentes",
+      "grupo": "contexto",
+      "descricao": "Preenche e mantém context/concorrentes.md. Ative quando o usuário informar ou corrigir dado sobre um concorrente; o que oferece, ponto forte real, diferença verificável, se pode ser citado nominalmente.",
+      "skill": "skills/inboundfy-contexto-concorrentes/SKILL.md",
+      "referencia": "skills/inboundfy-contexto-concorrentes/REFERENCIA.md",
+      "interface": "skills/inboundfy-contexto-concorrentes/agents/openai.yaml",
+      "perfil": {
+        "entrada": "resposta do usuário ou arquivo canônico do domínio",
+        "saida": "arquivo de contexto atualizado e registro da alteração",
+        "validacao": "seções preservadas, fatos separados de preferências e fonte registrada",
+        "handoff": "setup, orquestrador ou outra skill que dependa desse contexto"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-contexto-institucional",
+      "grupo": "contexto",
+      "descricao": "Mantém os dados institucionais, as pessoas, os endereços, os links oficiais e o glossário do projeto em arquivos canônicos separados. Use para registrar ou corrigir fatos da empresa antes de qualquer produção de conteúdo.",
+      "skill": "skills/inboundfy-contexto-institucional/SKILL.md",
+      "referencia": "skills/inboundfy-contexto-institucional/REFERENCIA.md",
+      "interface": "skills/inboundfy-contexto-institucional/agents/openai.yaml",
+      "perfil": {
+        "entrada": "resposta do usuário ou arquivo canônico do domínio",
+        "saida": "arquivo de contexto atualizado e registro da alteração",
+        "validacao": "seções preservadas, fatos separados de preferências e fonte registrada",
+        "handoff": "setup, orquestrador ou outra skill que dependa desse contexto"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-contexto-marca",
+      "grupo": "contexto",
+      "descricao": "Preenche e mantém context/marca-voz.md, context/proibicoes.md e context/estruturas-proibidas.md. Ative quando o usuário definir ou ajustar tom, vocabulário, exemplos de voz, registrar um veto editorial, ou editar o catálogo de padrões de texto com cara de IA.",
+      "skill": "skills/inboundfy-contexto-marca/SKILL.md",
+      "referencia": "skills/inboundfy-contexto-marca/REFERENCIA.md",
+      "interface": "skills/inboundfy-contexto-marca/agents/openai.yaml",
+      "perfil": {
+        "entrada": "resposta do usuário ou arquivo canônico do domínio",
+        "saida": "arquivo de contexto atualizado e registro da alteração",
+        "validacao": "seções preservadas, fatos separados de preferências e fonte registrada",
+        "handoff": "setup, orquestrador ou outra skill que dependa desse contexto"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-contexto-oferta",
+      "grupo": "contexto",
+      "descricao": "Mantém produtos, serviços e ofertas comerciais nos arquivos canônicos do projeto. Use para registrar fatos confirmados sobre a solução, seus planos, condições, diferenciais e limites antes da criação de copy.",
+      "skill": "skills/inboundfy-contexto-oferta/SKILL.md",
+      "referencia": "skills/inboundfy-contexto-oferta/REFERENCIA.md",
+      "interface": "skills/inboundfy-contexto-oferta/agents/openai.yaml",
+      "perfil": {
+        "entrada": "resposta do usuário ou arquivo canônico do domínio",
+        "saida": "arquivo de contexto atualizado e registro da alteração",
+        "validacao": "seções preservadas, fatos separados de preferências e fonte registrada",
+        "handoff": "setup, orquestrador ou outra skill que dependa desse contexto"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-contexto-operacao",
+      "grupo": "contexto",
+      "descricao": "Mantém canais, ferramentas e campanhas nos arquivos canônicos do Inboundfy. Use para registrar onde a empresa publica, quais recursos utiliza e como cada campanha deve ser acompanhada pelas demais skills do framework.",
+      "skill": "skills/inboundfy-contexto-operacao/SKILL.md",
+      "referencia": "skills/inboundfy-contexto-operacao/REFERENCIA.md",
+      "interface": "skills/inboundfy-contexto-operacao/agents/openai.yaml",
+      "perfil": {
+        "entrada": "resposta do usuário ou arquivo canônico do domínio",
+        "saida": "arquivo de contexto atualizado e registro da alteração",
+        "validacao": "seções preservadas, fatos separados de preferências e fonte registrada",
+        "handoff": "setup, orquestrador ou outra skill que dependa desse contexto"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-contexto-publico",
+      "grupo": "contexto",
+      "descricao": "Preenche e mantém context/publico.md. Ative quando o usuário definir ou corrigir uma persona ou segmento; perfil, dor principal, objeção comum, onde consome conteúdo, jargão próprio.",
+      "skill": "skills/inboundfy-contexto-publico/SKILL.md",
+      "referencia": "skills/inboundfy-contexto-publico/REFERENCIA.md",
+      "interface": "skills/inboundfy-contexto-publico/agents/openai.yaml",
+      "perfil": {
+        "entrada": "resposta do usuário ou arquivo canônico do domínio",
+        "saida": "arquivo de contexto atualizado e registro da alteração",
+        "validacao": "seções preservadas, fatos separados de preferências e fonte registrada",
+        "handoff": "setup, orquestrador ou outra skill que dependa desse contexto"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-copy-edicao",
+      "grupo": "copy",
+      "descricao": "Revisa copy existente preservando a mensagem, corrigindo clareza, força, ritmo, voz, factualidade e conformidade com o projeto.",
+      "skill": "skills/inboundfy-copy-edicao/SKILL.md",
+      "referencia": "skills/inboundfy-copy-edicao/REFERENCIA.md",
+      "interface": "skills/inboundfy-copy-edicao/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief, acervo, persona, voz e canal",
+        "saida": "copy pronta para revisão ou uso pela skill de canal",
+        "validacao": "mensagem, voz, persona, dicionário, proibições e próxima ação",
+        "handoff": "especialista de canal, validadora ou planejamento"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-copy-editor",
+      "grupo": "copy",
+      "descricao": "Skill transversal de auditoria de parágrafo por ESCRITA.md. Atribui nota de 0 a 100 por parágrafo e aplica hard gate: qualquer violação de context/proibicoes.md ou context/estruturas-proibidas.md reprova o texto, independentemente da nota. Reescreve trechos abaixo de 90% e repete a varredura integral antes de liberar o resultado.",
+      "skill": "skills/inboundfy-copy-editor/SKILL.md",
+      "referencia": "skills/inboundfy-copy-editor/REFERENCIA.md",
+      "interface": "skills/inboundfy-copy-editor/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief, acervo, persona, voz e canal",
+        "saida": "copy pronta para revisão ou uso pela skill de canal",
+        "validacao": "mensagem, voz, persona, dicionário, proibições e próxima ação",
+        "handoff": "especialista de canal, validadora ou planejamento"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-copy-oferta",
+      "grupo": "copy",
+      "descricao": "Estrutura, nomeia e melhora ofertas com clareza de resultado, mecanismo, prova, condições, objeções e próximo passo para cada persona.",
+      "skill": "skills/inboundfy-copy-oferta/SKILL.md",
+      "referencia": "skills/inboundfy-copy-oferta/REFERENCIA.md",
+      "interface": "skills/inboundfy-copy-oferta/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief, acervo, persona, voz e canal",
+        "saida": "copy pronta para revisão ou uso pela skill de canal",
+        "validacao": "mensagem, voz, persona, dicionário, proibições e próxima ação",
+        "handoff": "especialista de canal, validadora ou planejamento"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-copy-persuasao",
+      "grupo": "copy",
+      "descricao": "Usa princípios de comportamento e persuasão com transparência para organizar mensagens, reduzir incerteza e ajudar a persona a avançar.",
+      "skill": "skills/inboundfy-copy-persuasao/SKILL.md",
+      "referencia": "skills/inboundfy-copy-persuasao/REFERENCIA.md",
+      "interface": "skills/inboundfy-copy-persuasao/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief, acervo, persona, voz e canal",
+        "saida": "copy pronta para revisão ou uso pela skill de canal",
+        "validacao": "mensagem, voz, persona, dicionário, proibições e próxima ação",
+        "handoff": "especialista de canal, validadora ou planejamento"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-copy-posicionamento",
+      "grupo": "copy",
+      "descricao": "Mantém o contexto de produto, mercado, posicionamento, público, diferenciação, provas e mensagens que orientam todo o Inboundfy.",
+      "skill": "skills/inboundfy-copy-posicionamento/SKILL.md",
+      "referencia": "skills/inboundfy-copy-posicionamento/REFERENCIA.md",
+      "interface": "skills/inboundfy-copy-posicionamento/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief, acervo, persona, voz e canal",
+        "saida": "copy pronta para revisão ou uso pela skill de canal",
+        "validacao": "mensagem, voz, persona, dicionário, proibições e próxima ação",
+        "handoff": "especialista de canal, validadora ou planejamento"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-copy-redacao",
+      "grupo": "copy",
+      "descricao": "Produz copy de marketing baseada no acervo, na oferta, na persona, na voz e no objetivo do canal, com revisão anti-slop integrada.",
+      "skill": "skills/inboundfy-copy-redacao/SKILL.md",
+      "referencia": "skills/inboundfy-copy-redacao/REFERENCIA.md",
+      "interface": "skills/inboundfy-copy-redacao/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief, acervo, persona, voz e canal",
+        "saida": "copy pronta para revisão ou uso pela skill de canal",
+        "validacao": "mensagem, voz, persona, dicionário, proibições e próxima ação",
+        "handoff": "especialista de canal, validadora ou planejamento"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-dados-estruturados",
+      "grupo": "capacidade",
+      "descricao": "Organiza dados estruturados e JSON-LD a partir de fatos confirmados do site, produto, organização, artigo ou evento.",
+      "skill": "skills/inboundfy-dados-estruturados/SKILL.md",
+      "referencia": "skills/inboundfy-dados-estruturados/REFERENCIA.md",
+      "interface": "skills/inboundfy-dados-estruturados/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-enablement-vendas",
+      "grupo": "capacidade",
+      "descricao": "Cria materiais para vendas usando problemas reais, objeções, oferta, provas, voz e limites de afirmação do projeto.",
+      "skill": "skills/inboundfy-enablement-vendas/SKILL.md",
+      "referencia": "skills/inboundfy-enablement-vendas/REFERENCIA.md",
+      "interface": "skills/inboundfy-enablement-vendas/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-especialista-blog",
+      "grupo": "especialista",
+      "descricao": "Escreve ou edita artigos de blog a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md, a voz de context/marca-voz.md e a intenção de busca validada por inboundfy-base-seo. Não decide estratégia nem pauta; recebe o brief pronto.",
+      "skill": "skills/inboundfy-especialista-blog/SKILL.md",
+      "referencia": "skills/inboundfy-especialista-blog/REFERENCIA.md",
+      "interface": "skills/inboundfy-especialista-blog/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief aprovado, acervo, persona, voz e template do canal",
+        "saida": "asset final do canal em pasta própria com README",
+        "validacao": "formato do canal, contexto editorial, fontes e revisão pareada",
+        "handoff": "validadora do mesmo sufixo, seguida do pipeline"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-especialista-blog-imagem",
+      "grupo": "especialista",
+      "descricao": "Busca capa e thumbnail de post via banco de fotos real, nas dimensões exigidas pelo canal. Capas de blog NÃO são geradas por IA; esta skill usa exclusivamente foto real de banco de imagens, respeitando licença e crédito.",
+      "skill": "skills/inboundfy-especialista-blog-imagem/SKILL.md",
+      "referencia": "skills/inboundfy-especialista-blog-imagem/REFERENCIA.md",
+      "interface": "skills/inboundfy-especialista-blog-imagem/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief aprovado, acervo, persona, voz e template do canal",
+        "saida": "asset final do canal em pasta própria com README",
+        "validacao": "formato do canal, contexto editorial, fontes e revisão pareada",
+        "handoff": "validadora do mesmo sufixo, seguida do pipeline"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-especialista-changelog",
+      "grupo": "especialista",
+      "descricao": "Escreve entrada de changelog ou release note a partir de um brief aprovado (fase 5 do pipeline) ou diretamente de um release de produto. Aplica ESCRITA.md e a voz de context/marca-voz.md.",
+      "skill": "skills/inboundfy-especialista-changelog/SKILL.md",
+      "referencia": "skills/inboundfy-especialista-changelog/REFERENCIA.md",
+      "interface": "skills/inboundfy-especialista-changelog/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief aprovado, acervo, persona, voz e template do canal",
+        "saida": "asset final do canal em pasta própria com README",
+        "validacao": "formato do canal, contexto editorial, fontes e revisão pareada",
+        "handoff": "validadora do mesmo sufixo, seguida do pipeline"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-especialista-ebook",
+      "grupo": "especialista",
+      "descricao": "Escreve arquitetura e capítulos de ebook a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md em formato de livro curto.",
+      "skill": "skills/inboundfy-especialista-ebook/SKILL.md",
+      "referencia": "skills/inboundfy-especialista-ebook/REFERENCIA.md",
+      "interface": "skills/inboundfy-especialista-ebook/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief aprovado, acervo, persona, voz e template do canal",
+        "saida": "asset final do canal em pasta própria com README",
+        "validacao": "formato do canal, contexto editorial, fontes e revisão pareada",
+        "handoff": "validadora do mesmo sufixo, seguida do pipeline"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-especialista-ebook-imagem",
+      "grupo": "especialista",
+      "descricao": "Gera capa de ebook e imagem OpenGraph derivada, reaproveitando o motor de inboundfy-base-imagem com a identidade visual do usuário.",
+      "skill": "skills/inboundfy-especialista-ebook-imagem/SKILL.md",
+      "referencia": "skills/inboundfy-especialista-ebook-imagem/REFERENCIA.md",
+      "interface": "skills/inboundfy-especialista-ebook-imagem/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief aprovado, acervo, persona, voz e template do canal",
+        "saida": "asset final do canal em pasta própria com README",
+        "validacao": "formato do canal, contexto editorial, fontes e revisão pareada",
+        "handoff": "validadora do mesmo sufixo, seguida do pipeline"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-especialista-email",
+      "grupo": "especialista",
+      "descricao": "Escreve e-mail avulso, de nutrição, convite ou follow-up a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md. Não decide sequência de nutrição; isso vem do brief.",
+      "skill": "skills/inboundfy-especialista-email/SKILL.md",
+      "referencia": "skills/inboundfy-especialista-email/REFERENCIA.md",
+      "interface": "skills/inboundfy-especialista-email/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief aprovado, acervo, persona, voz e template do canal",
+        "saida": "asset final do canal em pasta própria com README",
+        "validacao": "formato do canal, contexto editorial, fontes e revisão pareada",
+        "handoff": "validadora do mesmo sufixo, seguida do pipeline"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-especialista-infografico",
+      "grupo": "especialista",
+      "descricao": "Escreve a copy final de infográfico a partir de um brief aprovado (fase 5 do pipeline); título, blocos visuais, legenda e alt text, curta e factual, sem prosa longa.",
+      "skill": "skills/inboundfy-especialista-infografico/SKILL.md",
+      "referencia": "skills/inboundfy-especialista-infografico/REFERENCIA.md",
+      "interface": "skills/inboundfy-especialista-infografico/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief aprovado, acervo, persona, voz e template do canal",
+        "saida": "asset final do canal em pasta própria com README",
+        "validacao": "formato do canal, contexto editorial, fontes e revisão pareada",
+        "handoff": "validadora do mesmo sufixo, seguida do pipeline"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-especialista-infografico-imagem",
+      "grupo": "especialista",
+      "descricao": "Gera a peça final de infográfico (formato típico 9:16) a partir da copy aprovada, reaproveitando o motor de inboundfy-base-imagem.",
+      "skill": "skills/inboundfy-especialista-infografico-imagem/SKILL.md",
+      "referencia": "skills/inboundfy-especialista-infografico-imagem/REFERENCIA.md",
+      "interface": "skills/inboundfy-especialista-infografico-imagem/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief aprovado, acervo, persona, voz e template do canal",
+        "saida": "asset final do canal em pasta própria com README",
+        "validacao": "formato do canal, contexto editorial, fontes e revisão pareada",
+        "handoff": "validadora do mesmo sufixo, seguida do pipeline"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-especialista-instagram",
+      "grupo": "especialista",
+      "descricao": "Escreve legenda de post, carrossel textual e roteiro de vídeo curto (Reels, Shorts, TikTok) a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md.",
+      "skill": "skills/inboundfy-especialista-instagram/SKILL.md",
+      "referencia": "skills/inboundfy-especialista-instagram/REFERENCIA.md",
+      "interface": "skills/inboundfy-especialista-instagram/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief aprovado, acervo, persona, voz e template do canal",
+        "saida": "asset final do canal em pasta própria com README",
+        "validacao": "formato do canal, contexto editorial, fontes e revisão pareada",
+        "handoff": "validadora do mesmo sufixo, seguida do pipeline"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-especialista-instagram-imagem",
+      "grupo": "especialista",
+      "descricao": "Gera imagem de feed e pacote completo de carrossel para Instagram, reaproveitando o motor de inboundfy-base-imagem com a proporção exigida por cada formato.",
+      "skill": "skills/inboundfy-especialista-instagram-imagem/SKILL.md",
+      "referencia": "skills/inboundfy-especialista-instagram-imagem/REFERENCIA.md",
+      "interface": "skills/inboundfy-especialista-instagram-imagem/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief aprovado, acervo, persona, voz e template do canal",
+        "saida": "asset final do canal em pasta própria com README",
+        "validacao": "formato do canal, contexto editorial, fontes e revisão pareada",
+        "handoff": "validadora do mesmo sufixo, seguida do pipeline"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-especialista-linkedin",
+      "grupo": "especialista",
+      "descricao": "Escreve post nativo ou artigo longo de LinkedIn a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md, sempre em primeira pessoa quando o brief indicar autor, e sem Markdown no corpo copiável do post.",
+      "skill": "skills/inboundfy-especialista-linkedin/SKILL.md",
+      "referencia": "skills/inboundfy-especialista-linkedin/REFERENCIA.md",
+      "interface": "skills/inboundfy-especialista-linkedin/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief aprovado, acervo, persona, voz e template do canal",
+        "saida": "asset final do canal em pasta própria com README",
+        "validacao": "formato do canal, contexto editorial, fontes e revisão pareada",
+        "handoff": "validadora do mesmo sufixo, seguida do pipeline"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-especialista-linkedin-imagem",
+      "grupo": "especialista",
+      "descricao": "Gera imagem de post e capa de artigo de LinkedIn, reaproveitando o motor de inboundfy-base-imagem com a proporção exigida pelo canal.",
+      "skill": "skills/inboundfy-especialista-linkedin-imagem/SKILL.md",
+      "referencia": "skills/inboundfy-especialista-linkedin-imagem/REFERENCIA.md",
+      "interface": "skills/inboundfy-especialista-linkedin-imagem/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief aprovado, acervo, persona, voz e template do canal",
+        "saida": "asset final do canal em pasta própria com README",
+        "validacao": "formato do canal, contexto editorial, fontes e revisão pareada",
+        "handoff": "validadora do mesmo sufixo, seguida do pipeline"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-especialista-newsletter",
+      "grupo": "especialista",
+      "descricao": "Escreve newsletter longa e editorial (por e-mail ou publicação própria) a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md.",
+      "skill": "skills/inboundfy-especialista-newsletter/SKILL.md",
+      "referencia": "skills/inboundfy-especialista-newsletter/REFERENCIA.md",
+      "interface": "skills/inboundfy-especialista-newsletter/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief aprovado, acervo, persona, voz e template do canal",
+        "saida": "asset final do canal em pasta própria com README",
+        "validacao": "formato do canal, contexto editorial, fontes e revisão pareada",
+        "handoff": "validadora do mesmo sufixo, seguida do pipeline"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-especialista-podcast",
+      "grupo": "especialista",
+      "descricao": "Escreve pauta e shownotes de episódio de podcast a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md.",
+      "skill": "skills/inboundfy-especialista-podcast/SKILL.md",
+      "referencia": "skills/inboundfy-especialista-podcast/REFERENCIA.md",
+      "interface": "skills/inboundfy-especialista-podcast/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief aprovado, acervo, persona, voz e template do canal",
+        "saida": "asset final do canal em pasta própria com README",
+        "validacao": "formato do canal, contexto editorial, fontes e revisão pareada",
+        "handoff": "validadora do mesmo sufixo, seguida do pipeline"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-especialista-substack",
+      "grupo": "especialista",
+      "descricao": "Adapta um acervo aprovado para artigo ou newsletter no Substack, respeitando voz, persona, estrutura longa, referências e CTA do projeto.",
+      "skill": "skills/inboundfy-especialista-substack/SKILL.md",
+      "referencia": "skills/inboundfy-especialista-substack/REFERENCIA.md",
+      "interface": "skills/inboundfy-especialista-substack/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief aprovado, acervo, persona, voz e template do canal",
+        "saida": "asset final do canal em pasta própria com README",
+        "validacao": "formato do canal, contexto editorial, fontes e revisão pareada",
+        "handoff": "validadora do mesmo sufixo, seguida do pipeline"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-especialista-video",
+      "grupo": "especialista",
+      "descricao": "Escreve roteiro de vídeo longo e talking head a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md, com cenas e apoio visual mínimo.",
+      "skill": "skills/inboundfy-especialista-video/SKILL.md",
+      "referencia": "skills/inboundfy-especialista-video/REFERENCIA.md",
+      "interface": "skills/inboundfy-especialista-video/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief aprovado, acervo, persona, voz e template do canal",
+        "saida": "asset final do canal em pasta própria com README",
+        "validacao": "formato do canal, contexto editorial, fontes e revisão pareada",
+        "handoff": "validadora do mesmo sufixo, seguida do pipeline"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-especialista-video-imagem",
+      "grupo": "especialista",
+      "descricao": "Gera thumbnail de vídeo longo (formato típico 1280x720), reaproveitando o motor de inboundfy-base-imagem com foco em legibilidade e taxa de clique.",
+      "skill": "skills/inboundfy-especialista-video-imagem/SKILL.md",
+      "referencia": "skills/inboundfy-especialista-video-imagem/REFERENCIA.md",
+      "interface": "skills/inboundfy-especialista-video-imagem/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief aprovado, acervo, persona, voz e template do canal",
+        "saida": "asset final do canal em pasta própria com README",
+        "validacao": "formato do canal, contexto editorial, fontes e revisão pareada",
+        "handoff": "validadora do mesmo sufixo, seguida do pipeline"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-especialista-webinar",
+      "grupo": "especialista",
+      "descricao": "Escreve a copy de página ou convite de webinar/evento a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md.",
+      "skill": "skills/inboundfy-especialista-webinar/SKILL.md",
+      "referencia": "skills/inboundfy-especialista-webinar/REFERENCIA.md",
+      "interface": "skills/inboundfy-especialista-webinar/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief aprovado, acervo, persona, voz e template do canal",
+        "saida": "asset final do canal em pasta própria com README",
+        "validacao": "formato do canal, contexto editorial, fontes e revisão pareada",
+        "handoff": "validadora do mesmo sufixo, seguida do pipeline"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-especialista-webinar-imagem",
+      "grupo": "especialista",
+      "descricao": "Gera thumbnail quadrada de evento/webinar, reaproveitando o motor de inboundfy-base-imagem com a identidade visual do usuário.",
+      "skill": "skills/inboundfy-especialista-webinar-imagem/SKILL.md",
+      "referencia": "skills/inboundfy-especialista-webinar-imagem/REFERENCIA.md",
+      "interface": "skills/inboundfy-especialista-webinar-imagem/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief aprovado, acervo, persona, voz e template do canal",
+        "saida": "asset final do canal em pasta própria com README",
+        "validacao": "formato do canal, contexto editorial, fontes e revisão pareada",
+        "handoff": "validadora do mesmo sufixo, seguida do pipeline"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-especialista-youtube",
+      "grupo": "especialista",
+      "descricao": "Adapta um acervo aprovado para roteiro, título, descrição e CTA de YouTube, alinhando formato, persona, voz e publicação.",
+      "skill": "skills/inboundfy-especialista-youtube/SKILL.md",
+      "referencia": "skills/inboundfy-especialista-youtube/REFERENCIA.md",
+      "interface": "skills/inboundfy-especialista-youtube/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief aprovado, acervo, persona, voz e template do canal",
+        "saida": "asset final do canal em pasta própria com README",
+        "validacao": "formato do canal, contexto editorial, fontes e revisão pareada",
+        "handoff": "validadora do mesmo sufixo, seguida do pipeline"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-estrategia",
+      "grupo": "estratégia",
+      "descricao": "Define estratégia de inbound marketing, temas, canais, jornada, cadência, campanhas e reaproveitamento do acervo para um projeto.",
+      "skill": "skills/inboundfy-estrategia/SKILL.md",
+      "referencia": "skills/inboundfy-estrategia/REFERENCIA.md",
+      "interface": "skills/inboundfy-estrategia/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canais, prazo e recursos",
+        "saida": "brief, pesquisa, plano de campanha ou calendário",
+        "validacao": "objetivo ligado a público, canal, período, mensagem e medida",
+        "handoff": "planejamento, especialista ou calendário descrito no plano"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-experimentacao",
+      "grupo": "capacidade",
+      "descricao": "Planeja testes de copy, oferta, CTA, página, email e distribuição com hipótese, métrica, variantes, janela e registro no pipeline.",
+      "skill": "skills/inboundfy-experimentacao/SKILL.md",
+      "referencia": "skills/inboundfy-experimentacao/REFERENCIA.md",
+      "interface": "skills/inboundfy-experimentacao/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-extrair-faq",
+      "grupo": "acervo",
+      "descricao": "Extrai uma FAQ ampla de um item do acervo, relacionando perguntas, respostas, fontes, lacunas e pontos que precisam de confirmação.",
+      "skill": "skills/inboundfy-extrair-faq/SKILL.md",
+      "referencia": "skills/inboundfy-extrair-faq/REFERENCIA.md",
+      "interface": "skills/inboundfy-extrair-faq/agents/openai.yaml",
+      "perfil": {
+        "entrada": "texto bruto, ID do item e fontes locais ou externas",
+        "saida": "bruto preservado, processado, FAQ, pesquisa e base editorial",
+        "validacao": "origem preservada, regras aplicadas, perguntas separadas e relações registradas",
+        "handoff": "estratégia do acervo, planejamento ou produção indicada pelo usuário"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-geo",
+      "grupo": "capacidade",
+      "descricao": "Prepara conteúdo para ser encontrado, compreendido e citado por mecanismos de resposta de IA, sem abandonar intenção humana, SEO e fontes verificáveis.",
+      "skill": "skills/inboundfy-geo/SKILL.md",
+      "referencia": "skills/inboundfy-geo/REFERENCIA.md",
+      "interface": "skills/inboundfy-geo/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-anuncios",
+      "grupo": "growth",
+      "descricao": "Planeja campanhas de mídia paga, públicos, mensagens, orçamento, eventos e páginas de destino alinhados ao contexto do projeto.",
+      "skill": "skills/inboundfy-growth-anuncios/SKILL.md",
+      "referencia": "skills/inboundfy-growth-anuncios/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-anuncios/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-comunidade",
+      "grupo": "growth",
+      "descricao": "Planeja participação e conteúdo para comunidades com utilidade real, regras de presença e adaptação por persona.",
+      "skill": "skills/inboundfy-growth-comunidade/SKILL.md",
+      "referencia": "skills/inboundfy-growth-comunidade/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-comunidade/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-criativos-anuncios",
+      "grupo": "growth",
+      "descricao": "Cria conceitos e variações de criativos pagos a partir de oferta, persona, canal e voz, com mensagens verificáveis.",
+      "skill": "skills/inboundfy-growth-criativos-anuncios/SKILL.md",
+      "referencia": "skills/inboundfy-growth-criativos-anuncios/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-criativos-anuncios/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-cro",
+      "grupo": "growth",
+      "descricao": "Audita páginas, formulários e CTAs para melhorar conversão com clareza de proposta, hierarquia, prova, objeções e menor esforço de entendimento.",
+      "skill": "skills/inboundfy-growth-cro/SKILL.md",
+      "referencia": "skills/inboundfy-growth-cro/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-cro/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-distribuicao",
+      "grupo": "growth",
+      "descricao": "Planeja submissões e distribuição em diretórios, bases e canais externos sem duplicar conteúdo ou criar cadastro sem autorização.",
+      "skill": "skills/inboundfy-growth-distribuicao/SKILL.md",
+      "referencia": "skills/inboundfy-growth-distribuicao/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-distribuicao/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-email-frio",
+      "grupo": "growth",
+      "descricao": "Escreve sequências de prospecção por e-mail com personalização real, hipótese de valor, consentimento e saída simples.",
+      "skill": "skills/inboundfy-growth-email-frio/SKILL.md",
+      "referencia": "skills/inboundfy-growth-email-frio/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-email-frio/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-eventos",
+      "grupo": "growth",
+      "descricao": "Planeja aquisição, conteúdo, convite, inscrição, cobertura e pós-evento a partir do objetivo, público e oferta confirmados.",
+      "skill": "skills/inboundfy-growth-eventos/SKILL.md",
+      "referencia": "skills/inboundfy-growth-eventos/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-eventos/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-ferramentas-gratuitas",
+      "grupo": "growth",
+      "descricao": "Estrutura uma ferramenta gratuita de aquisição com utilidade, escopo, entrada, resultado, CTA e caminho de relacionamento.",
+      "skill": "skills/inboundfy-growth-ferramentas-gratuitas/SKILL.md",
+      "referencia": "skills/inboundfy-growth-ferramentas-gratuitas/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-ferramentas-gratuitas/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-influenciadores",
+      "grupo": "growth",
+      "descricao": "Seleciona criadores por afinidade de público, contexto, formato e integridade da mensagem, sem inventar alcance ou resultado.",
+      "skill": "skills/inboundfy-growth-influenciadores/SKILL.md",
+      "referencia": "skills/inboundfy-growth-influenciadores/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-influenciadores/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-lancamento",
+      "grupo": "growth",
+      "descricao": "Planeja comunicação de lançamento de produto, serviço, recurso, campanha ou evento com narrativa, canais, calendário, oferta e acompanhamento.",
+      "skill": "skills/inboundfy-growth-lancamento/SKILL.md",
+      "referencia": "skills/inboundfy-growth-lancamento/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-lancamento/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-lead-magnet",
+      "grupo": "growth",
+      "descricao": "Cria e melhora materiais ricos úteis para captura de contato, alinhando promessa, entrega, persona, formulário, nutrição e próxima ação.",
+      "skill": "skills/inboundfy-growth-lead-magnet/SKILL.md",
+      "referencia": "skills/inboundfy-growth-lead-magnet/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-lead-magnet/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-loops",
+      "grupo": "growth",
+      "descricao": "Desenha ciclos de aquisição, ativação, conteúdo, indicação e retorno com entradas, ações, saídas e sinais de continuidade.",
+      "skill": "skills/inboundfy-growth-loops/SKILL.md",
+      "referencia": "skills/inboundfy-growth-loops/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-loops/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-onboarding",
+      "grupo": "growth",
+      "descricao": "Planeja a comunicação inicial após a compra com marcos, instruções, dúvidas, ativação e voz adaptada ao estágio do cliente.",
+      "skill": "skills/inboundfy-growth-onboarding/SKILL.md",
+      "referencia": "skills/inboundfy-growth-onboarding/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-onboarding/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-parcerias",
+      "grupo": "growth",
+      "descricao": "Encontra e estrutura parcerias de conteúdo, distribuição e co-marketing com proposta, audiência, troca e próximos passos claros.",
+      "skill": "skills/inboundfy-growth-parcerias/SKILL.md",
+      "referencia": "skills/inboundfy-growth-parcerias/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-parcerias/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-paywall",
+      "grupo": "growth",
+      "descricao": "Estrutura mensagens e experiências de acesso pago com clareza sobre valor, limites, preço, alternativa e próxima ação.",
+      "skill": "skills/inboundfy-growth-paywall/SKILL.md",
+      "referencia": "skills/inboundfy-growth-paywall/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-paywall/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-popups",
+      "grupo": "growth",
+      "descricao": "Planeja pop-ups e formulários contextuais com motivo da exibição, oferta, frequência, saída e destino dos dados.",
+      "skill": "skills/inboundfy-growth-popups/SKILL.md",
+      "referencia": "skills/inboundfy-growth-popups/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-popups/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-pricing",
+      "grupo": "growth",
+      "descricao": "Analisa preço, planos e embalagem a partir de valor, público, uso, condições comerciais e mensagens aprovadas.",
+      "skill": "skills/inboundfy-growth-pricing/SKILL.md",
+      "referencia": "skills/inboundfy-growth-pricing/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-pricing/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-prospeccao",
+      "grupo": "growth",
+      "descricao": "Organiza listas, segmentos, sinais, mensagens e cadências de prospecção ligadas a oferta, persona e autorização de contato.",
+      "skill": "skills/inboundfy-growth-prospeccao/SKILL.md",
+      "referencia": "skills/inboundfy-growth-prospeccao/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-prospeccao/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-referencias",
+      "grupo": "growth",
+      "descricao": "Estrutura um programa de indicação com momento certo, benefício, mensagem, regras, rastreio e experiência para quem indica e recebe.",
+      "skill": "skills/inboundfy-growth-referencias/SKILL.md",
+      "referencia": "skills/inboundfy-growth-referencias/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-referencias/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-relacoes-publicas",
+      "grupo": "growth",
+      "descricao": "Prepara pautas, mensagens para imprensa, porta-vozes, fontes e acompanhamento sem criar notícia, número ou declaração não confirmada.",
+      "skill": "skills/inboundfy-growth-relacoes-publicas/SKILL.md",
+      "referencia": "skills/inboundfy-growth-relacoes-publicas/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-relacoes-publicas/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-retencao",
+      "grupo": "growth",
+      "descricao": "Planeja comunicação de retenção e cancelamento com base em motivos reais, estágio do cliente, produto e voz da marca.",
+      "skill": "skills/inboundfy-growth-retencao/SKILL.md",
+      "referencia": "skills/inboundfy-growth-retencao/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-retencao/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-revops",
+      "grupo": "growth",
+      "descricao": "Conecta marketing, vendas e atendimento por etapas, campos, responsabilidades, origem, handoff e leitura comum dos dados.",
+      "skill": "skills/inboundfy-growth-revops/SKILL.md",
+      "referencia": "skills/inboundfy-growth-revops/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-revops/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-signup",
+      "grupo": "growth",
+      "descricao": "Melhora o fluxo de cadastro com proposta clara, campos necessários, mensagens de erro, confiança, ativação e próximo passo.",
+      "skill": "skills/inboundfy-growth-signup/SKILL.md",
+      "referencia": "skills/inboundfy-growth-signup/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-signup/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-sms",
+      "grupo": "growth",
+      "descricao": "Planeja mensagens curtas por SMS para alerta, lembrete, ativação ou oferta com consentimento, frequência e saída claros.",
+      "skill": "skills/inboundfy-growth-sms/SKILL.md",
+      "referencia": "skills/inboundfy-growth-sms/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-sms/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-growth-social",
+      "grupo": "growth",
+      "descricao": "Planeja presença social multicanal a partir de acervo, persona, voz, formatos, cadência e caminhos de relacionamento.",
+      "skill": "skills/inboundfy-growth-social/SKILL.md",
+      "referencia": "skills/inboundfy-growth-social/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-social/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-iniciar",
+      "grupo": "entrada",
+      "descricao": "Atalho operacional do Inboundfy que recebe material ou pedido de peça e encaminha setup, acervo, pesquisa, estratégia, produção e calendário.",
+      "skill": "skills/inboundfy-iniciar/SKILL.md",
+      "referencia": "skills/inboundfy-iniciar/REFERENCIA.md",
+      "interface": "skills/inboundfy-iniciar/agents/openai.yaml",
+      "perfil": {
+        "entrada": "respostas do setup, arquivos existentes e caminho do projeto",
+        "saida": "sentinelas, contexto inicial e relatório de preparação",
+        "validacao": "arquivos presentes, respostas preservadas e caminhos canônicos",
+        "handoff": "orquestrador ou skill de contexto apontada pelo estado"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-metricas",
+      "grupo": "capacidade",
+      "descricao": "Define medição de marketing para ligar acervo, canais, campanhas, conteúdo, leads e receita a perguntas de negócio compreensíveis.",
+      "skill": "skills/inboundfy-metricas/SKILL.md",
+      "referencia": "skills/inboundfy-metricas/REFERENCIA.md",
+      "interface": "skills/inboundfy-metricas/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-personas",
+      "grupo": "capacidade",
+      "descricao": "Entrevista, registra e mantém personas de marketing, relacionando problemas, linguagem, canais, ofertas e contexto de compra sem criar perfis genéricos.",
+      "skill": "skills/inboundfy-personas/SKILL.md",
+      "referencia": "skills/inboundfy-personas/REFERENCIA.md",
+      "interface": "skills/inboundfy-personas/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-pesquisa-acervo",
+      "grupo": "acervo",
+      "descricao": "Pesquisa fontes externas para validar e enriquecer um item do acervo, registra links e confronta lacunas sem substituir a origem fornecida pelo usuário.",
+      "skill": "skills/inboundfy-pesquisa-acervo/SKILL.md",
+      "referencia": "skills/inboundfy-pesquisa-acervo/REFERENCIA.md",
+      "interface": "skills/inboundfy-pesquisa-acervo/agents/openai.yaml",
+      "perfil": {
+        "entrada": "texto bruto, ID do item e fontes locais ou externas",
+        "saida": "bruto preservado, processado, FAQ, pesquisa e base editorial",
+        "validacao": "origem preservada, regras aplicadas, perguntas separadas e relações registradas",
+        "handoff": "estratégia do acervo, planejamento ou produção indicada pelo usuário"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-pesquisa-cliente",
+      "grupo": "capacidade",
+      "descricao": "Pesquisa dores, linguagem, desejos, objeções e contexto de compra para enriquecer personas, acervo, estratégia e copy de inbound marketing.",
+      "skill": "skills/inboundfy-pesquisa-cliente/SKILL.md",
+      "referencia": "skills/inboundfy-pesquisa-cliente/REFERENCIA.md",
+      "interface": "skills/inboundfy-pesquisa-cliente/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-pipeline",
+      "grupo": "capacidade",
+      "descricao": "Gerencia os estados das peças de conteúdo, sincroniza frontmatter, calendário e índice e registra publicação com URL e data confirmadas.",
+      "skill": "skills/inboundfy-pipeline/SKILL.md",
+      "referencia": "skills/inboundfy-pipeline/REFERENCIA.md",
+      "interface": "skills/inboundfy-pipeline/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-planejamento",
+      "grupo": "planejamento",
+      "descricao": "Converte oportunidades do acervo em um calendário editorial mensal com checklist, canais, personas, caminhos das peças e estados de produção.",
+      "skill": "skills/inboundfy-planejamento/SKILL.md",
+      "referencia": "skills/inboundfy-planejamento/REFERENCIA.md",
+      "interface": "skills/inboundfy-planejamento/agents/openai.yaml",
+      "perfil": {
+        "entrada": "material aprovado, canais, personas e direção editorial",
+        "saida": "oportunidade, brief, roteamento ou auditoria do pacote",
+        "validacao": "entrada ligada ao ID, campos do brief completos e próxima etapa nomeada",
+        "handoff": "especialista de canal, validadora ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-processar-acervo",
+      "grupo": "acervo",
+      "descricao": "Processa um material bruto com a configuração do projeto, remove ruído editorial, aplica o dicionário e prepara FAQ sem alterar a fonte original.",
+      "skill": "skills/inboundfy-processar-acervo/SKILL.md",
+      "referencia": "skills/inboundfy-processar-acervo/REFERENCIA.md",
+      "interface": "skills/inboundfy-processar-acervo/agents/openai.yaml",
+      "perfil": {
+        "entrada": "texto bruto, ID do item e fontes locais ou externas",
+        "saida": "bruto preservado, processado, FAQ, pesquisa e base editorial",
+        "validacao": "origem preservada, regras aplicadas, perguntas separadas e relações registradas",
+        "handoff": "estratégia do acervo, planejamento ou produção indicada pelo usuário"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-producao",
+      "grupo": "capacidade",
+      "descricao": "Produz peças de inbound marketing por canal a partir do acervo, base editorial, voz e persona, mantendo templates, frontmatter e links de origem.",
+      "skill": "skills/inboundfy-producao/SKILL.md",
+      "referencia": "skills/inboundfy-producao/REFERENCIA.md",
+      "interface": "skills/inboundfy-producao/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-seo",
+      "grupo": "capacidade",
+      "descricao": "Planeja e audita SEO de conteúdo e páginas usando intenção de busca, arquitetura, termos do projeto, links e dados confirmados do acervo.",
+      "skill": "skills/inboundfy-seo/SKILL.md",
+      "referencia": "skills/inboundfy-seo/REFERENCIA.md",
+      "interface": "skills/inboundfy-seo/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-seo-programatico",
+      "grupo": "capacidade",
+      "descricao": "Planeja páginas em escala com dados, modelo editorial, campos variáveis, validação, linkagem e limites contra páginas vazias.",
+      "skill": "skills/inboundfy-seo-programatico/SKILL.md",
+      "referencia": "skills/inboundfy-seo-programatico/REFERENCIA.md",
+      "interface": "skills/inboundfy-seo-programatico/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-setup",
+      "grupo": "entrada",
+      "descricao": "Conduz a entrevista inicial, prepara a configuração do projeto consumidor e confere canais, personas, voz, negócio, pipeline e índices do Inboundfy.",
+      "skill": "skills/inboundfy-setup/SKILL.md",
+      "referencia": "skills/inboundfy-setup/REFERENCIA.md",
+      "interface": "skills/inboundfy-setup/agents/openai.yaml",
+      "perfil": {
+        "entrada": "respostas do setup, arquivos existentes e caminho do projeto",
+        "saida": "sentinelas, contexto inicial e relatório de preparação",
+        "validacao": "arquivos presentes, respostas preservadas e caminhos canônicos",
+        "handoff": "orquestrador ou skill de contexto apontada pelo estado"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-validador-blog",
+      "grupo": "validador",
+      "descricao": "Valida artigo de blog produzido por inboundfy-especialista-blog contra brief, fontes, todos os contextos, escrita, proibições, SEO e contrato do canal. Use sempre antes de considerar um artigo pronto.",
+      "skill": "skills/inboundfy-validador-blog/SKILL.md",
+      "referencia": "skills/inboundfy-validador-blog/REFERENCIA.md",
+      "interface": "skills/inboundfy-validador-blog/agents/openai.yaml",
+      "perfil": {
+        "entrada": "asset, brief, fontes, contexto e regras do canal",
+        "saida": "relatório aprovado ou relatório de correção com localização dos achados",
+        "validacao": "leitura integral, regras literais, semânticas, estruturais e visuais",
+        "handoff": "especialista pareada ou pipeline após aprovação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-validador-blog-imagem",
+      "grupo": "validador",
+      "descricao": "Valida capa e thumbnail produzidas por inboundfy-especialista-blog-imagem contra artigo, brief, todos os contextos, origem fotográfica, licença, crédito, dimensões e contrato visual antes da entrega.",
+      "skill": "skills/inboundfy-validador-blog-imagem/SKILL.md",
+      "referencia": "skills/inboundfy-validador-blog-imagem/REFERENCIA.md",
+      "interface": "skills/inboundfy-validador-blog-imagem/agents/openai.yaml",
+      "perfil": {
+        "entrada": "asset, brief, fontes, contexto e regras do canal",
+        "saida": "relatório aprovado ou relatório de correção com localização dos achados",
+        "validacao": "leitura integral, regras literais, semânticas, estruturais e visuais",
+        "handoff": "especialista pareada ou pipeline após aprovação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-validador-changelog",
+      "grupo": "validador",
+      "descricao": "Valida changelog produzido por inboundfy-especialista-changelog contra release, brief, todos os contextos, escrita, proibições, precisão técnica e contrato do canal antes da entrega.",
+      "skill": "skills/inboundfy-validador-changelog/SKILL.md",
+      "referencia": "skills/inboundfy-validador-changelog/REFERENCIA.md",
+      "interface": "skills/inboundfy-validador-changelog/agents/openai.yaml",
+      "perfil": {
+        "entrada": "asset, brief, fontes, contexto e regras do canal",
+        "saida": "relatório aprovado ou relatório de correção com localização dos achados",
+        "validacao": "leitura integral, regras literais, semânticas, estruturais e visuais",
+        "handoff": "especialista pareada ou pipeline após aprovação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-validador-ebook",
+      "grupo": "validador",
+      "descricao": "Valida ebook produzido por inboundfy-especialista-ebook contra brief, fontes, todos os contextos, escrita, proibições, progressão dos capítulos e estruturas persuasivas antes da entrega.",
+      "skill": "skills/inboundfy-validador-ebook/SKILL.md",
+      "referencia": "skills/inboundfy-validador-ebook/REFERENCIA.md",
+      "interface": "skills/inboundfy-validador-ebook/agents/openai.yaml",
+      "perfil": {
+        "entrada": "asset, brief, fontes, contexto e regras do canal",
+        "saida": "relatório aprovado ou relatório de correção com localização dos achados",
+        "validacao": "leitura integral, regras literais, semânticas, estruturais e visuais",
+        "handoff": "especialista pareada ou pipeline após aprovação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-validador-ebook-imagem",
+      "grupo": "validador",
+      "descricao": "Valida capa e OpenGraph produzidos por inboundfy-especialista-ebook-imagem contra ebook, brief, todos os contextos, identidade, grafia, legibilidade, consistência e dimensões antes da entrega.",
+      "skill": "skills/inboundfy-validador-ebook-imagem/SKILL.md",
+      "referencia": "skills/inboundfy-validador-ebook-imagem/REFERENCIA.md",
+      "interface": "skills/inboundfy-validador-ebook-imagem/agents/openai.yaml",
+      "perfil": {
+        "entrada": "asset, brief, fontes, contexto e regras do canal",
+        "saida": "relatório aprovado ou relatório de correção com localização dos achados",
+        "validacao": "leitura integral, regras literais, semânticas, estruturais e visuais",
+        "handoff": "especialista pareada ou pipeline após aprovação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-validador-email",
+      "grupo": "validador",
+      "descricao": "Valida email produzido por inboundfy-especialista-email contra brief, fontes, todos os contextos, escrita, proibições, oferta, estrutura persuasiva e contrato do canal antes da entrega.",
+      "skill": "skills/inboundfy-validador-email/SKILL.md",
+      "referencia": "skills/inboundfy-validador-email/REFERENCIA.md",
+      "interface": "skills/inboundfy-validador-email/agents/openai.yaml",
+      "perfil": {
+        "entrada": "asset, brief, fontes, contexto e regras do canal",
+        "saida": "relatório aprovado ou relatório de correção com localização dos achados",
+        "validacao": "leitura integral, regras literais, semânticas, estruturais e visuais",
+        "handoff": "especialista pareada ou pipeline após aprovação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-validador-infografico",
+      "grupo": "validador",
+      "descricao": "Valida copy de infográfico produzida por inboundfy-especialista-infografico contra brief, fontes, todos os contextos, proibições, dados, legenda, acessibilidade e contrato do canal.",
+      "skill": "skills/inboundfy-validador-infografico/SKILL.md",
+      "referencia": "skills/inboundfy-validador-infografico/REFERENCIA.md",
+      "interface": "skills/inboundfy-validador-infografico/agents/openai.yaml",
+      "perfil": {
+        "entrada": "asset, brief, fontes, contexto e regras do canal",
+        "saida": "relatório aprovado ou relatório de correção com localização dos achados",
+        "validacao": "leitura integral, regras literais, semânticas, estruturais e visuais",
+        "handoff": "especialista pareada ou pipeline após aprovação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-validador-infografico-imagem",
+      "grupo": "validador",
+      "descricao": "Valida infográfico visual produzido por inboundfy-especialista-infografico-imagem contra copy aprovada, brief, todos os contextos, dados, fontes, hierarquia, acessibilidade e dimensões.",
+      "skill": "skills/inboundfy-validador-infografico-imagem/SKILL.md",
+      "referencia": "skills/inboundfy-validador-infografico-imagem/REFERENCIA.md",
+      "interface": "skills/inboundfy-validador-infografico-imagem/agents/openai.yaml",
+      "perfil": {
+        "entrada": "asset, brief, fontes, contexto e regras do canal",
+        "saida": "relatório aprovado ou relatório de correção com localização dos achados",
+        "validacao": "leitura integral, regras literais, semânticas, estruturais e visuais",
+        "handoff": "especialista pareada ou pipeline após aprovação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-validador-instagram",
+      "grupo": "validador",
+      "descricao": "Valida legenda, carrossel ou roteiro curto produzido por inboundfy-especialista-instagram contra brief, todos os contextos, escrita, proibições, progressão, CTA e contrato do formato.",
+      "skill": "skills/inboundfy-validador-instagram/SKILL.md",
+      "referencia": "skills/inboundfy-validador-instagram/REFERENCIA.md",
+      "interface": "skills/inboundfy-validador-instagram/agents/openai.yaml",
+      "perfil": {
+        "entrada": "asset, brief, fontes, contexto e regras do canal",
+        "saida": "relatório aprovado ou relatório de correção com localização dos achados",
+        "validacao": "leitura integral, regras literais, semânticas, estruturais e visuais",
+        "handoff": "especialista pareada ou pipeline após aprovação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-validador-instagram-imagem",
+      "grupo": "validador",
+      "descricao": "Valida post, carrossel ou visual vertical produzido por inboundfy-especialista-instagram-imagem contra texto, brief, todos os contextos, identidade, sequência, zonas seguras, legibilidade e proporção.",
+      "skill": "skills/inboundfy-validador-instagram-imagem/SKILL.md",
+      "referencia": "skills/inboundfy-validador-instagram-imagem/REFERENCIA.md",
+      "interface": "skills/inboundfy-validador-instagram-imagem/agents/openai.yaml",
+      "perfil": {
+        "entrada": "asset, brief, fontes, contexto e regras do canal",
+        "saida": "relatório aprovado ou relatório de correção com localização dos achados",
+        "validacao": "leitura integral, regras literais, semânticas, estruturais e visuais",
+        "handoff": "especialista pareada ou pipeline após aprovação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-validador-linkedin",
+      "grupo": "validador",
+      "descricao": "Valida post ou artigo produzido por inboundfy-especialista-linkedin contra brief, todos os contextos, escrita, proibições, autoria, formato nativo e contrato do canal antes da entrega.",
+      "skill": "skills/inboundfy-validador-linkedin/SKILL.md",
+      "referencia": "skills/inboundfy-validador-linkedin/REFERENCIA.md",
+      "interface": "skills/inboundfy-validador-linkedin/agents/openai.yaml",
+      "perfil": {
+        "entrada": "asset, brief, fontes, contexto e regras do canal",
+        "saida": "relatório aprovado ou relatório de correção com localização dos achados",
+        "validacao": "leitura integral, regras literais, semânticas, estruturais e visuais",
+        "handoff": "especialista pareada ou pipeline após aprovação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-validador-linkedin-imagem",
+      "grupo": "validador",
+      "descricao": "Valida imagem de post ou capa produzida por inboundfy-especialista-linkedin-imagem contra texto, brief, todos os contextos, identidade, grafia, legibilidade e proporção antes da entrega.",
+      "skill": "skills/inboundfy-validador-linkedin-imagem/SKILL.md",
+      "referencia": "skills/inboundfy-validador-linkedin-imagem/REFERENCIA.md",
+      "interface": "skills/inboundfy-validador-linkedin-imagem/agents/openai.yaml",
+      "perfil": {
+        "entrada": "asset, brief, fontes, contexto e regras do canal",
+        "saida": "relatório aprovado ou relatório de correção com localização dos achados",
+        "validacao": "leitura integral, regras literais, semânticas, estruturais e visuais",
+        "handoff": "especialista pareada ou pipeline após aprovação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-validador-newsletter",
+      "grupo": "validador",
+      "descricao": "Valida newsletter produzida por inboundfy-especialista-newsletter contra brief, fontes, todos os contextos, escrita, proibições, fluidez editorial, menções institucionais e contrato do canal.",
+      "skill": "skills/inboundfy-validador-newsletter/SKILL.md",
+      "referencia": "skills/inboundfy-validador-newsletter/REFERENCIA.md",
+      "interface": "skills/inboundfy-validador-newsletter/agents/openai.yaml",
+      "perfil": {
+        "entrada": "asset, brief, fontes, contexto e regras do canal",
+        "saida": "relatório aprovado ou relatório de correção com localização dos achados",
+        "validacao": "leitura integral, regras literais, semânticas, estruturais e visuais",
+        "handoff": "especialista pareada ou pipeline após aprovação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-validador-podcast",
+      "grupo": "validador",
+      "descricao": "Valida pauta e shownotes produzidos por inboundfy-especialista-podcast contra brief, todos os contextos, escrita, proibições, participantes, links e contrato do canal antes da entrega.",
+      "skill": "skills/inboundfy-validador-podcast/SKILL.md",
+      "referencia": "skills/inboundfy-validador-podcast/REFERENCIA.md",
+      "interface": "skills/inboundfy-validador-podcast/agents/openai.yaml",
+      "perfil": {
+        "entrada": "asset, brief, fontes, contexto e regras do canal",
+        "saida": "relatório aprovado ou relatório de correção com localização dos achados",
+        "validacao": "leitura integral, regras literais, semânticas, estruturais e visuais",
+        "handoff": "especialista pareada ou pipeline após aprovação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-validador-substack",
+      "grupo": "validador",
+      "descricao": "Revisa uma peça Substack contra o acervo, base editorial, voz, persona, proibições, fontes, links e o contrato do canal.",
+      "skill": "skills/inboundfy-validador-substack/SKILL.md",
+      "referencia": "skills/inboundfy-validador-substack/REFERENCIA.md",
+      "interface": "skills/inboundfy-validador-substack/agents/openai.yaml",
+      "perfil": {
+        "entrada": "asset, brief, fontes, contexto e regras do canal",
+        "saida": "relatório aprovado ou relatório de correção com localização dos achados",
+        "validacao": "leitura integral, regras literais, semânticas, estruturais e visuais",
+        "handoff": "especialista pareada ou pipeline após aprovação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-validador-video",
+      "grupo": "validador",
+      "descricao": "Valida roteiro de vídeo produzido por inboundfy-especialista-video contra brief, todos os contextos, escrita, proibições, autoria, fala, estrutura e contrato do canal antes da entrega.",
+      "skill": "skills/inboundfy-validador-video/SKILL.md",
+      "referencia": "skills/inboundfy-validador-video/REFERENCIA.md",
+      "interface": "skills/inboundfy-validador-video/agents/openai.yaml",
+      "perfil": {
+        "entrada": "asset, brief, fontes, contexto e regras do canal",
+        "saida": "relatório aprovado ou relatório de correção com localização dos achados",
+        "validacao": "leitura integral, regras literais, semânticas, estruturais e visuais",
+        "handoff": "especialista pareada ou pipeline após aprovação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-validador-video-imagem",
+      "grupo": "validador",
+      "descricao": "Valida thumbnail produzida por inboundfy-especialista-video-imagem contra roteiro, brief, todos os contextos, promessa, grafia, foco, contraste, legibilidade e dimensões antes da entrega.",
+      "skill": "skills/inboundfy-validador-video-imagem/SKILL.md",
+      "referencia": "skills/inboundfy-validador-video-imagem/REFERENCIA.md",
+      "interface": "skills/inboundfy-validador-video-imagem/agents/openai.yaml",
+      "perfil": {
+        "entrada": "asset, brief, fontes, contexto e regras do canal",
+        "saida": "relatório aprovado ou relatório de correção com localização dos achados",
+        "validacao": "leitura integral, regras literais, semânticas, estruturais e visuais",
+        "handoff": "especialista pareada ou pipeline após aprovação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-validador-webinar",
+      "grupo": "validador",
+      "descricao": "Valida página ou convite produzido por inboundfy-especialista-webinar contra brief, todos os contextos, escrita, proibições, apresentador, oferta, agenda e estrutura persuasiva antes da entrega.",
+      "skill": "skills/inboundfy-validador-webinar/SKILL.md",
+      "referencia": "skills/inboundfy-validador-webinar/REFERENCIA.md",
+      "interface": "skills/inboundfy-validador-webinar/agents/openai.yaml",
+      "perfil": {
+        "entrada": "asset, brief, fontes, contexto e regras do canal",
+        "saida": "relatório aprovado ou relatório de correção com localização dos achados",
+        "validacao": "leitura integral, regras literais, semânticas, estruturais e visuais",
+        "handoff": "especialista pareada ou pipeline após aprovação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-validador-webinar-imagem",
+      "grupo": "validador",
+      "descricao": "Valida thumbnail produzida por inboundfy-especialista-webinar-imagem contra copy, brief, todos os contextos, título, data, apresentador, identidade, legibilidade e dimensões antes da entrega.",
+      "skill": "skills/inboundfy-validador-webinar-imagem/SKILL.md",
+      "referencia": "skills/inboundfy-validador-webinar-imagem/REFERENCIA.md",
+      "interface": "skills/inboundfy-validador-webinar-imagem/agents/openai.yaml",
+      "perfil": {
+        "entrada": "asset, brief, fontes, contexto e regras do canal",
+        "saida": "relatório aprovado ou relatório de correção com localização dos achados",
+        "validacao": "leitura integral, regras literais, semânticas, estruturais e visuais",
+        "handoff": "especialista pareada ou pipeline após aprovação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-validador-youtube",
+      "grupo": "validador",
+      "descricao": "Revisa uma peça YouTube contra o acervo, base editorial, voz, persona, proibições, fontes, metadados e contrato do canal.",
+      "skill": "skills/inboundfy-validador-youtube/SKILL.md",
+      "referencia": "skills/inboundfy-validador-youtube/REFERENCIA.md",
+      "interface": "skills/inboundfy-validador-youtube/agents/openai.yaml",
+      "perfil": {
+        "entrada": "asset, brief, fontes, contexto e regras do canal",
+        "saida": "relatório aprovado ou relatório de correção com localização dos achados",
+        "validacao": "leitura integral, regras literais, semânticas, estruturais e visuais",
+        "handoff": "especialista pareada ou pipeline após aprovação"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-voz",
+      "grupo": "capacidade",
+      "descricao": "Conduz a definição da voz da empresa, seus tons por situação e seu vocabulário, usando exemplos aprovados para orientar copy gerada por IA.",
+      "skill": "skills/inboundfy-voz/SKILL.md",
+      "referencia": "skills/inboundfy-voz/REFERENCIA.md",
+      "interface": "skills/inboundfy-voz/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    }
+  ]
+}

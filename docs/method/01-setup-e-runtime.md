@@ -7,7 +7,8 @@ O CLI `inboundfy` é o executor determinístico usado por essa skill.
 
 - catálogo de skills no diretório do agente;
 - método e documentação em `.inboundfy/framework/`;
-- configuração viva nos arquivos diretamente em `.inboundfy/`;
+- configuração operacional em `.inboundfy/` e contexto de empresa e copy em
+  `.inboundfy/context/`;
 - acervo, canais e calendário fora do runtime;
 - três índices JSON do projeto;
 - manifesto e estado da instalação;
@@ -23,13 +24,15 @@ O CLI `inboundfy` é o executor determinístico usado por essa skill.
 ├── canais/
 ├── calendario/
 └── .inboundfy/
-    ├── inbound.md, estrategia.md, voz.md, personas.md
-    ├── proibicoes.md, dicionario.md, pipeline.md
+    ├── estrategia.md, pipeline.md
     ├── install.json
     ├── manifest.json
     ├── fontes-candidatas.json, fontes-projeto.md
     ├── indices/
     ├── context/
+    │   ├── empresa.md, marca-voz.md, publico.md
+    │   ├── glossario.md, proibicoes.md, links.md, aprendizado.md
+    │   └── demais arquivos de contexto
     ├── migracoes/
     └── framework/
         ├── VERSAO.md
@@ -39,8 +42,9 @@ O CLI `inboundfy` é o executor determinístico usado por essa skill.
 ```
 
 As skills ficam no diretório ativo do agente, fora dessa árvore. O framework
-instalado em `.inboundfy/framework/` é read-only; os arquivos diretamente em
-`.inboundfy/` contêm o dado vivo do projeto.
+instalado em `.inboundfy/framework/` é read-only; o dado vivo da empresa e da
+copy fica em `.inboundfy/context/`, enquanto os arquivos diretamente em
+`.inboundfy/` mantêm a operação do projeto.
 
 ## Divisão de responsabilidade
 
