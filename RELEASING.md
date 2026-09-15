@@ -66,7 +66,7 @@ npm run npm:validate-package -- artifacts/promovaweb-inboundfy-1.1.0.tgz
 Substitua `1.0.0` pela versão atual. Para validar uma tag:
 
 ```bash
-npm run release:check -- v1.0.0
+npm run release:check -- v0.2.0
 ```
 
 ## Recuperação

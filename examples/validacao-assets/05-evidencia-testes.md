@@ -30,7 +30,7 @@ npm --prefix inboundfy run ebook:verify
 Resultado observado:
 
 ```text
-OK: edição v1.1.0 sincronizada com docs/user/.
+OK: edição v0.2.0 sincronizada com docs/user/.
 ```
 
 ## Conferências complementares

@@ -21,10 +21,10 @@ do framework, do pacote npm, da tag Git e da GitHub Release:
 - `MINOR` registra um capítulo novo ou ampliação material;
 - `MAJOR` registra uma reorganização incompatível do percurso.
 
-Baixe a edição `v1.2.0`:
+Baixe a edição `v0.2.0`:
 
-- [PDF do guia do usuário](Inboundfy-Guia-do-Usuario-v1.2.0.pdf);
-- [EPUB do guia do usuário](Inboundfy-Guia-do-Usuario-v1.2.0.epub).
+- [PDF do guia do usuário](Inboundfy-Guia-do-Usuario-v0.2.0.pdf);
+- [EPUB do guia do usuário](Inboundfy-Guia-do-Usuario-v0.2.0.epub).
 
 Para links permanentes, use os aliases da edição mais recente:
 
