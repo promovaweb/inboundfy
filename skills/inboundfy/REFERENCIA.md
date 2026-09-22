@@ -1,5 +1,8 @@
 # Referência do Inboundfy
 
+Para uso normal, inicie por `$inboundfy`. Esta tabela descreve o roteamento
+interno, não uma lista de skills que o usuário precise escolher.
+
 ## Roteamento
 
 | Pedido | Skill |
@@ -30,6 +33,7 @@
 | Filtrar slop | `inboundfy-anti-slop` |
 | Registrar sugestão ou correção | `inboundfy-aprendizado` |
 | Gerenciar URLs oficiais e perfis sociais | `inboundfy-contexto-institucional` |
+| Alias compatível | `inboundfy-iniciar` encaminha a solicitação para `$inboundfy` |
 
 ## Limite
 

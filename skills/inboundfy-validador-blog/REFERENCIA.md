@@ -9,7 +9,7 @@ Use o template de `inboundfy-base-validador` e registre a produtora
 - [ ] Hierarquia H2/H3 responde à busca sem blocos genéricos.
 - [ ] Frontmatter inclui `brief` quando aplicável.
 - [ ] Afirmações e FAB têm fonte rastreável.
-- [ ] Nenhum parágrafo ficou abaixo de 90%.
+- [ ] A prosa foi lida por inteiro e cada achado verificável foi tratado.
 
 ## Exemplo fictício
 

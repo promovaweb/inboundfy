@@ -131,8 +131,11 @@ Crie e mova uma peça pelo pipeline:
 inboundfy content create blog "Título da peça" \
   --persona persona-01 --acervo 0001
 inboundfy content status 0001 revisao
-inboundfy content status 0001 aprovado
+inboundfy content digest 0001
+# Acrescente ID, caminho, SHA-256 e veredito ao relatório da validadora.
+inboundfy content status 0001 aprovado --audit-report 06-auditoria/assets/blog-0001.md
 inboundfy calendario add 2026-09-20 0001
+inboundfy content status 0001 agendado
 inboundfy content status 0001 publicado \
   --url https://exemplo.test/artigo \
   --published-at 2026-09-20

@@ -24,7 +24,7 @@ import { runDoctor } from "../src/doctor.js";
 import { addAcervo, processAcervo } from "../src/acervo.js";
 import { createContent } from "../src/content.js";
 import { addToCalendar } from "../src/calendar.js";
-import { updateContentStatus } from "../src/pipeline.js";
+import { getContentDigest, updateContentStatus } from "../src/pipeline.js";
 
 const temporaryProjects: string[] = [];
 
@@ -295,7 +295,7 @@ describe("CLI do Inboundfy", () => {
     expect(await readFile(join(project, "calendario", "2026-09.md"), "utf8")).toContain("personas: persona-01");
   });
 
-  test("pipeline exige URL e data para marcar uma peça como publicada", async () => {
+  test("pipeline exige revisão, relatório ligado à peça e metadados de publicação", async () => {
     const project = await createProject();
     await install(project);
     await selectChannel(project, "LinkedIn");
@@ -305,14 +305,114 @@ describe("CLI do Inboundfy", () => {
       personas: ["persona-01"],
       acervo: [],
     });
-    await expect(updateContentStatus(project, content.id, { status: "publicado" })).rejects.toThrow("URL e data");
-    const updated = await updateContentStatus(project, content.id, {
+
+    await expect(
+      updateContentStatus(project, content.id, { status: "aprovado" }),
+    ).rejects.toThrow("Transição inválida");
+    await updateContentStatus(project, content.id, { status: "revisao" });
+    await expect(
+      updateContentStatus(project, content.id, { status: "aprovado" }),
+    ).rejects.toThrow("--audit-report");
+    await expect(
+      updateContentStatus(project, content.id, { status: "publicado" }),
+    ).rejects.toThrow("Transição inválida");
+
+    const digest = await getContentDigest(project, content.id);
+    const reportPath = "06-auditoria/assets/0001-nota-de-produto.md";
+    await mkdir(join(project, "06-auditoria", "assets"), { recursive: true });
+    const report = (
+      sha256: string,
+      verdict = "aprovado",
+      reportId = content.id,
+      reportAsset = digest.asset,
+    ) =>
+      `# Validação\n\n- **ID da peça:** \`${reportId}\`\n- **Asset:** \`${reportAsset}\`\n- **SHA-256 da peça:** \`${sha256}\`\n- **Veredito:** ${verdict}\n`;
+    const rejectedReports = [
+      [report("0".repeat(64)), "não corresponde"],
+      [report(digest.sha256, "aprovado", "9999"), "identificar a peça"],
+      [report(digest.sha256, "aprovado", content.id, "canais/blog/outro/README.md"), "apontar para"],
+      [report("z".repeat(64)), "SHA-256 completo"],
+      [report(digest.sha256, "reprovado"), "Veredito"],
+    ] as const;
+    for (const [invalidReport, reason] of rejectedReports) {
+      await writeFile(join(project, reportPath), invalidReport);
+      await expect(
+        updateContentStatus(project, content.id, {
+          status: "aprovado",
+          auditReport: reportPath,
+        }),
+      ).rejects.toThrow(reason);
+    }
+
+    await writeFile(join(project, reportPath), report(digest.sha256));
+    const approved = await updateContentStatus(project, content.id, {
+      status: "aprovado",
+      auditReport: reportPath,
+    });
+    expect(approved.auditReport).toBe(reportPath);
+    expect(approved.approvedAssetSha256).toBe(digest.sha256);
+    expect(await readFile(join(project, content.directory, "README.md"), "utf8")).toContain(
+      `relatorio_validacao: "${reportPath}"`,
+    );
+
+    await addToCalendar(project, "2026-09-20", content.id);
+    await updateContentStatus(project, content.id, { status: "agendado" });
+    const assetPath = join(project, content.directory, "README.md");
+    const changedAsset = (await readFile(assetPath, "utf8")).replace(
+      "PREENCHER. A skill produtora do canal deve redigir a peça aqui.",
+      "Texto alterado depois da validação.",
+    );
+    await writeFile(assetPath, changedAsset);
+    await expect(
+      updateContentStatus(project, content.id, {
+        status: "publicado",
+        url: "https://example.test/nota",
+        publishedAt: "2026-09-20",
+      }),
+    ).rejects.toThrow("mudou depois da validação");
+
+    await updateContentStatus(project, content.id, { status: "revisao" });
+    const revisedDigest = await getContentDigest(project, content.id);
+    await writeFile(join(project, reportPath), report(revisedDigest.sha256));
+    await updateContentStatus(project, content.id, {
+      status: "aprovado",
+      auditReport: reportPath,
+    });
+    await expect(
+      updateContentStatus(project, content.id, { status: "publicado" }),
+    ).rejects.toThrow("URL HTTP(S)");
+    await expect(
+      updateContentStatus(project, content.id, {
+        status: "publicado",
+        url: "endereço sem protocolo",
+        publishedAt: "2026-09-20",
+      }),
+    ).rejects.toThrow("HTTP ou HTTPS válido");
+    await expect(
+      updateContentStatus(project, content.id, {
+        status: "publicado",
+        url: "ftp://example.test/nota",
+        publishedAt: "2026-09-20",
+      }),
+    ).rejects.toThrow("usar HTTP ou HTTPS");
+    await expect(
+      updateContentStatus(project, content.id, {
+        status: "publicado",
+        url: "https://example.test/nota",
+        publishedAt: "2026-09-31",
+      }),
+    ).rejects.toThrow("data válida");
+    const published = await updateContentStatus(project, content.id, {
       status: "publicado",
       url: "https://example.test/nota",
       publishedAt: "2026-09-20",
     });
-    expect(updated.status).toBe("publicado");
-    expect(await readFile(join(project, content.directory, "README.md"), "utf8")).toContain("estado: publicado");
+
+    expect(published.status).toBe("publicado");
+    expect(await readFile(assetPath, "utf8")).toContain("estado: publicado");
+    expect(await readFile(join(project, "calendario", "2026-09.md"), "utf8")).toContain(
+      "estado: publicado",
+    );
   });
 
   test("content recusa canal fora da estratégia", async () => {

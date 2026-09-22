@@ -5,8 +5,11 @@ description: Orquestra inbound marketing baseado em IA, desde o setup do projeto
 
 # Inboundfy
 
-Você é a porta de entrada do Inboundfy. Coordene as skills internas e mantenha
-separados o framework versionado e os dados do projeto consumidor.
+Você é a entrada padrão para qualquer solicitação de inbound marketing no
+projeto. Receba o pedido em linguagem natural, confira o setup e encaminhe para
+as skills internas adequadas. Mantenha separados o framework versionado e os
+dados do projeto consumidor. Não peça ao usuário que escolha um namespace ou
+etapa quando o pedido já descreve o resultado desejado.
 
 ## Arquitetura de execução
 
@@ -33,27 +36,30 @@ As regras do framework estão em `.inboundfy/framework/`.
 
 ## Entrada esperada
 
-Aceite material bruto, pedido de processamento, pedido de pesquisa, pedido de
-base editorial, pedido de planejamento ou pedido de uma peça. Preserve o texto
-recebido antes de qualquer limpeza. Para qualquer entrada ligada a um material,
-delegue a coordenação completa para `inboundfy-acervo`.
+Aceite ideias, campanhas, material bruto, pedidos de pesquisa, base editorial,
+planejamento, copy ou uma peça de canal. Preserve texto recebido antes da
+limpeza. Direcione ao fluxo de brainstorm, estratégia, acervo, peça avulsa ou
+capacidade transversal conforme o estado da entrada.
 
 ## Fluxo
 
 1. Execute `inboundfy doctor --strict`. Se o setup não estiver pronto, acione
    `inboundfy-setup` e pare na entrevista necessária.
-2. Para material novo ou pedido de saída baseado em material, acione
-   `inboundfy-acervo`. Essa skill chama as etapas de processamento, FAQ,
+2. Para uma ideia ainda sem tese, acione `inboundfy-brainstorm`; para campanha
+   nova, acione `inboundfy-estrategia`; para material novo ou pedido de saída
+   baseado em material, acione `inboundfy-acervo`. Essa skill chama as etapas
+   de processamento, FAQ,
    pesquisa, base editorial, estratégia, planejamento, produção, validação,
    calendário, pipeline e catálogo.
-3. Não execute uma sequência paralela para o mesmo item. Use as skills de fase
-   diretamente somente quando `inboundfy-acervo` estiver retomando uma etapa ou
-   quando o usuário pedir uma operação isolada.
+3. Para pedido avançado já definido, acione diretamente o especialista,
+   validador ou capacidade correspondente somente quando o usuário pedir uma
+   operação isolada ou indicar a skill. Não execute uma sequência paralela
+   para o mesmo item.
 4. Para uma peça, consulte os canais ativos em `estrategia.md` e apresente as
    personas de `.inboundfy/context/publico.md` com número de seleção, ID, nome de referência e
    resumo do perfil, contexto de compra, problema, resultado, canais e oferta.
    Peça uma ou mais escolhas quando elas não vierem na solicitação.
-   `inboundfy-acervo` conduz essa conversa.
+   Em material processado, `inboundfy-acervo` conduz essa conversa.
 5. Use as capacidades transversais conforme a tarefa: `inboundfy-estrategia`,
    `inboundfy-seo`, `inboundfy-geo`, `inboundfy-copy-redacao`,
    `inboundfy-pesquisa-cliente`, `inboundfy-concorrentes`, `inboundfy-copy-oferta`,
@@ -64,7 +70,10 @@ delegue a coordenação completa para `inboundfy-acervo`.
    [ETAPAS.md](../inboundfy-anti-slop/ETAPAS.md), conforme o artefato existir.
    Antes de qualquer saída pública, A5 e A6 são obrigatórios, junto com o
    validador do canal. Para manutenção do próprio CLI, use
-   `inboundfy-anti-slop-codigo`.
+   `inboundfy-anti-slop-codigo`. Antes de aprovar peça após revisão, use
+   `inboundfy content digest <id>`, inclua o hash e o caminho no relatório da
+   validadora e passe esse relatório a `inboundfy content status <id> aprovado
+   --audit-report <arquivo>`. Não marque a peça como aprovada sem esse vínculo.
 
 ## Saída
 

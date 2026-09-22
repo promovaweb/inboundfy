@@ -87,7 +87,7 @@ ativos de apoio e CTA.
    falado; sem indicação de corte técnico fora do escopo desta skill.
 5. Aplique `ESCRITA.md` ajustando densidade ao formato curto, sem
    reintroduzir slop ou fragmentação vazia.
-6. Rode `inboundfy-copy-editor`; ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija trechos abaixo de 90%.
+6. Rode `inboundfy-copy-editor`, trate os achados verificáveis e repita a leitura integral.
 7. Salve com frontmatter incluindo `formato` (post/carrossel/video-curto) e
    `brief` quando fizer parte de um pacote.
 8. Encaminhe para `inboundfy-especialista-instagram-imagem` quando o formato exigir peça
@@ -107,7 +107,7 @@ Instagram, com um arquivo por slide quando o formato for carrossel.
 ## Validação
 
 - Formato de saída corresponde exatamente ao indicado no brief.
-- Nenhum trecho abaixo de 90% na auditoria de `inboundfy-copy-editor`.
+- Os achados de `inboundfy-copy-editor` foram tratados e a leitura integral foi repetida.
 - Carrossel tem progressão lógica entre slides, não blocos desconectados.
 - Aprovação registrada por `inboundfy-validador-instagram`.
 

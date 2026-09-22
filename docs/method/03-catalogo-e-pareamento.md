@@ -41,6 +41,9 @@ Uma produtora precisa citar sua validadora. Uma validadora precisa citar a
 produtora, `inboundfy-base-validador`, contexto completo e os estados aprovado e
 reprovado. Divergências no conjunto ou no pareamento reprovam o framework.
 
+O usuário inicia o fluxo normal por `$inboundfy`; o catálogo mantém as skills
+especializadas acessíveis para operação direta solicitada ou retomada.
+
 O catálogo navegável está em [SKILLS.md](../../SKILLS.md).
 
 ## Perfil de pareamento

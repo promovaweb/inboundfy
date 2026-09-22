@@ -46,8 +46,21 @@ Um relatório reprovado precisa responder:
 | Correção | O que precisa mudar para ser verificável? |
 | Retorno | Qual especialista recebe o trabalho? |
 
-Uma nota média não compensa um hard gate. A ocorrência de uma proibição, um
-fato incorreto ou uma divergência material de marca mantém o status reprovado.
+Uma ocorrência de proibição, fato incorreto ou divergência material de marca
+mantém o status reprovado, mesmo quando outros aspectos do asset estão
+corretos. O relatório aponta o trecho, a regra e a correção necessária.
+
+Para aprovar uma peça no pipeline, o relatório final precisa identificar o ID,
+o caminho do `README.md`, o SHA-256 atual e o veredito `aprovado`. Consulte o
+hash com `inboundfy content digest <id>` e passe o caminho do relatório a:
+
+```bash
+inboundfy content status <id> aprovado --audit-report <caminho-do-relatorio>
+```
+
+O CLI também confere esse vínculo ao agendar ou publicar. Alteração na peça
+invalida a aprovação e exige retorno para `revisao`, nova leitura integral e
+novo relatório.
 
 ## Exemplo do ciclo
 

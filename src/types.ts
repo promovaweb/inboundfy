@@ -64,10 +64,18 @@ export interface ContentRecord {
   slug: string;
   directory: string;
   createdAt: string;
-  status: "rascunho" | "revisao" | "aprovado" | "agendado" | "publicado" | "arquivado";
+  status:
+    | "rascunho"
+    | "revisao"
+    | "aprovado"
+    | "agendado"
+    | "publicado"
+    | "arquivado";
   personas: string[];
   acervo: string[];
   baseEditorial: string[];
+  auditReport?: string;
+  approvedAssetSha256?: string;
   publishedAt?: string;
   url?: string;
 }

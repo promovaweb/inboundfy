@@ -89,7 +89,7 @@ ativos de apoio e CTA.
    `inboundfy-especialista-blog` em profundidade, mas mantendo a voz em primeira
    pessoa quando houver autor.
 5. Feche com CTA claro e, quando aplicável, uma pergunta genuína ao público;    nunca pergunta retórica seguida de resposta óbvia.
-6. Rode `inboundfy-copy-editor`; ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija parágrafos abaixo de 90%.
+6. Rode `inboundfy-copy-editor`, trate os achados verificáveis e repita a leitura integral.
 7. Salve com frontmatter incluindo `formato` (post/artigo), `autor` (se
    houver) e `brief` quando fizer parte de um pacote.
 8. Encaminhe para `inboundfy-especialista-linkedin-imagem` quando o canal exigir imagem, e
@@ -111,7 +111,7 @@ em `context/canais.md` para LinkedIn.
 - Post nativo está livre de sintaxe Markdown no corpo copiável.
 - Autor, quando definido, está falando dentro da competência registrada em
   `context/pessoas.md`.
-- Nenhum parágrafo abaixo de 90% na auditoria de `inboundfy-copy-editor`.
+- Os achados de `inboundfy-copy-editor` foram tratados e a leitura integral foi repetida.
 - Aprovação registrada por `inboundfy-validador-linkedin`.
 
 ## Responsabilidade do grupo

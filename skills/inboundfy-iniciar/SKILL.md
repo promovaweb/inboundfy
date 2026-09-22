@@ -1,17 +1,19 @@
 ---
 name: inboundfy-iniciar
-description: Atalho operacional do Inboundfy que recebe material ou pedido de peça e encaminha setup, acervo, pesquisa, estratégia, produção e calendário.
+description: Alias compatível que encaminha a solicitação recebida para $inboundfy, sem repetir a entrevista, criar artefatos ou iniciar outro fluxo.
 ---
 
 # Iniciar o Inboundfy
 
-Use quando a pessoa quiser operar o framework sem escolher cada skill. Esta
-skill encaminha para `inboundfy`, que é a orquestradora principal.
+Esta skill existe por compatibilidade com instruções e atalhos anteriores.
+Encaminhe imediatamente o pedido original para `$inboundfy`, sem repetir
+entrevista, criar artefatos ou iniciar um fluxo paralelo. Para novos pedidos,
+`$inboundfy` é a única entrada recomendada.
 
 ## Arquitetura de execução
 
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
+Esta skill só encaminha o pedido original. A orquestradora principal confere
+as sentinelas e usa o contrato compartilhado.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
@@ -24,43 +26,38 @@ artefato. O grupo desta skill é **entrada**.
 
 ## Contexto exigido
 
-Leia [REFERENCIA.md](REFERENCIA.md), `AGENTS.md`, os arquivos canônicos de
-`.inboundfy/`, o acervo relacionado, a estratégia, as personas, a voz, as
-proibições, o dicionário e o pipeline. Consulte `.inboundfy/framework/`.
+Leia apenas [REFERENCIA.md](REFERENCIA.md) para encaminhar a solicitação. A
+skill `$inboundfy` carrega o contexto e as fontes do projeto.
+
+## Encaminhamento
+
+Passe a solicitação recebida, sem reformular nem retirar contexto, para
+`$inboundfy`. A skill principal confere o projeto e escolhe o fluxo. Não grave
+arquivos nem atualize estados por meio deste alias.
 
 ## Entrada esperada
 
-Receba ideia, texto bruto, URL, peça-base, pedido de pesquisa, pedido de
-planejamento ou solicitação de peça por canal.
+Pedido original recebido por um atalho ou uma instrução anterior.
 
 ## Fluxo
 
-1. Confirme a instalação com `inboundfy doctor --strict`.
-2. Se a configuração estiver incompleta, encaminhe para `inboundfy-setup`.
-3. Para material novo, use `inboundfy-acervo`, que conduz o processamento
-   completo até a saída ou até uma pausa necessária para confirmação.
-4. Para uma ideia, use o brainstorm antes de criar conteúdo.
-5. Para uma peça, liste os canais ativos e apresente cada persona com número de
-seleção, ID, nome de referência e resumo do perfil, contexto de compra,
-   problema, resultado, canais e oferta. Peça as escolhas quando a solicitação
-   não trouxer esses dados.
-6. Use estratégia, SEO, GEO, copy, anti-slop e o especialista do canal por
-   meio de `inboundfy-acervo`, sem duplicar fases do mesmo item.
-7. Registre a pasta final, os IDs, o estado e o calendário.
+1. Passe o pedido sem alterações para `$inboundfy`.
+2. Encerre esta execução sem iniciar outra skill além da orquestradora.
 
 ## Saída
 
-Entregue caminhos relativos, arquivos, IDs, estado, personas, acervos,
-pesquisa, pendências e próximos passos.
+Encaminhamento do pedido original para `$inboundfy`; nenhuma gravação local.
 
 ## Validação
 
-Confirme que a peça está em `canais/<canal>/`, tem `README.md`, frontmatter,
-vínculos, validador de canal, anti-slop e estado coerente no índice.
+- O pedido original foi preservado.
+- Este alias não criou arquivos nem alterou estados.
+- A próxima skill é `$inboundfy`.
 
 ## Responsabilidade do grupo
 
-Prepare ou encaminhe a execução. Preserve respostas existentes e não crie conteúdo antes de o contexto mínimo estar pronto.
+Mantenha o pedido original e evite uma segunda execução. Este alias não produz
+conteúdo nem altera arquivos.
 
 Antes do handoff, confirme os campos próprios deste grupo:
 
@@ -72,5 +69,5 @@ Antes do handoff, confirme os campos próprios deste grupo:
 
 ## Idempotência
 
-Uma revisão mantém o ID. Uma nova peça ou novo ângulo recebe novo ID e não
-substitui material, peça ou data já existentes.
+Uma nova chamada encaminha o mesmo pedido para `$inboundfy`; preserve o ID e o
+estado já registrados.

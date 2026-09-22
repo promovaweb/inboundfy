@@ -34,9 +34,10 @@ Brief de origem: `04-briefs/blog-como-funciona-o-mcp.md`.
   fictício neste exemplo — em projeto real, checar contra o arquivo real do
   usuário).
 
-## Nota por parágrafo (inboundfy-copy-editor)
+## Revisão de copy
 
-Todos os parágrafos avaliados acima de 90%, sem violação de
+Todos os achados editoriais foram tratados e a leitura integral foi repetida,
+sem violação de
 `context/proibicoes.md` nem de `context/estruturas-proibidas.md` — nenhum
 parágrafo precisou de reescrita nesta rodada.
 

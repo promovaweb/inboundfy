@@ -1,33 +1,19 @@
-# Referência de início rápido
+# Referência do alias compatível
+
+Novos pedidos devem começar por `$inboundfy`. Este nome antigo só encaminha a
+solicitação original para a skill principal e não executa outro fluxo.
 
 ## Matriz de encaminhamento
 
-| Pedido | Encaminhamento |
+| Entrada | Encaminhamento |
 | --- | --- |
-| Projeto sem configuração | `inboundfy-setup` |
-| Material bruto | `inboundfy-acervo` → processamento → pesquisa → base editorial |
-| Ideia curta | `inboundfy-brainstorm` |
-| Estratégia ou campanha | `inboundfy-estrategia` |
-| SEO ou GEO | `inboundfy-seo` / `inboundfy-geo` |
-| Copy nova | `inboundfy-copy-redacao` |
-| Copy existente | `inboundfy-copy-edicao` |
-| Peça pronta | especialista do canal → `inboundfy-anti-slop` → validador |
-| Estado ou data | `inboundfy-pipeline` / calendário |
+| Solicitação recebida por este alias | `$inboundfy`, sem alterar o texto |
+| Instalação ausente ou incompleta | `$inboundfy`, que acionará `inboundfy-setup` |
 
-## Resumo final
+## Saída
 
-```md
-acervo:
-arquivos_processados:
-pesquisa:
-base_editorial:
-possibilidades:
-pecas:
-personas:
-calendario:
-estados:
-pendencias:
-```
+Nenhum arquivo ou estado muda aqui. A orquestradora informa a saída depois de
+executar o fluxo correspondente.
 
 ## Arquitetura aplicada
 
@@ -145,7 +131,7 @@ Use o campo **grupo** no registro para facilitar busca, relação e manutenção
 
 ### Quando usar
 
-Use **inboundfy-iniciar** para executar esta função: Atalho operacional do Inboundfy que recebe material ou pedido de peça e encaminha setup, acervo, pesquisa, estratégia, produção e calendário.
+Use **inboundfy-iniciar** para executar esta função: Alias compatível que encaminha a solicitação recebida para $inboundfy, sem repetir a entrevista, criar artefatos ou iniciar outro fluxo.
 
 O grupo **entrada** trabalha com estes campos mínimos:
 

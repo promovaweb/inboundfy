@@ -15,6 +15,7 @@ evoluído.
 8. [Validação e testes](07-validacao-e-testes.md)
 9. [Evolução e checklist de mudança](08-evolucao-do-framework.md)
 10. [Arquitetura das skills](09-arquitetura-das-skills.md)
+11. [Referência do CLI de conteúdo](10-referencia-cli.md)
 
 O contrato de separação entre método e dados do projeto está descrito no
 [README principal](../../README.md#separação-entre-framework-e-projeto). As

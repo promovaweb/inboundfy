@@ -9,7 +9,7 @@ Use o template de `inboundfy-base-validador` com a produtora
 - [ ] Agenda contém entregas específicas.
 - [ ] PASTOR está completo e ordenado, salvo testemunho sem prova.
 - [ ] Oferta e CTA conferem com o contexto.
-- [ ] Todo parágrafo alcança 90%.
+- [ ] A prosa foi lida por inteiro e cada achado verificável foi tratado.
 
 ## Exemplo fictício
 

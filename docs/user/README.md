@@ -19,8 +19,8 @@ Os capítulos deste diretório também formam o
 leitura, compartilhamento e impressão. O EPUB permite ajustar fonte e tamanho
 no leitor digital.
 
-- [Baixe o PDF](../../ebook/Inboundfy-Guia-do-Usuario-v0.2.0.pdf).
-- [Baixe o EPUB](../../ebook/Inboundfy-Guia-do-Usuario-v0.2.0.epub).
+- [Baixe o PDF](../../ebook/Inboundfy-Guia-do-Usuario-v0.3.0.pdf).
+- [Baixe o EPUB](../../ebook/Inboundfy-Guia-do-Usuario-v0.3.0.epub).
 - [Consulte a edição e os hashes](../../ebook/README.md).
 
 ## Percurso completo
@@ -42,12 +42,13 @@ Leia na ordem:
 Os [exemplos executáveis](../../examples/README.md) mostram relatórios,
 reprovações, correções e aprovações preenchidos com dados fictícios.
 
-## Três comandos conceituais
+## Skills principais
 
 - `inboundfy-setup`: instala, atualiza ou repara o ambiente.
-- `inboundfy-brainstorm`: desenvolve uma ideia até uma base pesquisada.
-- `inboundfy-acervo`: conduz o fluxo mestre, da entrada bruta às saídas finais.
-- `inboundfy-iniciar`: atalho compatível que encaminha para o fluxo mestre.
+- `$inboundfy`: entrada padrão; interpreta o pedido e escolhe o fluxo.
+- `inboundfy-brainstorm`, `inboundfy-acervo` e `inboundfy-estrategia`:
+  componentes acionados pela orquestradora ou disponíveis para pedido direto.
+- `inboundfy-iniciar`: alias compatível que encaminha para `$inboundfy`.
 
 Uma skill especialista pode ser chamada diretamente quando já existe um brief
 claro para uma única peça.
@@ -57,7 +58,7 @@ claro para uma única peça.
 Imagine que você quer transformar uma anotação sobre manutenção preventiva em
 um artigo e um post. Depois do setup, o percurso fica assim:
 
-1. Você entrega a anotação a `inboundfy-acervo`.
+1. Você entrega a anotação a `$inboundfy`.
 2. A skill preserva o original, processa o texto, pesquisa o tema e registra
    FAQ, base editorial e possibilidades.
 3. Você escolhe canais, personas e direção editorial.

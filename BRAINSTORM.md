@@ -5,6 +5,10 @@ registrada e pronta para alimentar `METODOLOGIA.md`. Ele atende pedidos como
 “quero falar sobre retenção em SaaS” sem exigir que a pessoa saiba escolher
 canal, ângulo ou estrutura de copy.
 
+O ponto de entrada recomendado é `$inboundfy`. Ele encaminha ideias à skill
+`inboundfy-brainstorm`; a chamada direta continua disponível para quem pedir
+essa operação especializada.
+
 ## Resultado esperado
 
 Cada execução cria `brainstorms/<AAAA-MM-DD>-<slug>/brainstorm.md`. O arquivo
@@ -15,7 +19,7 @@ ativos. A validação final cruza a escrita com `ESCRITA.md`,
 
 O brainstorm aprovado pode seguir por dois caminhos:
 
-- `inboundfy-iniciar`, quando deve gerar várias peças a partir da mesma base;
+- `inboundfy-acervo`, quando deve gerar várias peças a partir da mesma base;
 - `inboundfy-planejamento`, quando a ideia já aponta uma única
   peça e um único canal.
 

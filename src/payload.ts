@@ -128,7 +128,9 @@ export async function collectSkillsPayload(
     .filter(
       (entry) =>
         entry.isDirectory() &&
-        (entry.name === "inboundfy" || entry.name.startsWith("inboundfy-")),
+        (entry.name === "_shared" ||
+          entry.name === "inboundfy" ||
+          entry.name.startsWith("inboundfy-")),
     )
     .sort((left, right) => left.name.localeCompare(right.name));
   const payload: PayloadFile[] = [];

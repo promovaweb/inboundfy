@@ -7,7 +7,7 @@ Use o template de `inboundfy-base-validador` com a produtora
 
 - [ ] Participantes e competências conferem com o contexto.
 - [ ] A pauta orienta conversa, sem roteiro fechado artificial.
-- [ ] Shownotes públicos alcançam 90%.
+- [ ] Os shownotes foram lidos por inteiro e cada achado verificável foi tratado.
 - [ ] Links apontam para endereços confirmados.
 - [ ] Blocos cobrem o objetivo do brief.
 

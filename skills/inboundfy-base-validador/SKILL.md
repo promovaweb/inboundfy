@@ -4,8 +4,8 @@ description: >
   Aplica o contrato transversal de validação a qualquer asset produzido pelo
   Inboundfy. Use como base obrigatória das skills inboundfy-validador-* para
   confrontar brief, metodologia, todos os contextos, fontes locais, regras e
-  contrato da skill produtora. Proibições e estruturas proibidas são hard
-  gates com reprovação automática, sem compensação por nota.
+  contrato da skill produtora. Proibições e estruturas proibidas reprovam o
+  asset até correção ou exceção canônica confirmada.
 ---
 
 # Inboundfy Base Validador
@@ -74,7 +74,7 @@ nome da validadora específica que solicitou a auditoria.
 4. Verifique rastreabilidade factual, aderência ao brief, voz, escrita,
    estrutura persuasiva, formato, acessibilidade, metadata, dimensões,
    licenças e demais regras aplicáveis.
-5. Execute o hard gate de proibições antes de qualquer pontuação:
+5. Execute a conferência das proibições antes dos demais aspectos:
    - execute um passe literal e compare cada termo, expressão e veto de
      `context/proibicoes.md` com o asset inteiro, incluindo frontmatter,
      headings, listas, CTA, alt text e texto incorporado em imagem;
@@ -83,19 +83,22 @@ nome da validadora específica que solicitou a auditoria.
    - confronte a arquitetura completa com cada categoria de
      `context/estruturas-proibidas.md`: abertura, fechamento, vocabulário,
      parágrafo, headings, listas, pontuação, fluidez e autoridade;
-   - marque qualquer ocorrência como reprovação automática. Outros regras
-     nunca compensam uma proibição: nota alta, média do asset, SEO, estética
-     ou aprovação parcial não alteram o hard gate.
+   - marque qualquer ocorrência como reprovação automática. SEO, estética ou
+     aprovação parcial não anulam esse resultado.
 6. Aplique exceção somente quando o próprio arquivo canônico declarar de
    forma explícita a condição permitida e o asset provar que a satisfaz.
    Registre regra, condição e prova; não crie exceção por interpretação.
-7. Para texto público, acione `inboundfy-copy-editor`, leia parágrafo por
-   parágrafo e reprove qualquer trecho abaixo de 90%.
+7. Para texto público, acione `inboundfy-copy-editor` e registre cada achado
+   com trecho, localização, regra ou fonte, diagnóstico e ação. Não use notas
+   ou percentuais editoriais.
 8. Acione `inboundfy-anti-slop` no marco A5 para a leitura de generalidades,
    ritmo, voz, persona, fonte e canal. Confirme o registro
    `auditorias/anti-slop/05-peca.md` ou seu equivalente no pacote.
 9. Produza um relatório com comprovação localizada, regra ou fonte violada,
-   correção verificável e destino de retorno.
+   correção verificável e destino de retorno. Antes de aprovar, execute
+   `inboundfy content digest <id>` e inclua no relatório o ID, o caminho
+   retornado, o SHA-256 completo e `Veredito: aprovado` nas linhas do formato
+   canônico definido em `REFERENCIA.md`.
 10. Depois da correção, descarte o resultado anterior como base de
    aprovação, releia o asset inteiro e repita os dois passes do hard gate.
 11. Aprove somente quando o hard gate estiver zerado e não houver violação
@@ -119,7 +122,7 @@ como `<nome-do-asset>.auditoria.md`.
   cor, tipografia ou aplicação reprova a peça.
 - Cada reprovação cita localização, prova, regra e correção.
 - Nenhum asset recebe aprovação condicional.
-- Nenhuma nota ou aprovação em outro regra compensa hard gate reprovado.
+- O relatório final descreve achados verificáveis, sem notas ou percentuais.
 - A skill de destino está registrada de forma inequívoca.
 - O relatório identifica o marco A5 e o ciclo executado.
 

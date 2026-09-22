@@ -17,6 +17,10 @@ consumidor.
 | Validadoras | Aplicam contrato e devolvem reprovações |
 | Auditoria | Consolida o pacote aprovado |
 
+`$inboundfy` é a entrada padrão do usuário e escolhe o fluxo adequado. As
+demais skills continuam expostas para chamadas especializadas explícitas e
+retomada de etapas. `inboundfy-iniciar` permanece como alias de compatibilidade.
+
 ## Separação de decisão
 
 Estratégia decide o que, por que e quando. Planejamento transforma material em

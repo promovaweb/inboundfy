@@ -13,11 +13,13 @@ com justificativa ou `impedimento`.
 ```markdown
 # Validação de asset; <canal>/<item>
 
-- **Asset:** <caminho>
+- **Asset:** `<caminho relativo da peça>`
 - **Brief:** <caminho ou peça avulsa>
 - **Produtora:** <inboundfy-especialista-*>
 - **Validadora:** <inboundfy-validador-*>
 - **Rodada:** <número>
+- **ID da peça:** `<id>`
+- **SHA-256 da peça:** `<hash completo obtido por inboundfy content digest>`
 - **Veredito:** <aprovado | reprovado | devolvido para briefing | impedido>
 
 ## Fontes carregadas
@@ -26,11 +28,11 @@ com justificativa ou `impedimento`.
 
 ## Achados
 
-| Localização | prova | Regra ou fonte | Correção verificável |
+| Localização | Trecho observado | Regra ou fonte | Diagnóstico e correção |
 | --- | --- | --- | --- |
 | <arquivo/seção> | <problema observado> | <origem da regra> | <mudança exigida> |
 
-## Hard gate de proibições
+## Conferência de proibições
 
 | Categoria | Passe literal | Passe semântico/estrutural | Ocorrências |
 | --- | --- | --- | --- |
@@ -76,11 +78,12 @@ validadora só aprova em nova rodada após reler o arquivo inteiro.
 - [ ] A varredura completa foi repetida depois da correção.
 - [ ] O hard gate terminou com zero ocorrência.
 - [ ] Todo achado tem prova e correção testável.
+- [ ] O relatório aprovado contém ID, caminho, SHA-256 atual e veredito aprovado.
 - [ ] O histórico preserva as rodadas anteriores.
 
 ## Erros comuns
 
-- Aprovar pela média quando existe uma violação individual.
+- Aprovar o asset enquanto uma violação individual permanece.
 - Procurar apenas expressões exatas e deixar passar paráfrase do mesmo
   padrão proibido.
 - Corrigir a ocorrência apontada sem procurar o mesmo vício no restante do
@@ -206,7 +209,7 @@ Use o campo **grupo** no registro para facilitar busca, relação e manutenção
 
 ### Quando usar
 
-Use **inboundfy-base-validador** para executar esta função: Aplica o contrato transversal de validação a qualquer asset produzido pelo Inboundfy. Use como base obrigatória das skills inboundfy-validador-* para confrontar brief, metodologia, todos os contextos, fontes locais, regras e contrato da skill produtora. Proibições e estruturas proibidas são hard gates com reprovação automática, sem compensação por nota.
+Use **inboundfy-base-validador** para executar esta função: Aplica o contrato transversal de validação a qualquer asset produzido pelo Inboundfy. Use como base obrigatória das skills inboundfy-validador-* para confrontar brief, metodologia, todos os contextos, fontes locais, regras e contrato da skill produtora. Proibições e estruturas proibidas reprovam o asset até correção ou exceção canônica confirmada.
 
 O grupo **base** trabalha com estes campos mínimos:
 

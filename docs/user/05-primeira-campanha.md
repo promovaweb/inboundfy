@@ -5,8 +5,9 @@ público, KPI, canais, fases e calendário.
 
 ## Passo a passo
 
-1. `inboundfy-estrategia` executa a etapa `00-briefing-cliente` e registra objetivo de negócio,
-   público, oferta, orçamento, prazo, restrições e indicadores.
+1. Envie o pedido a `$inboundfy`; ele aciona `inboundfy-estrategia`, que
+   executa `00-briefing-cliente` e registra objetivo de negócio, público,
+   oferta, orçamento, prazo, restrições e indicadores.
 2. A etapa `01-pesquisa-mercado` reúne comprovações de mercado,
    categoria, concorrência e comportamento.
 3. A etapa `02-campanha` transforma briefing e pesquisa em tese,

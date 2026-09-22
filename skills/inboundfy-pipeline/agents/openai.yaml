@@ -1,4 +1,4 @@
 interface:
   display_name: "Inboundfy Pipeline"
-  short_description: "Executa pipeline no Inboundfy"
-  default_prompt: "Use $inboundfy-pipeline para executar pipeline com as fontes do projeto."
+  short_description: "Gerencia estados e aprovações de conteúdo"
+  default_prompt: "Use $inboundfy-pipeline para atualizar o estado de uma peça e conferir seu relatório de validação."

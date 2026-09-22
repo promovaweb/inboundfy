@@ -285,7 +285,7 @@
     {
       "id": "inboundfy-base-validador",
       "grupo": "base",
-      "descricao": "Aplica o contrato transversal de validação a qualquer asset produzido pelo Inboundfy. Use como base obrigatória das skills inboundfy-validador-* para confrontar brief, metodologia, todos os contextos, fontes locais, regras e contrato da skill produtora. Proibições e estruturas proibidas são hard gates com reprovação automática, sem compensação por nota.",
+      "descricao": "Aplica o contrato transversal de validação a qualquer asset produzido pelo Inboundfy. Use como base obrigatória das skills inboundfy-validador-* para confrontar brief, metodologia, todos os contextos, fontes locais, regras e contrato da skill produtora. Proibições e estruturas proibidas reprovam o asset até correção ou exceção canônica confirmada.",
       "skill": "skills/inboundfy-base-validador/SKILL.md",
       "referencia": "skills/inboundfy-base-validador/REFERENCIA.md",
       "interface": "skills/inboundfy-base-validador/agents/openai.yaml",
@@ -537,7 +537,7 @@
     {
       "id": "inboundfy-copy-editor",
       "grupo": "copy",
-      "descricao": "Skill transversal de auditoria de parágrafo por ESCRITA.md. Atribui nota de 0 a 100 por parágrafo e aplica hard gate: qualquer violação de context/proibicoes.md ou context/estruturas-proibidas.md reprova o texto, independentemente da nota. Reescreve trechos abaixo de 90% e repete a varredura integral antes de liberar o resultado.",
+      "descricao": "Audita e corrige prosa por achados verificáveis, com referência aos contextos e às regras editoriais do Inboundfy. Registra trecho, origem, diagnóstico e ação, e repete a leitura integral após as correções.",
       "skill": "skills/inboundfy-copy-editor/SKILL.md",
       "referencia": "skills/inboundfy-copy-editor/REFERENCIA.md",
       "interface": "skills/inboundfy-copy-editor/agents/openai.yaml",
@@ -1713,7 +1713,7 @@
     {
       "id": "inboundfy-iniciar",
       "grupo": "entrada",
-      "descricao": "Atalho operacional do Inboundfy que recebe material ou pedido de peça e encaminha setup, acervo, pesquisa, estratégia, produção e calendário.",
+      "descricao": "Alias compatível que encaminha a solicitação recebida para $inboundfy, sem repetir a entrevista, criar artefatos ou iniciar outro fluxo.",
       "skill": "skills/inboundfy-iniciar/SKILL.md",
       "referencia": "skills/inboundfy-iniciar/REFERENCIA.md",
       "interface": "skills/inboundfy-iniciar/agents/openai.yaml",
@@ -1818,7 +1818,7 @@
     {
       "id": "inboundfy-pipeline",
       "grupo": "capacidade",
-      "descricao": "Gerencia os estados das peças de conteúdo, sincroniza frontmatter, calendário e índice e registra publicação com URL e data confirmadas.",
+      "descricao": "Gerencia os estados de conteúdo, confere passagens permitidas e vincula aprovação ao relatório e ao SHA-256 atual antes de agendar ou publicar.",
       "skill": "skills/inboundfy-pipeline/SKILL.md",
       "referencia": "skills/inboundfy-pipeline/REFERENCIA.md",
       "interface": "skills/inboundfy-pipeline/agents/openai.yaml",

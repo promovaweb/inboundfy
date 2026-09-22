@@ -9,7 +9,7 @@ Use o template de `inboundfy-base-validador` com a produtora
 - [ ] A primeira linha funciona antes do “ver mais”.
 - [ ] Autor e competência conferem com `context/pessoas.md`.
 - [ ] Existe CTA ou pergunta genuína, sem competição.
-- [ ] Todo parágrafo público alcança 90%.
+- [ ] A prosa foi lida por inteiro e cada achado verificável foi tratado.
 
 ## Exemplo fictício
 

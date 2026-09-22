@@ -1,6 +1,6 @@
 {
   "name": "@promovaweb/inboundfy",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "CLI e framework de skills para instalar, validar e manter o Inboundfy em projetos.",
   "type": "module",
   "bin": {

@@ -1,7 +1,7 @@
 # Validação e retomada
 
-Validação comprova se o artefato atende à sua função. Ela não se resume a
-nota, média ou passagem de um script.
+Validação confere se o artefato atende à sua função. Um relatório automático
+ajuda a localizar problemas, mas não substitui a leitura do conteúdo.
 
 ## Passes
 

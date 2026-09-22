@@ -1,7 +1,22 @@
 # Referência do pipeline
 
 Estados: `rascunho`, `revisao`, `aprovado`, `agendado`, `publicado` e
-`arquivado`. A publicação exige URL e data.
+`arquivado`. A aprovação após revisão exige um relatório com ID, caminho,
+SHA-256 atual da peça e `Veredito: aprovado`. O CLI confere o hash e o relatório
+ao avançar para `agendado` ou `publicado`.
+
+| Estado atual | Próximos estados permitidos |
+| --- | --- |
+| `rascunho` | `revisao`, `arquivado` |
+| `revisao` | `rascunho`, `aprovado`, `arquivado` |
+| `aprovado` | `revisao`, `agendado`, `publicado`, `arquivado` |
+| `agendado` | `revisao`, `aprovado`, `publicado`, `arquivado` |
+| `publicado` | `arquivado` |
+| `arquivado` | nenhum |
+
+Ao retornar para `revisao` ou `rascunho`, o CLI remove a referência da
+aprovação anterior. Qualquer alteração no README da peça invalida o hash
+aprovado.
 
 ## Arquitetura aplicada
 
@@ -119,7 +134,7 @@ Use o campo **grupo** no registro para facilitar busca, relação e manutenção
 
 ### Quando usar
 
-Use **inboundfy-pipeline** para executar esta função: Gerencia os estados das peças de conteúdo, sincroniza frontmatter, calendário e índice e registra publicação com URL e data confirmadas.
+Use **inboundfy-pipeline** para executar esta função: Gerencia os estados de conteúdo, confere passagens permitidas e vincula aprovação ao relatório e ao SHA-256 atual antes de agendar ou publicar.
 
 O grupo **capacidade** trabalha com estes campos mínimos:
 

@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Inboundfy"
-  short_description: "Executa inboundfy no Inboundfy"
-  default_prompt: "Use $inboundfy para executar inboundfy com as fontes do projeto."
+  display_name: "Inboundfy"
+  short_description: "Orquestra marketing e produção de conteúdo"
+  default_prompt: "Use $inboundfy para planejar, pesquisar ou produzir conteúdo com o contexto do projeto."

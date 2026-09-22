@@ -7,7 +7,9 @@
 3. `inboundfy-base-validador` define o relatório e os hard gates.
 4. A validadora do asset aplica regras de canal, contexto e marca.
 5. A auditoria final verifica o pacote.
-6. O validador do repositório confere a integridade do framework.
+6. O CLI confere transições, vincula a aprovação ao relatório e ao hash do
+   arquivo, e recusa agendamento ou publicação após alteração.
+7. O validador do repositório confere a integridade do framework.
 
 Além dessas camadas, `inboundfy-anti-slop` roda nos marcos A0 a A6. Os
 registros ficam ligados ao pacote e uma alteração invalida os marcos
@@ -46,6 +48,8 @@ O validador verifica:
 - exemplos executáveis e links Markdown locais.
 - instalação, atualização, reparo, descoberta, contexto mínimo e segurança de
   caminhos do CLI;
+- fluxo instalado de acervo, peça, relatório de auditoria, calendário e
+  publicação em projeto temporário isolado;
 - versão única entre `package.json`, lockfile, Release Please, ebook e tag;
 - instalação do tarball npm em um projeto temporário isolado.
 
@@ -54,7 +58,7 @@ Para conferir exatamente o arquivo que será publicado:
 ```bash
 mkdir -p artifacts
 npm pack --pack-destination artifacts
-npm run npm:validate-package -- artifacts/promovaweb-inboundfy-1.1.0.tgz
+npm run npm:validate-package -- artifacts/promovaweb-inboundfy-0.2.0.tgz
 ```
 
 ## Regra para mudança

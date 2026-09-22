@@ -44,8 +44,8 @@ artefato. O grupo desta skill é **brainstorm**.
 2. Conferir todas as seções obrigatórias de `templates/brainstorm.md`.
 3. Abrir cada fonte e confirmar que ela apoia a afirmação associada.
 4. Comparar fatos internos com os arquivos de origem; reprovar divergência.
-5. Acionar `inboundfy-copy-editor` na prosa. Corrigir trechos abaixo de 90% e
-   reavaliar.
+5. Acionar `inboundfy-copy-editor` na prosa. Registrar os achados por trecho,
+   corrigi-los e repetir a leitura integral.
 6. Conferir linha a linha `context/proibicoes.md` e
    `context/estruturas-proibidas.md`.
 7. Devolver para entrevista quando faltar foco, para pesquisa quando faltar
@@ -62,7 +62,7 @@ O mesmo `brainstorm.md`, aprovado ou com retorno explícito para uma fase.
 
 - Nenhum fato externo ficou sem fonte.
 - Hipóteses e suposições estão identificadas.
-- A prosa atingiu 90% em `inboundfy-copy-editor`.
+- A leitura integral foi repetida após tratar os achados verificáveis.
 - Nenhuma violação dos dois arquivos de proibições permanece.
 - Todas as oportunidades apontam ativos existentes.
 
@@ -94,7 +94,7 @@ apagar resultados anteriores.
 | Foco | Tese, audiência e limite estão claros | Entrevista |
 | prova | Fatos externos possuem fonte adequada | Pesquisa |
 | Síntese | Argumentos explicam mecanismo e consequência | Síntese |
-| Escrita | Todo parágrafo recebe pelo menos 90% | Síntese |
+| Escrita | Trechos localizados, fonte editorial e ação corretiva | Síntese |
 | Proibições | Nenhuma ocorrência real permanece | Síntese |
 | Distribuição | Cada oportunidade usa ativos e ângulo próprios | Síntese |
 

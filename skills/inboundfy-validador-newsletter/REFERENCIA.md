@@ -9,7 +9,7 @@ Use o template de `inboundfy-base-validador` com a produtora
 - [ ] Menções institucionais possuem fonte.
 - [ ] Produto, serviço ou ferramenta aplica FAB quando necessário.
 - [ ] Existe um CTA no fechamento.
-- [ ] Todo parágrafo alcança 90%.
+- [ ] A prosa foi lida por inteiro e cada achado verificável foi tratado.
 
 ## Exemplo fictício
 

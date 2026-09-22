@@ -81,7 +81,7 @@ Um brief com: tema da edição, ângulo, ativos de apoio (de
 4. Insira menção a produto, serviço ou ferramenta apenas com base no
    `context/` correspondente.
 5. Feche com CTA único.
-6. Rode `inboundfy-copy-editor`; ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija parágrafos abaixo de 90%.
+6. Rode `inboundfy-copy-editor`, trate os achados verificáveis e repita a leitura integral.
 7. Salve com frontmatter incluindo `assunto` (quando por e-mail), `titulo`,
    `description` e `brief` quando fizer parte de um pacote.
 8. Encaminhe para `inboundfy-planejamento`.
@@ -100,7 +100,7 @@ Arquivo Markdown com frontmatter, salvo no caminho definido em
 ## Validação
 
 - Corpo em prosa contínua, sem fragmentação artificial.
-- Nenhum parágrafo abaixo de 90% na auditoria de `inboundfy-copy-editor`.
+- Os achados de `inboundfy-copy-editor` foram tratados e a leitura integral foi repetida.
 - Toda menção institucional confere com `context/`.
 - Aprovação registrada por `inboundfy-validador-newsletter`.
 

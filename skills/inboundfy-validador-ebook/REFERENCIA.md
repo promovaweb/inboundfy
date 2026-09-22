@@ -9,7 +9,7 @@ Use o template de `inboundfy-base-validador` com a produtora
 - [ ] Não existe repetição mecânica entre capítulos.
 - [ ] Abertura e fechamento usam a estrutura registrada quando aplicável.
 - [ ] Menções comerciais aplicam FAB e conferem com o contexto.
-- [ ] Todo parágrafo público alcança 90%.
+- [ ] A prosa foi lida por inteiro e cada achado verificável foi tratado.
 
 ## Exemplo fictício
 

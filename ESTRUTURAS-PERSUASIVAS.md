@@ -101,9 +101,8 @@ na característica sozinha.
   `inboundfy-especialista-webinar`, `inboundfy-especialista-instagram`, entre outras com
   objetivo comercial) lê a estrutura indicada no brief e organiza os blocos
   antes de escrever, aplicando `ESCRITA.md` dentro de cada bloco.
-- `inboundfy-copy-editor` e `inboundfy-planejamento` continuam avaliando por parágrafo
-  como de costume — a estrutura persuasiva não isenta nenhum parágrafo do
-  padrão de `ESCRITA.md` nem do teto de nota imposto por
-  `context/proibicoes.md`.
+- `inboundfy-copy-editor` e `inboundfy-planejamento` continuam avaliando por
+  parágrafo — a estrutura persuasiva não isenta a prosa dos padrões de
+  `ESCRITA.md` nem dos vetos de `context/proibicoes.md`.
 - Nenhuma estrutura autoriza promessa, dado ou depoimento que `context/` não
   confirme. Estrutura organiza argumento real; não substitui fato.

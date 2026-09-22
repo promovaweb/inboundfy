@@ -63,10 +63,28 @@ Um pacote editorial originado por campanha referencia
 
 ## Transições
 
-Cada fase lê o estado anterior e grava o próximo. A reprovação de um asset
-retorna apenas à especialista pareada. Divergência de estratégia retorna ao
-brief. Falta factual impede a afirmação ou pede informação; não reinicia
-automaticamente o pacote nem autoriza invenção.
+Cada fase lê o estado anterior e grava o próximo. O CLI aplica estas
+passagens para peças finais:
+
+| Estado atual | Próximos estados permitidos |
+| --- | --- |
+| `rascunho` | `revisao`, `arquivado` |
+| `revisao` | `rascunho`, `aprovado`, `arquivado` |
+| `aprovado` | `revisao`, `agendado`, `publicado`, `arquivado` |
+| `agendado` | `revisao`, `aprovado`, `publicado`, `arquivado` |
+| `publicado` | `arquivado` |
+| `arquivado` | nenhum |
+
+A transição de `revisao` para `aprovado` exige relatório da validadora com ID,
+caminho da peça, SHA-256 atual e `Veredito: aprovado`. O hash vem de
+`inboundfy content digest <id>`. O CLI grava o vínculo no README e no índice,
+e confere ambos antes do agendamento e da publicação. Alterar a peça ou
+retorná-la para `revisao` ou `rascunho` invalida a aprovação. A publicação
+também exige URL e data ISO.
+
+A reprovação de um asset retorna apenas à especialista pareada. Divergência
+de estratégia retorna ao brief. Falta factual impede a afirmação ou pede
+informação; não reinicia automaticamente o pacote nem autoriza invenção.
 
 Reexecutar uma skill preserva originais e versões aprovadas conforme a seção
 de idempotência. Uma nova entrada cria novo pacote; uma retomada explícita usa

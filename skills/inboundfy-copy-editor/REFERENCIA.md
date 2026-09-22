@@ -1,18 +1,18 @@
 # REFERENCIA.md; inboundfy-copy-editor
 
 Material de apoio para aplicar `ESCRITA.md` com precisão, parágrafo a
-parágrafo. Use isto ao avaliar nota e ao reescrever trecho abaixo de 90%.
+parágrafo. Registre achados localizáveis e ações verificáveis, sem dar nota.
 
-O checklist abaixo cobre os princípios de `ESCRITA.md`. Para violação
-específica e catalogada; palavra, fórmula de abertura/fechamento,
-estrutura de parágrafo; cruze sempre com `context/estruturas-proibidas.md`,
-que impõe reprovação automática e teto de nota 69 quando violado (mesmo peso
-de `context/proibicoes.md`). O teto registra a gravidade do parágrafo; não
-autoriza aprovação pela média.
+O checklist abaixo cobre os princípios de `ESCRITA.md`. Cruze cada padrão
+catalogado com `context/estruturas-proibidas.md` e cada veto de negócio com
+`context/proibicoes.md`. Uma ocorrência mantém o texto reprovado até ser
+removida ou até uma exceção válida ser confirmada na fonte canônica. A
+qualidade do restante do texto não anula esse resultado.
 
 ## Checklist objetivo por parágrafo
 
-Marque cada item como presente ou ausente antes de atribuir nota:
+Marque cada item como presente ou ausente e registre apenas os achados
+observáveis:
 
 - [ ] Nomeia um objeto real (uma coisa, uma ação, uma escolha) na primeira
       frase; não abre com afirmação abstrata sobre o mundo.
@@ -29,13 +29,13 @@ Marque cada item como presente ou ausente antes de atribuir nota:
 - [ ] O vocabulário confere com `context/marca-voz.md` (preferido vs.
       evitado).
 
-Um parágrafo com todos os itens marcados fica acima de 90. Cada item ausente
-derruba a nota proporcionalmente ao peso do problema (fórmula de abertura
-genérica e frase decorativa pesam mais que uma frase levemente repetitiva).
+Um item ausente só vira achado quando houver um trecho específico e uma regra
+aplicável. Descreva a consequência editorial e indique uma ação concreta; não
+transforme preferências graduais em veto automático.
 
 ## Exemplo; antes e depois
 
-**Antes (nota ~55, fragmentação e slop):**
+**Antes (abertura genérica e fragmentação):**
 
 > No cenário atual, a automação é cada vez mais importante. Ela ajuda as
 > empresas. É fundamental destacar que times pequenos também podem se
@@ -44,7 +44,7 @@ genérica e frase decorativa pesam mais que uma frase levemente repetitiva).
 Problemas: abertura genérica, frases picadas sem avanço de ideia, fechamento
 decorativo, nenhum objeto real nomeado.
 
-**Depois (nota ~95):**
+**Depois (objeto concreto e desenvolvimento):**
 
 > Um time de três pessoas rodando cobrança manual em planilha perde o cliente
 > quando alguém tira férias. Automatizar esse fluxo não é sobre
@@ -62,24 +62,28 @@ Diferença: objeto nomeado (cobrança manual em planilha), avanço real
   uma linha bem construída não precisa de recheio.
 - Corrigir fragmentação transformando o parágrafo em lista; troca um
   problema (fragmentação) por outro (perda de prosa).
-- Aplicar o teto de nota 69 por violação de proibição, mas esquecer de
-  registrar qual regra de `context/proibicoes.md` foi violada.
-- Aprovar o texto porque a média passou de 90 mesmo com uma ocorrência
-  proibida.
+- Marcar uma ocorrência sem apontar a regra de `context/proibicoes.md` que
+  sustenta o achado.
+- Tratar preferência de estilo como veto sem localizar uma regra do projeto.
 - Buscar só a frase literal e ignorar paráfrase, variação ou estrutura
   equivalente.
 - Penalizar vocabulário técnico legítimo do domínio como se fosse jargão;   confira o objeto real do texto antes de marcar um termo como problema (ver
   nota sobre vocabulário técnico válido em `ESCRITA.md`).
 
-## Registro de nota
+## Registro de achados
 
 Ao devolver o resultado, use este formato por parágrafo:
 
 ```text
-Parágrafo N; nota: XX/100
-Motivo (se < 90): <item de checklist ausente>
-Correção aplicada: <o que mudou, ou "nenhuma">
+| Localização | Trecho observado | Regra ou fonte | Diagnóstico | Ação aplicada ou pendente |
+| --- | --- | --- | --- | --- |
+| <seção/parágrafo> | <citação curta> | <arquivo e item> | <efeito no texto> | <mudança ou pendência> |
 ```
+
+Se não houver achados, declare: `Nenhum achado nesta leitura.` Registre o
+resultado dos passes literal e semântico/estrutural separadamente. Para cada
+correção, repita os passes no texto completo e informe se a ocorrência foi
+removida.
 
 ## Arquitetura aplicada
 
@@ -197,7 +201,7 @@ Use o campo **grupo** no registro para facilitar busca, relação e manutenção
 
 ### Quando usar
 
-Use **inboundfy-copy-editor** para executar esta função: Skill transversal de auditoria de parágrafo por ESCRITA.md. Atribui nota de 0 a 100 por parágrafo e aplica hard gate: qualquer violação de context/proibicoes.md ou context/estruturas-proibidas.md reprova o texto, independentemente da nota. Reescreve trechos abaixo de 90% e repete a varredura integral antes de liberar o resultado.
+Use **inboundfy-copy-editor** para executar esta função: Audita e corrige prosa por achados verificáveis, com referência aos contextos e às regras editoriais do Inboundfy. Registra trecho, origem, diagnóstico e ação, e repete a leitura integral após as correções.
 
 O grupo **copy** trabalha com estes campos mínimos:
 

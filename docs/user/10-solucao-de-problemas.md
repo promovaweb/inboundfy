@@ -59,9 +59,12 @@ criar versões divergentes.
 
 ## O conteúdo foi salvo, mas não está aprovado
 
-Procure o relatório individual em `06-auditoria/assets/`. A existência de um
-arquivo candidato não comprova aprovação. Somente um relatório aprovado e a
-auditoria final liberam o item para `97-ativos-finais/`.
+Procure o relatório individual em `06-auditoria/assets/`. Confira se ele tem
+o ID, o caminho, o SHA-256 atual da peça e `Veredito: aprovado`. Use
+`inboundfy content digest <id>` para comparar o hash e passe o caminho do
+relatório em `inboundfy content status <id> aprovado --audit-report <arquivo>`.
+Se o arquivo mudou depois da auditoria, retorne para `revisao` e repita a
+validação completa antes de agendar ou publicar.
 
 ## Ainda não resolveu
 

@@ -21,6 +21,12 @@ dados legais, contatos, URLs oficiais, redes sociais, personas, voz,
 proibições, dicionário, aprendizado, pipeline e canais. Ele
 preserva preenchimentos existentes e cria somente o que estiver ausente.
 
+Para uso normal, `$inboundfy` é a única entrada recomendada: descreva o pedido
+em linguagem natural e a orquestradora escolhe brainstorm, campanha, acervo,
+canal ou capacidade. As skills de etapa e de canal continuam disponíveis para
+retomadas e solicitações especializadas explícitas. `inboundfy-iniciar` é um
+atalho legado que encaminha para a mesma orquestradora.
+
 ## Como o Inboundfy é organizado
 
 - `docs/user/`: manual passo a passo, da preparação do projeto à atualização,
@@ -118,10 +124,19 @@ inboundfy project sync
 inboundfy acervo add "Título" --file entrada.md
 inboundfy acervo process 0001
 inboundfy content create blog "Título da peça" --persona persona-01 --acervo 0001
-inboundfy content status 0001 aprovado
+inboundfy content status 0001 revisao
+inboundfy content digest 0001
+# Inclua o ID, o caminho e o SHA-256 no relatório aprovado da validadora.
+inboundfy content status 0001 aprovado --audit-report 06-auditoria/assets/blog-0001.md
 inboundfy calendario add 2026-09-20 0001
+inboundfy content status 0001 agendado
+inboundfy content status 0001 publicado --url https://exemplo.test/artigo --published-at 2026-09-20
 inboundfy doctor --strict
 ```
+
+O CLI exige relatório vinculado ao SHA-256 atual antes de aprovar após revisão.
+Também recusa agendamento ou publicação se o texto mudar depois da auditoria.
+Consulte a [referência do pipeline e do CLI](docs/method/10-referencia-cli.md).
 
 ## Arquitetura das skills
 

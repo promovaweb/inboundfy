@@ -7,6 +7,7 @@ import { inventariar } from "../skills/inboundfy-setup/scripts/inventariar-fonte
 import { checkFiles, writeFiles } from "../scripts/gerenciar-skills.mjs";
 import { validateFramework } from "../scripts/validar-framework.mjs";
 import { collectSkillsPayload } from "../src/payload.js";
+import { PIPELINE_STATES } from "../src/pipeline.js";
 
 const RAIZ = resolve(import.meta.dirname, "..");
 const EXEMPLO = join(RAIZ, "examples", "validacao-assets");
@@ -37,8 +38,8 @@ const SEQUENCIAS_ESPERADAS = [
 ] as const;
 
 describe("validação de assets", () => {
-  test("framework completo e pareado", () => {
-    expect(validateFramework()).resolves.toEqual([]);
+  test("framework completo e pareado", async () => {
+    await expect(validateFramework()).resolves.toEqual([]);
   });
 
   test("arquitetura comum tem catálogo, interfaces e perfis", async () => {
@@ -59,9 +60,55 @@ describe("validação de assets", () => {
 
   test("payload de skills inclui a orquestradora", async () => {
     const payload = await collectSkillsPayload(".agents/skills");
-    expect(payload.map((item) => item.targetRelative)).toContain(
+    const targets = payload.map((item) => item.targetRelative);
+    expect(targets).toContain(
       ".agents/skills/inboundfy/SKILL.md",
     );
+    const shared = [
+      "01-preflight-e-fontes.md",
+      "02-contrato-de-artefato.md",
+      "03-interacao-e-handoff.md",
+      "04-validacao-e-retomada.md",
+      "05-contexto-editorial.md",
+    ];
+    for (const file of shared) {
+      expect(targets).toContain(`.agents/skills/_shared/${file}`);
+    }
+    const acervo = await readFile(
+      join(RAIZ, "skills", "inboundfy-acervo", "SKILL.md"),
+      "utf8",
+    );
+    for (const file of shared) {
+      expect(targets).toContain(`.agents/skills/_shared/${file}`);
+      expect(acervo).toContain(`../_shared/${file}`);
+    }
+  });
+
+  test("$inboundfy é a entrada principal e iniciar só encaminha", async () => {
+    const principal = await readFile(
+      join(RAIZ, "skills", "inboundfy", "SKILL.md"),
+      "utf8",
+    );
+    const alias = await readFile(
+      join(RAIZ, "skills", "inboundfy-iniciar", "SKILL.md"),
+      "utf8",
+    );
+    for (const fluxo of [
+      "inboundfy-brainstorm",
+      "inboundfy-estrategia",
+      "inboundfy-acervo",
+      "inboundfy-setup",
+      "inboundfy-aprendizado",
+      "inboundfy-anti-slop",
+    ]) {
+      expect(principal).toContain(fluxo);
+    }
+    expect(principal).toContain("entrada padrão");
+    expect(principal).toContain("operação isolada");
+    expect(alias).toContain("compatibilidade");
+    expect(alias).toContain("pedido original");
+    expect(alias).toContain("`$inboundfy`");
+    expect(alias).toContain("nenhuma gravação local");
   });
 
   test("script de enriquecimento é idempotente", () => {
@@ -147,14 +194,51 @@ describe("validação de assets", () => {
     const user = (await readdir(join(RAIZ, "docs", "user"))).filter((name) => /^\d\d-.*\.md$/.test(name)).sort();
     const method = (await readdir(join(RAIZ, "docs", "method"))).filter((name) => /^\d\d-.*\.md$/.test(name)).sort();
     expect(user).toHaveLength(11);
-    expect(method).toHaveLength(10);
+    expect(method).toHaveLength(11);
     expect(user[0]).toMatch(/^00-/);
     expect(user.at(-1)).toMatch(/^10-/);
     expect(method[0]).toMatch(/^00-/);
-    expect(method.at(-1)).toMatch(/^09-/);
+    expect(method.at(-1)).toMatch(/^10-/);
     expect(await readFile(join(RAIZ, "skills", "inboundfy-setup", "SKILL.md"), "utf8")).toContain(".inboundfy/framework/docs/");
     expect(await readFile(join(RAIZ, "INSTALACAO.md"), "utf8")).toContain(".inboundfy/framework/ebook/");
     expect((await readdir(join(RAIZ, "examples", "primeiro-projeto"))).filter((name) => name.endsWith(".md")).sort()).toEqual(["01-entrada.md", "02-relatorio-setup.md", "03-pedido.md", "04-resultado.md", "README.md"]);
+  });
+
+  test("referência do CLI acompanha comandos, opções e exemplos públicos", async () => {
+    const manual = await readFile(
+      join(RAIZ, "docs", "method", "10-referencia-cli.md"),
+      "utf8",
+    );
+    const cli = await readFile(join(RAIZ, "src", "cli.ts"), "utf8");
+    const digest = manual.split("## `content digest <id>`")[1]?.split("\n## ")[0] ?? "";
+    const status = manual.split("## `content status <id> <estado>`")[1] ?? "";
+    const examples = (section: string) =>
+      [...section.matchAll(/```bash\s*\n([\s\S]*?)\n```/gu)]
+        .flatMap((match) => match[1]?.split(/\r?\n/u) ?? [])
+        .filter((line) => /^inboundfy\s/u.test(line));
+
+    expect(cli).toContain('.command("digest <id>")');
+    expect(cli).toContain('.command("status <id> <estado>")');
+    expect(digest).toContain("`<id>`");
+    expect(status).toContain("`<estado>`");
+    expect(examples(digest).length).toBeGreaterThanOrEqual(5);
+    expect(examples(status).length).toBeGreaterThanOrEqual(5);
+    for (const option of [
+      "--project <pasta>",
+      "--json",
+      "--audit-report <arquivo>",
+      "--url <url>",
+      "--published-at <data>",
+    ]) {
+      expect(cli).toContain(option);
+      expect(manual).toContain(`\`${option}\``);
+    }
+    for (const field of ["ID", "asset", "sha256"]) {
+      expect(manual).toContain(field);
+    }
+    for (const statusName of PIPELINE_STATES) {
+      expect(status).toContain(`\`${statusName}\``);
+    }
   });
 
   test("ebook ordena todos os capítulos", async () => {

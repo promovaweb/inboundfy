@@ -1,6 +1,6 @@
 ---
 name: inboundfy-pipeline
-description: Gerencia os estados das peças de conteúdo, sincroniza frontmatter, calendário e índice e registra publicação com URL e data confirmadas.
+description: Gerencia os estados de conteúdo, confere passagens permitidas e vincula aprovação ao relatório e ao SHA-256 atual antes de agendar ou publicar.
 ---
 
 # Pipeline
@@ -27,6 +27,22 @@ Se a configuração estiver incompleta, acione `inboundfy-setup`. Consulte
 Leia [REFERENCIA.md](REFERENCIA.md), `.inboundfy/pipeline.md`, o README da peça,
 `.inboundfy/indices/conteudos.json` e a linha correspondente do calendário.
 
+## Estados e passagens
+
+- `rascunho` → `revisao` ou `arquivado`
+- `revisao` → `rascunho`, `aprovado` ou `arquivado`
+- `aprovado` → `revisao`, `agendado`, `publicado` ou `arquivado`
+- `agendado` → `revisao`, `aprovado`, `publicado` ou `arquivado`
+- `publicado` → `arquivado`
+- `arquivado` não avança
+
+Ao sair de `revisao` para `aprovado`, exija relatório aprovado em
+`--audit-report`. O relatório precisa conter ID, caminho da peça, SHA-256
+atual e `Veredito: aprovado`. Obtenha o hash com
+`inboundfy content digest <id>`. Ao voltar para `revisao` ou `rascunho`, a
+aprovação anterior perde validade. Alteração no texto também impede
+agendamento ou publicação até nova revisão e novo relatório.
+
 ## Entrada esperada
 
 ID da peça e estado desejado: `rascunho`, `revisao`, `aprovado`, `agendado`,
@@ -34,10 +50,12 @@ ID da peça e estado desejado: `rascunho`, `revisao`, `aprovado`, `agendado`,
 
 ## Fluxo
 
-1. Confira a passagem permitida no pipeline.
-2. Atualize o frontmatter do `README.md` da peça, o índice e o calendário.
-3. Ao publicar, exija URL, data e confirmação do responsável.
-4. Preserve histórico no próprio README quando houver mudança relevante.
+1. Confira se a passagem do estado atual para o estado solicitado é permitida.
+2. Para aprovar após revisão, confira o relatório e o hash do arquivo atual.
+3. Atualize frontmatter, índice e calendário; invalide a aprovação ao voltar
+   para revisão ou rascunho.
+4. Ao publicar, exija URL e data no formato ISO.
+5. Preserve histórico no próprio README quando houver mudança relevante.
 
 ## Saída
 
@@ -45,8 +63,9 @@ Peça, índice e calendário com o mesmo estado e os mesmos dados de publicaçã
 
 ## Validação
 
-Recuse estado desconhecido, canal não selecionado, persona ausente e publicação
-sem URL ou data.
+Recuse estado desconhecido, passagem não permitida, relatório ausente ou
+divergente, peça alterada após aprovação, canal não selecionado, persona
+ausente e publicação sem URL ou data.
 
 ## Responsabilidade do grupo
 

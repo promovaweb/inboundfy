@@ -27,7 +27,8 @@ entre fontes são explicitados e não podem ser resolvidos por invenção.
 `context/proibicoes.md` reúne vetos do negócio.
 `context/estruturas-proibidas.md` reúne padrões genéricos de escrita
 artificial. A validação faz um passe literal e outro semântico. Uma ocorrência
-reprova o asset, independentemente de nota, estética ou SEO.
+reprova o asset, independentemente de outros aspectos de escrita, estética ou
+SEO.
 
 Detalhes de precedência estão em [CONTEXTO.md](../../CONTEXTO.md).
 

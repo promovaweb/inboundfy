@@ -61,8 +61,8 @@ ativos de apoio e objetivo do episódio.
    e links citados durante a conversa, cada um confirmado contra
    `context/ferramentas.md` ou `context/produtos.md` quando aplicável.
 4. Rode `inboundfy-copy-editor` nos shownotes (texto de prosa); ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija trechos
-   abaixo de 90%. A pauta, por ser guia interno de blocos, não passa pela
-   mesma auditoria de prosa pública.
+   os achados verificáveis e repita a leitura integral. A pauta, por ser guia
+   interno de blocos, não passa pela mesma auditoria de prosa pública.
 5. Salve com frontmatter incluindo `apresentadores`, `convidado` (se
    houver), `data` e `brief` quando fizer parte de um pacote.
 6. Encaminhe para `inboundfy-planejamento`.
@@ -83,7 +83,7 @@ salvos no caminho de `context/canais.md` para o canal podcast.
 - Apresentador(es)/convidado conferem com `context/pessoas.md`.
 - Links citados nos shownotes conferem com `context/ferramentas.md` ou
   `context/produtos.md`.
-- Nenhum trecho de shownotes abaixo de 90% na auditoria de `inboundfy-copy-editor`.
+- Os achados dos shownotes foram tratados e a leitura integral foi repetida.
 - Aprovação registrada por `inboundfy-validador-podcast`.
 
 ## Responsabilidade do grupo

@@ -233,9 +233,9 @@ preparação.
   até aprovação ou bloqueio factual apresentado ao usuário.
 - Toda validadora aplica `context/proibicoes.md` e
   `context/estruturas-proibidas.md` como hard gates. Qualquer ocorrência
-  literal, semântica ou estrutural reprova o asset, sem compensação por nota,
-  SEO, estética ou outro critério aprovado. Depois da correção, os dois
-  passes são repetidos sobre o asset inteiro.
+  literal, semântica ou estrutural reprova o asset, sem compensação por SEO,
+  estética ou outros aspectos aprovados. Depois da correção, os dois passes
+  são repetidos sobre o asset inteiro.
 - Toda validadora procura `brand/`. Quando a pasta existir, lê seus Markdown
   e inspeciona logos, tokens, cores, tipografia e aplicações relevantes. Uma
   divergência de marca reprova o asset ou bloqueia a decisão quando houver

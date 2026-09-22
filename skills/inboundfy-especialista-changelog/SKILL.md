@@ -63,7 +63,7 @@ interno, sem
    prosa decorativa. Use o template de entrada de `REFERENCIA.md`.
 4. Classifique o tipo de mudança quando o formato do canal pedir (novidade,
    melhoria, correção).
-5. Rode `inboundfy-copy-editor` na entrada; ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija se abaixo de 90%; mesmo texto
+5. Rode `inboundfy-copy-editor` na entrada, trate os achados verificáveis e repita a leitura integral; mesmo texto
    técnico segue `ESCRITA.md` na parte que é prosa para o leitor.
 6. Salve com frontmatter incluindo `data`, `tipo` e `brief` quando fizer
    parte de um pacote.
@@ -85,7 +85,7 @@ Arquivo Markdown da entrada de changelog, salvo no caminho de
 - Nome de produto/funcionalidade confere com `context/produtos.md` e
   `context/glossario.md`.
 - Entrada diz claramente o que muda para as pessoas afetadas.
-- Nenhum trecho abaixo de 90% na auditoria de `inboundfy-copy-editor`.
+- Os achados de `inboundfy-copy-editor` foram tratados e a leitura integral foi repetida.
 - Aprovação registrada por `inboundfy-validador-changelog`.
 
 ## Responsabilidade do grupo

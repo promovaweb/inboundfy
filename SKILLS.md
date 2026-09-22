@@ -3,9 +3,13 @@
 Este índice organiza as skills de `skills/` nas famílias definidas em
 `SKILL-AUTORIA.md`, com wrappers, instalação, orquestrador e capacidades de
 apoio. Toda skill segue o contrato de `SKILL-AUTORIA.md`. Use a tabela para
-escolher a skill certa
-por grupo, fase sequencial (`METODOLOGIA.md`), etapa estratégica
-(`ESTRATEGIA.md`), capacidade transversal ou canal de entrega.
+localizar responsabilidades por grupo, fase sequencial (`METODOLOGIA.md`),
+etapa estratégica (`ESTRATEGIA.md`), capacidade transversal ou canal de entrega.
+
+Use `$inboundfy` como entrada padrão para qualquer solicitação. Ela confere o
+setup e encaminha a tarefa ao grupo apropriado. Chame uma skill especialista
+diretamente quando a solicitação já definir a operação e o usuário pedir esse
+atalho. `inboundfy-iniciar` permanece como alias compatível.
 
 O catálogo contém 114 skills: 20 especialistas de canal, 20 validadoras,
 25 capacidades de growth, 6 capacidades de copy, 7 skills de contexto, 4 de
@@ -19,7 +23,8 @@ e `agents/openai.yaml`.
 ## Mapa de execução canônico
 
 ```text
-instalação ausente ──→ setup
+usuário ──→ $inboundfy ──→ setup | brainstorm [00–04] | estratégia [00–03]
+                                      | acervo | peça direta
 ideia ──→ brainstorm [00–04] ──┐
 campanha ──→ estratégia [00–03]├──→ planejamento [00–06]
 material bruto ──────────────┘        ↓
@@ -34,7 +39,11 @@ Os números representam etapas internas obrigatórias. Cada grupo tem uma única
 skill pública e referências numeradas dentro de `references/etapas/`. Base,
 contexto, especialistas e validadoras são selecionadas pela responsabilidade.
 
-## Como escolher o grupo certo
+## Como a orquestradora escolhe o grupo
+
+O usuário não precisa escolher um grupo. Descreva o pedido a `$inboundfy`; as
+linhas abaixo explicam o roteamento interno e permitem uso especializado
+quando necessário.
 
 - Existe apenas uma ideia, sem tese e pesquisa → `inboundfy-brainstorm`,
   informando a etapa interna quando necessário.
@@ -60,8 +69,9 @@ o resto do catálogo.
 | Skill | Papel |
 | --- | --- |
 | [inboundfy-setup](skills/inboundfy-setup/SKILL.md) | Instala, atualiza e repara os arquivos de apoio, além de inventariar os Markdown em maiúsculas do projeto sem alterar as fontes. |
+| [inboundfy](skills/inboundfy/SKILL.md) | Entrada padrão: verifica setup e encaminha ideias, campanhas, acervo e pedidos de conteúdo. |
 | [inboundfy-brainstorm](skills/inboundfy-brainstorm/SKILL.md) | Executa automaticamente as fases 00 a 04 do brainstorm e entrega `brainstorm.md` aprovado. |
-| [inboundfy-iniciar](skills/inboundfy-iniciar/SKILL.md) | Recebe ideia ou peça-base, aciona o fluxo necessário e entrega uma ou várias peças auditadas. |
+| [inboundfy-iniciar](skills/inboundfy-iniciar/SKILL.md) | Alias compatível que encaminha pedidos para `inboundfy`. |
 | [inboundfy-acervo](skills/inboundfy-acervo/SKILL.md) | Skill mestre: conduz entrada, processamento, pesquisa, base editorial, estratégia, produção, validação, calendário e catálogo. |
 | [inboundfy-extrair-faq](skills/inboundfy-extrair-faq/SKILL.md) | Extrai perguntas, respostas, fontes e lacunas de cada item do acervo. |
 
@@ -275,9 +285,8 @@ asset só avança após nova rodada aprovada.
 
 ## Regra central
 
-Use `inboundfy-setup` num projeto novo. Para uma ideia, use
-`inboundfy-brainstorm`. Para material bruto ou peça-base, use `inboundfy-acervo`,
-a skill mestre que coordena o ciclo até a saída. O `inboundfy-iniciar` continua
-disponível como atalho compatível. Para campanha nova, comece por
-`inboundfy-estrategia`. Skills individuais servem para
-controlar ou retomar uma fase específica.
+Use `$inboundfy` como ponto inicial. Ela aciona `inboundfy-setup` num projeto
+novo, `inboundfy-brainstorm` para ideias, `inboundfy-estrategia` para campanhas,
+`inboundfy-acervo` para material-base e especialistas para peças com brief
+completo. Skills individuais continuam disponíveis para retomada de fase e
+pedidos avançados explícitos. `inboundfy-iniciar` é somente um alias compatível.

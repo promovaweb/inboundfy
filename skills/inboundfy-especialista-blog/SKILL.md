@@ -97,7 +97,7 @@ específicas da peça.
    funcionalidade ou preço.
 7. Feche com uma ação real, não uma frase decorativa. Use CTA definido em
    `context/marca-voz.md` quando existir um padrão.
-8. Rode `inboundfy-copy-editor` no rascunho; ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija todo parágrafo abaixo de 90%.
+8. Rode `inboundfy-copy-editor` no rascunho, trate os achados verificáveis e repita a leitura integral.
 9. Rode `inboundfy-base-seo` no perfil de metadata para confirmar title, description
    e slug finais.
 10. Salve o artigo com frontmatter incluindo, no mínimo: `title`,
@@ -121,7 +121,7 @@ Artigo em Markdown com frontmatter, salvo no caminho definido em
 
 ## Validação
 
-- Nenhum parágrafo abaixo de 90% na auditoria de `inboundfy-copy-editor`.
+- Os achados de `inboundfy-copy-editor` foram tratados e a leitura integral foi repetida.
 - Título, description e slug validados por `inboundfy-base-seo`.
 - Toda afirmação sobre produto, serviço, preço ou ferramenta confere com
   `context/`.

@@ -81,8 +81,8 @@ veredito e as pendências, se houver.
 
 #### Validação
 
-- Todo parágrafo de texto está com nota igual ou acima de 90% em
-  `inboundfy-copy-editor`, ou a pendência de correção está listada.
+- A prosa passou por `inboundfy-copy-editor`; os achados verificáveis foram
+  tratados ou aparecem como pendência explícita.
 - Nenhuma violação de `context/proibicoes.md` ou `context/estruturas-proibidas.md` passou sem registro.
 - O marco A6 do anti-slop foi executado e está registrado antes do veredito final.
 - O campo `brief` está presente no artefato aprovado, quando aplicável.
@@ -119,8 +119,8 @@ anterior quando relevante para o usuário.
 - **Relatório individual:** 06-auditoria/assets/<canal>-<item>.md
 - **Validadora pareada:** <inboundfy-validador-*>
 - **Veredito individual:** <aprovado | ausente | reprovado>
-- **Nota média de inboundfy-copy-editor:** <nota>
-- **Parágrafos abaixo de 90%:** <lista ou "nenhum">
+- **Auditoria de copy:** <sem achados | achados tratados | pendências>
+- **Achados e ações:** <localização, regra, diagnóstico e correção; ou "nenhum">
 - **Verificação de context/proibicoes.md:** <sem violação | violação encontrada em: ...>
 - **Verificação de estrutura persuasiva:** <blocos presentes e na ordem certa | bloco ausente: ... | não aplicável>
 - **Validação própria do canal:** <formato de imagem, contagem de caracteres, metadata de SEO; resultado>
@@ -134,8 +134,8 @@ anterior quando relevante para o usuário.
 
 - **Brief de origem:** 04-briefs/email-nutricao-migracao-estoque.md
 - **Veredito:** aprovado
-- **Nota média de inboundfy-copy-editor:** 94
-- **Parágrafos abaixo de 90%:** nenhum
+- **Auditoria de copy:** sem achados
+- **Achados e ações:** nenhum
 - **Verificação de context/proibicoes.md:** sem violação
 - **Verificação de estrutura persuasiva:** PAS; problema, agitação e
   solução presentes na ordem certa
@@ -151,9 +151,10 @@ anterior quando relevante para o usuário.
 
 - **Brief de origem:** 04-briefs/linkedin-opiniao-atendimento-reativo.md
 - **Veredito:** reprovado
-- **Nota média de inboundfy-copy-editor:** 81
-- **Parágrafos abaixo de 90%:** parágrafo 2 (abertura genérica "no cenário
-  atual das empresas..."), parágrafo 4 (frase decorativa de fechamento)
+- **Auditoria de copy:** pendências
+- **Achados e ações:** parágrafo 2, abertura genérica "no cenário atual das
+  empresas...", substituir por situação observável; parágrafo 4, fechamento
+  decorativo, remover e manter a consequência concreta.
 - **Verificação de context/proibicoes.md:** sem violação
 - **Verificação de estrutura persuasiva:** PAS; bloco de agitação ausente,
   o texto pula direto do problema para a solução
@@ -179,8 +180,8 @@ anterior quando relevante para o usuário.
 
 ##### Erros comuns
 
-- Aprovar uma peça com nota média acima de 90 mas com um parágrafo
-  individual abaixo de 90; a média não substitui a checagem por parágrafo.
+- Aprovar uma peça sem tratar achado individual apontado pela auditoria de
+  copy.
 - Reprovar por escrita quando o problema real é o brief (ângulo errado,
   público errado); nesse caso o veredito certo é "devolvido para
   replanejamento", não "reprovado".

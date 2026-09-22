@@ -4,7 +4,7 @@ Preenchido e mantido por inboundfy-contexto-marca. Diferente de proibicoes.md
 arquivo cataloga padrões de escrita que denunciam texto gerado por IA sem
 revisão humana — válido para qualquer negócio, em qualquer canal. Use os
 dois arquivos juntos: inboundfy-copy-editor aplica ambos na mesma auditoria de
-parágrafo, e uma violação aqui também pode impor teto de nota (ver
+parágrafo, e uma violação aqui também reprova o texto (ver
 ESCRITA.md).
 
 Este arquivo já vem pré-preenchido com um catálogo genérico de padrões

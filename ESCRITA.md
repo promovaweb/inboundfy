@@ -56,7 +56,9 @@ verificaria ou corrigiria.
 ## Auditoria por parágrafo
 
 Toda peça final passa por `inboundfy-copy-editor` antes de ser considerada pronta.
-A auditoria atribui uma nota de `0` a `100` por parágrafo, contra:
+A auditoria registra achados verificáveis por trecho, sempre com localização,
+regra ou fonte, diagnóstico e ação aplicada ou pendente. Não atribui nota,
+média ou percentual editorial. A leitura compara:
 
 1. `context/proibicoes.md` — vetos específicos do usuário, se existirem.
 2. `context/estruturas-proibidas.md` — catálogo genérico de palavra, frase e
@@ -65,10 +67,12 @@ A auditoria atribui uma nota de `0` a `100` por parágrafo, contra:
 4. `context/marca-voz.md` — voz, tom e vocabulário próprios.
 5. A validação própria do canal, quando a skill de canal declarar uma.
 
-Se um parágrafo violar `context/proibicoes.md` ou
-`context/estruturas-proibidas.md`, a nota final desse parágrafo não pode
-passar de `69`. Parágrafos abaixo de `90%` devem ser reescritos antes da
-entrega, com a correção registrada.
+Uma ocorrência de `context/proibicoes.md` ou
+`context/estruturas-proibidas.md` reprova o texto até ser removida ou até uma
+exceção explícita da fonte canônica ser confirmada. Problemas graduais de voz,
+ritmo e clareza devem apontar o trecho observado e uma alteração concreta,
+sem criar uma escala numérica subjetiva. Após as mudanças, repita a leitura
+completa e atualize o relatório.
 
 Um parágrafo abaixo de 11 palavras não é automaticamente reprovado — frase
 curta e completa pode ser o fechamento certo de uma ideia. A reprovação exige

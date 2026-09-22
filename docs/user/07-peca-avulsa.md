@@ -1,7 +1,8 @@
 # Peça avulsa
 
-Use o caminho direto somente quando o pedido já contiver um brief mínimo
-claro: canal, objetivo, público, mensagem, CTA, formato e restrições.
+Envie o pedido a `$inboundfy`. Quando já houver um brief mínimo claro, a
+orquestradora encaminha a peça avulsa ao especialista: canal, objetivo,
+público, mensagem, CTA, formato e restrições.
 
 ## Passo a passo
 
@@ -51,9 +52,9 @@ esses campos por inferência.
 
 ## Quando usar o pacote completo
 
-Use `inboundfy-iniciar` quando ainda for necessário pesquisar, comparar canais,
-extrair várias oportunidades ou criar mais de uma peça. O caminho avulso
-economiza orquestração, mas não substitui decisões ausentes.
+Use o fluxo completo de `$inboundfy` quando ainda for necessário pesquisar,
+comparar canais, extrair oportunidades ou criar mais de uma peça. Especialistas
+diretos permanecem disponíveis para pedidos explícitos e briefs completos.
 
 ## Classificação
 

@@ -104,7 +104,7 @@ ativos de apoio e CTA esperado.
    correspondente, nunca por suposição, aplicando FAB quando for o caso.
 5. Feche com um único CTA claro, usando a assinatura padrão de
    `context/marca-voz.md` quando existir.
-6. Rode `inboundfy-copy-editor`; ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija parágrafos abaixo de 90%.
+6. Rode `inboundfy-copy-editor`, trate os achados verificáveis e repita a leitura integral.
 7. Salve o e-mail com frontmatter incluindo, no mínimo, `assunto`,
    `pre-header`, `estrutura` (aida/pas/pastor/nenhuma) e `brief` quando fizer
    parte de um pacote, seguindo o template de `REFERENCIA.md`.
@@ -125,7 +125,7 @@ Arquivo Markdown com frontmatter, salvo no caminho definido em
 ## Validação
 
 - Assunto e pré-header presentes e alinhados ao objetivo do brief.
-- Nenhum parágrafo abaixo de 90% na auditoria de `inboundfy-copy-editor`.
+- Os achados de `inboundfy-copy-editor` foram tratados e a leitura integral foi repetida.
 - CTA único e claro.
 - Toda afirmação sobre produto, serviço ou oferta confere com `context/`.
 - Quando o brief declarar estrutura persuasiva, todos os blocos dela estão

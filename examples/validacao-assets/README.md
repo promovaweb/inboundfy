@@ -40,4 +40,4 @@ npm test
 
 O candidato reprovado contém linguagem ruim de propósito. Ele não é modelo
 de escrita; serve para provar que uma única violação impede a aprovação,
-mesmo quando o restante da peça poderia receber boa nota.
+mesmo quando o restante da peça apresenta boa qualidade.

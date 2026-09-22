@@ -172,8 +172,8 @@ atual, preservando o restante.
   desatualizado e erra pedido de compra. Solução: passo a passo guiado de
   importação, com suporte disponível na primeira tentativa.
 - **regra de pronto:** e-mail com assunto, pré-header, corpo seguindo PAS,
-  CTA único para iniciar a importação, nenhum parágrafo abaixo de 90% em
-  `inboundfy-copy-editor`.
+  CTA único para iniciar a importação e achados verificáveis de copy tratados
+  após leitura integral em `inboundfy-copy-editor`.
 ```
 
 ##### Checklist de qualidade

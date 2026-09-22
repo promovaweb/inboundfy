@@ -87,7 +87,7 @@ pacote, quando existir) e, se já definida, a estrutura de capítulos.
    quando o brief indicar que o ebook tem função de geração de demanda.
 5. Feche cada capítulo com transição para o próximo, e o ebook inteiro com
    CTA único e claro.
-6. Rode `inboundfy-copy-editor` por capítulo; ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija parágrafos abaixo de 90%.
+6. Rode `inboundfy-copy-editor` por capítulo, trate os achados verificáveis e repita a leitura integral.
 7. Salve com frontmatter incluindo `titulo`, `promessa`, sumário de
    capítulos e `brief` quando fizer parte de um pacote.
 8. Encaminhe para `inboundfy-especialista-ebook-imagem` e depois para `inboundfy-planejamento`.
@@ -107,7 +107,7 @@ ebook.
 ## Validação
 
 - Progressão de capítulos é lógica, sem repetição de conteúdo entre eles.
-- Nenhum parágrafo abaixo de 90% na auditoria de `inboundfy-copy-editor`.
+- Os achados de `inboundfy-copy-editor` foram tratados e a leitura integral foi repetida.
 - Menção institucional confere com `context/`.
 - Aprovação registrada por `inboundfy-validador-ebook`.
 

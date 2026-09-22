@@ -20,7 +20,11 @@ import { resolve } from "node:path";
 import { addAcervo, listAcervo, processAcervo } from "./acervo.js";
 import { createContent } from "./content.js";
 import { addToCalendar, listCalendar } from "./calendar.js";
-import { PIPELINE_STATES, updateContentStatus } from "./pipeline.js";
+import {
+  getContentDigest,
+  PIPELINE_STATES,
+  updateContentStatus,
+} from "./pipeline.js";
 import { ensureChannelDirectories, readSelectedChannels } from "./project-structure.js";
 import type { AgentKind, ChannelId, OperationMode } from "./types.js";
 
@@ -164,6 +168,20 @@ const content = program
   .description("cria saídas finais organizadas por canal");
 
 content
+  .command("digest <id>")
+  .description("calcula o SHA-256 da peça para vinculá-lo ao relatório de validação")
+  .action(async function (this: Command, id: string) {
+    const globals = this.optsWithGlobals() as GlobalOptions;
+    const root = await resolveProjectRoot(globals.project);
+    const result = await getContentDigest(root, id);
+    process.stdout.write(
+      globals.json
+        ? `${JSON.stringify(result, null, 2)}\n`
+        : `Peça ${result.id}: ${result.asset}\nSHA-256: ${result.sha256}\n`,
+    );
+  });
+
+content
   .command("create <canal> <titulo>")
   .description("cria a pasta final do canal com README e frontmatter")
   .addOption(new Option("--persona <id>", "persona vinculada").default([]))
@@ -183,18 +201,20 @@ content
 content
   .command("status <id> <estado>")
   .description("atualiza o estado da peça e seus metadados de publicação")
+  .addOption(new Option("--audit-report <arquivo>", "relatório aprovado vinculado à peça"))
   .addOption(new Option("--url <url>", "URL da publicação"))
   .addOption(new Option("--published-at <data>", "data de publicação no formato ISO"))
   .action(async function (
     this: Command,
     id: string,
     status: string,
-    options: { url?: string; publishedAt?: string },
+    options: { auditReport?: string; url?: string; publishedAt?: string },
   ) {
     const globals = this.optsWithGlobals() as GlobalOptions;
     const root = await resolveProjectRoot(globals.project);
     const result = await updateContentStatus(root, id, {
       status: status as (typeof PIPELINE_STATES)[number],
+      ...(options.auditReport ? { auditReport: options.auditReport } : {}),
       ...(options.url ? { url: options.url } : {}),
       ...(options.publishedAt ? { publishedAt: options.publishedAt } : {}),
     });

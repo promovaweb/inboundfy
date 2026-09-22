@@ -4,6 +4,26 @@ As mudanças relevantes do Inboundfy são registradas neste arquivo. A versão d
 framework, do CLI, do pacote npm, da tag Git e da GitHub Release é sempre a
 mesma.
 
+## 0.3.0 (2026-09-22)
+
+### Pipeline
+
+- Vincula a aprovação de uma peça ao relatório de auditoria e ao SHA-256 do
+  arquivo validado.
+- Adiciona `content digest` e valida as transições entre rascunho, revisão,
+  aprovação, agendamento, publicação e arquivamento.
+- Exige URL HTTP(S) e data válida para registrar uma publicação e recusa o
+  avanço quando o conteúdo muda depois da auditoria.
+
+### Skills e documentação
+
+- Define `$inboundfy` como entrada principal e mantém `inboundfy-iniciar` como
+  alias compatível.
+- Revisa os contratos editoriais, o manual, a referência do CLI e os exemplos
+  de validação e retomada.
+- Amplia a validação do pacote npm com um fluxo isolado completo, da entrada no
+  acervo até a publicação.
+
 ## 0.2.0 (2026-09-15)
 
 ### Organização

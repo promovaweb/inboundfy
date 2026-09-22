@@ -72,9 +72,8 @@ editorial (termo, promessa ou comparação que nunca deve aparecer).
    própria produção, remover um item que a voz da marca aceita de propósito
    (ex.: marca que usa emoji deliberadamente), ou ajustar por preferência
    editorial confirmada.
-6. Nunca infira um veto a partir de uma preferência de estilo; veto duro
-   (teto de nota 69 em `inboundfy-copy-editor`) é diferente de vocabulário evitado
-   por preferência, que fica em "Vocabulário evitado" de `marca-voz.md`.
+6. Nunca transforme preferência de estilo em veto; registre a diferença entre
+   veto explícito e vocabulário evitado em `marca-voz.md`.
 
 ## Saída
 

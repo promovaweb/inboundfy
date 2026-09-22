@@ -1,8 +1,8 @@
 # Primeiro pacote editorial
 
-Use `inboundfy-acervo` com material bruto, uma peça-base, um brainstorm aprovado
-ou um item de calendário que possa originar várias peças. Essa é a skill mestre
-do ciclo completo. `inboundfy-iniciar` oferece o mesmo percurso como atalho.
+Envie material bruto, peça-base, brainstorm aprovado ou item de calendário a
+`$inboundfy`. A orquestradora aciona `inboundfy-acervo` e conduz o ciclo
+completo. `inboundfy-iniciar` é um alias compatível para a mesma entrada.
 
 ## Passo a passo
 

@@ -135,8 +135,9 @@ reprovar, devolve o relatório à produtora e o ciclo se repete.
 
 Proibições são hard gates: a validadora faz um passe literal e outro
 semântico/estrutural sobre o asset inteiro. Uma única ocorrência reprova a
-peça, mesmo que a nota média, o SEO ou as demais regras estejam
-aprovados. Depois da correção, os dois passes recomeçam do zero. Se `brand/`
+peça; qualidade de SEO ou outros aspectos não anulam esse resultado. O
+relatório aponta trecho, regra, diagnóstico e ação. Depois da correção, os
+dois passes recomeçam do zero. Se `brand/`
 existir, as diretrizes e os ativos aplicáveis da pasta também entram na
 aprovação.
 

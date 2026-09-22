@@ -7,7 +7,7 @@ Use o template de `inboundfy-base-validador` com a produtora
 
 - [ ] Todo número possui fonte rastreável e vigente.
 - [ ] Cada bloco funciona isoladamente e na sequência.
-- [ ] A legenda pública alcança 90%.
+- [ ] A legenda foi lida por inteiro e cada achado verificável foi tratado.
 - [ ] O alt text descreve o conteúdo, sem repetir apenas o título.
 - [ ] FAB aparece quando o infográfico apresenta produto.
 

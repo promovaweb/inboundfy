@@ -91,7 +91,7 @@ promessa da sessão e CTA de inscrição.
 4. Se o evento tiver agenda ou tópicos, liste-os de forma verificável;    evite tópico genérico que qualquer webinar do mercado poderia anunciar.
 5. Escreva o CTA de inscrição, claro sobre o próximo passo (bloco de
    Resposta do PASTOR).
-6. Rode `inboundfy-copy-editor`; ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija parágrafos abaixo de 90%.
+6. Rode `inboundfy-copy-editor`, trate os achados verificáveis e repita a leitura integral.
 7. Salve com frontmatter incluindo `data`, `apresentador`, `formato`,
    `estrutura` (pastor/aida/nenhuma) e `brief` quando fizer parte de um
    pacote.
@@ -112,7 +112,7 @@ Arquivo Markdown com a copy da página/convite, salvo no caminho de
 ## Validação
 
 - Apresentador confere com `context/pessoas.md`.
-- Nenhum parágrafo abaixo de 90% na auditoria de `inboundfy-copy-editor`.
+- Os achados de `inboundfy-copy-editor` foram tratados e a leitura integral foi repetida.
 - Agenda ou tópicos são específicos, não genéricos.
 - Aprovação registrada por `inboundfy-validador-webinar`.
 

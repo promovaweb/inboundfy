@@ -87,7 +87,7 @@ apresentador (se houver), ativos de apoio e duração aproximada.
 5. Aplique `ESCRITA.md` no texto falado, com frases feitas para serem
    ouvidas, não lidas; ritmo de fala real, não prosa de artigo.
 6. Feche com CTA falado.
-7. Rode `inboundfy-copy-editor` no texto falado; ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija trechos abaixo de 90%.
+7. Rode `inboundfy-copy-editor` no texto falado, trate os achados verificáveis e repita a leitura integral.
 8. Salve com frontmatter incluindo `formato`, `apresentador` (se houver) e
    `brief` quando fizer parte de um pacote.
 9. Encaminhe para `inboundfy-especialista-video-imagem` e depois para `inboundfy-planejamento`.
@@ -106,7 +106,7 @@ Arquivo Markdown com cenas ou outline, salvo no caminho definido em
 ## Validação
 
 - Apresentador, quando definido, está dentro da competência registrada.
-- Nenhum trecho abaixo de 90% na auditoria de `inboundfy-copy-editor`.
+- Os achados de `inboundfy-copy-editor` foram tratados e a leitura integral foi repetida.
 - Cena com apoio visual indicado não prescreve edição fora do escopo.
 - Aprovação registrada por `inboundfy-validador-video`.
 

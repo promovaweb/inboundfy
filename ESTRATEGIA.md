@@ -18,6 +18,10 @@ registra a ordem de abertura de uma campanha;
 pesquisa, plano e calendário podem ser reabertos depois sem repetir etapas
 que continuam válidas.
 
+Para novos pedidos, use `$inboundfy`; a orquestradora encaminha campanhas a
+`inboundfy-estrategia`. A chamada direta da skill continua disponível para
+retomar uma fase específica ou quando solicitada.
+
 ## As quatro skills do grupo
 
 ### 00. Kickoff (`inboundfy-estrategia`)

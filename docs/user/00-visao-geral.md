@@ -1,8 +1,15 @@
 # Visão geral
 
-## Escolha pelo estado da entrada
+## Um ponto de entrada
 
-| O que já existe | Ponto de entrada | Resultado |
+Use `$inboundfy` para qualquer pedido. Conte o que você tem e o que pretende
+produzir; a orquestradora verifica o setup e escolhe o fluxo. Você não precisa
+memorizar nomes de skills. Especialistas continuam disponíveis para tarefas
+isoladas quando você pedir esse caminho diretamente.
+
+## Roteamento interno
+
+| O que já existe | Fluxo interno | Resultado |
 | --- | --- | --- |
 | Uma ideia curta | `inboundfy-brainstorm` | Brainstorm validado |
 | Uma campanha a definir | Estratégia `00` | Plano e calendário |
@@ -12,12 +19,13 @@
 
 ## Sequências automáticas
 
+`inboundfy` encaminha ideias a `inboundfy-brainstorm`, campanhas a
+`inboundfy-estrategia` e material bruto a `inboundfy-acervo`.
 `inboundfy-brainstorm` executa `00` a `04`. `inboundfy-acervo` conduz o ciclo
 completo de um material: registro, processamento, FAQ, pesquisa, base
 editorial, possibilidades, escolha de canais e personas, produção, revisão,
-calendário e catálogo. `inboundfy-iniciar` permanece como atalho que encaminha
-esse fluxo. Cada asset produzido passa pela validadora do canal antes da
-auditoria final.
+calendário e catálogo. `inboundfy-iniciar` permanece como alias compatível.
+Cada asset produzido passa pela validadora do canal antes da auditoria final.
 
 Não chame uma fase numerada fora de ordem, exceto para retomar um pacote no
 estado registrado. Skills base, de contexto, especialistas e validadoras não
@@ -43,9 +51,9 @@ Exemplo:
 > Tenho a transcrição de uma conversa com um cliente. Quero encontrar ideias
 > para blog e LinkedIn, sem publicar nada automaticamente.
 
-`inboundfy-acervo` identifica o material bruto, abre o pipeline completo e
-respeita os dois canais informados. Se você chamar `inboundfy-iniciar`, ele
-encaminhará a mesma execução.
+`$inboundfy` identifica o material bruto, inicia o acervo e respeita os canais
+informados. Especialistas e etapas podem ser chamados diretamente para uma
+operação isolada, mas o fluxo padrão começa na orquestradora.
 
 ## O que o Inboundfy não faz sozinho
 

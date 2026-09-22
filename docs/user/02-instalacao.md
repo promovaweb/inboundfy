@@ -110,10 +110,33 @@ registra canal, persona, acervo, estado, datas e vínculos editoriais.
 Use o pipeline e o calendário:
 
 ```bash
-inboundfy content status 0001 revisao
-inboundfy content status 0001 aprovado
 inboundfy calendario add 2026-09-20 0001
+inboundfy content status 0001 revisao
+inboundfy content digest 0001
 ```
+
+Depois da auditoria final, acrescente ao relatório da validadora o ID, o
+caminho retornado pelo comando e o SHA-256 atual, neste formato:
+
+```markdown
+- **ID da peça:** `0001`
+- **Asset:** `canais/blog/0001-AAAA-MM-DD-titulo/README.md`
+- **SHA-256 da peça:** `<hash de 64 caracteres retornado pelo CLI>`
+- **Veredito:** aprovado
+```
+
+Use o caminho do relatório ao registrar a aprovação e o agendamento:
+
+```bash
+inboundfy content status 0001 aprovado \
+  --audit-report 06-auditoria/assets/blog-0001.md
+inboundfy content status 0001 agendado
+```
+
+O CLI recusa aprovação sem esse relatório, confere se ID, caminho e hash
+correspondem à peça e invalida a aprovação se o conteúdo mudar. Se houver
+correção posterior, retorne para `revisao`, repita a auditoria completa e
+atualize o relatório.
 
 Antes de publicar, a peça passa por voz, persona, dicionário, proibições,
 anti-slop e validador do canal. A publicação exige URL e data:
@@ -123,6 +146,9 @@ inboundfy content status 0001 publicado \
   --url https://exemplo.test/artigo \
   --published-at 2026-09-20
 ```
+
+Consulte [a referência do CLI e dos estados](../method/10-referencia-cli.md)
+para as passagens permitidas e as respostas completas dos comandos.
 
 ## Atualização e reparo
 
