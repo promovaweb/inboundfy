@@ -24,7 +24,7 @@ jobs:
           cache: npm
 
       - name: Instalar ferramentas de verificação do ebook
-        run: sudo apt-get update && sudo apt-get install -y libxml2-utils poppler-utils unzip
+        run: sudo apt-get update && sudo apt-get install -y libxml2-utils pandoc poppler-utils unzip
 
       - name: Instalar dependências
         run: npm ci

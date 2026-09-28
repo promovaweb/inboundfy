@@ -14,6 +14,7 @@ mesma.
 ### Correções
 
 * Gera o HTML do guia antes dos testes que conferem o ebook.
+* Instala `pandoc` no CI para compilar o ebook durante a validação.
 
 ## 0.3.0 (2026-09-22)
 
