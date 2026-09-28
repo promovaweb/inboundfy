@@ -37,8 +37,8 @@ npm run skills:enriquecer
 
 O validador verifica:
 
-- 114 skills, seus contratos individuais e a arquitetura compartilhada;
-- cinco referências comuns, 114 interfaces de agente e o catálogo estruturado;
+- 116 skills, seus contratos individuais e a arquitetura compartilhada;
+- cinco referências comuns, 116 interfaces de agente e o catálogo estruturado;
 - referências internas e continuidade das três sequências;
 - ausência de diretórios públicos para etapas agrupadas;
 - 20 pares produtora–validadora;

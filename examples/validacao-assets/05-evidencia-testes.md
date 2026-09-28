@@ -18,7 +18,7 @@ Tests       32 passed (32)
 Ran 32 tests
 
 OK
-Framework Inboundfy válido: 114 skills e 3 sequências válidas.
+Framework Inboundfy válido: 116 skills e 3 sequências válidas.
 ```
 
 ## Verificação do ebook

@@ -1,6 +1,6 @@
 # Catálogo e pareamento
 
-O catálogo estruturado em `skills/catalogo.json` possui 114 skills. O índice
+O catálogo estruturado em `skills/catalogo.json` possui 116 skills. O índice
 humano em `SKILLS.md` mantém a mesma lista em formato navegável.
 
 | Grupo | Quantidade | Ordenação |
@@ -11,7 +11,7 @@ humano em `SKILLS.md` mantém a mesma lista em formato navegável.
 | Base | 5 | Capacidades reutilizáveis |
 | Contexto | 7 | Domínios de configuração agrupados |
 | Brainstorm | 1 | Uma skill com referências `00–04` |
-| Copy | 6 | Redação, edição e posicionamento |
+| Copy | 8 | Redação, edição, simplificação, gramática e posicionamento |
 | Estratégia | 1 | Uma skill com referências `00–03` |
 | Growth | 25 | Crescimento e distribuição |
 | Planejamento | 1 | Uma skill com referências `00–06` |

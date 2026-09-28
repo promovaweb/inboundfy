@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Copy Gramática"
+  short_description: "Corrige gramática e pontuação da copy em português"
+  default_prompt: "Use $inboundfy-copy-gramatica para auditar e corrigir a gramática e a pontuação desta copy, aplicando a norma culta de vírgula, crase, concordância, regência, colocação pronominal, porquês e acentuação sem alterar sentido, voz ou fatos."

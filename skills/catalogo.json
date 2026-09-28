@@ -1,6 +1,6 @@
 {
   "versao_contrato": 2,
-  "quantidade": 114,
+  "quantidade": 116,
   "referencias_compartilhadas": [
     "skills/_shared/01-preflight-e-fontes.md",
     "skills/_shared/02-contrato-de-artefato.md",
@@ -556,6 +556,27 @@
       ]
     },
     {
+      "id": "inboundfy-copy-gramatica",
+      "grupo": "copy",
+      "descricao": "Audita e corrige a gramática e a pontuação de copy em português: vírgula, crase, concordância verbal e nominal, regência, colocação pronominal, os quatro porquês, paralelismo sintático e a acentuação, aplicando a norma culta sem alterar sentido, voz ou fatos.",
+      "skill": "skills/inboundfy-copy-gramatica/SKILL.md",
+      "referencia": "skills/inboundfy-copy-gramatica/REFERENCIA.md",
+      "interface": "skills/inboundfy-copy-gramatica/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief, acervo, persona, voz e canal",
+        "saida": "copy pronta para revisão ou uso pela skill de canal",
+        "validacao": "mensagem, voz, persona, dicionário, proibições e próxima ação",
+        "handoff": "especialista de canal, validadora ou planejamento"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
       "id": "inboundfy-copy-oferta",
       "grupo": "copy",
       "descricao": "Estrutura, nomeia e melhora ofertas com clareza de resultado, mecanismo, prova, condições, objeções e próximo passo para cada persona.",
@@ -625,6 +646,27 @@
       "skill": "skills/inboundfy-copy-redacao/SKILL.md",
       "referencia": "skills/inboundfy-copy-redacao/REFERENCIA.md",
       "interface": "skills/inboundfy-copy-redacao/agents/openai.yaml",
+      "perfil": {
+        "entrada": "brief, acervo, persona, voz e canal",
+        "saida": "copy pronta para revisão ou uso pela skill de canal",
+        "validacao": "mensagem, voz, persona, dicionário, proibições e próxima ação",
+        "handoff": "especialista de canal, validadora ou planejamento"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-copy-simplificar",
+      "grupo": "copy",
+      "descricao": "Simplifica textos existentes para reduzir esforço de leitura e retirar excessos, preservando intenção, fatos, voz e formato do projeto.",
+      "skill": "skills/inboundfy-copy-simplificar/SKILL.md",
+      "referencia": "skills/inboundfy-copy-simplificar/REFERENCIA.md",
+      "interface": "skills/inboundfy-copy-simplificar/agents/openai.yaml",
       "perfil": {
         "entrada": "brief, acervo, persona, voz e canal",
         "saida": "copy pronta para revisão ou uso pela skill de canal",

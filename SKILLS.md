@@ -11,8 +11,8 @@ setup e encaminha a tarefa ao grupo apropriado. Chame uma skill especialista
 diretamente quando a solicitação já definir a operação e o usuário pedir esse
 atalho. `inboundfy-iniciar` permanece como alias compatível.
 
-O catálogo contém 114 skills: 20 especialistas de canal, 20 validadoras,
-25 capacidades de growth, 6 capacidades de copy, 7 skills de contexto, 4 de
+O catálogo contém 116 skills: 20 especialistas de canal, 20 validadoras,
+25 capacidades de growth, 8 capacidades de copy, 7 skills de contexto, 4 de
 acervo, 3 grupos de etapas e as capacidades de base, qualidade, entrada e
 orquestração.
 
@@ -79,8 +79,9 @@ o resto do catálogo.
 
 Essas skills entram quando o trabalho precisa de uma especialidade transversal
 e sempre carregam o contexto vivo do projeto. `inboundfy-copy-*` concentra
-redação, edição, persuasão, oferta e posicionamento. `inboundfy-growth-*`
-concentra aquisição, ativação, retenção, distribuição e otimização.
+redação, edição, simplificação, gramática, persuasão, oferta e posicionamento.
+`inboundfy-growth-*` concentra aquisição, ativação, retenção, distribuição e
+otimização.
 
 | Skill | Papel |
 | --- | --- |
@@ -91,6 +92,8 @@ concentra aquisição, ativação, retenção, distribuição e otimização.
 | [inboundfy-copy-oferta](skills/inboundfy-copy-oferta/SKILL.md) | Estrutura resultado, mecanismo, prova, condições e CTA. |
 | [inboundfy-copy-redacao](skills/inboundfy-copy-redacao/SKILL.md) | Redige peças orientadas por acervo, canal e persona. |
 | [inboundfy-copy-edicao](skills/inboundfy-copy-edicao/SKILL.md) | Edita copy preservando intenção e melhorando clareza e ritmo. |
+| [inboundfy-copy-simplificar](skills/inboundfy-copy-simplificar/SKILL.md) | Simplifica textos para o público sem retirar informação necessária. |
+| [inboundfy-copy-gramatica](skills/inboundfy-copy-gramatica/SKILL.md) | Audita e corrige a pontuação com foco nas regras de uso da vírgula. |
 | [inboundfy-seo](skills/inboundfy-seo/SKILL.md) | Planeja busca, arquitetura, metadados, headings e links. |
 | [inboundfy-geo](skills/inboundfy-geo/SKILL.md) | Organiza conteúdo para respostas de IA e citações verificáveis. |
 | [inboundfy-growth-cro](skills/inboundfy-growth-cro/SKILL.md) | Melhora páginas, formulários, proposta, prova e CTAs. |
@@ -150,6 +153,8 @@ skill de planejamento ou especialista.
 | --- | --- |
 | [inboundfy-copy-redacao](skills/inboundfy-copy-redacao/SKILL.md) | Redação orientada por acervo, canal, persona e voz. |
 | [inboundfy-copy-edicao](skills/inboundfy-copy-edicao/SKILL.md) | Edição de copy com clareza, ritmo e preservação da intenção. |
+| [inboundfy-copy-simplificar](skills/inboundfy-copy-simplificar/SKILL.md) | Simplificação de texto pelo lado do público, sem perder informação útil. |
+| [inboundfy-copy-gramatica](skills/inboundfy-copy-gramatica/SKILL.md) | Correção de pontuação com foco na vírgula, sem alterar sentido ou fatos. |
 | [inboundfy-copy-editor](skills/inboundfy-copy-editor/SKILL.md) | Auditoria de parágrafo e reescrita guiada por `ESCRITA.md`. |
 | [inboundfy-copy-oferta](skills/inboundfy-copy-oferta/SKILL.md) | Estrutura de resultado, mecanismo, prova, condições e CTA. |
 | [inboundfy-copy-persuasao](skills/inboundfy-copy-persuasao/SKILL.md) | Persuasão transparente e tratamento de objeções. |

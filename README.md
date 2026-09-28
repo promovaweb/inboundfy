@@ -53,7 +53,7 @@ atalho legado que encaminha para a mesma orquestradora.
   maiúsculas encontrados no projeto. Se `brand/` existir, considera todos os
   Markdown da pasta, inclusive nomes em minúsculas, sem copiar ou alterar os
   ativos.
-- `skills/`: biblioteca de 114 skills prefixadas com `inboundfy-`, com etapas
+- `skills/`: biblioteca de 116 skills prefixadas com `inboundfy-`, com etapas
   agrupadas em referências internas, namespaces `inboundfy-copy-*` e
   `inboundfy-growth-*`, referências compartilhadas em `skills/_shared/`,
   catálogo estruturado em `skills/catalogo.json` e interface de agente em
@@ -239,7 +239,7 @@ o artefato final auditado de cada canal (`METODOLOGIA.md`).
 
 ## Estado do projeto
 
-O Inboundfy possui metodologia, contrato de skill, 114 skills distribuídas em
+O Inboundfy possui metodologia, contrato de skill, 116 skills distribuídas em
 grupos de entrada, acervo, base, contexto, brainstorm, estratégia,
 planejamento, especialistas, validadoras, qualidade e capacidades, além do
 orquestrador. Cada skill tem referência, interface e registro no catálogo.
