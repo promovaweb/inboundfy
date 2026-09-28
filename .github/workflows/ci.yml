@@ -24,7 +24,14 @@ jobs:
           cache: npm
 
       - name: Instalar ferramentas de verificação do ebook
-        run: sudo apt-get update && sudo apt-get install -y libxml2-utils pandoc poppler-utils unzip
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fontconfig imagemagick jq libxml2-utils pandoc pipx poppler-utils unzip
+          pipx install weasyprint==69.0
+          mkdir -p "$RUNNER_TEMP/inboundfy-bin"
+          printf '#!/bin/sh\nexec convert "$@"\n' > "$RUNNER_TEMP/inboundfy-bin/magick"
+          chmod +x "$RUNNER_TEMP/inboundfy-bin/magick"
+          echo "$RUNNER_TEMP/inboundfy-bin" >> "$GITHUB_PATH"
 
       - name: Instalar dependências
         run: npm ci
