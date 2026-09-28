@@ -11,6 +11,10 @@ mesma.
 
 * adiciona skills de gramática e simplificação ([a025208](https://github.com/promovaweb/inboundfy/commit/a0252088f8077840577a45e7b2aec6c6725a7736))
 
+### Correções
+
+* Gera o HTML do guia antes dos testes que conferem o ebook.
+
 ## 0.3.0 (2026-09-22)
 
 ### Pipeline

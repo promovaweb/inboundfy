@@ -46,7 +46,7 @@
     "npm:validate-package": "node scripts/validate-npm-package.mjs",
     "publish:npm": "node scripts/publish-npm-package.mjs",
     "prepack": "npm run build && npm run release:check",
-    "validar": "npm run skills:check && npm run typecheck && npm test && npm run build && npm run ebook:verify && npm run release:check"
+    "validar": "npm run skills:check && npm run typecheck && npm run ebook && npm test && npm run build && npm run ebook:verify && npm run release:check"
   },
   "engines": {
     "node": ">=22.14.0"
