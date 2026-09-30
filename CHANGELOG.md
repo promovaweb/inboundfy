@@ -7,6 +7,12 @@ mesma.
 ## [0.4.0](https://github.com/promovaweb/inboundfy/compare/v0.3.0...v0.4.0) (2026-09-28)
 
 
+### Orientações editoriais
+
+- Amplia as referências de escrita, gramática, simplificação e revisão das
+  skills, com orientações para artigos autorais, parágrafos e perguntas.
+- Corrige três ocorrências proibidas nas referências das skills.
+
 ### Funcionalidades
 
 * adiciona skills de gramática e simplificação ([a025208](https://github.com/promovaweb/inboundfy/commit/a0252088f8077840577a45e7b2aec6c6725a7736))

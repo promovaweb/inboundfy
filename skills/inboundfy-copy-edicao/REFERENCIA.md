@@ -11,6 +11,35 @@
 | Voz | Ritmo, pessoa e vocabulário do projeto. |
 | Conformidade | Proibições, dicionário, fontes e canal. |
 
+## Regras de ajuste
+
+Ao editar, preserve a intenção e os fatos confirmados e corrija o que impede
+compreensão antes de ajustar ritmo e acabamento:
+
+- Retire o que só repete, enfeita ou atrasa a mensagem: aquecimento, elogio à
+  própria peça, termos dispensáveis e trechos que ocupam espaço sem ajudar o
+  público.
+- Mantenha ressalvas, passos, exemplos, provas, limites e detalhes técnicos
+  quando evitam interpretação errada ou ajudam a executar uma ação. Uma
+  versão menor não é automaticamente mais simples.
+- Não resolva proibições por substituição lexical em massa, regex ampla ou
+  troca automática. Se a frase depende de termo proibido, reescreva o trecho
+  inteiro com ator real, mecanismo, regra, consequência e limite.
+- Substitua lista seca por raciocínio quando ela esconder a tese, e heading
+  genérico por heading que nomeie a tela, o campo, a configuração, a versão,
+  o erro ou a escolha real.
+- Corrija o padrão repetido no arquivo inteiro, não apenas a ocorrência
+  apontada. Depois da correção principal, releia o arquivo procurando o mesmo
+  vício em abertura, desenvolvimento, listas, links, CTA e conclusão.
+- Não sacrifique naturalidade para encurtar. Conecte sujeito, verbo, objeto e
+  complemento com a gramática normal do português; use artigos, conectivos e
+  contrações quando a frase pedir.
+- Preserve a estrutura boa da origem. Melhore precisão, nomenclatura, fatos e
+  fluidez sem trocar por fórmula genérica.
+- A correção deve ser proporcional ao problema. Não uniformize todos os
+  parágrafos, não transforme toda frase longa em duas frases curtas e não
+  alise uma passagem autoral só para obter consistência.
+
 ## Relatório
 
 Separe `corrigido`, `mantido`, `sugerido` e `pendente`. Uma sugestão não deve

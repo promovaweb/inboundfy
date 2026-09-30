@@ -24,6 +24,14 @@ Em cada frase e parágrafo, pergunte:
 - O trecho serve ao público ou só celebra o esforço e a intenção de quem
   criou?
 
+Considere que o público dispõe de pouco tempo e tem outras prioridades. O
+esforço investido na peça, o entusiasmo da autoria ou a importância interna do
+assunto não bastam para justificar cada frase. O texto precisa oferecer algo
+reconhecível: clareza, explicação útil, uma ação possível, entretenimento ou
+perspectiva que ajude a entender o assunto. Se um trecho só valoriza o
+trabalho de autoria, repete algo já dito ou exige esforço sem retorno, retire
+ou refaça.
+
 Retire o que só repete, enfeita ou atrasa a mensagem. Quando faltar ligação
 entre duas ideias, explique a relação em vez de apenas encurtar.
 
