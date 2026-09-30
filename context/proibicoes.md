@@ -46,6 +46,12 @@ negócio. Edite livremente. -->
 - `escalabilidade infinita`, `liberdade financeira`, `paz de espírito` sem
   contexto mensurável — motivo: promessa abstrata; reescreva como
   consequência concreta e limitada.
+- `o futuro é`, `o futuro pertence a`, `a era de X acabou`, `entramos na era
+  de Y`, `o jogo mudou` — motivo: profecia de palco; conclua o raciocínio
+  com consequência ou próximo passo real.
+- `comece hoje`, `assuma o controle`, `transforme ... hoje`, `garanta que`,
+  `nunca mais`, `de forma definitiva` como chamada automática — motivo:
+  urgência fabricada; use convite objetivo e proporcional ao contexto.
 
 ### Padrões estruturais com cara de IA
 
@@ -66,6 +72,40 @@ negócio. Edite livremente. -->
 - Autoridade fabricada — marca ou pessoa afirmando liderança, pioneirismo
   ou método superior sem caso, dado ou prática que sustente — motivo:
   afirmação vazia; mostre evidência concreta ou não afirme.
+- Personificação de objeto inanimado para omitir responsável: `os dados
+  dizem`, `a conversa avançou`, `o mercado recompensou` — motivo: agência
+  falsa; nomeie quem leu, conduziu, pagou ou mudou o comportamento.
+- `o mercado pune`, `o mercado ensina`, `o mercado financia` sem recorte —
+  motivo: metonímia vaga; nomeie cliente, área, fornecedor ou decisor.
+- `a tecnologia serve`, `a IA entende`, `o cliente quer` sem contexto
+  observável — motivo: personificação sem cenário; nomeie cenário, tipo de
+  cliente e comportamento real.
+- Verbos de garantia sem condição: `garante`, `assegura`, `elimina`,
+  `resolve`, `protege`, `blinda`, `impede` — motivo: promessa sem limite;
+  delimite escopo, mecanismo e condição.
+- Medalha verbal: `arquiteto de soluções`, `parceiro estratégico`,
+  `líder de pensamento`, `referência sênior`, `maestro incontestável` —
+  motivo: título vazio; nomeie o papel real e o trabalho feito.
+- Selo vazio de qualidade: `maturidade sênior`, `alta performance`,
+  `nível enterprise`, `operação robusta`, `operação madura` — motivo:
+  adjetivo sem medida; descreva SLA, tempo de resposta, isolamento, custo
+  ou governança.
+- Caricatura de leitor: `amadores`, `aventureiros`, `curiosos`, `gênio`,
+  `vendedor insistente` — motivo: ridiculariza personagem; critique a
+  prática, o modelo ou a consequência.
+
+### Velocidade, rapidez e produtividade genérica
+
+- `velocidade`, `rapidez`, `acelerar`, `acelera`, `aceleração` como
+  benefício genérico — motivo: virtude abstrata; explique em qual etapa há
+  redução de tempo, esforço ou ambiguidade, com mecanismo verificável.
+- `instantaneamente`, `em segundos`, `sozinho(a)`, `totalmente autônomo(a)`,
+  `sem nenhum esforço`, `24/7`, `incansável` — motivo: esconde etapa,
+  dependência ou limite real; descreva a etapa e a condição.
+- Promessa financeira vaga: `lucro real`, `faturar alto`, `dobrar o
+  faturamento`, `custo zero`, `churn zero`, `dinheiro real na conta` —
+  motivo: mecanismo ausente; nomeie custo, receita, margem, prazo e
+  condição.
 
 ## Termos e promessas proibidas
 

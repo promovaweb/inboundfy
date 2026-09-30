@@ -38,6 +38,65 @@ leitura.
 - CTA que não informa a próxima ação nem o motivo para realizá-la;
 - texto que fala sobre transformação sem mostrar o antes, o depois e o caminho.
 
+## Sinais de estrutura, fluidez e edição
+
+Ao cruzar `context/estruturas-proibidas.md`, priorize estes agrupamentos no
+passe de leitura:
+
+- **Estrutura:** abertura genérica ou com `Se você...`; lista previsível de 3
+  a 5 pontos óbvios no lugar de argumento; conclusão moralizante; CTA
+  descolado do argumento; autoridade fabricada; pergunta retórica genérica;
+  headings intercambiáveis; peça inteira organizada como reconto cronológico;
+  reaproveitamento mecânico entre peças do mesmo pacote; frase curta isolada
+  como martelo.
+- **Fluidez:** sigla ou objeto técnico sem artigo definido em parágrafo
+  corrido; parágrafo seco com substantivos encostados sem transição; ponto e
+  vírgula ou travessão de prosa corrida como muleta; enumeração serial em
+  prosa; estrutura temporal pronta com `começa antes`; família `entrega`
+  como promessa vaga.
+- **Sinais:** emoji decorativo em heading ou lista; caixa alta em todas as
+  palavras principais do heading; fórmulas de sabedoria de efeito
+  (`X é o Y de Z`, `a questão real é`, `no fundo`, `o que realmente importa
+  é`); anúncio de estrutura (`vamos explorar`, `nesta seção, veremos`);
+  cabeçalho seguido de frase que repete o heading; resíduo de conversa
+  (`espero que isso ajude`, `segue abaixo`, `claro!`, `ótima pergunta`);
+  preenchimento especulativo de lacuna factual (`com base nas informações
+  disponíveis`, `é provável que`, `possivelmente`); amplitude falsa (`de X a
+  Y` sem escala real).
+- **Edição:** abertura que limpa a garganta (`a verdade é`, `deixe-me ser
+  claro`, `vale destacar`); falsa descoberta (`o que ninguém conta`, `o
+  segredo é`); ênfase performática (`ponto final`, `isso muda tudo`);
+  metadiscurso (`o ponto principal é`, `como você pode ver`); gerúndio de
+  rótulo sem consequência (`destacando`, `reforçando`); grandeza declarada
+  sem apoio (`momento crucial`, `papel vital`); atribuição sem fonte
+  (`especialistas concordam`, `estudos mostram`); agência falsa (`os dados
+  dizem`, `o mercado recompensou`); voz passiva que esconde responsável;
+  verbo inflado (`serve como`, `atua como`); troca de sinônimos para evitar
+  repetir o termo correto; frase portátil; ritmo robótico; encerramento que
+  recapitula a peça.
+
+## O que não reprovar
+
+Antes de reprovar um trecho, confirme que ele não se encaixa em um destes
+casos:
+
+- Gramática correta e estilo consistente; polimento não é sinal de IA por si
+  só.
+- Vocabulário técnico ou formal aplicado ao tema certo; não generalize o veto
+  para toda palavra difícil.
+- Frase curta isolada, única no parágrafo, usada para fechar um raciocínio já
+  desenvolvido; o padrão vetado é a sequência em cadeia.
+- Termo tecnicamente correto usado dentro de citação, título ou nome próprio.
+- Repetição de conectivo comum quando aparece uma vez; o padrão vetado é o
+  empilhamento em sequência.
+- Detalhe específico, opinião com ressalva, variação real de tamanho de
+  frase, aparte do autor e referência datada são sinais de escrita humana a
+  preservar, não defeitos.
+
+Quando restar dúvida, procure o agrupamento de vários sinais no mesmo
+parágrafo antes de reprovar. Um sinal isolado raramente justifica reescrever o
+trecho inteiro; vários sinais no mesmo trecho justificam.
+
 ## Registro de auditoria
 
 ```md

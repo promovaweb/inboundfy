@@ -57,7 +57,9 @@ jobs:
         if: steps.release.outputs.prs_created == 'true'
         run: |
           sudo apt-get update
-          sudo apt-get install -y fontconfig imagemagick jq libxml2-utils pandoc pipx poppler-utils unzip
+          sudo apt-get install -y fontconfig imagemagick jq libxml2-utils pipx poppler-utils unzip
+          curl -fsSL https://github.com/jgm/pandoc/releases/download/3.10.2/pandoc-3.10.2-1-amd64.deb -o "$RUNNER_TEMP/pandoc.deb"
+          sudo apt-get install -y "$RUNNER_TEMP/pandoc.deb"
           pipx install weasyprint==69.0
           mkdir -p "$RUNNER_TEMP/inboundfy-bin"
           printf '#!/bin/sh\nexec convert "$@"\n' > "$RUNNER_TEMP/inboundfy-bin/magick"

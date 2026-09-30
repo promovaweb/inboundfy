@@ -107,21 +107,39 @@ torna a vírgula opcional.
 
 ## Vírgula antes do "e"
 
-A conjunção `e` recebe vírgula quando liga orações com sujeitos diferentes.
+A conjunção `e` não recebe vírgula como separação mecânica entre duas orações,
+mesmo quando os sujeitos são diferentes. A regra tradicional que permitia a
+vírgula nesse caso está descartada: o padrão `oração, e oração` lê como
+conector mecânico. Separe em duas frases com ponto final, ou troque por um
+conectivo com relação causal real (`porque`, `mas`, `então`, `por isso`)
+quando a ligação exigir mais que justaposição.
 
-- **Sem vírgula (mesmo sujeito):** O cliente acessou a página `e` comprou o
+- **Mesmo sujeito, sem vírgula:** O cliente acessou a página `e` comprou o
   produto.
-- **Com vírgula (sujeitos diferentes):** O especialista apresentou a solução,
-  `e` os alunos aplicaram o método.
+- **Sujeitos diferentes, sem vírgula antes de `e` e sem juntar as orações:**
+  O especialista apresentou a solução. Os alunos aplicaram o método.
+
+A vírgula antes de `e` só existe para isolar aposto, adjunto deslocado ou
+oração intercalada que terminam antes da conjunção, nunca como pausa
+arbitrária entre orações coordenadas.
 
 ## Outros sinais de pontuação
 
 - **Ponto final:** encerra oração declarativa; não é substituído por vírgula
   quando a ideia se completa.
 - **Dois-pontos:** anunciam enumeração, explicação, citação ou fala.
-- **Ponto e vírgula:** separa itens longos de uma enumeração e orações
-  coordenadas sem conectivo.
-- **Travessão:** indica fala ou isola um destaque dentro da frase.
+- **Ponto e vírgula:** não é usado em copy, conteúdo editorial, ebook, página,
+  post, email, roteiro, heading, chamada para a próxima ação, legenda ou texto
+  de interface para unir ideias, criar sofisticação artificial ou alongar
+  período. Reescreva com ponto final, vírgula, dois-pontos ou divisão em duas
+  frases naturais. Em lista longa de enumeração, substitua por lista Markdown
+  ou por frase organizada por dois-pontos.
+- **Travessão:** indica fala ou isola um destaque dentro da frase. O travessão
+  longo (U+2014) ou meio-travessão (U+2013) não é usado como pontuação dentro de frase
+  de prosa corrida (aside, pausa dramática ou substituto de vírgula,
+  dois-pontos ou parênteses). Reescreva com vírgula, dois-pontos, parênteses ou
+  duas frases separadas por ponto. Preserve o travessão em citação literal e no
+  uso consagrado de separador de título e subtítulo em heading.
 - **Aspas:** marcam citação, título ou uso especial de um termo.
 - **Parênteses:** isolam informação acessória.
 
@@ -314,6 +332,30 @@ a mesma forma verbal ou nominal.
   - Incorreto: Encontrei o cliente e falei com o `mesmo`.
   - Correto: Encontrei o cliente e falei com `ele`.
 
+## Determinantes e fluidez
+
+Em parágrafos corridos, use os artigos definidos `o`, `a`, `os` e `as` antes
+de siglas, ferramentas, áreas, objetos técnicos e conceitos quando funcionarem
+como sujeito ou objeto: `A API recebe`, `O CRM registra`, `O sistema processa`,
+`Os dados mostram`, `A campanha depende`. O padrão sem artigo soa como anotação
+técnica ou tradutor automático. Preserve exceções apenas em comandos, labels,
+nomes oficiais, títulos telegráficos inevitáveis e listas técnicas nas quais o
+artigo atrapalhe a precisão. Quando a concisão custar naturalidade, reescreva a
+frase em vez de manter o determinante ausente.
+
+Substantivo modificado por adjetivo sem determinante que fica truncado pede
+artigo indefinido: `transformar em um comportamento revisável`, `criar uma
+rotina auditável`, `virar uma referência prática`. Preserve a forma sem artigo
+apenas quando ela for expressão técnica consagrada ou uso genérico natural.
+
+## Perguntas dentro de parágrafo de copy
+
+Perguntas não entram dentro de parágrafos de copy editorial. Quando a dúvida
+do leitor for relevante, transforme em afirmação, hipótese, regra ou escolha,
+ou use uma seção própria exigida pelo formato, como perguntas frequentes,
+entrevista, roteiro ou heading interrogativo planejado. Não use pergunta
+retórica seguida de resposta curta e óbvia como muleta de redação.
+
 ## Checklist objetivo
 
 Marque cada item como presente ou ausente e registre apenas os achados
@@ -330,6 +372,8 @@ observáveis:
       estão isolados por vírgulas.
 - [ ] Termos coordenados em lista são separados por vírgula, sem vírgula antes
       do último item quando não há conectivo.
+- [ ] Nenhuma vírgula precede o `e` como separação entre orações, mesmo com
+      sujeitos diferentes.
 - [ ] `haver` e `fazer` impessoais ficam no singular, inclusive na locução
       verbal.
 - [ ] Porcentagem, fração e partitivo concordam com o numeral ou com o
@@ -355,6 +399,12 @@ observáveis:
 - [ ] Acentos diferenciais e grafias frequentes estão corretos.
 - [ ] Itens de lista e sequências mantêm paralelismo sintático.
 - [ ] Não há gerundismo nem uso de `mesmo` como pronome pessoal.
+- [ ] Nenhum ponto e vírgula nem travessão de prosa corrida aparece fora das
+      exceções documentadas.
+- [ ] Siglas, ferramentas, áreas e objetos técnicos usam artigo definido quando
+      funcionam como sujeito ou objeto em parágrafo corrido.
+- [ ] Nenhuma pergunta retórica nem pergunta solta aparece dentro de parágrafo
+      de copy fora de seção própria do formato.
 - [ ] O sentido da frase permanece o mesmo com a pontuação aplicada.
 - [ ] `ESCRITA.md`, voz, dicionário e proibições foram conferidos.
 
@@ -396,6 +446,9 @@ benefícios mantém paralelismo com verbos no infinitivo.
   de leitura não justifica pontuação fora da norma.
 - Usar vírgula antes do último item de uma lista quando não há conectivo
   (`fortuna, ciência, e dinheiro` → `fortuna, ciência e dinheiro`).
+- Usar vírgula antes de `e` para separar orações coordenadas, mesmo com
+  sujeitos diferentes; a norma do projeto trata esse padrão como conector
+  mecânico e pede ponto final ou conectivo causal.
 - Isolar o aposto com uma vírgula só quando ele inicia ou encerra a frase;
   o aposto intercalado exige vírgula antes e depois.
 - Confundir vocativo com sujeito e omitir a vírgula de chamamento.

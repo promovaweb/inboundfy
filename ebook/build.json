@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "version": "0.3.0",
-  "edition": "v0.3.0",
-  "generated_at": "2026-09-22T09:54:55Z",
-  "source_sha256": "d7813be40cf03e40e316fca141b943461f232d2471230263c20de65e3c15ae84",
+  "version": "0.4.0",
+  "edition": "v0.4.0",
+  "generated_at": "2026-09-28T10:13:16Z",
+  "source_sha256": "76f4ac7cc6719b2da065e4f6bdaa7db1bd0c1f2abdf154069aa23457bcad74a5",
   "sources": [
     ".ebook/build-ebook.mjs",
     ".ebook/epub.css",
@@ -96,12 +96,12 @@
   },
   "artifacts": {
     "pdf": {
-      "file": "Inboundfy-Guia-do-Usuario-v0.3.0.pdf",
-      "sha256": "5f5a220005121dbca8b637c46c039b0c2ae1cba083f1333b97daa12dd78a5020"
+      "file": "Inboundfy-Guia-do-Usuario-v0.4.0.pdf",
+      "sha256": "3697298bfe00ed6c30a0757f96c4bc9eb8680d26552da1fdde1489fd8edf31b6"
     },
     "epub": {
-      "file": "Inboundfy-Guia-do-Usuario-v0.3.0.epub",
-      "sha256": "833b9f0404f0fe177a0071279477b5b5ab6acc9b31aa750745d58c86e939c684"
+      "file": "Inboundfy-Guia-do-Usuario-v0.4.0.epub",
+      "sha256": "a32d4d3ab358734778555f1b37f301328da7819ac07a685d11d82c5b3b440c05"
     }
   }
 }

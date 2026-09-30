@@ -28,10 +28,51 @@ observáveis:
 - [ ] Nenhuma palavra ou expressão de `context/proibicoes.md` aparece.
 - [ ] O vocabulário confere com `context/marca-voz.md` (preferido vs.
       evitado).
+- [ ] Sigla, ferramenta, área ou objeto técnico usa artigo definido quando
+      funciona como sujeito ou objeto em parágrafo corrido.
+- [ ] Nenhuma enumeração serial em prosa (sequência de itens por vírgulas)
+      simula densidade sem desenvolver os itens.
+- [ ] Nenhuma pergunta retórica nem pergunta solta aparece dentro do
+      parágrafo fora de seção própria do formato.
+- [ ] Nenhum ponto e vírgula nem travessão de prosa corrida substitui
+      vírgula, dois-pontos, parênteses ou ponto final.
+- [ ] A frase não economiza palavras necessárias para causa, dependência,
+      responsabilidade, custo, limite ou consequência.
+- [ ] O parágrafo carrega uma ideia completa; não há segunda frase criada
+      apenas para cumprir contagem.
 
 Um item ausente só vira achado quando houver um trecho específico e uma regra
 aplicável. Descreva a consequência editorial e indique uma ação concreta; não
 transforme preferências graduais em veto automático.
+
+## Regras de ajuste de texto
+
+Ao corrigir, preserve a estrutura boa da origem e mire o padrão repetido, não
+apenas o trecho apontado:
+
+- Corrija o padrão repetido no arquivo inteiro, não apenas a ocorrência
+  apontada. Se o mesmo vício aparecer em outro ponto, corrija antes da
+  entrega.
+- Substitua lista seca por raciocínio quando ela esconder a tese, e frases
+  comprimidas, parágrafos secos, headings genéricos e exemplos vagos por
+  desenvolvimento.
+- Diferencie parágrafo completo de frase curta usada como martelo. Integre
+  frases que dependem uma da outra ao mesmo período, com conectivos
+  (`porque`, `por isso`, `portanto`).
+- Interprete comandos, campos, métricas, tabelas e exemplos. Nada de item
+  bruto solto no texto sem leitura.
+- Não resolva proibições por substituição lexical em massa, regex ampla ou
+  troca automática sem ler a frase e o parágrafo. Se a frase depende de termo
+  proibido, reescreva o trecho inteiro com ator, mecanismo, regra,
+  consequência e limite.
+- Uma correção anti-slop não deve uniformizar o ritmo nem trocar uma passagem
+  específica por prosa genérica e polida. Preserve vocabulário, humor,
+  franqueza, incerteza real, digressão útil, ritmo falado e linhas autorais
+  fortes.
+- Depois da correção principal, faça uma releitura tripla do arquivo inteiro:
+  a primeira encontra o vício evidente, a segunda procura o mesmo defeito em
+  outras partes e a terceira ajusta detalhe de voz, fluidez, Português do
+  Brasil e proibições.
 
 ## Exemplo; antes e depois
 
@@ -69,6 +110,16 @@ Diferença: objeto nomeado (cobrança manual em planilha), avanço real
   equivalente.
 - Penalizar vocabulário técnico legítimo do domínio como se fosse jargão;   confira o objeto real do texto antes de marcar um termo como problema (ver
   nota sobre vocabulário técnico válido em `ESCRITA.md`).
+- Corrigir só o trecho apontado e deixar o restante do arquivo com falhas
+  equivalentes; a revisão editorial deve ser integral.
+- Trocar termo proibido por sinônimo sem reescrever a frase; se a frase
+  depende do termo, reconstrua o trecho inteiro.
+- Uniformizar parágrafos bons ou comprimir a personalidade do texto; a
+  correção deve ser proporcional ao problema encontrado.
+- Transformar cada frase longa em duas frases curtas; advérbios, fragmentos,
+  voz passiva e listas de três itens não recebem veto automático.
+- Tratar uma frase curta pontual como reprovação; o padrão vetado é a
+  sequência em cadeia, não o uso isolado.
 
 ## Registro de achados
 

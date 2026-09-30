@@ -4,6 +4,25 @@ As mudanças relevantes do Inboundfy são registradas neste arquivo. A versão d
 framework, do CLI, do pacote npm, da tag Git e da GitHub Release é sempre a
 mesma.
 
+## [0.4.0](https://github.com/promovaweb/inboundfy/compare/v0.3.0...v0.4.0) (2026-09-28)
+
+
+### Orientações editoriais
+
+- Amplia as referências de escrita, gramática, simplificação e revisão das
+  skills, com orientações para artigos autorais, parágrafos e perguntas.
+- Corrige três ocorrências proibidas nas referências das skills.
+
+### Funcionalidades
+
+* adiciona skills de gramática e simplificação ([a025208](https://github.com/promovaweb/inboundfy/commit/a0252088f8077840577a45e7b2aec6c6725a7736))
+
+### Correções
+
+* Gera o HTML do guia antes dos testes que conferem o ebook.
+* Instala no CI os compiladores do ebook usados pela release e fixa Pandoc
+  `3.10.2` para validar a navegação do EPUB com a mesma versão nos dois fluxos.
+
 ## 0.3.0 (2026-09-22)
 
 ### Pipeline
