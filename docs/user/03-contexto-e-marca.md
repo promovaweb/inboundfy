@@ -52,7 +52,16 @@ Detalhes de precedência estão em [CONTEXTO.md](../../CONTEXTO.md).
 | `campanhas.md` | campanhas ativas e seus estados |
 | `proibicoes.md` | vetos específicos do negócio |
 | `estruturas-proibidas.md` | padrões genéricos de escrita artificial |
+| `depoimentos.json` | depoimentos de clientes: nome, cargo, empresa, citação literal, foto e consentimento de uso |
 | `.inboundfy/context/aprendizado.md` | sugestões, correções, alinhamentos e dicas confirmadas |
+
+`depoimentos.json` é o único arquivo de `context/` em formato JSON em vez de
+Markdown: um depoimento é um registro repetível com os mesmos campos (nome,
+cargo, empresa, citação, foto, fonte, consentimento), não um texto corrido.
+`inboundfy-contexto-depoimentos` grava cada entrada com um `id` estável e
+pergunta explicitamente o consentimento de uso antes de liberar o depoimento
+para `canaisAutorizados`; sem essa confirmação, o registro fica marcado como
+`pendente` e nenhuma skill de canal pode citá-lo em peça pública.
 
 ## Quando um dado estiver faltando
 

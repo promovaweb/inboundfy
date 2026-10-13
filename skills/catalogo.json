@@ -1,6 +1,6 @@
 {
   "versao_contrato": 2,
-  "quantidade": 116,
+  "quantidade": 117,
   "referencias_compartilhadas": [
     "skills/_shared/01-preflight-e-fontes.md",
     "skills/_shared/02-contrato-de-artefato.md",
@@ -394,6 +394,27 @@
       "skill": "skills/inboundfy-contexto-concorrentes/SKILL.md",
       "referencia": "skills/inboundfy-contexto-concorrentes/REFERENCIA.md",
       "interface": "skills/inboundfy-contexto-concorrentes/agents/openai.yaml",
+      "perfil": {
+        "entrada": "resposta do usuário ou arquivo canônico do domínio",
+        "saida": "arquivo de contexto atualizado e registro da alteração",
+        "validacao": "seções preservadas, fatos separados de preferências e fonte registrada",
+        "handoff": "setup, orquestrador ou outra skill que dependa desse contexto"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-contexto-depoimentos",
+      "grupo": "contexto",
+      "descricao": "Registra depoimentos de clientes em context/depoimentos.json, com nome, cargo, empresa, texto literal, foto e consentimento de uso. Use para guardar prova social de forma rastreável antes de qualquer peça citá-la.",
+      "skill": "skills/inboundfy-contexto-depoimentos/SKILL.md",
+      "referencia": "skills/inboundfy-contexto-depoimentos/REFERENCIA.md",
+      "interface": "skills/inboundfy-contexto-depoimentos/agents/openai.yaml",
       "perfil": {
         "entrada": "resposta do usuário ou arquivo canônico do domínio",
         "saida": "arquivo de contexto atualizado e registro da alteração",

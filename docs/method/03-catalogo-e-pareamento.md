@@ -1,6 +1,6 @@
 # Catálogo e pareamento
 
-O catálogo estruturado em `skills/catalogo.json` possui 116 skills. O índice
+O catálogo estruturado em `skills/catalogo.json` possui 117 skills. O índice
 humano em `SKILLS.md` mantém a mesma lista em formato navegável.
 
 | Grupo | Quantidade | Ordenação |

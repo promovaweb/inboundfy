@@ -11,8 +11,8 @@ setup e encaminha a tarefa ao grupo apropriado. Chame uma skill especialista
 diretamente quando a solicitação já definir a operação e o usuário pedir esse
 atalho. `inboundfy-iniciar` permanece como alias compatível.
 
-O catálogo contém 116 skills: 20 especialistas de canal, 20 validadoras,
-25 capacidades de growth, 8 capacidades de copy, 7 skills de contexto, 4 de
+O catálogo contém 117 skills: 20 especialistas de canal, 20 validadoras,
+25 capacidades de growth, 8 capacidades de copy, 8 skills de contexto, 4 de
 acervo, 3 grupos de etapas e as capacidades de base, qualidade, entrada e
 orquestração.
 
@@ -179,6 +179,7 @@ Preenchem e mantêm os arquivos de `context/` descritos em `CONTEXTO.md`.
 | [inboundfy-contexto-publico](skills/inboundfy-contexto-publico/SKILL.md) | `context/publico.md`. |
 | [inboundfy-contexto-concorrentes](skills/inboundfy-contexto-concorrentes/SKILL.md) | `context/concorrentes.md`. |
 | [inboundfy-contexto-operacao](skills/inboundfy-contexto-operacao/SKILL.md) | `context/canais.md`, `ferramentas.md` e `campanhas.md`. |
+| [inboundfy-contexto-depoimentos](skills/inboundfy-contexto-depoimentos/SKILL.md) | `context/depoimentos.json`, com nome, empresa, citação literal, foto e consentimento de uso. |
 | [inboundfy-aprendizado](skills/inboundfy-aprendizado/SKILL.md) | `.inboundfy/context/aprendizado.md`, com alcance das orientações confirmadas. |
 
 ## 3. `inboundfy-brainstorm` — Desenvolvimento sequencial de ideia

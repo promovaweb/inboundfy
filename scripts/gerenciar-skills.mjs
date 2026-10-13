@@ -255,6 +255,7 @@ function exampleInputFor(name, group) {
       "inboundfy-contexto-institucional": "empresa.md",
       "inboundfy-contexto-oferta": "produtos.md",
       "inboundfy-contexto-operacao": "canais.md",
+      "inboundfy-contexto-depoimentos": "depoimentos.json",
     };
     const contextName = contextNames[name] ?? `${name.replace("inboundfy-contexto-", "").replace("marca", "marca-voz")}.md`;
     return `.inboundfy/context/${contextName}`;

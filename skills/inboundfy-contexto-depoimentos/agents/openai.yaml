@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy Contexto Depoimentos"
+  short_description: "Executa contexto depoimentos no Inboundfy"
+  default_prompt: "Use $inboundfy-contexto-depoimentos para executar contexto depoimentos com as fontes do projeto."

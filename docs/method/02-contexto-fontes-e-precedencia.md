@@ -2,7 +2,7 @@
 
 ## Fontes gerenciadas
 
-`.inboundfy/context/` contém 15 arquivos de dados estruturados. O setup garante
+`.inboundfy/context/` contém 18 arquivos de dados estruturados. O setup garante
 a presença dos templates; `inboundfy-contexto-*` preenche e atualiza o conteúdo.
 Arquivos existentes nunca são substituídos numa atualização.
 

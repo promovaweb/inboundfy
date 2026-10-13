@@ -49,6 +49,7 @@ até a fonte responsável ser confirmada; nenhuma skill escolhe silenciosamente.
 | `context/glossario.md` | Grafia oficial de marcas, termos técnicos e siglas. | `inboundfy-contexto-institucional` |
 | `context/proibicoes.md` | Vetos editoriais específicos do usuário — termos, promessas, comparações proibidas. | `inboundfy-contexto-marca` |
 | `context/estruturas-proibidas.md` | Catálogo genérico de palavras, frases e estruturas de parágrafo que denunciam texto gerado por IA — usado junto com `proibicoes.md`, mas não específico de negócio. | `inboundfy-contexto-marca` |
+| `context/depoimentos.json` | Depoimentos de clientes: nome, cargo, empresa, citação literal, foto, fonte e consentimento de uso por canal. | `inboundfy-contexto-depoimentos` |
 
 ## Precedência
 
@@ -89,6 +90,13 @@ a estrutura, perguntam o que falta, preenchem e nunca removem uma seção
 inteira — apenas atualizam o conteúdo dela. Um arquivo pode ficar
 parcialmente preenchido; a skill que o consome deve tratar campo vazio como
 "não informado", nunca inventar valor.
+
+A única exceção de formato é `context/depoimentos.json`: um depoimento é um
+registro repetível com os mesmos campos (nome, cargo, empresa, citação,
+foto, fonte, consentimento), não um texto corrido, por isso o arquivo é uma
+lista JSON em vez de Markdown. `inboundfy-contexto-depoimentos` grava cada
+entrada com `id` estável e nunca remove um depoimento sem pedido explícito,
+seguindo o mesmo princípio de preservação dos arquivos Markdown.
 
 `inboundfy-setup` mantém a presença e a localização dos arquivos. As skills
 `inboundfy-contexto-*` mantêm o conteúdo preenchido. Quando um arquivo estiver

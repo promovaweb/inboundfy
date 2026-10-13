@@ -11,7 +11,9 @@ Todos os arquivos abaixo chegam como template com placeholders entre `{ }` e
 comentários `<!-- -->` explicando o que preencher. Preencha sob demanda: o
 mínimo para começar é `empresa.md`, `marca-voz.md`, um item em `produtos.md`
 (ou `servicos.md`) e um canal em `canais.md` — `inboundfy-setup` conduz esse
-preenchimento inicial.
+preenchimento inicial. A única exceção de formato é `depoimentos.json`: cada
+depoimento é um registro repetível com os mesmos campos, por isso o arquivo
+chega como uma lista JSON vazia em vez de Markdown.
 
 | Arquivo | Conteúdo |
 | --- | --- |
@@ -32,6 +34,7 @@ preenchimento inicial.
 | `proibicoes.md` | Vetos editoriais específicos do usuário. |
 | `estruturas-proibidas.md` | Catálogo genérico (pré-preenchido) de palavras, frases e estruturas de parágrafo com cara de IA. |
 | `aprendizado.md` | Sugestões, correções, alinhamentos e dicas confirmadas. |
+| `depoimentos.json` | Depoimentos de clientes: nome, cargo, empresa, citação literal, foto e consentimento de uso por canal. |
 
 Nunca apague uma seção inteira de um desses arquivos ao atualizar — edite o
 conteúdo da seção e preserve a estrutura, para que qualquer skill que leia o

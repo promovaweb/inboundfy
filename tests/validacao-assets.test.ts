@@ -46,7 +46,7 @@ describe("validação de assets", () => {
     expect(await checkFiles()).toEqual([]);
     const catalogo = JSON.parse(await readFile(join(RAIZ, "skills", "catalogo.json"), "utf8"));
     const diretorios = new Set((await readdir(join(RAIZ, "skills"), { withFileTypes: true })).filter((item) => item.isDirectory() && item.name.startsWith("inboundfy")).map((item) => item.name));
-    expect(catalogo.quantidade).toBe(116);
+    expect(catalogo.quantidade).toBe(117);
     expect(new Set(catalogo.skills.map((item: { id: string }) => item.id))).toEqual(diretorios);
     expect(catalogo.referencias_compartilhadas).toHaveLength(5);
     for (const item of catalogo.skills) {
@@ -112,7 +112,7 @@ describe("validação de assets", () => {
   });
 
   test("script de enriquecimento é idempotente", () => {
-    return expect(writeFiles()).resolves.toMatchObject({ count: 116 });
+    return expect(writeFiles()).resolves.toMatchObject({ count: 117 });
   });
 
   test("acervo é a skill mestre do fluxo", async () => {

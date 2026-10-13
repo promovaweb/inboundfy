@@ -35,7 +35,7 @@ descoberta e ativação.
 ## Blocos compartilhados
 
 `skills/_shared/` concentra regras que não devem ser reescritas em cada uma das
-116 skills:
+117 skills:
 
 | Arquivo | Função |
 | --- | --- |
@@ -51,7 +51,7 @@ próprio `SKILL.md` as regras que só valem para seu domínio.
 ## Grupos e perfis
 
 O arquivo `skills/catalogo.json` é a fonte estruturada para quantidade e busca.
-Na versão atual, os 116 IDs estão distribuídos assim:
+Na versão atual, os 117 IDs estão distribuídos assim:
 
 | Grupo | Quantidade | Resultado típico |
 | --- | ---: | --- |
@@ -59,7 +59,7 @@ Na versão atual, os 116 IDs estão distribuídos assim:
 | Entrada | 2 | Preparação, setup ou encaminhamento inicial. |
 | Acervo | 4 | Bruto, processado, FAQ, pesquisa e base editorial. |
 | Base | 5 | Função reutilizável sem canal próprio. |
-| Contexto | 7 | Arquivo canônico do domínio atualizado. |
+| Contexto | 8 | Arquivo canônico do domínio atualizado. |
 | Brainstorm | 1 | Skill pública com cinco referências internas. |
 | Copy | 8 | Redação, edição, simplificação, gramática, oferta, persuasão e posicionamento. |
 | Estratégia | 1 | Skill pública com quatro referências internas. |
