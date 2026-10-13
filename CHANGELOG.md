@@ -4,6 +4,13 @@ As mudanças relevantes do Inboundfy são registradas neste arquivo. A versão d
 framework, do CLI, do pacote npm, da tag Git e da GitHub Release é sempre a
 mesma.
 
+## [0.5.0](https://github.com/promovaweb/inboundfy/compare/v0.4.0...v0.5.0) (2026-10-13)
+
+
+### Funcionalidades
+
+* adiciona inboundfy-contexto-depoimentos para registrar prova social ([20093b1](https://github.com/promovaweb/inboundfy/commit/20093b12f5a5650f1dc5476c4d78a1c704687e4c))
+
 ## [0.4.0](https://github.com/promovaweb/inboundfy/compare/v0.3.0...v0.4.0) (2026-09-28)
 
 
