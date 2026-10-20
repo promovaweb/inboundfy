@@ -20,8 +20,8 @@ describe("publicação npm", () => {
     expect(run.mock.calls[1][1]).toContain("--registry=https://registry.npmjs.org");
   });
 
-  test("não publica novamente uma versão disponível", () => {
-    const run = vi.fn().mockReturnValue('"0.5.0"');
+  test.each(['"0.5.0"', '["0.5.0"]'])("não republica a versão disponível: %s", (response) => {
+    const run = vi.fn().mockReturnValue(response);
     expect(publishPackage(pacote, "/tmp/pacote.tgz", "/tmp", run)).toBe(false);
     expect(run).toHaveBeenCalledTimes(1);
   });
@@ -37,7 +37,7 @@ describe("publicação npm", () => {
     expect(run).toHaveBeenCalledTimes(1);
   });
 
-  test.each(['"0.4.0"', "resposta inválida"])("recusa resposta inesperada: %s", (response) => {
+  test.each(['"0.4.0"', '["0.4.0"]', '[]', '["0.5.0","0.4.0"]', "resposta inválida"])("recusa resposta inesperada: %s", (response) => {
     const run = vi.fn().mockReturnValue(response);
     expect(() => publishPackage(pacote, "/tmp/pacote.tgz", "/tmp", run)).toThrow();
     expect(run).toHaveBeenCalledTimes(1);

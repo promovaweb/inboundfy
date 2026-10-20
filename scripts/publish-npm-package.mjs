@@ -33,7 +33,10 @@ export function isPublished(reference, version, root, run = execFileSync) {
     if (code === "E404") return false;
     throw new Error(`Não foi possível consultar ${reference} no npm.`, { cause: error });
   }
-  if (JSON.parse(result) !== version) {
+  // O npm também retorna uma lista para a consulta de uma versão exata.
+  const parsed = JSON.parse(result);
+  const versions = Array.isArray(parsed) ? parsed : [parsed];
+  if (versions.length !== 1 || versions[0] !== version) {
     throw new Error(`O npm retornou uma versão diferente de ${version}.`);
   }
   return true;
