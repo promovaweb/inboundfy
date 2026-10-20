@@ -95,7 +95,9 @@ Sem esse campo, a execução usa o fluxo normal do Release Please. Com a tag,
 o workflow dispensa a criação de uma Release PR, confere a GitHub Release e
 publica a partir do commit da tag. Tags ausentes, drafts, pré-releases e
 versões divergentes são recusados antes da publicação. Os anexos existentes
-são preservados.
+são comparados com os arquivos locais e preservados quando são idênticos.
+Se o mesmo nome tiver conteúdo diferente, a execução para sem sobrescrever
+o anexo.
 
 A recuperação mantém os PDFs e EPUBs do commit publicado. Para alterar o
 código ou os ebooks, prepare uma nova versão. Não mova tags existentes.

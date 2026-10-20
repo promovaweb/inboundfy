@@ -205,7 +205,22 @@ jobs:
           subject-path: release-assets/*
 
       - name: Anexar arquivos à GitHub Release
-        run: gh release upload "$RELEASE_TAG" release-assets/* --skip-existing
+        run: |
+          gh release view "$RELEASE_TAG" --json assets > "$RUNNER_TEMP/inboundfy-release-assets.json"
+          for asset in release-assets/*; do
+            name="$(basename "$asset")"
+            if jq -e --arg name "$name" '.assets | any(.name == $name)' "$RUNNER_TEMP/inboundfy-release-assets.json" > /dev/null; then
+              existing="$(mktemp -d)"
+              gh release download "$RELEASE_TAG" --pattern "$name" --dir "$existing"
+              if ! cmp "$asset" "$existing/$name"; then
+                echo "::error::O anexo $name já existe com conteúdo diferente."
+                exit 1
+              fi
+              rm -rf "$existing"
+            else
+              gh release upload "$RELEASE_TAG" "$asset"
+            fi
+          done
 
       - name: Publicar pacote no npm
         run: npm run publish:npm -- "release-assets/promovaweb-inboundfy-${RELEASE_VERSION}.tgz"
