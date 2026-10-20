@@ -6,10 +6,9 @@ mesma.
 
 ## [0.5.3](https://github.com/promovaweb/inboundfy/compare/v0.5.2...v0.5.3) (2026-10-20)
 
-
 ### Correções
 
-* aceita lista de versões retornada pelo npm ([#7](https://github.com/promovaweb/inboundfy/issues/7)) ([e874ac3](https://github.com/promovaweb/inboundfy/commit/e874ac356ad7884d0d734c10e43c4133aaad435e))
+- aceita lista de versões retornada pelo npm ([#7](https://github.com/promovaweb/inboundfy/issues/7)) ([e874ac3](https://github.com/promovaweb/inboundfy/commit/e874ac356ad7884d0d734c10e43c4133aaad435e))
 
 ## [0.5.2](https://github.com/promovaweb/inboundfy/compare/v0.5.1...v0.5.2) (2026-10-20)
 
