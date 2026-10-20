@@ -5,14 +5,20 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag existente para recuperar a publicação (vX.Y.Z)
+        required: false
+        type: string
 
 concurrency:
-  group: release-${{ github.ref }}
+  group: release-inboundfy
   cancel-in-progress: false
 
 jobs:
   release-please:
     name: Preparar ou publicar release
+    if: inputs.tag == ''
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -84,10 +90,59 @@ jobs:
           git commit -m "build: sincroniza framework e ebook da release"
           git push
 
+  preparar-publicacao:
+    name: Conferir a release para publicação
+    needs: release-please
+    if: >-
+      always() && !cancelled() &&
+      (needs.release-please.outputs.release_created == 'true' ||
+       (github.event_name == 'workflow_dispatch' && inputs.tag != ''))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      tag: ${{ steps.release.outputs.tag }}
+      version: ${{ steps.release.outputs.version }}
+      sha: ${{ steps.release.outputs.sha }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_TAG: ${{ inputs.tag || needs.release-please.outputs.tag_name }}
+    steps:
+      - name: Conferir formato e existência da release
+        shell: bash
+        run: |
+          if [[ ! "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Informe uma tag no formato vX.Y.Z."
+            exit 1
+          fi
+          gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json isDraft,isPrerelease \
+            --jq 'if .isDraft or .isPrerelease then error("A release precisa ser estável e pública.") else . end'
+
+      - name: Obter a tag publicada
+        uses: actions/checkout@v7
+        with:
+          ref: refs/tags/${{ env.RELEASE_TAG }}
+          persist-credentials: false
+
+      - name: Conferir versão e fixar commit
+        id: release
+        shell: bash
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          if [[ "$RELEASE_TAG" != "v$version" ]]; then
+            echo "::error::A tag diverge da versão do pacote."
+            exit 1
+          fi
+          {
+            echo "tag=$RELEASE_TAG"
+            echo "version=$version"
+            echo "sha=$(git rev-parse HEAD)"
+          } >> "$GITHUB_OUTPUT"
+
   publicar:
     name: Publicar npm e ativos
-    if: needs.release-please.outputs.release_created == 'true'
-    needs: release-please
+    needs: preparar-publicacao
+    if: always() && !cancelled() && needs.preparar-publicacao.result == 'success'
     runs-on: ubuntu-latest
     permissions:
       attestations: write
@@ -95,11 +150,14 @@ jobs:
       id-token: write
     env:
       GH_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN || github.token }}
+      RELEASE_TAG: ${{ needs.preparar-publicacao.outputs.tag }}
+      RELEASE_VERSION: ${{ needs.preparar-publicacao.outputs.version }}
     steps:
       - name: Obter commit da release
         uses: actions/checkout@v7
         with:
-          ref: ${{ needs.release-please.outputs.sha }}
+          ref: ${{ needs.preparar-publicacao.outputs.sha }}
+          persist-credentials: false
 
       - name: Configurar Node.js e npm
         uses: actions/setup-node@v7
@@ -118,7 +176,13 @@ jobs:
         run: npm ci
 
       - name: Validar versão, tag e implementação
-        run: npm run validar && npm run release:check -- "${{ needs.release-please.outputs.tag_name }}"
+        run: |
+          npm run skills:check
+          npm run typecheck
+          npm test
+          npm run build
+          npm run ebook:verify
+          npm run release:check -- "$RELEASE_TAG"
 
       - name: Empacotar distribuição pública
         run: |
@@ -126,12 +190,12 @@ jobs:
           npm pack --pack-destination release-assets
 
       - name: Validar pacote em isolamento
-        run: npm run npm:validate-package -- "release-assets/promovaweb-inboundfy-${{ needs.release-please.outputs.version }}.tgz"
+        run: npm run npm:validate-package -- "release-assets/promovaweb-inboundfy-${RELEASE_VERSION}.tgz"
 
       - name: Reunir ebook e checksums
         run: |
-          cp "ebook/Inboundfy-Guia-do-Usuario-v${{ needs.release-please.outputs.version }}.pdf" release-assets/
-          cp "ebook/Inboundfy-Guia-do-Usuario-v${{ needs.release-please.outputs.version }}.epub" release-assets/
+          cp "ebook/Inboundfy-Guia-do-Usuario-v${RELEASE_VERSION}.pdf" release-assets/
+          cp "ebook/Inboundfy-Guia-do-Usuario-v${RELEASE_VERSION}.epub" release-assets/
           node scripts/generate-checksums.mjs release-assets
 
       - name: Atestar ativos publicados
@@ -141,7 +205,19 @@ jobs:
           subject-path: release-assets/*
 
       - name: Anexar arquivos à GitHub Release
-        run: gh release upload "${{ needs.release-please.outputs.tag_name }}" release-assets/* --clobber
+        run: gh release upload "$RELEASE_TAG" release-assets/* --skip-existing
 
       - name: Publicar pacote no npm
-        run: npm run publish:npm -- "release-assets/promovaweb-inboundfy-${{ needs.release-please.outputs.version }}.tgz"
+        run: npm run publish:npm -- "release-assets/promovaweb-inboundfy-${RELEASE_VERSION}.tgz"
+
+      - name: Conferir instalação pelo registry público
+        env:
+          npm_config_registry: https://registry.npmjs.org
+          npm_config_cache: ${{ runner.temp }}/npm-consumer-cache
+        run: |
+          cd "$RUNNER_TEMP"
+          mkdir -p inboundfy-consumer
+          cd inboundfy-consumer
+          test "$(npm view "@promovaweb/inboundfy@$RELEASE_VERSION" version)" = "$RELEASE_VERSION"
+          npm exec --yes --package="@promovaweb/inboundfy@$RELEASE_VERSION" -- inboundfy --version
+          npm exec --yes --package="@promovaweb/inboundfy@$RELEASE_VERSION" -- inboundfy install --dry-run

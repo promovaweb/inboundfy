@@ -19,7 +19,9 @@ entrega quando encontra qualquer divergência.
    npm.
 2. No npm, configure Trusted Publishing para o repositório
    `promovaweb/inboundfy` e o workflow `.github/workflows/release.yml`.
-3. No GitHub, permita que GitHub Actions crie pull requests.
+3. No GitHub, permita que GitHub Actions crie pull requests na organização e
+   no repositório. Uma restrição da organização impede habilitar somente o
+   repositório.
 4. Quando a proteção de branch impedir o `GITHUB_TOKEN` de atualizar a Release
    PR, configure `RELEASE_PLEASE_TOKEN` com acesso somente ao repositório.
 
@@ -45,8 +47,10 @@ O Release Please calcula a próxima versão pelos Conventional Commits:
 5. Revise a Release PR e aguarde a CI.
 6. Mescle a Release PR.
 7. O workflow cria a tag e a GitHub Release.
-8. O job de publicação valida, empacota, instala o tarball em isolamento,
-   anexa ebook e checksums à release e publica o mesmo tarball no npm.
+8. O job de publicação valida o código e os ebooks já versionados, empacota,
+   instala o tarball em isolamento, anexa os arquivos à release e publica o
+   mesmo tarball no npm. A última etapa instala a versão pelo registry público
+   com cache separado e executa `install --dry-run`.
 
 O workflow de publicação é idempotente: se a mesma versão já existir no npm,
 ele confere o registro e encerra sem publicar outra cópia.
@@ -57,20 +61,61 @@ Execute:
 
 ```bash
 npm ci
-npm run validar
+npm run skills:check
+npm run typecheck
+npm test
+npm run build
+npm run ebook:verify
+npm run release:check
 mkdir -p artifacts
 npm pack --pack-destination artifacts
-npm run npm:validate-package -- artifacts/promovaweb-inboundfy-1.1.0.tgz
+npm run npm:validate-package -- artifacts/promovaweb-inboundfy-0.5.0.tgz
 ```
 
-Substitua `1.0.0` pela versão atual. Para validar uma tag:
+Substitua `0.5.0` pela versão atual. Para validar uma tag:
 
 ```bash
-npm run release:check -- v0.2.0
+npm run release:check -- v0.5.0
 ```
 
 ## Recuperação
 
-Se a release falhar antes da publicação, corrija a causa e execute novamente o
-workflow na mesma tag. Não altere o conteúdo de uma versão já publicada. Uma
-correção posterior recebe novo patch SemVer.
+Uma GitHub Release pode existir sem que o pacote esteja disponível no npm.
+Confira o job `Publicar npm e ativos`: uma execução verde com esse job ignorado
+não publicou o pacote.
+
+Depois de integrar o workflow de recuperação na `main`, execute:
+
+```bash
+gh workflow run release.yml --repo promovaweb/inboundfy --ref main -f tag=v0.5.0
+```
+
+O campo opcional `tag` recebe uma tag estável existente no formato `vX.Y.Z`.
+Sem esse campo, a execução usa o fluxo normal do Release Please. Com a tag,
+o workflow dispensa a criação de uma Release PR, confere a GitHub Release e
+publica a partir do commit da tag. Tags ausentes, drafts, pré-releases e
+versões divergentes são recusados antes da publicação. Os anexos existentes
+são preservados.
+
+A recuperação mantém os PDFs e EPUBs do commit publicado. Para alterar o
+código ou os ebooks, prepare uma nova versão. Não mova tags existentes.
+
+Se o pacote ainda não existir no npm, faça a primeira publicação do tarball
+validado com uma conta autorizada na organização `promovaweb`. Configure
+depois o Trusted Publishing nas configurações desse pacote, com o repositório
+`promovaweb/inboundfy` e o workflow `release.yml`. O login local não autentica
+o runner do GitHub Actions. Consulte a
+[documentação de Trusted Publishing do npm](https://docs.npmjs.com/trusted-publishers/).
+
+O publicador consulta explicitamente o registry público. Somente `E404`
+permite tratar uma consulta malsucedida como versão ausente. Erros de rede e
+autenticação interrompem a execução. Se a confirmação falhar depois do
+upload, consulte a versão antes de repetir o workflow:
+
+```bash
+npm view @promovaweb/inboundfy@0.5.0 version --registry=https://registry.npmjs.org
+npx @promovaweb/inboundfy@0.5.0 install --dry-run
+```
+
+Confira também `npm view @promovaweb/inboundfy dist-tags --json` para verificar
+qual versão será instalada pelo comando com `@latest`.
