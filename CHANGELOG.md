@@ -6,10 +6,9 @@ mesma.
 
 ## [0.5.2](https://github.com/promovaweb/inboundfy/compare/v0.5.1...v0.5.2) (2026-10-20)
 
-
 ### Correções
 
-* valida publicação em checkout limpo e preserva anexos ([#5](https://github.com/promovaweb/inboundfy/issues/5)) ([152f184](https://github.com/promovaweb/inboundfy/commit/152f1849e1c2859cdad20ff8aec7dad7208b2525))
+- valida publicação em checkout limpo e preserva anexos ([#5](https://github.com/promovaweb/inboundfy/issues/5)) ([152f184](https://github.com/promovaweb/inboundfy/commit/152f1849e1c2859cdad20ff8aec7dad7208b2525))
 
 ## [0.5.1](https://github.com/promovaweb/inboundfy/compare/v0.5.0...v0.5.1) (2026-10-20)
 

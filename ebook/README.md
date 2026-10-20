@@ -23,8 +23,8 @@ do framework, do pacote npm, da tag Git e da GitHub Release:
 
 Baixe a edição `v0.2.0`:
 
-- [PDF do guia do usuário](Inboundfy-Guia-do-Usuario-v0.5.1.pdf);
-- [EPUB do guia do usuário](Inboundfy-Guia-do-Usuario-v0.5.1.epub).
+- [PDF do guia do usuário](Inboundfy-Guia-do-Usuario-v0.5.2.pdf);
+- [EPUB do guia do usuário](Inboundfy-Guia-do-Usuario-v0.5.2.epub).
 
 Para links permanentes, use os aliases da edição mais recente:
 
