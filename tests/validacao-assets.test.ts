@@ -1,6 +1,7 @@
 /** Testes executáveis do contrato de validação de assets do Inboundfy. */
 
 import { readdir, readFile, stat } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
 import { join, relative, resolve } from "node:path";
 import { describe, expect, test } from "vitest";
 import { inventariar } from "../skills/inboundfy-setup/scripts/inventariar-fontes-projeto.mjs";
@@ -264,7 +265,10 @@ describe("validação de assets", () => {
     const versao = (await readFile(join(RAIZ, "ebook", "VERSION"), "utf8")).match(/^\d+\.\d+\.\d+$/m)?.[0];
     expect(versao).toBeTruthy();
     const stem = `Inboundfy-Guia-do-Usuario-v${versao}`;
-    const html = await readFile(join(RAIZ, ".ebook", "build", `${stem}.html`), "utf8");
+    // Confere o conteúdo distribuído sem depender do HTML temporário do build.
+    const html = execFileSync("unzip", [
+      "-p", join(RAIZ, "ebook", `${stem}.epub`), "*.xhtml",
+    ], { encoding: "utf8" });
     expect(html).not.toContain("Classificação");
     expect((await readFile(join(RAIZ, "ebook", `${stem}.epub`))).length).toBeGreaterThan(0);
   });
