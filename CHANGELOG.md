@@ -4,17 +4,23 @@ As mudanças relevantes do Inboundfy são registradas neste arquivo. A versão d
 framework, do CLI, do pacote npm, da tag Git e da GitHub Release é sempre a
 mesma.
 
+## [0.5.1](https://github.com/promovaweb/inboundfy/compare/v0.5.0...v0.5.1) (2026-10-20)
+
+### Correções
+
+- Recupera a publicação npm de releases existentes ([#3](https://github.com/promovaweb/inboundfy/pull/3)).
+- Corrige os caminhos do logo e das fontes no PDF recompilado para esta versão.
+
 ## [0.5.0](https://github.com/promovaweb/inboundfy/compare/v0.4.0...v0.5.0) (2026-10-13)
 
 ### Funcionalidades
 
-* adiciona `inboundfy-contexto-depoimentos` para registrar prova social (nome,
+- adiciona `inboundfy-contexto-depoimentos` para registrar prova social (nome,
   cargo, empresa, citação literal, foto e consentimento de uso por canal) em
   `context/depoimentos.json`, o primeiro arquivo de contexto em JSON em vez de
   Markdown ([20093b1](https://github.com/promovaweb/inboundfy/commit/20093b12f5a5650f1dc5476c4d78a1c704687e4))
 
 ## [0.4.0](https://github.com/promovaweb/inboundfy/compare/v0.3.0...v0.4.0) (2026-09-28)
-
 
 ### Orientações editoriais
 
@@ -24,12 +30,12 @@ mesma.
 
 ### Funcionalidades
 
-* adiciona skills de gramática e simplificação ([a025208](https://github.com/promovaweb/inboundfy/commit/a0252088f8077840577a45e7b2aec6c6725a7736))
+- adiciona skills de gramática e simplificação ([a025208](https://github.com/promovaweb/inboundfy/commit/a0252088f8077840577a45e7b2aec6c6725a7736))
 
 ### Correções
 
-* Gera o HTML do guia antes dos testes que conferem o ebook.
-* Instala no CI os compiladores do ebook usados pela release e fixa Pandoc
+- Gera o HTML do guia antes dos testes que conferem o ebook.
+- Instala no CI os compiladores do ebook usados pela release e fixa Pandoc
   `3.10.2` para validar a navegação do EPUB com a mesma versão nos dois fluxos.
 
 ## 0.3.0 (2026-09-22)

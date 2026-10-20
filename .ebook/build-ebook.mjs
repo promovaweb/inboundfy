@@ -307,7 +307,8 @@ async function build(version, sources, pages) {
   await writeFile(join(BUILD_ROOT, "document-metadata.json"), `${JSON.stringify(metadata, null, 2)}\n`);
   const fontStyle = await readFile(FONT_STYLE, "utf8");
   const rootStart = fontStyle.search(/^:root\s*\{/m);
-  const fontFaces = fontStyle.slice(0, rootStart < 0 ? fontStyle.length : rootStart).replaceAll('url("./', 'url("../../brand/fonts/');
+  // Os recursos do HTML usam a raiz do produto como diretório base no PDF.
+  const fontFaces = fontStyle.slice(0, rootStart < 0 ? fontStyle.length : rootStart).replaceAll('url("./', 'url("brand/fonts/');
   if (!fontFaces.trim()) fail("fontes Inter e Manrope ausentes em brand/fonts/fonts.css.");
   const template = await readFile(TEMPLATE, "utf8");
   const filledTemplate = template.replace("$fontfaces$", fontFaces.trimEnd());
@@ -333,7 +334,7 @@ async function build(version, sources, pages) {
   const commonPandoc = ["--from=markdown", "--standalone", "--file-scope"];
   const resourcePath = `${SCRIPT_DIR}:${ROOT}:${DOCS_ROOT}:${preparedPages.cwd}`;
   run("pandoc", [...preparedPages.inputs, "--to=html5", ...commonPandoc, `--template=${filledTemplatePath}`, "--toc", "--toc-depth=2", `--resource-path=${resourcePath}`, `--metadata-file=${METADATA}`, `--metadata`, `title=Inboundfy — Guia completo do usuário · v${version}`, "--metadata", `version=${version}`, "--metadata", `date=${dateInPortuguese()}`, "--output", join(BUILD_ROOT, `${paths.stem}.html`)], { cwd: preparedPages.cwd });
-  run("weasyprint", [join(BUILD_ROOT, `${paths.stem}.html`), paths.pdf, "--base-url", ROOT, "--stylesheet", PDF_STYLE]);
+  run("weasyprint", [join(BUILD_ROOT, `${paths.stem}.html`), paths.pdf, "--base-url", `${ROOT}/`, "--stylesheet", PDF_STYLE]);
   run("pandoc", [...preparedPages.inputs, "--to=epub3", ...commonPandoc, "--toc", "--toc-depth=2", "--epub-title-page=true", `--epub-cover-image=${cover}`, `--css=${EPUB_STYLE}`, `--resource-path=${resourcePath}`, `--metadata-file=${METADATA}`, "--metadata", `title=Inboundfy — Guia completo do usuário · v${version}`, "--metadata", `version=${version}`, "--metadata", `date=${dateForMetadata()}`, "--output", paths.epub], { cwd: preparedPages.cwd });
   const manifest = {
     schema_version: 1,
