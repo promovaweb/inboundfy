@@ -4,6 +4,13 @@ As mudanças relevantes do Inboundfy são registradas neste arquivo. A versão d
 framework, do CLI, do pacote npm, da tag Git e da GitHub Release é sempre a
 mesma.
 
+## [0.5.1](https://github.com/promovaweb/inboundfy/compare/v0.5.0...v0.5.1) (2026-10-20)
+
+
+### Correções
+
+* recupera publicação npm de releases existentes ([#3](https://github.com/promovaweb/inboundfy/issues/3)) ([f627ee1](https://github.com/promovaweb/inboundfy/commit/f627ee149cc51f3917f3ae4608acabd4bcf30f66))
+
 ## [0.5.0](https://github.com/promovaweb/inboundfy/compare/v0.4.0...v0.5.0) (2026-10-13)
 
 ### Funcionalidades
