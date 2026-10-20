@@ -19,8 +19,8 @@ Os capítulos deste diretório também formam o
 leitura, compartilhamento e impressão. O EPUB permite ajustar fonte e tamanho
 no leitor digital.
 
-- [Baixe o PDF](../../ebook/Inboundfy-Guia-do-Usuario-v0.5.1.pdf).
-- [Baixe o EPUB](../../ebook/Inboundfy-Guia-do-Usuario-v0.5.1.epub).
+- [Baixe o PDF](../../ebook/Inboundfy-Guia-do-Usuario-v0.5.2.pdf).
+- [Baixe o EPUB](../../ebook/Inboundfy-Guia-do-Usuario-v0.5.2.epub).
 - [Consulte a edição e os hashes](../../ebook/README.md).
 
 ## Percurso completo
