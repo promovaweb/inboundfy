@@ -4,6 +4,13 @@ As mudanças relevantes do Inboundfy são registradas neste arquivo. A versão d
 framework, do CLI, do pacote npm, da tag Git e da GitHub Release é sempre a
 mesma.
 
+## [0.6.0](https://github.com/promovaweb/inboundfy/compare/v0.5.3...v0.6.0) (2026-10-29)
+
+
+### Funcionalidades
+
+* acrescenta STEPPS às estruturas persuasivas das skills de copy ([1076bc3](https://github.com/promovaweb/inboundfy/commit/1076bc306b42034904a41f18f63df742010d34fb))
+
 ## [0.5.3](https://github.com/promovaweb/inboundfy/compare/v0.5.2...v0.5.3) (2026-10-20)
 
 ### Correções
