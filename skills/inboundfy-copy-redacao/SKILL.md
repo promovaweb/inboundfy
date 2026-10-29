@@ -47,6 +47,10 @@ ação deve orientar.
    o próximo passo.
 3. Escolha um ângulo compatível com a estratégia. Não empilhe todos os pontos
    do acervo numa única peça.
+   Se o objetivo incluir compartilhamento, consulte a seção STEPPS de
+   `.inboundfy/framework/ESTRUTURAS-PERSUASIVAS.md` e registre no brief os
+   princípios pertinentes e sua aplicação. Use um ou mais conforme o material,
+   sem promessa de viralização nem exigência de aplicar todos.
 4. Monte a arquitetura antes da prosa: abertura, desenvolvimento, prova,
    tratamento de objeção e CTA.
 5. Para peça longa, execute `inboundfy-anti-slop` no marco A4 sobre o outline,

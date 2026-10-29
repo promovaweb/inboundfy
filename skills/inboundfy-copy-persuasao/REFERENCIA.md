@@ -8,6 +8,29 @@
 - A ação seguinte é simples e reversível quando apropriado?
 - A urgência tem prazo ou condição real?
 
+## Compartilhamento com STEPPS
+
+Leia a seção STEPPS de `.inboundfy/framework/ESTRUTURAS-PERSUASIVAS.md` quando
+o comportamento desejado for compartilhar ou recomendar. O método reúne moeda
+social, gatilhos, emoção, visibilidade, valor prático e histórias.
+
+Registre no diagnóstico existente, antes de encaminhar à redação:
+
+```yaml
+compartilhamento:
+  objetivo: ajudar colegas a resolver a mesma tarefa
+  principios:
+    - nome: valor prático
+      aplicacao: mostrar os passos da correção e como conferir o resultado
+      suporte: exemplo ilustrativo; substituir pelo material real do acervo
+  limite: não há previsão de alcance ou viralização
+```
+
+Esse preenchimento é ilustrativo. Use o objetivo e as fontes reais da peça.
+Na revisão, confira o trecho que realiza cada aplicação e explique qualquer
+ajuste necessário. Não conte princípios para aprovar o texto; a validação
+continua dependendo das fontes, da voz e das regras do canal.
+
 ## Guardrails
 
 Nunca invente escassez, depoimento, autoridade, número, medo ou consenso.

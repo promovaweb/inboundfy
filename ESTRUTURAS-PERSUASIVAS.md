@@ -92,6 +92,59 @@ Use FAB parágrafo a parágrafo: cada característica mencionada numa peça
 persuasiva deve chegar ao benefício antes do parágrafo terminar, nunca parar
 na característica sozinha.
 
+## STEPPS — Princípios de compartilhamento
+
+O STEPPS, de Jonah Berger, apresentado no livro *Contagious: Why Things
+Catch On*, ajuda a analisar por que a persona lembraria de uma mensagem e a
+repassaria. Use em posts, artigos, vídeos e outros conteúdos cujo objetivo
+inclua compartilhamento, inclusive peças informativas sem oferta comercial.
+Ele pode acompanhar AIDA, PAS, PASTOR ou FAB sem determinar a sequência dos
+parágrafos. A sigla mantém os nomes originais em inglês.
+
+| Princípio | Aplicação na copy | Pergunta para o brief |
+| --- | --- | --- |
+| **S: Social Currency (moeda social)** | Compartilhar pode expressar conhecimento, bom humor ou pertencimento. | O que a pessoa comunica sobre si ao repassar a mensagem? |
+| **T: Triggers (gatilhos)** | Situações recorrentes podem trazer o assunto à memória. | Qual situação da rotina lembraria a pessoa deste conteúdo? |
+| **E: Emotion (emoção)** | Emoções de alta ativação, como surpresa, entusiasmo ou indignação, podem estimular o compartilhamento. | Qual reação o assunto desperta e qual fato a provoca? |
+| **P: Public (visibilidade)** | Um comportamento observável pode incentivar outras pessoas a participar. | Como a participação pode aparecer para outras pessoas? |
+| **P: Practical Value (valor prático)** | Uma orientação aplicável dá motivo para ajudar colegas repassando o conteúdo. | Qual grupo usaria isso e qual tarefa ajudaria a realizar? |
+| **S: Stories (histórias)** | Uma narrativa pode transportar a mensagem quando a pessoa reconta o acontecimento. | A mensagem continua presente quando a história é recontada? |
+
+### Exemplos ilustrativos
+
+Uma novidade de IA explicada com precisão pode oferecer moeda social à pessoa
+que a compartilha com colegas. Uma conferência anual pode lembrar um assunto
+relacionado a cada edição, funcionando como gatilho. Uma demonstração com
+resultado inesperado pode provocar surpresa, desde que o resultado seja real.
+
+Uma retrospectiva pessoal que a pessoa escolhe publicar torna a participação
+visível. Um tutorial pode oferecer valor prático a colegas que enfrentam a mesma
+tarefa. Um relato de tentativa, erro e correção pode levar a orientação junto
+com a história. Esses exemplos ilustram os princípios; não comprovam alcance.
+
+### Aplicação no fluxo de copy
+
+No brief ou diagnóstico existente, registre o objetivo de compartilhamento,
+os princípios pertinentes, a aplicação proposta e os fatos que a confirmam.
+Durante a redação, consulte esse registro para conferir se a mensagem oferece
+um motivo concreto para ser repassada. Na revisão, aponte o trecho que realiza
+cada aplicação e ajuste o que depender de exagero ou informação ausente.
+
+Escolha um ou mais princípios conforme a persona, o canal e o material
+disponível. Não exija os seis nem use sua presença como aprovação automática.
+Eles não garantem viralização. Não fabrique indignação, consenso, depoimentos
+ou resultados para encaixar a peça no framework. Histórias reais precisam de
+fonte; exemplos fictícios precisam ser identificados como ilustrativos.
+
+### Fontes e validação
+
+Consulte o [workbook do autor](https://jonahberger.com/wp-content/uploads/2013/03/Crafting-Contagious-Workbook.pdf)
+e a [apresentação na Wharton](https://executiveeducation.wharton.upenn.edu/thought-leadership/wharton-at-work/2013/04/crafting-contagious/)
+para os conceitos originais. Os exemplos desta seção são adaptações
+ilustrativas. `inboundfy-copy-persuasao` analisa os motivos de compartilhamento;
+`inboundfy-copy-redacao` aplica o registro à peça. A revisão mantém as fontes,
+a voz, os marcos anti-slop e a validação do canal.
+
 ## Como as skills de canal aplicam este arquivo
 
 - `inboundfy-planejamento` registra no brief, quando aplicável, qual estrutura

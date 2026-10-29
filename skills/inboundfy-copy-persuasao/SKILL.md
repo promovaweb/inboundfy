@@ -42,6 +42,9 @@ objeções e fontes disponíveis.
 
 1. Identifique o trabalho que a pessoa tenta realizar e o custo de adiar.
 2. Organize a mensagem por relevância, compreensão, confiança e ação.
+   Quando o objetivo incluir compartilhamento, leia a seção STEPPS de
+   `.inboundfy/framework/ESTRUTURAS-PERSUASIVAS.md` e consulte
+   [REFERENCIA.md](REFERENCIA.md) para registrar a aplicação no diagnóstico.
 3. Use prova social, autoridade, especificidade, reciprocidade ou urgência
    somente quando forem reais, pertinentes e explicadas.
 4. Mostre condição, limite, preço, prazo e alternativa quando isso afeta a

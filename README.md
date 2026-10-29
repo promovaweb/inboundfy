@@ -70,8 +70,9 @@ atalho legado que encaminha para a mesma orquestradora.
   (ou de um item alocado pelo calendário) até o artefato final auditado.
 - `ESCRITA.md`: princípios agnósticos de escrita humana e anti-slop que valem
   para qualquer canal e qualquer voz de marca.
-- `ESTRUTURAS-PERSUASIVAS.md`: AIDA, PAS, PASTOR e FAB — quando usar cada
-  estrutura e como cada skill de canal comercial a aplica.
+- `ESTRUTURAS-PERSUASIVAS.md`: AIDA, PAS, PASTOR e FAB para organizar
+  argumentos; STEPPS, de Jonah Berger, para analisar e aplicar motivos de
+  compartilhamento nas skills de copy, inclusive em conteúdo informativo.
 - `LIMPEZA-MATERIAL-BRUTO.md`: regras de saneamento de texto colado,
   transcrição e nota solta — o que pode e não pode ser corrigido antes de
   qualquer voz editorial entrar em cena.
