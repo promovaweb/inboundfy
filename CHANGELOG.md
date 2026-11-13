@@ -9,7 +9,7 @@ mesma.
 
 ### Documentação
 
-* reorganiza README e CONTRIBUTING no padrão da Promovaweb ([12290c0](https://github.com/promovaweb/inboundfy/commit/12290c0b64681f89ef0163539d5f497355906878))
+* reorganiza o README para quem usa (cabeçalho da Promovaweb, Discord, documentação, planos, repositórios usados e licença proprietária) e cria o CONTRIBUTING para quem contribui ([12290c0](https://github.com/promovaweb/inboundfy/commit/12290c0b64681f89ef0163539d5f497355906878))
 
 ## [0.6.0](https://github.com/promovaweb/inboundfy/compare/v0.5.3...v0.6.0) (2026-10-29)
 
