@@ -42,7 +42,7 @@
       "path": "logo/logo-dark.png",
       "format": "png",
       "role": "logo-dark",
-      "sha256": "52e7abdcf0e8ac4618087682fb04327b060c680b7b098ff7ac7c7e7db919f546"
+      "sha256": "0f2c9ea960d32f15a4f0b274f6e17da498f8a99ba2734399a364606c3792e14e"
     },
     {
       "path": "logo/logo-dark.svg",
@@ -54,7 +54,7 @@
       "path": "logo/logo-light.png",
       "format": "png",
       "role": "logo-light",
-      "sha256": "7149df457054cda283033f4c9f00d8026bdd2be75f66f3ad6ce1d2e60d2cf22b"
+      "sha256": "5b6175512765b17fb866eb0c50e38d929a457a45f73f1f1f54384ee4098d5b9d"
     },
     {
       "path": "logo/logo-light.svg",
