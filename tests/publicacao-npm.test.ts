@@ -43,12 +43,22 @@ describe("publicação npm", () => {
     expect(run).toHaveBeenCalledTimes(1);
   });
 
+  test("aguarda a propagação do registry antes de confirmar", () => {
+    const run = vi.fn()
+      .mockImplementationOnce(ausente)
+      .mockReturnValueOnce("")
+      .mockImplementationOnce(ausente)
+      .mockReturnValueOnce('"0.5.0"');
+    expect(publishPackage(pacote, "/tmp/pacote.tgz", "/tmp", run, { attempts: 3, interval: 0 })).toBe(true);
+    expect(run).toHaveBeenCalledTimes(4);
+  });
+
   test("não declara sucesso quando a versão continua ausente após publicar", () => {
     const run = vi.fn()
       .mockImplementationOnce(ausente)
       .mockReturnValueOnce("")
       .mockImplementationOnce(ausente);
-    expect(() => publishPackage(pacote, "/tmp/pacote.tgz", "/tmp", run))
+    expect(() => publishPackage(pacote, "/tmp/pacote.tgz", "/tmp", run, { attempts: 1, interval: 0 }))
       .toThrow("ainda não está disponível");
     expect(run).toHaveBeenCalledTimes(3);
   });

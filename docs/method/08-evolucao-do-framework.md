@@ -32,7 +32,8 @@ Toda pesquisa que altera uma afirmação salva fonte e data no item do acervo.
 - tag Git `vX.Y.Z` e GitHub Release;
 - PDF e EPUB do guia do usuário.
 
-O Release Please altera a versão em uma Release PR. O comando
+A versão muda em `package.json` e `package-lock.json` no commit da release,
+como descreve o [RELEASING.md](../../RELEASING.md). O comando
 `npm run release:sync` sincroniza o ebook e seus links. A validação recusa a
 release se algum número divergir. Não crie versão separada para o CLI.
 

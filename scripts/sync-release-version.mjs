@@ -18,7 +18,7 @@ if (!/^\d+\.\d+\.\d+$/.test(version)) {
 
 await writeFile(
   join(root, "ebook", "VERSION"),
-  `# x-release-please-start-version\n${version}\n# x-release-please-end\n`,
+  `${version}\n`,
 );
 
 for (const relative of ["ebook/README.md", "docs/user/README.md"]) {

@@ -13,111 +13,137 @@ fonte canônica do SemVer. O mesmo número identifica:
 Uma release não pode misturar versões. `npm run release:check` interrompe a
 entrega quando encontra qualquer divergência.
 
-## Preparação única dos serviços
+## Quem faz o quê
 
-1. Crie o pacote público `@promovaweb/inboundfy` na organização `promovaweb` do
-   npm.
-2. No npm, configure Trusted Publishing para o repositório
-   `promovaweb/inboundfy` e o workflow `.github/workflows/release.yml`.
-3. No GitHub, permita que GitHub Actions crie pull requests na organização e
-   no repositório. Uma restrição da organização impede habilitar somente o
-   repositório.
-4. Quando a proteção de branch impedir o `GITHUB_TOKEN` de atualizar a Release
-   PR, configure `RELEASE_PLEASE_TOKEN` com acesso somente ao repositório.
+| Etapa | Onde roda |
+| --- | --- |
+| Versão, changelog, ebook, commit e tag | máquina local |
+| GitHub Release e anexos (PDF, EPUB, tarball, `SHA256SUMS`) | workflow `.github/workflows/release.yml`, disparado pela tag |
+| Publicação no npm | somente a máquina local, logada como `contatopromovaweb` |
 
-O workflow usa OIDC. Não grave token permanente do npm no repositório.
+O workflow de release não roda `npm publish` e não guarda token do npm. O
+`npm run release:check` recusa um `release.yml` que publique no npm.
 
 ## Convenção de commits
 
-O Release Please calcula a próxima versão pelos Conventional Commits:
+Os commits seguem Conventional Commits. O tipo indica o tamanho da próxima
+versão:
 
-- `fix:` gera patch;
-- `feat:` gera minor;
-- `feat!:` ou `BREAKING CHANGE:` gera major;
-- `docs:`, `test:`, `build:` e `ci:` entram no histórico sem aumentar a versão
-  quando aparecem sozinhos.
+- `fix:` pede patch;
+- `feat:` pede minor;
+- `feat!:` ou `BREAKING CHANGE:` pede major;
+- `docs:`, `test:`, `build:` e `ci:` sozinhos não pedem versão nova.
 
 ## Fluxo de release
 
-1. Integre commits válidos em `main`.
-2. O workflow abre ou atualiza uma Release PR.
-3. A Release PR sincroniza `package.json`, `package-lock.json`,
-   `.release-please-manifest.json`, `CHANGELOG.md` e `ebook/VERSION`.
-4. `npm run release:sync` recompila PDF e EPUB e atualiza os links da edição.
-5. Revise a Release PR e aguarde a CI.
-6. Mescle a Release PR.
-7. O workflow cria a tag e a GitHub Release.
-8. O job de publicação valida o código e os ebooks já versionados, empacota,
-   instala o tarball em isolamento, anexa os arquivos à release e publica o
-   mesmo tarball no npm. A última etapa instala a versão pelo registry público
-   com cache separado e executa `install --dry-run`.
+1. Confira que `main` está limpa e atualizada:
 
-O workflow de publicação é idempotente: se a mesma versão já existir no npm,
-ele confere o registro e encerra sem publicar outra cópia.
+   ```bash
+   git switch main && git pull --ff-only && git status --short
+   ```
 
-## Validação local
+2. Atualize a versão em `package.json` e `package-lock.json` sem criar tag:
 
-Execute:
+   ```bash
+   npm version 0.7.0 --no-git-tag-version
+   ```
+
+3. Escreva a entrada da versão no topo do `CHANGELOG.md`, no formato
+   `## [X.Y.Z](https://github.com/promovaweb/inboundfy/compare/vA.B.C...vX.Y.Z) (AAAA-MM-DD)`.
+   O workflow usa essa seção como notas da GitHub Release.
+4. Sincronize o ebook e os links da edição:
+
+   ```bash
+   npm run release:sync
+   ```
+
+   O comando grava `ebook/VERSION`, recompila PDF e EPUB e atualiza
+   `ebook/README.md` e `docs/user/README.md`.
+5. Rode a validação completa:
+
+   ```bash
+   npm run validar
+   ```
+
+6. Faça o commit da release, crie a tag e envie os dois juntos:
+
+   ```bash
+   git add -A
+   git commit -m "chore(release): v0.7.0"
+   git tag v0.7.0
+   git fetch origin && git status -sb   # main não pode estar atrás de origin
+   git push --atomic origin HEAD:main v0.7.0
+   ```
+
+7. O push da tag dispara o workflow `Release`. Ele valida a tag, empacota,
+   instala o tarball em isolamento, gera `SHA256SUMS`, atesta os arquivos,
+   cria a GitHub Release com as notas do changelog e anexa PDF, EPUB,
+   tarball e `SHA256SUMS`. Acompanhe e confira:
+
+   ```bash
+   gh run watch --repo promovaweb/inboundfy
+   gh release view v0.7.0 --repo promovaweb/inboundfy
+   ```
+
+8. Publique no npm pela máquina local (próxima seção).
+
+## Publicação no npm
+
+A publicação usa o mesmo tarball anexado à GitHub Release:
 
 ```bash
-npm ci
-npm run skills:check
-npm run typecheck
-npm test
-npm run build
-npm run ebook:verify
-npm run release:check
+npm whoami                     # contatopromovaweb
+mkdir -p release-assets
+gh release download v0.7.0 --repo promovaweb/inboundfy \
+  --pattern 'promovaweb-inboundfy-*.tgz' --pattern SHA256SUMS \
+  --dir release-assets
+(cd release-assets && sha256sum --check --ignore-missing SHA256SUMS)
+npm run publish:npm -- release-assets/promovaweb-inboundfy-0.7.0.tgz
+npm view @promovaweb/inboundfy version license
+```
+
+`npm run publish:npm` consulta o registry público antes de publicar e não
+repete uma versão que já existe. Depois do upload, ele espera a versão
+aparecer no registry por até cinco minutos. Somente `E404` conta como versão
+ausente. Erros de rede e autenticação interrompem o comando. O
+`npm publish <tgz> --access public` direto também funciona, mas não faz essas
+conferências.
+
+A release só está completa quando `npm view` mostra a versão da tag e a
+licença `AGPL-3.0-only`. Confira também qual versão o `@latest` instala:
+
+```bash
+npm view @promovaweb/inboundfy dist-tags --json
+npx @promovaweb/inboundfy@0.7.0 install --dry-run
+```
+
+## Validação local do pacote
+
+Para conferir o tarball antes da tag:
+
+```bash
 mkdir -p artifacts
 npm pack --pack-destination artifacts
-npm run npm:validate-package -- artifacts/promovaweb-inboundfy-0.5.0.tgz
+npm run npm:validate-package -- artifacts/promovaweb-inboundfy-0.7.0.tgz
+npm run release:check -- v0.7.0
 ```
 
-Substitua `0.5.0` pela versão atual. Para validar uma tag:
-
-```bash
-npm run release:check -- v0.5.0
-```
+Troque `0.7.0` pela versão atual.
 
 ## Recuperação
 
-Uma GitHub Release pode existir sem que o pacote esteja disponível no npm.
-Confira o job `Publicar npm e ativos`: uma execução verde com esse job ignorado
-não publicou o pacote.
-
-Depois de integrar o workflow de recuperação na `main`, execute:
+Se o workflow falhar depois da tag, corrija a causa na `main` sem mover a tag
+e recrie os anexos a partir dela:
 
 ```bash
-gh workflow run release.yml --repo promovaweb/inboundfy --ref main -f tag=v0.5.0
+gh workflow run release.yml --repo promovaweb/inboundfy --ref main -f tag=v0.7.0
 ```
 
-O campo opcional `tag` recebe uma tag estável existente no formato `vX.Y.Z`.
-Sem esse campo, a execução usa o fluxo normal do Release Please. Com a tag,
-o workflow dispensa a criação de uma Release PR, confere a GitHub Release e
-publica a partir do commit da tag. Tags ausentes, drafts, pré-releases e
-versões divergentes são recusados antes da publicação. Os anexos existentes
-são comparados com os arquivos locais e preservados quando são idênticos.
-Se o mesmo nome tiver conteúdo diferente, a execução para sem sobrescrever
-o anexo.
+O campo `tag` recebe uma tag estável existente no formato `vX.Y.Z`. O
+workflow faz checkout da tag, cria a GitHub Release quando ela ainda não
+existe e compara os anexos existentes com os arquivos gerados. Anexos
+idênticos são preservados. Se o mesmo nome tiver conteúdo diferente, a
+execução para sem sobrescrever o anexo.
 
 A recuperação mantém os PDFs e EPUBs do commit publicado. Para alterar o
 código ou os ebooks, prepare uma nova versão. Não mova tags existentes.
-
-Se o pacote ainda não existir no npm, faça a primeira publicação do tarball
-validado com uma conta autorizada na organização `promovaweb`. Configure
-depois o Trusted Publishing nas configurações desse pacote, com o repositório
-`promovaweb/inboundfy` e o workflow `release.yml`. O login local não autentica
-o runner do GitHub Actions. Consulte a
-[documentação de Trusted Publishing do npm](https://docs.npmjs.com/trusted-publishers/).
-
-O publicador consulta explicitamente o registry público. Somente `E404`
-permite tratar uma consulta malsucedida como versão ausente. Erros de rede e
-autenticação interrompem a execução. Se a confirmação falhar depois do
-upload, consulte a versão antes de repetir o workflow:
-
-```bash
-npm view @promovaweb/inboundfy@0.5.0 version --registry=https://registry.npmjs.org
-npx @promovaweb/inboundfy@0.5.0 install --dry-run
-```
-
-Confira também `npm view @promovaweb/inboundfy dist-tags --json` para verificar
-qual versão será instalada pelo comando com `@latest`.

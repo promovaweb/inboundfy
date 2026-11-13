@@ -1,6 +1,7 @@
 /**
- * Publica o tarball uma única vez e aceita autenticação OIDC do npm.
- * Somente E404 permite iniciar uma publicação após falha de consulta.
+ * Publica o tarball no npm pela máquina local, uma única vez, com o login da
+ * conta autorizada na organização `promovaweb`. Nenhum workflow executa este
+ * script. Somente E404 permite iniciar uma publicação após falha de consulta.
  */
 
 import { execFileSync } from "node:child_process";
@@ -46,18 +47,34 @@ function commandNpm() {
   return process.platform === "win32" ? "npm.cmd" : "npm";
 }
 
-/** Publica somente após consultar o registry e confirma a versão disponível. */
-export function publishPackage(packageJson, tarball, root, run = execFileSync) {
+/** Pausa síncrona entre consultas ao registry, sem processos auxiliares. */
+function sleep(ms) {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+}
+
+/**
+ * Publica somente após consultar o registry e confirma a versão disponível.
+ * O registry pode levar alguns minutos para refletir a versão nova: a
+ * confirmação repete a consulta `attempts` vezes, com `interval` ms entre elas.
+ */
+export function publishPackage(
+  packageJson,
+  tarball,
+  root,
+  run = execFileSync,
+  { attempts = 30, interval = 10_000 } = {},
+) {
   const reference = `${packageJson.name}@${packageJson.version}`;
   if (isPublished(reference, packageJson.version, root, run)) return false;
   run(commandNpm(), ["publish", tarball, "--access", "public", `--registry=${registry}`], {
     cwd: root,
     stdio: "inherit",
   });
-  if (!isPublished(reference, packageJson.version, root, run)) {
-    throw new Error(`${reference} ainda não está disponível no registry público. Consulte antes de repetir a publicação.`);
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    if (isPublished(reference, packageJson.version, root, run)) return true;
+    if (attempt < attempts) sleep(interval);
   }
-  return true;
+  throw new Error(`${reference} ainda não está disponível no registry público. Consulte antes de repetir a publicação.`);
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

@@ -14,8 +14,6 @@ const tag =
     : undefined);
 const packageJson = await readJson("package.json");
 const packageLock = await readJson("package-lock.json");
-const releaseManifest = await readJson(".release-please-manifest.json");
-const releaseConfig = await readJson("release-please-config.json");
 const changelog = await readFile(join(root, "CHANGELOG.md"), "utf8");
 const ebookVersion = extractEbookVersion(
   await readFile(join(root, "ebook", "VERSION"), "utf8"),
@@ -35,11 +33,6 @@ equal(
 );
 equal(
   packageJson.version,
-  releaseManifest["."],
-  "O manifesto do Release Please diverge.",
-);
-equal(
-  packageJson.version,
   ebookVersion,
   "A edição do ebook diverge da versão do framework.",
 );
@@ -54,15 +47,15 @@ equal(
   "O pacote precisa ser público no npm.",
 );
 equal(
-  releaseConfig.packages?.["."]?.["release-type"],
-  "node",
-  "O Release Please precisa usar o tipo node.",
+  packageJson.license,
+  "AGPL-3.0-only",
+  "O pacote precisa declarar a licença AGPL-3.0-only.",
 );
-if (!releaseConfig.packages?.["."]?.["extra-files"]?.some(
-  (item) => item.path === "ebook/VERSION",
-)) {
-  throw new Error("O Release Please não atualiza ebook/VERSION.");
-}
+equal(
+  packageLock.packages?.[""]?.license,
+  "AGPL-3.0-only",
+  "A licença raiz do lockfile diverge.",
+);
 
 const escaped = packageJson.version.replaceAll(".", String.raw`\.`);
 if (!new RegExp(`^## (?:\\[)?${escaped}(?:\\])?\\b`, "m").test(changelog)) {
@@ -89,14 +82,19 @@ for (const path of [
   await access(join(root, path));
 }
 for (const expected of [
-  "googleapis/release-please-action@v5",
   "npm run npm:validate-package",
-  "npm run publish:npm",
-  "id-token: write",
-  "npm run release:sync",
+  "scripts/generate-checksums.mjs",
+  "gh release create",
+  "gh release upload",
 ]) {
   if (!workflow.includes(expected)) {
     throw new Error(`O workflow de release não contém: ${expected}.`);
+  }
+}
+// A publicação no npm é feita só pela máquina local (RELEASING.md).
+for (const forbidden of ["npm publish", "publish:npm", "NPM_TOKEN", "NODE_AUTH_TOKEN", "registry-url"]) {
+  if (workflow.includes(forbidden)) {
+    throw new Error(`O workflow de release não pode publicar no npm: ${forbidden}.`);
   }
 }
 if (tag) {

@@ -1,14 +1,18 @@
 name: Release
 
+# Cria a GitHub Release de uma tag vX.Y.Z e anexa PDF, EPUB, tarball e
+# SHA256SUMS. A publicação no npm é feita só pela máquina local, a partir do
+# tarball anexado (veja RELEASING.md). Este workflow não usa token do npm.
+
 on:
   push:
-    branches:
-      - main
+    tags:
+      - "v*.*.*"
   workflow_dispatch:
     inputs:
       tag:
-        description: Tag existente para recuperar a publicação (vX.Y.Z)
-        required: false
+        description: Tag existente para recriar os anexos da release (vX.Y.Z)
+        required: true
         type: string
 
 concurrency:
@@ -16,158 +20,36 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  release-please:
-    name: Preparar ou publicar release
-    if: inputs.tag == ''
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      issues: write
-      pull-requests: write
-    outputs:
-      release_created: ${{ steps.release.outputs.release_created }}
-      sha: ${{ steps.release.outputs.sha }}
-      tag_name: ${{ steps.release.outputs.tag_name }}
-      version: ${{ steps.release.outputs.version }}
-    steps:
-      - name: Executar Release Please
-        id: release
-        uses: googleapis/release-please-action@v5
-        with:
-          token: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.GITHUB_TOKEN }}
-          config-file: release-please-config.json
-          manifest-file: .release-please-manifest.json
-
-      - name: Identificar branch da Release PR
-        id: release-pr
-        if: steps.release.outputs.prs_created == 'true'
-        env:
-          RELEASE_PR: ${{ steps.release.outputs.pr }}
-        run: echo "branch=$(jq -r .headBranchName <<< "$RELEASE_PR")" >> "$GITHUB_OUTPUT"
-
-      - name: Obter Release PR
-        if: steps.release.outputs.prs_created == 'true'
-        uses: actions/checkout@v7
-        with:
-          ref: ${{ steps.release-pr.outputs.branch }}
-          token: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.GITHUB_TOKEN }}
-
-      - name: Configurar Node.js da Release PR
-        if: steps.release.outputs.prs_created == 'true'
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: npm
-
-      - name: Instalar compiladores do ebook
-        if: steps.release.outputs.prs_created == 'true'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y fontconfig imagemagick jq libxml2-utils pipx poppler-utils unzip
-          curl -fsSL https://github.com/jgm/pandoc/releases/download/3.10.2/pandoc-3.10.2-1-amd64.deb -o "$RUNNER_TEMP/pandoc.deb"
-          sudo apt-get install -y "$RUNNER_TEMP/pandoc.deb"
-          pipx install weasyprint==69.0
-          mkdir -p "$RUNNER_TEMP/inboundfy-bin"
-          printf '#!/bin/sh\nexec convert "$@"\n' > "$RUNNER_TEMP/inboundfy-bin/magick"
-          chmod +x "$RUNNER_TEMP/inboundfy-bin/magick"
-          echo "$RUNNER_TEMP/inboundfy-bin" >> "$GITHUB_PATH"
-
-      - name: Sincronizar framework e ebook
-        if: steps.release.outputs.prs_created == 'true'
-        run: |
-          npm ci
-          npm run release:sync
-
-      - name: Registrar artefatos da versão na Release PR
-        if: steps.release.outputs.prs_created == 'true'
-        run: |
-          if git diff --quiet; then
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/user ebook
-          git commit -m "build: sincroniza framework e ebook da release"
-          git push
-
-  preparar-publicacao:
-    name: Conferir a release para publicação
-    needs: release-please
-    if: >-
-      always() && !cancelled() &&
-      (needs.release-please.outputs.release_created == 'true' ||
-       (github.event_name == 'workflow_dispatch' && inputs.tag != ''))
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    outputs:
-      tag: ${{ steps.release.outputs.tag }}
-      version: ${{ steps.release.outputs.version }}
-      sha: ${{ steps.release.outputs.sha }}
-    env:
-      GH_TOKEN: ${{ github.token }}
-      RELEASE_TAG: ${{ inputs.tag || needs.release-please.outputs.tag_name }}
-    steps:
-      - name: Conferir formato e existência da release
-        shell: bash
-        run: |
-          if [[ ! "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "::error::Informe uma tag no formato vX.Y.Z."
-            exit 1
-          fi
-          gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json isDraft,isPrerelease \
-            --jq 'if .isDraft or .isPrerelease then error("A release precisa ser estável e pública.") else . end'
-
-      - name: Obter a tag publicada
-        uses: actions/checkout@v7
-        with:
-          ref: refs/tags/${{ env.RELEASE_TAG }}
-          persist-credentials: false
-
-      - name: Conferir versão e fixar commit
-        id: release
-        shell: bash
-        run: |
-          version="$(node -p "require('./package.json').version")"
-          if [[ "$RELEASE_TAG" != "v$version" ]]; then
-            echo "::error::A tag diverge da versão do pacote."
-            exit 1
-          fi
-          {
-            echo "tag=$RELEASE_TAG"
-            echo "version=$version"
-            echo "sha=$(git rev-parse HEAD)"
-          } >> "$GITHUB_OUTPUT"
-
   publicar:
-    name: Publicar npm e ativos
-    needs: preparar-publicacao
-    if: always() && !cancelled() && needs.preparar-publicacao.result == 'success'
+    name: Criar GitHub Release e anexar artefatos
     runs-on: ubuntu-latest
     permissions:
       attestations: write
       contents: write
       id-token: write
     env:
-      GH_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN || github.token }}
-      RELEASE_TAG: ${{ needs.preparar-publicacao.outputs.tag }}
-      RELEASE_VERSION: ${{ needs.preparar-publicacao.outputs.version }}
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
     steps:
-      - name: Obter commit da release
+      - name: Conferir formato da tag
+        shell: bash
+        run: |
+          if [[ ! "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Informe uma tag no formato vX.Y.Z."
+            exit 1
+          fi
+
+      - name: Obter a tag
         uses: actions/checkout@v7
         with:
-          ref: ${{ needs.preparar-publicacao.outputs.sha }}
+          ref: refs/tags/${{ env.RELEASE_TAG }}
           persist-credentials: false
 
-      - name: Configurar Node.js e npm
+      - name: Configurar Node.js
         uses: actions/setup-node@v7
         with:
           node-version: 24
-          registry-url: https://registry.npmjs.org
-          package-manager-cache: false
-
-      - name: Atualizar npm para Trusted Publishing
-        run: npm install --global npm@latest
+          cache: npm
 
       - name: Instalar ferramentas de verificação
         run: sudo apt-get update && sudo apt-get install -y libxml2-utils poppler-utils unzip
@@ -183,6 +65,7 @@ jobs:
           npm run build
           npm run ebook:verify
           npm run release:check -- "$RELEASE_TAG"
+          echo "RELEASE_VERSION=${RELEASE_TAG#v}" >> "$GITHUB_ENV"
 
       - name: Empacotar distribuição pública
         run: |
@@ -198,11 +81,30 @@ jobs:
           cp "ebook/Inboundfy-Guia-do-Usuario-v${RELEASE_VERSION}.epub" release-assets/
           node scripts/generate-checksums.mjs release-assets
 
-      - name: Atestar ativos publicados
+      - name: Atestar artefatos
         if: github.event.repository.visibility == 'public'
         uses: actions/attest@v4
         with:
           subject-path: release-assets/*
+
+      - name: Criar GitHub Release
+        shell: bash
+        run: |
+          if gh release view "$RELEASE_TAG" > /dev/null 2>&1; then
+            echo "A release $RELEASE_TAG já existe."
+            exit 0
+          fi
+          # As notas vêm da seção da versão no CHANGELOG.md.
+          awk -v version="$RELEASE_VERSION" '
+            /^## / {
+              if (found) exit
+              heading = $2; sub(/^\[/, "", heading); sub(/\].*$/, "", heading)
+              if (heading == version) { found = 1; next }
+            }
+            found { print }
+          ' CHANGELOG.md > "$RUNNER_TEMP/notas.md"
+          gh release create "$RELEASE_TAG" --verify-tag --title "$RELEASE_TAG" \
+            --notes-file "$RUNNER_TEMP/notas.md"
 
       - name: Anexar arquivos à GitHub Release
         run: |
@@ -222,17 +124,5 @@ jobs:
             fi
           done
 
-      - name: Publicar pacote no npm
-        run: npm run publish:npm -- "release-assets/promovaweb-inboundfy-${RELEASE_VERSION}.tgz"
-
-      - name: Conferir instalação pelo registry público
-        env:
-          npm_config_registry: https://registry.npmjs.org
-          npm_config_cache: ${{ runner.temp }}/npm-consumer-cache
-        run: |
-          cd "$RUNNER_TEMP"
-          mkdir -p inboundfy-consumer
-          cd inboundfy-consumer
-          test "$(npm view "@promovaweb/inboundfy@$RELEASE_VERSION" version)" = "$RELEASE_VERSION"
-          npm exec --yes --package="@promovaweb/inboundfy@$RELEASE_VERSION" -- inboundfy --version
-          npm exec --yes --package="@promovaweb/inboundfy@$RELEASE_VERSION" -- inboundfy install --dry-run
+      - name: Conferir anexos
+        run: gh release view "$RELEASE_TAG" --json assets --jq '.assets[].name'

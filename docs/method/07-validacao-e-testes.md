@@ -50,7 +50,8 @@ O validador verifica:
   caminhos do CLI;
 - fluxo instalado de acervo, peça, relatório de auditoria, calendário e
   publicação em projeto temporário isolado;
-- versão única entre `package.json`, lockfile, Release Please, ebook e tag;
+- versão única entre `package.json`, lockfile, ebook e tag, licença
+  `AGPL-3.0-only` e workflow de release sem publicação no npm;
 - instalação do tarball npm em um projeto temporário isolado.
 
 Para conferir exatamente o arquivo que será publicado:

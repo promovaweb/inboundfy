@@ -1,6 +1,6 @@
 {
   "name": "@promovaweb/inboundfy",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "CLI e framework de skills para instalar, validar e manter o Inboundfy em projetos.",
   "type": "module",
   "bin": {
@@ -59,7 +59,7 @@
     "marketing",
     "skills"
   ],
-  "license": "UNLICENSED",
+  "license": "AGPL-3.0-only",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/promovaweb/inboundfy.git"

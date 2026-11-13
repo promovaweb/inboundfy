@@ -18,7 +18,7 @@
 <p align="center">
   <a href="https://github.com/promovaweb/inboundfy/releases/latest"><img alt="GitHub Release" src="https://img.shields.io/github/v/release/promovaweb/inboundfy"></a>
   <a href="https://www.npmjs.com/package/@promovaweb/inboundfy"><img alt="npm" src="https://img.shields.io/npm/v/@promovaweb/inboundfy"></a>
-  <a href="https://github.com/promovaweb/inboundfy/blob/main/LICENSE"><img alt="Licença: todos os direitos reservados" src="https://img.shields.io/badge/Licen%C3%A7a-todos%20os%20direitos%20reservados-lightgrey"></a>
+  <a href="https://github.com/promovaweb/inboundfy/blob/main/LICENSE"><img alt="Licença" src="https://img.shields.io/github/license/promovaweb/inboundfy"></a>
 </p>
 
 <p align="center">
@@ -240,8 +240,6 @@ Quer usar o Inboundfy em projetos de verdade, com acompanhamento? Conheça os
 
 ## Licença
 
-Copyright (c) 2026 Promovaweb. Todos os direitos reservados. A publicação no
-npm permite instalar o pacote, mas não concede ao público direito de
-redistribuição, modificação ou uso comercial sem autorização por escrito da
-Promovaweb. Leia o
-[LICENSE](https://github.com/promovaweb/inboundfy/blob/main/LICENSE).
+Distribuído sob a [GNU AGPL 3.0](https://github.com/promovaweb/inboundfy/blob/main/LICENSE).
+A licença não concede o uso do nome e do logo do Inboundfy nem da marca
+Promovaweb (AGPL 3.0, seção 7, item e).

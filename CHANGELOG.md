@@ -4,6 +4,19 @@ As mudanças relevantes do Inboundfy são registradas neste arquivo. A versão d
 framework, do CLI, do pacote npm, da tag Git e da GitHub Release é sempre a
 mesma.
 
+## [0.7.0](https://github.com/promovaweb/inboundfy/compare/v0.6.1...v0.7.0) (2026-11-13)
+
+### Funcionalidades
+
+* passa a distribuir o Inboundfy sob a GNU AGPL 3.0 (SPDX `AGPL-3.0-only`), com o texto oficial no `LICENSE`, o campo `license` do pacote, o badge e a seção Licença do README e a seção Licença do CONTRIBUTING. A partir desta versão, o projeto é distribuído sob a GNU AGPL 3.0; versões anteriores continuam sob a licença com que foram publicadas.
+
+### Integração contínua
+
+* a publicação no npm passa a ser feita só pela máquina local; o workflow de release não publica mais no npm. O workflow agora é disparado pela tag `vX.Y.Z`, cria a GitHub Release com as notas do changelog e anexa PDF, EPUB, tarball e `SHA256SUMS`.
+* remove o Release Please, que não conseguia abrir a Release PR neste repositório. Versão, changelog e tag são preparados na máquina local, como descreve o `RELEASING.md`.
+* `npm run release:check` passa a exigir a licença `AGPL-3.0-only` e a recusar um workflow de release que publique no npm.
+* `npm run publish:npm` espera a versão aparecer no registry por até cinco minutos antes de confirmar a publicação.
+
 ## [0.6.1](https://github.com/promovaweb/inboundfy/compare/v0.6.0...v0.6.1) (2026-11-13)
 
 

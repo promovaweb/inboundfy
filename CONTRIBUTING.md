@@ -101,12 +101,11 @@ interface em `agents/openai.yaml` e registro em `skills/catalogo.json`.
 - Use `--json` para a saída estruturada. O resumo legível fica no padrão.
 - Não edite à mão `dist/`, `.ebook/build/`, `artifacts/` nem os PDFs e EPUBs
   gerados. Esses arquivos vêm do build.
-- Não edite a versão nem o `CHANGELOG.md` em uma mudança comum. O Release
-  Please calcula a próxima versão e atualiza `package.json`,
-  `package-lock.json`, `.release-please-manifest.json`, `CHANGELOG.md` e
-  `ebook/VERSION` na Release PR.
-- Não grave segredo, token ou credencial no repositório. O workflow de
-  release usa OIDC e não guarda token permanente do npm.
+- Não edite a versão nem o `CHANGELOG.md` em uma mudança comum. Quem
+  prepara a release atualiza `package.json`, `package-lock.json`,
+  `CHANGELOG.md` e `ebook/VERSION` no commit da versão.
+- Não grave segredo, token ou credencial no repositório. Nenhum workflow
+  publica no npm nem guarda token do npm.
 - Ao mudar um comando, confira `--help` e a
   [referência do CLI](docs/method/10-referencia-cli.md).
 
@@ -151,8 +150,8 @@ npm run npm:validate-package -- "artifacts/promovaweb-inboundfy-${VERSION}.tgz"
 - [docs/user](docs/user/README.md): manual do usuário, compilado no ebook.
 - [docs/method](docs/method/README.md): arquitetura, contratos, testes e
   evolução do framework.
-- [RELEASING.md](RELEASING.md): versão, tag, GitHub Release e publicação no
-  npm.
+- [RELEASING.md](RELEASING.md): versão, tag, GitHub Release e publicação
+  local no npm.
 - [SKILLS.md](SKILLS.md): catálogo completo das skills.
 - [CONTEXTO.md](CONTEXTO.md): arquivos de contexto e precedência entre eles.
 - [METODOLOGIA.md](METODOLOGIA.md): fases do pipeline editorial.
@@ -165,14 +164,13 @@ O comando `npm run release:sync` repete essa geração na release.
 
 ## Commits e pull requests
 
-O projeto usa Conventional Commits. O Release Please calcula a versão a partir
-do histórico:
+O projeto usa Conventional Commits. O tipo do commit indica o tamanho da
+próxima versão:
 
-- `fix:` gera patch;
-- `feat:` gera minor;
-- `feat!:` ou `BREAKING CHANGE:` gera major;
-- `docs:`, `test:`, `build:` e `ci:` entram no histórico sem aumentar a versão
-  quando aparecem sozinhos.
+- `fix:` pede patch;
+- `feat:` pede minor;
+- `feat!:` ou `BREAKING CHANGE:` pede major;
+- `docs:`, `test:`, `build:` e `ci:` sozinhos não pedem versão nova.
 
 Um pull request deve trazer:
 
@@ -186,24 +184,27 @@ Um pull request deve trazer:
 CLI, framework, skills, ebook e pacote npm compartilham o mesmo SemVer. A
 fonte da versão é `package.json`.
 
-1. Integre commits válidos em `main`.
-2. O workflow abre ou atualiza uma Release PR.
-3. A Release PR sincroniza os manifests e o changelog. `npm run release:sync`
-   recompila PDF e EPUB.
-4. Revise a Release PR e aguarde a CI.
-5. Mescle a Release PR. O workflow cria a tag `vX.Y.Z`, a GitHub Release e
-   publica o mesmo tarball no npm.
+1. Atualize a versão com `npm version X.Y.Z --no-git-tag-version` e escreva
+   a entrada no `CHANGELOG.md`.
+2. Rode `npm run release:sync` para recompilar PDF e EPUB e
+   `npm run validar`.
+3. Faça o commit `chore(release): vX.Y.Z`, crie a tag `vX.Y.Z` e envie com
+   `git push --atomic origin HEAD:main vX.Y.Z`.
+4. O workflow `Release`, disparado pela tag, cria a GitHub Release e anexa
+   PDF, EPUB, tarball e `SHA256SUMS`. Ele não publica no npm.
+5. Na máquina local, logado como `contatopromovaweb`, baixe o tarball da
+   release, confira o hash com o `SHA256SUMS`, publique com
+   `npm run publish:npm -- <tgz>` e confirme com
+   `npm view @promovaweb/inboundfy version license`.
 
-O guia completo está em [RELEASING.md](RELEASING.md). Para conferir uma tag
-existente:
+O guia completo, com os comandos, está em [RELEASING.md](RELEASING.md). Para
+conferir uma tag existente:
 
 ```bash
-npm run release:check -- v0.6.0  # troque pela versão atual
+npm run release:check -- v0.7.0  # troque pela versão atual
 ```
 
 ## Licença
 
-O Inboundfy não é open source. O [LICENSE](LICENSE) reserva todos os direitos
-à Promovaweb e não concede ao público redistribuição, modificação ou uso
-comercial. Ao enviar uma contribuição, você concorda que ela seja incorporada
-ao projeto sob esses mesmos termos.
+O Inboundfy é distribuído sob a [GNU AGPL 3.0](LICENSE). Ao enviar uma
+contribuição, você concorda que ela entre no projeto sob a mesma licença.
