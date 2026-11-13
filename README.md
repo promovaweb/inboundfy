@@ -1,272 +1,247 @@
-# Inboundfy
+<p align="center">
+  <a href="https://github.com/promovaweb/inboundfy">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/promovaweb/inboundfy/main/brand/logo/logo-dark.png">
+      <img alt="Inboundfy" src="https://raw.githubusercontent.com/promovaweb/inboundfy/main/brand/logo/logo-light.png" width="320">
+    </picture>
+  </a>
+</p>
 
-O Inboundfy é um framework de inbound marketing baseado em IA para pesquisar,
-organizar, planejar, escrever, revisar e distribuir conteúdo. O pacote npm
-fornece o CLI `inboundfy`, e `inboundfy-setup` conduz sua instalação num
-projeto novo. As skills organizam acervo, estratégia, copy, SEO, GEO,
-anti-slop, canais, calendário e pipeline sem misturar método reutilizável com
-dados de um negócio.
+<h1 align="center">Inboundfy</h1>
 
-## Separação entre framework e projeto
+<p align="center">
+  Framework de inbound marketing com skills de IA para pesquisar, planejar, escrever, revisar e distribuir conteúdo.
+</p>
 
-O repositório `inboundfy/` guarda método, skills, templates, código e
-documentação reutilizável. Ao instalar, o framework vai para
-`.inboundfy/framework/`. As informações da empresa e as escolhas do projeto
-ficam em `.inboundfy/context/`; estratégia, pipeline, índices e estado da
-instalação ficam diretamente em `.inboundfy/`. O trabalho e as saídas ficam em
-`acervo/`, `canais/` e `calendario/`.
+<p align="center">Um projeto da <a href="https://promovaweb.com">Promovaweb</a></p>
 
-O setup conduz a entrevista de empresa, produtos, serviços, endereço físico,
-dados legais, contatos, URLs oficiais, redes sociais, personas, voz,
-proibições, dicionário, aprendizado, pipeline e canais. Ele
-preserva preenchimentos existentes e cria somente o que estiver ausente.
+<p align="center">
+  <a href="https://github.com/promovaweb/inboundfy/releases/latest"><img alt="GitHub Release" src="https://img.shields.io/github/v/release/promovaweb/inboundfy"></a>
+  <a href="https://www.npmjs.com/package/@promovaweb/inboundfy"><img alt="npm" src="https://img.shields.io/npm/v/@promovaweb/inboundfy"></a>
+  <a href="https://github.com/promovaweb/inboundfy/blob/main/LICENSE"><img alt="Licença: todos os direitos reservados" src="https://img.shields.io/badge/Licen%C3%A7a-todos%20os%20direitos%20reservados-lightgrey"></a>
+</p>
 
-Para uso normal, `$inboundfy` é a única entrada recomendada: descreva o pedido
-em linguagem natural e a orquestradora escolhe brainstorm, campanha, acervo,
-canal ou capacidade. As skills de etapa e de canal continuam disponíveis para
-retomadas e solicitações especializadas explícitas. `inboundfy-iniciar` é um
-atalho legado que encaminha para a mesma orquestradora.
+<p align="center">
+  <a href="https://promovaweb.com/discord"><img alt="Discord: obter ajuda e conversar com a Comunidade" src="https://img.shields.io/badge/Discord-Obter%20ajuda%20e%20conversar%20com%20a%20Comunidade-5865F2?style=for-the-badge&logo=discord&logoColor=white"></a>
+</p>
 
-## Como o Inboundfy é organizado
+<p align="center">
+  <a href="https://promovaweb.com/docs/inboundfy/">Documentação</a> ·
+  <a href="https://promovaweb.com/discord">Discord</a> ·
+  <a href="https://promovaweb.com/planos?utm_source=github&utm_medium=readme&utm_campaign=inboundfy">Planos da Promovaweb</a> ·
+  <a href="https://github.com/promovaweb/inboundfy/blob/main/CHANGELOG.md">Changelog</a>
+</p>
 
-- `docs/user/`: manual passo a passo, da preparação do projeto à atualização,
-  com percursos completos para brainstorm, campanha, pacote e peça avulsa.
-- `docs/method/`: documentação técnica da arquitetura, runtime instalado,
-  sequências, contratos, estados, validação, testes e evolução.
-- `skills/inboundfy-anti-slop/ETAPAS.md`: cadência A0 a A6, com uma auditoria
-  própria para entrada, processado, base, estratégia, rascunho, peça e pacote.
-- `.inboundfy/context/aprendizado.md`: memória do projeto para sugestões, correções,
-  alinhamentos e dicas, sempre com alcance confirmado.
-- `ebook/`: edição versionada do guia do usuário em PDF e EPUB, compilada a
-  partir de `docs/user/` na ordem declarada em `reading-order.txt`.
-- `context/`: templates de origem dos arquivos de dados do usuário —
-  empresa, pessoas, produtos, serviços, ofertas, marca, público,
-  concorrentes, endereços, links, canais, ferramentas, glossário, proibições,
-  aprendizado e estruturas proibidas. `inboundfy-setup` copia esses templates para
-  `.inboundfy/context/` em cada projeto instalado — é lá que o dado real de
-  cada negócio vive. Veja `CONTEXTO.md`.
-- `inboundfy-setup`: responsável exclusiva por conduzir e conferir skills,
-  metodologia,
-  templates, arquivos de contexto e diretórios de saída nos caminhos
-  canônicos. Usa o CLI como executor, repara instalações parciais sem
-  sobrescrever informação preenchida pelo usuário e classifica os Markdown em
-  maiúsculas encontrados no projeto. Se `brand/` existir, considera todos os
-  Markdown da pasta, inclusive nomes em minúsculas, sem copiar ou alterar os
-  ativos.
-- `skills/`: biblioteca de 117 skills prefixadas com `inboundfy-`, com etapas
-  agrupadas em referências internas, namespaces `inboundfy-copy-*` e
-  `inboundfy-growth-*`, referências compartilhadas em `skills/_shared/`,
-  catálogo estruturado em `skills/catalogo.json` e interface de agente em
-  `agents/openai.yaml` dentro de cada skill. Veja `SKILLS.md`,
-  `SKILL-AUTORIA.md` e `docs/method/09-arquitetura-das-skills.md`.
-- `BRAINSTORM.md`: fluxo que recebe uma ideia, consulta os dados do negócio,
-  faz perguntas somente quando necessário, pesquisa fontes e salva
-  `brainstorms/<data>-<slug>/brainstorm.md`.
-- `ESTRATEGIA.md`: a camada de planejamento estratégico de agência — kickoff
-  de campanha, pesquisa de mercado, plano de campanha multicanal e
-  calendário editorial — que antecede qualquer material bruto entrar no
-  pipeline.
-- `METODOLOGIA.md`: o pipeline editorial completo, da entrada de material bruto
-  (ou de um item alocado pelo calendário) até o artefato final auditado.
-- `ESCRITA.md`: princípios agnósticos de escrita humana e anti-slop que valem
-  para qualquer canal e qualquer voz de marca.
-- `ESTRUTURAS-PERSUASIVAS.md`: AIDA, PAS, PASTOR e FAB para organizar
-  argumentos; STEPPS, de Jonah Berger, para analisar e aplicar motivos de
-  compartilhamento nas skills de copy, inclusive em conteúdo informativo.
-- `LIMPEZA-MATERIAL-BRUTO.md`: regras de saneamento de texto colado,
-  transcrição e nota solta — o que pode e não pode ser corrigido antes de
-  qualquer voz editorial entrar em cena.
-- `TRADUCAO.md`: quando manter um termo no idioma original e quando
-  traduzir, com exemplo ilustrativo e lógica de correção canônica de termo
-  mal transcrito.
-- `SKILL-AUTORIA.md`: o contrato que toda skill do Inboundfy precisa seguir —
-  grupo, sequência, frontmatter, contexto exigido e condições de aprovação.
-- `INSTALACAO.md`: como `inboundfy-setup` instala o framework num projeto novo
-  — a estrutura de `.inboundfy/`, `acervo/`, `canais/` e `calendario/`,
-  o ajuste de `AGENTS.md`/
-  `CLAUDE.md` e o preenchimento do contexto inicial.
-- `examples/`: pacotes de demonstração já preenchidos, com dado fictício,
-  mostrando o resultado real de cada fase do pipeline — leitura de
-  referência, nunca lida por skill em tempo de execução. Veja
-  `examples/README.md`.
+## O que é
 
-As skills podem aparecer no agente antes da preparação do projeto. Nesse
-estado, qualquer skill que não seja `inboundfy-setup` confere
-`.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md`, avisa que o
-setup precisa
-ser concluído ou reparado e encerra sem criar artefatos.
+O Inboundfy organiza o trabalho de marketing e conteúdo em um projeto com
+agente de IA. Ele instala 117 skills que cuidam do contexto do negócio, da
+pesquisa, do planejamento, da produção por canal, da revisão e da publicação.
+O CLI `inboundfy` cria e mantém a estrutura do projeto consumidor.
 
-O registro `.inboundfy/fontes-projeto.md` referencia arquivos como
-`README.md`, `PRODUCT.md`, `BRAND.md` e `COPY.md` sem tirá-los dos caminhos
-originais. Cada skill lê somente as fontes classificadas como relevantes para
-a tarefa e mantém a precedência definida em `CONTEXTO.md`.
+O escopo cobre campanha, calendário editorial, copy, SEO, distribuição,
+imagens e auditoria. Cada skill produz um artefato observável. A publicação
+exige leitura crítica e adequação à voz registrada no projeto.
 
-## Capacidades estratégicas nativas
+| Modo | Como usar | Para quê |
+| --- | --- | --- |
+| CLI | `inboundfy <comando>` | registrar acervo, criar peças, montar calendário e conferir a instalação |
+| Skills | `$inboundfy` no agente | conduzir brainstorm, campanha, pacote editorial e peça avulsa |
+| Setup | `inboundfy-setup` | preencher o contexto e conferir os arquivos do projeto |
 
-Além das sequências e dos especialistas de canal, o Inboundfy inclui skills de
-produto e mercado, estratégia, copywriting, edição, pesquisa de cliente,
-concorrência, oferta, psicologia aplicada, SEO, GEO, CRO, métricas,
-atribuição, experimentação, lançamento, materiais ricos e anti-slop editorial.
-Todas leem os mesmos arquivos de voz, personas, proibições, dicionário e
-aprendizado aplicável.
+### Separação entre framework e projeto
 
-O aprendizado começa no arquivo `.inboundfy/context/aprendizado.md`. Uma sugestão
-local pode alterar apenas uma peça; uma orientação confirmada para o projeto
-também atualiza `context/marca-voz.md`, `context/glossario.md` ou
-`context/proibicoes.md` quando esse for o domínio correto. O histórico preserva
-a mensagem original, a aplicação e o alcance confirmado.
+O repositório guarda método, skills, templates, código e documentação
+reutilizável. Ao instalar, o framework vai para `.inboundfy/framework/`. Os
+dados da empresa e as escolhas do projeto ficam em `.inboundfy/context/`.
+Estratégia, pipeline, índices e estado da instalação ficam em `.inboundfy/`.
+O trabalho e as saídas ficam em `acervo/`, `canais/` e `calendario/`.
 
-O anti-slop não fica restrito à revisão final. A orquestração usa os marcos A0
-a A6 para conferir a entrada, os derivados do acervo, a direção de conteúdo,
-o início da redação, a peça completa e o conjunto de peças antes do pipeline.
+## Instalação
 
-```bash
-inboundfy project sync
-inboundfy acervo add "Título" --file entrada.md
-inboundfy acervo process 0001
-inboundfy content create blog "Título da peça" --persona persona-01 --acervo 0001
-inboundfy content status 0001 revisao
-inboundfy content digest 0001
-# Inclua o ID, o caminho e o SHA-256 no relatório aprovado da validadora.
-inboundfy content status 0001 aprovado --audit-report 06-auditoria/assets/blog-0001.md
-inboundfy calendario add 2026-09-20 0001
-inboundfy content status 0001 agendado
-inboundfy content status 0001 publicado --url https://exemplo.test/artigo --published-at 2026-09-20
-inboundfy doctor --strict
-```
-
-O CLI exige relatório vinculado ao SHA-256 atual antes de aprovar após revisão.
-Também recusa agendamento ou publicação se o texto mudar depois da auditoria.
-Consulte a [referência do pipeline e do CLI](docs/method/10-referencia-cli.md).
-
-## Arquitetura das skills
-
-Cada skill tem três camadas complementares:
-
-1. `SKILL.md` define ativação, contexto, entrada, fluxo, saída, validação,
-   idempotência e responsabilidade do grupo.
-2. `REFERENCIA.md` traz o template, o exemplo preenchido, a lista binária,
-   erros comuns, campos específicos e referências para leitura.
-3. `agents/openai.yaml` descreve a interface que o agente pode apresentar, e
-   `skills/catalogo.json` registra o grupo e o contrato de entrada, saída,
-   validação e encaminhamento.
-
-As cinco referências de `skills/_shared/` padronizam preflight, artefatos,
-interação, handoff, validação, retomada e contexto editorial. O script
-`scripts/gerenciar-skills.mjs` mantém esse padrão. Todos os scripts próprios e
-comandos de linha do pacote usam Node.js:
-
-```bash
-npm run skills:check
-npm run skills:enriquecer
-```
-
-O primeiro comando só confere a biblioteca. O segundo amplia arquivos
-existentes e atualiza o catálogo; ele preserva referências já presentes e cria
-somente interfaces ausentes.
-
-## Ordem de leitura
-
-1. `docs/user/README.md` para adotar e operar o framework desde o começo.
-2. `docs/method/README.md` para implementar, auditar ou evoluir o framework.
-3. `INSTALACAO.md` na primeira adoção do framework em um projeto novo.
-4. `CONTEXTO.md` para entender os arquivos de dados e a precedência entre eles.
-5. `BRAINSTORM.md` quando a entrada for uma ideia ainda sem brief ou material
-   suficiente para produção.
-6. `ESTRATEGIA.md` quando a tarefa envolver campanha nova, pesquisa de
-   mercado, plano multicanal ou calendário editorial — antes de existir
-   material bruto ou pacote.
-7. `METODOLOGIA.md` para entender as fases do pipeline antes de produzir
-   qualquer peça a partir de material já existente.
-8. `ESCRITA.md` sempre que a tarefa envolver redação, revisão ou auditoria de
-   texto, `ESTRUTURAS-PERSUASIVAS.md` quando a peça tiver objetivo
-   comercial, `LIMPEZA-MATERIAL-BRUTO.md` ao processar material bruto e
-   `TRADUCAO.md` ao decidir se um termo deve ser traduzido.
-9. `SKILLS.md` para escolher a skill certa por grupo, fase estratégica ou do
-   pipeline, ou canal.
-10. `SKILL-AUTORIA.md` somente quando a tarefa for criar ou alterar uma skill.
-
-## Instalação pelo npm
-
-Na raiz do projeto consumidor:
+Na raiz do projeto consumidor, comece com uma simulação:
 
 ```bash
 npx @promovaweb/inboundfy@latest install --dry-run
+```
+
+Depois instale escolhendo o agente e o arquivo de instruções:
+
+```bash
 npx @promovaweb/inboundfy@latest install \
   --agent codex \
   --instruction-file AGENTS.md \
   --yes
-npx @promovaweb/inboundfy@latest doctor
 ```
 
-Depois, peça ao agente para executar `inboundfy-setup` e preencher o contexto
-inicial. O guia completo está em
-[Instalação e preparação](docs/user/02-instalacao.md).
+`--agent` aceita `codex`, `claude` ou `agents`. `--instruction-file` aceita
+`AGENTS.md`, `CLAUDE.md` ou `none`. Use `--skills-dir` quando o projeto tiver
+um diretório de skills próprio.
 
-## Escopo
+Requisitos: Node.js 22.14.0 ou superior, acesso ao npm e um agente que
+carregue skills no formato `SKILL.md`. Não é preciso instalar servidor nem
+banco de dados.
 
-- kickoff de campanha, pesquisa de mercado e plano de campanha multicanal;
-- calendário editorial recorrente, somando cadência orgânica e campanha ativa;
-- pesquisa, planejamento, redação e revisão de copy;
-- estratégia de conteúdo e distribuição por canal;
-- SEO técnico, editorial e orientado à intenção de busca;
-- definição de mensagens, ofertas e jornadas de comunicação;
-- geração de artefatos visuais — capas, cards, thumbnails, carrosséis e slides;
-- auditoria de qualidade, consistência e evidências;
-- criação e manutenção dos próprios dados do usuário como skills de primeira
-  classe, não como configuração externa ao framework.
-
-Esse escopo cobre o trabalho fim a fim de uma agência de marketing e
-conteúdo: da decisão de negócio que abre uma campanha (`ESTRATEGIA.md`) até
-o artefato final auditado de cada canal (`METODOLOGIA.md`).
-
-## Princípios
-
-- **Agnosticismo de negócio:** nenhuma skill ou metodologia cita uma empresa,
-  produto, pessoa ou marca específica. Tudo isso vive em `context/` e é lido
-  em tempo de execução.
-- **Aplicação verificável:** cada skill produz um artefato, uma análise ou uma
-  conferência observável, nunca apenas uma resposta em texto corrido.
-- **Escrita humana:** automação apoia pesquisa e execução, mas a publicação
-  exige leitura crítica, responsabilidade editorial e adequação ao canal e à
-  voz registrada em `context/marca-voz.md`.
-- **SEO com intenção:** palavras-chave não substituem a compreensão da dúvida,
-  da tarefa ou da escolha que levou alguém até o conteúdo.
-- **Evidência e limite:** recomendações separam fatos confirmados no
-  `context/`, hipóteses de pesquisa e decisões editoriais assumidas na hora.
-- **Portabilidade:** toda skill declara os arquivos de `context/` de que
-  depende, consulta as fontes locais inventariadas e sabe o que fazer quando
-  um apoio ainda não existe ou está incompleto.
-
-## Estado do projeto
-
-O Inboundfy possui metodologia, contrato de skill, 117 skills distribuídas em
-grupos de entrada, acervo, base, contexto, brainstorm, estratégia,
-planejamento, especialistas, validadoras, qualidade e capacidades, além do
-orquestrador. Cada skill tem referência, interface e registro no catálogo.
-`SKILLS.md` lista o catálogo completo. A licença é proprietária e não concede
-redistribuição ou uso comercial ao público; consulte [LICENSE](LICENSE).
-
-## Validação
-
-Execute na raiz do repositório:
+Para atualizar ou restaurar uma instalação:
 
 ```bash
-npm run skills:check
-npm run validar
+npx @promovaweb/inboundfy@latest update --yes
+npx @promovaweb/inboundfy@latest repair --dry-run
 ```
 
-A suíte executa os cenários do CLI, pareamento, hard gate, retorno à produtora,
-segundo ciclo aprovado e descoberta de Markdown minúsculo em `brand/`. O
-validador estrutural confere o contrato das skills, a arquitetura comum, as
-interfaces, o catálogo, a continuidade das três sequências, as dependências de
-`context/`, as referências editoriais, as chamadas das wrappers e a presença
-das fixtures executáveis. A verificação do ebook confere a ordem de leitura, os
-hashes das fontes e dos artefatos, a navegação interna e a edição publicada em
-PDF e EPUB.
+## Primeiros passos
 
-## Versões e releases
+1. Peça ao agente para executar `inboundfy-setup`. Ela conduz a entrevista de
+   empresa, produtos, serviços, personas, voz, proibições, canais e calendário
+   sem apagar o que já estiver preenchido.
+2. Depois da entrevista, confira o projeto:
 
-CLI e framework não possuem versões independentes. O SemVer de `package.json`
-também identifica a edição do ebook, a tag `vX.Y.Z`, a GitHub Release e o
-pacote público `@promovaweb/inboundfy`. Consulte [RELEASING.md](RELEASING.md).
+```bash
+npx @promovaweb/inboundfy@latest project sync
+npx @promovaweb/inboundfy@latest context ready --yes
+npx @promovaweb/inboundfy@latest doctor --strict
+```
+
+O setup exige empresa, site, voz, uma persona completa, objetivo e pelo menos
+um canal antes de liberar a produção. O registro `.inboundfy/fontes-projeto.md`
+aponta para os arquivos que já existiam no projeto, como `README.md`,
+`PRODUCT.md`, `BRAND.md` e `COPY.md`, sem movê-los.
+
+## Uso
+
+### Acervo e peças
+
+```bash
+# Preserva o material original e cria um item numerado
+npx @promovaweb/inboundfy@latest acervo add "Título do material" --file entrada.md
+
+# Gera a versão processada e atualiza o índice
+npx @promovaweb/inboundfy@latest acervo process 0001
+
+# Cria a pasta final do canal com README e frontmatter
+npx @promovaweb/inboundfy@latest content create blog "Título da peça" \
+  --persona persona-01 --acervo 0001
+```
+
+### Pipeline e calendário
+
+```bash
+npx @promovaweb/inboundfy@latest calendario add 2026-09-20 0001
+npx @promovaweb/inboundfy@latest content status 0001 revisao
+npx @promovaweb/inboundfy@latest content digest 0001
+```
+
+A aprovação depois da revisão exige o relatório da validadora com o ID, o
+caminho do asset e o SHA-256 atual:
+
+```bash
+npx @promovaweb/inboundfy@latest content status 0001 aprovado \
+  --audit-report 06-auditoria/assets/blog-0001.md
+```
+
+Para agendar e registrar a publicação:
+
+```bash
+npx @promovaweb/inboundfy@latest content status 0001 agendado
+npx @promovaweb/inboundfy@latest content status 0001 publicado \
+  --url https://exemplo.test/artigo --published-at 2026-09-20
+```
+
+O CLI recusa agendamento ou publicação quando o texto muda depois da
+auditoria. Use `--json` antes do comando para receber a resposta estruturada:
+
+```bash
+npx @promovaweb/inboundfy@latest --json acervo list
+```
+
+### Diagnóstico
+
+```bash
+npx @promovaweb/inboundfy@latest status
+npx @promovaweb/inboundfy@latest doctor --strict
+npx @promovaweb/inboundfy@latest doctor --json
+```
+
+`doctor` não altera arquivos. `--strict` trata avisos como falha.
+
+## Uso com agentes
+
+O Inboundfy entrega skills, não um servidor MCP. Cada skill descreve
+ativação, contexto exigido, entrada, fluxo, saída e validação no próprio
+`SKILL.md`. O agente lê os arquivos do projeto em tempo de execução.
+
+Instale ou atualize somente as skills:
+
+```bash
+npx @promovaweb/inboundfy@latest agent install --agent claude --yes
+```
+
+A entrada recomendada é `$inboundfy`. Descreva o pedido em linguagem natural
+e a orquestradora escolhe brainstorm, campanha, acervo, canal ou capacidade.
+As skills de etapa e de canal continuam disponíveis para retomadas e pedidos
+específicos. `inboundfy-iniciar` é um alias que encaminha para a mesma
+orquestradora.
+
+Antes da preparação do projeto, qualquer skill fora de `inboundfy-setup`
+confere `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md`,
+avisa que o setup precisa ser concluído ou reparado e encerra sem criar
+artefatos.
+
+## Documentação
+
+- [Documentação do Inboundfy](https://promovaweb.com/docs/inboundfy/)
+- [Guia do usuário](https://github.com/promovaweb/inboundfy/blob/main/docs/user/README.md)
+- [Documentação do método](https://github.com/promovaweb/inboundfy/blob/main/docs/method/README.md)
+- [Edição em PDF e EPUB](https://github.com/promovaweb/inboundfy/blob/main/ebook/README.md)
+- [Catálogo de skills](https://github.com/promovaweb/inboundfy/blob/main/SKILLS.md)
+- [Brainstorm](https://github.com/promovaweb/inboundfy/blob/main/BRAINSTORM.md)
+- [Estratégia](https://github.com/promovaweb/inboundfy/blob/main/ESTRATEGIA.md)
+- [Metodologia](https://github.com/promovaweb/inboundfy/blob/main/METODOLOGIA.md)
+- [Contexto e precedência](https://github.com/promovaweb/inboundfy/blob/main/CONTEXTO.md)
+- [Escrita](https://github.com/promovaweb/inboundfy/blob/main/ESCRITA.md)
+- [Changelog](https://github.com/promovaweb/inboundfy/blob/main/CHANGELOG.md)
+
+A ajuda do CLI fica em `inboundfy --help` e em `inboundfy help <comando>`.
+
+## Feito com
+
+| Projeto | Para quê |
+| --- | --- |
+| [Node.js](https://github.com/nodejs/node) | runtime do CLI e dos scripts |
+| [Commander](https://github.com/tj/commander.js) | parser de comandos e opções |
+| [Zod](https://github.com/colinhacks/zod) | validação de esquemas do projeto |
+| [Inquirer](https://github.com/SBoudrias/Inquirer.js) | perguntas interativas da instalação |
+| [Codex](https://github.com/openai/codex) | agente suportado (`--agent codex`) |
+| [Claude Code](https://github.com/anthropics/claude-code) | agente suportado (`--agent claude`) |
+
+## Comunidade e suporte
+
+- **Discord:** [obter ajuda e conversar com a Comunidade](https://promovaweb.com/discord).
+- **Bugs e pedidos:** abra uma [issue](https://github.com/promovaweb/inboundfy/issues)
+  com a versão, o sistema operacional e o passo a passo para reproduzir.
+- **Novidades:** acompanhe o [CHANGELOG](https://github.com/promovaweb/inboundfy/blob/main/CHANGELOG.md)
+  e as [releases](https://github.com/promovaweb/inboundfy/releases).
+
+## Contribuir
+
+Leia o [CONTRIBUTING.md](https://github.com/promovaweb/inboundfy/blob/main/CONTRIBUTING.md)
+para preparar o ambiente, entender a organização do código e rodar a
+validação completa. Uma issue por mudança e um pull request por issue.
+
+## Promovaweb
+
+O Inboundfy é mantido pela [Promovaweb](https://promovaweb.com), comunidade de
+co-working digital onde profissionais aprendem a construir, automatizar e
+gerir negócios de tecnologia e IA com aulas ao vivo, Co-works e revisão de
+projetos reais.
+
+Quer usar o Inboundfy em projetos de verdade, com acompanhamento? Conheça os
+[planos da Promovaweb](https://promovaweb.com/planos?utm_source=github&utm_medium=readme&utm_campaign=inboundfy).
+
+## Licença
+
+Copyright (c) 2026 Promovaweb. Todos os direitos reservados. A publicação no
+npm permite instalar o pacote, mas não concede ao público direito de
+redistribuição, modificação ou uso comercial sem autorização por escrito da
+Promovaweb. Leia o
+[LICENSE](https://github.com/promovaweb/inboundfy/blob/main/LICENSE).
