@@ -11,9 +11,9 @@ Antes de instalar, confirme:
 - as instruções existentes em `AGENTS.md` ou `CLAUDE.md` podem ser
   preservadas e complementadas por um bloco delimitado.
 
-Não é necessário instalar servidor ou banco de dados. O comando `npx` baixa o
-CLI no momento do uso. Serviços de imagem e pesquisa podem exigir credenciais
-apenas quando uma skill específica os usar.
+Não é necessário instalar servidor ou banco de dados, porque o comando `npx`
+baixa o CLI no momento do uso. Serviços de imagem e pesquisa só exigem
+credenciais quando uma skill específica os usa.
 
 ## Antes de executar o setup
 
@@ -30,22 +30,22 @@ suposição.
 
 O setup consegue começar com poucas informações. Separe:
 
-- uma frase que explique o que a empresa ou a pessoa faz;
+- uma frase que explique o que a empresa ou o profissional faz;
 - três palavras para descrever a voz;
 - um texto curto que já represente essa voz, quando existir;
 - o primeiro produto ou serviço que será usado;
 - o primeiro canal no qual você quer produzir.
 
 Documentos existentes como `README.md`, `PRODUCT.md`, `BRAND.md` e `COPY.md`
-podem fornecer parte dessas respostas. O setup cataloga os arquivos e pede
-confirmação antes de gravar fatos no contexto.
+podem fornecer parte dessas respostas. O setup cataloga os arquivos e aguarda
+a sua confirmação antes de gravar fatos em `.inboundfy/context/`.
 
 ## Como saber se pode continuar
 
 Continue quando estiver na raiz correta, souber qual diretório de skills está
 ativo e puder identificar o negócio, a voz, um produto ou serviço e um canal.
-Se uma dessas decisões ainda não existir, você pode iniciar o setup, mas a
-produção ficará suspensa até o contexto mínimo ser confirmado.
+Se uma dessas definições ainda não existir, você pode iniciar o setup, mas a
+produção ficará suspensa até essas informações mínimas serem confirmadas.
 
 ## Classificação
 

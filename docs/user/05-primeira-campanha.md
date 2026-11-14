@@ -1,13 +1,13 @@
 # Primeira campanha
 
-Use a sequência estratégica quando ainda for necessário decidir objetivo,
-público, KPI, canais, fases e calendário.
+Use a sequência estratégica quando ainda for necessário definir objetivo,
+público e KPI, além dos canais, das fases e do calendário.
 
 ## Passo a passo
 
-1. Envie o pedido a `$inboundfy`; ele aciona `inboundfy-estrategia`, que
-   executa `00-briefing-cliente` e registra objetivo de negócio, público,
-   oferta, orçamento, prazo, restrições e indicadores.
+1. Envie a sua instrução a `$inboundfy`. Ele aciona `inboundfy-estrategia`,
+   que executa `00-briefing-cliente`. Essa etapa registra o objetivo de negócio,
+   o público e a oferta, com orçamento, prazo, restrições e indicadores.
 2. A etapa `01-pesquisa-mercado` reúne comprovações de mercado,
    categoria, concorrência e comportamento.
 3. A etapa `02-campanha` transforma briefing e pesquisa em tese,
@@ -17,8 +17,8 @@ público, KPI, canais, fases e calendário.
 5. Cada item aprovado do calendário entra no planejamento editorial ou numa
    especialista, conforme sua complexidade.
 
-As fases estratégicas não escrevem copy final. Elas produzem decisões e briefs
-que orientam a execução. Quando a campanha já tiver todos esses elementos
+As fases estratégicas não escrevem copy final: elas produzem definições e
+briefs que orientam a execução. Quando a campanha já tiver todos esses elementos
 confirmados, retome a fase correspondente em vez de reiniciar o kickoff.
 
 Veja os campos e condições de passagem em
@@ -26,8 +26,8 @@ Veja os campos e condições de passagem em
 
 ## O que informar no kickoff
 
-Prepare o objetivo de negócio, o público, a oferta, o período, o orçamento, as
-restrições e a forma de medir resultado. Quando um item ainda for desconhecido,
+Prepare o objetivo de negócio, o público e a oferta. Defina também o período,
+o orçamento, as restrições e a forma de medir resultado. Quando um item ainda for desconhecido,
 registre a pendência em vez de usar um valor plausível.
 
 ## Artefatos esperados
@@ -40,7 +40,7 @@ registre a pendência em vez de usar um valor plausível.
 | `03` | `calendario/<periodo>.md` |
 
 O plano descreve as fases, as mensagens, os canais e o volume aproximado. O
-calendário transforma essas decisões em itens que podem entrar no pipeline.
+calendário transforma essas definições em itens que podem entrar no pipeline.
 
 ## Como conferir
 

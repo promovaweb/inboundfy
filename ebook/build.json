@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "version": "0.7.1",
-  "edition": "v0.7.1",
-  "generated_at": "2026-11-13T23:14:07Z",
-  "source_sha256": "96b854052afa01c15c3b6115fe57be7cdda83dac01f17d41693a83aa26023ead",
+  "version": "0.7.2",
+  "edition": "v0.7.2",
+  "generated_at": "2026-11-14T13:51:45Z",
+  "source_sha256": "654a3d729da2b913e2811cf46843b6945878c4970edaeffe4f68366ff0a5c17e",
   "sources": [
     ".ebook/build-ebook.mjs",
     ".ebook/epub.css",
@@ -55,7 +55,7 @@
     },
     "docs/user/03-contexto-e-marca.md": {
       "natureza": "normativo",
-      "escopo": "contexto, fontes descobertas, marca e proibições",
+      "escopo": "arquivos do negócio, fontes descobertas, marca e proibições",
       "autoridade": "`CONTEXTO.md` e contrato de descoberta do setup"
     },
     "docs/user/04-primeiro-brainstorm.md": {
@@ -90,18 +90,18 @@
     },
     "docs/user/10-solucao-de-problemas.md": {
       "natureza": "referência",
-      "escopo": "diagnóstico de setup, contexto, fontes e fases",
+      "escopo": "diagnóstico de setup, arquivos do negócio, fontes e fases",
       "autoridade": "mensagens e condições de interrupção das skills"
     }
   },
   "artifacts": {
     "pdf": {
-      "file": "Inboundfy-Guia-do-Usuario-v0.7.1.pdf",
-      "sha256": "9c629d26d53b45256095ed9264c92aa1d4d72699eb3707f64a61f7a160537ed7"
+      "file": "Inboundfy-Guia-do-Usuario-v0.7.2.pdf",
+      "sha256": "d36208145bb9d79855316695aeccdbeb69d6143d0aba2a259057a3d13374853c"
     },
     "epub": {
-      "file": "Inboundfy-Guia-do-Usuario-v0.7.1.epub",
-      "sha256": "e32234e672d362feaca5163aed95d079913b2d011fb6a7d8725a9a8756ae2bb2"
+      "file": "Inboundfy-Guia-do-Usuario-v0.7.2.epub",
+      "sha256": "b385f9e66e1cbd04130665bd1fdbe4a8371a463525a1e655f00786e6baeb9566"
     }
   }
 }

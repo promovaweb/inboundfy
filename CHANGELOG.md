@@ -4,6 +4,13 @@ As mudanças relevantes do Inboundfy são registradas neste arquivo. A versão d
 framework, do CLI, do pacote npm, da tag Git e da GitHub Release é sempre a
 mesma.
 
+## [0.7.2] - 2026-11-14
+
+### Corrigido
+
+- Revisada a redação do guia do usuário em `docs/user/`, com explicações mais precisas e correções de linguagem.
+- Atualizados os formatos portáteis da documentação a partir das fontes revisadas.
+
 ## [0.7.1](https://github.com/promovaweb/inboundfy/compare/v0.7.0...v0.7.1) (2026-11-13)
 
 ### Correções

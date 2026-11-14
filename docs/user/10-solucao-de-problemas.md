@@ -1,34 +1,34 @@
 # Solução de problemas
 
-## A skill pede setup
+## A skill exige o setup
 
 Execute `npx @promovaweb/inboundfy@latest doctor`. A presença das skills no
 agente não substitui uma instalação válida. Depois, peça ao agente para usar
 `inboundfy-setup`.
 
-## Um arquivo de contexto sumiu
+## Um arquivo de `.inboundfy/context/` sumiu
 
 Execute `inboundfy repair --yes` por meio de `inboundfy-setup` para restaurar o
-template. Depois, use a skill
-`inboundfy-contexto-*` correspondente para preencher o dado. O setup não
-inventa nem sobrescreve informação do negócio.
+template e depois use a skill `inboundfy-contexto-*` correspondente para
+preencher a informação. O setup não inventa nem sobrescreve informação do
+negócio.
 
 ## Duas fontes discordam
 
 Consulte a seção de conflitos em `.inboundfy/fontes-projeto.md`. A execução
-deve impedir a afirmação afetada ou pedir uma decisão; nunca escolher uma
-versão silenciosamente.
+deve impedir a afirmação afetada ou perguntar qual versão vale, sem escolher
+uma delas em silêncio.
 
 ## Uma peça continua reprovada
 
 Leia o relatório da validadora pareada e corrija na produtora indicada.
 Proibições exigem novo passe literal e semântico sobre o asset inteiro.
 
-## A marca não aparece no inventário
+## A marca não aparece na lista de fontes
 
 Rode `inboundfy context scan` e peça ao setup para reconciliar a classificação.
 Todo Markdown sob `brand/` deve aparecer,
-mesmo com nome em minúsculas. Ativos binários não entram no inventário, mas
+mesmo com nome em minúsculas. Ativos binários não entram na lista, mas
 permanecem disponíveis no caminho original.
 
 ## Uma fase parece ter sido pulada
@@ -42,8 +42,8 @@ pipeline completo.
 | Sintoma | Próxima ação |
 | --- | --- |
 | Aviso de setup | Rode `inboundfy doctor` e execute `inboundfy-setup` |
-| Contexto ausente | Repare o template e preencha com a skill de contexto |
-| Fonte conflitante | Resolva o conflito no inventário |
+| Arquivo do negócio ausente | Repare o template e preencha com a skill `inboundfy-contexto-*` |
+| Fonte conflitante | Resolva o conflito na lista de fontes |
 | Asset reprovado | Volte à especialista indicada |
 | Marca divergente | Confira `brand/` e refaça a validação |
 | Fase fora de ordem | Retome o último estado válido |
@@ -82,5 +82,5 @@ o agente consegue retomar o estado real sem repetir o trabalho desde o começo.
 | Campo | Valor |
 | --- | --- |
 | Natureza | referência |
-| Escopo | diagnóstico de setup, contexto, fontes e fases |
+| Escopo | diagnóstico de setup, arquivos do negócio, fontes e fases |
 | Autoridade | mensagens e condições de interrupção das skills |

@@ -1,12 +1,12 @@
 # Primeiro pacote editorial
 
 Envie material bruto, peça-base, brainstorm aprovado ou item de calendário a
-`$inboundfy`. A orquestradora aciona `inboundfy-acervo` e conduz o ciclo
-completo. `inboundfy-iniciar` é um alias compatível para a mesma entrada.
+`$inboundfy`, que aciona `inboundfy-acervo` e conduz o ciclo completo.
+`inboundfy-iniciar` é um alias compatível para a mesma entrada.
 
 ## Passo a passo
 
-1. A instalação e os arquivos de contexto são conferidos.
+1. A instalação e os arquivos do negócio são conferidos.
 2. A entrada é preservada em `bruto.md` com um ID único.
 3. O material é processado com voz, personas, dicionário e proibições. O
    anti-slop faz a primeira leitura da entrada e uma segunda leitura do
@@ -14,10 +14,10 @@ completo. `inboundfy-iniciar` é um alias compatível para a mesma entrada.
 4. As perguntas frequentes, a pesquisa e as fontes são registradas.
 5. A base editorial passa por nova auditoria para conferir resumos, relações,
    fontes e lacunas.
-6. As possibilidades de canais, formatos, recortes e reaproveitamentos são
-   mapeadas e auditadas antes do brief.
+6. As possibilidades de canais, formatos, ângulos e reaproveitamentos são
+   levantadas e auditadas antes do brief.
 7. Você escolhe canais, uma ou mais personas e a direção editorial quando
-   esses dados ainda não estiverem definidos.
+   essas escolhas ainda não estiverem definidas.
 8. A especialista de cada canal produz a peça com seus metadados e vínculos.
 9. O outline e a abertura passam pelo anti-slop antes da expansão. A peça
    completa passa por outro ciclo antes da validadora.
@@ -78,9 +78,9 @@ relatórios permanecem ligados ao item auditado.
 
 ## Retomar um pacote
 
-Informe o caminho do pacote existente. O agente lê o último estado válido e
-continua dali. Enviar novamente o material bruto sem indicar o pacote cria uma
-nova execução e não deve ser usado como forma de retomar.
+Informe o caminho do pacote existente para que o agente leia o último estado
+válido e continue dali. Enviar de novo o material bruto sem indicar o pacote
+cria uma nova execução, por isso não serve para retomar.
 
 ## Classificação
 

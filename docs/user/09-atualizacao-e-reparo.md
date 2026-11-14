@@ -1,10 +1,10 @@
 # Atualização e reparo
 
-Peça ao agente para executar `inboundfy-setup` sempre que:
+Mande o agente executar `inboundfy-setup` nestas situações:
 
 - a versão-fonte do Inboundfy mudar;
 - uma skill ou arquivo de apoio desaparecer;
-- o inventário de fontes ficar desatualizado;
+- a lista de fontes ficar desatualizada;
 - um diretório de saída gerenciado estiver ausente;
 - nomes legados aparecerem no diretório ativo.
 
@@ -23,30 +23,32 @@ Peça ao agente para executar `inboundfy-setup` sempre que:
    npx @promovaweb/inboundfy@latest update --yes
    ```
 
-4. Peça à skill `inboundfy-setup` para revisar as fontes e o contexto.
+4. Mande a skill `inboundfy-setup` revisar as fontes e os arquivos do negócio.
 5. Confirme que `.inboundfy/context/` permaneceu intacto.
 6. Confira os conflitos atualizados em `.inboundfy/fontes-projeto.md`.
 7. Execute `npx @promovaweb/inboundfy@latest doctor --strict`.
-8. Preencha qualquer template restaurado com a skill de contexto indicada.
+8. Preencha qualquer template restaurado com a skill `inboundfy-contexto-*`
+   indicada.
 
-Metodologia, templates, documentação e skills gerenciadas acompanham a versão.
-Dados vivos, instruções externas e fontes descobertas permanecem no lugar.
+Metodologia, templates, documentação e skills gerenciadas acompanham a versão,
+enquanto as informações do negócio, as instruções externas e as fontes
+descobertas permanecem no lugar.
 
 ## O que muda e o que permanece
 
 | O setup pode atualizar | O setup preserva |
 | --- | --- |
-| skills gerenciadas | dados existentes em `.inboundfy/context/` |
+| skills gerenciadas | informações existentes em `.inboundfy/context/` |
 | metodologia instalada | instruções fora do bloco do Inboundfy |
 | documentação instalada | fontes Markdown descobertas |
 | templates read-only | customizações antes da migração |
-| inventário de fontes | assets originais em `brand/` |
+| lista de fontes | assets originais em `brand/` |
 
 ## Nomes legados
 
 Uma atualização não deixa dois gatilhos para a mesma fase. Os antigos nomes
 estratégicos sem número são movidos para
-`.inboundfy/migracoes/skills-legadas/<data>/`, e os nomes `00–03` permanecem no
+`.inboundfy/migracoes/skills-legadas/<data>/`. Os nomes `00–03` permanecem no
 diretório ativo.
 
 ## Como conferir o reparo
@@ -59,8 +61,9 @@ npx @promovaweb/inboundfy@latest repair --yes
 npx @promovaweb/inboundfy@latest doctor --strict
 ```
 
-O reparo termina quando o diagnóstico não encontra erro ou aviso, o contexto
-vivo foi preservado e o inventário reflete as fontes atuais.
+O reparo termina quando o diagnóstico não encontra erro ou aviso, quando
+`.inboundfy/context/` foi preservado e quando a lista de fontes reflete os
+arquivos atuais.
 
 ## Uma versão para tudo
 

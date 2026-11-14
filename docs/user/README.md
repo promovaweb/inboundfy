@@ -15,12 +15,12 @@ sem exigir conhecimento da implementação das skills.
 ## Leia online ou como ebook
 
 Os capítulos deste diretório também formam o
-**Inboundfy — Guia completo do usuário**. O PDF preserva a diagramação para
-leitura, compartilhamento e impressão. O EPUB permite ajustar fonte e tamanho
-no leitor digital.
+**Inboundfy: Guia completo do usuário**. O PDF preserva a diagramação para
+leitura, compartilhamento e impressão, enquanto o EPUB permite ajustar fonte e
+tamanho no leitor digital.
 
-- [Baixe o PDF](../../ebook/Inboundfy-Guia-do-Usuario-v0.7.1.pdf).
-- [Baixe o EPUB](../../ebook/Inboundfy-Guia-do-Usuario-v0.7.1.epub).
+- [Baixe o PDF](../../ebook/Inboundfy-Guia-do-Usuario-v0.7.2.pdf).
+- [Baixe o EPUB](../../ebook/Inboundfy-Guia-do-Usuario-v0.7.2.epub).
 - [Consulte a edição e os hashes](../../ebook/README.md).
 
 ## Percurso completo
@@ -30,7 +30,7 @@ Leia na ordem:
 1. [Visão geral e escolha do fluxo](00-visao-geral.md)
 2. [Pré-requisitos](01-pre-requisitos.md)
 3. [Instalação e preparação](02-instalacao.md)
-4. [Contexto, fontes e marca](03-contexto-e-marca.md)
+4. [Arquivos do negócio, fontes e marca](03-contexto-e-marca.md)
 5. [Primeiro brainstorm](04-primeiro-brainstorm.md)
 6. [Primeira campanha](05-primeira-campanha.md)
 7. [Primeiro pacote editorial](06-primeiro-pacote.md)
@@ -40,14 +40,14 @@ Leia na ordem:
 11. [Solução de problemas](10-solucao-de-problemas.md)
 
 Os [exemplos executáveis](../../examples/README.md) mostram relatórios,
-reprovações, correções e aprovações preenchidos com dados fictícios.
+reprovações, correções e aprovações preenchidos com informações fictícias.
 
 ## Skills principais
 
 - `inboundfy-setup`: instala, atualiza ou repara o ambiente.
-- `$inboundfy`: entrada padrão; interpreta o pedido e escolhe o fluxo.
+- `$inboundfy`: entrada padrão, que interpreta a sua instrução e escolhe o fluxo.
 - `inboundfy-brainstorm`, `inboundfy-acervo` e `inboundfy-estrategia`:
-  componentes acionados pela orquestradora ou disponíveis para pedido direto.
+  componentes acionados pela orquestradora ou chamados por você diretamente.
 - `inboundfy-iniciar`: alias compatível que encaminha para `$inboundfy`.
 
 Uma skill especialista pode ser chamada diretamente quando já existe um brief
@@ -60,15 +60,16 @@ um artigo e um post. Depois do setup, o percurso fica assim:
 
 1. Você entrega a anotação a `$inboundfy`.
 2. A skill preserva o original, processa o texto, pesquisa o tema e registra
-   FAQ, base editorial e possibilidades.
+   perguntas frequentes, base editorial e possibilidades.
 3. Você escolhe canais, personas e direção editorial.
 4. As especialistas produzem o artigo e o post.
-5. Cada validadora confronta sua peça com o brief, o contexto e a marca.
+5. Cada validadora confronta sua peça com o brief, os arquivos do negócio e a
+   marca.
 6. Uma reprovação volta à especialista com a correção necessária.
 7. O fluxo registra somente as versões aprovadas no calendário e no catálogo.
 
 Você acompanha esse trabalho pelos arquivos criados. A resposta do agente
-resume o resultado, mas os artefatos do projeto são a evidência que permite
+resume o resultado, mas os artefatos do projeto são o registro que permite
 retomar, revisar e auditar a execução.
 
 ## Classificação

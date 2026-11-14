@@ -8,13 +8,13 @@ inboundfy-especialista-linkedin
 inboundfy-validador-linkedin
 ```
 
-A validadora lê o brief, o contexto completo, as fontes relevantes, as
-proibições e `brand/` quando existir. Ela não corrige o asset. Em caso de
+A validadora lê o brief e todos os arquivos do negócio, as fontes relevantes,
+as proibições e `brand/` quando existir. Ela não corrige o asset. Em caso de
 reprovação, registra:
 
 - localização do problema;
-- evidência observada;
-- regra violada;
+- trecho observado;
+- orientação violada;
 - correção verificável;
 - skill produtora à qual o trabalho deve voltar.
 
@@ -41,14 +41,15 @@ Um relatório reprovado precisa responder:
 | Campo | Pergunta respondida |
 | --- | --- |
 | Localização | Onde o problema aparece? |
-| Evidência | O que foi encontrado no asset? |
-| Regra | Qual contrato foi violado? |
+| Trecho | O que foi encontrado no asset? |
+| Contrato | Qual orientação foi violada? |
 | Correção | O que precisa mudar para ser verificável? |
 | Retorno | Qual especialista recebe o trabalho? |
 
 Uma ocorrência de proibição, fato incorreto ou divergência material de marca
 mantém o status reprovado, mesmo quando outros aspectos do asset estão
-corretos. O relatório aponta o trecho, a regra e a correção necessária.
+corretos. O relatório aponta o trecho, a orientação violada e a correção
+necessária.
 
 Para aprovar uma peça no pipeline, o relatório final precisa identificar o ID,
 o caminho do `README.md`, o SHA-256 atual e o veredito `aprovado`. Consulte o
@@ -67,7 +68,7 @@ novo relatório.
 ```text
 especialista produz v1
         ↓
-validadora reprova com evidência
+validadora reprova com o trecho
         ↓
 especialista produz v2
         ↓
@@ -81,20 +82,22 @@ Depois de uma alteração, a validadora relê o asset inteiro.
 
 ## Aprendizado com suas orientações
 
-Sugestões, correções, alinhamentos e dicas entram em `.inboundfy/context/aprendizado.md`
-com um ID, a mensagem original, a aplicação e o alcance. Se o alcance não for
+As orientações dadas na revisão (sugestões, correções, alinhamentos e dicas)
+entram em `.inboundfy/context/aprendizado.md` com um ID e a mensagem original,
+junto com a aplicação e o alcance. Se o alcance não for
 claro, a skill pergunta se a orientação vale para esta peça, para um canal ou
 persona, ou para todo o projeto.
 
-Uma correção local afeta somente a peça relacionada. Uma regra confirmada para
+Uma correção local afeta somente a peça relacionada. Uma orientação confirmada para
 todo o projeto também atualiza `context/marca-voz.md`, `context/glossario.md` ou
 `context/proibicoes.md`, quando aplicável. O registro permanece como memória
 para as próximas peças.
 
 ## Falta de confirmação factual
 
-Quando a correção depende de preço, URL, data, permissão ou decisão que não
-está disponível, o relatório registra a pendência e pede informação. O asset
+Quando a correção depende de uma informação indisponível (preço, URL, data,
+permissão ou definição), o relatório registra a pendência e pergunta o valor
+correto. O asset
 não avança com um placeholder apresentado como definitivo.
 
 ## Classificação

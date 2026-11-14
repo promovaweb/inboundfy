@@ -1,7 +1,7 @@
 # Primeiro brainstorm
 
 Use este fluxo quando houver apenas uma ideia, pergunta ou anotação, ainda sem
-tese, evidência ou brief.
+tese, comprovação ou brief.
 
 ## Passo a passo
 
@@ -11,10 +11,11 @@ tese, evidência ou brief.
 3. A fase `01-entrevista` identifica lacunas. Perguntas só são feitas quando
    uma resposta muda materialmente o resultado.
 4. A fase `02-pesquisa` consulta fontes do projeto e fontes externas
-   necessárias, separando fatos, opiniões e hipóteses.
-5. A fase `03-sintese` forma tese, recorte, argumentos, ativos e oportunidades
-   por canal.
-6. A fase `04-validacao` aplica escrita, fontes, contexto e proibições.
+   necessárias, separando fatos, opiniões e suposições.
+5. A fase `03-sintese` forma a tese e o ângulo, os argumentos, os ativos e as
+   oportunidades por canal.
+6. A fase `04-validacao` confere a escrita, as fontes, os arquivos do negócio
+   e as proibições.
 7. Uma reprovação retorna somente à fase responsável.
 
 ## Resultado esperado
@@ -23,7 +24,7 @@ O arquivo
 `brainstorms/<AAAA-MM-DD>-<slug>/brainstorm.md` termina com status aprovado,
 ideia original intacta, fontes identificadas e suposições explícitas.
 
-Se o pedido já mencionar uma peça, o brainstorm aprovado segue para briefing.
+Se a instrução já mencionar uma peça, o brainstorm aprovado segue para briefing.
 Se houver várias oportunidades, `$inboundfy` encaminha para o acervo e para o
 planejamento do pacote.
 
@@ -49,9 +50,9 @@ precise ser refeita.
 
 ## Quando interromper
 
-Interrompa quando uma afirmação depender de dado ausente, uma fonte relevante
+Interrompa quando uma afirmação depender de informação ausente, uma fonte relevante
 estiver em conflito ou a marca ainda não tiver público e canal mínimos. O
-brainstorm pode preservar uma hipótese, mas não apresentá-la como fato.
+brainstorm pode preservar uma suposição, mas não apresentá-la como fato.
 
 ## Classificação
 

@@ -1,46 +1,46 @@
-# Contexto, fontes e marca
+# Arquivos do negócio, fontes e marca
 
 O Inboundfy combina três camadas sem copiá-las para um único arquivo:
 
 1. `.inboundfy/context/`: dados estruturados do negócio.
-2. `.inboundfy/fontes-projeto.md`: inventário das fontes que já existiam.
+2. `.inboundfy/fontes-projeto.md`: lista das fontes que já existiam.
 3. `brand/`: manual, tokens, logos, tipografia e aplicações de marca, quando
    a pasta existir.
 
 O arquivo `.inboundfy/context/aprendizado.md` mantém as orientações dadas durante as
 revisões. Cada registro informa se vale para uma peça, canal, persona ou todo o
-projeto. A skill lê esse arquivo antes de produzir e encaminha regras
+projeto. A skill lê esse arquivo antes de produzir e encaminha as orientações
 confirmadas de voz, grafia ou proibição para o arquivo normativo correspondente.
 
 Durante o setup, arquivos Markdown com nome em maiúsculas, como `PRODUCT.md`,
 `COPY.md` e `PROHIBITED.md`, são descobertos em todo o projeto. Dentro de
-`brand/`, todos os Markdown são inventariados, inclusive nomes em minúsculas.
+`brand/`, todos os Markdown entram na lista, inclusive nomes em minúsculas.
 O setup registra caminho, assunto e possíveis conflitos, mas não move nem
 reescreve as fontes.
 
-Antes de produzir, cada skill lê o inventário e carrega somente os arquivos
-relevantes. Fatos confirmados no contexto prevalecem sobre exemplos; conflitos
+Antes de produzir, cada skill lê a lista de fontes e carrega somente os arquivos
+relevantes. Fatos confirmados em `.inboundfy/context/` prevalecem sobre exemplos. Conflitos
 entre fontes são explicitados e não podem ser resolvidos por invenção.
 
 ## Proibições são hard gates
 
-`context/proibicoes.md` reúne vetos do negócio.
+`context/proibicoes.md` reúne vetos do negócio e
 `context/estruturas-proibidas.md` reúne padrões genéricos de escrita
-artificial. A validação faz um passe literal e outro semântico. Uma ocorrência
-reprova o asset, independentemente de outros aspectos de escrita, estética ou
+artificial. A validação faz um passe literal e outro semântico, com reprovação
+do asset a cada ocorrência, independentemente da escrita, da estética ou do
 SEO.
 
 Detalhes de precedência estão em [CONTEXTO.md](../../CONTEXTO.md).
 
-## Arquivos de contexto
+## Arquivos do negócio
 
 | Arquivo | Informação mantida |
 | --- | --- |
 | `empresa.md` | identidade, missão e modelo de negócio |
-| `pessoas.md` | porta-vozes e pessoas citáveis |
+| `pessoas.md` | porta-vozes e nomes que podem ser citados |
 | `produtos.md` | produtos, recursos e limites |
 | `servicos.md` | serviços e condições |
-| `ofertas.md` | preço, validade, garantia e CTA |
+| `ofertas.md` | preço, validade, garantia e chamada para ação |
 | `marca-voz.md` | idioma, tom e exemplos de voz |
 | `publico.md` | públicos, dores e objeções |
 | `concorrentes.md` | referências e diferenças confirmadas |
@@ -63,7 +63,7 @@ pergunta explicitamente o consentimento de uso antes de liberar o depoimento
 para `canaisAutorizados`; sem essa confirmação, o registro fica marcado como
 `pendente` e nenhuma skill de canal pode citá-lo em peça pública.
 
-## Quando um dado estiver faltando
+## Quando faltar uma informação
 
 Use a skill `inboundfy-contexto-*` ligada ao arquivo. Ela pergunta, registra a
 origem e atualiza o conteúdo sem mudar o caminho. Quando o próprio arquivo
@@ -80,5 +80,5 @@ peça textual também pode depender da voz e das proibições registradas ali.
 | Campo | Valor |
 | --- | --- |
 | Natureza | normativo |
-| Escopo | contexto, fontes descobertas, marca e proibições |
+| Escopo | arquivos do negócio, fontes descobertas, marca e proibições |
 | Autoridade | `CONTEXTO.md` e contrato de descoberta do setup |

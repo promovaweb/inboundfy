@@ -2,10 +2,10 @@
 
 ## Um ponto de entrada
 
-Use `$inboundfy` para qualquer pedido. Conte o que você tem e o que pretende
-produzir; a orquestradora verifica o setup e escolhe o fluxo. Você não precisa
-memorizar nomes de skills. Especialistas continuam disponíveis para tarefas
-isoladas quando você pedir esse caminho diretamente.
+Use `$inboundfy` como entrada para qualquer tarefa. Conte o que você tem e o
+que pretende produzir. A orquestradora verifica o setup e escolhe o fluxo, sem
+que você precise memorizar nomes de skills. As especialistas continuam
+disponíveis para tarefas isoladas quando você as chama diretamente.
 
 ## Roteamento interno
 
@@ -22,13 +22,14 @@ isoladas quando você pedir esse caminho diretamente.
 `inboundfy` encaminha ideias a `inboundfy-brainstorm`, campanhas a
 `inboundfy-estrategia` e material bruto a `inboundfy-acervo`.
 `inboundfy-brainstorm` executa `00` a `04`. `inboundfy-acervo` conduz o ciclo
-completo de um material: registro, processamento, FAQ, pesquisa, base
-editorial, possibilidades, escolha de canais e personas, produção, revisão,
-calendário e catálogo. `inboundfy-iniciar` permanece como alias compatível.
+completo de um material, do registro e do processamento à pesquisa, às
+perguntas frequentes e à base editorial. Depois vêm as possibilidades, a
+escolha de canais e personas, a produção e a revisão, até o calendário e o
+catálogo. `inboundfy-iniciar` permanece como alias compatível.
 Cada asset produzido passa pela validadora do canal antes da auditoria final.
 
 Não chame uma fase numerada fora de ordem, exceto para retomar um pacote no
-estado registrado. Skills base, de contexto, especialistas e validadoras não
+estado registrado. Skills base, `inboundfy-contexto-*`, especialistas e validadoras não
 têm numeração porque são escolhidas por responsabilidade, não por cronologia.
 
 ## Saídas
@@ -57,9 +58,9 @@ operação isolada, mas o fluxo padrão começa na orquestradora.
 
 ## O que o Inboundfy não faz sozinho
 
-O framework não publica em CMS ou rede social, não escolhe uma versão quando
-duas fontes factuais discordam e não inventa preço, promessa, pessoa, produto
-ou regra de marca. Essas situações geram uma pendência explícita.
+O framework não publica em CMS ou rede social e não escolhe uma versão quando
+duas fontes factuais discordam. Também não inventa preço, promessa, porta-voz,
+produto ou orientação de marca. Essas situações geram uma pendência explícita.
 
 ## Classificação
 
