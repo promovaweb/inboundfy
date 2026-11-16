@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Especialista Ebook Imagem"
-  short_description: "Executa especialista ebook imagem no Inboundfy"
-  default_prompt: "Use $inboundfy-especialista-ebook-imagem para executar especialista ebook imagem com as fontes do projeto."
+  display_name: "Inboundfy: Capa de ebook"
+  short_description: "Produz capa de ebook e OpenGraph"
+  default_prompt: "Use $inboundfy-especialista-ebook-imagem para produzir capa de ebook e OpenGraph com brief aprovado, texto final e identidade do projeto. Aplique os oito itens do par e envie o conjunto completo a $inboundfy-validador-ebook-imagem."

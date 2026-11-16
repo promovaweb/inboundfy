@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Growth Lancamento"
-  short_description: "Executa growth lancamento no Inboundfy"
-  default_prompt: "Use $inboundfy-growth-lancamento para executar growth lancamento com as fontes do projeto."
+  display_name: "Inboundfy: Lançamento"
+  short_description: "Plano de lançamento com prontidão e adoção"
+  default_prompt: "Use $inboundfy-growth-lancamento para organizar um lançamento com prontidão, mensagens por público, calendário e leitura de adoção."

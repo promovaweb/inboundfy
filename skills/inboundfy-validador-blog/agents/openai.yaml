@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Validador blog"
-  short_description: "Valida o asset blog antes da entrega"
-  default_prompt: "Use $inboundfy-validador-blog para validar este asset e devolver correções à skill produtora quando necessário."
+  display_name: "Inboundfy: Validação de artigos de blog"
+  short_description: "Audita artigos, fontes e metadata de busca"
+  default_prompt: "Use $inboundfy-validador-blog para auditar o pacote de inboundfy-especialista-blog. Aplique inboundfy-base-validador e os 11 itens espelhados; registre achados e digest atual no relatório. Devolva correções à produtora sem editar a candidata."

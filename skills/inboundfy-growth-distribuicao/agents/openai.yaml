@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Growth Distribuicao"
-  short_description: "Executa growth distribuicao no Inboundfy"
-  default_prompt: "Use $inboundfy-growth-distribuicao para executar growth distribuicao com as fontes do projeto."
+  display_name: "Inboundfy: Distribuição de conteúdo"
+  short_description: "Plano de distribuição e adaptações por destino"
+  default_prompt: "Use $inboundfy-growth-distribuicao para priorizar rotas para um acervo, preparar adaptações e medir ações úteis por destino."

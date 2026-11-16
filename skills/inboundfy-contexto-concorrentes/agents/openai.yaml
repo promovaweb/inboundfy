@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Contexto Concorrentes"
-  short_description: "Executa contexto concorrentes no Inboundfy"
-  default_prompt: "Use $inboundfy-contexto-concorrentes para executar contexto concorrentes com as fontes do projeto."
+  display_name: "Inboundfy: Contexto de concorrentes"
+  short_description: "Concorrentes registrados com prova e permissão"
+  default_prompt: "Use $inboundfy-contexto-concorrentes para cadastrar ou corrigir um concorrente, com o ponto forte real dele, a nossa diferença comprovada e a permissão de citar o nome."

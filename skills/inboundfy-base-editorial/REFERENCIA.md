@@ -1,177 +1,126 @@
-# Referência da base editorial
+# Base editorial com afirmações rastreáveis
 
-Seções mínimas: núcleo, objetivo, público, atores, fatos, frases, perguntas,
-lacunas, fontes, relações e usos possíveis por canal.
+A base guarda o que o material permite dizer, para quem isso serve e quais perguntas continuam abertas. Ela fornece matéria-prima para vários usos sem escrever uma peça pública.
+
+## Diagnóstico e escolha do recorte
+
+Antes de resumir, pergunte: qual mecanismo o material demonstra? Que afirmação depende de data? Qual consequência aparece de fato? O relato representa um caso ou uma população?
+
+| Situação na origem | Tratamento na base | Encaminhamento |
+| --- | --- | --- |
+| Relato de um atendimento | Descrever o caso com suas condições | Não extrapolar para todos os clientes |
+| Número sem período | Registrar número e lacuna | Perguntar período e denominador |
+| Fonte externa descreve recurso | Atribuir à organização consultada | Não atribuir uso ao cliente |
+| Opinião do autor | Preservar como interpretação | Solicitar comprovação antes de transformar em promessa |
+
+## Método de montagem
+
+1. Leia bruto, processado, FAQ e pesquisa. Identifique os trechos por seção ou marca temporal.
+2. Numere as afirmações F01, F02. Registre origem, condição e limite de uso.
+3. Escreva um resumo de 80 a 150 palavras como faixa de trabalho, sem completar lacunas para atingir tamanho.
+4. Extraia o mecanismo em causa, operação e consequência. Separe consequência observada de benefício possível.
+5. Relacione cada objeção a uma pergunta da FAQ. Uma resposta parcial mantém essa condição.
+6. Compare IDs relacionados: qual dúvida este item resolve que os demais deixam aberta?
+7. Registre hipóteses de uso sem eleger canal ou campanha. Aplique A2 e devolva à chamadora.
+
+## Template de base-editorial.md
+
+```markdown
+---
+id: "<quatro algarismos>"
+estado: rascunho
+entrada: [bruto.md, processado.md, faq.md, pesquisa.md]
+personas: [<id existente>]
+---
+# <Núcleo do assunto>
+
+## Resumo factual
+<Objeto, operação, condição e consequência localizada.>
+
+## Afirmações disponíveis
+| ID | Afirmação | Origem | Condição | Limite de uso |
+| --- | --- | --- | --- | --- |
+| F01 | <fato> | <arquivo e seção> | <condição> | <alcance> |
+
+## Mecanismo e exemplos
+<Causa, operação observada e consequência.>
+
+## Perguntas e objeções
+<Pergunta da FAQ, resposta disponível e lacuna.>
+
+## Hipóteses de uso
+<Recorte, público compatível e fatos necessários.>
+
+## Relações
+<ID relacionado e diferença entre as abordagens.>
+
+## Pendências e próxima ação
+<Pergunta, responsável e arquivo a atualizar.>
+```
+
+## Exemplo trabalhado: oficina fictícia Pinhão Bicicletas
+
+**Entrada:** processado relata: “Na terça-feira, seis clientes receberam pelo WhatsApp um aviso de revisão. Quatro responderam. Ainda não conferimos quais respostas viraram visitas.” A FAQ pergunta sobre visitas e marca a resposta como pendente. A pesquisa não fornece dados da oficina.
+
+**Antes:** “O WhatsApp aumenta o movimento da oficina.” O enunciado mistura resposta com visita e transforma uma observação em promessa.
+
+**Base entregue:**
+
+```markdown
+---
+id: "0042"
+estado: revisao
+entrada: [bruto.md, processado.md, faq.md, pesquisa.md]
+personas: [persona-01]
+---
+# Resposta ao aviso de revisão da bicicleta
+
+## Resumo factual
+A Pinhão Bicicletas enviou seis avisos de revisão pelo WhatsApp numa terça-feira. Quatro destinatários responderam. O relato permite explicar o envio e o retorno da conversa, mas não permite afirmar que houve visitas ou vendas. A ligação entre resposta e comparecimento precisa ser conferida na agenda antes de produzir uma alegação comercial.
+
+## Afirmações disponíveis
+| ID | Afirmação | Origem | Condição | Limite de uso |
+| --- | --- | --- | --- | --- |
+| F01 | Seis avisos enviados | processado.md, parágrafo 1 | Uma terça-feira | Não representa volume semanal |
+| F02 | Quatro respostas | processado.md, parágrafo 1 | Mesmo envio | Não representa visitas |
+
+## Mecanismo e exemplos
+O aviso retoma a conversa sobre a revisão. A resposta abre espaço para consultar disponibilidade na agenda. O relato ainda não registra essa etapa posterior.
+
+## Perguntas e objeções
+Q03: quantos clientes compareceram? PENDENTE. Conferir a agenda com a responsável da oficina.
+
+## Hipóteses de uso
+Explicar como registrar envio, resposta e visita em campos separados. Usar F01 e F02 como caso único, sem promessa de conversão.
+
+## Relações
+Nenhum ID relacionado foi encontrado no índice consultado.
+
+## Pendências e próxima ação
+Confirmar datas e visitas. Encaminhar a base para inboundfy-acervo após A2.
+```
+
+## Checklist de entrega
+
+1. Cada afirmação possui origem e alcance.
+2. Número conserva período, unidade e denominador quando disponíveis.
+3. Citação literal permanece distinta de paráfrase.
+4. Persona citada existe no contexto.
+5. Hipótese não aparece no resumo como fato.
+6. Links para os quatro insumos funcionam.
+7. A2 registra a leitura integral e as pendências.
+
+## Erros comuns
+
+- Tratar quatro respostas como quatro compras. Nomeie a etapa efetivamente observada.
+- Importar preço de outra base editorial. Consulte a oferta vigente.
+- Escrever a peça durante a extração. Guarde os argumentos e devolva o recorte ao planejamento.
+- Remover ressalva para obter frase forte. Preserve a condição junto da frase.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-base-editorial**, do grupo
-**base**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de base editorial dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-base-editorial
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de base editorial
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-base-editorial
-grupo: base
-entrada: acervo/0042-2026-09-14-base-editorial/processado.md
-pedido: aplicar a etapa de base editorial e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-base-editorial
-estado: aprovado
-entrada: acervo/0042-2026-09-14-base-editorial/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de base editorial
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-base-editorial** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+No preflight, leia [fontes](../_shared/01-preflight-e-fontes.md). Ao montar a base, aplique [artefato](../_shared/02-contrato-de-artefato.md) e [contexto editorial](../_shared/05-contexto-editorial.md). No retorno, use [handoff](../_shared/03-interacao-e-handoff.md) e [retomada](../_shared/04-validacao-e-retomada.md).
 
 ## Guia específico do grupo
 
-Entregue uma função reutilizável, sem assumir canal ou negócio. Receba um artefato claro e devolva um registro consumível pela skill chamadora.
-
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-base-editorial** para executar esta função: Constrói a base editorial de um acervo a partir do material processado, pesquisa, FAQ e fontes relacionadas para orientar futuras peças de marketing.
-
-O grupo **base** trabalha com estes campos mínimos:
-
-- **entrada:** preencher com dado ligado ao pedido.
-- **regra:** preencher com dado ligado ao pedido.
-- **resultado:** preencher com dado ligado ao pedido.
-- **fontes:** preencher com dado ligado ao pedido.
-- **retorno:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-base-editorial
-grupo: base
-pedido: executar a função desta skill sobre o material selecionado
-entrada: acervo/0042-2026-09-14-material/processado.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-base-editorial
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - acervo/0042-2026-09-14-material/processado.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **base** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `CONTEXTO.md`
-- `SKILL-AUTORIA.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+A base devolve resumo, afirmações numeradas, relações e lacunas para a chamadora. Não assume canal. Use `ESCRITA.md`, `CONTEXTO.md` e o marco A2 de `inboundfy-anti-slop` para conferir atribuição e escrita.

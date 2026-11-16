@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Catalogo"
-  short_description: "Executa catalogo no Inboundfy"
-  default_prompt: "Use $inboundfy-catalogo para executar catalogo com as fontes do projeto."
+  display_name: "Inboundfy: Catálogo"
+  short_description: "Reconcilia índices de acervo, peças e calendário"
+  default_prompt: "Use $inboundfy-catalogo para conferir os índices do projeto contra as pastas de acervo, canais e calendário e relatar o que precisa de correção."

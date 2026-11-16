@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Validador linkedin"
-  short_description: "Valida o asset linkedin antes da entrega"
-  default_prompt: "Use $inboundfy-validador-linkedin para validar este asset e devolver correções à skill produtora quando necessário."
+  display_name: "Inboundfy: Validação de LinkedIn"
+  short_description: "Entrega auditoria de LinkedIn com correções localizadas."
+  default_prompt: "Use $inboundfy-validador-linkedin para revisar a candidata de LinkedIn, conferir cada item da especialista pareada e devolver relatório com fontes e correções localizadas."

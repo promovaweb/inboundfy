@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Growth Anuncios"
-  short_description: "Executa growth anuncios no Inboundfy"
-  default_prompt: "Use $inboundfy-growth-anuncios para executar growth anuncios com as fontes do projeto."
+  display_name: "Inboundfy: Publicidade paga"
+  short_description: "Plano ou auditoria de aquisição paga"
+  default_prompt: "Use $inboundfy-growth-anuncios para montar ou auditar o plano de mídia com teto em R$, qualidade comercial e encaminhamento da medição."

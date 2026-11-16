@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Especialista Video Imagem"
-  short_description: "Executa especialista video imagem no Inboundfy"
-  default_prompt: "Use $inboundfy-especialista-video-imagem para executar especialista video imagem com as fontes do projeto."
+  display_name: "Inboundfy: Thumbnail de vídeo"
+  short_description: "Produz thumbnail de vídeo ligada ao roteiro"
+  default_prompt: "Use $inboundfy-especialista-video-imagem para produzir thumbnail de vídeo ligada ao roteiro com brief aprovado, texto final e identidade do projeto. Aplique os oito itens do par e envie o conjunto completo a $inboundfy-validador-video-imagem."

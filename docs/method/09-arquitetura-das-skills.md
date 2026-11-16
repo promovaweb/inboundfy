@@ -35,7 +35,7 @@ descoberta e ativação.
 ## Blocos compartilhados
 
 `skills/_shared/` concentra regras que não devem ser reescritas em cada uma das
-117 skills:
+128 skills:
 
 | Arquivo | Função |
 | --- | --- |
@@ -51,24 +51,25 @@ próprio `SKILL.md` as regras que só valem para seu domínio.
 ## Grupos e perfis
 
 O arquivo `skills/catalogo.json` é a fonte estruturada para quantidade e busca.
-Na versão atual, os 117 IDs estão distribuídos assim:
+Na versão atual, os 128 IDs estão distribuídos assim:
 
 | Grupo | Quantidade | Resultado típico |
 | --- | ---: | --- |
 | Orquestrador | 1 | Pacote coordenado e próxima ação. |
 | Entrada | 2 | Preparação, setup ou encaminhamento inicial. |
+| Área | 7 | Diagnóstico da área e pacote de entrada para uma skill. |
 | Acervo | 4 | Bruto, processado, FAQ, pesquisa e base editorial. |
 | Base | 5 | Função reutilizável sem canal próprio. |
 | Contexto | 8 | Arquivo canônico do domínio atualizado. |
 | Brainstorm | 1 | Skill pública com cinco referências internas. |
 | Copy | 8 | Redação, edição, simplificação, gramática, oferta, persuasão e posicionamento. |
 | Estratégia | 1 | Skill pública com quatro referências internas. |
-| Growth | 25 | Aquisição, ativação, retenção, distribuição e otimização. |
+| Growth | 26 | Aquisição, ativação, retenção, distribuição e otimização. |
 | Planejamento | 1 | Skill pública com sete referências internas. |
 | Especialista | 20 | Asset final do canal. |
 | Validador | 20 | Relatório aprovado ou retorno para ajuste. |
 | Qualidade | 2 | Revisão anti-slop para texto ou código. |
-| Capacidade | 19 | Análise, plano ou registro consumível. |
+| Capacidade | 22 | Análise, plano ou registro consumível. |
 
 Cada entrada do catálogo possui:
 
@@ -91,11 +92,35 @@ Cada entrada do catálogo possui:
 O perfil é uma ficha de pareamento. Ele não substitui a descrição específica
 da skill nem autoriza uma etapa que não esteja no fluxo.
 
+### Grupo `area`
+
+As sete skills de área funcionam como porta de entrada por domínio: conteúdo,
+SEO, copy, growth, vendas, dados e pesquisa. Cada uma faz de três a cinco
+perguntas de diagnóstico, escolhe uma rota na própria tabela e entrega o pacote
+de entrada a uma única skill. Ela não executa o trabalho da skill encaminhada.
+
+A área lê `.inboundfy/context/integracoes.md` antes de prometer relatório que
+depende de ferramenta conectada. Quando o acesso está ausente, a pendência
+entra no pacote em vez de virar suposição.
+
+## Configuração criada em um único lugar
+
+`inboundfy-setup` é a única skill que cria ou altera configuração do projeto
+consumidor. Ela preenche o contexto, as configurações gerais, o arquivo
+`context/integracoes.md` e os nomes de variáveis do `.env.example`. As demais
+skills leem esses arquivos e devolvem para o setup qualquer configuração
+ausente, sem criar uma versão paralela.
+
+A regra evita duas fontes para o mesmo dado. Uma skill de growth que precisa da
+conta de anúncios lê o registro de integrações. Quando o registro não existe,
+ela pede a etapa de configuração em vez de gravar credencial no próprio
+artefato.
+
 ## Encadeamento operacional
 
 O diagrama mostra o fluxo padrão para uma entrada nova. `inboundfy-iniciar` é
-um atalho opcional. `inboundfy` coordena o percurso, e
-`inboundfy-acervo` mantém a ordem das fases do item. Os nós em verde
+um atalho opcional. `inboundfy` coordena o percurso. `inboundfy-acervo`
+mantém a ordem das fases do item. Os nós em verde
 representam arquivos ou diretórios do projeto consumidor, não skills do
 framework.
 
@@ -210,8 +235,12 @@ npm run skills:enriquecer
 node scripts/validar-framework.mjs
 ```
 
-`skills:check` faz uma conferência sem escrita. `skills:enriquecer` aplica
-blocos ausentes, cria interfaces que não existirem e recompõe o catálogo.
+`skills:check` faz uma conferência sem escrita. Ele confere a estrutura de cada
+diretório, as cinco referências compartilhadas, as seções obrigatórias de
+`REFERENCIA.md`, os campos de `agents/openai.yaml` e as sobras do esqueleto
+genérico. Um título herdado do esqueleto reprova a skill, porque indica
+texto de molde em vez de conteúdo do domínio. `skills:enriquecer` aplica blocos
+ausentes, cria interfaces que não existirem e recompõe o catálogo.
 Depois da escrita, execute a validação estrutural, os testes e o lint de
 Markdown. O comando de enriquecimento pode ser repetido: ele não substitui
 blocos já encontrados.

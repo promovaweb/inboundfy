@@ -7,6 +7,26 @@ que pretende produzir. A orquestradora verifica o setup e escolhe o fluxo, sem
 que você precise memorizar nomes de skills. As especialistas continuam
 disponíveis para tarefas isoladas quando você as chama diretamente.
 
+## Entrada por área
+
+Quando o pedido pertence a um domínio recorrente, você pode começar pela skill
+da área: conteúdo, SEO, copy, growth, vendas, dados ou pesquisa. A área faz de
+três a cinco perguntas de diagnóstico, escolhe a skill que resolve a etapa e
+entrega a ela um pacote de entrada. Ela não produz o resultado final.
+
+| Área | Skill | Exemplo de pedido |
+| --- | --- | --- |
+| Conteúdo | `inboundfy-area-conteudo` | "tenho uma transcrição e quero um post" |
+| SEO | `inboundfy-area-seo` | "o tráfego orgânico parou de crescer" |
+| Copy | `inboundfy-area-copy` | "a landing page precisa converter melhor" |
+| Growth | `inboundfy-area-growth` | "o cancelamento subiu e quero reter" |
+| Vendas | `inboundfy-area-vendas` | "preciso de uma cadência de email" |
+| Dados | `inboundfy-area-dados` | "quero saber qual canal gera venda" |
+| Pesquisa | `inboundfy-area-pesquisa` | "quero entender o concorrente" |
+
+O detalhamento, com a tabela de rotas de cada área, está em
+[Áreas de trabalho](11-areas-de-trabalho.md).
+
 ## Roteamento interno
 
 | O que já existe | Fluxo interno | Resultado |
@@ -16,6 +36,11 @@ disponíveis para tarefas isoladas quando você as chama diretamente.
 | Material bruto ou peça-base | `inboundfy-acervo` | Pacote auditado e saídas por canal |
 | Brief de uma peça | Especialista do canal | Peça avulsa validada |
 | Instalação ausente ou parcial | `inboundfy-setup` | Ambiente reconciliado |
+
+O setup também registra as configurações gerais do projeto, o arquivo
+`.inboundfy/context/integracoes.md` e os nomes de variáveis do `.env.example`.
+O passo a passo está em
+[Configurações e integrações](12-configuracoes-e-integracoes.md).
 
 ## Sequências automáticas
 

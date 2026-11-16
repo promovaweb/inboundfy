@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Growth Pricing"
-  short_description: "Executa growth pricing no Inboundfy"
-  default_prompt: "Use $inboundfy-growth-pricing para executar growth pricing com as fontes do projeto."
+  display_name: "Inboundfy: Preço e planos"
+  short_description: "Pesquisa valor e simula preço, planos e transição"
+  default_prompt: "Use $inboundfy-growth-pricing para comparar unidades de cobrança, simular planos e preparar um teste ou migração com condições claras."

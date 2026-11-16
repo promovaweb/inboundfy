@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Validador webinar-imagem"
-  short_description: "Valida o asset webinar-imagem antes da entrega"
-  default_prompt: "Use $inboundfy-validador-webinar-imagem para validar este asset e devolver correções à skill produtora quando necessário."
+  display_name: "Inboundfy: Revisão de thumbnail de webinar"
+  short_description: "Confere thumbnail com dados do webinar"
+  default_prompt: "Use $inboundfy-validador-webinar-imagem para revisar o conjunto completo de $inboundfy-especialista-webinar-imagem, aplicar os oito itens espelhados e devolver o relatório com achados, rodada e digest atual."

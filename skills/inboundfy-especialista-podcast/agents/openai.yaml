@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Especialista Podcast"
-  short_description: "Executa especialista podcast no Inboundfy"
-  default_prompt: "Use $inboundfy-especialista-podcast para executar especialista podcast com as fontes do projeto."
+  display_name: "Inboundfy: Redação de pautas e shownotes"
+  short_description: "Produz pautas e notas de episódios de podcast"
+  default_prompt: "Use $inboundfy-especialista-podcast para produzir pautas e shownotes a partir da entrada aprovada. Consulte o método e o exemplo completo; aplique os 11 itens do par, a revisão editorial e A5 antes de encaminhar a inboundfy-validador-podcast."

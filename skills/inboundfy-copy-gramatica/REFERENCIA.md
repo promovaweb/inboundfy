@@ -1,496 +1,211 @@
 # REFERENCIA.md; inboundfy-copy-gramatica
 
-Material de apoio para conferir a gramática e a pontuação de copy em português
-pela norma culta: vírgula e demais sinais, concordância verbal e nominal,
-crase, regência, colocação pronominal, os quatro porquês e a acentuação.
-Aplica os usos obrigatórios e proibidos, parágrafo a parágrafo, sem alterar
-sentido, voz ou fatos. `ESCRITA.md`, os contextos do projeto e as regras do
-canal continuam valendo. Erro pontual nesses pilares compromete a autoridade
-da mensagem e a retenção do leitor.
+Material de apoio para revisar a norma culta em copy. As regras detalhadas
+ficam em `references/`. Esta página traz a ordem de leitura, a tabela que
+separa erro de registro aceito pela marca, o modelo de relatório, um caso
+completo e o checklist final.
 
-## A estrutura da frase
+## Mapa de leitura
 
-A frase em língua portuguesa é formada por pares indissociáveis: sujeito +
-verbo; verbo + complemento. A primeira regra de ouro da vírgula é: não se
-separam esses elementos com vírgula.
-
-- O professor devolveu as provas corrigidas.
-  - `O professor` = sujeito.
-  - `devolveu` = verbo.
-  - `as provas corrigidas` = complemento do verbo "devolveu".
-
-Quando algo se intromete nessa estrutura, a vírgula isola o trecho
-intercalado:
-
-> O professor, durante a aula, devolveu, em silêncio, as provas corrigidas.
-
-- `O professor` = sujeito.
-- `durante a aula` = adjunto adverbial de tempo.
-- `devolveu` = verbo.
-- `em silêncio` = adjunto adverbial.
-- `as provas corrigidas` = complemento do verbo "devolveu".
-
-## Quando usar a vírgula
-
-1. **Separar o aposto (termo explicativo):**
-
-   > Recife, a Veneza brasileira, se desenvolveu muito nos últimos anos.
-
-2. **Isolar vocativo (termo que chama a atenção):**
-
-   > Marcos, estamos à sua espera!
-   >
-   > Estamos, Marcos, à sua espera!
-   >
-   > Estamos à sua espera, Marcos!
-
-3. **Isolar adjuntos adverbiais invertidos ou intercalados** (circunstâncias
-   de tempo, lugar, modo, companhia e outras):
-
-   > Todos, em meio à festa, se puseram a fazer brindes aos convidados.
-   >
-   > Durante muitos anos, fiz trabalho voluntário. Isso foi muito
-   > gratificante!
-
-4. **Antes dos conectivos** `mas`, `porém`, `contudo`, `pois`, `logo`:
-
-   > Faça suas escolhas, mas seja responsável por elas.
-   >
-   > Estudou muito durante o ano, logo deve conseguir uma vaga na faculdade.
-
-5. **Isolar termos explicativos** como `isto é`, `a saber`, `por exemplo`,
-   `digo`, `a meu ver`, `ou melhor`, usados para retificar, continuar ou
-   concluir o que se diz:
-
-   > O amor, isto é, o maior dos sentimentos, deve reger nossas atitudes.
-   >
-   > Voltaremos a nos falar na quinta-feira, ou melhor, na sexta.
-
-6. **Separar termos coordenados (lista):**
-
-   > Amor, fortuna, ciência. Apenas isso não traz felicidade.
-   >
-   > Durante a juventude viveu no Brasil, na França, na Itália.
-   >
-   > Saiu de casa, fechou a porta e foi-se, para sempre, daquele lugar.
-
-## Quando NÃO usar a vírgula
-
-1. **Para separar sujeito e predicado:**
-
-   > O tapete persa (sujeito) nos serviu de cama durante muitos anos
-   > (predicado).
-
-   A proibição vale mesmo quando o sujeito é extenso:
-
-   > O método definitivo para escalar suas vendas online exige dedicação.
-
-2. **Entre verbo e complemento:**
-
-   > O presidente mudou (verbo) os planos de viagem (complemento).
-   >
-   > O homem deve obedecer (verbo) a princípios éticos (complemento).
-
-A vírgula deslocada ou intrometida altera o sentido da frase e reprova o
-trecho. Uma vírgula que separe um par indissociável é achado obrigatório. A
-pontuação estrutura a oração; não marca apenas "pausa de respiração".
-
-## Isolamento de adjuntos adverbiais deslocados
-
-Expressão de tempo, lugar ou modo no início ou no meio da frase é isolada por
-vírgula(s) quando tem longa extensão (três palavras ou mais). Expressão curta
-torna a vírgula opcional.
-
-- **Curto (opcional):** Hoje lançamos o produto. / Hoje, lançamos o produto.
-- **Longo (obrigatória):** No primeiro trimestre deste ano, multiplicamos o
-  faturamento.
-
-## Vírgula antes do "e"
-
-A conjunção `e` não recebe vírgula como separação mecânica entre duas orações,
-mesmo quando os sujeitos são diferentes. A regra tradicional que permitia a
-vírgula nesse caso está descartada: o padrão `oração, e oração` lê como
-conector mecânico. Separe em duas frases com ponto final, ou troque por um
-conectivo com relação causal real (`porque`, `mas`, `então`, `por isso`)
-quando a ligação exigir mais que justaposição.
-
-- **Mesmo sujeito, sem vírgula:** O cliente acessou a página `e` comprou o
-  produto.
-- **Sujeitos diferentes, sem vírgula antes de `e` e sem juntar as orações:**
-  O especialista apresentou a solução. Os alunos aplicaram o método.
-
-A vírgula antes de `e` só existe para isolar aposto, adjunto deslocado ou
-oração intercalada que terminam antes da conjunção, nunca como pausa
-arbitrária entre orações coordenadas.
-
-## Outros sinais de pontuação
-
-- **Ponto final:** encerra oração declarativa; não é substituído por vírgula
-  quando a ideia se completa.
-- **Dois-pontos:** anunciam enumeração, explicação, citação ou fala.
-- **Ponto e vírgula:** não é usado em copy, conteúdo editorial, ebook, página,
-  post, email, roteiro, heading, chamada para a próxima ação, legenda ou texto
-  de interface para unir ideias, criar sofisticação artificial ou alongar
-  período. Reescreva com ponto final, vírgula, dois-pontos ou divisão em duas
-  frases naturais. Em lista longa de enumeração, substitua por lista Markdown
-  ou por frase organizada por dois-pontos.
-- **Travessão:** indica fala ou isola um destaque dentro da frase. O travessão
-  longo (U+2014) ou meio-travessão (U+2013) não é usado como pontuação dentro de frase
-  de prosa corrida (aside, pausa dramática ou substituto de vírgula,
-  dois-pontos ou parênteses). Reescreva com vírgula, dois-pontos, parênteses ou
-  duas frases separadas por ponto. Preserve o travessão em citação literal e no
-  uso consagrado de separador de título e subtítulo em heading.
-- **Aspas:** marcam citação, título ou uso especial de um termo.
-- **Parênteses:** isolam informação acessória.
-
-## Concordância verbal e nominal
-
-### Verbos impessoais
-
-Os verbos `haver` (existir, ocorrer, tempo decorrido) e `fazer` (tempo
-decorrido, clima) não têm sujeito e ficam sempre no singular.
-
-- Incorreto: `Houveram` milhares de conversões. / `Fazem` dois anos que
-  vendemos este curso.
-- Correto: `Houve` milhares de conversões. / `Faz` dois anos que vendemos
-  este curso.
-
-Em locução verbal, a impessoalidade se transmite ao verbo auxiliar:
-
-- Incorreto: `Podem haver` falhas no processo. / `Devem haver` razões para
-  isso.
-- Correto: `Pode haver` falhas no processo. / `Deve haver` razões para isso.
-
-### Porcentagens, frações e partitivos especificados
-
-A concordância pode ser feita com o numeral ou com o elemento especificador
-que o segue.
-
-| Estrutura | Regra | Exemplo |
+| Arquivo | Passo do fluxo | Conteúdo |
 | --- | --- | --- |
-| Porcentagem sem especificação | Concorda com o número. | 80% `aprovaram` o novo visual. |
-| Porcentagem + substantivo | Concorda com o número ou com o substantivo. | 1% do público `abandonou` / `abandonaram` o carrinho. |
-| Expressão partitiva (`a maioria de`, `a maior parte de`) | Concorda com a expressão (singular) ou com o termo plural. | A maioria dos clientes `comprou` / `compraram` na pré-venda. |
+| [references/pontuacao.md](references/pontuacao.md) | Passos 3 e 4 | Estrutura da frase, vírgula obrigatória e proibida, vírgula antes de `e`, demais sinais. |
+| [references/concordancia-crase-e-regencia.md](references/concordancia-crase-e-regencia.md) | Passos 5 e 6 | Verbos impessoais, porcentagem, partitivo, concordância nominal, crase, regência. |
+| [references/colocacao-grafia-e-estilo.md](references/colocacao-grafia-e-estilo.md) | Passos 7 e 8 | Colocação pronominal, `há` e `a`, `onde` e `aonde`, porquês, acentuação, paralelismo, gerundismo, artigos. |
+| [references/numeros-datas-e-moeda.md](references/numeros-datas-e-moeda.md) | Passo 8 | Valores em R$, porcentagem, números por extenso, datas, horas, telefones, siglas e maiúsculas. |
 
-### Concordância nominal essencial
+## Ordem de prioridade
 
-- **Anexo / Incluso:** variam com o substantivo. A proposta segue `anexa`. Os
-  relatórios seguem `inclusos`. A expressão `em anexo` é invariável (As
-  propostas seguem em anexo), mas a forma adjetiva direta sem preposição é
-  preferível.
-- **Mesmo / Próprio:** variam conforme a pessoa ou o elemento a que se
-  referem. Ela `mesma` assinou o contrato. Eles `próprios` gerenciam o
-  tráfego.
-- **Meio:** invariável quando significa "um pouco" ou modifica adjetivo (Ela
-  está `meio` hesitante); varia como metade ou numeral (Comeu `meia` maçã).
-- **Bastante:** invariável como intensificador (O método é `bastante`
-  completo); varia como quantificador plural (Temos `bastantes` motivos para
-  comemorar).
+Quando o tempo for curto, revise nesta ordem. Os primeiros itens mudam o
+sentido ou derrubam a credibilidade da peça. Os últimos incomodam, mas raramente
+confundem.
 
-## Crase
+1. Valores, datas, horas e nomes de marca (um preço mal grafado gera
+   reclamação de cliente).
+2. Vírgula entre sujeito e verbo ou entre verbo e complemento.
+3. Concordância com verbo impessoal (`houveram`, `fazem dois anos`).
+4. Crase antes de verbo ou palavra masculina (`à partir`, `à prazo`).
+5. Regência de CTA (`acesse ao`, `assista o`).
+6. Paralelismo em listas de benefícios.
+7. Colocação pronominal e porquês.
+8. Acentuação diferencial e grafias frequentes.
 
-### Regra de ouro
+## Norma ou registro da marca
 
-A crase é a fusão da preposição `a` com o artigo feminino `a`. Ocorre só antes
-de palavra feminina que admita o artigo, quando o termo anterior exige a
-preposição.
+A norma culta é o padrão. A marca pode aceitar uma forma coloquial em canais
+informais, desde que `marca-voz.md` registre a escolha. Sem registro, aplique
+a norma.
 
-- Acesso `à` plataforma (quem tem acesso, tem acesso `a` + `a` plataforma).
-- Garantia estendida `às` empresas parceiras.
+| Forma encontrada | Norma culta | Aceita quando |
+| --- | --- | --- |
+| "Me manda o comprovante" | "Mande-me o comprovante" ou "Você pode me mandar o comprovante" | `marca-voz.md` registra próclise coloquial para WhatsApp ou Instagram. |
+| "pra", "pro" | "para", "para o" | A voz registra linguagem falada naquele canal. Nunca em página de vendas, contrato ou email transacional. |
+| "Tá liberado" | "Está liberado" | Mesmo caso de "pra". |
+| "A gente envia" | "Nós enviamos" ou "Enviamos" | A voz usa "a gente" como marca de proximidade. Concordância sempre na terceira pessoa do singular ("a gente envia", nunca "a gente enviamos"). |
+| "Chegue no topo" | "Chegue ao topo" | Nunca. Regência de verbo de movimento não tem exceção de voz. |
+| "Houveram" | "Houve" | Nunca. |
+| "À partir de" | "A partir de" | Nunca. |
 
-### Onde a crase é proibida
+O registro coloquial muda escolhas de palavra e colocação. Ele não autoriza
+concordância errada, crase errada nem vírgula entre sujeito e verbo.
 
-1. **Antes de verbo:**
-   - Incorreto: Oferta válida `à` partir de amanhã.
-   - Correto: Oferta válida `a` partir de amanhã.
-2. **Antes de palavra masculina:**
-   - Incorreto: Pagamento `à` prazo / Conteúdo feito `à` lápis.
-   - Correto: Pagamento `a` prazo / Conteúdo feito `a` lápis.
-3. **Entre palavras repetidas:**
-   - Incorreto: Passos `à` passos / Cara `à` cara.
-   - Correto: Passo `a` passo / Cara `a` cara.
-4. **Antes de pronomes pessoais, demonstrativos** (`esta`, `essa`) **e
-   indefinidos** (`todas`, `qual`).
-5. **Antes de numerais cardinais:** de 10 `a` 15 dias (sem crase).
+## Template de relatório
 
-### Onde a crase é obrigatória
+```markdown
+---
+id: {{id da peça}}
+skill: inboundfy-copy-gramatica
+chamadora: {{skill que pediu a revisão}}
+estado: {{aprovado | revisao}}
+entrada: {{caminho da versão analisada}}
+canal: {{canal}}
+registro_aplicado: {{culto | coloquial registrado em marca-voz.md para o canal}}
+fontes:
+  - ESCRITA.md
+  - .inboundfy/context/marca-voz.md
+  - .inboundfy/context/glossario.md
+---
 
-1. **Locuções conjuntivas ou proporcionais:** `à medida que`, `à proporção
-   que`.
-2. **Locuções adverbiais femininas de tempo, modo ou lugar:** `à noite`, `à
-   tarde`, `às vezes`, `à vista`.
-3. **Indicação de horas exatas:** `às` 19h, `às` 20h30.
+# Revisão de gramática: {{título da peça}}
 
-### Paralelismo com "De... a..." e "Da... à..."
+## Achados
 
-- `De... a...` não leva crase: Atendimento de segunda `a` sexta.
-- `Da... à...` leva crase: Atendimento da segunda `à` sexta.
+| # | Local | Trecho | Regra | Diagnóstico | Ação |
+| --- | --- | --- | --- | --- | --- |
+| 1 | {{seção, parágrafo}} | "{{trecho}}" | {{arquivo de references e regra}} | {{efeito}} | {{correção aplicada}} |
 
-## Regência
+## Mantido de propósito
 
-A regência determina como verbos e nomes se ligam aos complementos. Use a
-preposição exigida pelo termo, sem trocar por outra de pronúncia parecida.
+- "{{trecho}}": {{por que está correto ou por que é exceção registrada}}
 
-- **Acessar / Visitar:** transitivos diretos, não exigem preposição `a`.
-  - Incorreto: Acesse `ao` nosso site. / Visite `à` nossa loja.
-  - Correto: Acesse `o` nosso site. / Visite `a` nossa loja.
-- **Implicar** (acarretar, gerar consequência): não exige preposição `em`.
-  - Incorreto: O aumento de tráfego implica `em` mais vendas.
-  - Correto: O aumento de tráfego implica mais vendas.
-- **Assistir** (no sentido de ver) exige `a`: Assista `ao` vídeo até o final
-  (e não `assista o vídeo`).
-- **Visar** (objetivar, almejar) exige `a`: O curso visa `ao` aprimoramento
-  profissional. Na norma rígida, `visa a alcançar` novos leads.
-- **Ir / Chegar** pedem `a` para movimento definitivo ou temporário curto:
-  Chegue `ao` topo do mercado / Vá `ao` link da bio (e não `chegue no topo`
-  nem `vá no link`).
+## Texto corrigido
 
-## Colocação pronominal
+{{versão completa}}
 
-### Início de frase
+## Pendências de dado
 
-Na norma culta, oração não começa com pronome oblíquo átono.
+- {{skill dona do dado}}: {{dúvida que a gramática não pode resolver}}
 
-- Incorreto: `Me` mande uma mensagem no WhatsApp. / `Te` vejo no evento.
-- Correto: Envie-`me` uma mensagem no WhatsApp. / Vejo-`o` no evento.
-- Adaptado à linguagem direta: Você pode `me` enviar uma mensagem no WhatsApp.
+## Próxima ação
 
-### Palavras atrativas (próclise obrigatória)
-
-O pronome vem antes do verbo quando há palavra de sentido negativo, pronome
-relativo, advérbio ou conjunção subordinativa.
-
-- Negação (`não`, `nunca`, `jamais`): Não `se` esqueça de assinar o canal.
-- Advérbio (`já`, `sempre`, `hoje`): Já `se` tornaram referência.
-- Pronome relativo ou subordinante (`que`, `se`, `como`): O método que `me`
-  ajudou.
-
-## Distinções ortográficas estratégicas
-
-### Há vs. A
-
-- **Há:** verbo `haver` com sentido de tempo decorrido ou existência.
-  Trabalho com isso `há` 10 anos. `Há` duas opções disponíveis.
-- **A:** preposição que indica tempo futuro ou distância. O lançamento será
-  daqui `a` duas semanas. A empresa fica `a` 500 metros.
-
-### Onde vs. Aonde vs. o relativo com preposição
-
-- **Onde:** lugar fixo. A cidade `onde` moro.
-- **Aonde:** movimento ou destino com verbos de ação. O lugar `aonde`
-  queremos chegar.
-- **Relativo com preposição** (`no qual`, `na qual`): conceito abstrato ou
-  situação intangível, onde o uso de `onde` é incorreto.
-
-O relativo com preposição também aparece como junção de preposição e
-pronome:
-
-```
-Um cenário em que todos ganham.
+{{skill chamadora}} {{verbo + objeto}} em `{{caminho}}`.
 ```
 
-## Os quatro porquês
+A seção "Mantido de propósito" evita que a próxima revisão desfaça uma forma
+correta que parecia errada, como "à vista" ou a concordância opcional de
+partitivo.
 
-| Forma | Aplicação | Exemplo em copy |
-| --- | --- | --- |
-| **Por que** | Perguntas diretas/indiretas ou trocável por `pelo qual`. | `Por que` sua empresa ainda não vende diariamente? |
-| **Por quê** | Fim de frase ou isolado. | Você ainda não automatizou seus processos? `Por quê`? |
-| **Porque** | Resposta, explicação ou justificativa (causal). | Inscreva-se hoje, `porque` as vagas são limitadas. |
-| **Porquê** | Substantivo (o motivo, a razão), com artigo ou pronome. | Entenda o `porquê` de este método funcionar tão bem. |
+## Exemplo completo (ilustrativo)
 
-## Acentuação
+Empresa fictícia: **Rota Verde Turismo**, agência de ecoturismo de Bonito (MS).
+Peça: email para lista de leads com o pacote de dezembro. `marca-voz.md`
+fictício registra: "Linguagem falada só no WhatsApp. Email segue a norma
+culta." `glossario.md` registra `Pix` e `Rio da Prata`.
 
-- Acentos diferenciais do novo acordo ortográfico: `pode` (presente) / `pôde`
-  (pretérito); `por` (preposição) / `pôr` (verbo); `tem` / `têm`; `vem` /
-  `vêm` (plural).
-- Termos frequentemente grafados errado em copy: `à vontade`, `beneficente`,
-  `exceção`, `metamorfose`, `prazeroso`, `superior`, `também`, `trajetória`.
+### Texto recebido
 
-## Paralelismo sintático
+> **Assunto:** Últimas vagas pra Bonito em dezembro
+>
+> Me responda até sexta, porque restam poucas vagas. Houveram 40 reservas na
+> última semana e, a maioria dos viajantes, escolheram o pacote de 4 dias. O
+> pacote inclui: transfer do aeroporto, flutuação no Rio da Prata e, almoço
+> típico. Pagamento à vista no pix tem 5% de desconto, ou parcelado à partir
+> de R$389. A saída é as 7h da manhã, e o retorno acontece às 17hrs. Nossa
+> equipe vai estar enviando o roteiro detalhado por WhatsApp. Acesse ao link
+> abaixo para garantir a sua.
 
-Mantenha a mesma estrutura gramatical ao coordenar itens de uma sequência ou
-lista. A quebra do paralelismo gera estranheza imediata na leitura.
+### Achados
 
-- Incorreto (estruturas mistas): Ao adquirir o curso, você vai `aprender` a
-  criar anúncios, ter `gestão` de tráfego simplificada e `melhorando` suas
-  conversões.
-- Correto (verbo no infinitivo em todos os itens): Ao adquirir o curso, você
-  vai `aprender` a criar anúncios, `gerenciar` o tráfego de forma
-  simplificada e `melhorar` suas conversões.
+| # | Local | Trecho | Regra | Diagnóstico | Ação |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Assunto | "pra" | Tabela de registro. Voz registra norma culta no email | Coloquial fora do canal permitido | "para" |
+| 2 | P1 | "Me responda" | Colocação, início de frase | Oblíquo abre a oração | "Responda" |
+| 3 | P1 | "Houveram 40 reservas" | Verbo impessoal `haver` | Plural indevido | "Houve" |
+| 4 | P1 | "semana e, a maioria" | Vírgula antes de `e` entre orações | Conector mecânico | Divididas em duas frases |
+| 5 | P1 | "a maioria dos viajantes, escolheram" | Vírgula entre sujeito e verbo | Separa par indissociável | Vírgula removida. Concordância mantida no plural, forma válida para partitivo |
+| 6 | P1 | "4 dias" | Números de zero a dez por extenso | Forma numérica em prosa | "quatro dias" |
+| 7 | P1 | "inclui: transfer" e "Prata e, almoço" | Dois-pontos antes de complemento, vírgula antes do último item com `e` | Dois-pontos separa verbo e objeto. Vírgula indevida | Dois-pontos e vírgula removidos |
+| 8 | P1 | "pix" | `glossario.md` | Grafia da marca | "Pix" |
+| 9 | P1 | "à partir de R$389" | Crase antes de verbo, grafia de moeda | Crase proibida. Falta espaço após `R$` | "a partir de R$ 389" |
+| 10 | P1 | "é as 7h da manhã" | Crase em hora exata, horas | Falta crase. "da manhã" redundante | "é às 7h" |
+| 11 | P1 | "7h da manhã, e o retorno" | Vírgula antes de `e` entre orações | Conector mecânico | Divididas em duas frases |
+| 12 | P1 | "17hrs" | Horas | Abreviação fora do padrão | "17h" |
+| 13 | P1 | "vai estar enviando" | Gerundismo | Locução artificial | "envia" |
+| 14 | P1 | "Acesse ao link" | Regência de `acessar` | Transitivo direto | "Acesse o link" |
+| 15 | P1 | "garantir a sua" | Referente | "sua" sem substantivo próximo | "garantir sua vaga" |
 
-O paralelismo vale para listas de benefícios, passos e CTAs: cada item assume
-a mesma forma verbal ou nominal.
+### Mantido de propósito
 
-## Erros de estilo que violam a norma culta
+- "Pagamento à vista": locução adverbial feminina, crase obrigatória.
+- "porque restam poucas vagas": `porque` causal, vírgula antes correta.
 
-- **Gerundismo:** uso do gerúndio para indicar ação futura imediata de forma
-  contínua e artificial.
-  - Incorreto: Nós vamos `estar enviando` o seu código de rastreio.
-  - Correto: Nós `enviaremos` o seu código de rastreio. / Vamos `enviar` o
-    seu código de rastreio.
-- **"Mesmo" como pronome pessoal:** não substitui o nome já citado.
-  - Incorreto: Encontrei o cliente e falei com o `mesmo`.
-  - Correto: Encontrei o cliente e falei com `ele`.
+### Texto corrigido
 
-## Determinantes e fluidez
+> **Assunto:** Últimas vagas para Bonito em dezembro
+>
+> Responda até sexta, porque restam poucas vagas. Houve 40 reservas na última
+> semana. A maioria dos viajantes escolheram o pacote de quatro dias. O pacote
+> inclui transfer do aeroporto, flutuação no Rio da Prata e almoço típico. O
+> pagamento à vista no Pix tem 5% de desconto. Também é possível parcelar, a
+> partir de R$ 389. A saída é às 7h. O retorno acontece às 17h. Nossa equipe
+> envia o roteiro detalhado pelo WhatsApp. Acesse o link abaixo para garantir
+> sua vaga.
 
-Em parágrafos corridos, use os artigos definidos `o`, `a`, `os` e `as` antes
-de siglas, ferramentas, áreas, objetos técnicos e conceitos quando funcionarem
-como sujeito ou objeto: `A API recebe`, `O CRM registra`, `O sistema processa`,
-`Os dados mostram`, `A campanha depende`. O padrão sem artigo soa como anotação
-técnica ou tradutor automático. Preserve exceções apenas em comandos, labels,
-nomes oficiais, títulos telegráficos inevitáveis e listas técnicas nas quais o
-artigo atrapalhe a precisão. Quando a concisão custar naturalidade, reescreva a
-frase em vez de manter o determinante ausente.
+### Pendências de dado
 
-Substantivo modificado por adjetivo sem determinante que fica truncado pede
-artigo indefinido: `transformar em um comportamento revisável`, `criar uma
-rotina auditável`, `virar uma referência prática`. Preserve a forma sem artigo
-apenas quando ela for expressão técnica consagrada ou uso genérico natural.
+- `inboundfy-contexto-oferta`: "a partir de R$ 389" é o valor da parcela ou o
+  total parcelado? A revisão manteve a forma ambígua porque escolher um dos
+  sentidos mudaria a oferta.
+- `inboundfy-especialista-email`: "Responda até sexta" não diz qual sexta.
+  Confirmar a data (por exemplo, "até sexta-feira, 4 de dezembro").
 
-## Perguntas dentro de parágrafo de copy
-
-Perguntas não entram dentro de parágrafos de copy editorial. Quando a dúvida
-do leitor for relevante, transforme em afirmação, hipótese, regra ou escolha,
-ou use uma seção própria exigida pelo formato, como perguntas frequentes,
-entrevista, roteiro ou heading interrogativo planejado. Não use pergunta
-retórica seguida de resposta curta e óbvia como muleta de redação.
-
-## Checklist objetivo
-
-Marque cada item como presente ou ausente e registre apenas os achados
-observáveis:
+## Checklist
 
 - [ ] Nenhuma vírgula separa sujeito e predicado.
-- [ ] Nenhuma vírgula separa verbo e complemento nem verbo e objeto.
-- [ ] Aposto está isolado por vírgulas quando intercalado.
-- [ ] Vocativo está isolado por vírgula em qualquer posição.
-- [ ] Adjunto adverbial invertido ou intercalado está isolado por vírgula.
-- [ ] Conectivos `mas`, `porém`, `contudo`, `pois`, `logo` são precedidos de
-      vírgula quando iniciam oração coordenada.
-- [ ] Termos explicativos (`isto é`, `a saber`, `por exemplo`, `ou melhor`)
-      estão isolados por vírgulas.
-- [ ] Termos coordenados em lista são separados por vírgula, sem vírgula antes
-      do último item quando não há conectivo.
-- [ ] Nenhuma vírgula precede o `e` como separação entre orações, mesmo com
-      sujeitos diferentes.
-- [ ] `haver` e `fazer` impessoais ficam no singular, inclusive na locução
-      verbal.
-- [ ] Porcentagem, fração e partitivo concordam com o numeral ou com o
-      elemento especificado.
-- [ ] `anexo`, `incluso`, `mesmo`, `próprio`, `meio` e `bastante` variam
-      conforme a regra de cada caso.
-- [ ] Crase ocorre só antes de palavra feminina que admita artigo e exija
-      preposição.
-- [ ] Crase não aparece antes de verbo, de palavra masculina, entre palavras
-      repetidas, antes de pronomes pessoais, demonstrativos ou indefinidos,
-      nem antes de numerais cardinais.
-- [ ] Crase é obrigatória nas locuções conjuntivas, nas locuções adverbiais
-      femininas e na indicação de horas exatas.
-- [ ] O paralelismo `de...a` / `da...à` segue a presença ou ausência de artigo.
-- [ ] Verbos e nomes usam a preposição exigida pela regência (`acessar`,
-      `visitar`, `implicar`, `assistir`, `visar`, `ir`, `chegar`).
-- [ ] Nenhuma oração começa com pronome oblíquo átono.
-- [ ] Pronome vem antes do verbo quando há palavra atrativa.
-- [ ] `há` distingue tempo decorrido ou existência de `a` futuro ou distância.
-- [ ] `onde` marca lugar fixo, `aonde` marca destino, e o relativo com
-      preposição marca conceito abstrato ou situação intangível.
-- [ ] Os quatro porquês estão aplicados conforme a função de cada forma.
-- [ ] Acentos diferenciais e grafias frequentes estão corretos.
-- [ ] Itens de lista e sequências mantêm paralelismo sintático.
-- [ ] Não há gerundismo nem uso de `mesmo` como pronome pessoal.
-- [ ] Nenhum ponto e vírgula nem travessão de prosa corrida aparece fora das
-      exceções documentadas.
-- [ ] Siglas, ferramentas, áreas e objetos técnicos usam artigo definido quando
-      funcionam como sujeito ou objeto em parágrafo corrido.
-- [ ] Nenhuma pergunta retórica nem pergunta solta aparece dentro de parágrafo
-      de copy fora de seção própria do formato.
-- [ ] O sentido da frase permanece o mesmo com a pontuação aplicada.
-- [ ] `ESCRITA.md`, voz, dicionário e proibições foram conferidos.
+- [ ] Nenhuma vírgula separa verbo e complemento, inclusive por dois-pontos.
+- [ ] Aposto intercalado tem vírgula antes e depois.
+- [ ] Vocativo está isolado em qualquer posição.
+- [ ] Adjunto adverbial longo deslocado está isolado.
+- [ ] `mas`, `porém`, `contudo`, `pois` e `logo` iniciando oração têm vírgula
+      antes.
+- [ ] Nenhuma vírgula antes de `e` liga orações.
+- [ ] Nenhuma vírgula antes do último item de lista com `e`.
+- [ ] Nenhum ponto e vírgula nem travessão de prosa.
+- [ ] `haver` e `fazer` impessoais no singular, inclusive em locução.
+- [ ] Porcentagem e partitivo com concordância válida.
+- [ ] Palavras variáveis (`anexo`, `incluso`, `mesmo`, `meio`, `bastante`)
+      concordam conforme o caso.
+- [ ] Nenhuma crase antes de verbo, masculino, pronome ou numeral cardinal.
+- [ ] Crase presente em hora exata e locução feminina.
+- [ ] `de...a` e `da...à` seguem o artigo.
+- [ ] Regência de `acessar`, `visitar`, `assistir`, `implicar`, `visar`,
+      `ir` e `chegar` correta.
+- [ ] Nenhum oblíquo abre oração, salvo exceção registrada para o canal.
+- [ ] Próclise após palavra atrativa.
+- [ ] Porquês, `há` e `a`, `onde` e `aonde` corretos.
+- [ ] Itens de lista com a mesma forma gramatical.
+- [ ] Sem gerundismo e sem `mesmo` como pronome.
+- [ ] Siglas e ferramentas com artigo em prosa corrida.
+- [ ] Valores, datas, horas, telefones e marcas com forma única na peça.
+- [ ] Nenhum dado mudou de valor ou de sentido.
+- [ ] Leitura integral refeita depois das correções.
 
-Um item ausente só vira achado quando houver um trecho específico e uma regra
-aplicável. Descreva a consequência na leitura e indique uma ação concreta.
+## Erros comuns
 
-## Exemplo; antes e depois
-
-**Antes (vírgula separando sujeito e predicado, aposto sem isolamento, crase,
-concordância e colocação pronominal erradas, sem paralelismo):**
-
-> O professor, devolveu as provas corrigidas aos alunos, na sexta-feira.
-> Recife a Veneza brasileira se desenvolveu muito nos últimos anos. Houveram
-> muitos cadastros no site a partir de amanhã. Me envie o relatório, porque
-> as vagas são limitadas. Ao adquirir o curso, você vai aprender a criar
-> anúncios, ter gestão de tráfego simplificada e melhorando suas conversões.
-
-Problemas: vírgula intrometida entre sujeito e verbo; aposto sem vírgulas;
-`houveram` no plural; crase antes de verbo (`a partir de`); pronome oblíquo
-abrindo a oração; lista de benefícios sem paralelismo (infinitivo, substantivo
-e gerúndio misturados).
-
-**Depois (estrutura respeitada, norma aplicada, paralelismo mantido):**
-
-> O professor devolveu as provas corrigidas aos alunos na sexta-feira.
-> Recife, a Veneza brasileira, se desenvolveu muito nos últimos anos. Houve
-> muitos cadastros no site a partir de amanhã. Envie-me o relatório, porque
-> as vagas são limitadas. Ao adquirir o curso, você vai aprender a criar
-> anúncios, gerenciar o tráfego de forma simplificada e melhorar suas
-> conversões.
-
-Diferença: os pares indissociáveis permanecem intactos, o aposto está isolado,
-a concordância, a crase e a colocação pronominal seguem a norma, e a lista de
-benefícios mantém paralelismo com verbos no infinitivo.
-
-## Erros comuns na correção
-
-- Inserir vírgula entre sujeito e verbo só para "respirar" a frase; a pausa
-  de leitura não justifica pontuação fora da norma.
-- Usar vírgula antes do último item de uma lista quando não há conectivo
-  (`fortuna, ciência, e dinheiro` → `fortuna, ciência e dinheiro`).
-- Usar vírgula antes de `e` para separar orações coordenadas, mesmo com
-  sujeitos diferentes; a norma do projeto trata esse padrão como conector
-  mecânico e pede ponto final ou conectivo causal.
-- Isolar o aposto com uma vírgula só quando ele inicia ou encerra a frase;
-  o aposto intercalado exige vírgula antes e depois.
-- Confundir vocativo com sujeito e omitir a vírgula de chamamento.
-- Aplicar a regra do adjunto adverbial invertido a qualquer expressão,
-  separando verbo e complemento por engano.
-- Reescrever a frase para "ajeitar" a pontuação em vez de posicionar a
-  vírgula onde a norma manda.
-- Usar crase antes de verbo, de palavra masculina, de pronome pessoal,
-  demonstrativo ou indefinido, de numeral cardinal, ou entre palavras
-  repetidas (`à partir`, `à prazo`, `à passos`).
-- Esquecer a crase em locução adverbial feminina, em locução conjuntiva ou na
-  indicação de horas exatas (`as 19h` no lugar de `às 19h`).
-- Romper o paralelismo `de...a` / `da...à` (Atendimento de segunda `à` sexta).
-- Confundir regência: `acessar ao site`, `visitar à loja`, `implicar em mais
-  vendas`, `assistir o vídeo` ou `chegue no topo`.
-- Começar oração com pronome oblíquo (`Me mande`) ou manter ênclise após
-  palavra atrativa (`Não esqueça-se`).
-- Tratar `porque` e `por que` como intercambiáveis em resposta e pergunta.
-- Corrigir `houveram` para o plural só porque o termo seguinte é plural; o
-  verbo impessoal fica no singular.
-- Colocar a concordância da porcentagem só pelo numeral quando há
-  especificação opcional, ignorando a opção válida com o substantivo.
-- Confundir `há` (tempo decorrido ou existência) com `a` (tempo futuro ou
-  distância), e `onde` (lugar fixo) com `aonde` (destino).
-- Misturar infinitivo, substantivo e gerúndio nos itens de uma mesma lista,
-  quebrando o paralelismo sintático.
-- Manter gerundismo (`vamos estar enviando`) ou usar `mesmo` para retomar um
-  nome já citado.
-
-## Registro de achados
-
-Ao devolver o resultado, use este formato por trecho:
-
-```text
-| Localização | Trecho observado | Regra ou fonte | Diagnóstico | Ação aplicada ou pendente |
-| --- | --- | --- | --- | --- |
-| <seção/parágrafo> | <citação curta> | <regra ou arquivo> | <efeito no texto> | <mudança ou pendência> |
-```
-
-Se não houver achados, declare: `Nenhum achado nesta leitura.` Registre o
-resultado dos passes literal e de estrutura separadamente. Para cada correção,
-repita a leitura no texto completo e informe se a ocorrência foi removida.
+- Inserir vírgula entre sujeito longo e verbo para "dar respiro".
+- Corrigir a concordância de partitivo como erro quando as duas formas são
+  válidas. Registre em "Mantido de propósito".
+- Trocar `houveram` por `houve` e esquecer o `podem haver` dois parágrafos
+  abaixo.
+- Aplicar a norma culta num canal onde a voz registrou linguagem falada, ou
+  aplicar o coloquial num canal onde ela não registrou.
+- Usar dois-pontos entre verbo e objeto ("inclui: transfer").
+- Tirar a crase de "à vista", "às vezes" ou "à medida que".
+- Uniformizar números escolhendo um valor. Um valor ambíguo vira pendência.
+- Corrigir `pix` para `PIX`. A grafia correta é `Pix`.
+- Reescrever a frase inteira para fugir de uma dúvida de vírgula. A skill
+  corrige a norma, não o estilo.
+- Juntar duas frases com vírgula antes de `e` ao corrigir uma frase picada.
 
 ## Arquitetura aplicada
 
@@ -503,170 +218,18 @@ do grupo **copy**. Leia os detalhes compartilhados conforme a etapa atual:
 - [validação e retomada](../_shared/04-validacao-e-retomada.md);
 - [contexto editorial](../_shared/05-contexto-editorial.md).
 
-## Contrato específico
-
-- **Função:** auditar e corrigir a gramática e a pontuação de copy em
-  português pela norma culta, dentro do fluxo do Inboundfy.
-- **Entrada mínima:** texto ou caminho do arquivo, canal, público e objetivo.
-- **Saída mínima:** texto corrigido e relatório de achados com localização,
-  regra, diagnóstico e ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o bruto e as versões aprovadas permanecem disponíveis.
-
 ## Guia específico do grupo
 
-Escreva ou revise a mensagem solicitada. Relacione promessa, prova, persona,
-voz, canal e ação sem inventar dados.
+O grupo **copy** trabalha sobre texto. Esta skill devolve o texto corrigido e
+o relatório para a chamadora, sem salvar arquivo próprio. Os campos mínimos
+do registro são estes:
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+- **texto:** caminho da versão analisada;
+- **registro aplicado:** norma culta ou exceção registrada em `marca-voz.md`
+  para o canal;
+- **achados:** tabela com regra e ação;
+- **mantido de propósito:** formas corretas que parecem erro;
+- **retorno:** pendências de dado com a skill dona de cada uma.
 
-## Template de operação
-
-```markdown
----
-id: {{id}}
-skill: inboundfy-copy-gramatica
-estado: rascunho
-entrada: {{caminho ou ID}}
-fontes:
-  - {{caminho}}
-proxima_skill: {{nome ou "pendente de confirmação"}}
----
-
-# Registro de gramática
-
-## Resultado
-
-{{Trechos corrigidos e achados registrados.}}
-
-## Pendências
-
-- {{pergunta ou "nenhuma"}}
-
-## Próxima ação
-
-{{verbo + objeto + caminho do arquivo seguinte}}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-copy-gramatica
-grupo: copy
-entrada: acervo/0042-2026-09-14-copy-gramatica/processado.md
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-copy-gramatica
-estado: aprovado
-entrada: acervo/0042-2026-09-14-copy-gramatica/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {{skill seguinte ou "pendente de confirmação"}}
----
-
-# Registro de gramática
-
-## Resultado
-
-A pontuação foi conferida e corrigida, mantendo a estrutura da frase e as
-perguntas abertas separadas do material confirmado.
-
-## Próxima ação
-
-{{verbo + objeto + caminho do arquivo seguinte}}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] A estrutura da frase foi conferida antes de qualquer correção.
-- [ ] Pontuação, concordância, crase, regência, colocação pronominal, porquês
-      e acentuação foram conferidos quando aplicáveis ao texto.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-copy-gramatica** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Corrigir a gramática e alterar sentido, voz ou fatos no mesmo passo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
-- Corrigir só a vírgula e deixar passar erro de crase, concordância, regência
-  ou colocação pronominal no mesmo trecho.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-copy-gramatica** para executar esta função: Audita e corrige a gramática e a pontuação de copy em português: vírgula, crase, concordância verbal e nominal, regência, colocação pronominal, os quatro porquês, paralelismo sintático e a acentuação, aplicando a norma culta sem alterar sentido, voz ou fatos.
-
-O grupo **copy** trabalha com estes campos mínimos:
-
-- **objetivo:** preencher com dado ligado ao pedido.
-- **mensagem:** preencher com dado ligado ao pedido.
-- **persona:** preencher com dado ligado ao pedido.
-- **canal:** preencher com dado ligado ao pedido.
-- **revisão:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-copy-gramatica
-grupo: copy
-pedido: executar a função desta skill sobre o material selecionado
-entrada: acervo/0042-2026-09-14-material/base-editorial.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-copy-gramatica
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - acervo/0042-2026-09-14-material/base-editorial.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **copy** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `CONTEXTO.md`
-- `SKILL-AUTORIA.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Quando `inboundfy-copy-editor` chama esta skill, o relatório de gramática
+entra como anexo do relatório de auditoria, com o mesmo ID da peça.

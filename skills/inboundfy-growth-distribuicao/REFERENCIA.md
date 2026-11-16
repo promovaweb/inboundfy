@@ -1,223 +1,100 @@
-# Referência de Distribuição externa
+# Referência de distribuição de conteúdo
 
-## Template
+## Método e escolhas
 
-```markdown
-# Distribuição externa
+Distribuição começa na pergunta do leitor e no lugar que aceita a contribuição. Uma publicação completa numa comunidade, um resumo numa newsletter e um artigo convidado exigem entregas diferentes. O plano escolhe poucas rotas, adapta o conteúdo e acompanha a ação após o clique.
 
-- **ID:** {{id}}
-- **Objetivo:** {{objetivo}}
-- **Persona:** {{persona}}
-- **Canal:** {{canal}}
-- **Acervo:** {{acervo}}
-- **Fonte principal:** {{fonte}}
-- **Próxima ação:** {{cta}}
+| Situação do ativo | Rota | Adaptação necessária | Encaminhamento |
+| --- | --- | --- | --- |
+| Tutorial com aplicação imediata | Grupo setorial autorizado | Responder a dúvida no próprio grupo | Comunidade |
+| Pesquisa com dado novo | Newsletter editorial | Resumo, método e fonte | Parcerias ou relações públicas |
+| Guia durável | Artigo convidado | Recorte original para aquele leitor | Parcerias |
+| Página de ferramenta | Diretório ou marketplace | Cadastro próprio da plataforma | inboundfy-growth-diretorios |
+| Menção sem link | Contato editorial sobre a fonte | Contexto e URL verificável | inboundfy-seo-links-externos |
 
-## Plano
+Leia [o procedimento de distribuição de conteúdo](references/rotas-e-adaptacoes.md) no passo 2 do fluxo, antes de preencher o plano. Ele detalha execução, medição e tratamento das exceções.
 
-{{plano}}
+## Template de trabalho
 
-## Pendências
+Copie o envelope para o pacote do projeto. Preencha também a tabela específica abaixo.
 
-{{pendencias}}
+```yaml
+id: "{{id}}"
+skill: inboundfy-growth-distribuicao
+grupo: growth
+tipo: plano-distribuicao
+estado: rascunho
+entrada: ["{{acervo ou pedido}}"]
+brief: "{{caminho do brief}}"
+persona: "{{id da persona}}"
+canal: "{{canal ativo}}"
+oferta: "{{oferta confirmada}}"
+fontes: ["{{contexto}}", "{{fonte do tema}}"]
+responsavel: "{{pessoa}}"
+janela: "{{início e fim}}"
+orcamento_reais: "{{valor aprovado}}"
+proxima_skill: "{{skill e ação solicitada}}"
+pendencias: ["{{pergunta ou nenhuma}}"]
 ```
 
-## Guia específico
+| Prioridade | Destino e URL | Persona | Regra/data | Versão e contribuição | CTA/UTM | Envio | Estado | Visitas úteis |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| {{ordem}} | {{destino}} | {{id}} | {{consulta}} | {{arquivo}} | {{link}} | {{data/pessoa}} | {{rascunho/enviado/aceito/recusado}} | {{número}} |
 
-Para cada destino, registre público, requisito, formato aceito, URL, responsável, data de envio e adaptação necessária. Evite publicação duplicada e spam.
+Proposta editorial: “Olá, {{editora}}. Seu público perguntou sobre {{tarefa}} em {{publicação}}. Temos {{material verificável}}. Posso preparar {{recorte original}}, com {{entrega concreta}}, para sua próxima edição?”
 
-## Exemplo ilustrativo
+## Exemplo completo brasileiro fictício
 
-Uma empresa de software pode usar este modelo para organizar uma ação de teste com uma persona específica, ligar cada mensagem a um acervo e registrar a página de destino sem afirmar resultados ainda não medidos.
+Todos os nomes, documentos e números deste exemplo são fictícios. Resultados simulados servem para demonstrar a conferência, sem prometer desempenho.
+
+A fictícia **Rota de Bairro**, de Recife, oferece organização de entregas para pequenos mercados. O ativo `dist-022`, em `acervo/022-entrega-bairro/processado.md`, contém um guia de planejamento de rotas. A persona é `dona-mercado`. A oferta confirmada custa R$ 89/mês. O brief fica em `conteudo/entregas/04-briefs/dist-022.md`.
+
+A equipe seleciona três rotas: newsletter de uma associação fictícia de varejistas, grupo autorizado de lojistas e carrossel no perfil da empresa. Rejeita um portal generalista por falta de leitor compatível. Cada versão entrega uma tarefa: mapa por bairro, lista de horários ou sequência de preparação. A newsletter aponta para `https://example.com/guia?utm_source=associacao&utm_medium=referral&utm_campaign=rotas_022`.
+
+Em 14 dias simulados, newsletter gera 90 sessões, grupo gera 50 e perfil gera 60. O evento útil é baixar o modelo de rota: 27, 10 e 12 pessoas, respectivamente. A rodada custa R$ 600, incluindo adaptação e negociação. Custo por download = R$ 600 / 49 = R$ 12,24. Das 49 pessoas, oito pedem demonstração no período. Sem chave que conecte sessão e pedido, a equipe reporta esses oito como total observado, sem repartir por origem.
+
+A responsável fictícia Iara registra o plano como `revisao`, pede ajuste da medição a `inboundfy-metricas` e entrega o próximo recorte de newsletter a `inboundfy-growth-parcerias`. Um pedido para cadastrar a ferramenta numa lista segue para `inboundfy-growth-diretorios`.
+
+## Métricas e leitura do resultado
+
+- Aceitação editorial = propostas aceitas / propostas entregues, com data de resposta.
+- Consumo útil = visitantes que completam o evento definido / sessões elegíveis por destino.
+- Custo por ação útil = custo de negociação, adaptação e distribuição / ações deduplicadas.
+- Conversão por origem usa eventos ligados à mesma origem e janela. Compartilhamentos privados podem perder a UTM; acrescente pergunta opcional de origem.
+- Republicação aceita não equivale a backlink conquistado nem a venda.
+
+Use a mediana histórica de ações comparáveis do próprio projeto como referência. Separe canal, formato, público e período. Se faltar histórico, trate a primeira rodada como linha inicial. Números dos exemplos são hipóteses de planejamento ou resultados simulados, nunca médias de mercado. Para adotar uma referência externa, registre fonte primária, data, amostra e método antes de comparar.
 
 ## Checklist
 
-- [ ] ID e objetivo estão presentes.
-- [ ] Persona, canal e acervo estão vinculados.
-- [ ] Fontes e pendências estão localizadas.
-- [ ] Voz, proibições e dicionário foram conferidos.
-- [ ] Próxima ação e estado do pipeline estão claros.
+- [ ] Destinos têm regra consultada e pessoa responsável.
+- [ ] Cada adaptação oferece valor dentro do destino.
+- [ ] Links e UTMs foram testados no celular.
+- [ ] Recusas e envios anteriores foram consultados.
+- [ ] A ação útil possui evento e denominador.
+- [ ] Fontes, ID, brief, persona e responsável acompanham o plano.
+- [ ] Pendências têm responsável e data de retorno.
+- [ ] O handoff inclui arquivos, estado e ação solicitada.
 
 ## Erros comuns
 
-- Começar pelo formato antes de confirmar objetivo, público e fonte.
-- Usar promessa, preço, número ou nome sem registro local.
-- Aplicar a mesma mensagem a personas com contextos diferentes.
-- Salvar o resultado sem caminho, ID ou alcance da escolha.
-
-## Relação com inboundfy-growth-distribuicao
-
-Use este modelo como roteiro mínimo e acrescente apenas campos pedidos pelo projeto. O arquivo final deve ficar ligado ao acervo, à peça e ao calendário quando houver data.
+- Copiar a mesma abertura para todos os destinos: reescreva conforme a pergunta local.
+- Somar alcance de canais como pessoas únicas: mantenha alcance separado.
+- Confundir distribuição com cadastro: envie a tarefa de diretório à skill própria.
+- Medir clique sem olhar destino: confira carregamento e conclusão da tarefa.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-growth-distribuicao**, do grupo
-**growth**. Leia os detalhes compartilhados conforme a etapa atual:
+A skill `inboundfy-growth-distribuicao` pertence ao grupo **growth**. Aplique os contratos conforme o trabalho avança:
 
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de distribuicao dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-growth-distribuicao
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de distribuicao
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-growth-distribuicao
-grupo: growth
-entrada: acervo/0042-2026-09-14-distribuicao/processado.md
-pedido: aplicar a etapa de distribuicao e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-growth-distribuicao
-estado: aprovado
-entrada: acervo/0042-2026-09-14-distribuicao/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de distribuicao
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-growth-distribuicao** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): confirme instalação, contexto e origem dos dados.
+- [Contrato de artefato](../_shared/02-contrato-de-artefato.md): registre ID, estado e relações.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): registre escolhas e alcance.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): confira o artefato inteiro após correções.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): mantenha persona, voz, dicionário e proibições.
 
 ## Guia específico do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
+A unidade é o envio de uma versão de conteúdo para um destino aceito. O plano conserva a relação entre acervo, versão, origem, visita útil e próxima ação.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-growth-distribuicao** para executar esta função: Planeja submissões e distribuição em diretórios, bases e canais externos sem duplicar conteúdo ou criar cadastro sem autorização.
-
-O grupo **growth** trabalha com estes campos mínimos:
-
-- **objetivo:** preencher com dado ligado ao pedido.
-- **público:** preencher com dado ligado ao pedido.
-- **canal:** preencher com dado ligado ao pedido.
-- **oferta:** preencher com dado ligado ao pedido.
-- **próxima ação:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-growth-distribuicao
-grupo: growth
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/estrategia.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-growth-distribuicao
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/estrategia.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **growth** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESTRATEGIA.md`
-- `CONTEXTO.md`
-- `docs/method/05-artefatos-e-estados.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Registre objetivo, público, canal, oferta e próxima ação no plano. Encaminhe produção para `inboundfy-planejamento` quando houver pacote. Encaminhe peça avulsa com brief aprovado à especialista correspondente. Não preencha arquivos de contexto com fatos simulados deste manual.

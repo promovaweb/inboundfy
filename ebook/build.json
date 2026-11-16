@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "version": "0.7.2",
-  "edition": "v0.7.2",
-  "generated_at": "2026-11-14T13:51:45Z",
-  "source_sha256": "654a3d729da2b913e2811cf46843b6945878c4970edaeffe4f68366ff0a5c17e",
+  "version": "0.8.0",
+  "edition": "v0.8.0",
+  "generated_at": "2026-11-16T05:01:14Z",
+  "source_sha256": "9c56b8acfe02a196be183395bb435f339f5b99b37ce27b4624b8d07df399604e",
   "sources": [
     ".ebook/build-ebook.mjs",
     ".ebook/epub.css",
@@ -28,6 +28,14 @@
     "docs/user/08-validacao-e-correcoes.md",
     "docs/user/09-atualizacao-e-reparo.md",
     "docs/user/10-solucao-de-problemas.md",
+    "docs/user/11-areas-de-trabalho.md",
+    "docs/user/12-configuracoes-e-integracoes.md",
+    "docs/user/13-tutorial-do-material-ao-post.md",
+    "docs/user/14-tutorial-lancamento.md",
+    "docs/user/15-tutorial-seo.md",
+    "docs/user/16-tutorial-vendas-b2b.md",
+    "docs/user/17-tutorial-medicao.md",
+    "docs/user/18-exemplos-de-pedidos.md",
     "docs/user/README.md",
     "docs/user/reading-order.txt",
     "ebook/VERSION"
@@ -92,16 +100,56 @@
       "natureza": "referência",
       "escopo": "diagnóstico de setup, arquivos do negócio, fontes e fases",
       "autoridade": "mensagens e condições de interrupção das skills"
+    },
+    "docs/user/11-areas-de-trabalho.md": {
+      "natureza": "normativo",
+      "escopo": "pontos de entrada por área e rotas resumidas",
+      "autoridade": "`skills/inboundfy-area-*/SKILL.md` e `skills/catalogo.json`"
+    },
+    "docs/user/12-configuracoes-e-integracoes.md": {
+      "natureza": "normativo",
+      "escopo": "configurações gerais, integrações e variáveis de ambiente",
+      "autoridade": "`inboundfy-setup` e `skills/inboundfy-setup/references/integracoes.md`"
+    },
+    "docs/user/13-tutorial-do-material-ao-post.md": {
+      "natureza": "instrutório",
+      "escopo": "percurso de material bruto até post publicado",
+      "autoridade": "`inboundfy-acervo`, `inboundfy-planejamento`, especialista e validadora de blog"
+    },
+    "docs/user/14-tutorial-lancamento.md": {
+      "natureza": "instrutório",
+      "escopo": "lançamento de turma com growth, mídia, criativos e rastreamento",
+      "autoridade": "`inboundfy-growth-lancamento`, `inboundfy-growth-anuncios`, `inboundfy-rastreamento-conversao`"
+    },
+    "docs/user/15-tutorial-seo.md": {
+      "natureza": "instrutório",
+      "escopo": "auditoria, arquitetura, otimização, dados estruturados e links externos",
+      "autoridade": "`inboundfy-auditoria-seo`, `inboundfy-arquitetura-site`, `inboundfy-base-seo`, `inboundfy-dados-estruturados`, `inboundfy-seo-links-externos`"
+    },
+    "docs/user/16-tutorial-vendas-b2b.md": {
+      "natureza": "instrutório",
+      "escopo": "prospecção B2B, email frio, kit de vendas e operação de receita",
+      "autoridade": "`inboundfy-growth-prospeccao`, `inboundfy-growth-email-frio`, `inboundfy-enablement-vendas`, `inboundfy-growth-revops`"
+    },
+    "docs/user/17-tutorial-medicao.md": {
+      "natureza": "instrutório",
+      "escopo": "plano de métricas, rastreamento, atribuição e teste A/B",
+      "autoridade": "`inboundfy-metricas`, `inboundfy-rastreamento-conversao`, `inboundfy-atribuicao`, `inboundfy-experimentacao`"
+    },
+    "docs/user/18-exemplos-de-pedidos.md": {
+      "natureza": "demonstrativo",
+      "escopo": "pedidos em linguagem natural e destinos no catálogo",
+      "autoridade": "`skills/catalogo.json` e os `SKILL.md` de cada área"
     }
   },
   "artifacts": {
     "pdf": {
-      "file": "Inboundfy-Guia-do-Usuario-v0.7.2.pdf",
-      "sha256": "d36208145bb9d79855316695aeccdbeb69d6143d0aba2a259057a3d13374853c"
+      "file": "Inboundfy-Guia-do-Usuario-v0.8.0.pdf",
+      "sha256": "71b9f61e9c13a4eeb0ad6e7bb49a781a5c4ea9e03a11c3bd88c480bf7ab1ab25"
     },
     "epub": {
-      "file": "Inboundfy-Guia-do-Usuario-v0.7.2.epub",
-      "sha256": "b385f9e66e1cbd04130665bd1fdbe4a8371a463525a1e655f00786e6baeb9566"
+      "file": "Inboundfy-Guia-do-Usuario-v0.8.0.epub",
+      "sha256": "dc490aefebe0484abfd10e97f5b32cb62185366158ad4fc89b5785cd330cae23"
     }
   }
 }

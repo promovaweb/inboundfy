@@ -1,270 +1,175 @@
-# REFERENCIA.md; inboundfy-especialista-podcast
+# Manual de pauta e shownotes de podcast
 
-Material de apoio para pauta de gravação e shownotes de episódio.
+## Diagnóstico da peça
 
-## Template de pauta (guia interno, não roteiro fechado)
+1. O episódio está em preparação ou já existe gravação final?
+2. Quem participa e quais nomes e cargos estão confirmados?
+3. Há áudio final, duração e transcrição com marcações para conferir os shownotes?
 
-```yaml
----
-apresentadores: <de context/pessoas.md>
-convidado: <se houver>
-data: <data de gravação>
-brief: acervo/<id>-<data>-<slug>/base-editorial.md
----
+Se o brief já responder, use a resposta registrada. Se faltar fato obrigatório, devolva a pergunta ao planejamento ou à manutenção de contexto indicada por `CONTEXTO.md`. Não crie uma estratégia nova para completar a peça.
 
-## Bloco 1; <objetivo do bloco>
-Perguntas-guia:
-- <pergunta 1>
-- <pergunta 2>
+| Situação no brief | Tratamento | Evitar |
+| --- | --- | --- |
+| Ainda não há gravação | Pauta com tempos previstos e perguntas abertas | Shownotes narrados no passado |
+| Há edição final com áudio | Shownotes e capítulos conferidos nessa edição | Usar tempos do áudio bruto |
+| Há somente transcrição sem tempos | Resumo sustentado e tempos pendentes | Inventar marcação aproximada sem aviso |
 
-## Bloco 2; <objetivo do bloco>
-Perguntas-guia:
-- <pergunta 1>
-```
+## Formato e parâmetros editoriais
 
-## Template de shownotes
+Preserve frontmatter com `apresentadores`, `convidado` quando houver, `data` e `brief` em pacote. Acrescente fase, episódio, duração e fonte da gravação. Identifique os tempos da pauta como previstos; os tempos dos shownotes são observados.
 
-```yaml
----
-apresentadores: <...>
-convidado: <...>
-data: <...>
-brief: <...>
----
+Pauta pode ocupar 1 a 3 páginas de guia interno para conversa de 20 a 40 minutos, sem relação fixa entre páginas e duração. Shownotes usam título até 80 caracteres como alvo editorial, resumo de 80 a 180 palavras, tópicos e links citados confirmados. O brief pode pedir episódio breve, como o exemplo de 12 minutos. Não afirme limite técnico de distribuidor.
 
-# <Título do episódio>
+Salve pauta e shownotes juntos ou separados conforme `context/canais.md`. Se separados, relacione os caminhos e a mesma versão de áudio. Capítulos usam `MM:SS` ou `HH:MM:SS`, em ordem crescente dentro da duração. Se não houver mídia, marque conferência visual como não aplicável; se houver capa ou player, confira marca e acessibilidade sem gerar arte aqui.
 
-<Resumo do episódio em 2-3 frases>
+## Método de produção
 
-## Principais pontos
-- <ponto 1>
-- <ponto 2>
+1. Identifique a fase. Antes da gravação, produza pauta; depois, produza shownotes a partir da edição final. Pauta não comprova o que foi dito.
+2. Confirme participantes em `context/pessoas.md`. Defina objetivo, duração prevista e blocos com soma de tempos compatível.
+3. Para cada bloco, escreva objetivo, pergunta principal, pergunta de aprofundamento e transição. Dê espaço para resposta espontânea; não escreva falas fictícias para o convidado.
+4. Após receber áudio ou transcrição final, confronte título, resumo, tópicos e links com o conteúdo efetivo. Corte tópicos removidos na edição.
+5. Marque capítulos com tempos realmente conferidos no áudio final. Se houver apenas transcrição sem tempo, omita marcações e registre a pendência; não estime segundos como se fossem exatos.
+6. Aplique `inboundfy-copy-editor` à prosa pública dos shownotes, confira nomes, links, A5 e validadora. A pauta interna recebe conferência funcional; não precisa imitar prosa publicada.
 
-## Links citados
-- <ferramenta/produto>; confirmado contra context/ferramentas.md ou context/produtos.md
-```
+## Template da peça
 
-## Exemplo completo (fictício)
-
-**Pauta (trecho):**
-
-```markdown
-## Bloco 1; Abrir o tema da fila de espera
-Perguntas-guia:
-- Quando você percebeu que a fila de espera não era sobre número de gente?
-- Que sinal te fez desconfiar disso primeiro?
-
-## Bloco 2; O encaixe de horário na prática
-Perguntas-guia:
-- Como era o processo de encaixe antes de mudar?
-- O que mudou primeiro quando vocês passaram a ver a agenda inteira?
-```
-
-**Shownotes (trecho):**
-
-```markdown
-# Por que sua fila de espera não é sobre falta de gente
-
-Neste episódio, Marina Alves conta como identificou que o problema de fila
-de espera em clínicas pequenas raramente é sobre número de profissionais; é sobre o encaixe de horário que ninguém vê isolado.
-
-## Principais pontos
-- O buraco de 15 minutos entre consultas que se acumula ao longo da semana.
-- Como uma grade visual de agenda facilita ver esse buraco.
-- Por que contratar mais gente sem resolver o encaixe só desloca o problema.
-
-## Links citados
-- Agenda Cronos; sistema de agendamento citado no episódio.
-```
-
-## Checklist de canal
-
-- [ ] Apresentador(es)/convidado conferem com `context/pessoas.md`.
-- [ ] Pauta é guia de blocos com perguntas, não roteiro fechado palavra por
-      palavra.
-- [ ] Shownotes passam pela auditoria de `inboundfy-copy-editor`; a pauta,
-      por ser interna, não passa pela mesma régua de prosa pública.
-- [ ] Links citados conferem com `context/ferramentas.md` ou
-      `context/produtos.md`.
-
-## Erros comuns
-
-- Escrever a pauta como roteiro fechado, o que trava a naturalidade da
-  conversa gravada.
-- Publicar shownotes com resumo genérico que poderia servir para qualquer
-  episódio do programa.
-- Citar ferramenta ou produto nos shownotes sem confirmar grafia ou
-  permissão de menção em `context/`.
-
-## Arquitetura aplicada
-
-Esta referência usa o contrato comum para a skill **inboundfy-especialista-podcast**, do grupo
-**especialista**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de especialista podcast dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
+Combine os campos específicos abaixo com o envelope de `../_shared/02-contrato-de-artefato.md`: ID, skill, tipo, estado, datas, entrada, contexto, fontes e próxima ação. Não substitua o template do consumidor por outro formato. Os campos abaixo complementam o contrato; `brief` é obrigatório em pacote e aponta para a origem efetiva.
 
 ```markdown
 ---
-id: {id}
+id: "{id}"
 skill: inboundfy-especialista-podcast
+tipo: podcast
+canal: podcast
 estado: rascunho
-entrada: {caminho ou ID}
+persona: "{persona selecionada}"
+apresentadores: ["{nome confirmado}"]
+convidado: "{nome confirmado ou omitir}"
+data: "{AAAA-MM-DD}"
+fase: "{preparacao|pos-gravacao}"
+episodio: "{número}"
+duracao: "{prevista ou observada}"
+fonte_gravacao: "{arquivo final ou pendente}"
+brief: "{caminho do brief aprovado}"
 fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
+  - "{fonte da afirmação ou dado}"
 ---
 
-# Registro de especialista podcast
+# Pauta: {tema}
 
-## Resultado
+Objetivo: {resultado da conversa}. Duração prevista: {minutos}.
 
-{Conteúdo específico da etapa.}
+## {Tempo previsto}: {bloco}
 
-## Pendências
+Objetivo: {entrega deste bloco}.
+Pergunta principal: {pergunta aberta}.
+Aprofundamento: {pedido de caso, mecanismo ou limite}.
+Transição: {ligação com o bloco seguinte}.
 
-- {pergunta ou "nenhuma"}
+# Shownotes: {título do episódio}
 
-## Próxima ação
+{Resumo sustentado pela edição final. Não preencher antes da gravação.}
 
-{verbo + objeto + caminho do arquivo seguinte}
+## Neste episódio
+
+- {ponto realmente abordado}
+
+## Capítulos
+
+- {tempo conferido}: {assunto audível nesse trecho}
+
+## Links citados
+
+- [{recurso}]({destino confirmado})
+
+{CTA único do brief.}
 ```
 
-## Exemplo operacional completo
+## Modelos por situação
 
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-podcast
-grupo: especialista
-entrada: acervo/0042-2026-09-14-especialista-podcast/processado.md
-pedido: aplicar a etapa de especialista podcast e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
+### Modelo de conferência após edição
 
 ```markdown
----
-id: 0042
-skill: inboundfy-especialista-podcast
-estado: aprovado
-entrada: acervo/0042-2026-09-14-especialista-podcast/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
+Áudio final: {caminho e versão}.
+Duração observada: {HH:MM:SS}.
+Transcrição: {caminho e relação com o áudio final}.
 
-# Registro de especialista podcast
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
+| Trecho do shownote | Tempo conferido | Conteúdo ouvido | Resultado |
+| --- | --- | --- | --- |
+| {afirmação do resumo} | {tempo no áudio final} | {paráfrase fiel} | {manter ou corrigir} |
+| {capítulo} | {tempo inicial real} | {assunto audível} | {manter ou corrigir} |
+| {link citado} | {momento da menção} | {nome pronunciado} | {destino e grafia confirmados} |
 ```
 
-## Checklist ampliado
+### Modelo de pauta sem convidado
 
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
+```markdown
+# {Tema do episódio solo}
 
-## Erros comuns adicionais
+Objetivo: {pergunta a resolver}.
+Duração prevista: {minutos}.
 
-- Executar **inboundfy-especialista-podcast** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+## {Tempo previsto}: abertura
+
+Situação de partida: {objeto concreto}.
+Pergunta que o episódio responde: {dúvida da persona}.
+
+## {Tempo previsto}: demonstração
+
+Caso a desenvolver: {fonte e dados disponíveis}.
+Pontos a conferir: {mecanismo e consequência}.
+Limite a explicar: {onde o caso não se aplica}.
+
+## {Tempo previsto}: fechamento
+
+Retomada: {resultado explicado sem repetir a abertura}.
+Ação única: {CTA do brief}.
+```
+
+A tabela de conferência é apoio interno. Não publique transcrição de fala ou citação literal sem conferir a gravação e a autorização pertinente. Se um corte mover o tempo, atualize todos os derivados afetados.
+
+## Exemplo completo e leitura no fluxo
+
+Na etapa de montagem da peça, leia [o exemplo completo da Fornada Clara](references/exemplo-completo.md). Ele inclui entrada aprovada e saída integral, com todos os blocos do canal. Na conferência final, compare com [o relatório preenchido da validadora](../inboundfy-validador-podcast/REFERENCIA.md#exemplo-de-relatório-preenchido).
+
+## Checklist numerado do par
+
+Os números são os mesmos na produtora e na validadora. A classificação indica o tipo de leitura necessário; uma regra pode exigir mais de um passe. Marque não aplicável somente com justificativa verificável.
+
+1. [ ] **literal**: Participantes, data, fase, episódio, duração, fonte final e `brief` de pacote foram registrados; nomes conferem com contexto.
+2. [ ] **estrutural**: Pauta tem blocos, objetivos, perguntas abertas, transições e tempos previstos cuja soma cabe na duração.
+3. [ ] **semântica**: Shownotes descrevem apenas a edição final; pauta não foi usada como prova de fala ou assunto gravado.
+4. [ ] **literal**: Tempos crescem dentro da duração final e foram conferidos; sem áudio, não há tempos inventados.
+5. [ ] **semântica**: Resumo específico, atribuições e links têm fonte; prosa pública passou por revisão e CTA é único.
+6. [ ] **visual**: Shownotes permitem leitura e navegação por capítulos; capa ou player existente respeita marca e acessibilidade.
+7. [ ] **literal**: ID, estado real, persona, origem e fontes estão ligados à peça; o exemplo fictício não virou contexto do consumidor.
+8. [ ] **semântica**: Voz e afirmações conferem com todos os contextos e fontes aplicáveis; lacuna factual permanece fora da copy.
+9. [ ] **estrutural**: Proibições foram revistas em passes literal e semântico/estrutural no arquivo inteiro, inclusive metadata, links e CTA.
+10. [ ] **visual**: `brand/` foi procurada; ativos existentes e texto visual foram inspecionados ou a ausência foi justificada.
+11. [ ] **estrutural**: Revisão de `inboundfy-copy-editor`, marco A5 e retorno da validadora foram registrados; mudança exige nova leitura integral.
+
+## Erros comuns de podcast
+
+- Publicar assunto cortado na edição porque estava na pauta. Reouça a versão final.
+- Transformar perguntas em falas atribuídas ao convidado. Preserve as perguntas como guia.
+- Copiar tempos do áudio bruto para o final. Reconfira depois de qualquer corte.
+
+## Acompanhamento da peça
+
+Compare início de reprodução, retenção por bloco e conclusão na mesma plataforma e janela. Cliques dos shownotes medem uso dos recursos, não escuta completa. Não compare downloads de provedores com definições diferentes sem anotar a diferença.
+
+Medição pertence ao planejamento e às integrações aprovadas. Esta especialista entrega copy e relação com as fontes. Não configura envio, publicação ou coleta por conta própria.
 
 ## Guia específico do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+O registro do grupo `especialista` identifica canal `podcast`, persona, objetivo do brief, formato e `inboundfy-validador-podcast` como destino de revisão. Entregue arquivo, fontes lidas, pendências e ação solicitada. Se houver reprovação, corrija apenas o alcance solicitado, releia a peça inteira e retorne à mesma validadora. A aprovação precede o retorno a `inboundfy-planejamento`; variantes de imagem mantêm seus fluxos próprios.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+## Arquitetura aplicada
 
-## Especificação operacional
+- Antes da redação ou auditoria: [preflight e fontes](../_shared/01-preflight-e-fontes.md).
+- Ao registrar a peça: [artefato e relações](../_shared/02-contrato-de-artefato.md).
+- Nas escolhas e entrega: [checkpoints e handoff](../_shared/03-interacao-e-handoff.md).
+- A cada rodada: [validação e retomada](../_shared/04-validacao-e-retomada.md).
+- Antes de qualquer texto público: [contexto editorial](../_shared/05-contexto-editorial.md).
 
-### Quando usar
-
-Use **inboundfy-especialista-podcast** para executar esta função: Escreve pauta e shownotes de episódio de podcast a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md.
-
-O grupo **especialista** trabalha com estes campos mínimos:
-
-- **canal:** preencher com dado ligado ao pedido.
-- **persona:** preencher com dado ligado ao pedido.
-- **objetivo:** preencher com dado ligado ao pedido.
-- **formato:** preencher com dado ligado ao pedido.
-- **validadora:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-podcast
-grupo: especialista
-pedido: executar a função desta skill sobre o material selecionado
-entrada: briefs/0042-2026-09-14-podcast/brief.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-podcast
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - briefs/0042-2026-09-14-podcast/brief.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **especialista** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `ESTRUTURAS-PERSUASIVAS.md`
-- `CONTEXTO.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Leia também `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md`, `CONTEXTO.md` e `METODOLOGIA.md`. Os caminhos `context/` resolvem para `.inboundfy/context/` no consumidor; preserve a resolução e os diretórios já configurados.

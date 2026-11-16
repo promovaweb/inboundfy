@@ -1,242 +1,162 @@
-# REFERENCIA.md; inboundfy-especialista-email
+# Manual de e-mail
 
-Material de apoio para escrever e-mail avulso, de nutrição, convite ou
-follow-up nos três formatos de estrutura persuasiva já definidos no
-`SKILL.md` (AIDA, PAS, PASTOR).
+## Diagnóstico da peça
 
-## Template de frontmatter
+1. Qual ação única o destinatário deve realizar?
+2. Quem entra, quem sai e quem deve ficar fora deste envio segundo o brief?
+3. Remetente, Reply-To, personalização e destino do CTA foram confirmados?
 
-```yaml
----
-assunto: <curto, específico, sem clickbait>
-pre-header: <complementa o assunto, nunca repete>
-estrutura: <aida|pas|pastor|nenhuma>
-brief: acervo/<id>-<data>-<slug>/base-editorial.md
----
-```
+Se o brief já responder, use a resposta registrada. Se faltar fato obrigatório, devolva a pergunta ao planejamento ou à manutenção de contexto indicada por `CONTEXTO.md`. Não crie uma estratégia nova para completar a peça.
 
-## Fórmulas de assunto
+| Situação no brief | Tratamento | Evitar |
+| --- | --- | --- |
+| Nutrição que explica um problema | PAS com consequência observável e conteúdo útil | Ameaça ou dor inflada |
+| Convite com oferta simples | AIDA compacto e ação única | Acrescentar pedido de resposta e compra |
+| Venda com oferta detalhada | PASTOR conforme brief e fontes | Inventar depoimento para completar fórmula |
 
-1. **Curiosidade específica** (não vaga): "O erro que some da agenda sem
-   ninguém perceber"; nomeia um objeto real, não "você não vai acreditar".
-2. **Benefício direto**: "Menos telefonema de confirmação por semana";    ganho concreto, sem adjetivo inflado.
-3. **Urgência real** (só quando houver prazo verdadeiro):
-   "Condição de setembro termina sexta"; nunca invente prazo falso.
-4. **Pergunta genuína**: "Quantas vezes a agenda trocou de mão essa semana?"
-; pergunta que a persona realmente se faz, não retórica de efeito.
+## Formato e parâmetros editoriais
 
-## Exemplo completo; PAS (fictício)
+Markdown com `assunto`, `pre-header`, `estrutura` (`aida`, `pas`, `pastor`, `nenhuma`) e `brief` em pacote. Acrescente remetente, Reply-To, segmento e CTA em metadata interna; não exponha instruções de automação ao destinatário.
 
-Empresa fictícia: "Agenda Cronos". E-mail de nutrição, etapa inicial da
-jornada.
+Use assunto de até 50 caracteres e pré-header de 40 a 100 como alvos editoriais, conferidos na prévia do cliente disponível. O brief pode justificar outra faixa. Planeje 120 a 250 palavras para nutrição, 80 a 180 para convite e até 500 para oferta desenvolvida; a faixa não substitui a explicação necessária. Não afirme que isso é limite da plataforma.
 
-```markdown
----
-assunto: O erro que some da agenda sem ninguém perceber
-pre-header: Duas pessoas escrevendo no mesmo caderno criam esse problema toda semana.
-estrutura: pas
-brief: acervo/<id>-<data>-<slug>/base-editorial.md
----
+Preserve `97-ativos-finais/email/<slug>/README.md` em pacote ou o caminho de `context/canais.md`. Um CTA significa uma ação principal. Link de descadastro, privacidade e suporte obrigatório não são pedidos comerciais concorrentes. Use os destinos registrados no projeto. Para integração, consulte `context/integracoes.md`; não grave credenciais na peça.
 
-Duas pessoas mexendo na mesma agenda de papel, em turnos diferentes, vão
-marcar o mesmo horário para pacientes diferentes mais cedo ou mais tarde; não porque alguém errou, mas porque o caderno não avisa quando o horário já
-foi ocupado por outra pessoa.
+## Método de produção
 
-Esse erro só aparece quando o paciente liga reclamando, e até lá ele já
-custou uma vaga perdida e uma recepção pedindo desculpa ao telefone. Quanto
-mais gente mexe na mesma agenda, mais vezes isso se repete por semana.
+1. Confirme objetivo, segmento, condição de entrada e saída definidos pelo planejamento. Não crie sequência ou calendário nesta skill.
+2. Leia a estrutura declarada. AIDA atende convite ou oferta simples; PAS organiza nutrição; PASTOR atende venda desenvolvida. Se faltar estrutura comercial, devolva ao planejamento.
+3. Redija assunto que entregue uma promessa concreta e pré-header que acrescente informação. Evite simular resposta com “Re:” sem conversa anterior.
+4. Faça a primeira linha explicar a pertinência do envio. Desenvolva o fato, a consequência e a ação com a densidade necessária. FAB cabe na menção de produto autorizada.
+5. Confira preço em R$, vigência, condição e prazo na oferta. Testemunho só entra com fonte e autorização. Se faltar testemunho no PASTOR, omita o bloco e registre a ausência fora do corpo.
+6. Monte corpo e assinatura, confirme CTA e rodapé obrigatório do projeto. Teste personalização com nome presente e ausente, versão em texto e destino do link. Passe por `inboundfy-copy-editor`, A5 e validadora; esta skill não dispara envios.
 
-A forma de eliminar esse erro é tirar a agenda do papel e colocar num lugar
-que mostra o horário ocupado assim que alguém marca; não depois, na hora
-da conferência manual.
-```
+## Template da peça
 
-## Checklist de canal
-
-- [ ] Assunto e pré-header não repetem a mesma frase.
-- [ ] Um único CTA; nunca dois pedidos concorrentes no mesmo e-mail.
-- [ ] Estrutura registrada no frontmatter corresponde aos blocos realmente
-      presentes no corpo.
-- [ ] Testemunho ausente (PASTOR) foi omitido, não inventado.
-
-## Erros comuns
-
-- Escrever assunto com clickbait vazio ("você não vai acreditar"); quebra
-  confiança e não corresponde ao corpo.
-- Usar PASTOR completo em e-mail curto de nutrição; o formato longo cansa
-  quando a intenção era só reforçar um ponto.
-- Colocar dois CTAs (ex.: "responda este e-mail" e "clique aqui") disputando
-  atenção no mesmo fechamento.
-
-## Arquitetura aplicada
-
-Esta referência usa o contrato comum para a skill **inboundfy-especialista-email**, do grupo
-**especialista**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de especialista email dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
+Combine os campos específicos abaixo com o envelope de `../_shared/02-contrato-de-artefato.md`: ID, skill, tipo, estado, datas, entrada, contexto, fontes e próxima ação. Não substitua o template do consumidor por outro formato. Os campos abaixo complementam o contrato; `brief` é obrigatório em pacote e aponta para a origem efetiva.
 
 ```markdown
 ---
-id: {id}
+id: "{id}"
 skill: inboundfy-especialista-email
+tipo: email
+canal: email
 estado: rascunho
-entrada: {caminho ou ID}
+persona: "{persona selecionada}"
+assunto: "{promessa específica}"
+pre-header: "{informação complementar}"
+estrutura: "{aida|pas|pastor|nenhuma}"
+remetente: "{nome autorizado}"
+reply_to: "{endereço confirmado}"
+segmento: "{segmento do brief}"
+cta: "{ação e destino confirmados}"
+brief: "{caminho do brief aprovado}"
 fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
+  - "{fonte da afirmação ou dado}"
 ---
 
-# Registro de especialista email
+{Saudação com alternativa segura quando o nome faltar.}
 
-## Resultado
+{Primeira linha que situa o motivo do envio.}
 
-{Conteúdo específico da etapa.}
+{Desenvolvimento conforme estrutura declarada, com fato e consequência.}
 
-## Pendências
+{Condição ou limite que o leitor precisa saber antes da ação.}
 
-- {pergunta ou "nenhuma"}
+[{Verbo + objeto}]({destino})
 
-## Próxima ação
+{Assinatura canônica.}
 
-{verbo + objeto + caminho do arquivo seguinte}
+{Motivo do recebimento e rodapé de preferências confirmado pelo projeto.}
 ```
 
-## Exemplo operacional completo
+## Modelos por situação
 
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-email
-grupo: especialista
-entrada: acervo/0042-2026-09-14-especialista-email/processado.md
-pedido: aplicar a etapa de especialista email e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
+### Modelo de convite AIDA
 
 ```markdown
----
-id: 0042
-skill: inboundfy-especialista-email
-estado: aprovado
-entrada: acervo/0042-2026-09-14-especialista-email/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
+Assunto: {objeto do convite e informação concreta}
+Pré-header: {data, escopo ou condição que complementa}
 
-# Registro de especialista email
+Olá!
 
-## Resultado
+{Convite direto, com data e fuso confirmados quando houver horário.}
 
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
+{O que a pessoa fará ou receberá. Relacione com a tarefa da persona.}
 
-## Próxima ação
+{Condição de participação, preço em R$ e o que ocorre depois do clique, somente com fonte.}
 
-{verbo + objeto + caminho do arquivo seguinte}
+[{Inscrever-se ou outra ação única}]({destino confirmado})
+
+{Assinatura e rodapé do projeto.}
 ```
 
-## Checklist ampliado
+### Modelo de oferta PASTOR
 
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
+```markdown
+{Problema situado da persona.}
 
-## Erros comuns adicionais
+{Consequência verificável, sem ameaça criada pelo texto.}
 
-- Executar **inboundfy-especialista-email** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+{História ou solução registrada no acervo.}
+
+{Resultado e testemunho autorizado, se existir. Sem fonte, omitir o bloco e avisar fora do corpo.}
+
+{Oferta: entrega, preço em R$, condição de pagamento, prazo verdadeiro e limite.}
+
+[{Ação principal}]({destino confirmado})
+
+{Assinatura e rodapé.}
+```
+
+Antes da entrega, teste nome preenchido, nome ausente, acentos, destino final e links de serviço. Não suponha que variável de uma ferramenta funciona em outra. A sintaxe vem de `context/integracoes.md` e do template instalado. Não transforme pedido de copy em disparo de mensagem.
+
+## Exemplo completo e leitura no fluxo
+
+Na etapa de montagem da peça, leia [o exemplo completo da Fornada Clara](references/exemplo-completo.md). Ele inclui entrada aprovada e saída integral, com todos os blocos do canal. Na conferência final, compare com [o relatório preenchido da validadora](../inboundfy-validador-email/REFERENCIA.md#exemplo-de-relatório-preenchido).
+
+## Checklist numerado do par
+
+Os números são os mesmos na produtora e na validadora. A classificação indica o tipo de leitura necessário; uma regra pode exigir mais de um passe. Marque não aplicável somente com justificativa verificável.
+
+1. [ ] **literal**: Assunto, pré-header, estrutura válida, assinatura e `brief` de pacote estão presentes; faixas editoriais foram conferidas.
+2. [ ] **semântica**: Assunto e pré-header se complementam, cumprem a promessa e correspondem ao segmento e objetivo.
+3. [ ] **estrutural**: Blocos correspondem à estrutura declarada; existe uma ação principal sem CTA concorrente.
+4. [ ] **semântica**: Preço, prazo, benefício, FAB e testemunho têm fonte; urgência e personalização não simulam fatos.
+5. [ ] **literal**: Remetente, Reply-To, destino, variáveis e alternativa para nome ausente foram conferidos; rodapé usa links do projeto.
+6. [ ] **visual**: Prévia móvel e versão em texto mantêm leitura, CTA e rodapé; informação essencial não depende de imagem.
+7. [ ] **literal**: ID, estado real, persona, origem e fontes estão ligados à peça; o exemplo fictício não virou contexto do consumidor.
+8. [ ] **semântica**: Voz e afirmações conferem com todos os contextos e fontes aplicáveis; lacuna factual permanece fora da copy.
+9. [ ] **estrutural**: Proibições foram revistas em passes literal e semântico/estrutural no arquivo inteiro, inclusive metadata, links e CTA.
+10. [ ] **visual**: `brand/` foi procurada; ativos existentes e texto visual foram inspecionados ou a ausência foi justificada.
+11. [ ] **estrutural**: Revisão de `inboundfy-copy-editor`, marco A5 e retorno da validadora foram registrados; mudança exige nova leitura integral.
+
+## Erros comuns de email
+
+- Assunto promete arquivo e CTA abre compra. Alinhe o destino à promessa.
+- Campo de nome aparece cru ou com saudação incompleta. Use uma alternativa neutra testada.
+- Criar urgência ou depoimento para preencher PASTOR. Omita o que não tem fonte e relate a lacuna.
+
+## Acompanhamento da peça
+
+Registre cliques únicos/entregues, conclusões da ação/entregues e descadastros/entregues com janela e segmento. Aberturas são sinal auxiliar sujeito à privacidade do cliente de e-mail. Compare o histórico da lista; não transforme faixa de mercado em meta garantida.
+
+Medição pertence ao planejamento e às integrações aprovadas. Esta especialista entrega copy e relação com as fontes. Não configura envio, publicação ou coleta por conta própria.
 
 ## Guia específico do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+O registro do grupo `especialista` identifica canal `email`, persona, objetivo do brief, formato e `inboundfy-validador-email` como destino de revisão. Entregue arquivo, fontes lidas, pendências e ação solicitada. Se houver reprovação, corrija apenas o alcance solicitado, releia a peça inteira e retorne à mesma validadora. A aprovação precede o retorno a `inboundfy-planejamento`; variantes de imagem mantêm seus fluxos próprios.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+## Arquitetura aplicada
 
-## Especificação operacional
+- Antes da redação ou auditoria: [preflight e fontes](../_shared/01-preflight-e-fontes.md).
+- Ao registrar a peça: [artefato e relações](../_shared/02-contrato-de-artefato.md).
+- Nas escolhas e entrega: [checkpoints e handoff](../_shared/03-interacao-e-handoff.md).
+- A cada rodada: [validação e retomada](../_shared/04-validacao-e-retomada.md).
+- Antes de qualquer texto público: [contexto editorial](../_shared/05-contexto-editorial.md).
 
-### Quando usar
+Leia também `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md`, `CONTEXTO.md` e `METODOLOGIA.md`. Os caminhos `context/` resolvem para `.inboundfy/context/` no consumidor; preserve a resolução e os diretórios já configurados.
 
-Use **inboundfy-especialista-email** para executar esta função: Escreve e-mail avulso, de nutrição, convite ou follow-up a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md. Não decide sequência de nutrição; isso vem do brief.
+## Estruturas na redação
 
-O grupo **especialista** trabalha com estes campos mínimos:
-
-- **canal:** preencher com dado ligado ao pedido.
-- **persona:** preencher com dado ligado ao pedido.
-- **objetivo:** preencher com dado ligado ao pedido.
-- **formato:** preencher com dado ligado ao pedido.
-- **validadora:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-email
-grupo: especialista
-pedido: executar a função desta skill sobre o material selecionado
-entrada: briefs/0042-2026-09-14-email/brief.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-email
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - briefs/0042-2026-09-14-email/brief.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **especialista** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `ESTRUTURAS-PERSUASIVAS.md`
-- `CONTEXTO.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+No passo de redação, consulte [a aplicação por formato](references/estruturas-persuasivas.md) para executar a estrutura já aprovada no brief.

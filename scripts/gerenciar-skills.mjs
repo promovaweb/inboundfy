@@ -18,6 +18,17 @@ const SHARED = [
   "04-validacao-e-retomada.md",
   "05-contexto-editorial.md",
 ];
+/**
+ * Títulos do antigo esqueleto gerado por script. Cada skill traz conteúdo
+ * próprio do tema; a presença de um desses títulos indica texto genérico.
+ */
+const SKELETON_MARKERS = [
+  "## Especificação operacional",
+  "### Exemplo específico ilustrativo",
+  "## Exemplo operacional completo",
+  "## Checklist ampliado",
+  "## Erros comuns adicionais",
+];
 const REFERENCE_HEADINGS = [
   "## Template",
   "## Exemplo",
@@ -54,6 +65,8 @@ const GROUP_GUIDANCE = {
     "Faça uma revisão específica de qualidade. Separe achado literal, semântico e estrutural e só libere após nova leitura integral.",
   capacidade:
     "Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.",
+  area:
+    "Receba o pedido da área, faça o diagnóstico mínimo e encaminhe para uma única skill da área por vez. Não execute o trabalho da skill encaminhada.",
 };
 
 const GROUP_PROFILES = {
@@ -141,45 +154,12 @@ const GROUP_PROFILES = {
     validacao: "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
     handoff: "skill indicada pelo tipo do resultado ou pedido de dado ausente",
   },
-};
-
-const GROUP_REFERENCE_PATHS = {
-  orquestrador: ["README.md", "METODOLOGIA.md", "ESTRATEGIA.md"],
-  entrada: ["INSTALACAO.md", "CONTEXTO.md", "docs/method/01-setup-e-runtime.md"],
-  acervo: [
-    "METODOLOGIA.md",
-    "LIMPEZA-MATERIAL-BRUTO.md",
-    "TRADUCAO.md",
-    "docs/method/05-artefatos-e-estados.md",
-  ],
-  base: ["ESCRITA.md", "CONTEXTO.md", "SKILL-AUTORIA.md"],
-  contexto: ["CONTEXTO.md", "docs/method/02-contexto-fontes-e-precedencia.md"],
-  brainstorm: ["BRAINSTORM.md", "ESCRITA.md", "docs/method/05-artefatos-e-estados.md"],
-  "estratégia": ["ESTRATEGIA.md", "CONTEXTO.md", "docs/method/05-artefatos-e-estados.md"],
-  planejamento: ["METODOLOGIA.md", "ESTRUTURAS-PERSUASIVAS.md", "docs/method/06-contrato-de-skill.md"],
-  copy: ["ESCRITA.md", "CONTEXTO.md", "SKILL-AUTORIA.md"],
-  growth: ["ESTRATEGIA.md", "CONTEXTO.md", "docs/method/05-artefatos-e-estados.md"],
-  especialista: ["ESCRITA.md", "ESTRUTURAS-PERSUASIVAS.md", "CONTEXTO.md"],
-  validador: ["ESCRITA.md", "CONTEXTO.md", "docs/method/07-validacao-e-testes.md"],
-  qualidade: ["ESCRITA.md", "LIMPEZA-MATERIAL-BRUTO.md", "docs/method/07-validacao-e-testes.md"],
-  capacidade: ["README.md", "CONTEXTO.md", "SKILL-AUTORIA.md"],
-};
-
-const GROUP_FIELDS = {
-  orquestrador: ["pedido", "estado do projeto", "IDs", "etapas", "próxima skill"],
-  entrada: ["respostas", "arquivos existentes", "sentinelas", "contexto", "relatório"],
-  acervo: ["bruto", "processado", "FAQ", "pesquisa", "base editorial"],
-  base: ["entrada", "regra", "resultado", "fontes", "retorno"],
-  contexto: ["arquivo canônico", "fatos", "preferências", "fonte", "alteração"],
-  brainstorm: ["ideia", "fatos", "hipóteses", "tese", "próximo passo"],
-  "estratégia": ["objetivo", "público", "canal", "período", "medida"],
-  planejamento: ["ID", "pacote", "persona", "brief", "roteamento"],
-  copy: ["objetivo", "mensagem", "persona", "canal", "revisão"],
-  growth: ["objetivo", "público", "canal", "oferta", "próxima ação"],
-  especialista: ["canal", "persona", "objetivo", "formato", "validadora"],
-  validador: ["asset", "brief", "fontes", "achados", "estado"],
-  qualidade: ["texto", "voz", "dicionário", "proibições", "retorno"],
-  capacidade: ["objetivo", "entrada", "contexto", "resultado", "próxima ação"],
+  area: {
+    entrada: "pedido em linguagem natural ligado à área e estado do projeto",
+    saida: "diagnóstico curto, rota escolhida e pacote de entrada para a skill da área",
+    validacao: "setup pronto, objetivo identificado, skill única escolhida e dados ausentes pedidos",
+    handoff: "skill da área indicada pela tabela de roteamento",
+  },
 };
 
 /** Lista os diretórios de skills sem tratar `_shared` como skill. */
@@ -198,12 +178,12 @@ function frontmatter(text) {
   const lines = match[1].split("\n");
   const nameLine = lines.find((line) => line.startsWith("name:"));
   if (!nameLine) throw new Error("name ausente");
-  const name = nameLine.split(":", 2)[1].trim().replace(/^"|"$/g, "");
+  const name = nameLine.slice(nameLine.indexOf(":") + 1).trim().replace(/^"|"$/g, "");
   const descriptionLines = [];
   let reading = false;
   for (const line of lines) {
     if (line.startsWith("description:")) {
-      const value = line.split(":", 2)[1].trim();
+      const value = line.slice(line.indexOf(":") + 1).trim();
       reading = [">", "|", ">-", "|-", ">+", "|+"].includes(value);
       if (!reading) descriptionLines.push(value.replace(/^"|"$/g, ""));
       continue;
@@ -236,6 +216,7 @@ function groupFor(name) {
     ["inboundfy-estrategia-", "estratégia"],
     ["inboundfy-planejamento-", "planejamento"],
     ["inboundfy-base-", "base"],
+    ["inboundfy-area-", "area"],
   ];
   const found = prefixes.find(([prefix]) => name.startsWith(prefix));
   if (found) return found[1];
@@ -245,52 +226,6 @@ function groupFor(name) {
 
 function labelFor(name) {
   return name === "inboundfy" ? "orquestrador" : name.replace(/^inboundfy-/, "").replaceAll("-", " ");
-}
-
-function exampleInputFor(name, group) {
-  if (group === "entrada") return ".inboundfy/fontes-projeto.md";
-  if (group === "acervo") return "acervo/0042-2026-09-14-material/bruto.md";
-  if (group === "contexto") {
-    const contextNames = {
-      "inboundfy-contexto-institucional": "empresa.md",
-      "inboundfy-contexto-oferta": "produtos.md",
-      "inboundfy-contexto-operacao": "canais.md",
-      "inboundfy-contexto-depoimentos": "depoimentos.json",
-    };
-    const contextName = contextNames[name] ?? `${name.replace("inboundfy-contexto-", "").replace("marca", "marca-voz")}.md`;
-    return `.inboundfy/context/${contextName}`;
-  }
-  if (group === "brainstorm") return "brainstorms/2026-09-14-ideia/ideia.md";
-  if (group === "estratégia") return "estrategia/2026-09-campanha/brief.md";
-  if (group === "planejamento") return "acervo/0042-2026-09-14-material/base-editorial.md";
-  if (group === "especialista") return `briefs/0042-2026-09-14-${name.replace("inboundfy-especialista-", "")}/brief.md`;
-  if (group === "validador") return `canais/${name.replace("inboundfy-validador-", "")}/0042-2026-09-14-peca/README.md`;
-  if (group === "qualidade") return "canais/blog/0042-2026-09-14-peca/artigo.md";
-  if (group === "base") return "acervo/0042-2026-09-14-material/processado.md";
-  if (group === "capacidade") return ".inboundfy/context/empresa.md";
-  if (group === "copy") return "acervo/0042-2026-09-14-material/base-editorial.md";
-  if (group === "growth") return ".inboundfy/estrategia.md";
-  return ".inboundfy/fontes-projeto.md";
-}
-
-function sanitizeSkillText(text) {
-  const replacements = [
-    ["em que", "onde"], ["Em que", "Onde"],
-    ["evidências", "comprovações"], ["Evidências", "Comprovações"],
-    ["evidência", "comprovação"], ["Evidência", "Comprovação"],
-    ["decisões", "escolhas"], ["Decisões", "Escolhas"],
-    ["decisão", "escolha"], ["Decisão", "Escolha"],
-    ["critérios", "regras"], ["Critérios", "Regras"],
-    ["critério", "regra"], ["Critério", "Regra"],
-    ["riscos", "impactos"], ["Riscos", "Impactos"],
-    ["risco", "impacto"], ["Risco", "Impacto"],
-    ["inventário", "registro"], ["Inventário", "Registro"],
-    ["atrito", "esforço"], ["Atrito", "Esforço"],
-    ["bloqueios", "impedimentos"], ["Bloqueios", "Impedimentos"],
-    ["bloqueio", "impedimento"], ["Bloqueio", "Impedimento"],
-    ["bloquear", "interromper"], ["Bloquear", "Interromper"],
-  ];
-  return replacements.reduce((value, [oldValue, newValue]) => value.replaceAll(oldValue, newValue), text);
 }
 
 function architectureBlock(name) {
@@ -306,21 +241,10 @@ function groupBlock(name) {
   return `## Responsabilidade do grupo\n\n${GROUP_GUIDANCE[group]}\n\nAntes do handoff, confirme os campos próprios deste grupo:\n\n- **grupo:** ${group}\n- **entrada:** ${profile.entrada};\n- **transformação:** ação principal descrita no fluxo;\n- **saída:** ${profile.saida};\n- **handoff:** ${profile.handoff}.\n`;
 }
 
+/** Bloco mínimo de arquitetura para uma referência que ainda não o tem. */
 function referenceBlock(name) {
-  const label = labelFor(name);
   const group = groupFor(name);
-  const profile = GROUP_PROFILES[group];
-  const sourceFile = group === "contexto" ? `context/${label.replace("contexto ", "")}.md` : "context/empresa.md";
-  return `\n\n## Arquitetura aplicada\n\nEsta referência usa o contrato comum para a skill **${name}**, do grupo\n**${group}**. Leia os detalhes compartilhados conforme a etapa atual:\n\n- [preflight e fontes](../_shared/01-preflight-e-fontes.md);\n- [artefato e relações](../_shared/02-contrato-de-artefato.md);\n- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);\n- [validação e retomada](../_shared/04-validacao-e-retomada.md);\n- [contexto editorial](../_shared/05-contexto-editorial.md).\n\n## Contrato específico\n\n- **Função:** executar a capacidade de ${label} dentro do fluxo do Inboundfy.\n- **Entrada mínima:** ${profile.entrada}.\n- **Saída mínima:** ${profile.saida}.\n- **Relação:** o resultado aponta para a entrada e para a skill seguinte.\n- **Preservação:** o original e as versões aprovadas permanecem disponíveis.\n\n## Guia específico do grupo\n\n${GROUP_GUIDANCE[group]}\n\nUse o campo **grupo** no registro para facilitar busca, relação e manutenção.\n\n## Template de operação\n\n\`\`\`markdown\n---\nid: {{id}}\nskill: ${name}\nestado: rascunho\nentrada: {{caminho ou ID}}\nfontes:\n  - {{caminho}}\nproxima_skill: {{nome ou "pendente de confirmação"}}\n---\n\n# Registro de ${label}\n\n## Resultado\n\n{{Conteúdo específico da etapa.}}\n\n## Pendências\n\n- {{pergunta ou "nenhuma"}}\n\n## Próxima ação\n\n{{verbo + objeto + caminho do arquivo seguinte}}\n\`\`\`\n\n## Exemplo operacional completo\n\n### Entrada ilustrativa\n\n\`\`\`yaml\nid: 0042\nskill: ${name}\ngrupo: ${group}\nentrada: {{caminho ou ID ligado ao pedido}}\ncontexto:\n  persona: persona-01\n  voz: .inboundfy/context/marca-voz.md\n  dicionario: .inboundfy/context/glossario.md\n  proibicoes: .inboundfy/context/proibicoes.md\n\`\`\`\n\n### Saída ilustrativa\n\n\`\`\`markdown\n---\nid: 0042\nskill: ${name}\nestado: aprovado\nentrada: {{caminho ou ID ligado ao pedido}}\nfontes:\n  - .inboundfy/${sourceFile}\nproxima_skill: {{skill seguinte ou "pendente de confirmação"}}\n---\n\n# Registro de ${label}\n\n## Resultado\n\nA etapa foi executada com a fonte indicada, mantendo as perguntas abertas\nseparadas do material confirmado.\n\n## Próxima ação\n\n{{verbo + objeto + caminho do arquivo seguinte}}\n\`\`\`\n\n## Checklist ampliado\n\n- [ ] O ID, o grupo e o objetivo aparecem no registro.\n- [ ] A entrada foi lida sem substituir o original.\n- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.\n- [ ] Fontes, perguntas abertas e relações estão registradas.\n- [ ] O resultado segue para a skill correta ou pede a informação que falta.\n- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.\n\n## Erros comuns adicionais\n\n- Executar **${name}** sem o arquivo de entrada ligado ao ID.\n- Declarar a etapa concluída sem preencher o campo de próxima ação.\n- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.\n- Reescrever um arquivo aprovado sem registrar a nova solicitação.\n`;
-}
-
-function specificReferenceBlock(name, description) {
-  const group = groupFor(name);
-  const fields = GROUP_FIELDS[group].map((field) => `- **${field}:** preencher com dado ligado ao pedido.`).join("\n");
-  const paths = GROUP_REFERENCE_PATHS[group].map((path) => `- \`${path}\``).join("\n");
-  const safeDescription = sanitizeSkillText(description);
-  const exampleInput = exampleInputFor(name, group);
-  return `\n\n## Especificação operacional\n\n### Quando usar\n\nUse **${name}** para executar esta função: ${safeDescription}\n\nO grupo **${group}** trabalha com estes campos mínimos:\n\n${fields}\n\n### Exemplo específico ilustrativo\n\nEntrada:\n\n\`\`\`yaml\nid: 0042\nskill: ${name}\ngrupo: ${group}\npedido: executar a função desta skill sobre o material selecionado\nentrada: ${exampleInput}\n\`\`\`\n\nSaída:\n\n\`\`\`yaml\nid: 0042\nskill: ${name}\nestado: pronto-para-handoff\nresultado: arquivo ou relatório salvo no caminho definido pelo fluxo\nfontes:\n  - ${exampleInput}\nproxima_skill: nome-da-proxima-skill\n\`\`\`\n\nO exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos\nvalores reais, sem apagar o material original.\n\n### Perguntas de conferência\n\n1. A entrada pertence ao grupo **${group}** e tem um ID localizável?\n2. O resultado registra todos os campos mínimos desta skill?\n3. O contexto aplicável foi lido antes da transformação?\n4. A saída aponta para a fonte, para o estado e para a próxima ação?\n5. Uma nova rodada preserva a versão anterior e registra o novo pedido?\n\n### Referências de execução\n\nLeia, na ordem necessária:\n\n${paths}\n\nDepois consulte as referências compartilhadas e o arquivo específico desta\npasta. Se houver conflito entre fontes, registre a origem de cada informação e\nencaminhe a pergunta para a skill responsável pelo domínio.\n`;
+  return `\n\n## Arquitetura aplicada\n\nEsta referência usa o contrato comum para a skill **${name}**, do grupo\n**${group}**. Leia os detalhes compartilhados conforme a etapa atual:\n\n- [preflight e fontes](../_shared/01-preflight-e-fontes.md);\n- [artefato e relações](../_shared/02-contrato-de-artefato.md);\n- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);\n- [validação e retomada](../_shared/04-validacao-e-retomada.md);\n- [contexto editorial](../_shared/05-contexto-editorial.md).\n\n## Guia específico do grupo\n\n${GROUP_GUIDANCE[group]}\n`;
 }
 
 function agentsYaml(name) {
@@ -366,10 +290,8 @@ export async function writeFiles() {
       referenceText = `${referenceText.trimEnd()}\n\n## Guia específico do grupo\n\n${GROUP_GUIDANCE[groupFor(name)]}\n`;
       changed += 1;
     }
-    const prefix = referenceText.split("## Especificação operacional", 1)[0].trimEnd();
-    const updatedReference = `${prefix}${specificReferenceBlock(name, description)}`;
-    if (updatedReference !== referenceText) changed += 1;
-    await writeFile(referencePath, updatedReference);
+    const original = await readFile(referencePath, "utf8");
+    if (referenceText !== original) await writeFile(referencePath, referenceText);
 
     const agentPath = join(directory, "agents", "openai.yaml");
     try {
@@ -423,13 +345,19 @@ export async function checkFiles() {
     for (const heading of REFERENCE_HEADINGS) {
       if (!new RegExp(`^${escapeRegExp(heading)}(?:\\b|\\s)`, "im").test(referenceText)) errors.push(`${name}: seção de referência ausente: ${heading}`);
     }
-    if (!referenceText.includes("## Especificação operacional")) errors.push(`${name}: especificação operacional ausente`);
+    for (const marker of SKELETON_MARKERS) {
+      if (skillText.includes(marker) || referenceText.includes(marker)) errors.push(`${name}: sobra do esqueleto genérico: ${marker}`);
+    }
+    // A descrição decide quando o agente aciona a skill: resultado + situações de uso.
+    const { description } = frontmatter(skillText);
+    if (!description.includes("Use quando ")) errors.push(`${name}: descrição sem a frase "Use quando"`);
     const agentPath = join(directory, "agents", "openai.yaml");
     try {
       const interfaceText = await readFile(agentPath, "utf8");
       for (const field of ["display_name:", "short_description:", "default_prompt:"]) {
         if (!interfaceText.includes(field)) errors.push(`${name}: interface sem ${field}`);
       }
+      if (!/display_name: "Inboundfy: [^"]+"/.test(interfaceText)) errors.push(`${name}: display_name fora do padrão "Inboundfy: Nome"`);
       if (!interfaceText.includes(`$${name}`)) errors.push(`${name}: prompt não chama o ID da skill`);
     } catch {
       errors.push(`${name}: agents/openai.yaml ausente`);

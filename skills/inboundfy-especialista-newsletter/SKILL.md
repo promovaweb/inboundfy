@@ -1,9 +1,6 @@
 ---
 name: inboundfy-especialista-newsletter
-description: >
-  Escreve newsletter longa e editorial (por e-mail ou publicação própria) a
-  partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz
-  de context/marca-voz.md.
+description: Escreve newsletters editoriais com tese, curadoria comentada, fontes e metadata de e-mail ou web a partir de brief aprovado. Use quando o pedido for redigir uma edição longa, preparar um boletim analítico ou revisar newsletter para validação.
 ---
 
 # Inboundfy Newsletter Redator
@@ -27,17 +24,11 @@ preflight, leia o catalogo e os Markdown relevantes para a tarefa.
 
 ## Arquitetura de execução
 
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
-
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
 - [Interação e handoff](../_shared/03-interacao-e-handoff.md): conduza escolhas e entregue o pacote seguinte.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
-
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **especialista**.
 
 ## Contexto exigido
 
@@ -48,49 +39,23 @@ artefato. O grupo desta skill é **especialista**.
 - `context/produtos.md`, `context/servicos.md` e `context/ferramentas.md`:
   quando a edição mencionar algo da empresa ou de terceiro.
 - `ESTRUTURAS-PERSUASIVAS.md` (contexto compartilhado do framework): apenas
-  para o técnica FAB, ver seção abaixo.
-
-## Estrutura persuasiva
-
-Newsletter editorial normalmente não segue AIDA, PAS ou PASTOR inteiros; o
-valor do canal é a leitura contínua, não a conversão imediata. A exceção é
-quando o brief marcar uma edição de lançamento ou oferta especial: nesse
-caso, trate a edição como `inboundfy-especialista-email` trataria um PASTOR, mas
-preservando o tom editorial e o tamanho maior do canal.
-
-Sempre que a edição apresentar um produto, serviço ou ferramenta dentro do
-texto corrido, aplique **FAB**: nomeie a característica (do `context/`
-correspondente), explique a vantagem prática e feche no benefício real para
-o leitor; nunca liste a característica e siga em frente sem completar a
-tradução.
+  para a técnica FAB, conforme a referência de estrutura editorial.
 
 ## Entrada esperada
 
-Um brief com: tema da edição, ângulo, ativos de apoio (de
-`inboundfy-planejamento` quando existir pacote), objetivo e CTA.
+Brief de newsletter aprovado ou avulso, com tema da edição, ângulo, persona, objetivo, ativos de apoio, distribuição e CTA.
 
 ## Fluxo
 
-1. Leia o brief, `ESCRITA.md` e os arquivos de contexto exigidos.
-2. Escreva assunto e pré-header quando a distribuição for por e-mail.
-3. Escreva o corpo em prosa longa e contínua, com abertura reconhecível,
-   desenvolvimento de uma ou poucas ideias centrais, exemplo interpretado e
-   fechamento sem enfeite; seguindo `ESCRITA.md` integralmente, já que este
-   canal tem menos restrição de tamanho que e-mail curto ou rede social. Use
-   a estrutura de edição por tipo de `REFERENCIA.md`.
-4. Insira menção a produto, serviço ou ferramenta apenas com base no
-   `context/` correspondente.
-5. Feche com CTA único.
-6. Rode `inboundfy-copy-editor`, trate os achados verificáveis e repita a leitura integral.
-7. Salve com frontmatter incluindo `assunto` (quando por e-mail), `titulo`,
-   `description` e `brief` quando fizer parte de um pacote.
-8. Encaminhe para `inboundfy-planejamento`.
-
-## Encaminhamento obrigatório
-
-Antes de considerar a edição pronta, acione
-`inboundfy-validador-newsletter`. Em caso de reprovação, aplique as correções
-do relatório e reenvie o arquivo inteiro até a aprovação.
+1. Leia a entrada completa, `ESCRITA.md` e os contextos exigidos. Resolva lacunas obrigatórias com o planejamento ou a manutenção de contexto indicada por `CONTEXTO.md` antes de redigir. Consulte [o diagnóstico e os parâmetros de newsletter](REFERENCIA.md#diagnóstico-da-peça).
+2. Escolha o tratamento autorizado: análise, curadoria comentada ou lançamento. Siga [o método e os modelos](REFERENCIA.md#método-de-produção). Execute A4 sobre estrutura, abertura e primeira unidade antes de expandir.
+3. Escreva abertura situada, desenvolvimento, exemplo interpretado, contraponto e fechamento em prosa contínua. Comente cada fonte de curadoria. Use [a estrutura editorial](references/estrutura-editorial.md) nas menções comerciais autorizadas.
+4. Prepare assunto e pré-header no envio por e-mail. Preserve assinatura, fontes e rodapé nas versões previstas; mantenha CTA principal único. Consulte [o modelo de preparação do envio](REFERENCIA.md#modelos-por-situação).
+5. Execute `inboundfy-copy-editor`, trate os achados e releia a edição inteira. Não altere cadência ou distribuição definidas no brief.
+6. Salve no caminho definido em [Saída](#saída), com [o template da peça](REFERENCIA.md#template-da-peça), envelope compartilhado e `brief` em pacote. Na montagem, leia [o exemplo completo](references/exemplo-completo.md); preserve os parâmetros aprovados.
+7. Execute A5 com `inboundfy-anti-slop` e confira os 11 itens de [conferência do par](REFERENCIA.md#checklist-numerado-do-par). Entregue a `inboundfy-validador-newsletter` candidata, ID, caminho, brief ou entrada avulsa, persona, fontes, pendências e registros de revisão editorial e A5.
+8. Se receber reprovação de `inboundfy-validador-newsletter`, leia o relatório, corrija o alcance solicitado e repita revisão editorial, A5 e leitura integral. Reenvie à mesma validadora até aprovação da versão atual.
+9. Retorne a `inboundfy-planejamento` com a edição, versões previstas, fontes, relatório aprovado e digest atual. O envio segue a integração do projeto.
 
 ## Saída
 
@@ -106,15 +71,7 @@ Arquivo Markdown com frontmatter, salvo no caminho definido em
 
 ## Responsabilidade do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** especialista
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+O grupo `especialista` responde pela redação e pelas correções de newsletters. Preserve o brief, o ID, a origem factual e o estado real da candidata; encaminhe somente a versão aprovada. O [guia do grupo](REFERENCIA.md#guia-específico-do-grupo) define o registro da entrega.
 
 ## Idempotência
 

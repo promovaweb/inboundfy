@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Conselho Marketing"
-  short_description: "Executa conselho marketing no Inboundfy"
-  default_prompt: "Use $inboundfy-conselho-marketing para executar conselho marketing com as fontes do projeto."
+  display_name: "Inboundfy: Conselho de marketing"
+  short_description: "Compara alternativas e recomenda um caminho de marketing"
+  default_prompt: "Use $inboundfy-conselho-marketing para reunir o conselho sobre esta escolha de marketing, mostrar onde as lentes divergem e recomendar o próximo passo."

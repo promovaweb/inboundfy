@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Growth Lead Magnet"
-  short_description: "Executa growth lead magnet no Inboundfy"
-  default_prompt: "Use $inboundfy-growth-lead-magnet para executar growth lead magnet com as fontes do projeto."
+  display_name: "Inboundfy: Material rico e captura de contatos"
+  short_description: "Recurso útil com captura, entrega e nutrição"
+  default_prompt: "Use $inboundfy-growth-lead-magnet para planejar um material rico completo com captura, entrega, nutrição e aferição por coorte."

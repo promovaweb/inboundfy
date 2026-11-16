@@ -1,8 +1,6 @@
 ---
 name: inboundfy-especialista-ebook-imagem
-description: >
-  Gera capa de ebook e imagem OpenGraph derivada, reaproveitando o motor de
-  inboundfy-base-imagem com a identidade visual do usuário.
+description: Gera capa de ebook e imagem OpenGraph com título final, identidade visual e composição derivada. Use quando o pedido citar capa de ebook, capa de material rico, imagem de compartilhamento ou adaptação horizontal da capa.
 ---
 
 # Inboundfy Ebook Capa
@@ -10,12 +8,6 @@ description: >
 Skill de imagem para capa de ebook e sua imagem OpenGraph (usada em
 compartilhamento e preview de link). Reaproveita `inboundfy-base-imagem`
 como motor.
-
-## Fonte da imagem: geração sintética via inboundfy-base-imagem
-
-Capa de ebook é peça de identidade visual da própria publicação; título,
-subtítulo e composição de marca; não uma fotografia de contexto. Por isso
-usa `inboundfy-base-imagem` como motor.
 
 ## Escopo
 
@@ -28,12 +20,9 @@ Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md` no in
 ausência de qualquer um, informe: "O setup do Inboundfy ainda não foi concluído
 ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
 arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
-preflight, leia o catalogo e os Markdown relevantes para a tarefa.
+preflight, leia o catálogo e os Markdown relevantes para a tarefa.
 
 ## Arquitetura de execução
-
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
@@ -41,20 +30,23 @@ específica desta pasta.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
 
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **especialista**.
-
 ## Contexto exigido
 
 - `context/canais.md`: dimensão de capa e de OpenGraph exigidas.
 - O que `inboundfy-base-imagem` já exige: `context/marca-voz.md` e a
   identidade visual do usuário.
 
+Consulte `context/proibicoes.md`, `context/estruturas-proibidas.md`, `context/glossario.md`, `context/marca-voz.md`, `context/aprendizado.md` e `brand/` quando existir. Leia `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md` e `CONTEXTO.md` antes de compor ou revisar texto público. Falta de apoio obrigatório retorna a `inboundfy-setup`; esta skill não repara a instalação.
+
 ## Entrada esperada
 
 Título e subtítulo final do ebook, definidos por `inboundfy-especialista-ebook`.
 
+Receba também ID, brief aprovado, versão da copy aprovada pela validadora de texto e formato do canal. Na retomada, leia o relatório de `inboundfy-validador-ebook-imagem` e identifique a rodada a corrigir.
+
 ## Fluxo
+
+Antes da composição, leia [preparação do conjunto visual](references/preparacao.md). No passo 1, consulte [formato, template e exemplo](REFERENCIA.md) para montar o brief visual. Ao chamar `inboundfy-base-imagem`, informe medidas em pixels, proporção, formato, área segura, peso máximo, texto literal aprovado, ativos oficiais e destino. Receba imagem, alt e manifesto para compor o README.
 
 1. Confirme as dimensões de capa e de OpenGraph em `context/canais.md`,
    usando a tabela de `REFERENCIA.md` como referência de mercado.
@@ -71,6 +63,8 @@ Título e subtítulo final do ebook, definidos por `inboundfy-especialista-ebook
 6. Salve capa e OpenGraph junto ao artefato de texto do ebook.
 
 ## Encaminhamento obrigatório
+
+Aplique os oito itens do [checklist espelhado](REFERENCIA.md#checklist-numerado-espelhado) a todos os arquivos.
 
 Antes de considerar capa e OpenGraph prontos, acione
 `inboundfy-validador-ebook-imagem`. Em caso de reprovação, corrija os achados
@@ -91,15 +85,7 @@ Arquivo de capa e arquivo de OpenGraph, salvos em
 
 ## Responsabilidade do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** especialista
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+Produza capa.png, opengraph.png e README.md com título final e relação entre derivados. Mantenha o estado `revisao` até o relatório de `inboundfy-validador-ebook-imagem` aprovar a versão atual. Envie à validadora ID, brief, versão do texto, README, todas as exportações e derivados, fontes, dimensões, previews e pendências. Receba o relatório por rodada e reenvie o conjunto completo após corrigir os achados.
 
 ## Idempotência
 

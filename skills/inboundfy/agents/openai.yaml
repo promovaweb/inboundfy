@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy"
-  short_description: "Orquestra marketing e produção de conteúdo"
-  default_prompt: "Use $inboundfy para planejar, pesquisar ou produzir conteúdo com o contexto do projeto."
+  display_name: "Inboundfy: Orquestrador"
+  short_description: "Encaminha o pedido de marketing à skill certa"
+  default_prompt: "Use $inboundfy para receber este pedido de marketing, conferir o projeto e seguir pelo fluxo certo."

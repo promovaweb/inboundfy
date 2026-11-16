@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Especialista Linkedin Imagem"
-  short_description: "Executa especialista linkedin imagem no Inboundfy"
-  default_prompt: "Use $inboundfy-especialista-linkedin-imagem para executar especialista linkedin imagem com as fontes do projeto."
+  display_name: "Inboundfy: Imagem de LinkedIn"
+  short_description: "Produz imagem de post ou capa de LinkedIn"
+  default_prompt: "Use $inboundfy-especialista-linkedin-imagem para produzir imagem de post ou capa de LinkedIn com brief aprovado, texto final e identidade do projeto. Aplique os oito itens do par e envie o conjunto completo a $inboundfy-validador-linkedin-imagem."

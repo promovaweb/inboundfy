@@ -1,16 +1,13 @@
 ---
 name: inboundfy-growth-pricing
-description: Analisa preço, planos e embalagem a partir de valor, público, uso, condições comerciais e mensagens aprovadas.
+description: Entrega proposta de preço e planos com unidade de cobrança, pesquisa de valor, simulação de margem e transição de clientes. Use quando o pedido falar em precificação, mensalidade, plano anual, limites, reajuste ou migração de preço.
 ---
 
-# Preço e embalagem
+# Preço, planos e cobrança
 
-Use esta skill como capacidade especializada do Inboundfy. Ela organiza a tarefa e devolve material pronto para a orquestradora, sem substituir o setup, a voz, a persona ou a validação do canal.
+Use para escolher unidade de cobrança, distribuir recursos e limites entre planos e estudar mudança de preço. O artefato é uma proposta comercial com pesquisa e simulação, sem alterar cobrança ou oferta canônica por conta própria. Oferta de serviço e composição da promessa seguem para `inboundfy-copy-oferta`.
 
 ## Arquitetura de execução
-
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
@@ -18,52 +15,51 @@ específica desta pasta.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
 
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **growth**.
-
 ## Contexto exigido
 
-Se a configuração estiver incompleta, acione `inboundfy-setup`. Consulte [REFERENCIA.md](REFERENCIA.md), `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`, `.inboundfy/context/marca-voz.md`, `.inboundfy/context/publico.md`, `.inboundfy/context/proibicoes.md`, `.inboundfy/context/glossario.md`, `.inboundfy/pipeline.md`, o acervo relacionado e `.inboundfy/framework/`.
+Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md`. Se faltar uma sentinela, apresente o alerta canônico do preflight e acione `inboundfy-setup`, sem criar artefatos.
 
-Leia também `.inboundfy/fontes-projeto.md`, as bases editoriais relacionadas e os documentos públicos citados. Antes de entregar copy, consulte `inboundfy-anti-slop` e `inboundfy-copy-edicao`.
+Leia `.inboundfy/context/empresa.md`, `.inboundfy/context/ofertas.md`, `.inboundfy/context/produtos.md`, `.inboundfy/context/publico.md`, `.inboundfy/context/concorrentes.md`, `.inboundfy/context/integracoes.md`, `.inboundfy/context/marca-voz.md`, `.inboundfy/context/proibicoes.md`, `.inboundfy/context/glossario.md` e `.inboundfy/estrategia.md`. Consulte `.inboundfy/framework/`, custos, contratos vigentes e coortes disponíveis. Se faltar dado econômico, mantenha a conta como cenário.
 
 ## Entrada esperada
 
-Receba um objetivo, um ou mais IDs de acervo, a persona, o canal, a oferta ou o fluxo que precisa ser planejado. Separe fatos confirmados, hipótese de trabalho e pergunta aberta.
+Receba oferta, preço atual, unidade cobrada, limites, custos variáveis, frequência de pagamento, descontos, impostos e taxas informados pela operação, coortes de clientes, objeções, objetivo e público da mudança. Diferencie lançamento, teste para novos compradores e migração da base existente.
+
+## Perguntas de diagnóstico
+
+- O que cresce junto com o valor percebido e também pode ser medido sem ambiguidade?
+- Quem paga e quem usa? Cobrar por pessoa ajuda ou desencoraja colaboração?
+- Quais custos aumentam com uso e qual teto o cliente precisa prever?
+- A objeção foi preço absoluto, ausência de utilidade, fluxo de caixa ou comparação com alternativa?
 
 ## Fluxo
 
-1. Leia [REFERENCIA.md](REFERENCIA.md) e confirme a intenção, o público, o canal e o resultado solicitado.
-2. Consulte voz, persona, proibições e dicionário antes de propor mensagem, segmento, preço, promessa ou CTA.
-3. Relacione cada afirmação ao acervo, à base editorial, à página canônica ou à pesquisa salva no item.
-4. Desenvolva uma estrutura de preços e mensagens de comparação com fatos confirmados.
-5. Revise o material com `inboundfy-anti-slop`, `inboundfy-copy-edicao` e a validação específica do canal quando houver copy pública.
-6. Registre caminho, ID, fontes, alcance da regra e pendências; peça confirmação antes de alterar uma configuração global.
+1. Leia [REFERENCIA.md](REFERENCIA.md) e registre preço vigente, unidade, condição, fonte e data. Separe tabelas de novos compradores e contratos atuais.
+2. Pesquise tarefas, alternativa usada e valor percebido por segmento. Leia [pesquisa e transição](references/pesquisa-e-transicao.md) para escolher entrevistas, comparação de opções ou teste de preço, sem tratar resposta declarada como compra.
+3. Compare mensalidade fixa, pessoa, uso, transação, módulos ou combinação. Explique previsibilidade, relação com valor e custo de medir cada unidade.
+4. Monte planos a partir de necessidades distintas. Defina recurso, limite, excedente, suporte e condição de passagem. Não exija três planos quando dois resolvem a oferta.
+5. Simule receita líquida, contribuição, demanda e permanência em cenários. Confira cobrança mensal, anual, parcelamento e Pix com as condições reais do fornecedor e da operação.
+6. Defina teste com coorte, exposição, métrica, prazo e proteção comercial. Para migração, registre aviso, vigência, contratos preservados, exceções e responsável. Mudança canônica segue para `inboundfy-contexto-oferta` após confirmação.
+7. Revise mensagens com `ESCRITA.md` e `inboundfy-copy-editor`. Entregue a tabela confirmada a `inboundfy-growth-paywall`, com recursos, limites, cobrança, público e vigência. Para `inboundfy-growth-cro`, inclua página ou brief, persona, origem e ação principal. Envie hipóteses, métrica, taxa atual, volume e janela a `inboundfy-experimentacao`; eventos, oferta, destinos e integrações a `inboundfy-rastreamento-conversao`.
 
 ## Saída
 
-Uma estrutura de preços e mensagens de comparação com fatos confirmados. O material deve manter IDs, links relativos, fontes, persona, canal, estado e próxima ação.
+Entregue `precos-<id>.md` no diretório da campanha ou pesquisa já registrado, com pesquisa por segmento, escolha da unidade, planos, cenário econômico, teste e transição. Preserve ID, grupo growth, público, canal, oferta, fontes, estado, pendências e próxima ação. Preço proposto permanece distinto do vigente.
 
 ## Validação
 
-- A finalidade e o público estão explícitos.
-- Toda afirmação comercial possui fonte local ou marcação de confirmação.
-- Voz, persona, proibições e dicionário foram aplicados.
-- O formato respeita o canal, o pipeline e o template correspondente.
-- Pendências ficaram registradas sem preenchimento inventado.
+- Unidade, período, moeda, impostos e taxas estão definidos nas contas.
+- Planos têm público, recursos, limites, excedente e suporte claros.
+- Desconto anual compara totais do mesmo período e informa cobrança efetiva.
+- Cenário de receita considera mudança de demanda e permanência, sem assumir volume fixo.
+- A migração respeita as condições informadas dos contratos e tem responsável.
+- Pesquisa declarada não recebe rótulo de disposição comprovada de compra.
+- A proposta e a copy usam fatos e condições confirmadas ou marcadas como hipótese.
 
 ## Responsabilidade do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** growth
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+Transforme custos, pesquisa e oferta vigente em proposta comercial; encaminhe apenas condições confirmadas ao contexto e à execução. Registre grupo `growth`, entrada, transformação, saída, próxima skill, estado e pendências no handoff.
 
 ## Idempotência
 
-Atualize o mesmo arquivo ou brief quando o ID já existir. Preserve texto aprovado, histórico, fontes e escolhas anteriores; abra uma nova versão apenas após pedido explícito.
+Atualize o estudo pelo ID e mantenha tabela vigente, proposta e histórico separados. Não sobrescreva condição contratada. Preserve coortes, data de exposição e exceções; uma repetição de simulação não inicia cobrança ou novo aviso.

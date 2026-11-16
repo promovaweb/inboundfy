@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Experimentacao"
-  short_description: "Executa experimentacao no Inboundfy"
-  default_prompt: "Use $inboundfy-experimentacao para executar experimentacao com as fontes do projeto."
+  display_name: "Inboundfy: Experimentação"
+  short_description: "Planeja testes A/B e interpreta os resultados"
+  default_prompt: "Use $inboundfy-experimentacao para planejar um teste A/B com hipótese, métrica principal, amostra e janela, ou para ler o resultado de um teste com os números de cada variante."

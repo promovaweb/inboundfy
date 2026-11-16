@@ -1,194 +1,219 @@
-# REFERENCIA.md; inboundfy-validador-newsletter
+# Auditoria de edição de newsletter
 
-Use o template de `inboundfy-base-validador` com a produtora
-`inboundfy-especialista-newsletter`.
+## Preparação da rodada
 
-## Checklist específico
+Leia integralmente a candidata, o brief, acervo e a [produtora pareada](../inboundfy-especialista-newsletter/SKILL.md), incluindo [seu manual](../inboundfy-especialista-newsletter/REFERENCIA.md) e o exemplo completo. Aplique `inboundfy-base-validador` antes da conferência do canal. A validadora relata; ela não altera a candidata.
 
-- [ ] O corpo mantém prosa contínua e progressão editorial.
-- [ ] Menções institucionais possuem fonte.
-- [ ] Produto, serviço ou ferramenta aplica FAB quando necessário.
-- [ ] Existe um CTA no fechamento.
-- [ ] A prosa foi lida por inteiro e cada achado verificável foi tratado.
+O manifesto inclui todos os Markdown de `.inboundfy/context/`, `.inboundfy/fontes-projeto.md`, fontes locais relevantes, regras editoriais, histórico e `brand/` quando existir. Não limite a leitura aos arquivos citados pela produtora. Ausência obrigatória ou conflito factual impede aprovação e recebe destino explícito.
 
-## Exemplo fictício
+## Procedimento para este canal
 
-Se uma seção vira anúncio solto, reprove, cite a ruptura e peça integração
-editorial ou remoção à produtora.
+1. Confirme o formato de edição de newsletter e a versão recebida; identifique o caminho e o ID sem renomear a peça.
+2. Compare os campos e parâmetros com o brief. Os alvos editoriais da produtora não são limites técnicos universais. Uma faixa diferente precisa estar registrada no brief, não ser aceita silenciosamente.
+3. Aplique os itens 1 a 6 do checklist ao conteúdo específico de `newsletter`. Registre trechos e fontes; gosto pessoal não produz reprovação.
+4. Aplique os itens 7 a 11 ao conjunto inteiro. Execute passe literal de vetos, passe semântico de paráfrases e leitura estrutural do documento. Inspecione texto visual quando existir.
+5. Registre `inboundfy-copy-editor` e A5 conforme a base. Preencha matriz, achados e encaminhamento. Não use nota, percentual editorial ou aprovação condicional.
+6. Após correção, releia tudo, repita os passes e execute `inboundfy content digest <id>` para obter caminho e SHA-256 completo da versão final antes de aprovar. Copie os campos canônicos da base. Mudança posterior invalida a aprovação anterior.
 
-## Erros comuns
+## Checklist numerado do par
 
-Validar blocos isolados e perder a fluidez da edição completa.
+Esta lista espelha exatamente a produtora. Resultado permitido por item: conforme, não conforme ou não aplicável com justificativa. Qualquer ocorrência de veto literal, semântico ou estrutural reprova a peça. Falta visual obrigatória também exige correção antes de aprovação.
 
-## Arquitetura aplicada
+1. [ ] **literal**: Título, description de 145 a 155 caracteres e `brief` de pacote presentes; envio inclui assunto e pré-header.
+2. [ ] **semântica**: A edição sustenta uma tese ligada ao brief, sem atribuir experiência pessoal não documentada.
+3. [ ] **estrutural**: Abertura, desenvolvimento, exemplo interpretado, contraponto e fechamento progridem sem repetição.
+4. [ ] **semântica**: Fontes da curadoria têm comentário próprio; menções comerciais autorizadas aplicam FAB e têm fonte.
+5. [ ] **estrutural**: Fechamento tem ação principal única; links de referência e serviço não viram ofertas concorrentes.
+6. [ ] **visual**: Versões web e e-mail mantêm leitura contínua, assinatura, links e rodapé; marca foi conferida quando presente.
+7. [ ] **literal**: ID, estado real, persona, origem e fontes estão ligados à peça; o exemplo fictício não virou contexto do consumidor.
+8. [ ] **semântica**: Voz e afirmações conferem com todos os contextos e fontes aplicáveis; lacuna factual permanece fora da copy.
+9. [ ] **estrutural**: Proibições foram revistas em passes literal e semântico/estrutural no arquivo inteiro, inclusive metadata, links e CTA.
+10. [ ] **visual**: `brand/` foi procurada; ativos existentes e texto visual foram inspecionados ou a ausência foi justificada.
+11. [ ] **estrutural**: Revisão de `inboundfy-copy-editor`, marco A5 e retorno da validadora foram registrados; mudança exige nova leitura integral.
 
-Esta referência usa o contrato comum para a skill **inboundfy-validador-newsletter**, do grupo
-**validador**. Leia os detalhes compartilhados conforme a etapa atual:
+## Categorias e alcance da leitura
 
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
+| Categoria | Leitura aplicada a newsletter | Registro necessário |
+| --- | --- | --- |
+| Literal | Campos, nomes, URLs, números e termos vedados, inclusive frontmatter | Campo ou trecho exato e origem da regra |
+| Semântica | Promessa, fatos, intenção, atribuição e paráfrase de veto | O que a frase afirma e qual fonte a sustenta ou contradiz |
+| Estrutural | Ordem dos blocos, função das seções e pedidos ao leitor | Relação entre seções e item numerado violado |
+| Visual | Hierarquia, tabelas, ativos de marca e prévia disponível | Artefato realmente inspecionado; ausência justificada quando aplicável |
 
-## Contrato específico
+Uma imagem não inspecionada não recebe resultado conforme. Se não houver recurso de prévia, registre a limitação e não afirme teste de tela. Se o brief exigir exportação ou prévia, mantenha essa pendência obrigatória aberta.
 
-- **Função:** executar a capacidade de validador newsletter dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
+## Template de relatório
 
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-validador-newsletter
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de validador newsletter
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-validador-newsletter
-grupo: validador
-entrada: acervo/0042-2026-09-14-validador-newsletter/processado.md
-pedido: aplicar a etapa de validador newsletter e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
+Use [o relatório canônico da base](../inboundfy-base-validador/REFERENCIA.md#template-do-relatório), preservando todas as suas seções e rótulos. Salve em `06-auditoria/assets/<canal>-<item>.md` no pacote ou `<nome-do-asset>.auditoria.md` junto da peça avulsa. O quadro de canal complementa o relatório da base, sem substituir manifesto, matriz ou histórico.
 
 ```markdown
----
-id: 0042
-skill: inboundfy-validador-newsletter
-estado: aprovado
-entrada: acervo/0042-2026-09-14-validador-newsletter/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
+# Validação de asset; newsletter/{item}
 
-# Registro de validador newsletter
+- **Asset:** `{caminho da candidata}`
+- **Brief:** {caminho ou peça avulsa}
+- **Produtora:** inboundfy-especialista-newsletter
+- **Validadora:** inboundfy-validador-newsletter
+- **Rodada:** {número}
+- **ID da peça:** `{ID}`
+- **SHA-256 da peça:** `{hash completo obtido pelo digest da candidata}`
+- **Veredito:** {aprovado | reprovado | devolvido para briefing | impedido}
 
-## Resultado
+## Fontes carregadas
 
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
+| Arquivo ou ativo | Estado | Uso na auditoria |
+| --- | --- | --- |
+| {cada contexto, fonte, regra e ativo} | {lido ou impedimento} | {campo ou afirmação conferida} |
 
-## Próxima ação
+## Conferência do canal
 
-{verbo + objeto + caminho do arquivo seguinte}
+| Item | Categoria | Resultado | Comprovação localizada |
+| --- | --- | --- | --- |
+| {1 a 11, uma linha por item} | {categoria do checklist} | {resultado} | {local e fonte} |
+
+## Achados
+
+| Localização | Trecho observado | Regra ou fonte | Diagnóstico e correção |
+| --- | --- | --- | --- |
+| {arquivo e seção} | {trecho} | {item e origem} | {alteração verificável, sem editar a candidata} |
+
+## Conferência de proibições
+
+{Matriz completa da base: vetos de negócio, aberturas, fechamentos, vocabulário, parágrafos, headings/listas, pontuação/fluidez e autoridade/dados.}
+
+## Marca e apresentação
+
+{Arquivos e ativos inspecionados, resultados e pendências.}
+
+## A5 e revisão editorial
+
+{Caminho, ciclo e resultado do A5; achados do copy-editor e tratamento.}
+
+## Encaminhamento
+
+- **Destino:** {produtora, planejamento, usuário ou nenhum}
+- **Instrução:** {correção e nova leitura integral}
+
+## Histórico
+
+- Rodada {número}: {síntese e veredito}.
 ```
 
-## Checklist ampliado
+## Exemplo de relatório preenchido
 
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
+Este relatório é uma demonstração de reprovação. Empresa, pessoas, arquivos e rodada são fictícios. A versão defeituosa contém a alteração descrita abaixo em relação ao [exemplo integral](../inboundfy-especialista-newsletter/references/exemplo-completo.md). Não representa auditoria realizada no consumidor. O hash não foi calculado, pois não existe candidata persistida; esta demonstração nunca autoriza estado aprovado.
 
-## Erros comuns adicionais
+```markdown
+# Validação de asset; newsletter/fornada
 
-- Executar **inboundfy-validador-newsletter** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+- **Asset:** `canais/newsletter/0042-2026-09-14-fornada/README.md`
+- **Brief:** conteudo/fornada/04-briefs/newsletter-fornada.md
+- **Produtora:** inboundfy-especialista-newsletter
+- **Validadora:** inboundfy-validador-newsletter
+- **Rodada:** 1
+- **ID da peça:** `0042`
+- **SHA-256 da peça:** não calculado; demonstração sem candidata persistida
+- **Veredito:** reprovado
+
+## Fontes carregadas
+
+| Arquivo ou ativo | Estado | Uso na auditoria |
+| --- | --- | --- |
+| conteudo/fornada/04-briefs/newsletter-fornada.md | lido | Formato e objetivo específico de newsletter |
+| acervo/0042-2026-09-14-fornada/base-editorial.md | lido | Persona-01 e base factual do caso |
+| acervo/0042-2026-09-14-fornada/processado.md | lido | Caso didático: 300, 260, dez e 30 pães |
+| .inboundfy/fontes-projeto.md | lido | Registro didático das fontes locais |
+| .inboundfy/context/empresa.md | lido | Empresa fictícia em Campinas |
+| .inboundfy/context/marca-voz.md | lido | Voz direta e assinatura da equipe |
+| .inboundfy/context/publico.md | lido | Persona-01, responsável pelo balcão |
+| .inboundfy/context/produtos.md e servicos.md | lido | Nenhuma funcionalidade ou oferta acrescida |
+| .inboundfy/context/ofertas.md | lido | Sem oferta paga nesta peça |
+| .inboundfy/context/pessoas.md | lido | Lia e Beto pertencem ao caso fictício |
+| .inboundfy/context/links.md e ferramentas.md | lido | Destino didático da ficha, sem integração real |
+| .inboundfy/context/canais.md e integracoes.md | lido | Caminho demonstrativo, sem envio autorizado |
+| .inboundfy/context/glossario.md e aprendizado.md | lido | Grafias e alcance da orientação |
+| .inboundfy/context/proibicoes.md e estruturas-proibidas.md | lido | Passes integralmente realizados na simulação |
+| Demais Markdown encontrados no contexto didático | lido | Nenhum conflito com a peça |
+| SKILL.md e REFERENCIA.md da produtora e validadora | lido | Contrato de newsletter e checklist 1 a 11 |
+| ESCRITA.md, ESTRUTURAS-PERSUASIVAS.md, CONTEXTO.md e METODOLOGIA.md | lido | Prosa, fontes e fluxo |
+| brand/ | não aplicável | Ausente no cenário didático |
+
+## Conferência do canal
+
+| Item | Resultado | Comprovação localizada |
+| --- | --- | --- |
+| 1 | conforme | Frontmatter conferido contra template do canal |
+| 2 | não conforme | abertura: Na nossa padaria vimos isso acontecer |
+| 3 | conforme | Blocos e ação principal lidos na sequência completa |
+| 4 | conforme | Fatos e parâmetros comparados com a fonte correspondente |
+| 5 | conforme | Links, grafias e fechamento conferidos no escopo do canal |
+| 6 | não conforme | Prévia móvel e versão em texto ainda não foram inspecionadas; leitura do Markdown não substitui esse teste |
+| 7 | conforme | ID, persona e origem didática presentes nas relações |
+| 8 | não conforme | abertura: Na nossa padaria vimos isso acontecer |
+| 9 | conforme | Passes literal e semântico/estrutural sem veto na simulação |
+| 10 | não aplicável | brand/ ausente no cenário |
+| 11 | não conforme | Candidata ainda exige correção e nova rodada |
+
+## Achados
+
+| Localização | Trecho observado | Regra ou fonte | Diagnóstico e correção |
+| --- | --- | --- | --- |
+| README.md, abertura | Na nossa padaria vimos isso acontecer | Fonte: caso didático, sem experiência pessoal registrada | Apresentar a situação como exemplo didático fictício, sem atribuição de vivência. |
+| README.md, apresentação de envio | Prévia móvel e versão em texto ausentes | Item 6 do checklist | Inspecionar ambas as versões com destinatário de teste e registrar legibilidade, CTA, assinatura e rodapé antes de aprovar. |
+
+## Conferência de proibições
+
+| Categoria | Passe literal | Passe semântico/estrutural | Ocorrências |
+| --- | --- | --- | --- |
+| Vetos de negócio | aprovado | aprovado | nenhuma |
+| Aberturas proibidas | aprovado | aprovado | nenhuma |
+| Fechamentos proibidos | aprovado | aprovado | nenhuma |
+| Vocabulário proibido | aprovado | aprovado | nenhuma |
+| Estruturas de parágrafo | aprovado | aprovado | nenhuma |
+| Headings e listas | aprovado | aprovado | nenhuma |
+| Pontuação e fluidez | aprovado | aprovado | nenhuma |
+| Autoridade e dados | reprovado | reprovado | abertura: atribuição divergente da fonte |
+
+## Marca e apresentação
+
+Sem brand/ ou imagem no cenário. Conferida somente a hierarquia do Markdown. A prévia móvel e a versão em texto continuam pendentes. A candidata não recebe aprovação antes dessa inspeção.
+
+## A5 e revisão editorial
+
+Registro didático: auditorias/anti-slop/05-peca.md, ciclo 1. A revisão localizou o mesmo achado descrito acima. Correção ainda não aplicada; novo A5 e nova leitura integral serão necessários.
+
+## Encaminhamento
+
+- **Destino:** inboundfy-especialista-newsletter
+- **Instrução:** Apresentar a situação como exemplo didático fictício, sem atribuição de vivência. Concluir também a inspeção móvel e em texto do item 6. Devolver a peça inteira para nova rodada, incluindo digest real antes de qualquer aprovação.
+
+## Histórico
+
+- Rodada 1: reprovado pelo achado de conteúdo e pela inspeção de envio pendente; nenhuma candidata foi alterada pela validadora.
+```
+
+Na execução real, liste cada arquivo do manifesto individualmente, com o caminho efetivo. As linhas agrupadas acima resumem somente o cenário fictício. Para aprovação real, o relatório precisa de ID, caminho e SHA-256 completo retornados por `inboundfy content digest <id>` e `Veredito: aprovado`, conforme o formato canônico da base.
+
+## Erros comuns de auditoria
+
+- Colar cinco links e chamar de curadoria. Explique por que cada fonte muda a leitura do tema.
+- Escrever em primeira pessoa um caso que veio de terceiro. Atribua a origem sem simular vivência.
+- Inserir anúncio sem ligação com a edição. Retire ou integre somente se o brief permitir.
+- Aprovar apenas os campos visíveis do canal e omitir vetos no frontmatter ou no CTA. Faça os passes sobre o conjunto inteiro.
+- Declarar texto visual conforme sem abrir o ativo. Registre ausência ou pendência, conforme o brief.
+- Corrigir a candidata dentro da validadora. Descreva a alteração necessária e devolva à produtora.
 
 ## Guia específico do grupo
 
-Leia o asset inteiro contra brief, fontes, contexto e formato. Relate local, regra, fonte e ação; devolva à produtora sem editar o original.
+O grupo `validador` registra asset, brief, fontes, achados e estado real. Reprovação retorna a `inboundfy-especialista-newsletter`; divergência de finalidade volta a `inboundfy-planejamento`; fato obrigatório ausente vai ao responsável pelo contexto. Não transforme ausência factual em aprovação parcial. Preserve relatório e histórico por rodada no mesmo caminho. Uma alteração de origem exige nova auditoria completa.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+## Arquitetura aplicada
 
-## Especificação operacional
+- Antes da redação ou auditoria: [preflight e fontes](../_shared/01-preflight-e-fontes.md).
+- Ao registrar a peça: [artefato e relações](../_shared/02-contrato-de-artefato.md).
+- Nas escolhas e entrega: [checkpoints e handoff](../_shared/03-interacao-e-handoff.md).
+- A cada rodada: [validação e retomada](../_shared/04-validacao-e-retomada.md).
+- Antes de qualquer texto público: [contexto editorial](../_shared/05-contexto-editorial.md).
 
-### Quando usar
+Na auditoria, consulte também `docs/method/07-validacao-e-testes.md`.
 
-Use **inboundfy-validador-newsletter** para executar esta função: Valida newsletter produzida por inboundfy-especialista-newsletter contra brief, fontes, todos os contextos, escrita, proibições, fluidez editorial, menções institucionais e contrato do canal.
-
-O grupo **validador** trabalha com estes campos mínimos:
-
-- **asset:** preencher com dado ligado ao pedido.
-- **brief:** preencher com dado ligado ao pedido.
-- **fontes:** preencher com dado ligado ao pedido.
-- **achados:** preencher com dado ligado ao pedido.
-- **estado:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-validador-newsletter
-grupo: validador
-pedido: executar a função desta skill sobre o material selecionado
-entrada: canais/newsletter/0042-2026-09-14-peca/README.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-validador-newsletter
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - canais/newsletter/0042-2026-09-14-peca/README.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **validador** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `CONTEXTO.md`
-- `docs/method/07-validacao-e-testes.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Leia também `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md`, `CONTEXTO.md` e `METODOLOGIA.md`. Os caminhos `context/` resolvem para `.inboundfy/context/` no consumidor; preserve a resolução e os diretórios já configurados.

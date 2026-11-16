@@ -1,230 +1,104 @@
 # Domínio links
 
-## Contexto de links
+Referência do domínio `links` da skill `inboundfy-contexto-institucional`.
+Ela é lida no passo 2 do fluxo, quando a entrada traz site, página, perfil
+social, destino de conversão ou link de campanha.
 
-Use esta skill quando o usuário informar, corrigir, substituir ou revisar uma
-URL oficial, um perfil social, uma página de produto ou um destino de ação.
-Este trabalho atualiza somente `.inboundfy/context/links.md`. Endereço físico,
-registro legal e contato ficam sob `inboundfy-contexto-institucional`.
+## Função
 
-### Arquitetura de execução
+`.inboundfy/context/links.md` é a fonte canônica de URLs mantidas pela
+empresa. Toda peça com CTA busca o destino aqui. Uma URL errada derruba a
+conversão da peça inteira, por isso cada link tem tipo, situação e
+conferência.
 
-Como skill de contexto, ela confirma as sentinelas antes de atualizar o
-arquivo canônico. O trabalho segue o contrato compartilhado e usa a
-referência específica desta pasta.
+Endereço físico, CNPJ e telefone ficam em `enderecos.md`. Referências
+externas usadas em pesquisa ficam no `pesquisa.md` do acervo.
 
-- [Preflight e fontes](../../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
-- [Contrato de artefato](../../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
-- [Interação e handoff](../../_shared/03-interacao-e-handoff.md): conduza escolhas e entregue o pacote seguinte.
-- [Validação e retomada](../../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
-- [Contexto editorial](../../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
+## Fluxo do domínio
 
-Consulte [REFERENCIA.md](../REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **contexto**.
+1. Leia `links.md` e localize o destino informado.
+2. Classifique o link: página principal, rede social, destino de conversão,
+   link por produto ou link de campanha.
+3. Confira que a URL começa com `https://` (ou `http://` quando o site não
+   tiver certificado, o que vale registrar como pendência).
+4. Pergunte se a URL é permanente ou de campanha. Link de campanha tem
+   período e situação.
+5. Atualize somente o alcance pedido. Ao substituir, registre a URL antiga e
+   a data nas observações.
+6. Preencha `Registro de conferência` com data, responsável e fonte.
+7. Indique peças, campanhas ou calendário afetados.
 
-### Contexto exigido
+## Roteiro de entrevista
 
-Leia [REFERENCIA.md](../REFERENCIA.md), `AGENTS.md`, `.inboundfy/README.md`,
-`.inboundfy/context/empresa.md`, `.inboundfy/context/links.md`,
-`.inboundfy/context/enderecos.md`, `.inboundfy/context/glossario.md`,
-`.inboundfy/context/proibicoes.md`, `.inboundfy/context/aprendizado.md` e
-`.inboundfy/framework/`. Confira `inboundfy doctor` antes e depois.
+1. "Qual é o site principal e o endereço do blog?"
+2. "Qual página recebe contato, demonstração, cadastro e compra?"
+3. "Quais perfis sociais são oficiais? Existe perfil antigo que deve ser
+   ignorado?"
+4. "O WhatsApp tem link `wa.me` com mensagem pré-preenchida?"
+5. "Cada produto ou serviço tem página própria?"
+6. "Existe landing de campanha ativa? Até quando?"
+7. "Quem confirma os links e quando foi a última conferência?"
 
-### Entrada esperada
+## Tipos de link
 
-Receba a URL, o nome do destino, o tipo de link, a pessoa que confirmou a
-informação, a fonte e o alcance da alteração. Aceite uma atualização pontual
-ou um lote de URLs relacionadas.
+| Tipo | Seção do arquivo | Permanente? | Cuidado |
+| --- | --- | --- | --- |
+| Site, blog, contato, preços | Site e páginas principais | sim | conferir após redesenho do site |
+| Perfil social | Redes sociais oficiais | sim | confirmar que o perfil é da empresa |
+| Agendamento, demonstração, cadastro, suporte | Destinos de conversão | sim | testar o formulário |
+| Página por produto | Links por produto e serviço | sim | situação ativa ou inativa |
+| Landing com prazo | Links de campanha | não | período e situação |
+| `wa.me` | Destinos de conversão (Suporte ou Agendamento) | sim | número igual ao de `enderecos.md` |
 
-### Fluxo
+UTMs não entram na URL canônica. A URL registrada aqui é limpa. Parâmetros
+de rastreamento são montados por peça, conforme
+`inboundfy-rastreamento-conversao`.
 
-1. Leia o arquivo atual e localize o destino informado.
-2. Separe URL oficial, perfil social, página de campanha e referência externa.
-3. Confirme que a URL usa `http://` ou `https://` e que o destino está claro.
-4. Preserve registros existentes e atualize somente o alcance pedido.
-5. Registre fonte, responsável e data da conferência.
-6. Se a URL substituir outra, mantenha a informação anterior nas observações
-   ou no histórico indicado pelo projeto.
-7. Se o dado for endereço físico, registro legal ou contato, encaminhe para
-   `inboundfy-contexto-institucional` sem duplicar o dado neste arquivo.
-8. Entregue o caminho atualizado e sugira a próxima skill quando a alteração
-   afetar uma peça, campanha ou calendário.
-
-### Saída
-
-Atualização de `.inboundfy/context/links.md` com a URL, seu tipo, destino,
-situação, fonte, responsável e data. Devolva um resumo curto, o alcance
-aplicado e as relações que precisam ser revistas.
-
-### Validação
-
-- A URL registrada é completa e começa com `http://` ou `https://`.
-- O destino é único ou a diferença entre destinos está descrita.
-- Perfil social, página permanente e URL de campanha estão separados.
-- Endereço físico, dado legal e telefone não foram misturados neste arquivo.
-- A fonte, a data e a pessoa responsável aparecem quando disponíveis.
-- O arquivo anterior foi preservado quando houve substituição.
-- Links usados por uma peça apontam para esta fonte canônica.
-
-### Idempotência
-
-Antes de escrever, compare destino, URL, situação e observações com o arquivo
-atual. Não crie linha duplicada para a mesma combinação. Em nova execução,
-aplique somente a alteração confirmada e preserve os registros sem relação
-com o pedido.
-
-### Responsabilidade do grupo
-
-Mantenha somente o domínio indicado no arquivo canônico. Grave fatos
-confirmados, preserve seções e pergunte antes de expandir o alcance.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** contexto
-- **entrada:** resposta do usuário ou arquivo canônico do domínio;
-- **transformação:** registrar, classificar e conferir URLs;
-- **saída:** arquivo de links atualizado e registro da alteração;
-- **handoff:** setup, orquestrador ou skill que depende da URL.
-
-## Referência do domínio
-
-### Referência de links oficiais
-
-#### Template
-
-Use `.inboundfy/context/links.md` como fonte canônica para URLs mantidas pela
-empresa. Cada registro deve informar o destino, a categoria, a situação e a
-origem da confirmação.
-
-```yaml
-id: LNK-0001
-tipo: perfil-social
-nome: LinkedIn oficial
-url: https://exemplo.com/perfil
-situacao: ativo
-fonte: pessoa responsável ou página oficial
-conferido_em: 2026-09-15
-```
-
-#### Exemplo
-
-Pedido: “Atualize o LinkedIn oficial e retire o perfil antigo.”
-
-Resultado:
+## Exemplo preenchido (fictício; "Estoquely")
 
 ```markdown
-#### Redes sociais oficiais
+## Destinos de conversão
 
-- **LinkedIn:** https://exemplo.com/novo-perfil
+- **Agendamento:** https://exemplo-estoquely.com.br/agendar
+- **Demonstração:** https://exemplo-estoquely.com.br/demo
+- **Cadastro:** https://app.exemplo-estoquely.com.br/criar-conta
+- **Suporte:** https://wa.me/5531900001111?text=Ol%C3%A1%2C%20preciso%20de%20ajuda%20com%20o%20Estoquely
 
-#### Registro de conferência
+## Links de campanha
 
-- **Última conferência:** 2026-09-15
-- **Pessoa responsável:** Nome da pessoa
-- **Fonte da confirmação:** mensagem do usuário
-- **Observações:** perfil anterior substituído nesta data.
+| Campanha | URL | Período | Canal | Situação |
+| --- | --- | --- | --- | --- |
+| Black Friday 2026 | https://exemplo-estoquely.com.br/black-friday | 2026-11-20 a 2026-11-30 | e-mail, Instagram | ativo |
+
+## Registro de conferência
+
+- **Última conferência:** 2026-11-15
+- **Pessoa responsável:** Marina Alves
+- **Fonte da confirmação:** mensagem da responsável
+- **Observações:** WhatsApp de suporte trocado em 2026-11-15; o link anterior apontava para número pessoal.
 ```
 
-#### Checklist
+## Checklist de completude
 
-- [ ] A URL foi recebida de uma fonte do projeto.
-- [ ] O tipo do link está claro.
-- [ ] A URL começa com `http://` ou `https://`.
-- [ ] O destino não duplica outro registro.
-- [ ] A data e a pessoa responsável foram anotadas quando disponíveis.
-- [ ] O dado físico ou legal foi encaminhado para `enderecos.md`.
-- [ ] Peças e campanhas relacionadas podem apontar para o novo caminho.
+- [ ] URL recebida de fonte do projeto.
+- [ ] Tipo do link claro e seção correta.
+- [ ] URL completa, sem UTM.
+- [ ] Link de campanha com período e situação.
+- [ ] Número do `wa.me` igual ao WhatsApp de `enderecos.md`.
+- [ ] Data e responsável da conferência anotados.
+- [ ] URL anterior registrada nas observações quando houver troca.
 
-#### Erros comuns
+## Erros comuns
 
-- Misturar endereço de escritório com URL de perfil social.
-- Registrar uma URL de campanha como página permanente.
-- Alterar vários destinos sem autorização para o lote.
-- Apagar uma URL anterior sem deixar uma nota de substituição.
-- Usar um link externo de pesquisa como se fosse um canal oficial.
+- Registrar landing de campanha como página permanente.
+- Guardar URL com UTM como canônica.
+- Manter perfil social antigo ativo depois da troca de @.
+- Apagar URL antiga sem nota de substituição.
+- Usar link de pesquisa externa como canal oficial.
 
-#### Arquitetura aplicada
+## Relações
 
-Esta referência usa o contrato comum para a skill **inboundfy-contexto-institucional**,
-do grupo **contexto**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../../_shared/05-contexto-editorial.md).
-
-#### Contrato específico
-
-- **Função:** manter URLs oficiais e destinos de ação do projeto.
-- **Entrada mínima:** resposta do usuário ou arquivo canônico do domínio.
-- **Saída mínima:** arquivo de links atualizado e registro da alteração.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-#### Guia específico do grupo
-
-Mantenha somente o domínio indicado no arquivo canônico. Grave fatos
-confirmados, preserve seções e pergunte antes de expandir o alcance.
-
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-#### Especificação operacional
-
-##### Quando usar
-
-Use **inboundfy-contexto-institucional** para executar esta função: Mantém a fonte canônica de URLs oficiais, perfis sociais, páginas de oferta e destinos de conversão usados pelo projeto Inboundfy.
-
-O grupo **contexto** trabalha com estes campos mínimos:
-
-- **arquivo canônico:** preencher com dado ligado ao pedido.
-- **fatos:** preencher com dado ligado ao pedido.
-- **preferências:** preencher com dado ligado ao pedido.
-- **fonte:** preencher com dado ligado ao pedido.
-- **alteração:** preencher com dado ligado ao pedido.
-
-##### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-contexto-institucional
-grupo: contexto
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/context/links.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-contexto-institucional
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/context/links.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-##### Perguntas de conferência
-
-1. A entrada pertence ao grupo **contexto** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-##### Referências de execução
-
-Leia, na ordem necessária:
-
-- `CONTEXTO.md`
-- `docs/method/02-contexto-fontes-e-precedencia.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Skills de canal e `inboundfy-growth-cro` leem os destinos de conversão.
+`inboundfy-dados-estruturados` usa site e perfis sociais. Troca de URL de
+página indexada pede redirecionamento no site, tema de
+`inboundfy-arquitetura-site`.

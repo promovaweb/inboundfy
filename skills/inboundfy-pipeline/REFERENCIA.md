@@ -29,164 +29,159 @@ Esta referência usa o contrato comum para a skill **inboundfy-pipeline**, do gr
 - [validação e retomada](../_shared/04-validacao-e-retomada.md);
 - [contexto editorial](../_shared/05-contexto-editorial.md).
 
-## Contrato específico
+## Material de apoio por passo
 
-- **Função:** executar a capacidade de pipeline dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
+| Passo do fluxo | Arquivo | Uso |
+| --- | --- | --- |
+| 3 | [references/portao-de-aprovacao.md](references/portao-de-aprovacao.md) | Linhas exigidas no relatório, campos fora do hash, sequência de comandos e cenários. |
+| 7 | [references/diagnostico-de-erros.md](references/diagnostico-de-erros.md) | Mensagens de recusa do CLI, causa, ação e sinais de saúde do pipeline. |
 
-## Template de operação
+## Significado operacional de cada estado
 
-```markdown
----
-id: {id}
-skill: inboundfy-pipeline
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
+| Estado | Entra quando | Sai quando | Quem age a seguir |
+| --- | --- | --- | --- |
+| `rascunho` | `inboundfy content create` cria a pasta | O texto completo passou por A5 | especialista do canal |
+| `revisao` | A peça está pronta para a validadora, ou voltou para ajuste | A validadora aprova ou devolve | `inboundfy-validador-<canal>` |
+| `aprovado` | Relatório aprovado ligado ao hash | Data confirmada ou publicação direta | responsável do calendário |
+| `agendado` | Data registrada em `calendario/AAAA-MM.md` | A peça entra no ar ou a data cai | quem publica no canal |
+| `publicado` | URL e data reais registradas | Só sai para arquivo | `inboundfy-catalogo` |
+| `arquivado` | Peça descartada, substituída ou fora de uso | Não sai | ninguém |
 
-# Registro de pipeline
+## Comandos
 
-## Resultado
+| Ação | Comando |
+| --- | --- |
+| Ver o hash atual | `inboundfy content digest <id>` |
+| Mudar estado | `inboundfy content status <id> <estado>` |
+| Aprovar | `inboundfy content status <id> aprovado --audit-report <arquivo>` |
+| Registrar data | `inboundfy calendario add <AAAA-MM-DD> <id>` |
+| Publicar | `inboundfy content status <id> publicado --url <url> --published-at <AAAA-MM-DD>` |
+| Agenda do mês | `inboundfy calendario list <AAAA-MM>` |
 
-{Conteúdo específico da etapa.}
+A opção global `--json` devolve o registro atualizado em JSON, útil para
+conferir os campos depois da passagem.
 
-## Pendências
+## Template do histórico da peça
 
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-pipeline
-grupo: capacidade
-entrada: acervo/0042-2026-09-14-pipeline/processado.md
-pedido: aplicar a etapa de pipeline e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
+Acrescente ao fim do `README.md` da peça, abaixo da seção `## Revisão`. O
+histórico entra no hash, por isso registre a linha **antes** de pedir a
+validação ou logo depois da publicação, nunca entre o relatório e a aprovação.
 
 ```markdown
----
-id: 0042
-skill: inboundfy-pipeline
-estado: aprovado
-entrada: acervo/0042-2026-09-14-pipeline/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
+## Histórico do pipeline
 
-# Registro de pipeline
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
+| Data | De | Para | Motivo | Relatório ou URL | Responsável |
+| --- | --- | --- | --- | --- | --- |
+| {{AAAA-MM-DD}} | {{estado}} | {{estado}} | {{motivo curto}} | {{caminho ou URL}} | {{pessoa ou papel}} |
 ```
 
-## Checklist ampliado
+## Template da resposta ao usuário
 
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
+```markdown
+**Peça {{id}}** ({{canal}}): {{estado anterior}} → {{estado novo}}
 
-## Erros comuns adicionais
+- **Comando:** `{{comando executado}}`
+- **Relatório:** {{caminho ou "não se aplica"}}
+- **SHA-256 aprovado:** {{8 primeiros caracteres ou "retirado"}}
+- **Calendário:** {{data e arquivo ou "sem data"}}
+- **Próxima ação:** {{verbo + objeto + responsável}}
+```
 
-- Executar **inboundfy-pipeline** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+## Exemplo
+
+Exemplo fictício. A Fiscalize Contabilidade Digital, de Campinas, escreveu o
+post `0007`, "Como emitir nota fiscal de MEI", para a persona-01 (MEI que
+vende serviços e recebe por Pix). O campo **Quem pode aprovar** de
+`.inboundfy/pipeline.md` diz `sócia responsável (Renata Ilha)`.
+
+### Rodada 1: revisão e reprovação
+
+1. A especialista termina o texto e registra A5. A skill executa
+   `inboundfy content status 0007 revisao`.
+2. A `inboundfy-validador-blog` reprova: o post afirma "emissão gratuita em
+   qualquer prefeitura", sem fonte em `ofertas.md` nem na pesquisa. Veredito
+   `reprovado`.
+3. Pedido de aprovação recusado pela skill antes do CLI: o relatório não tem
+   `**Veredito:** aprovado`. A peça continua `revisao` e volta à especialista.
+
+### Rodada 2: aprovação
+
+1. A especialista troca a frase por "a emissão pelo Portal do Empreendedor não
+   tem custo para o MEI", com fonte registrada.
+2. A validadora aprova e grava
+   `canais/blog/0007-2026-11-10-como-emitir-nota-fiscal-de-mei/README.auditoria.md`.
+3. A skill roda `inboundfy content digest 0007`, confere que o hash do
+   relatório é o mesmo e confirma com Renata que pode aprovar.
+4. Comando: `inboundfy content status 0007 aprovado --audit-report canais/blog/0007-2026-11-10-como-emitir-nota-fiscal-de-mei/README.auditoria.md`.
+
+### Ajuste tardio
+
+Na véspera do agendamento, o time pede para trocar o CTA de "fale no
+WhatsApp" para "agende pelo WhatsApp". A skill explica que a mudança altera o
+hash. Sequência: `revisao`, ajuste pela especialista, nova validação, novo
+digest, nova aprovação. Só então a peça volta a ser agendada.
+
+### Agendamento e publicação
+
+```bash
+inboundfy calendario add 2026-11-24 0007
+inboundfy content status 0007 agendado
+inboundfy content status 0007 publicado --url https://fiscalize.exemplo.com.br/blog/nota-fiscal-mei --published-at 2026-11-24
+```
+
+Resposta final ao usuário:
+
+```markdown
+**Peça 0007** (blog): agendado → publicado
+
+- **Comando:** `inboundfy content status 0007 publicado --url https://fiscalize.exemplo.com.br/blog/nota-fiscal-mei --published-at 2026-11-24`
+- **Relatório:** `canais/blog/0007-2026-11-10-como-emitir-nota-fiscal-de-mei/README.auditoria.md`
+- **SHA-256 aprovado:** `3be1c09a`
+- **Calendário:** 2026-11-24 em `calendario/2026-11.md`
+- **Próxima ação:** acionar `inboundfy-catalogo` no modo conferência e
+  sugerir a peça 0007 como link interno do post 0006.
+```
+
+## Checklist
+
+- [ ] O estado atual foi lido no índice e no frontmatter e os dois batem.
+- [ ] A passagem está na tabela de estados.
+- [ ] Na aprovação: relatório com as quatro linhas exatas e veredito
+  `aprovado`.
+- [ ] Na aprovação: digest rodado depois da última edição e igual ao
+  relatório.
+- [ ] A pessoa autorizada em **Quem pode aprovar** confirmou.
+- [ ] No agendamento: data confirmada por pessoa e linha no calendário.
+- [ ] Na publicação: URL HTTP ou HTTPS que abre a peça e data real
+  `AAAA-MM-DD`.
+- [ ] Frontmatter, índice e calendário mostram o mesmo estado.
+- [ ] Nenhum campo foi editado à mão para contornar recusa do CLI.
+- [ ] O usuário recebeu estado anterior, estado novo e próxima ação.
+
+## Erros comuns
+
+- **Editar o README depois do relatório "só para corrigir uma vírgula".**
+  Qualquer mudança fora dos cinco campos do pipeline troca o hash. Faça a
+  correção antes da validação.
+- **Escrever o histórico entre o relatório e a aprovação.** O histórico faz
+  parte do arquivo; registrá-lo nesse intervalo invalida o hash.
+- **Mudar `estado:` no frontmatter à mão.** Índice e calendário ficam com o
+  valor antigo e a peça parece aprovada sem relatório.
+- **Usar a data de agendamento como data de publicação.** Se a peça saiu
+  dois dias depois, registre o dia real; o tempo de ciclo depende disso.
+- **Voltar peça publicada para revisão.** A tabela não permite. Arquive e abra
+  nova peça com novo ID, citando a anterior.
+- **Agendar sem `calendario add`.** O estado fica `agendado` sem linha no
+  mês e ninguém vê a peça na agenda.
+- **Aprovar porque a validadora "disse que estava bom" na conversa.** Sem
+  arquivo de relatório não há aprovação.
 
 ## Guia específico do grupo
 
 Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
 
 Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-pipeline** para executar esta função: Gerencia os estados de conteúdo, confere passagens permitidas e vincula aprovação ao relatório e ao SHA-256 atual antes de agendar ou publicar.
-
-O grupo **capacidade** trabalha com estes campos mínimos:
-
-- **objetivo:** preencher com dado ligado ao pedido.
-- **entrada:** preencher com dado ligado ao pedido.
-- **contexto:** preencher com dado ligado ao pedido.
-- **resultado:** preencher com dado ligado ao pedido.
-- **próxima ação:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-pipeline
-grupo: capacidade
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/context/empresa.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-pipeline
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **capacidade** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `README.md`
-- `CONTEXTO.md`
-- `SKILL-AUTORIA.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+No pipeline, o objetivo é a passagem pedida, a entrada é o ID com os dados
+exigidos pelo destino, o contexto é `.inboundfy/pipeline.md`, o resultado é o
+estado sincronizado nos três lugares e a próxima ação aponta para a
+validadora, a produção ou o catálogo.

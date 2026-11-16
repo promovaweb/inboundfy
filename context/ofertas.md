@@ -1,6 +1,6 @@
 <!--
 Preenchido por inboundfy-contexto-oferta. Fonte única de verdade para preço e
-condição comercial — nenhuma skill de canal deve inventar valor.
+condição comercial: nenhuma skill de canal deve inventar valor.
 -->
 
 # Ofertas

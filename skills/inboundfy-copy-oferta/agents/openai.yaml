@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Copy Oferta"
-  short_description: "Executa copy oferta no Inboundfy"
-  default_prompt: "Use $inboundfy-copy-oferta para executar copy oferta com as fontes do projeto."
+  display_name: "Inboundfy: Oferta"
+  short_description: "Monta ofertas com escopo, garantia, bônus e preço"
+  default_prompt: "Use $inboundfy-copy-oferta para diagnosticar esta oferta e montar a ficha com escopo, garantia, bônus, condição e objeções respondidas."

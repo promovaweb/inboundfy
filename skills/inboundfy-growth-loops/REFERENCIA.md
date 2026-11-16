@@ -1,223 +1,112 @@
-# Referência de Loops de crescimento
+# Referência de loops de crescimento
 
-## Template
+## Método e escolhas
 
-```markdown
-# Loops de crescimento
+Um funil termina na conversão. Um ciclo usa parte da saída para gerar nova entrada: quem recebe valor convida outra pessoa, publica um artefato ou melhora o acervo que atrai novos leitores. A rotina recorrente apenas mantém esse mecanismo. Rodar um relatório semanal, sozinho, não cria crescimento.
 
-- **ID:** {{id}}
-- **Objetivo:** {{objetivo}}
-- **Persona:** {{persona}}
-- **Canal:** {{canal}}
-- **Acervo:** {{acervo}}
-- **Fonte principal:** {{fonte}}
-- **Próxima ação:** {{cta}}
+| Mecanismo | Retorno esperado | Pré-condição | Limite a observar |
+| --- | --- | --- | --- |
+| Indicação | Cliente traz novo usuário | Valor já percebido e convite útil | Convites sem ativação |
+| Conteúdo do uso | Artefato público atrai leitor | Compartilhamento desejado e autorizado | Exposição indevida de dados |
+| Conhecimento comunitário | Resposta vira recurso reutilizável | Perguntas recorrentes e edição | Trabalho concentrado na equipe |
+| Reinvestimento | Margem financia próxima aquisição | Margem e conversão medidas | Receita confundida com caixa livre |
+| Rotina de manutenção | Correção preserva o mecanismo | Sinal confiável e responsável | Alertas repetidos sem ação |
 
-## Plano
+Leia [o procedimento de loops de crescimento](references/ciclos-estado-e-parada.md) no passo 2 do fluxo, antes de preencher o plano. Ele detalha execução, medição e tratamento das exceções.
 
-{{plano}}
+## Template de trabalho
 
-## Pendências
+Copie o envelope para o pacote do projeto. Preencha também a tabela específica abaixo.
 
-{{pendencias}}
+```yaml
+id: "{{id}}"
+skill: inboundfy-growth-loops
+grupo: growth
+tipo: plano-loops
+estado: rascunho
+entrada: ["{{acervo ou pedido}}"]
+brief: "{{caminho do brief}}"
+persona: "{{id da persona}}"
+canal: "{{canal ativo}}"
+oferta: "{{oferta confirmada}}"
+fontes: ["{{contexto}}", "{{fonte do tema}}"]
+responsavel: "{{pessoa}}"
+janela: "{{início e fim}}"
+orcamento_reais: "{{valor aprovado}}"
+proxima_skill: "{{skill e ação solicitada}}"
+pendencias: ["{{pergunta ou nenhuma}}"]
 ```
 
-## Guia específico
+```yaml
+mecanismo:
+  entrada: "{{unidade elegível}}"
+  acao: "{{ação da pessoa}}"
+  valor: "{{benefício}}"
+  saida: "{{artefato ou convite}}"
+  retorno: "{{evento que cria nova entrada}}"
+rotina:
+  consulta: "{{frequência e fuso}}"
+  age_quando: "{{condição mensurável}}"
+  fonte: "{{arquivo ou sistema}}"
+  chave_unica: "{{entidade + evento + versão}}"
+  intervalo_minimo: "{{tempo}}"
+  limite: "{{ações ou R$ por período}}"
+  parada: "{{condição e responsável}}"
+  em_erro: "{{registrar e encaminhar}}"
+```
 
-Descreva gatilho, ação da pessoa, valor criado, saída mensurável, retorno ao ciclo e peça necessária. Um loop só existe quando a saída alimenta nova entrada.
+## Exemplo completo brasileiro fictício
 
-## Exemplo ilustrativo
+Todos os nomes, documentos e números deste exemplo são fictícios. Resultados simulados servem para demonstrar a conferência, sem prometer desempenho.
 
-Uma empresa de software pode usar este modelo para organizar uma ação de teste com uma persona específica, ligar cada mensagem a um acervo e registrar a página de destino sem afirmar resultados ainda não medidos.
+A fictícia **Caderno da Turma**, de Fortaleza, oferece modelos para escolas pequenas. O plano `loop-019` usa `acervo/019-planejamento/processado.md`, persona `coordenadora-escolar` e brief `conteudo/escolas/04-briefs/loop-019.md`. Um modelo público e sem dados de alunos pode levar novas coordenadoras ao acervo. A pessoa escolhe se deseja compartilhar; arquivos privados não entram no mecanismo.
+
+No piloto fictício, 100 coordenadoras ativas geram 40 compartilhamentos. Cada compartilhamento produz três visitas, em média. Das 120 visitas, 24 pessoas concluem o primeiro modelo. Retorno por pessoa ativa = 0,4 × 3 × 0,2 = 0,24 nova pessoa ativada por ciclo de 14 dias. Como o retorno fica abaixo de um, esse mecanismo não sustenta crescimento sozinho. A equipe mantém outras fontes e investiga a perda entre visita e primeiro uso.
+
+A rotina consulta o relatório toda segunda, às 9h de Brasília. Só prepara melhoria quando há pelo menos 100 visitas na coorte fechada e queda de conclusão superior ao limite interno escolhido no plano. A chave é `modelo + coorte + versão`. Há uma proposta por modelo a cada 14 dias; publicação depende da autorização do projeto. Dados atrasados interrompem análise. Duas falhas consecutivas suspendem a rotina até revisão da responsável fictícia Mila.
+
+Custo do piloto: R$ 1.200, ou R$ 50 por nova ativação observada. Estado `revisao`. Mila entrega a hipótese de simplificar instruções a `inboundfy-growth-onboarding` e mantém a consulta sem criar novas ações sobre a mesma coorte.
+
+## Métricas e leitura do resultado
+
+- Coeficiente de retorno = proporção que compartilha × novas visitas por compartilhamento × ativação dessas visitas.
+- Tempo de ciclo = intervalo entre primeira ação e nova entrada ativada. Compare coortes já maduras.
+- Contribuição líquida = margem das novas entradas − incentivo − operação − distribuição, na janela declarada.
+- Saúde da rotina: execuções completas / execuções previstas, duplicatas evitadas, falhas de fonte e ações realmente concluídas.
+- Coeficiente acima de um não garante permanência: saturação, sobreposição de público e abandono precisam entrar na leitura.
+
+Use a mediana histórica de ações comparáveis do próprio projeto como referência. Separe canal, formato, público e período. Se faltar histórico, trate a primeira rodada como linha inicial. Números dos exemplos são hipóteses de planejamento ou resultados simulados, nunca médias de mercado. Para adotar uma referência externa, registre fonte primária, data, amostra e método antes de comparar.
 
 ## Checklist
 
-- [ ] ID e objetivo estão presentes.
-- [ ] Persona, canal e acervo estão vinculados.
-- [ ] Fontes e pendências estão localizadas.
-- [ ] Voz, proibições e dicionário foram conferidos.
-- [ ] Próxima ação e estado do pipeline estão claros.
+- [ ] Uma saída retorna como nova entrada mensurável.
+- [ ] Ciclo e rotina operacional estão separados.
+- [ ] Fonte, chave única e intervalo mínimo estão preenchidos.
+- [ ] Há limite de ação, condição de parada e responsável.
+- [ ] Retomada após erro foi simulada.
+- [ ] Fontes, ID, brief, persona e responsável acompanham o plano.
+- [ ] Pendências têm responsável e data de retorno.
+- [ ] O handoff inclui arquivos, estado e ação solicitada.
 
 ## Erros comuns
 
-- Começar pelo formato antes de confirmar objetivo, público e fonte.
-- Usar promessa, preço, número ou nome sem registro local.
-- Aplicar a mesma mensagem a personas com contextos diferentes.
-- Salvar o resultado sem caminho, ID ou alcance da escolha.
-
-## Relação com inboundfy-growth-loops
-
-Use este modelo como roteiro mínimo e acrescente apenas campos pedidos pelo projeto. O arquivo final deve ficar ligado ao acervo, à peça e ao calendário quando houver data.
+- Chamar sequência de emails de loop sem retorno: identifique o mecanismo ou renomeie como rotina.
+- Agir a cada consulta: separe frequência de leitura da condição de ação.
+- Repetir envio depois de timeout: confira confirmação antes de tentar novamente.
+- Projetar crescimento infinito: considere público repetido e capacidade.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-growth-loops**, do grupo
-**growth**. Leia os detalhes compartilhados conforme a etapa atual:
+A skill `inboundfy-growth-loops` pertence ao grupo **growth**. Aplique os contratos conforme o trabalho avança:
 
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de loops dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-growth-loops
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de loops
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-growth-loops
-grupo: growth
-entrada: acervo/0042-2026-09-14-loops/processado.md
-pedido: aplicar a etapa de loops e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-growth-loops
-estado: aprovado
-entrada: acervo/0042-2026-09-14-loops/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de loops
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-growth-loops** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): confirme instalação, contexto e origem dos dados.
+- [Contrato de artefato](../_shared/02-contrato-de-artefato.md): registre ID, estado e relações.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): registre escolhas e alcance.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): confira o artefato inteiro após correções.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): mantenha persona, voz, dicionário e proibições.
 
 ## Guia específico do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
+A unidade é um mecanismo com ciclo mensurável e operação limitada. A skill coordena capacidades existentes e devolve hipóteses e planos, sem assumir autorização para publicar ou gastar.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-growth-loops** para executar esta função: Desenha ciclos de aquisição, ativação, conteúdo, indicação e retorno com entradas, ações, saídas e sinais de continuidade.
-
-O grupo **growth** trabalha com estes campos mínimos:
-
-- **objetivo:** preencher com dado ligado ao pedido.
-- **público:** preencher com dado ligado ao pedido.
-- **canal:** preencher com dado ligado ao pedido.
-- **oferta:** preencher com dado ligado ao pedido.
-- **próxima ação:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-growth-loops
-grupo: growth
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/estrategia.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-growth-loops
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/estrategia.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **growth** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESTRATEGIA.md`
-- `CONTEXTO.md`
-- `docs/method/05-artefatos-e-estados.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Registre objetivo, público, canal, oferta e próxima ação no plano. Encaminhe produção para `inboundfy-planejamento` quando houver pacote. Encaminhe peça avulsa com brief aprovado à especialista correspondente. Não preencha arquivos de contexto com fatos simulados deste manual.

@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Especialista Webinar"
-  short_description: "Executa especialista webinar no Inboundfy"
-  default_prompt: "Use $inboundfy-especialista-webinar para executar especialista webinar com as fontes do projeto."
+  display_name: "Inboundfy: Redação de Webinar"
+  short_description: "Produz Webinar com fontes e revisão pareada."
+  default_prompt: "Use $inboundfy-especialista-webinar para produzir a peça de Webinar com o brief aprovado, consultar os modelos do canal e encaminhar o conjunto à validadora pareada."

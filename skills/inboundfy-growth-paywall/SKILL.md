@@ -1,16 +1,13 @@
 ---
 name: inboundfy-growth-paywall
-description: Estrutura mensagens e experiências de acesso pago com clareza sobre valor, limites, preço, alternativa e próxima ação.
+description: Planeja telas e estados de acesso pago com limites, preço, pagamento pendente e retorno à tarefa após upgrade. Use quando o pedido falar em paywall, fim de trial, recurso pago, limite atingido ou conversão dentro do produto.
 ---
 
-# Paywall e acesso
+# Paywall e passagem ao acesso pago
 
-Use esta skill como capacidade especializada do Inboundfy. Ela organiza a tarefa e devolve material pronto para a orquestradora, sem substituir o setup, a voz, a persona ou a validação do canal.
+Use para limite de uso, recurso pago, fim de trial e troca de plano dentro do produto. Entregue brief de tela, regras de exibição e estados de acesso. Preço e embalagem pertencem a `inboundfy-growth-pricing`; página pública de planos segue para `inboundfy-growth-cro`.
 
 ## Arquitetura de execução
-
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
@@ -18,52 +15,63 @@ específica desta pasta.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
 
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **growth**.
-
 ## Contexto exigido
 
-Se a configuração estiver incompleta, acione `inboundfy-setup`. Consulte [REFERENCIA.md](REFERENCIA.md), `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`, `.inboundfy/context/marca-voz.md`, `.inboundfy/context/publico.md`, `.inboundfy/context/proibicoes.md`, `.inboundfy/context/glossario.md`, `.inboundfy/pipeline.md`, o acervo relacionado e `.inboundfy/framework/`.
+Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md`.
+Se faltar uma sentinela, apresente: “O setup do Inboundfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
+arquivos de apoio.” Encerre sem criar artefatos até o reparo.
 
-Leia também `.inboundfy/fontes-projeto.md`, as bases editoriais relacionadas e os documentos públicos citados. Antes de entregar copy, consulte `inboundfy-anti-slop` e `inboundfy-copy-edicao`.
+Leia `AGENTS.md`, `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`,
+`.inboundfy/context/publico.md`, `.inboundfy/context/ofertas.md`,
+`.inboundfy/context/produtos.md`, `.inboundfy/context/servicos.md` quando aplicável,
+`.inboundfy/context/canais.md`, `.inboundfy/context/marca-voz.md`,
+`.inboundfy/context/glossario.md`, `.inboundfy/context/proibicoes.md`,
+`.inboundfy/context/estruturas-proibidas.md` e aprendizados confirmados.
+Consulte o acervo relacionado, as fontes relevantes registradas no projeto,
+`.inboundfy/pipeline.md` e os documentos do método em `.inboundfy/framework/`.
+Se faltar dado comercial, encaminhe para `inboundfy-contexto-oferta` sem preenchê-lo
+por suposição. Leia `ESCRITA.md` antes de redigir texto público.
 
 ## Entrada esperada
 
-Receba um objetivo, um ou mais IDs de acervo, a persona, o canal, a oferta ou o fluxo que precisa ser planejado. Separe fatos confirmados, hipótese de trabalho e pergunta aberta.
+Receba plano atual, recurso solicitado, limites aprovados, situação do trial,
+valor já experimentado, oferta e condições de cobrança, canal web ou aplicativo,
+papéis de compra e uso, dados de conversão e dúvidas frequentes.
+Aceite a tabela de `inboundfy-growth-pricing` após confirmação comercial. Hipóteses ainda não aprovadas permanecem no estudo de preço. Informe o que acontece com dados e acesso ao recusar ou expirar o prazo.
 
 ## Fluxo
 
-1. Leia [REFERENCIA.md](REFERENCIA.md) e confirme a intenção, o público, o canal e o resultado solicitado.
-2. Consulte voz, persona, proibições e dicionário antes de propor mensagem, segmento, preço, promessa ou CTA.
-3. Relacione cada afirmação ao acervo, à base editorial, à página canônica ou à pesquisa salva no item.
-4. Desenvolva um brief de paywall com proposta, texto, estados de acesso e CTA.
-5. Revise o material com `inboundfy-anti-slop`, `inboundfy-copy-edicao` e a validação específica do canal quando houver copy pública.
-6. Registre caminho, ID, fontes, alcance da regra e pendências; peça confirmação antes de alterar uma configuração global.
+1. Leia [REFERENCIA.md](REFERENCIA.md). Identifique motivo comercial real, população elegível e tarefa que a pessoa tentava concluir.
+2. Confronte o valor já entregue com o pedido de pagamento. Se o usuário ainda não chegou ao marco necessário, encaminhe a lacuna a `inboundfy-growth-onboarding`.
+3. Consulte [estados de acesso e cobrança](references/estados-de-acesso-e-cobranca.md) para especificar aviso, limite, comparação de plano, recusa, checkout, pagamento pendente, confirmação e retorno à tarefa.
+4. Escreva título, benefício pertinente, limites, preço total e período, CTA de compra e alternativa. Confirme cada afirmação em oferta ou produto.
+5. Registre elegibilidade, frequência, supressão após recusa e tratamento de quem não pode contratar pela conta. Preserve trabalho já criado.
+6. Peça a `inboundfy-rastreamento-conversao` eventos de exposição, pagamento confirmado e acesso liberado com versão da tela, usando `.inboundfy/context/integracoes.md`. Hipóteses seguem para `inboundfy-experimentacao`.
+7. Revise copy com `inboundfy-copy-editor` e `inboundfy-anti-slop`. Entregue brief à execução e comunicação pertinente à especialista do canal.
 
 ## Saída
 
-Um brief de paywall com proposta, texto, estados de acesso e CTA. O material deve manter IDs, links relativos, fontes, persona, canal, estado e próxima ação.
+Salve brief Markdown no diretório de trabalho do projeto com ID, grupo growth,
+estado, fontes, persona, canal, oferta e próxima ação. Inclua tabela de estados,
+texto da tela, condição de exibição, alternativas, mensagens de erro, confirmação
+e métricas posteriores. Peças do pacote mantêm `brief` e validação específica.
+O documento planeja a experiência; não configura cobrança automaticamente.
 
 ## Validação
 
-- A finalidade e o público estão explícitos.
-- Toda afirmação comercial possui fonte local ou marcação de confirmação.
-- Voz, persona, proibições e dicionário foram aplicados.
-- O formato respeita o canal, o pipeline e o template correspondente.
-- Pendências ficaram registradas sem preenchimento inventado.
+- O limite e o recurso pago correspondem ao plano aprovado.
+- A tela explica valor, preço total, período, renovação e alternativa.
+- Recusa encerra a exibição conforme a regra registrada.
+- Compra confirmada e liberação de acesso possuem confirmação própria.
+- Pix gerado ou checkout aberto não contam como pagamento.
+- Dados, rascunho e tarefa permanecem coerentes após fechar ou voltar.
+- Métricas incluem reembolso, uso posterior e cancelamento no horizonte definido.
 
 ## Responsabilidade do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** growth
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+Transforme oferta aprovada e tarefa interrompida em brief de acesso pago para produto, cobrança e comunicação. Registre grupo `growth`, entrada, transformação, saída, próxima skill, estado e pendências no handoff.
 
 ## Idempotência
 
-Atualize o mesmo arquivo ou brief quando o ID já existir. Preserve texto aprovado, histórico, fontes e escolhas anteriores; abra uma nova versão apenas após pedido explícito.
+Mantenha ID, versão da tela e versão da oferta. Preserve a opção já escolhida e a tarefa pendente ao retomar checkout. Não repita convite após compra confirmada. Se preço ou limite mudar, registre o pedido e revalide estados, copy e aferição antes de substituir a versão aprovada.

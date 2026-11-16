@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Validador ebook-imagem"
-  short_description: "Valida o asset ebook-imagem antes da entrega"
-  default_prompt: "Use $inboundfy-validador-ebook-imagem para validar este asset e devolver correções à skill produtora quando necessário."
+  display_name: "Inboundfy: Revisão de capa de ebook"
+  short_description: "Confere capa de ebook e OpenGraph"
+  default_prompt: "Use $inboundfy-validador-ebook-imagem para revisar o conjunto completo de $inboundfy-especialista-ebook-imagem, aplicar os oito itens espelhados e devolver o relatório com achados, rodada e digest atual."

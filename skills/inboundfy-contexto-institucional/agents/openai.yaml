@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Contexto Institucional"
-  short_description: "Mantém empresa, pessoas, contatos, links e glossário"
-  default_prompt: "Use $inboundfy-contexto-institucional para atualizar o domínio institucional solicitado com a fonte do projeto."
+  display_name: "Inboundfy: Contexto institucional"
+  short_description: "Empresa, pessoas, contatos, links e grafias"
+  default_prompt: "Use $inboundfy-contexto-institucional para registrar ou corrigir um dado confirmado da empresa, de uma pessoa, de um endereço, de um link oficial ou da grafia de um nome."

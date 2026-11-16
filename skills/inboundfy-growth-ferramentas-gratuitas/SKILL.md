@@ -1,16 +1,13 @@
 ---
 name: inboundfy-growth-ferramentas-gratuitas
-description: Estrutura uma ferramenta gratuita de aquisição com utilidade, escopo, entrada, resultado, CTA e caminho de relacionamento.
+description: Planeja calculadoras, geradores e diagnósticos gratuitos com especificação, captura e medição de aquisição. Use quando o pedido falar em ferramenta gratuita, calculadora online, gerador, teste interativo ou recurso útil para atrair compradores.
 ---
 
-# Ferramentas gratuitas
+# Ferramentas gratuitas de aquisição
 
-Use esta skill como capacidade especializada do Inboundfy. Ela organiza a tarefa e devolve material pronto para a orquestradora, sem substituir o setup, a voz, a persona ou a validação do canal.
+Transforme uma tarefa anterior à compra em ferramenta útil: cálculo, geração, teste ou diagnóstico. Esta skill entrega o brief e a operação de aquisição. A implementação fica com a equipe executora; recursos para download seguem para `inboundfy-growth-lead-magnet`.
 
 ## Arquitetura de execução
-
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
@@ -18,52 +15,62 @@ específica desta pasta.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
 
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **growth**.
-
 ## Contexto exigido
 
-Se a configuração estiver incompleta, acione `inboundfy-setup`. Consulte [REFERENCIA.md](REFERENCIA.md), `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`, `.inboundfy/context/marca-voz.md`, `.inboundfy/context/publico.md`, `.inboundfy/context/proibicoes.md`, `.inboundfy/context/glossario.md`, `.inboundfy/pipeline.md`, o acervo relacionado e `.inboundfy/framework/`.
+Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md`.
+Se faltar uma sentinela, apresente: “O setup do Inboundfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
+arquivos de apoio.” Encerre sem criar artefatos até o reparo.
 
-Leia também `.inboundfy/fontes-projeto.md`, as bases editoriais relacionadas e os documentos públicos citados. Antes de entregar copy, consulte `inboundfy-anti-slop` e `inboundfy-copy-edicao`.
+Leia `AGENTS.md`, `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`,
+`.inboundfy/context/publico.md`, `.inboundfy/context/ofertas.md`,
+`.inboundfy/context/produtos.md`, `.inboundfy/context/servicos.md` quando aplicável,
+`.inboundfy/context/canais.md`, `.inboundfy/context/marca-voz.md`,
+`.inboundfy/context/glossario.md`, `.inboundfy/context/proibicoes.md`,
+`.inboundfy/context/estruturas-proibidas.md` e aprendizados confirmados.
+Consulte o acervo relacionado, as fontes relevantes registradas no projeto,
+`.inboundfy/pipeline.md` e os documentos do método em `.inboundfy/framework/`.
+Se faltar dado comercial, encaminhe para `inboundfy-contexto-oferta` sem preenchê-lo
+por suposição. Leia `ESCRITA.md` antes de redigir texto público.
 
 ## Entrada esperada
 
-Receba um objetivo, um ou mais IDs de acervo, a persona, o canal, a oferta ou o fluxo que precisa ser planejado. Separe fatos confirmados, hipótese de trabalho e pergunta aberta.
+Receba problema recorrente, público comprador, produto pago relacionado, fontes
+das regras, dados de demanda, prazo, orçamento de construção e manutenção.
+Informe destino do resultado, necessidade de API, dados recebidos e capacidade
+de suporte. Sem demanda conhecida, entregue plano de piloto antes de estimar receita.
 
 ## Fluxo
 
-1. Leia [REFERENCIA.md](REFERENCIA.md) e confirme a intenção, o público, o canal e o resultado solicitado.
-2. Consulte voz, persona, proibições e dicionário antes de propor mensagem, segmento, preço, promessa ou CTA.
-3. Relacione cada afirmação ao acervo, à base editorial, à página canônica ou à pesquisa salva no item.
-4. Desenvolva um brief de ferramenta gratuita e sua sequência de distribuição.
-5. Revise o material com `inboundfy-anti-slop`, `inboundfy-copy-edicao` e a validação específica do canal quando houver copy pública.
-6. Registre caminho, ID, fontes, alcance da regra e pendências; peça confirmação antes de alterar uma configuração global.
+1. Leia [REFERENCIA.md](REFERENCIA.md). Registre tarefa, alternativa manual, situação de uso e motivo para continuar no produto pago.
+2. Compare tipos de ferramenta e formas de construção. Selecione uma tarefa e descreva o que ficará fora da primeira entrega.
+3. Consulte [especificação e operação](references/especificacao-e-operacao.md) para definir entrada, unidade, fórmula, saída, erros, privacidade e casos de aceite.
+4. Projete utilidade antes da captura. Informe o que será aberto, o que exige contato e como exportar sem expor dados.
+5. Calcule cenários de custo e aquisição com premissas explícitas. Planeje página, conteúdo de apoio e distribuição nos canais ativos.
+6. Encaminhe a `inboundfy-growth-cro` URL ou HTML, captura mobile, ação, persona e origem do tráfego; se a página ainda não existe, registre a auditoria como futura. Leve tema ou URL, região e objetivo a `inboundfy-seo`. Prepare brief de relacionamento para `inboundfy-especialista-email` com objetivo, etapa, público, ângulo, fontes e CTA. Eventos e testes de disparo seguem para `inboundfy-rastreamento-conversao`, com `.inboundfy/context/integracoes.md`.
+7. Revise promessa e exemplos com `inboundfy-copy-editor` e `inboundfy-anti-slop`. Entregue brief implementável, proprietário e rotina de manutenção.
 
 ## Saída
 
-Um brief de ferramenta gratuita e sua sequência de distribuição. O material deve manter IDs, links relativos, fontes, persona, canal, estado e próxima ação.
+Salve brief Markdown no diretório do acervo ou de trabalho definido pelo projeto,
+com ID, grupo growth, estado, objetivo, persona, canal, oferta, fontes, próximos
+responsáveis e pendências. Inclua contrato da ferramenta, casos de teste,
+cenários econômicos, plano de distribuição e instrução de leitura do resultado.
+A skill não declara ferramenta publicada sem implementação e conferência reais.
 
 ## Validação
 
-- A finalidade e o público estão explícitos.
-- Toda afirmação comercial possui fonte local ou marcação de confirmação.
-- Voz, persona, proibições e dicionário foram aplicados.
-- O formato respeita o canal, o pipeline e o template correspondente.
-- Pendências ficaram registradas sem preenchimento inventado.
+- A tarefa funciona sem compra e entrega resultado compreensível.
+- Toda regra tem fonte, versão, unidade e limite de aplicação.
+- O brief cobre zero, valor negativo, decimal brasileiro, indisponibilidade e repetição.
+- A captura informa finalidade e não esconde o resultado prometido.
+- Custos incluem manutenção, distribuição, APIs e suporte.
+- O plano distingue uso, lead qualificado e cliente, sem atribuir receita a todo visitante.
 
 ## Responsabilidade do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** growth
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+Grupo **growth**. Registre entrada, transformação executada, arquivo de saída, estado, próxima skill e pendências no pacote de handoff.
 
 ## Idempotência
 
-Atualize o mesmo arquivo ou brief quando o ID já existir. Preserve texto aprovado, histórico, fontes e escolhas anteriores; abra uma nova versão apenas após pedido explícito.
+Mantenha ID e versão do contrato de cálculo. Se fórmula, fonte ou unidade mudar, registre os resultados afetados e repita os casos de aceite. Preserve brief aprovado e histórico de hipóteses; não recrie ferramenta já validada sem pedido.

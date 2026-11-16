@@ -1,9 +1,6 @@
 ---
 name: inboundfy-especialista-podcast
-description: >
-  Escreve pauta e shownotes de episódio de podcast a partir de um brief
-  aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de
-  context/marca-voz.md.
+description: Escreve pautas de gravação e shownotes de podcast com blocos, perguntas, participantes e fontes a partir de brief aprovado. Use quando o pedido for preparar um episódio, organizar uma entrevista ou redigir notas da gravação final para revisão.
 ---
 
 # Inboundfy Podcast Redator
@@ -24,17 +21,11 @@ preflight, leia o catalogo e os Markdown relevantes para a tarefa.
 
 ## Arquitetura de execução
 
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
-
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
 - [Interação e handoff](../_shared/03-interacao-e-handoff.md): conduza escolhas e entregue o pacote seguinte.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
-
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **especialista**.
 
 ## Contexto exigido
 
@@ -46,32 +37,19 @@ artefato. O grupo desta skill é **especialista**.
 
 ## Entrada esperada
 
-Um brief com: tema do episódio, apresentador(es), convidado (se houver),
-ativos de apoio e objetivo do episódio.
+Brief aprovado ou avulso com tema, apresentadores, convidado quando houver, persona, objetivo e ativos. Informe fase, duração prevista e, para shownotes, áudio final ou transcrição correspondente à edição final.
 
 ## Fluxo
 
-1. Leia o brief e confirme apresentador(es)/convidado em `context/pessoas.md`.
-2. Escreva a pauta: blocos de conversa em ordem lógica, com o objetivo de
-   cada bloco e perguntas-guia; não um roteiro fechado palavra por palavra,
-   já que o formato pressupõe fala natural. Use o template de pauta de
-   `REFERENCIA.md`.
-3. Após a gravação (quando o brief indicar que já existe áudio/transcrição),
-   escreva os shownotes: resumo do episódio, principais pontos abordados,
-   e links citados durante a conversa, cada um confirmado contra
-   `context/ferramentas.md` ou `context/produtos.md` quando aplicável.
-4. Rode `inboundfy-copy-editor` nos shownotes (texto de prosa); ele cruza `context/proibicoes.md` e `context/estruturas-proibidas.md`; e corrija trechos
-   os achados verificáveis e repita a leitura integral. A pauta, por ser guia
-   interno de blocos, não passa pela mesma auditoria de prosa pública.
-5. Salve com frontmatter incluindo `apresentadores`, `convidado` (se
-   houver), `data` e `brief` quando fizer parte de um pacote.
-6. Encaminhe para `inboundfy-planejamento`.
-
-## Encaminhamento obrigatório
-
-Antes de considerar pauta e shownotes prontos, acione
-`inboundfy-validador-podcast`. Em caso de reprovação, aplique as correções do
-relatório e reenvie o conjunto inteiro até a aprovação.
+1. Leia a entrada completa, `ESCRITA.md` e os contextos exigidos. Resolva lacunas obrigatórias com o planejamento ou a manutenção de contexto indicada por `CONTEXTO.md` antes de redigir. Consulte [o diagnóstico e os parâmetros de podcast](REFERENCIA.md#diagnóstico-da-peça).
+2. Confirme fase, participantes e nomes em `context/pessoas.md`. Para preparação, monte blocos com objetivo, perguntas abertas, transições e duração prevista, usando [o método e o template de pauta](REFERENCIA.md#método-de-produção). Evite roteiro fechado de fala.
+3. Para shownotes, leia a gravação final ou transcrição correspondente. Use [o modelo de conferência após edição](REFERENCIA.md#modelos-por-situação). Não use a pauta como comprovação de fala nem transforme tempos previstos em capítulos observados.
+4. Escreva resumo, pontos abordados e links efetivamente citados, conferidos em `context/ferramentas.md` ou `context/produtos.md` quando aplicável. Sem áudio, não invente tempos. Registre a versão final usada.
+5. Execute `inboundfy-copy-editor` nos shownotes, trate os achados e releia o conjunto. A pauta interna continua sujeita a fontes e vetos, mas não recebe a mesma auditoria de prosa pública.
+6. Salve no caminho definido em [Saída](#saída), com [o template da peça](REFERENCIA.md#template-da-peça), envelope compartilhado e `brief` em pacote. Na montagem, leia [o exemplo completo](references/exemplo-completo.md); preserve os parâmetros aprovados.
+7. Execute A5 com `inboundfy-anti-slop` e confira os 11 itens de [conferência do par](REFERENCIA.md#checklist-numerado-do-par). Entregue a `inboundfy-validador-podcast` candidata, ID, caminho, brief ou entrada avulsa, persona, fontes, pendências e registros de revisão editorial e A5.
+8. Se receber reprovação de `inboundfy-validador-podcast`, leia o relatório, corrija o alcance solicitado e repita revisão editorial, A5 e leitura integral. Reenvie à mesma validadora até aprovação da versão atual.
+9. Retorne a `inboundfy-planejamento` com pauta e/ou shownotes, fase, fontes, relatório aprovado e digest atual. Áudio e edição seguem o projeto.
 
 ## Saída
 
@@ -88,15 +66,7 @@ salvos no caminho de `context/canais.md` para o canal podcast.
 
 ## Responsabilidade do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** especialista
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+O grupo `especialista` responde pela redação e pelas correções de pautas e shownotes. Preserve o brief, o ID, a origem factual e o estado real da candidata; encaminhe somente a versão aprovada. O [guia do grupo](REFERENCIA.md#guia-específico-do-grupo) define o registro da entrega.
 
 ## Idempotência
 

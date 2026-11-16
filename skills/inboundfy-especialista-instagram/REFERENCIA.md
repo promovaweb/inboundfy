@@ -1,242 +1,112 @@
-# REFERENCIA.md; inboundfy-especialista-instagram
+# Manual de Instagram
 
-Material de apoio para legenda de post, carrossel textual e roteiro de
-vídeo curto.
+A peça precisa resolver uma tarefa de leitura ou de fala dentro do formato escolhido. Legenda, carrossel e vídeo curto têm unidades diferentes; não corte um artigo em slides nem use o mesmo texto como fala sem reler em voz alta.
 
-## Template de carrossel (PAS, slide a slide)
+## Diagnóstico antes da redação
 
-```yaml
----
-formato: carrossel
-brief: acervo/<id>-<data>-<slug>/base-editorial.md
----
+1. O brief pede post, carrossel ou video-curto? Qual ação única fecha a peça?
+2. Qual informação a pessoa consegue usar depois de salvar o post?
+3. O gancho promete uma quantidade, um procedimento ou uma explicação? O corpo entrega essa promessa inteira?
+4. O CTA depende de link na bio, resposta manual ou automação? O destino e a operação já estão confirmados?
+5. Existe imagem, demonstração ou apresentador autorizado? O texto ainda faz sentido com som desligado?
 
-Slide 1: <gancho; problema nomeado, poucas palavras>
-Slide 2: <aprofunda o problema>
-Slide 3: <agita a consequência concreta>
-Slide 4: <consequência, segunda camada, se precisar>
-Slide 5: <solução>
-Slide 6: <CTA>
-```
+## Formato e orçamento de texto
 
-## Fórmulas de gancho por formato
+| Formato | Faixa editorial | Organização do arquivo |
+| --- | --- | --- |
+| post | Legenda de 300 a 1.200 caracteres | README com bloco copiável, CTA final, hashtags opcionais e alt text |
+| carrossel | 5 a 8 slides; capa de 4 a 12 palavras; miolo de 20 a 45 palavras por slide | README como índice e legenda; `slide-01.md` até o último slide, cada qual com texto e alt text |
+| video-curto | 20 a 60 segundos; estimativa inicial de 110 a 150 palavras por minuto | README com intervalos, fala, texto na tela, legenda e CTA final |
 
-- **Legenda de post**: "Sua recepção perde X minutos por dia com isso; e
-  ninguém percebe." (dado + problema nomeado).
-- **Carrossel (slide 1)**: pergunta ou afirmação curta que nomeia a dor sem
-  explicar ainda; "O motivo real da sua fila de espera não é falta de
-  gente" (arrasta para o slide 2).
-- **Vídeo curto (fala nos 3 primeiros segundos)**: "Se sua clínica ainda usa
-  caderno pra marcar consulta, isso vai acontecer com você"; gancho direto,
-  sem introdução.
+Conte espaços, links e hashtags no bloco copiável da legenda. As faixas não autorizam ultrapassar o campo da conta. Use até três hashtags pertinentes como ponto de partida editorial; não atribua a elas uma garantia de distribuição.
 
-## Exemplo completo; carrossel (fictício)
+O README mantém `formato: post|carrossel|video-curto`, `brief`, persona, fontes e envelope compartilhado. Os arquivos de slide herdam o vínculo pelo índice, com ID, ordem e caminho do README. Use a proporção aprovada para a arte; o texto desta skill não exporta imagens.
 
-```text
-Slide 1: A fila de espera da sua clínica não é sobre falta de gente.
+As faixas são escolhas editoriais, não limites universais da plataforma nem
+promessas de alcance. O brief aprovado pode ajustá-las com motivo registrado.
+Confirme limites técnicos na ajuda oficial ou no campo de publicação da conta
+antes do envio; registre a data. Não transforme corte de interface em tamanho do gancho.
 
-Slide 2: É sobre o buraco de 15 minutos entre uma consulta e outra que
-ninguém nota, porque é pequeno demais isolado.
+## Método de construção
 
-Slide 3: Multiplicado por semana, esse buraco vira hora perdida; e vira
-paciente esperando mais do que deveria.
+1. Escolha o conteúdo pelo uso: procedimento vira sequência; observação pontual cabe em legenda; gesto ou demonstração pode virar vídeo. Se o brief já escolheu o formato, respeite-o.
+2. Escreva o fechamento antes da abertura para conferir qual promessa a peça de fato pode cumprir.
+3. Para legenda, abra pelo objeto e pelo problema observável. Desenvolva causa, exemplo e aplicação em parágrafos completos. Deixe o pedido único no fim.
+4. Para carrossel, atribua uma função a cada slide antes da copy. Um PAS comercial pode ocupar problema, consequência e solução, com CTA no último slide. Uma sequência educativa pode seguir entrada, procedimento, variação e conferência, sem dramatizar a dor.
+5. Para vídeo curto, comece pela fala útil nos primeiros três segundos. Marque a duração de cada trecho e leia em voz alta. A soma inclui pausas e demonstração; não acelere para esconder texto excedente.
+6. Escreva a legenda como complemento e o alt text por slide. Um CTA repetido no fim da legenda pode manter a mesma ação final, sem adicionar outro objetivo.
+7. Confirme a operação antes de pedir uma palavra-chave por comentário. Integrações e variáveis pertencem a `context/integracoes.md`; não prometa envio automático sem configuração confirmada.
 
-Slide 4: Contratar mais gente sem resolver o encaixe só desloca o mesmo
-problema pra uma agenda maior.
+## Template do canal
 
-Slide 5: O primeiro passo é enxergar o buraco: colocar a agenda inteira
-numa grade visual em vez de linha por linha no caderno.
+No passo de escrita, abra [modelos prontos](references/modelos-e-exemplo.md).
+Use o modelo do formato aprovado. Complete o envelope compartilhado antes
+dos campos do canal. Separe corpo público, fontes e notas de produção.
 
-Slide 6: Quer ver como fica sua semana numa grade assim? Comenta "AGENDA"
-que a gente te manda um exemplo.
-```
+## Exemplo com empresa brasileira fictícia
 
-## Checklist de canal
+A Pote de Casa, fabricante fictícia de potes para marmita em Belo Horizonte, ensina como conferir uma tampa antes de transportar comida. A peça principal é um carrossel educativo de cinco slides. Um post e um roteiro de 30 segundos mostram alternativas completas no mesmo manual, sem abrir uma campanha nova.
 
-- [ ] Cada slide funciona isolado, mas a sequência tem progressão lógica.
-- [ ] CTA aparece só no último slide (ou no fechamento da legenda/vídeo).
-- [ ] Hashtags (quando usadas) são relacionadas ao tema real, não lista
-      genérica copiada de outro post.
-- [ ] Roteiro de vídeo curto tem duração compatível com o formato (fala
-      objetiva, sem enrolação antes do gancho).
+A entrada e a peça completa estão em [modelos e exemplo](references/modelos-e-exemplo.md).
+Os números, nomes e condições deste caso não viram contexto de outro projeto.
 
-## Erros comuns
+## Checklist numerado do canal
 
-- Colocar CTA em mais de um slide, diluindo a ação esperada.
-- Repetir a mesma informação em dois slides consecutivos só para preencher
-  a contagem de slides do carrossel.
-- Escrever carrossel como se fosse legenda de post cortada em pedaços, sem
-  pensar em cada slide como unidade visual.
+A numeração coincide com `inboundfy-validador-instagram`. Registre conforme, falha ou
+não aplicável, com motivo e local. O passe visual avalia copy e apoio previsto.
+A arte final segue para a validadora de imagem correspondente, quando houver.
+
+1. [ ] **Literal | Envelope.** Formato, ID, brief, persona, fontes, estado e destino correspondem à peça solicitada.
+2. [ ] **Literal | Corpo copiável.** Legenda, hashtags, texto de slide e fala respeitam grafias e vetos; notas internas ficam fora do texto de publicação.
+3. [ ] **Semântica | Promessa da abertura.** O corpo entrega o que a primeira linha ou a capa promete, com informações sustentadas pelo projeto.
+4. [ ] **Estrutural | Unidade por formato.** Post mantém prosa; carrossel tem arquivo por slide e índice; vídeo apresenta intervalos e campos distintos.
+5. [ ] **Estrutural | Progressão.** Cada slide ou trecho acrescenta uma informação e a sequência permite executar ou compreender a tarefa.
+6. [ ] **Semântica | Ação final.** Existe uma única ação, apenas no fechamento; destino, envio ou resposta prometida estão confirmados.
+7. [ ] **Literal | Hashtags e contagem.** Hashtags pertencem ao assunto; o bloco copiável foi contado com espaços e a conta comporta o texto.
+8. [ ] **Semântica | Fala e duração.** No vídeo, leitura cronometrada cabe na duração com pausas; nos demais formatos, registre não aplicável.
+9. [ ] **Visual | Texto para composição.** Cada slide tem rótulo e densidade compatível; capa e tela não dependem de microtexto para transmitir a ideia.
+10. [ ] **Visual | Acesso ao conteúdo.** Alt text descreve cada imagem prevista; vídeo tem texto compreensível sem som e indicação de legendagem.
+11. [ ] **Estrutural | Auditorias.** A copy passou por `inboundfy-copy-editor`, auditoria A5 e validação do conjunto, incluindo slides.
+12. [ ] **Literal | Handoff.** Índice, fontes, arquivos de slide e pendências acompanham a próxima skill; a copy não aprova a arte final.
+
+## Erros comuns do canal
+
+- Capa promete seis itens e o miolo entrega quatro: corrija a promessa ou complete o conteúdo real, sem slides de enchimento.
+- Slides 2 e 3 repetem o mesmo conselho: dê a cada um uma ação distinta ou una-os.
+- Pedir para seguir, salvar e comentar no mesmo fechamento: escolha o objetivo do brief.
+- Copiar a legenda inteira para a fala: reescreva pela escuta e cronometre.
+- Dizer “link na bio” sem destino configurado: ajuste o CTA ao acesso realmente disponível.
+- Escrever alt text que apenas anuncia a marca: descreva a cena e a instrução útil.
+
+## Medição após a publicação
+
+Para carrossel educativo, acompanhe salvamentos e compartilhamentos por alcance. Para vídeo, leia duração média assistida e conclusão quando disponíveis; para CTA de acesso, acompanhe cliques e ação no destino. Registre a janela e a origem dos dados. Não estime abandono por slide quando a conta não fornece essa leitura.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-especialista-instagram**, do grupo
-**especialista**. Leia os detalhes compartilhados conforme a etapa atual:
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): confirme sentinelas e origens.
+- [Artefato e relações](../_shared/02-contrato-de-artefato.md): preserve envelope, ID e brief.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): registre escolhas e perguntas.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): preserve o histórico.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): aplique persona, voz e proibições.
 
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de especialista instagram dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-especialista-instagram
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de especialista instagram
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-instagram
-grupo: especialista
-entrada: acervo/0042-2026-09-14-especialista-instagram/processado.md
-pedido: aplicar a etapa de especialista instagram e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-especialista-instagram
-estado: aprovado
-entrada: acervo/0042-2026-09-14-especialista-instagram/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de especialista instagram
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-especialista-instagram** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+Resolva caminhos abreviados `context/` por `.inboundfy/fontes-projeto.md`.
+A instalação usa `.inboundfy/context/`. Não mova fontes nem grave dados do consumidor no framework.
 
 ## Guia específico do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+`inboundfy-especialista-instagram` produz legenda, carrossel textual ou roteiro curto de Instagram a partir do brief aprovado.
+Leia `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md` e `CONTEXTO.md`.
+Preserve o caminho definido por `context/canais.md`. Nos pacotes, mantenha
+`brief` apontado para `04-briefs/` e o relatório em `06-auditoria/assets/`.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+Quando houver arte, encaminhe a copy aprovada para `inboundfy-especialista-instagram-imagem`, com ordem de slides, alt text, proporção do brief e textos literais.
 
-## Especificação operacional
+Acione `inboundfy-copy-editor` no alcance definido pela SKILL.md e
+`inboundfy-validador-instagram` antes de considerar a peça pronta. Corrija os achados e
+envie o conjunto para nova leitura integral. Após a aprovação, entregue a
+`inboundfy-planejamento` arquivos, fontes, pendências e próxima ação.
 
-### Quando usar
+## Estruturas na redação
 
-Use **inboundfy-especialista-instagram** para executar esta função: Escreve legenda de post, carrossel textual e roteiro de vídeo curto (Reels, Shorts, TikTok) a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md.
-
-O grupo **especialista** trabalha com estes campos mínimos:
-
-- **canal:** preencher com dado ligado ao pedido.
-- **persona:** preencher com dado ligado ao pedido.
-- **objetivo:** preencher com dado ligado ao pedido.
-- **formato:** preencher com dado ligado ao pedido.
-- **validadora:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-instagram
-grupo: especialista
-pedido: executar a função desta skill sobre o material selecionado
-entrada: briefs/0042-2026-09-14-instagram/brief.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-instagram
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - briefs/0042-2026-09-14-instagram/brief.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **especialista** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `ESTRUTURAS-PERSUASIVAS.md`
-- `CONTEXTO.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+No passo de redação, consulte [a aplicação por formato](references/estruturas-persuasivas.md) para executar a estrutura já aprovada no brief.

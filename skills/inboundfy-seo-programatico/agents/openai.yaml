@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Seo Programatico"
-  short_description: "Executa seo programatico no Inboundfy"
-  default_prompt: "Use $inboundfy-seo-programatico para executar seo programatico com as fontes do projeto."
+  display_name: "Inboundfy: SEO programático"
+  short_description: "Planeja páginas em escala com dados e lote piloto"
+  default_prompt: "Use $inboundfy-seo-programatico para validar o padrão de busca, especificar a base de dados, montar o modelo de página e planejar o lote piloto com as fontes do projeto."

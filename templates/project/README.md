@@ -20,7 +20,8 @@ Consulte os arquivos de `context/` antes de produzir uma peça:
 - `enderecos.md`: endereço físico, registro legal e contatos oficiais;
 - `glossario.md`: grafia oficial e termos preferidos;
 - `proibicoes.md`: palavras, promessas e estruturas vetadas;
-- `aprendizado.md`: orientações recebidas durante o trabalho.
+- `aprendizado.md`: orientações recebidas durante o trabalho;
+- `integracoes.md`: ferramentas, variáveis de ambiente e configurações gerais.
 
 Não salve material bruto, peças finais ou dados de calendário aqui. Esses itens
 ficam, respectivamente, em `acervo/`, `canais/` e `calendario/`.

@@ -1,6 +1,6 @@
 ---
 name: inboundfy
-description: Orquestra inbound marketing baseado em IA, desde o setup do projeto e a entrada no acervo até a produção, revisão, calendário e registro das peças por canal.
+description: Recebe qualquer pedido de inbound marketing, confere o setup e encaminha para brainstorm, estratégia, acervo, área ou peça de canal, mantendo IDs, estados e relatório. Use quando a pessoa pedir conteúdo, campanha, post, artigo, email, SEO ou marketing sem indicar qual skill usar.
 ---
 
 # Inboundfy
@@ -13,8 +13,7 @@ etapa quando o pedido já descreve o resultado desejado.
 
 ## Arquitetura de execução
 
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
+Confirme as sentinelas antes de criar ou alterar qualquer artefato.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
@@ -60,13 +59,18 @@ capacidade transversal conforme o estado da entrada.
    resumo do perfil, contexto de compra, problema, resultado, canais e oferta.
    Peça uma ou mais escolhas quando elas não vierem na solicitação.
    Em material processado, `inboundfy-acervo` conduz essa conversa.
-5. Use as capacidades transversais conforme a tarefa: `inboundfy-estrategia`,
+5. Quando o pedido nomeia só uma área, sem etapa clara, acione a skill de
+   entrada da área: `inboundfy-area-conteudo`, `inboundfy-area-seo`,
+   `inboundfy-area-copy`, `inboundfy-area-growth`, `inboundfy-area-vendas`,
+   `inboundfy-area-dados` ou `inboundfy-area-pesquisa`. Ela faz o diagnóstico e
+   escolhe a skill.
+6. Use as capacidades transversais conforme a tarefa: `inboundfy-estrategia`,
    `inboundfy-seo`, `inboundfy-geo`, `inboundfy-copy-redacao`,
    `inboundfy-pesquisa-cliente`, `inboundfy-concorrentes`, `inboundfy-copy-oferta`,
    `inboundfy-metricas`, `inboundfy-growth-cro` ou `inboundfy-experimentacao`.
    Para sugestões, correções, alinhamentos ou dicas do usuário, acione
    `inboundfy-aprendizado` antes de reaplicar a orientação em outro trabalho.
-6. No fluxo completo, acione `inboundfy-anti-slop` nos marcos A0 a A6 de
+7. No fluxo completo, acione `inboundfy-anti-slop` nos marcos A0 a A6 de
    [ETAPAS.md](../inboundfy-anti-slop/ETAPAS.md), conforme o artefato existir.
    Antes de qualquer saída pública, A5 e A6 são obrigatórios, junto com o
    validador do canal. Para manutenção do próprio CLI, use

@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Especialista Ebook"
-  short_description: "Executa especialista ebook no Inboundfy"
-  default_prompt: "Use $inboundfy-especialista-ebook para executar especialista ebook com as fontes do projeto."
+  display_name: "Inboundfy: Redação de ebooks"
+  short_description: "Produz arquitetura e capítulos de ebook"
+  default_prompt: "Use $inboundfy-especialista-ebook para produzir ebooks a partir da entrada aprovada. Consulte o método e o exemplo completo; aplique os 11 itens do par, a revisão editorial e A5 antes de encaminhar a inboundfy-validador-ebook."

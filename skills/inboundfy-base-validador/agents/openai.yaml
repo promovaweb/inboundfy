@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Base Validador"
-  short_description: "Audita regras transversais de qualquer asset"
-  default_prompt: "Use $inboundfy-base-validador para auditar este asset contra todas as fontes aplicáveis."
+  display_name: "Inboundfy: Validação de asset"
+  short_description: "Relatório de validação com achados e veredito"
+  default_prompt: "Use $inboundfy-base-validador para auditar este asset contra brief, contextos, marca e proibições e emitir o veredito."

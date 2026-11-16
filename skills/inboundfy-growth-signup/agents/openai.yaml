@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Growth Signup"
-  short_description: "Executa growth signup no Inboundfy"
-  default_prompt: "Use $inboundfy-growth-signup para executar growth signup com as fontes do projeto."
+  display_name: "Inboundfy: Cadastro e primeiro acesso"
+  short_description: "Revisa campos, estados e ativação após cadastro"
+  default_prompt: "Use $inboundfy-growth-signup para revisar cadastro e primeiro acesso, definindo campos necessários, estados e eventos até a primeira tarefa útil."

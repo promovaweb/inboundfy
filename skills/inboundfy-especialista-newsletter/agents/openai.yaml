@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Especialista Newsletter"
-  short_description: "Executa especialista newsletter no Inboundfy"
-  default_prompt: "Use $inboundfy-especialista-newsletter para executar especialista newsletter com as fontes do projeto."
+  display_name: "Inboundfy: Redação de newsletters"
+  short_description: "Produz edições editoriais para web e e-mail"
+  default_prompt: "Use $inboundfy-especialista-newsletter para produzir newsletters a partir da entrada aprovada. Consulte o método e o exemplo completo; aplique os 11 itens do par, a revisão editorial e A5 antes de encaminhar a inboundfy-validador-newsletter."

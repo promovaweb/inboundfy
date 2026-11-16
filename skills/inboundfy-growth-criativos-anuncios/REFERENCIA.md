@@ -1,223 +1,85 @@
-# Referência de Criativos para anúncios
-
-## Template
-
-```markdown
-# Criativos para anúncios
-
-- **ID:** {{id}}
-- **Objetivo:** {{objetivo}}
-- **Persona:** {{persona}}
-- **Canal:** {{canal}}
-- **Acervo:** {{acervo}}
-- **Fonte principal:** {{fonte}}
-- **Próxima ação:** {{cta}}
-
-## Plano
-
-{{plano}}
-
-## Pendências
-
-{{pendencias}}
-```
-
-## Guia específico
-
-Separe gancho, promessa, prova, formato, texto principal, título, descrição e CTA. Para cada variação, registre a origem no acervo e o limite do canal.
-
-## Exemplo ilustrativo
-
-Uma empresa de software pode usar este modelo para organizar uma ação de teste com uma persona específica, ligar cada mensagem a um acervo e registrar a página de destino sem afirmar resultados ainda não medidos.
-
-## Checklist
-
-- [ ] ID e objetivo estão presentes.
-- [ ] Persona, canal e acervo estão vinculados.
-- [ ] Fontes e pendências estão localizadas.
-- [ ] Voz, proibições e dicionário foram conferidos.
-- [ ] Próxima ação e estado do pipeline estão claros.
-
-## Erros comuns
-
-- Começar pelo formato antes de confirmar objetivo, público e fonte.
-- Usar promessa, preço, número ou nome sem registro local.
-- Aplicar a mesma mensagem a personas com contextos diferentes.
-- Salvar o resultado sem caminho, ID ou alcance da escolha.
-
-## Relação com inboundfy-growth-criativos-anuncios
-
-Use este modelo como roteiro mínimo e acrescente apenas campos pedidos pelo projeto. O arquivo final deve ficar ligado ao acervo, à peça e ao calendário quando houver data.
+# Criativos de anúncios: da hipótese ao pacote de produção
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-growth-criativos-anuncios**, do grupo
-**growth**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de criativos anuncios dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-growth-criativos-anuncios
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de criativos anuncios
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-growth-criativos-anuncios
-grupo: growth
-entrada: acervo/0042-2026-09-14-criativos-anuncios/processado.md
-pedido: aplicar a etapa de criativos anuncios e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-growth-criativos-anuncios
-estado: aprovado
-entrada: acervo/0042-2026-09-14-criativos-anuncios/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de criativos anuncios
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-growth-criativos-anuncios** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+A criação segue [fontes](../_shared/01-preflight-e-fontes.md), [artefato](../_shared/02-contrato-de-artefato.md), [handoff](../_shared/03-interacao-e-handoff.md), [validação](../_shared/04-validacao-e-retomada.md) e [contexto editorial](../_shared/05-contexto-editorial.md). O resultado pertence ao grupo **growth**. A peça conserva vínculo com a campanha e seu brief.
 
 ## Guia específico do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
+Relacione objetivo, público, canal, oferta e próxima ação por conceito. Leia [conceitos e produção](references/conceitos-e-producao.md) nos passos 2 a 4; leia [testes e renovação](references/testes-e-renovacao.md) no passo 5. Orçamento segue para `inboundfy-growth-anuncios`; eventos e UTMs para `inboundfy-rastreamento-conversao`; página inconsistente para `inboundfy-growth-cro`. A geração de imagem usa `inboundfy-base-imagem` quando solicitada e autorizada, com fonte declarada.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+Pergunte antes da produção: qual tarefa o público tenta resolver? Qual mecanismo pode ser mostrado? Existe comprovação da promessa? O que já foi testado? Quantas peças a equipe consegue produzir e a verba consegue avaliar? Comentário público pode revelar uma dúvida, mas não autoriza uso de nome ou depoimento no anúncio.
 
-## Especificação operacional
+## Template de pacote criativo
 
-### Quando usar
-
-Use **inboundfy-growth-criativos-anuncios** para executar esta função: Cria conceitos e variações de criativos pagos a partir de oferta, persona, canal e voz, com mensagens verificáveis.
-
-O grupo **growth** trabalha com estes campos mínimos:
-
-- **objetivo:** preencher com dado ligado ao pedido.
-- **público:** preencher com dado ligado ao pedido.
-- **canal:** preencher com dado ligado ao pedido.
-- **oferta:** preencher com dado ligado ao pedido.
-- **próxima ação:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
+```markdown
+---
+id: {{pacote}}
 skill: inboundfy-growth-criativos-anuncios
 grupo: growth
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/estrategia.md
+estado: rascunho
+brief: {{caminho}}
+fontes: [{{oferta}}, {{ativo}}, {{pesquisa}}]
+persona: {{id}}
+proxima_skill: inboundfy-growth-anuncios
+---
+# Matriz de criação
+| Conceito | Necessidade | Fonte | Hipótese | Formato | Custo/prazo |
+| --- | --- | --- | --- | --- | --- |
+| {{id}} | {{problema}} | {{origem}} | {{efeito esperado}} | {{formato}} | {{estimativa}} |
+## Peça {{id-conceito-versao}}
+- Canal, posicionamento e proporção: {{dados}}
+- Abertura/título: {{texto}}
+- Corpo e CTA: {{texto}}
+- Comprovação e limites da promessa: {{fonte}}
+- Composição/roteiro: {{elementos ou cenas}}
+- Ativos e direitos: {{origem e permissão}}
+- Destino e identificação de medição: {{URL/ID}}
+- Prévia e formato conferidos: {{data/arquivo}}
+- Teste: {{controle, variável, métrica, teto, janela e maturação}}
+- Pendências e próxima ação: {{responsável e arquivo}}
 ```
 
-Saída:
+## Exemplo de produção brasileira fictícia
 
-```yaml
-id: 0042
-skill: inboundfy-growth-criativos-anuncios
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/estrategia.md
-proxima_skill: nome-da-proxima-skill
-```
+A Rota de Bairro, empresa fictícia de software para entregas de pequenos mercados de Curitiba, oferece demonstração gratuita de 15 minutos. O plano fictício `acervo/0082-2026-11-15-entregas/estrategia.md` seleciona persona-01, gerente que organiza entregas pelo celular. O produto confirma agrupamento de pedidos por bairro, mas não possui estudo de redução de combustível. O pacote `0082`, estado `rascunho`, usa fontes simuladas `.inboundfy/context/produtos.md`, `.inboundfy/context/ofertas.md` e uma gravação de demonstração do acervo.
 
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
+| Conceito | Necessidade e fonte | Hipótese | Entrega |
+| --- | --- | --- | --- |
+| C01 | Pedidos espalhados, entrevista fictícia do acervo | Mostrar a organização pode elevar solicitação válida | Vídeo de tela com narração |
+| C02 | Dúvida sobre cadastro, FAQ fictícia | Demonstrar o primeiro cadastro pode reduzir objeção | Card de três etapas |
 
-### Perguntas de conferência
+A equipe produz C01 primeiro por possuir gravação de tela pronta. A peça `0082-C01-v1` usa o texto: “Organize as entregas do mercado por bairro. Veja os pedidos reunidos na Rota de Bairro e conheça a tela em uma demonstração de 15 minutos.” Título: “Entregas por bairro”. CTA: “Agendar demonstração”. O destino fictício `/demonstracao` repete duração e oferta.
 
-1. A entrada pertence ao grupo **growth** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
+| Tempo planejado | Imagem | Narração e legenda |
+| --- | --- | --- |
+| 0 a 3 s | Pedidos fictícios em cartões separados | “Os pedidos de entrega chegam separados?” |
+| 3 a 9 s | Tela reúne pedidos por bairro | “Na Rota de Bairro, você agrupa os pedidos antes de sair.” |
+| 9 a 15 s | Pessoa seleciona o bairro e vê a lista | “Veja o que vai para cada região.” |
+| 15 a 20 s | Tela final com marca e CTA | “Agende uma demonstração de 15 minutos.” |
 
-### Referências de execução
+A produção planeja vídeo vertical, texto dentro da área visível da prévia e legendas completas. A interface usa nomes e endereços fictícios. O briefing solicita gravação real do produto, não interface sintética. A música fica ausente; a narração pertence à equipe fictícia com permissão registrada. O arquivo final ainda não foi gerado, portanto o registro declara “roteiro pronto, renderização pendente”.
 
-Leia, na ordem necessária:
+No teste didático, v1 compara com v2, que troca somente a abertura por “Separe as entregas por bairro antes de sair”. Os dois recebem a mesma oferta e o mesmo destino. O plano reserva R$ 400 por versão como teto, não como garantia de volume. Após a janela comercial simulada de sete dias, v1 apresenta 100 cliques e cinco solicitações válidas; v2 apresenta 80 cliques e seis. Com gasto de R$ 400 em cada, os CPAs seriam R$ 80 e R$ 66,67. A entrega otimizada e os poucos eventos impedem declarar superioridade causal. O pacote recomenda nova rodada estruturada, registra a limitação e mantém v2 como candidata.
 
-- `ESTRATEGIA.md`
-- `CONTEXTO.md`
-- `docs/method/05-artefatos-e-estados.md`
+A próxima ação da produtora fictícia Nara Lima é finalizar a gravação e obter a prévia do canal. `inboundfy-rastreamento-conversao` recebe o ID de cada versão para mapear evento e UTM; `inboundfy-growth-anuncios` recebe o pacote revisado para avaliar a ativação.
 
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+## Checklist de produção e teste
+
+- [ ] Fontes sustentam todas as promessas.
+- [ ] Conceitos diferem por necessidade ou mecanismo.
+- [ ] Os ativos possuem origem e permissão de uso.
+- [ ] O roteiro informa cenas, texto, duração e CTA.
+- [ ] A copy é compreensível com a imagem isolada e sem áudio.
+- [ ] O destino corresponde à oferta.
+- [ ] A revisão registra métrica principal e limitações da comparação.
+- [ ] Arquivo planejado e arquivo produzido têm estados distintos.
+
+## Erros comuns de criação
+
+- Prometer redução percentual sem estudo: mostre a função comprovada.
+- Produzir vinte títulos equivalentes: teste conceitos antes de sinônimos.
+- Imitar conversa privada para simular recomendação de cliente: identifique dramatização e use personagens fictícios.
+- Recortar uma tela sem contexto: mostre a ação que explica a função.
+- Considerar CTR suficiente para substituir o controle: confira conversão válida e qualidade comercial.
+- Declarar fadiga só pela idade da peça: verifique exposição, resposta e mudanças na entrega.

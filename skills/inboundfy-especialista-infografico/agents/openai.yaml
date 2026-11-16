@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Especialista Infografico"
-  short_description: "Executa especialista infografico no Inboundfy"
-  default_prompt: "Use $inboundfy-especialista-infografico para executar especialista infografico com as fontes do projeto."
+  display_name: "Inboundfy: Redação de Infográfico"
+  short_description: "Produz Infográfico com fontes e revisão pareada."
+  default_prompt: "Use $inboundfy-especialista-infografico para produzir a peça de Infográfico com o brief aprovado, consultar os modelos do canal e encaminhar o conjunto à validadora pareada."

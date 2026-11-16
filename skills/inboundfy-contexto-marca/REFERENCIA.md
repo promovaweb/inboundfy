@@ -1,174 +1,82 @@
 # REFERENCIA.md; inboundfy-contexto-marca
 
-Roteiro de entrevista, exemplo preenchido e checklist para
-`context/marca-voz.md`, `context/proibicoes.md` e
-`context/estruturas-proibidas.md`. As seções genéricas de proibições e de
-estruturas proibidas já vêm pré-preenchidas no template; este roteiro foca
-no que ainda está vazio: tom específico da marca e vetos próprios do
-usuário.
-
-## Sobre `context/estruturas-proibidas.md`
-
-Esse arquivo raramente precisa de entrevista; ele já chega com o catálogo
-genérico de padrões de texto com cara de IA (aberturas, fechamentos,
-vocabulário, estrutura de parágrafo, heading, pontuação). Só acione ajuste
-nele quando:
-
-- o usuário observar um padrão específico recorrente na própria produção
-  que ainda não está catalogado; adicione como item novo, na seção mais
-  próxima do padrão observado;
-- a voz da marca aceitar deliberadamente um item da lista genérica (ex.:
-  marca que usa emoji em rede social de propósito); remova ou anote a
-  exceção, sem apagar o restante da seção;
-- o usuário pedir para afrouxar ou endurecer o rigor de alguma categoria
-  inteira (ex.: tolerar tríade de adjetivos em conteúdo publicitário curto).
-
-Nunca remova a seção inteira só para "simplificar"; ela é o que garante
-que `inboundfy-copy-editor` pegue padrão de IA mesmo quando `marca-voz.md`
-ainda está incompleto.
-
-## Roteiro de entrevista
-
-### Marca e voz
-
-1. "Em três adjetivos, como você descreveria o tom da marca?"
-2. "Qual é o idioma padrão de produção, e a pessoa gramatical preferida
-   (primeira pessoa, terceira pessoa, varia por canal)?"
-3. "O vocabulário deve ser técnico, intermediário ou para iniciante total no
-   assunto?"
-4. "Humor é permitido? Em quais canais sim, em quais não?"
-5. "Existe palavra ou expressão que a marca sempre usa de propósito, no
-   lugar de uma alternativa mais comum?"
-6. "Existe palavra ou expressão que a marca evita por estilo (não por veto
-   duro)?"
-7. "Cole um trecho real de texto que representa bem essa voz." → exemplo de
-   bom texto.
-8. "Cole um trecho (real ou hipotético) que representa o oposto dessa voz."
-   → exemplo a evitar.
-9. "Como a marca se despede em e-mail? Existe CTA padrão?"
-
-### Proibições específicas
-
-1. "Existe algum termo ou promessa que a marca nunca pode usar, além das
-    proibições genéricas já pré-preenchidas?"
-2. "Existe comparação que nunca deve ser feita (concorrente específico,
-    categoria de produto)?"
-3. "Existe tipo de afirmação (dado médico, jurídico, financeiro,
-    estatística de terceiro) que sempre precisa de confirmação humana antes
-    de publicar? Quem confirma?"
-4. "Algum canal ou público tem regra própria (ex.: sem humor em canal
-    institucional)?"
-
-## Exemplo preenchido (fictício; "Estoquely")
-
-```markdown
-## Tom
-
-- **Em três adjetivos:** direto, prático, sem enrolação
-- **Idioma padrão de produção:** português do Brasil
-- **Pessoa gramatical preferida:** primeira pessoa do plural no institucional, segunda pessoa em tutorial
-- **Nível técnico do vocabulário:** iniciante; o público nunca usou sistema de gestão
-- **Humor é permitido?** sim, leve, em redes sociais; não no e-mail transacional
-
-## Vocabulário preferido
-
-- `estoque parado`; usar em vez de `giro de catalogo` (termo técnico demais para o público)
-
-## Vocabulário evitado
-
-- `solução` como substantivo genérico; motivo: soa vago; nomeie o que o produto faz
-
-## Exemplos de bom texto
-
-> Você cadastra o produto tirando uma foto. O sistema já sugere a categoria.
-> Se estiver errado, você corrige uma vez e ele aprende para a próxima.
-
-## Exemplos de texto a evitar
-
-> Nossa plataforma revoluciona a gestão do seu negócio com tecnologia de
-> ponta.; motivo: jargão vazio, não diz o que o produto faz.
-
-## Assinatura e fechamento padrão
-
-- **Como a marca se despede em e-mail:** "Qualquer dúvida, responda este e-mail; alguém do time lê."
-```
-
-```markdown
-## Termos e promessas proibidas
-
-- `sistema completo de gestão`; motivo: a Estoquely só faz estoque, não
-  gestão financeira ou fiscal; a frase infla escopo.
-
-## Comparações proibidas
-
-- Comparação direta de preço com concorrentes por nome em anúncio pago;   motivo: política comercial da empresa.
-
-## Afirmações que exigem confirmação antes de publicar
-
-- Dado de redução de perda de venda ou economia financeira; quem confirma:
-  Marina Alves (produto).
-```
-
-## Checklist de completude
-
-- [ ] Tom definido com adjetivos concretos, não genéricos ("bom",
-      "profissional").
-- [ ] Ao menos um exemplo real de bom texto presente; sem isso, skills de
-      redação não têm calibração de voz.
-- [ ] Distinção clara entre vocabulário evitado (preferência) e proibição
-      (veto duro); nunca duplicar o mesmo item nos dois arquivos.
-- [ ] Toda proibição específica do usuário tem motivo registrado.
-
-## Erros comuns
-
-- Registrar um veto de estilo (ex.: "prefiro não usar emoji") em
-  `proibicoes.md`; isso é preferência, vai em "Vocabulário evitado" de
-  `marca-voz.md`. Proibição é para o que reprova a peça de verdade.
-- Aceitar exemplo de bom texto fabricado sem marcar como ilustrativo;   prefira sempre um trecho real do usuário.
-- Remover ou editar a seção de proibições genéricas pré-preenchida sem o
-  usuário pedir; ela é ponto de partida útil, não lixo a limpar por
-  padrão.
-- Registrar proibição vaga ("nada que pareça amador") sem termo ou situação
-  concreta; isso não é verificável por `inboundfy-copy-editor`.
+Material de apoio para manter voz, proibições de negócio e estruturas
+proibidas. O detalhe de cada arquivo está em `references/`. Este arquivo
+traz o mapa, os rótulos exigidos pelo CLI, o modelo de relato, um exemplo
+completo e as armadilhas.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-contexto-marca**, do grupo
-**contexto**. Leia os detalhes compartilhados conforme a etapa atual:
+Leia os contratos compartilhados conforme a etapa:
 
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
+- [preflight e fontes](../_shared/01-preflight-e-fontes.md), antes do passo 1;
+- [artefato e relações](../_shared/02-contrato-de-artefato.md), ao gravar;
+- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md), no teste de
+  calibração e no relato;
+- [validação e retomada](../_shared/04-validacao-e-retomada.md), antes de
+  declarar a alteração pronta;
+- [contexto editorial](../_shared/05-contexto-editorial.md), sempre, porque
+  esta skill altera o próprio contexto editorial.
 
-## Contrato específico
+Referências internas, lidas no passo 2 do fluxo:
 
-- **Função:** executar a capacidade de contexto marca dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
+| Arquivo | Leia quando |
+| --- | --- |
+| [references/voz-e-tom.md](references/voz-e-tom.md) | tom, pessoa verbal, vocabulário, exemplos, assinatura, variação por canal; também no passo 7 |
+| [references/proibicoes-de-negocio.md](references/proibicoes-de-negocio.md) | veto de termo, promessa, comparação, afirmação sensível ou regra por canal |
+| [references/estruturas-proibidas.md](references/estruturas-proibidas.md) | padrão de escrita observado, exceção da marca ou ajuste de rigor |
 
-## Template de operação
+## Mapa dos arquivos
+
+| Arquivo | Natureza | Efeito na peça | Quem aplica |
+| --- | --- | --- | --- |
+| `marca-voz.md` | preferência e calibração | orienta a redação | especialistas e `inboundfy-copy-redacao` |
+| `proibicoes.md` | veto de negócio | reprova a peça | `inboundfy-copy-editor` e validadoras |
+| `estruturas-proibidas.md` | veto de padrão genérico | reprova a peça | `inboundfy-copy-editor`, `inboundfy-anti-slop` e validadoras |
+
+Regra de fronteira: se descumprir o item torna a peça ruim, mas publicável,
+ele é preferência. Se descumprir torna a peça impublicável, ele é veto.
+
+## Rótulos lidos pelo `inboundfy doctor`
+
+O CLI considera a voz pronta quando `marca-voz.md` tem estes campos com
+valor e o arquivo inteiro não tem chaves `{}` nem TODO, PENDENTE ou
+PREENCHER:
+
+```markdown
+- **Três a cinco adjetivos:** {adjetivos}
+- **Pessoa verbal:** {primeira do plural, segunda pessoa "você", mista por canal}
+- **Idioma e variante:** {pt-BR}
+```
+
+Projetos instalados antes da versão 0.8.0 podem ter `Em três adjetivos`,
+`Pessoa gramatical preferida` e `Idioma padrão de produção`. Nesses casos,
+troque os rótulos pelos três acima mantendo o valor e avise o usuário.
+
+## Template de relato da alteração
 
 ```markdown
 ---
-id: {id}
 skill: inboundfy-contexto-marca
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
+arquivo: .inboundfy/context/{marca-voz | proibicoes | estruturas-proibidas}.md
+alcance: {toda a comunicação | canal | persona}
+estado: {gravado | aguardando calibração | pendente}
+fonte: {resposta do usuário em AAAA-MM-DD, trecho enviado, norma citada}
 ---
 
-# Registro de contexto marca
+# Atualização de marca
 
-## Resultado
+## O que mudou
 
-{Conteúdo específico da etapa.}
+| Seção | Antes | Depois |
+| --- | --- | --- |
+| {seção} | {valor ou "vazio"} | {valor} |
+
+## Teste de calibração
+
+- Trecho original: {trecho}
+- Trecho reescrito: {trecho}
+- Resposta do usuário: {aprovado | ajuste pedido}
 
 ## Pendências
 
@@ -176,129 +84,97 @@ proxima_skill: {nome ou "pendente de confirmação"}
 
 ## Próxima ação
 
-{verbo + objeto + caminho do arquivo seguinte}
+{skills que devem reler o arquivo e por quê}
 ```
 
-## Exemplo operacional completo
+## Exemplo completo (fictício)
 
-### Entrada ilustrativa
+Empresa ilustrativa: Estoquely, aplicativo de estoque para lojas pequenas.
 
-```yaml
-id: 0042
-skill: inboundfy-contexto-marca
-grupo: contexto
-entrada: acervo/0042-2026-09-14-contexto-marca/processado.md
-pedido: aplicar a etapa de contexto marca e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
+**Entrada.** A responsável de marketing escreve: "Nosso tom tem que ser de
+quem já trabalhou em loja. Nada de 'revolucionar sua gestão'. E o jurídico
+pediu que nenhum texto diga que o app evita multa da Receita."
 
-### Saída ilustrativa
+**Passo 1, classificação.** "Tom de quem já trabalhou em loja" é voz.
+"Nada de revolucionar sua gestão" já está nas proibições genéricas
+(`revolucionário`, jargão vazio); a skill confirma e não duplica. "Não dizer
+que evita multa da Receita" é veto de negócio com origem jurídica.
+
+**Passo 3, voz gravada.**
 
 ```markdown
----
-id: 0042
-skill: inboundfy-contexto-marca
-estado: aprovado
-entrada: acervo/0042-2026-09-14-contexto-marca/processado.md
-fontes:
-  - .inboundfy/context/marca.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
+## Tom
 
-# Registro de contexto marca
+- **Três a cinco adjetivos:** prático (não teórico), próximo (não íntimo), direto (não seco)
+- **Idioma e variante:** pt-BR
+- **Pessoa verbal:** segunda pessoa ("você") em tutorial e redes; primeira do plural no institucional
+- **Nível técnico do vocabulário:** iniciante; a persona nunca usou sistema de gestão
+- **Humor é permitido?** sim, leve, no Instagram; não em e-mail de cobrança nem em suporte
 
-## Resultado
+## Exemplos de bom texto
 
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
+> Você cadastra o produto tirando uma foto. Se a categoria vier errada, corrige uma vez e o app lembra na próxima.
 
-## Próxima ação
+## Exemplos de texto a evitar
 
-{verbo + objeto + caminho do arquivo seguinte}
+> Nossa plataforma revoluciona a gestão do seu negócio com tecnologia de ponta.; motivo: não diz o que o app faz nem para quem.
 ```
 
-## Checklist ampliado
+**Passo 5, veto gravado.**
 
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
+```markdown
+## Termos e promessas proibidas
 
-## Erros comuns adicionais
+- "evita multa", "evita autuação da Receita", "deixa você em dia com o fisco"; motivo: o app não emite nota fiscal nem faz obrigação acessória. Origem: orientação jurídica, 2026-11-15.
 
-- Executar **inboundfy-contexto-marca** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+## Afirmações que exigem confirmação antes de publicar
+
+- Qualquer menção a tributo, nota fiscal ou Receita Federal; quem confirma: assessoria jurídica.
+```
+
+**Passo 7, calibração.** A skill reescreve uma frase do site com a nova
+regra:
+
+- Original: "Gerencie seu estoque de forma inteligente e eficiente."
+- Reescrito: "Você vê no celular quais peças estão acabando antes da cliente
+  pedir."
+
+A responsável aprova. O relato lista `inboundfy-copy-editor` e as
+validadoras como consumidoras do veto novo.
+
+## Checklist
+
+- [ ] O pedido foi classificado como preferência, veto ou padrão.
+- [ ] Os três arquivos foram lidos antes de gravar.
+- [ ] Os rótulos do `inboundfy doctor` estão presentes em `marca-voz.md`.
+- [ ] `marca-voz.md` não tem chaves `{}` nem TODO, PENDENTE ou PREENCHER.
+- [ ] Cada adjetivo de tom diz o que exclui.
+- [ ] Há ao menos um exemplo real de bom texto.
+- [ ] Todo veto tem motivo e origem.
+- [ ] Nenhum item duplicado entre preferência e veto.
+- [ ] Nenhuma seção do catálogo genérico foi apagada.
+- [ ] O teste de calibração foi aprovado quando a voz mudou.
+
+## Erros comuns
+
+- Gravar preferência como veto ("prefiro sem emoji" em `proibicoes.md`).
+  Isso reprova peças boas sem motivo de negócio.
+- Adjetivos que servem para qualquer empresa ("profissional", "moderno",
+  "inovador"). Peça o oposto que a marca rejeita.
+- Exemplo de bom texto criado pela skill e gravado como real.
+- Veto vago ("nada que pareça amador"). A `inboundfy-copy-editor` não
+  consegue verificar.
+- Apagar o catálogo genérico para "simplificar". Ele é a rede de segurança
+  enquanto a voz ainda está incompleta.
+- Deixar `{trecho de exemplo}` no arquivo. O `inboundfy doctor` reprova a voz
+  inteira por causa de um placeholder esquecido.
 
 ## Guia específico do grupo
 
-Mantenha somente o domínio indicado no arquivo canônico. Grave fatos confirmados, preserve seções e pergunte antes de expandir o alcance.
+Mantenha somente o arquivo indicado. Grave preferências e vetos confirmados,
+preserve seções e pergunte antes de estender uma regra de um canal para
+outro. Correções que nascem da revisão de uma peça passam primeiro por
+`inboundfy-aprendizado`, que confirma o alcance antes de virar regra aqui.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-contexto-marca** para executar esta função: Preenche e mantém context/marca-voz.md, context/proibicoes.md e context/estruturas-proibidas.md. Ative quando o usuário definir ou ajustar tom, vocabulário, exemplos de voz, registrar um veto editorial, ou editar o catálogo de padrões de texto com cara de IA.
-
-O grupo **contexto** trabalha com estes campos mínimos:
-
-- **arquivo canônico:** preencher com dado ligado ao pedido.
-- **fatos:** preencher com dado ligado ao pedido.
-- **preferências:** preencher com dado ligado ao pedido.
-- **fonte:** preencher com dado ligado ao pedido.
-- **alteração:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-contexto-marca
-grupo: contexto
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/context/marca-voz.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-contexto-marca
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/context/marca-voz.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **contexto** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `CONTEXTO.md`
-- `docs/method/02-contexto-fontes-e-precedencia.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Leituras de apoio do framework: `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md`,
+`CONTEXTO.md` e `docs/method/02-contexto-fontes-e-precedencia.md`.

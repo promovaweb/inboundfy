@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Growth Revops"
-  short_description: "Executa growth revops no Inboundfy"
-  default_prompt: "Use $inboundfy-growth-revops para executar growth revops com as fontes do projeto."
+  display_name: "Inboundfy: Operação de receita"
+  short_description: "Define etapas, donos, SLA, pontuação e automações de CRM"
+  default_prompt: "Use $inboundfy-growth-revops para especificar a operação de receita com etapas observáveis, encaminhamento, dados e piloto verificável."

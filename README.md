@@ -35,7 +35,8 @@
 ## O que é
 
 O Inboundfy organiza o trabalho de marketing e conteúdo em um projeto com
-agente de IA. Ele instala 117 skills que cuidam do contexto do negócio, da
+agente de IA. Ele instala 128 skills, sendo 127 diretórios com o prefixo
+`inboundfy-` mais a orquestradora. Elas cuidam do contexto do negócio, da
 pesquisa, do planejamento, da produção por canal, da revisão e da publicação.
 O CLI `inboundfy` cria e mantém a estrutura do projeto consumidor.
 
@@ -47,7 +48,8 @@ exige leitura crítica e adequação à voz registrada no projeto.
 | --- | --- | --- |
 | CLI | `inboundfy <comando>` | registrar acervo, criar peças, montar calendário e conferir a instalação |
 | Skills | `$inboundfy` no agente | conduzir brainstorm, campanha, pacote editorial e peça avulsa |
-| Setup | `inboundfy-setup` | preencher o contexto e conferir os arquivos do projeto |
+| Áreas | `$inboundfy-area-<área>` | diagnosticar um domínio e encaminhar para a skill certa |
+| Setup | `inboundfy-setup` | preencher o contexto, as integrações e as configurações do projeto |
 
 ### Separação entre framework e projeto
 
@@ -92,8 +94,9 @@ npx @promovaweb/inboundfy@latest repair --dry-run
 ## Primeiros passos
 
 1. Peça ao agente para executar `inboundfy-setup`. Ela conduz a entrevista de
-   empresa, produtos, serviços, personas, voz, proibições, canais e calendário
-   sem apagar o que já estiver preenchido.
+   empresa, produtos, serviços, personas, voz, proibições, canais, calendário,
+   integrações por área e áreas de trabalho, sem apagar o que já estiver
+   preenchido.
 2. Depois da entrevista, confira o projeto:
 
 ```bash
@@ -182,6 +185,23 @@ As skills de etapa e de canal continuam disponíveis para retomadas e pedidos
 específicos. `inboundfy-iniciar` é um alias que encaminha para a mesma
 orquestradora.
 
+Para trabalho recorrente dentro de um domínio existem sete skills de área:
+`inboundfy-area-conteudo`, `inboundfy-area-seo`, `inboundfy-area-copy`,
+`inboundfy-area-growth`, `inboundfy-area-vendas`, `inboundfy-area-dados` e
+`inboundfy-area-pesquisa`. Cada uma faz de três a cinco perguntas de
+diagnóstico, escolhe a skill da área e entrega a ela um pacote de entrada. A
+área não produz o resultado final.
+
+```text
+$inboundfy-area-growth o cancelamento subiu para 8% ao mês e quero reter
+$inboundfy-area-dados como está o custo por matrícula em cada canal
+```
+
+O setup também concentra as integrações. A etapa de configurações registra
+agente, fuso, moeda e idioma em `.inboundfy/context/integracoes.md`, pergunta
+quais ferramentas cada área usa e escreve apenas os nomes das variáveis no
+`.env.example`. Os valores ficam no `.env`, fora do Git.
+
 Antes da preparação do projeto, qualquer skill fora de `inboundfy-setup`
 confere `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md`,
 avisa que o setup precisa ser concluído ou reparado e encerra sem criar
@@ -191,6 +211,10 @@ artefatos.
 
 - [Documentação do Inboundfy](https://promovaweb.com/docs/inboundfy/)
 - [Guia do usuário](https://github.com/promovaweb/inboundfy/blob/main/docs/user/README.md)
+- [Áreas de trabalho](https://github.com/promovaweb/inboundfy/blob/main/docs/user/11-areas-de-trabalho.md)
+- [Configurações e integrações](https://github.com/promovaweb/inboundfy/blob/main/docs/user/12-configuracoes-e-integracoes.md)
+- [Exemplos de pedidos](https://github.com/promovaweb/inboundfy/blob/main/docs/user/18-exemplos-de-pedidos.md)
+- [Exemplos executáveis](https://github.com/promovaweb/inboundfy/blob/main/examples/README.md)
 - [Documentação do método](https://github.com/promovaweb/inboundfy/blob/main/docs/method/README.md)
 - [Edição em PDF e EPUB](https://github.com/promovaweb/inboundfy/blob/main/ebook/README.md)
 - [Catálogo de skills](https://github.com/promovaweb/inboundfy/blob/main/SKILLS.md)

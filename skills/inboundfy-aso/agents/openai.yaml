@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Aso"
-  short_description: "Executa aso no Inboundfy com contexto"
-  default_prompt: "Use $inboundfy-aso para executar aso com as fontes do projeto."
+  display_name: "Inboundfy: ASO"
+  short_description: "Otimiza páginas de app na App Store e no Google Play"
+  default_prompt: "Use $inboundfy-aso para auditar a página do aplicativo e montar metadados, screenshots, respostas a avaliações e testes de cada loja com as funções confirmadas do projeto."

@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Validador video-imagem"
-  short_description: "Valida o asset video-imagem antes da entrega"
-  default_prompt: "Use $inboundfy-validador-video-imagem para validar este asset e devolver correções à skill produtora quando necessário."
+  display_name: "Inboundfy: Revisão de thumbnail de vídeo"
+  short_description: "Confere thumbnail de vídeo ligada ao roteiro"
+  default_prompt: "Use $inboundfy-validador-video-imagem para revisar o conjunto completo de $inboundfy-especialista-video-imagem, aplicar os oito itens espelhados e devolver o relatório com achados, rodada e digest atual."

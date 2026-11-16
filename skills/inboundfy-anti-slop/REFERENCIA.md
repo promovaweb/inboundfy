@@ -1,290 +1,111 @@
-# Referência do anti-slop editorial
+# Auditoria de texto com correção localizada
+
+O anti-slop identifica prosa intercambiável, promessa sem fonte e repetição de estrutura. Uma palavra isolada não comprova defeito de estilo, salvo quando um veto canônico a proíbe expressamente. A revisão precisa preservar o que a marca disse de forma específica.
+
+## Diagnóstico antes de revisar
+
+Pergunte qual é o marco A0 a A6, se a execução é auditoria ou edição autorizada e qual fonte sustenta o trecho. Leia [ETAPAS.md](ETAPAS.md) para escolher a entrada e o caminho do relatório.
+
+| Sinal observado | Teste no trecho | Ação |
+| --- | --- | --- |
+| Benefício abstrato | O leitor reconhece o objeto e a operação? | Pedir ou inserir detalhe confirmado |
+| Número ou promessa | Existe origem, período e condição? | Localizar fonte ou retirar a alegação |
+| Cadência mecânica | Parágrafos repetem a mesma função e tamanho? | Reunir ideias e variar a progressão |
+| Primeira pessoa | O autor realmente viveu o caso? | Confirmar autoria ou usar explicação direta |
+| Repetição entre peças | Mesma tese, exemplo e ordem reaparecem? | Mudar o recorte conforme o brief |
+| Veto expresso | Existe ocorrência literal ou paráfrase equivalente? | Reprovar e corrigir antes do avanço |
 
 ## Passes de leitura
 
-| Passe | Pergunta |
-| --- | --- |
-| Literal | Algum termo, formato ou promessa está em `proibicoes.md`? |
-| Semântico | O texto afirma mais do que o acervo e a pesquisa comprovam? |
-| Voz | A escolha de palavras, pessoa verbal e ritmo combinam com `voz.md`? |
-| Persona | A pessoa leitora reconhece o problema, contexto e vocabulário? |
-| Canal | O tamanho, a abertura, o desenvolvimento e o CTA servem ao canal? |
-| Humano | Há detalhe, posição, experiência ou consequência concreta? |
+1. **Literal:** procure termos, grafias e expressões vetados, inclusive títulos, frontmatter, CTA e texto visual.
+2. **Semântico:** compare promessas e alegações com as fontes. Um sinônimo não autoriza repetir um sentido proibido.
+3. **Estrutural:** examine abertura, progressão, parágrafos, headings e fechamento. Aponte o padrão observado com dois ou mais locais quando a falha depender de repetição.
+4. **Voz e persona:** confronte vocabulário, profundidade e exemplo com a voz e o público escolhidos.
+5. **Conjunto:** em A6, leia as peças relacionadas e compare função, ângulo, caso e CTA. A mesma informação pode aparecer quando necessária; a cópia de raciocínio inteiro precisa ser revista.
+6. **Releitura:** depois da correção autorizada, repita todos os passes no arquivo inteiro. Registre como superado o ciclo anterior se a entrada mudou.
 
-## Cadência do fluxo
+## Template de relatório anti-slop
 
-Leia [ETAPAS.md](ETAPAS.md) quando a execução fizer parte do ciclo completo.
-O código do marco precisa aparecer no relatório. Use estes marcos:
+```markdown
+# Auditoria <A0 a A6>: <arquivo>
 
-- A0 para a entrada preservada, sem editar o bruto;
-- A1 para o processado, depois da limpeza;
-- A2 para FAQ, pesquisa, ativos e base editorial;
-- A3 para estratégia, oportunidades e brief;
-- A4 para outline, abertura e primeira unidade de peça longa;
-- A5 para a peça completa, antes da validadora;
-- A6 para o pacote aprovado, antes do pipeline e do catálogo.
+- Marco: <código>
+- Ciclo: <número>
+- Modo: <auditoria ou revisão autorizada>
+- Entrada: <caminho e versão>
+- Fontes: <voz, persona, proibições, estruturas, glossário e acervo>
+- Estado: <aprovado | ajustes-necessarios | pendente>
 
-Um ciclo trata somente o material do seu marco. Se houver alteração depois do
-ciclo, marque os ciclos posteriores como superados e repita-os após a nova
-leitura.
+## Achados
+| ID | Passe | Local e trecho | Regra ou fonte | Diagnóstico | Ação |
+| --- | --- | --- | --- | --- | --- |
+| AS01 | <tipo> | <local e citação> | <arquivo/seção> | <falha demonstrável> | <mudança testável> |
 
-## Sinais para remover
+## Releitura
+<Passes repetidos, alterações confirmadas e pendências.>
 
-- introdução que poderia servir para qualquer empresa;
-- enumeração de benefícios sem situação, mecanismo ou exemplo;
-- promessa absoluta, prova social inventada ou número sem fonte;
-- adjetivo que ocupa o lugar de uma explicação;
-- sequência de frases com o mesmo comprimento e a mesma cadência;
-- CTA que não informa a próxima ação nem o motivo para realizá-la;
-- texto que fala sobre transformação sem mostrar o antes, o depois e o caminho.
-
-## Sinais de estrutura, fluidez e edição
-
-Ao cruzar `context/estruturas-proibidas.md`, priorize estes agrupamentos no
-passe de leitura:
-
-- **Estrutura:** abertura genérica ou com `Se você...`; lista previsível de 3
-  a 5 pontos óbvios no lugar de argumento; conclusão moralizante; CTA
-  descolado do argumento; autoridade fabricada; pergunta retórica genérica;
-  headings intercambiáveis; peça inteira organizada como reconto cronológico;
-  reaproveitamento mecânico entre peças do mesmo pacote; frase curta isolada
-  como martelo.
-- **Fluidez:** sigla ou objeto técnico sem artigo definido em parágrafo
-  corrido; parágrafo seco com substantivos encostados sem transição; ponto e
-  vírgula ou travessão de prosa corrida como muleta; enumeração serial em
-  prosa; estrutura temporal pronta com `começa antes`; família `entrega`
-  como promessa vaga.
-- **Sinais:** emoji decorativo em heading ou lista; caixa alta em todas as
-  palavras principais do heading; fórmulas de sabedoria de efeito
-  (`X é o Y de Z`, `a questão real é`, `no fundo`, `o que realmente importa
-  é`); anúncio de estrutura (`vamos explorar`, `nesta seção, veremos`);
-  cabeçalho seguido de frase que repete o heading; resíduo de conversa
-  (`espero que isso ajude`, `segue abaixo`, `claro!`, `ótima pergunta`);
-  preenchimento especulativo de lacuna factual (`com base nas informações
-  disponíveis`, `é provável que`, `possivelmente`); amplitude falsa (`de X a
-  Y` sem escala real).
-- **Edição:** abertura que limpa a garganta (`a verdade é`, `deixe-me ser
-  claro`, `vale destacar`); falsa descoberta (`o que ninguém conta`, `o
-  segredo é`); ênfase performática (`ponto final`, `isso muda tudo`);
-  metadiscurso (`o ponto principal é`, `como você pode ver`); gerúndio de
-  rótulo sem consequência (`destacando`, `reforçando`); grandeza declarada
-  sem apoio (`momento crucial`, `papel vital`); atribuição sem fonte
-  (`especialistas concordam`, `estudos mostram`); agência falsa (`os dados
-  dizem`, `o mercado recompensou`); voz passiva que esconde responsável;
-  verbo inflado (`serve como`, `atua como`); troca de sinônimos para evitar
-  repetir o termo correto; frase portátil; ritmo robótico; encerramento que
-  recapitula a peça.
-
-## O que não reprovar
-
-Antes de reprovar um trecho, confirme que ele não se encaixa em um destes
-casos:
-
-- Gramática correta e estilo consistente; polimento não é sinal de IA por si
-  só.
-- Vocabulário técnico ou formal aplicado ao tema certo; não generalize o veto
-  para toda palavra difícil.
-- Frase curta isolada, única no parágrafo, usada para fechar um raciocínio já
-  desenvolvido; o padrão vetado é a sequência em cadeia.
-- Termo tecnicamente correto usado dentro de citação, título ou nome próprio.
-- Repetição de conectivo comum quando aparece uma vez; o padrão vetado é o
-  empilhamento em sequência.
-- Detalhe específico, opinião com ressalva, variação real de tamanho de
-  frase, aparte do autor e referência datada são sinais de escrita humana a
-  preservar, não defeitos.
-
-Quando restar dúvida, procure o agrupamento de vários sinais no mesmo
-parágrafo antes de reprovar. Um sinal isolado raramente justifica reescrever o
-trecho inteiro; vários sinais no mesmo trecho justificam.
-
-## Registro de auditoria
-
-```md
-## Auditoria anti-slop
-
-- Estado: aprovado | ajustes necessários
-- Persona: persona-XX
-- Canal: canal
-- Fontes lidas: caminho/arquivo.md
-
-### Achados
-
-1. Trecho: “...”
-   - Regra: detalhe ausente | promessa sem base | voz | proibição
-   - Ação: ...
+## Próxima ação
+<Responsável, arquivo e marco seguinte.>
 ```
+
+## Exemplo preenchido: Pinhão Bicicletas, empresa fictícia
+
+**Entrada A5:** “A Pinhão Bicicletas oferece soluções inovadoras que transformam sua experiência. Nosso sistema garante mais vendas com mensagens.” A fonte descreve seis avisos, quatro respostas e visitas ainda não conferidas.
+
+**Relatório da primeira rodada:**
+
+```markdown
+# Auditoria A5: README.md
+
+- Marco: A5
+- Ciclo: 1
+- Modo: revisão autorizada
+- Entrada: canais/exemplo/0042/README.md, versão candidata 1
+- Fontes: context/marca-voz.md, context/publico.md, context/proibicoes.md, context/estruturas-proibidas.md, context/glossario.md, acervo/0042/processado.md
+- Estado: ajustes-necessarios
+
+## Achados
+| ID | Passe | Local e trecho | Regra ou fonte | Diagnóstico | Ação |
+| --- | --- | --- | --- | --- | --- |
+| AS01 | estrutural | abertura, soluções inovadoras | ESCRITA.md, objeto e função | Frase não nomeia a operação da oficina | Abrir pelo envio dos avisos |
+| AS02 | semântico | parágrafo 1, garante mais vendas | processado.md, ressalva sobre visitas | A fonte confirma respostas, sem confirmar vendas | Retirar a garantia e preservar a lacuna |
+
+## Releitura
+A produtora corrigirá a abertura. Todos os passes serão repetidos no texto inteiro.
+
+## Próxima ação
+Devolver à produtora e repetir A5 antes da validadora.
+```
+
+**Depois, numa correção autorizada:** “A equipe da Pinhão Bicicletas enviou seis avisos de revisão pelo WhatsApp. Quatro destinatários responderam. A oficina ainda precisa conferir na agenda quantas respostas resultaram em visitas.”
+
+O trecho passa a dizer o que aconteceu e o que falta conferir. Isso não cria uma alegação de vendas nem transforma este exemplo em modelo obrigatório de abertura. O ciclo 2 só recebe `aprovado` após conferir também o restante da peça, o CTA e as proibições.
+
+## Checklist numerado
+
+1. Marco e modo de trabalho estão identificados.
+2. A0 não altera o bruto.
+3. Todos os vetos literais foram confrontados com o arquivo inteiro.
+4. Promessas e números possuem origem compatível.
+5. Falha estrutural aponta o padrão real, sem censurar frase curta isolada.
+6. Correção preserva ressalvas e autoria.
+7. Voz e persona continuam reconhecíveis.
+8. A6 compara as peças relacionadas quando aplicável.
+9. Releitura integral foi registrada após edição.
+10. Não existe nota editorial usada para compensar um achado.
+
+## Erros comuns
+
+- Substituir um clichê por outro. Nomeie a operação sustentada pela fonte.
+- Apagar detalhe incomum para deixar tudo uniforme. Preserve autoria.
+- Reprovar qualquer frase curta. Demonstre a repetição que prejudica a leitura.
+- Reescrever durante pedido de auditoria. Entregue achados; edite somente no alcance autorizado.
+- Marcar A6 como aprovado com uma peça ainda reprovada em A5. Corrija a dependência primeiro.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-anti-slop**, do grupo
-**qualidade**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de anti slop dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-anti-slop
-etapa: A0 | A1 | A2 | A3 | A4 | A5 | A6
-ciclo: 1
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de anti slop
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-anti-slop
-grupo: qualidade
-entrada: acervo/0042-2026-09-14-anti-slop/processado.md
-pedido: aplicar a etapa de anti slop e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-anti-slop
-estado: aprovado
-entrada: acervo/0042-2026-09-14-anti-slop/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de anti slop
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Um novo ciclo preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-anti-slop** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+Carregue [fontes](../_shared/01-preflight-e-fontes.md) e [contexto](../_shared/05-contexto-editorial.md). Registre o ciclo por [artefato](../_shared/02-contrato-de-artefato.md). Devolva com [handoff](../_shared/03-interacao-e-handoff.md) e invalide ciclos posteriores por [retomada](../_shared/04-validacao-e-retomada.md).
 
 ## Guia específico do grupo
 
-Faça uma revisão específica de qualidade. Separe achado literal, semântico e estrutural e só libere após nova leitura integral.
-
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-anti-slop** para executar esta função: Audita textos de marketing para remover generalidades, sinais sintéticos e promessas sem base, respeitando voz, persona e canal.
-
-O grupo **qualidade** trabalha com estes campos mínimos:
-
-- **texto:** preencher com dado ligado ao pedido.
-- **voz:** preencher com dado ligado ao pedido.
-- **dicionário:** preencher com dado ligado ao pedido.
-- **proibições:** preencher com dado ligado ao pedido.
-- **retorno:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-anti-slop
-grupo: qualidade
-pedido: executar a função desta skill sobre o material selecionado
-entrada: canais/blog/0042-2026-09-14-peca/artigo.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-anti-slop
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - canais/blog/0042-2026-09-14-peca/artigo.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **qualidade** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `LIMPEZA-MATERIAL-BRUTO.md`
-- `docs/method/07-validacao-e-testes.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+A qualidade editorial usa `ESCRITA.md`, os dois arquivos canônicos de proibições e `inboundfy-copy-editor`. A auditoria não escolhe uma voz nova nem substitui a validadora do canal. Leia [ETAPAS.md](ETAPAS.md) no início e na retomada de cada marco.

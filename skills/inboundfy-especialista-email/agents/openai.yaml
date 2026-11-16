@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Especialista Email"
-  short_description: "Executa especialista email no Inboundfy"
-  default_prompt: "Use $inboundfy-especialista-email para executar especialista email com as fontes do projeto."
+  display_name: "Inboundfy: Redação de E-mail"
+  short_description: "Produz E-mail com fontes e revisão pareada."
+  default_prompt: "Use $inboundfy-especialista-email para produzir a peça de E-mail com o brief aprovado, consultar os modelos do canal e encaminhar o conjunto à validadora pareada."

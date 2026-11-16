@@ -1,53 +1,226 @@
-# Referência de Habilitação de vendas
+# Referência de enablement de vendas
+
+Material de apoio do fluxo de `inboundfy-enablement-vendas`. Leia no passo 4
+o arquivo do material pedido e use os modelos abaixo como ponto de partida.
+
+## Arquivos de apoio
+
+| Arquivo | Passo do fluxo | Conteúdo |
+| --- | --- | --- |
+| [references/deck-e-one-pager.md](references/deck-e-one-pager.md) | Passo 4, para deck, one-pager e resumo pós-reunião | Arco de 11 slides, versões por persona, estrutura do one-pager e do resumo enviado por e-mail ou WhatsApp. |
+| [references/objecoes-e-battlecards.md](references/objecoes-e-battlecards.md) | Passo 4, para objeções e battlecard | Categorias de objeção, método de resposta em quatro tempos, respostas de referência e modelo de battlecard. |
+| [references/roteiros-de-conversa.md](references/roteiros-de-conversa.md) | Passo 4, para descoberta, demo, ligação e WhatsApp | Roteiros por cena com tempo, perguntas de descoberta, demo por público e sequência de follow-up. |
+| [references/roi-e-ganho-perda.md](references/roi-e-ganho-perda.md) | Passo 4, para calculadora de ROI e análise de ganho e perda | Fórmulas, entradas conservadoras, roteiro de entrevista de ganho e perda e leitura dos padrões. |
+
+## Mapa de material por etapa
+
+| Etapa da negociação | Material principal | Objetivo do material |
+| --- | --- | --- |
+| Primeiro contato | Roteiro de ligação, mensagem de WhatsApp | Conseguir a reunião de descoberta. |
+| Descoberta | Roteiro de descoberta | Entender dor, custo, prioridade e processo de compra. |
+| Demonstração | Roteiro de demo por público | Mostrar os fluxos que resolvem a dor levantada. |
+| Avaliação | One-pager, battlecard, calculadora de ROI | Dar argumento para o campeão interno vender por dentro. |
+| Proposta e negociação | Biblioteca de objeções, resumo pós-reunião | Responder dúvida de preço, prazo e autoridade. |
+| Fechamento ou perda | Análise de ganho e perda | Aprender por que ganhou ou perdeu e atualizar o material. |
 
 ## Template
 
+Frontmatter e corpo comum a todo material. O corpo específico vem do arquivo
+de apoio.
+
 ```markdown
-# Habilitação de vendas
+---
+id: {{id}}
+skill: inboundfy-enablement-vendas
+tipo: {{deck | one-pager | objecoes | battlecard | roteiro-descoberta | roteiro-demo | follow-up | calculadora-roi | ganho-perda}}
+estado: rascunho
+persona: {{persona-id}}
+papel_na_compra: {{usuário | decisor financeiro | técnico | campeão interno}}
+etapa: {{primeiro contato | descoberta | demonstração | avaliação | proposta | fechamento}}
+fontes:
+  - .inboundfy/context/ofertas.md
+  - {{demais fontes}}
+revisar_em: {{AAAA-MM-DD}}
+responsavel_revisao: {{pessoa do time comercial}}
+---
 
-- **ID:** {{id}}
-- **Objetivo:** {{objetivo}}
-- **Persona:** {{persona}}
-- **Canal:** {{canal}}
-- **Acervo:** {{acervo}}
-- **Fonte principal:** {{fonte}}
-- **Próxima ação:** {{cta}}
+# {{Título do material}}
 
-## Plano
+## Para que serve
 
-{{plano}}
+{{Uma frase: quem usa, quando usa e qual próximo passo provoca.}}
 
-## Pendências
+## Material
 
-{{pendencias}}
+{{Corpo no modelo do arquivo de apoio.}}
+
+## Próximo passo do comprador
+
+{{Ação concreta com data ou condição.}}
+
+## Pendências de prova
+
+- {{afirmação que falta comprovar ou "nenhuma"}}
+
+## Histórico
+
+| Data | Mudança | Pedido por |
+| --- | --- | --- |
+| {{AAAA-MM-DD}} | {{criação ou ajuste}} | {{pessoa}} |
 ```
 
-## Guia específico
+Tabela de afirmações em `afirmacoes.md`:
 
-Monte narrativa curta, pergunta de descoberta, problema, mecanismo, prova, objeção, resposta, limite da oferta, material de apoio e próximo passo da conversa.
+```markdown
+| Afirmação no material | Tipo | Fonte | Pode citar? |
+| --- | --- | --- | --- |
+| {{texto exato}} | {{número, cliente, prazo, comparação}} | {{caminho ou insumo}} | {{sim, não, pendente}} |
+```
 
-## Exemplo ilustrativo
+## Exemplo
 
-Uma empresa de software pode usar este modelo para organizar uma ação de teste com uma persona específica, ligar cada mensagem a um acervo e registrar a página de destino sem afirmar resultados ainda não medidos.
+Caso fictício para ilustrar o formato. Não use os dados como contexto real.
+
+**Empresa:** PontoCerto, SaaS de controle de ponto por celular para
+restaurantes e clínicas. Plano Equipe a R$ 12 por colaborador por mês,
+pagamento por Pix ou boleto. Implantação em 3 dias úteis. Dados de horário de trabalho
+armazenados no Brasil, com tratamento conforme a LGPD. Concorrente mais
+frequente: RelógioMax, relógio de ponto físico com mensalidade de software.
+
+**Pedido:** battlecard contra o RelógioMax para a etapa de avaliação,
+persona-01 (sócia de restaurante, decisora financeira).
+
+```markdown
+---
+id: 0031
+skill: inboundfy-enablement-vendas
+tipo: battlecard
+estado: revisao
+persona: persona-01
+papel_na_compra: decisor financeiro
+etapa: avaliação
+fontes:
+  - .inboundfy/context/ofertas.md
+  - .inboundfy/context/concorrentes.md
+  - .inboundfy/context/depoimentos.json
+  - insumo: motivos de perda no CRM, setembro e outubro de 2026
+revisar_em: 2027-02-15
+responsavel_revisao: Marina Teles, coordenadora comercial
+---
+
+# Battlecard: PontoCerto contra RelógioMax
+
+## Para que serve
+
+A pessoa vendedora usa durante a avaliação, quando a sócia do restaurante
+compara com o relógio físico. O próximo passo é o teste de 14 dias com a
+equipe do salão.
+
+## Material
+
+### Em 30 segundos
+
+O RelógioMax exige aparelho na parede e técnico para instalar. O PontoCerto
+registra o ponto no celular do colaborador, com localização e fica pronto em
+3 dias úteis. Para restaurante com turnos quebrados e equipe que chega por
+portas diferentes, o celular evita fila e esquecimento.
+
+### Onde ganhamos
+
+| Situação do cliente | Por que ganhamos | Prova |
+| --- | --- | --- |
+| Mais de uma unidade | Um painel para todas as unidades, sem aparelho por loja | ofertas.md, plano Equipe |
+| Turno quebrado e freelancers | Ponto no celular com localização, sem cadastro biométrico | ofertas.md |
+| Fechamento de folha manual | Exportação para o contador em um clique | depoimento de Ricardo Alves, Bistrô Alecrim, uso comercial autorizado |
+
+### Onde perdemos
+
+| Situação | Por quê | Como responder |
+| --- | --- | --- |
+| Cliente exige biometria por norma interna | Não temos leitor biométrico | Seja honesto. Indique quando o PontoCerto não serve. |
+| Equipe sem celular próprio | Ponto depende de aparelho | Ofereça tablet compartilhado na entrada como alternativa. |
+
+### Perguntas que mudam a conversa
+
+1. Quantas horas por mês alguém gasta corrigindo marcação esquecida?
+2. Quanto custa o técnico quando o relógio para?
+3. Como a equipe que entra pela porta dos fundos registra o ponto hoje?
+
+### Objeções esperadas
+
+- **"O relógio já está pago."** O aparelho está pago. A mensalidade do
+  software e o tempo de correção continuam. Mostre a calculadora com as horas
+  de correção da própria casa.
+- **"Funcionário vai burlar pelo celular."** O registro guarda localização e
+  horário do servidor. Mostre a tela de marcação fora do raio.
+
+### Armadilhas a evitar
+
+- Não diga que o RelógioMax é ilegal ou desatualizado. Ele cumpre a regra.
+- Não prometa redução de passivo trabalhista em valor. Não temos
+  comprovação.
+
+## Próximo passo do comprador
+
+Ativar o teste de 14 dias com a equipe do salão e marcar a revisão dos
+relatórios no dia 15.
+
+## Pendências de prova
+
+- Tempo médio de correção de ponto antes e depois: falta caso com número
+  medido.
+
+## Histórico
+
+| Data | Mudança | Pedido por |
+| --- | --- | --- |
+| 2026-11-15 | Criação | Marina Teles |
+```
+
+`afirmacoes.md` do mesmo exemplo:
+
+```markdown
+| Afirmação no material | Tipo | Fonte | Pode citar? |
+| --- | --- | --- | --- |
+| Pronto em 3 dias úteis | prazo | context/ofertas.md | sim |
+| Exportação para o contador em um clique | funcionalidade | context/produtos.md | sim |
+| Depoimento do Bistrô Alecrim | cliente | context/depoimentos.json, consentimento comercial | sim |
+| RelógioMax exige técnico para instalar | comparação | context/concorrentes.md | sim, sem tom pejorativo |
+| Tempo de correção cai pela metade | número | sem fonte | não, retirado do material |
+```
 
 ## Checklist
 
-- [ ] ID e objetivo estão presentes.
-- [ ] Persona, canal e acervo estão vinculados.
-- [ ] Fontes e pendências estão localizadas.
-- [ ] Voz, proibições e dicionário foram conferidos.
-- [ ] Próxima ação e estado do pipeline estão claros.
+- [ ] Tipo, persona, papel na compra e etapa estão no frontmatter.
+- [ ] O material serve a uma situação, não ao comprador genérico.
+- [ ] A pessoa vendedora acha a resposta em 30 segundos (títulos que
+      respondem, listas curtas).
+- [ ] Cada funcionalidade aparece com consequência para o comprador.
+- [ ] `afirmacoes.md` cobre todos os números, clientes, prazos e
+      comparações.
+- [ ] Depoimento e concorrente citados têm permissão registrada.
+- [ ] O battlecard inclui onde a empresa perde e como responder com
+      honestidade.
+- [ ] O material termina com próximo passo concreto.
+- [ ] `revisar_em` e responsável estão preenchidos.
+- [ ] A prosa passou por `inboundfy-copy-editor`.
 
 ## Erros comuns
 
-- Começar pelo formato antes de confirmar objetivo, público e fonte.
-- Usar promessa, preço, número ou nome sem registro local.
-- Aplicar a mesma mensagem a personas com contextos diferentes.
-- Salvar o resultado sem caminho, ID ou alcance da escolha.
-
-## Relação com inboundfy-enablement-vendas
-
-Use este modelo como roteiro mínimo e acrescente apenas campos pedidos pelo projeto. O arquivo final deve ficar ligado ao acervo, à peça e ao calendário quando houver data.
+- **Catálogo de funcionalidades.** Deck que lista telas sem ligar cada uma a
+  uma dor levantada na descoberta.
+- **Resposta a objeção que discute com o cliente.** A resposta valida a
+  preocupação, pergunta e só depois reposiciona.
+- **Battlecard que ataca o concorrente.** Falar mal da alternativa reduz a
+  confiança e pode ferir regra de `context/proibicoes.md`.
+- **ROI inflado.** Premissas otimistas que o diretor financeiro desmonta em
+  um minuto. Use a entrada do próprio cliente e a hipótese conservadora.
+- **Material eterno.** Battlecard de seis meses atrás com preço velho do
+  concorrente. Toda peça tem data de revisão.
+- **Escrever sem ouvir o time.** Objeção inventada pelo marketing em vez da
+  frase real que o cliente disse.
+- **Depoimento sem consentimento comercial.** Uma fala elogiosa no WhatsApp
+  não autoriza uso em proposta.
 
 ## Arquitetura aplicada
 
@@ -60,164 +233,24 @@ Esta referência usa o contrato comum para a skill **inboundfy-enablement-vendas
 - [validação e retomada](../_shared/04-validacao-e-retomada.md);
 - [contexto editorial](../_shared/05-contexto-editorial.md).
 
-## Contrato específico
-
-- **Função:** executar a capacidade de enablement vendas dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-enablement-vendas
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de enablement vendas
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-enablement-vendas
-grupo: capacidade
-entrada: acervo/0042-2026-09-14-enablement-vendas/processado.md
-pedido: aplicar a etapa de enablement vendas e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-enablement-vendas
-estado: aprovado
-entrada: acervo/0042-2026-09-14-enablement-vendas/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de enablement vendas
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-enablement-vendas** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
-
 ## Guia específico do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
+O enablement consome o que outras skills estabelecem e devolve aprendizado
+do campo. Use esta tabela para saber de onde vem cada insumo e para onde vai
+cada descoberta.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+| Insumo ou descoberta | Origem ou destino |
+| --- | --- |
+| Posicionamento e mensagem central | Vem de `inboundfy-copy-posicionamento` |
+| Oferta, garantia e condições | Vem de `inboundfy-copy-oferta` e `context/ofertas.md` |
+| Perfil de concorrente | Vem de `inboundfy-concorrentes` e `context/concorrentes.md` |
+| Linguagem do cliente | Vem de `inboundfy-pesquisa-cliente` |
+| Depoimento novo com consentimento | Vai para `inboundfy-contexto-depoimentos` |
+| Padrão de perda por preço | Vai para `inboundfy-growth-pricing` |
+| Padrão de perda por mensagem confusa | Vai para `inboundfy-copy-posicionamento` |
+| Etapas e campos do CRM | Vai para `inboundfy-growth-revops` |
+| Página de comparação pública | Vai para `inboundfy-concorrentes` e `inboundfy-copy-redacao` |
 
-## Especificação operacional
+## Roteiro de diagnóstico
 
-### Quando usar
-
-Use **inboundfy-enablement-vendas** para executar esta função: Cria materiais para vendas usando problemas reais, objeções, oferta, provas, voz e limites de afirmação do projeto.
-
-O grupo **capacidade** trabalha com estes campos mínimos:
-
-- **objetivo:** preencher com dado ligado ao pedido.
-- **entrada:** preencher com dado ligado ao pedido.
-- **contexto:** preencher com dado ligado ao pedido.
-- **resultado:** preencher com dado ligado ao pedido.
-- **próxima ação:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-enablement-vendas
-grupo: capacidade
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/context/empresa.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-enablement-vendas
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **capacidade** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `README.md`
-- `CONTEXTO.md`
-- `SKILL-AUTORIA.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+No passo 3 do fluxo, leia [as perguntas de diagnóstico](references/diagnostico.md). Pergunte somente o que os insumos não responderem.

@@ -1,15 +1,61 @@
-# Referência de edição
+# Referência de edição de copy
+
+Este arquivo apoia os passos 3 a 8 do fluxo de `SKILL.md`: escolha do modo,
+passagens de edição, regras de ajuste, relatório, exemplo completo e
+checklist.
+
+## Arquitetura aplicada
+
+Esta referência usa o contrato comum para a skill **inboundfy-copy-edicao**, do grupo
+**copy**. Leia os detalhes compartilhados conforme a etapa atual:
+
+- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
+- [artefato e relações](../_shared/02-contrato-de-artefato.md);
+- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
+- [validação e retomada](../_shared/04-validacao-e-retomada.md);
+- [contexto editorial](../_shared/05-contexto-editorial.md).
+
+## Materiais de apoio
+
+| Arquivo | Passo do fluxo | Conteúdo |
+| --- | --- | --- |
+| [references/trocas-de-linguagem.md](references/trocas-de-linguagem.md) | Passo 5 | Jargão corporativo e expressões infladas com a troca em português direto. |
+| [references/atualizacao-de-conteudo.md](references/atualizacao-de-conteudo.md) | Passo 6 | Quando atualizar, o que conferir, o que preservar e quando reescrever. |
+
+## Guia específico do grupo
+
+A edição melhora um texto que já existe sem trocar o que ele pretende dizer.
+Os campos do grupo são **objetivo** (o que a revisão precisa resolver),
+**mensagem** (tese preservada), **persona** (para quem o texto foi escrito),
+**canal** (forma exigida) e **revisão** (modo, passagens, A0, A5). Registre
+os cinco no relatório.
+
+## Modos de edição
+
+| Modo | Quando | Passagens | Tempo típico |
+| --- | --- | --- | --- |
+| Leve | Texto bom, publicação próxima | Clareza, conformidade | Minutos |
+| Completo | Texto com problema de resultado ou de leitura | Todas, na ordem | Uma sessão |
+| Atualização | Texto antigo com fatos ou telas defasados | Diagnóstico de atualização e depois todas | Uma sessão |
 
 ## Ordem das passagens
 
-| Passagem | Resultado |
-| --- | --- |
-| Intenção | Uma tese e um objetivo reconhecíveis. |
-| Estrutura | Ordem lógica e transições necessárias. |
-| Clareza | Frases diretas e termos explicados. |
-| Especificidade | Exemplos, mecanismos e consequências concretas. |
-| Voz | Ritmo, pessoa e vocabulário do projeto. |
-| Conformidade | Proibições, dicionário, fontes e canal. |
+Cada passagem procura um problema só. Ler o texto oito vezes com um foco por
+vez encontra mais do que uma leitura tentando ver tudo.
+
+| Passagem | Pergunta | Resultado esperado |
+| --- | --- | --- |
+| 1. Intenção | Qual é a tese e qual ação o texto pede? | Uma tese e um objetivo reconhecíveis no primeiro bloco. |
+| 2. Clareza | Uma pessoa da persona entende cada frase na primeira leitura? | Frases diretas, termos explicados, ordem lógica. |
+| 3. Voz | Soa como a marca em `marca-voz.md`? | Ritmo, pessoa verbal e vocabulário do projeto. |
+| 4. Relevância | Cada afirmação responde "e daí?" para a persona? | Característica sempre ligada ao ganho para o leitor. |
+| 5. Prova | Cada promessa tem fonte, número, caso ou demonstração? | Afirmações sem base removidas ou marcadas como pendência. |
+| 6. Especificidade | Existem palavras vagas onde caberia um dado? | Prazos, valores, telas e situações concretas. |
+| 7. Segurança da ação | O leitor sabe o que acontece ao clicar e o que perde se desistir? | CTA claro, condição visível, receio respondido. |
+| 8. Conformidade | Proibições, dicionário, fontes e canal batem? | Texto liberado para `inboundfy-copy-editor` e A5. |
+
+Depois de uma passagem, confira se ela não estragou uma anterior. Um dado
+acrescentado na passagem 6 pode quebrar o ritmo da passagem 3.
 
 ## Regras de ajuste
 
@@ -40,180 +86,148 @@ compreensão antes de ajustar ritmo e acabamento:
   parágrafos, não transforme toda frase longa em duas frases curtas e não
   alise uma passagem autoral só para obter consistência.
 
-## Relatório
+## Verificações rápidas por nível
 
-Separe `corrigido`, `mantido`, `sugerido` e `pendente`. Uma sugestão não deve
-ser aplicada silenciosamente quando muda o alcance ou o posicionamento.
+| Nível | O que procurar |
+| --- | --- |
+| Palavra | Advérbio que não muda o sentido ("realmente", "extremamente"), adjetivo sem prova ("inovador", "robusto"), jargão da tabela de trocas, sigla sem explicação na primeira menção. |
+| Frase | Voz passiva escondendo quem faz, duas ideias numa frase só, frase que começa por "É importante", oração ligada por ", e". |
+| Parágrafo | Primeira frase sem a ideia principal, parágrafo que repete o anterior, sequência de frases curtas em escadinha. |
+| Peça | Mais de uma ação principal, CTA enterrado no fim de página longa, seção sem pergunta do leitor. |
 
-## Arquitetura aplicada
+## Problemas frequentes e correção
 
-Esta referência usa o contrato comum para a skill **inboundfy-copy-edicao**, do grupo
-**copy**. Leia os detalhes compartilhados conforme a etapa atual:
+| Sintoma | Causa | Correção |
+| --- | --- | --- |
+| Parede de funcionalidades | O texto lista o que o produto tem | Agrupe por uso e escreva o ganho de cada grupo. |
+| Abertura fraca | Começa pela empresa ou por contexto amplo | Comece pela situação do leitor ou pelo resultado. |
+| CTA escondido | Só aparece no fim | Repita após a primeira prova e ao final. |
+| Promessa genérica | "Melhore seus resultados" | Troque pelo resultado medido ou pelo mecanismo. |
+| Público misturado | Fala com dono e com funcionário ao mesmo tempo | Escolha a persona do brief; a outra recebe outra peça. |
 
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de edição de copy dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
+## Template de relatório de edição
 
 ```markdown
 ---
-id: {id}
+id: {{id da peça}}
 skill: inboundfy-copy-edicao
-estado: rascunho
-entrada: {caminho ou ID}
+modo: {{leve | completo | atualizacao}}
+estado: revisao
+arquivo: {{caminho}}
+persona_principal: {{persona-xx}}
+alcance: {{peça | canal | projeto}}
 fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
+  - {{caminho}}
+anti_slop:
+  A0: {{caminho do registro}}
+  A5: {{caminho do registro}}
+proxima_skill: {{validadora do canal}}
 ---
 
-# Registro de edição de copy
+# Relatório de edição: {{título da peça}}
 
-## Resultado
+## Diagnóstico
 
-{Conteúdo específico da etapa.}
+{{Uma a três frases: o que impedia o texto de cumprir o objetivo.}}
 
-## Pendências
+## Corrigido
 
-- {pergunta ou "nenhuma"}
+| Local | Antes | Depois | Passagem |
+| --- | --- | --- | --- |
+| {{heading ou parágrafo}} | {{trecho}} | {{trecho}} | {{nº}} |
 
-## Próxima ação
+## Mantido
 
-{verbo + objeto + caminho do arquivo seguinte}
+- {{trecho preservado e motivo}}
+
+## Sugerido (depende de confirmação)
+
+- {{sugestão que muda ângulo, oferta ou estrutura}}
+
+## Pendente
+
+- {{fato sem fonte ou "nenhuma"}}
 ```
 
-## Exemplo operacional completo
+## Exemplo completo: página de serviço de pet shop
 
-### Entrada ilustrativa
+Dados fictícios e ilustrativos. A Agenda Pet é uma empresa inventada que
+vende um sistema de agendamento para pet shops por R$ 89 por mês.
+
+### Entrada
 
 ```yaml
-id: 0042
-skill: inboundfy-copy-edicao
-grupo: copy
-entrada: acervo/0042-2026-09-14-copy-edicao/processado.md
-pedido: aplicar a etapa de copy edição e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
+arquivo: canais/site/0207-2026-11-03-agendamento/README.md
+objetivo_revisao: a página recebe visitas de anúncio e quase ninguém inicia o teste
+modo: completo (escolhido pelo usuário entre completo, leve e atualização)
+persona_principal: persona-01 (dona de pet shop de bairro com 2 tosadores)
+preservar: o nome do recurso "Lembrete Patinha"
 ```
 
-### Saída ilustrativa
+### Trecho original
 
-```markdown
----
-id: 0042
-skill: inboundfy-copy-edicao
-estado: aprovado
-entrada: acervo/0042-2026-09-14-copy-edicao/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
+> A Agenda Pet é uma solução inovadora e completa que revoluciona a gestão do
+> seu pet shop. Com nossa plataforma robusta, você otimiza processos e
+> maximiza resultados. Temos diversas funcionalidades pensadas para você.
+> Saiba mais.
 
-# Registro de edição de copy
+### Passagens aplicadas
 
-## Resultado
+1. **Intenção:** a ação esperada (teste grátis) não aparece. A tese também
+   não: o leitor não sabe que problema o sistema resolve.
+2. **Clareza:** "solução completa" e "gestão" não dizem o que o sistema faz.
+3. **Voz:** `marca-voz.md` pede tom de conversa de balcão; o trecho soa como
+   folheto de multinacional.
+4. **Relevância:** "diversas funcionalidades" não responde "e daí?".
+5. **Prova:** "revoluciona" não tem fonte. O acervo registra queda de 38% nas
+   faltas em três clientes piloto, com data.
+6. **Especificidade:** "otimiza processos" vira o processo real: agenda de
+   banho e tosa, lembrete pelo WhatsApp.
+7. **Segurança da ação:** "Saiba mais" não diz o que acontece. A oferta tem
+   14 dias grátis sem cartão.
+8. **Conformidade:** "revoluciona" e "inovadora" constam em `estruturas-proibidas.md`.
 
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
+### Trecho editado
 
-## Próxima ação
+> Cliente que esquece o horário do banho deixa o tosador parado e a agenda
+> furada. A Agenda Pet manda o Lembrete Patinha pelo WhatsApp um dia antes e
+> duas horas antes do horário, com botão para confirmar ou remarcar. Nos três
+> pet shops que testaram o sistema entre agosto e outubro de 2026, as faltas
+> caíram 38%.
+>
+> [Testar grátis por 14 dias] Sem cartão. Você configura a agenda em 15 minutos.
 
-{verbo + objeto + caminho do arquivo seguinte}
-```
+### Interpretação
 
-## Checklist ampliado
+A edição manteve o recurso preservado e a mesma oferta. Mudou a abertura para
+a situação da persona, trocou adjetivos por mecanismo e trouxe a prova
+registrada. A falha provável seria inventar "dezenas de pet shops" para dar
+volume: sem fonte, a frase seria reprovada.
 
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
+## Checklist
 
-## Erros comuns adicionais
+- [ ] O modo de edição está registrado e foi confirmado.
+- [ ] A0 rodou antes da primeira alteração.
+- [ ] As oito passagens rodaram no modo completo, na ordem.
+- [ ] Tese, ângulo e fatos confirmados continuam no texto.
+- [ ] Trechos marcados para preservar não foram alterados.
+- [ ] O mesmo vício foi procurado e corrigido no arquivo inteiro.
+- [ ] Sugestões que mudam ângulo ou oferta ficaram em `sugerido`.
+- [ ] Preço, prazo e depoimento conferem com os arquivos de contexto.
+- [ ] `inboundfy-copy-editor` e A5 rodaram sobre a versão final.
+- [ ] O relatório separa corrigido, mantido, sugerido e pendente.
 
-- Executar **inboundfy-copy-edicao** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+## Erros comuns
 
-## Guia específico do grupo
-
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
-
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-copy-edicao** para executar esta função: Revisa copy existente preservando a mensagem, corrigindo clareza, força, ritmo, voz, factualidade e conformidade com o projeto.
-
-O grupo **copy** trabalha com estes campos mínimos:
-
-- **objetivo:** preencher com dado ligado ao pedido.
-- **mensagem:** preencher com dado ligado ao pedido.
-- **persona:** preencher com dado ligado ao pedido.
-- **canal:** preencher com dado ligado ao pedido.
-- **revisão:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-copy-edicao
-grupo: copy
-pedido: executar a função desta skill sobre o material selecionado
-entrada: acervo/0042-2026-09-14-material/base-editorial.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-copy-edicao
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - acervo/0042-2026-09-14-material/base-editorial.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **copy** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `CONTEXTO.md`
-- `SKILL-AUTORIA.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+- **Editar o ângulo sem avisar.** O usuário pediu clareza e recebeu outra
+  tese. Mudança de ângulo é reescrita e precisa de confirmação.
+- **Cortar a prova para encurtar.** Remover o único número do texto deixa a
+  página mais curta e menos convincente.
+- **Trocar por sinônimo.** Substituir "otimizar" por "melhorar" mantém a
+  frase vazia. Reescreva com o processo real.
+- **Corrigir só o trecho apontado.** O mesmo adjetivo inflado aparece em
+  quatro seções e só a primeira muda.
+- **Aplicar sugestão silenciosamente.** Uma troca de CTA de "teste grátis"
+  para "fale com vendas" muda a oferta e precisa de aprovação.
+- **Uniformizar o ritmo.** Quebrar toda frase longa em duas curtas cria
+  escadinha e apaga a voz do autor.

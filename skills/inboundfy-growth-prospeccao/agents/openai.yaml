@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Growth Prospeccao"
-  short_description: "Executa growth prospeccao no Inboundfy"
-  default_prompt: "Use $inboundfy-growth-prospeccao para executar growth prospeccao com as fontes do projeto."
+  display_name: "Inboundfy: Prospecção de contas"
+  short_description: "Pesquisa contas, sinais e contatos com prioridade explicada"
+  default_prompt: "Use $inboundfy-growth-prospeccao para construir uma lista qualificada com fontes, sinais datados, contatos conferidos e handoff para abordagem."

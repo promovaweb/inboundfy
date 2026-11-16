@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Especialista Linkedin"
-  short_description: "Executa especialista linkedin no Inboundfy"
-  default_prompt: "Use $inboundfy-especialista-linkedin para executar especialista linkedin com as fontes do projeto."
+  display_name: "Inboundfy: Redação de LinkedIn"
+  short_description: "Produz LinkedIn com fontes e revisão pareada."
+  default_prompt: "Use $inboundfy-especialista-linkedin para produzir a peça de LinkedIn com o brief aprovado, consultar os modelos do canal e encaminhar o conjunto à validadora pareada."

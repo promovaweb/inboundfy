@@ -1,223 +1,108 @@
-# Referência de Programa de indicação
+# Referência de programa de indicação
 
-## Template
+## Método e escolhas
 
-```markdown
-# Programa de indicação
+Peça indicação depois de uma entrega concreta. Benefício deve caber na margem e ser explicado aos dois lados antes da conversão. Para afiliado, acrescente comissão, prazo de conciliação e regras de divulgação. Avaliação pública exige tratamento próprio e consulta à política atual da plataforma.
 
-- **ID:** {{id}}
-- **Objetivo:** {{objetivo}}
-- **Persona:** {{persona}}
-- **Canal:** {{canal}}
-- **Acervo:** {{acervo}}
-- **Fonte principal:** {{fonte}}
-- **Próxima ação:** {{cta}}
+| Situação | Modelo | Evento de recompensa | Regra principal |
+| --- | --- | --- | --- |
+| Cliente satisfeito recomenda colega | Indicação entre clientes | Compra elegível confirmada | Benefício transparente |
+| Profissional divulga continuamente | Afiliado | Venda líquida atribuída | Comissão e conciliação |
+| Produto facilita convite de equipe | Convite funcional | Ativação da conta convidada | Valor real para ambas as partes |
+| Empresa pede opinião pública | Avaliação | Sem condicionar nota | Conferir política da plataforma |
+| Marca oferece acesso ao próprio público | Parceria | Entrega contratada | Encaminhar a parcerias |
 
-## Plano
+Leia [o procedimento de programa de indicação](references/regras-atribuicao-e-conciliacao.md) no passo 2 do fluxo, antes de preencher o plano. Ele detalha execução, medição e tratamento das exceções.
 
-{{plano}}
+## Template de trabalho
 
-## Pendências
+Copie o envelope para o pacote do projeto. Preencha também a tabela específica abaixo.
 
-{{pendencias}}
+```yaml
+id: "{{id}}"
+skill: inboundfy-growth-referencias
+grupo: growth
+tipo: plano-referencias
+estado: rascunho
+entrada: ["{{acervo ou pedido}}"]
+brief: "{{caminho do brief}}"
+persona: "{{id da persona}}"
+canal: "{{canal ativo}}"
+oferta: "{{oferta confirmada}}"
+fontes: ["{{contexto}}", "{{fonte do tema}}"]
+responsavel: "{{pessoa}}"
+janela: "{{início e fim}}"
+orcamento_reais: "{{valor aprovado}}"
+proxima_skill: "{{skill e ação solicitada}}"
+pendencias: ["{{pergunta ou nenhuma}}"]
 ```
 
-## Guia específico
+| Regra | Valor preenchido |
+| --- | --- |
+| Quem pode indicar e quem pode receber | {{elegibilidade}} |
+| Momento do convite | {{evento de valor}} |
+| Benefício para cada lado | {{R$ ou condição}} |
+| Conversão elegível e janela | {{evento/dias}} |
+| Duas origens ou códigos | {{regra de precedência}} |
+| Cancelamento e devolução | {{tratamento}} |
+| Limite, conciliação e pagamento | {{teto/data/responsável}} |
+| Atendimento e contestação | {{canal/prazo}} |
 
-Defina momento do convite, pessoa que indica, pessoa recebida, benefício de cada lado, regra de elegibilidade, link, evento de conversão e mensagem pós-indicação.
+Convite: “Você concluiu {{tarefa}}. Se conhecer alguém com a mesma necessidade, compartilhe {{link}}. A pessoa recebe {{benefício}}. Você recebe {{benefício}} após {{condição}}, conforme {{regulamento}}.”
 
-## Exemplo ilustrativo
+## Exemplo completo brasileiro fictício
 
-Uma empresa de software pode usar este modelo para organizar uma ação de teste com uma persona específica, ligar cada mensagem a um acervo e registrar a página de destino sem afirmar resultados ainda não medidos.
+Todos os nomes, documentos e números deste exemplo são fictícios. Resultados simulados servem para demonstrar a conferência, sem prometer desempenho.
+
+A fictícia **Balcão Fácil**, de Campinas, vende software para papelarias por R$ 100/mês. O plano `ref-028` usa `acervo/028-primeira-venda/processado.md`, persona `dona-papelaria` e brief `conteudo/papelarias/04-briefs/ref-028.md`. A margem de contribuição fictícia antes de incentivos é 70%. O programa convida clientes que concluíram o primeiro mês de uso.
+
+A pessoa indicada recebe R$ 20 de desconto na primeira mensalidade. Quem indica recebe R$ 30 de crédito após pagamento confirmado e encerramento da janela operacional de conferência definida pelo projeto. Atribuição: primeiro código válido registrado no cadastro, durante 30 dias. Autorreferência não é elegível. A equipe oferece contestação manual; endereço de rede compartilhado sozinho não prova uso indevido.
+
+No piloto de 60 dias, 100 clientes recebem convite, 20 compartilham e 40 pessoas visitam. Dez contratam; duas cancelam dentro da janela e não geram recompensa. Os oito pedidos elegíveis geram R$ 240 de créditos e R$ 160 de descontos. Operação custa R$ 200. Custo por novo cliente elegível = R$ 600/8 = R$ 75. A margem mensal de R$ 70 serve para estimar recuperação do custo, sem assumir permanência futura.
+
+A responsável fictícia Dara concilia oito IDs, registra dois encerramentos sem recompensa e mantém o plano em `revisao` até medir retenção em 90 dias. Handoff a `inboundfy-growth-loops`: 0,2 compartilhadores por cliente convidado × 2 visitas × 0,2 conversão líquida = 0,08 cliente elegível por convite neste ciclo.
+
+## Métricas e leitura do resultado
+
+- Participação = pessoas que compartilham / pessoas elegíveis convidadas.
+- Conversão líquida = novas compras elegíveis após cancelamentos / visitas ou cadastros atribuídos, com base explícita.
+- CAC de indicação = incentivos, descontos e operação / novos clientes líquidos.
+- Conciliação = recompensas com pagamento ou crédito confirmado / recompensas liberadas.
+- Compare retenção e margem por coorte indicada e outras origens com perfil semelhante. Não presuma superioridade da indicação.
+
+Use a mediana histórica de ações comparáveis do próprio projeto como referência. Separe canal, formato, público e período. Se faltar histórico, trate a primeira rodada como linha inicial. Números dos exemplos são hipóteses de planejamento ou resultados simulados, nunca médias de mercado. Para adotar uma referência externa, registre fonte primária, data, amostra e método antes de comparar.
 
 ## Checklist
 
-- [ ] ID e objetivo estão presentes.
-- [ ] Persona, canal e acervo estão vinculados.
-- [ ] Fontes e pendências estão localizadas.
-- [ ] Voz, proibições e dicionário foram conferidos.
-- [ ] Próxima ação e estado do pipeline estão claros.
+- [ ] Convite ocorre após evento concreto de valor.
+- [ ] Benefício e condição aparecem para ambos os lados.
+- [ ] Janela e precedência de atribuição estão escritas.
+- [ ] Compra cancelada e autorreferência têm tratamento.
+- [ ] Cada recompensa tem ID e confirmação única.
+- [ ] Avaliações não são condicionadas a nota positiva.
+- [ ] Fontes, ID, brief, persona e responsável acompanham o plano.
+- [ ] Pendências têm responsável e data de retorno.
+- [ ] O handoff inclui arquivos, estado e ação solicitada.
 
 ## Erros comuns
 
-- Começar pelo formato antes de confirmar objetivo, público e fonte.
-- Usar promessa, preço, número ou nome sem registro local.
-- Aplicar a mesma mensagem a personas com contextos diferentes.
-- Salvar o resultado sem caminho, ID ou alcance da escolha.
-
-## Relação com inboundfy-growth-referencias
-
-Use este modelo como roteiro mínimo e acrescente apenas campos pedidos pelo projeto. O arquivo final deve ficar ligado ao acervo, à peça e ao calendário quando houver data.
+- Premiar cadastro sem controlar qualidade: escolha evento compatível com o objetivo.
+- Pagar link e cupom da mesma compra: aplique regra única de precedência.
+- Pedir acesso à agenda do cliente: ofereça link compartilhável por iniciativa dele.
+- Importar comissão de outro negócio: recalcule pela margem e capacidade.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-growth-referencias**, do grupo
-**growth**. Leia os detalhes compartilhados conforme a etapa atual:
+A skill `inboundfy-growth-referencias` pertence ao grupo **growth**. Aplique os contratos conforme o trabalho avança:
 
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de referencias dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-growth-referencias
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de referencias
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-growth-referencias
-grupo: growth
-entrada: acervo/0042-2026-09-14-referencias/processado.md
-pedido: aplicar a etapa de referencias e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-growth-referencias
-estado: aprovado
-entrada: acervo/0042-2026-09-14-referencias/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de referencias
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-growth-referencias** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): confirme instalação, contexto e origem dos dados.
+- [Contrato de artefato](../_shared/02-contrato-de-artefato.md): registre ID, estado e relações.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): registre escolhas e alcance.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): confira o artefato inteiro após correções.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): mantenha persona, voz, dicionário e proibições.
 
 ## Guia específico do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
+A unidade é uma indicação ou venda afiliada com conversão verificável. O plano conecta convite, benefício, atribuição, conciliação e permanência, sem misturar recomendação com avaliação comprada.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-growth-referencias** para executar esta função: Estrutura um programa de indicação com momento certo, benefício, mensagem, regras, rastreio e experiência para quem indica e recebe.
-
-O grupo **growth** trabalha com estes campos mínimos:
-
-- **objetivo:** preencher com dado ligado ao pedido.
-- **público:** preencher com dado ligado ao pedido.
-- **canal:** preencher com dado ligado ao pedido.
-- **oferta:** preencher com dado ligado ao pedido.
-- **próxima ação:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-growth-referencias
-grupo: growth
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/estrategia.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-growth-referencias
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/estrategia.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **growth** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESTRATEGIA.md`
-- `CONTEXTO.md`
-- `docs/method/05-artefatos-e-estados.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Registre objetivo, público, canal, oferta e próxima ação no plano. Encaminhe produção para `inboundfy-planejamento` quando houver pacote. Encaminhe peça avulsa com brief aprovado à especialista correspondente. Não preencha arquivos de contexto com fatos simulados deste manual.

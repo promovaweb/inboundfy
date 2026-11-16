@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Extrair Faq"
-  short_description: "Executa extrair faq no Inboundfy"
-  default_prompt: "Use $inboundfy-extrair-faq para executar extrair faq com as fontes do projeto."
+  display_name: "Inboundfy: Extrair FAQ"
+  short_description: "FAQ do acervo com respostas localizadas e lacunas"
+  default_prompt: "Use $inboundfy-extrair-faq para montar o faq.md deste item do acervo, com respostas localizadas no material e as perguntas que ainda faltam responder."

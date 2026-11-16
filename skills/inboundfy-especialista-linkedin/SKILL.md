@@ -1,10 +1,6 @@
 ---
 name: inboundfy-especialista-linkedin
-description: >
-  Escreve post nativo ou artigo longo de LinkedIn a partir de um brief
-  aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de
-  context/marca-voz.md, sempre em primeira pessoa quando o brief indicar
-  autor, e sem Markdown no corpo copiável do post.
+description: Escreve post nativo ou artigo de LinkedIn com autoria, fontes e ação final do brief aprovado. Use quando o pedido trouxer post profissional, artigo de LinkedIn, texto copiável para o feed ou publicação assinada.
 ---
 
 # Inboundfy LinkedIn Redator
@@ -22,21 +18,15 @@ Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md` no in
 ausência de qualquer um, informe: "O setup do Inboundfy ainda não foi concluído
 ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
 arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
-preflight, leia o catalogo e os Markdown relevantes para a tarefa.
+preflight, leia o catálogo e os Markdown relevantes para a tarefa.
 
 ## Arquitetura de execução
-
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
 - [Interação e handoff](../_shared/03-interacao-e-handoff.md): conduza escolhas e entregue o pacote seguinte.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
-
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **especialista**.
 
 ## Contexto exigido
 
@@ -50,24 +40,6 @@ artefato. O grupo desta skill é **especialista**.
 - `ESTRUTURAS-PERSUASIVAS.md` (contexto compartilhado do framework): quando o
   brief marcar objetivo comercial.
 
-## Estrutura persuasiva
-
-Post de LinkedIn com objetivo de gerar lead ou clique (não apenas construir
-autoridade) normalmente cabe em **AIDA**: a primeira linha antes do "ver
-mais" é o bloco de Atenção; precisa parar o scroll com o objeto real, não
-com frase de efeito; o corpo desenvolve o Interesse com um fato ou experiência
-concreta; o parágrafo seguinte cria o Desejo ligando o fato ao ganho da
-persona (`context/publico.md`); o fechamento é a Ação, um único CTA.
-
-Quando o post nomeia uma dor específica do mercado antes de apresentar um
-ponto de vista ou solução, **PAS** funciona melhor: abre no problema
-reconhecível, agita a consequência real de ignorá-lo, fecha na solução ou no
-posicionamento do autor (`context/pessoas.md`).
-
-Artigo longo de LinkedIn segue a mesma lógica de `inboundfy-especialista-blog`; raramente precisa de AIDA/PAS/PASTOR inteiros, mas aplica **FAB** sempre que
-descrever uma funcionalidade de produto: característica, vantagem e
-benefício antes de fechar o parágrafo.
-
 ## Entrada esperada
 
 Um brief com: formato (post nativo ou artigo), ângulo, autor (se houver),
@@ -75,31 +47,25 @@ ativos de apoio e CTA.
 
 ## Fluxo
 
-1. Leia o brief e confirme se há autor definido; se houver, leia a entrada
+1. Leia o brief, diagnóstico, parâmetros e checklist em [REFERENCIA.md](REFERENCIA.md). Na redação, abra [modelos e exemplo](references/modelos-e-exemplo.md) e [a aplicação das estruturas](references/estruturas-persuasivas.md). Preserve as escolhas aprovadas; estrutura comercial obrigatória ausente retorna ao planejamento.
+2. Leia o brief e confirme se há autor definido; se houver, leia a entrada
    correspondente em `context/pessoas.md` e confirme que o tema está dentro
    da competência declarada dessa pessoa.
-2. Leia `ESCRITA.md` e escreva o gancho de abertura; a primeira linha
+3. Leia `ESCRITA.md` e escreva o gancho de abertura; a primeira linha
    decide se o post é expandido, então ela precisa apresentar o objeto real,
-   não uma frase de efeito vazia. Use as fórmulas de gancho de
-   `REFERENCIA.md`.
-3. Para post nativo: escreva em texto puro, sem sintaxe Markdown (sem `#`,
+   não uma frase de efeito vazia. Siga o método de construção de [REFERENCIA.md](REFERENCIA.md).
+4. Para post nativo: escreva em texto puro, sem sintaxe Markdown (sem `#`,
    `**`, links formatados); o corpo precisa ser copiável direto para o
    campo de post do LinkedIn. Ver checklist de canal em `REFERENCIA.md`.
-4. Para artigo longo: pode usar estrutura com headings, mais próximo de
+5. Para artigo longo: pode usar estrutura com headings, mais próximo de
    `inboundfy-especialista-blog` em profundidade, mas mantendo a voz em primeira
    pessoa quando houver autor.
-5. Feche com CTA claro e, quando aplicável, uma pergunta genuína ao público;    nunca pergunta retórica seguida de resposta óbvia.
-6. Rode `inboundfy-copy-editor`, trate os achados verificáveis e repita a leitura integral.
-7. Salve com frontmatter incluindo `formato` (post/artigo), `autor` (se
+6. Feche com CTA claro e, quando aplicável, uma pergunta genuína ao público;    nunca pergunta retórica seguida de resposta óbvia.
+7. Rode `inboundfy-copy-editor`, trate os achados e registre a auditoria A5 de `inboundfy-anti-slop`. Repita a leitura integral.
+8. Salve com frontmatter incluindo `formato` (post/artigo), `autor` (se
    houver) e `brief` quando fizer parte de um pacote.
-8. Encaminhe para `inboundfy-especialista-linkedin-imagem` quando o canal exigir imagem, e
-   depois para `inboundfy-planejamento`.
-
-## Encaminhamento obrigatório
-
-Antes de considerar o asset pronto, acione `inboundfy-validador-linkedin`.
-Em caso de reprovação, aplique as correções do relatório e reenvie o arquivo
-inteiro até a aprovação.
+9. Envie a candidata inteira, brief, fontes e registros editoriais a `inboundfy-validador-linkedin`. Corrija os achados pela especialista e repita a auditoria inteira até a aprovação.
+10. Com a copy aprovada, entregue o pacote de arte descrito em Responsabilidade do grupo a `inboundfy-especialista-linkedin-imagem`, quando previsto no brief. Retorne a `inboundfy-planejamento` com os arquivos aprovados e relatórios correspondentes.
 
 ## Saída
 
@@ -116,15 +82,7 @@ em `context/canais.md` para LinkedIn.
 
 ## Responsabilidade do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** especialista
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+Produza post nativo ou artigo de LinkedIn para o formato aprovado. Use a lista numerada de `REFERENCIA.md` antes de enviar à `inboundfy-validador-linkedin`. Se houver imagem no brief, encaminhe a copy aprovada para `inboundfy-especialista-linkedin-imagem`, com título, texto literal e alt text previsto.
 
 ## Idempotência
 

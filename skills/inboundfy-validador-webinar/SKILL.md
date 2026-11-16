@@ -1,9 +1,6 @@
 ---
 name: inboundfy-validador-webinar
-description: >
-  Valida página ou convite produzido por inboundfy-especialista-webinar
-  contra brief, todos os contextos, escrita, proibições, apresentador,
-  oferta, agenda e estrutura persuasiva antes da entrega.
+description: Valida agenda, data, horário, fuso, apresentador, oferta e inscrição da peça de Webinar e entrega relatório de correções à especialista pareada. Use quando o pedido trouxer revisão de página de webinar, convite de evento ou inscrição antes da entrega.
 ---
 
 # Inboundfy Validador Webinar
@@ -16,21 +13,15 @@ Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md` no in
 ausência de qualquer um, informe: "O setup do Inboundfy ainda não foi concluído
 ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
 arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
-preflight, leia o catalogo e os Markdown relevantes para a tarefa.
+preflight, leia o catálogo e os Markdown relevantes para a tarefa.
 
 ## Arquitetura de execução
-
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
 - [Interação e handoff](../_shared/03-interacao-e-handoff.md): conduza escolhas e entregue o pacote seguinte.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
-
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **validador**.
 
 ## Contexto exigido
 
@@ -41,16 +32,17 @@ Todos os Markdown de `context/`, com atenção a `context/marca-voz.md`,
 
 ## Entrada esperada
 
-Copy candidata, brief, agenda e fontes.
+Pacote candidato de `inboundfy-especialista-webinar` no caminho de saída do canal, com brief aprovado, fontes, persona e registros editoriais. Inclua todos os arquivos vinculados e o histórico da rodada anterior, quando houver.
 
 ## Fluxo
 
-1. Leia `REFERENCIA.md`, `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md` e os
+1. Abra [REFERENCIA.md](REFERENCIA.md): use o checklist espelhado e o relatório preenchido na auditoria do conjunto recebido.
+2. Leia `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md` e os
    contratos da produtora.
-2. Acione `inboundfy-base-validador`.
-3. Confira título, data, apresentador, agenda, oferta, CTA, PASTOR/AIDA e
+3. Acione `inboundfy-base-validador`.
+4. Confira título, data, apresentador, agenda, oferta, CTA, PASTOR/AIDA e
    testemunhos.
-4. Reprovando, envie o relatório à `inboundfy-especialista-webinar` e
+5. Reprovando, envie o relatório à `inboundfy-especialista-webinar` e
    revalide a copy inteira.
 
 ## Saída
@@ -63,15 +55,7 @@ Aprove apenas com agenda verificável, oferta vigente e nenhum achado.
 
 ## Responsabilidade do grupo
 
-Leia o asset inteiro contra brief, fontes, contexto e formato. Relate local, regra, fonte e ação; devolva à produtora sem editar o original.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** validador
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+Confira copy de página ou convite de webinar com os mesmos itens numerados da produtora. Classifique achados como literal, semântico, estrutural ou visual. Devolva o relatório à `inboundfy-especialista-webinar` sem editar a peça.
 
 ## Idempotência
 

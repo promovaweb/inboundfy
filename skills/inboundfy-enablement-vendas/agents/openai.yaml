@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Enablement Vendas"
-  short_description: "Executa enablement vendas no Inboundfy"
-  default_prompt: "Use $inboundfy-enablement-vendas para executar enablement vendas com as fontes do projeto."
+  display_name: "Inboundfy: Materiais de vendas"
+  short_description: "Cria materiais comerciais com provas e objeções"
+  default_prompt: "Use $inboundfy-enablement-vendas para criar o material de vendas que preciso, com as provas e objeções reais do projeto."

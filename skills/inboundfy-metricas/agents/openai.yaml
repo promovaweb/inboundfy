@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Metricas"
-  short_description: "Executa metricas no Inboundfy"
-  default_prompt: "Use $inboundfy-metricas para executar metricas com as fontes do projeto."
+  display_name: "Inboundfy: Métricas"
+  short_description: "Define métricas, eventos e UTMs para campanhas"
+  default_prompt: "Use $inboundfy-metricas para montar ou revisar o plano de medição do projeto, ligando perguntas de negócio a métricas, eventos, UTMs e leitura do painel."

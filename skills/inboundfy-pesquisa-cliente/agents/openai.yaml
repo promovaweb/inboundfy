@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Pesquisa Cliente"
-  short_description: "Executa pesquisa cliente no Inboundfy"
-  default_prompt: "Use $inboundfy-pesquisa-cliente para executar pesquisa cliente com as fontes do projeto."
+  display_name: "Inboundfy: Pesquisa de clientes"
+  short_description: "Organiza falas e achados da pesquisa de clientes"
+  default_prompt: "Use $inboundfy-pesquisa-cliente para levantar dores, gatilhos, objeções e linguagem real de clientes em entrevistas, atendimento, avaliações e comunidades, com fonte e data para cada achado."

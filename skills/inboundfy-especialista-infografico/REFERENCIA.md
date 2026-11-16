@@ -1,231 +1,122 @@
-# REFERENCIA.md; inboundfy-especialista-infografico
+# Manual de Infográfico
 
-Material de apoio para o texto de infográfico; título, blocos, legenda e
-alt text.
+A copy deve permitir que a pessoa compreenda a relação entre os dados antes de ler a legenda. O texto entrega título, blocos, fontes, legenda e descrição acessível. A composição gráfica continua com a especialista de imagem.
 
-## Template de bloco visual
+## Diagnóstico antes da redação
 
-```yaml
----
-titulo: <título curto da tese central>
-fonte-dos-dados: <origem rastreável de cada dado>
-brief: acervo/<id>-<data>-<slug>/base-editorial.md
----
+1. O leitor precisa comparar valores, seguir um processo ou localizar partes de um conjunto?
+2. Os valores usam a mesma unidade, período e população? Qual arquivo permite refazer a conta?
+3. Quantos blocos cabem no tamanho aprovado sem reduzir o corpo de leitura?
+4. O dado é observação do projeto, cálculo ou simulação didática? Essa natureza aparece perto do valor?
+5. A legenda ficará em qual canal? Quem receberá a versão de texto quando a imagem não puder ser lida?
 
-Bloco 1: <dado ou característica curta>
-Bloco 2: <dado ou característica curta>
-Bloco 3: <dado ou característica curta>
+## Formato e orçamento de texto
 
-Legenda: <texto de acompanhamento em prosa, para post que compartilha a peça>
-Alt text: <descrição da imagem para leitor de tela>
-```
+| Campo | Faixa de trabalho | Conteúdo obrigatório |
+| --- | --- | --- |
+| Título | 6 a 12 palavras | Objeto e recorte, sem causalidade não demonstrada |
+| Subtítulo | Até 25 palavras, se necessário | População, período ou condição |
+| Blocos | 3 a 6; 1 ideia por bloco | Rótulo de até 6 palavras e explicação de 15 a 35 palavras |
+| Número em destaque | Um por bloco, quando útil | Valor, unidade, base e fonte |
+| Legenda | 80 a 180 palavras | Interpretação, limite e ação compatível |
+| Alt text | Tamanho necessário para transmitir a mensagem | Ordem, relações e dados centrais; descrição longa se a peça for densa |
+| Arquivo | Markdown no destino de `context/canais.md` | `titulo`, `fonte-dos-dados`, `brief`, envelope e blocos identificados |
 
-## Exemplo completo (fictício)
+Não comprima uma tabela extensa num alt text impraticável. Inclua uma versão longa acessível junto da imagem e indique sua localização.
 
-Tema: custo da agenda de papel numa clínica pequena.
+As faixas são escolhas editoriais, não limites universais da plataforma nem
+promessas de alcance. O brief aprovado pode ajustá-las com motivo registrado.
+Confirme limites técnicos na ajuda oficial ou no campo de publicação da conta
+antes do envio; registre a data. Não transforme corte de interface em tamanho do gancho.
 
-```markdown
-Título: O custo escondido da agenda de papel
+## Método de construção
 
-Bloco 1: 15 min perdidos por buraco de agenda não visto; fonte: levantamento interno com 12 clínicas parceiras, 2025.
-Bloco 2: 2x mais chance de marcação duplicada com 2+ pessoas na mesma agenda; fonte: mesmo levantamento.
-Bloco 3: 1 grade visual substitui a conferência manual de horário; fonte: comparação de fluxo operacional.
+1. Monte uma tabela interna com afirmação, unidade, período, população, arquivo e seção. Refaça totais e percentuais. A diferença em pontos percentuais não equivale a uma variação percentual.
+2. Escolha a leitura pelo tipo de informação:
 
-Legenda: A agenda de papel custa tempo que não aparece na planilha do mês; aparece na fila de espera e na marcação duplicada. Levantamos com clínicas
-parceiras onde esse custo mais aparece.
+| Material disponível | Organização | Conferência principal |
+| --- | --- | --- |
+| Mesma medida para grupos distintos | Comparação lado a lado | Bases e escalas iguais |
+| Etapas dependentes | Fluxo numerado | Ordem e condição de avanço |
+| Partes de um total | Composição | Soma e categorias sem sobreposição |
+| Produto e utilidade | FAB por bloco | Característica confirmada, vantagem e benefício |
 
-Alt text: Infográfico comparando o tempo perdido e o possibilidade de marcação
-duplicada entre agenda de papel e agenda em sistema, com três blocos de
-dado.
-```
+3. Escreva o título depois de escolher o recorte. Um dado de amostra não permite afirmar que todo o mercado se comporta igual.
+4. Dê um ID a cada bloco. Deixe rótulo, destaque e explicação em campos distintos; a designer precisa conseguir mover o bloco sem perder sua fonte.
+5. Escreva legenda com interpretação e limite. Use o CTA somente se o brief pedir. Não atribua efeito causal a uma diferença descritiva.
+6. Escreva alt text pela ordem de leitura prevista, com as relações relevantes. Descreva o significado do gráfico; detalhes decorativos não substituem valores.
+7. Faça o passe de prosa na legenda com `inboundfy-copy-editor`. Releia blocos para exatidão sem exigir parágrafos longos.
 
-## Checklist de canal
+## Template do canal
 
-- [ ] Todo dado numérico tem fonte rastreável; nunca estatística inventada
-      ou "estudos mostram" sem origem.
-- [ ] Blocos são telegráficos por escolha de canal, não por preguiça; cada
-      um ainda precisa ser compreensível isolado.
-- [ ] Legenda de acompanhamento passa pela auditoria de prosa
-      (`inboundfy-copy-editor`); os blocos curtos não passam pela mesma régua.
-- [ ] Alt text descreve a imagem de forma útil, não repete o título.
+No passo de escrita, abra [modelos prontos](references/modelos-e-exemplo.md).
+Use o modelo do formato aprovado. Complete o envelope compartilhado antes
+dos campos do canal. Separe corpo público, fontes e notas de produção.
 
-## Erros comuns
+## Exemplo com empresa brasileira fictícia
 
-- Inflar bloco com adjetivo vazio ("incrível redução de X%") em vez de
-  número com fonte.
-- Escrever a legenda como se fosse o texto completo do infográfico;   legenda complementa, não repete os blocos.
-- Alt text genérico ("infográfico sobre agenda") que não descreve o
-  conteúdo real da imagem.
+A Semente Clara, papelaria fictícia de Campinas, quer explicar o fechamento de um lote de cadernos. O brief pede quatro blocos de composição e uma simulação expressamente identificada, sem estatística de mercado. A soma de R$ 1.200 deve continuar verificável em texto.
+
+A entrada e a peça completa estão em [modelos e exemplo](references/modelos-e-exemplo.md).
+Os números, nomes e condições deste caso não viram contexto de outro projeto.
+
+## Checklist numerado do canal
+
+A numeração coincide com `inboundfy-validador-infografico`. Registre conforme, falha ou
+não aplicável, com motivo e local. O passe visual avalia copy e apoio previsto.
+A arte final segue para a validadora de imagem correspondente, quando houver.
+
+1. [ ] **Literal | Envelope.** O ID, `titulo`, `fonte-dos-dados`, brief, persona, estado e destino estão preenchidos conforme o contrato compartilhado.
+2. [ ] **Literal | Vocabulário.** Metadados, blocos, legenda, fontes e alt text respeitam os vetos canônicos e o dicionário.
+3. [ ] **Semântica | Proveniência.** Cada valor tem fonte e natureza identificadas; simulação não aparece como levantamento ou resultado real.
+4. [ ] **Semântica | Contas e comparabilidade.** Totais, percentuais, unidades, períodos e bases foram conferidos; o título não amplia a conclusão.
+5. [ ] **Estrutural | Ordem dos blocos.** O arranjo escolhido permite comparação, composição ou sequência sem misturar funções.
+6. [ ] **Estrutural | Densidade.** Cada bloco tem ID, rótulo e uma ideia; as faixas foram atendidas ou ajustadas no brief.
+7. [ ] **Semântica | FAB aplicável.** Bloco de produto liga característica confirmada a vantagem e benefício; registre não aplicável para conteúdo sem produto.
+8. [ ] **Semântica | Legenda.** A prosa interpreta o dado, declara seu limite e contém somente a ação aprovada.
+9. [ ] **Visual | Hierarquia textual.** Título, destaque, unidade, explicação e fonte estão separados; nenhuma diferença depende somente de cor.
+10. [ ] **Visual | Descrição acessível.** Alt text comunica ordem, relações e dados centrais; texto longo acessível existe quando necessário.
+11. [ ] **Estrutural | Auditorias.** A legenda passou por `inboundfy-copy-editor`; a auditoria A5 e o retorno da validadora estão vinculados.
+12. [ ] **Literal | Encaminhamento.** O pacote preserva fontes e IDs para a especialista de imagem; não declara aprovação da arte sem inspeção.
+
+## Erros comuns do canal
+
+- Mostrar “30%” sem informar de qual total: inclua base e unidade no bloco.
+- Usar ilustrações de tamanhos diferentes para valores iguais: registre a comparação numérica, com a mesma escala pretendida.
+- Transformar simulação em pesquisa: mantenha “simulação didática” no subtítulo, nas fontes e na legenda.
+- Somar categorias sobrepostas: reorganize os grupos ou explique a sobreposição sem gráfico de partes de um total.
+- Duplicar todos os blocos na legenda: use a prosa para explicar a leitura e seus limites.
+- Escrever “imagem de infográfico” no alt text: informe os dados e a relação que o leitor perderia.
+
+## Medição após a publicação
+
+Acompanhe salvamentos e compartilhamentos por alcance, cliques da legenda quando rastreáveis e dúvidas sobre os dados. Se as pessoas perguntam pela unidade, revise o rótulo antes de testar outra cor. Compare peças do mesmo objetivo e janela de observação; uma taxa isolada não comprova efeito da copy.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-especialista-infografico**, do grupo
-**especialista**. Leia os detalhes compartilhados conforme a etapa atual:
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): confirme sentinelas e origens.
+- [Artefato e relações](../_shared/02-contrato-de-artefato.md): preserve envelope, ID e brief.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): registre escolhas e perguntas.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): preserve o histórico.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): aplique persona, voz e proibições.
 
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de especialista infografico dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-especialista-infografico
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de especialista infografico
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-infografico
-grupo: especialista
-entrada: acervo/0042-2026-09-14-especialista-infografico/processado.md
-pedido: aplicar a etapa de especialista infografico e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-especialista-infografico
-estado: aprovado
-entrada: acervo/0042-2026-09-14-especialista-infografico/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de especialista infografico
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-especialista-infografico** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+Resolva caminhos abreviados `context/` por `.inboundfy/fontes-projeto.md`.
+A instalação usa `.inboundfy/context/`. Não mova fontes nem grave dados do consumidor no framework.
 
 ## Guia específico do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+`inboundfy-especialista-infografico` produz título, blocos, legenda e alt text de infográfico a partir do brief aprovado.
+Leia `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md` e `CONTEXTO.md`.
+Preserve o caminho definido por `context/canais.md`. Nos pacotes, mantenha
+`brief` apontado para `04-briefs/` e o relatório em `06-auditoria/assets/`.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+Encaminhe a copy aprovada para `inboundfy-especialista-infografico-imagem`, com IDs dos blocos, fontes e ordem de leitura. A arte não pode abreviar a fonte nem alterar a unidade.
 
-## Especificação operacional
+Acione `inboundfy-copy-editor` no alcance definido pela SKILL.md e
+`inboundfy-validador-infografico` antes de considerar a peça pronta. Corrija os achados e
+envie o conjunto para nova leitura integral. Após a aprovação, entregue a
+`inboundfy-planejamento` arquivos, fontes, pendências e próxima ação.
 
-### Quando usar
+## Estruturas na redação
 
-Use **inboundfy-especialista-infografico** para executar esta função: Escreve a copy final de infográfico a partir de um brief aprovado (fase 5 do pipeline); título, blocos visuais, legenda e alt text, curta e factual, sem prosa longa.
-
-O grupo **especialista** trabalha com estes campos mínimos:
-
-- **canal:** preencher com dado ligado ao pedido.
-- **persona:** preencher com dado ligado ao pedido.
-- **objetivo:** preencher com dado ligado ao pedido.
-- **formato:** preencher com dado ligado ao pedido.
-- **validadora:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-infografico
-grupo: especialista
-pedido: executar a função desta skill sobre o material selecionado
-entrada: briefs/0042-2026-09-14-infografico/brief.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-infografico
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - briefs/0042-2026-09-14-infografico/brief.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **especialista** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `ESTRUTURAS-PERSUASIVAS.md`
-- `CONTEXTO.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+No passo de redação, consulte [a aplicação por formato](references/estruturas-persuasivas.md) para executar a estrutura já aprovada no brief.

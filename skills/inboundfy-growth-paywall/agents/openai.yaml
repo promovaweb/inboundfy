@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Growth Paywall"
-  short_description: "Executa growth paywall no Inboundfy"
-  default_prompt: "Use $inboundfy-growth-paywall para executar growth paywall com as fontes do projeto."
+  display_name: "Inboundfy: Paywall e passagem ao acesso pago"
+  short_description: "Define limites, tela de upgrade e estados de pagamento."
+  default_prompt: "Use $inboundfy-growth-paywall para estruturar paywall com preço transparente, saída clara e acesso confirmado após pagamento."

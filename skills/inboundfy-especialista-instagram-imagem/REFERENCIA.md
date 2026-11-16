@@ -1,239 +1,123 @@
-# REFERENCIA.md; inboundfy-especialista-instagram-imagem
+# Pacote visual de Instagram: produção
 
-## Formato
+O par `inboundfy-especialista-instagram-imagem` e `inboundfy-validador-instagram-imagem` usa a mesma numeração de conferência. Esta referência trata exclusivamente instagram-imagem. Dimensões abaixo são exemplos de trabalho já usados pelo framework, não limites universais de plataforma. `context/canais.md` define a dimensão exata do projeto.
 
-| Peça | Proporção | Dimensão comum |
+## Formato e pacote
+
+| Peça | Proporção | Dimensão de referência |
 | --- | --- | --- |
-| Post de feed | 1:1 ou 4:5 | 1080×1080 ou 1080×1350 |
-| Carrossel (por slide) | 4:5 | 1080×1350 |
-| Stories / Reels capa | 9:16 | 1080×1920 |
+| Feed quadrado | 1:1 | 1080×1080 |
+| Feed e carrossel | 4:5 | 1080×1350 |
+| Stories e capa de Reels | 9:16 | 1080×1920 |
 
-## Exemplo de brief de imagem; post único (fictício)
+- Fonte ou motor: Geração por inboundfy-base-imagem, uma chamada por slide.
+- Arquivos: post.png ou slide-01.png até slide-NN.png; README.md com ordem, textos e alt de cada arquivo.
+- Destino: `97-ativos-finais/instagram/<item>/`. Não criar caminhos alternativos.
+- Exporte em sRGB. Use PNG para texto e ilustração; fotografia pode usar JPEG ou formato aceito pelo canal. Abra a exportação, não apenas o arquivo de edição. Dimensão, extensão e peso reais entram no README.
 
-```text
-Formato: 4:5, 1080x1350
-Texto principal: "Pare de responder cliente pelo WhatsApp pessoal"
-Texto secundário: "3 sinais de que é hora de separar os números"
-Tom visual: vibrante, direto
-Elemento de marca obrigatório: logo no canto superior, cor de destaque no fundo
+## Composição e escolha de abordagem
+
+| Situação observada | Ação |
+| --- | --- |
+| Uma afirmação e um objeto visual | Post único com a frase aprovada. |
+| Explicação depende de sequência | Carrossel com todos os slides da copy. |
+| Destino é Story ou capa de Reels | Composição 9:16 com máscara de interface do destino. |
+
+1. Leia a legenda e a copy por slide aprovadas. Para post único, extraia a frase visual aprovada sem transformar toda a legenda em imagem. Para carrossel, registre a ordem completa antes da primeira geração.
+2. Defina grade comum com margens, fonte, escala de títulos, paleta e posição do logo. A capa nomeia o assunto; os slides internos avançam uma ideia por vez; o último mantém o CTA aprovado.
+3. Gere a capa por `inboundfy-base-imagem` e guarde a composição como referência das chamadas seguintes. Faça uma chamada por slide com o texto correspondente e a mesma grade.
+4. Numere os arquivos com dois dígitos. Se o canal usar numeração visível, confira índice e total em todos os slides. Não acrescente slides para atingir uma quantidade arbitrária.
+5. Abra um mosaico do pacote e depois cada slide a 360 px. Faça preview do primeiro slide a 180 px. Confira capa sozinha, progressão, CTA e continuidade da marca.
+6. Para Stories ou capa de Reels, simule interface e recorte do perfil. Zonas seguras dependem do destino configurado; registre a máscara utilizada. Não presuma que todo o retângulo ficará visível.
+
+## Template de brief visual e entrega
+
+Preencha antes de chamar o motor ou buscar a foto. Preserve o envelope do contrato compartilhado no README. O texto entre chaves é campo de preenchimento.
+
+```yaml
+id: "{ID da peça}"
+skill: inboundfy-especialista-instagram-imagem
+estado: revisao
+brief: "04-briefs/{arquivo}.md"
+entrada: "{texto final e versão}"
+persona: "{ID confirmado}"
+fontes:
+  - "{context/canais.md e identidade visual}"
+formato: "{post, carrossel, Story ou capa de Reels}"
+grade: "{margens, tipografia, paleta e logo}"
+slides:
+  - arquivo: slide-01.png
+    funcao: "{capa, desenvolvimento ou fechamento}"
+    texto_literal: "{copy aprovada}"
+    alt: "{descrição específica deste slide}"
+numeracao_visivel: "{sim ou não conforme canal}"
+mascara_preview: "{recorte do grid e sobreposições simuladas}"
+saidas:
+  - "{caminho de cada arquivo exportado}"
+preview: "{largura de teste, recorte e resultado observado}"
+pendencias: []
+proxima_skill: inboundfy-validador-instagram-imagem
 ```
 
-## Exemplo de brief de imagem; carrossel, slide a slide (fictício)
+O README relaciona o brief, o texto final, cada exportação, suas dimensões, peso, alt e origem dos ativos. No pacote, mantenha `brief` no frontmatter. Texto longo em imagem exige transcrição acessível junto ao arquivo; o alt não substitui a transcrição.
 
-```text
-Slide 1; Capa
-Texto principal: "3 sinais de que seu WhatsApp de negócio virou bagunça"
-Texto secundário: (nenhum)
+## Exemplo completo de produção
 
-Slide 2; Problema
-Texto principal: "Você não sabe quantas conversas estão em aberto"
-Texto secundário: (nenhum)
+A empresa fictícia brasileira **Doce de Bairro**, de Recife, vende bolos por encomenda. O carrossel informa os dados necessários para registrar um pedido pelo WhatsApp. A persona é cliente que organiza festa em casa.
 
-Slide 3; Problema
-Texto principal: "Cliente antigo manda mensagem e ninguém responde"
-Texto secundário: (nenhum)
+Brief 0042: cinco slides 1080×1350 em `97-ativos-finais/instagram/pedido-bolo/`. Paleta creme, marrom e rosa da marca fictícia. Margem de 72 px; logo fixo no rodapé; numeração visível de 1/5 a 5/5. Texto aprovado e descrição acessível:
 
-Slide 4; Solução
-Texto principal: "Separe atendimento pessoal de atendimento comercial"
-Texto secundário: "Comece com um número dedicado"
+| Arquivo | Texto literal | Alt |
+| --- | --- | --- |
+| slide-01.png | O que informar ao pedir seu bolo | Capa com bolo ilustrado e título sobre dados do pedido. |
+| slide-02.png | Informe a data da festa | Calendário ilustrado ao lado da orientação sobre a data. |
+| slide-03.png | Diga quantas pessoas vão participar | Grupo ilustrado acompanha a orientação sobre participantes. |
+| slide-04.png | Avise sobre restrições alimentares | Lista ilustrada acompanha a orientação sobre restrições. |
+| slide-05.png | Envie essas informações pelo WhatsApp da bio | Balão de conversa acompanha a chamada para o contato da bio. |
 
-Slide 5; CTA
-Texto principal: "Salve esse post para não esquecer"
-Texto secundário: (nenhum)
-```
+A legenda aprovada esclarece que o envio dessas informações inicia o atendimento e que a disponibilidade será confirmada. A arte não promete atendimento de toda restrição alimentar nem inventa preço. O logo e a grade são passados em cada uma das cinco chamadas à base. O mosaico confirma continuidade; o preview da capa a 180 px permite ler o assunto.
 
-Todos os slides de um mesmo carrossel devem compartilhar paleta,
-tipografia, posição de logo e grade; só o texto muda de slide a slide.
+Entrega: cinco PNGs e README com a tabela, caminho da legenda, dimensões, máscara de preview e fontes da marca. Estado revisao; destino `inboundfy-validador-instagram-imagem`. Para post único, o mesmo modelo aceita apenas `post.png`, sem campos de ordem de carrossel.
 
-## Checklist específico de Instagram
+## Checklist numerado espelhado
 
-- [ ] Post de feed: texto legível em miniatura de grid (bem reduzido).
-- [ ] Carrossel: numeração de slide visível quando o formato do canal usar
-      esse recurso, e consistência visual absoluta entre todos os slides.
-- [ ] Carrossel: o slide 1 funciona como "capa"; precisa parar o scroll
-      sozinho, sem depender do usuário já saber o que vem a seguir.
-- [ ] Stories/Reels: elementos importantes fora da faixa superior/inferior
-      onde a interface do app sobrepõe (nome de usuário, botão de reação).
+Os números abaixo têm o mesmo significado nas duas skills. Registre `atende`, `não atende` ou `não aplicável` com justificativa; não use notas ou médias para aprovar.
 
-## Erros comuns
+1. **Literal:** Texto de cada arquivo coincide com a copy daquele slide; CTA e grafias seguem legenda, glossário e vetos.
+2. **Literal:** Numeração visível, quando exigida, corresponde ao índice e total; alt é específico para cada arquivo.
+3. **Semântica:** Capa informa o assunto sozinha e nenhum slide acrescenta preço, capacidade ou promessa ausente da legenda.
+4. **Semântica:** Cada slide avança a explicação aprovada; CTA final corresponde ao contato e à ação autorizados.
+5. **Estrutural:** Todos os slides existem uma vez, na ordem da copy, com nomes de dois dígitos e registro completo no README.
+6. **Estrutural:** Dimensões correspondem ao formato e o preview usa a máscara do destino, inclusive em Stories e Reels.
+7. **Visual:** Grade, logo, paleta e tipografia permanecem coerentes em todos os slides; o mosaico foi inspecionado.
+8. **Visual:** Capa é legível a 180 px e slides a 360 px; recortes e sobreposições não cobrem informação essencial.
 
-- Gerar cada slide de carrossel isoladamente sem conferir consistência com
-  os anteriores; resulta em pacote que parece peças soltas, não uma
-  sequência.
-- Colocar informação essencial na borda de um Story/Reels, onde a interface
-  do aplicativo cobre o conteúdo.
-- Repetir o mesmo texto do slide 1 (capa) em todos os slides seguintes por
-  segurança; cada slide deve avançar o argumento, igual a um parágrafo.
+## Erros comuns e correções
+
+- Gerar cada slide com identidade diferente: fixar grade e referências.
+- Omitir um slide na exportação: comparar quantidade com a copy.
+- Colocar CTA sob a interface: simular máscara antes do handoff.
+
+## Medição e limites
+
+Após publicação autorizada, comparar salvamentos e compartilhamentos por alcance em peças de mesmo objetivo. Anotar período e amostra; não prometer alcance por usar determinado formato. A dimensão de referência não substitui a configuração do canal. Se a plataforma mudar sua exigência, confirme a documentação oficial antes de alterar o projeto.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-especialista-instagram-imagem**, do grupo
-**especialista**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de especialista instagram imagem dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-especialista-instagram-imagem
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de especialista instagram imagem
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-instagram-imagem
-grupo: especialista
-entrada: acervo/0042-2026-09-14-especialista-instagram-imagem/processado.md
-pedido: aplicar a etapa de especialista instagram imagem e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-especialista-instagram-imagem
-estado: aprovado
-entrada: acervo/0042-2026-09-14-especialista-instagram-imagem/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de especialista instagram imagem
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-especialista-instagram-imagem** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): confirmar sentinelas e fontes antes de abrir o brief visual.
+- [Artefato e relações](../_shared/02-contrato-de-artefato.md): manter ID, estado, origem e relação com cada arquivo visual.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): registrar escolhas já confirmadas e pendências do formato.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): repetir a inspeção completa após cada correção.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): conferir persona, voz, glossário, aprendizado e proibições também nos pixels.
 
 ## Guia específico do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+A especialista prepara o conjunto completo e encaminha arquivos, fontes, medidas e previews a `inboundfy-validador-instagram-imagem`. Registre a fonte ou motor utilizado, sem expor segredos. Reaproveite a versão existente quando o pedido não exigir refação. Mudança em texto aprovado ou dado factual retorna à fonte responsável; ajuste visual não autoriza mudar a copy.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+## Preparação antes da execução
 
-## Especificação operacional
+No passo 1 do fluxo, leia [preparação do conjunto visual](references/preparacao.md) para conferir as perguntas do formato e a fonte de imagem permitida. Use as respostas já registradas no brief; pergunte apenas pelo dado ausente que altera a composição.
 
-### Quando usar
+## Entrega para a validadora
 
-Use **inboundfy-especialista-instagram-imagem** para executar esta função: Gera imagem de feed e pacote completo de carrossel para Instagram, reaproveitando o motor de inboundfy-base-imagem com a proporção exigida por cada formato.
-
-O grupo **especialista** trabalha com estes campos mínimos:
-
-- **canal:** preencher com dado ligado ao pedido.
-- **persona:** preencher com dado ligado ao pedido.
-- **objetivo:** preencher com dado ligado ao pedido.
-- **formato:** preencher com dado ligado ao pedido.
-- **validadora:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-instagram-imagem
-grupo: especialista
-pedido: executar a função desta skill sobre o material selecionado
-entrada: briefs/0042-2026-09-14-instagram-imagem/brief.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-instagram-imagem
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - briefs/0042-2026-09-14-instagram-imagem/brief.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **especialista** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `ESTRUTURAS-PERSUASIVAS.md`
-- `CONTEXTO.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Encaminhe a `inboundfy-validador-instagram-imagem` o conjunto descrito em Formato e pacote, acompanhado de ID, brief, texto final e versão, fontes, medidas reais e previews. Inclua o registro de origem dos ativos e as pendências. Uma devolução mantém o mesmo ID e informa a rodada; ajuste os arquivos apontados e entregue novamente todas as exportações, não apenas o recorte corrigido.

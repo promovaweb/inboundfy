@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Validador changelog"
-  short_description: "Valida o asset changelog antes da entrega"
-  default_prompt: "Use $inboundfy-validador-changelog para validar este asset e devolver correções à skill produtora quando necessário."
+  display_name: "Inboundfy: Validação de notas de versão"
+  short_description: "Audita notas de versão e precisão técnica"
+  default_prompt: "Use $inboundfy-validador-changelog para auditar o pacote de inboundfy-especialista-changelog. Aplique inboundfy-base-validador e os 11 itens espelhados; registre achados e digest atual no relatório. Devolva correções à produtora sem editar a candidata."

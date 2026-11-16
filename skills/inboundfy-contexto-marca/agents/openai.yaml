@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Contexto Marca"
-  short_description: "Executa contexto marca no Inboundfy"
-  default_prompt: "Use $inboundfy-contexto-marca para executar contexto marca com as fontes do projeto."
+  display_name: "Inboundfy: Contexto de marca e voz"
+  short_description: "Voz, vetos e estruturas proibidas da marca"
+  default_prompt: "Use $inboundfy-contexto-marca para registrar um ajuste de tom, um exemplo de texto, um veto de termo ou promessa, ou um padrão de escrita que a marca não aceita."

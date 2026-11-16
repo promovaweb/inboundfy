@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Dados Estruturados"
-  short_description: "Executa dados estruturados no Inboundfy"
-  default_prompt: "Use $inboundfy-dados-estruturados para executar dados estruturados com as fontes do projeto."
+  display_name: "Inboundfy: Dados estruturados"
+  short_description: "Escreve e valida JSON-LD com fatos confirmados"
+  default_prompt: "Use $inboundfy-dados-estruturados para escolher a marcação da página, escrever o JSON-LD com fatos confirmados no contexto e validar antes de publicar."

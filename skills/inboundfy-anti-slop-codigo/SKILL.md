@@ -1,12 +1,16 @@
 ---
 name: inboundfy-anti-slop-codigo
-description: Revisa código e documentação do CLI para remover complexidade sem função, tipos frouxos e comentários genéricos sem mudar comportamento.
+description: Revisa código, scripts, integrações e documentação técnica do Inboundfy para remover abstração sem uso, tipos frouxos, casts e comentários que só narram a linha, sem mudar o comportamento. Use quando a pessoa pedir refatoração, limpeza, revisão de código do CLI ou disser que o código está inchado, confuso ou com cara de gerado.
 ---
 
 # Anti-slop de código
 
-Use somente na manutenção do próprio framework, scripts e integrações. Esta
-skill não substitui a revisão editorial de conteúdo público.
+Use somente na manutenção do próprio framework, scripts e integrações. A
+revisão editorial de conteúdo público fica com `inboundfy-anti-slop`.
+
+## Verificação do setup
+
+Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md` antes de criar ou alterar artefatos. Se faltar um deles, informe: "O setup do Inboundfy ainda não foi concluído ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os arquivos de apoio." Encerre sem escrever. Após a confirmação, leia as fontes locais relevantes e `.inboundfy/context/empresa.md`.
 
 ## Arquitetura de execução
 
@@ -24,53 +28,50 @@ artefato. O grupo desta skill é **qualidade**.
 
 ## Contexto exigido
 
-Consulte `.inboundfy/context/empresa.md`, `.inboundfy/framework/` e
-`inboundfy-setup` antes de continuar quando a instalação ou a configuração
-estiver incompleta.
-
-Leia [REFERENCIA.md](REFERENCIA.md), `AGENTS.md`, o `package.json`, o código
-relacionado, testes e `.inboundfy/framework/` quando o projeto consumidor
-estiver disponível. Preserve as regras de idioma, dicionário e documentação.
+- `AGENTS.md`, `package.json`, o código relacionado, seus chamadores e testes.
+- `.inboundfy/framework/` quando o projeto consumidor estiver disponível. Sem
+  instalação ou configuração completa, acione `inboundfy-setup`.
+- Regras de idioma, dicionário e documentação do repositório.
 
 ## Entrada esperada
 
-Receba arquivo, mudança, erro, proposta de refatoração ou revisão de código.
-Identifique comportamento atual, contratos públicos, testes e escopo.
+Arquivo, mudança, erro, proposta de refatoração ou pedido de revisão de
+código, vindo da pessoa ou encaminhado por `inboundfy`. Identifique
+comportamento atual, contratos públicos, testes e escopo.
 
 ## Fluxo
 
-1. Entenda o caminho de entrada, saída, erros e persistência antes de editar.
-2. Remova abstração sem uso, comentário que apenas narra a linha e duplicação
+1. Leia o diagnóstico e o procedimento de [REFERENCIA.md](REFERENCIA.md) antes
+   de editar.
+2. Descreva o contrato atual: entrada, saída, erros e persistência.
+3. Remova abstração sem uso, comentário que apenas narra a linha e duplicação
    sem ganho de manutenção.
-3. Prefira tipos explícitos nas fronteiras, funções pequenas e validação na
-   entrada. Não aceite `any`, cast ou `unknown` para esconder uma lacuna.
-4. Evite cópias repetidas de acumuladores, parâmetros abertos e APIs reflexivas
-   quando acesso tipado resolve o caso.
-5. Preserve compatibilidade, segurança de caminho, escrita atômica e
+4. Use tipos explícitos nas fronteiras, funções pequenas e validação na
+   entrada. Recuse `any` ou cast para esconder lacuna. Mantenha `unknown` na
+   entrada externa até a validação.
+5. Troque cópias repetidas de acumuladores, parâmetros abertos e APIs
+   reflexivas por acesso tipado quando ele resolve o caso.
+6. Preserve compatibilidade, segurança de caminho, escrita atômica e
    idempotência.
-6. Atualize documentação e testes junto com o comportamento alterado.
+7. Atualize documentação e testes junto com o comportamento alterado.
+8. Preencha o relatório técnico de [REFERENCIA.md](REFERENCIA.md) só com
+   comandos realmente executados e contratos preservados.
 
 ## Saída
 
-Entregue código revisado, testes atualizados, documentação alinhada e resumo
-das alterações comportamentais.
+Código revisado, testes atualizados, documentação alinhada e relatório com as
+alterações de comportamento (ou a confirmação de que não houve).
 
 ## Validação
 
-Execute typecheck, testes, validação do framework e lint disponível. Confira
-que a segunda execução não produz alteração adicional.
+- Typecheck, testes, `node scripts/validar-framework.mjs` e lint disponível
+  executados, com resultado registrado.
+- A segunda execução não produz alteração adicional.
+- Nenhum log novo expõe token, variável secreta ou conteúdo de cliente.
 
 ## Responsabilidade do grupo
 
 Faça uma revisão específica de qualidade. Separe achado literal, semântico e estrutural e só libere após nova leitura integral.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** qualidade
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
 
 ## Idempotência
 

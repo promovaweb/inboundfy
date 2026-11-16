@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Arquitetura Site"
-  short_description: "Executa arquitetura site no Inboundfy"
-  default_prompt: "Use $inboundfy-arquitetura-site para executar arquitetura site com as fontes do projeto."
+  display_name: "Inboundfy: Arquitetura de site"
+  short_description: "Planeja páginas, URLs e navegação do site"
+  default_prompt: "Use $inboundfy-arquitetura-site para desenhar a hierarquia, a navegação, as URLs e os links internos do site com as fontes do projeto."

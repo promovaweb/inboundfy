@@ -1,38 +1,23 @@
 ---
 name: inboundfy-copy-gramatica
-description: >
-  Audita e corrige a gramática e a pontuação de copy em português: vírgula,
-  crase, concordância verbal e nominal, regência, colocação pronominal, os
-  quatro porquês, paralelismo sintático e a acentuação, aplicando a norma
-  culta sem alterar sentido, voz ou fatos.
+description: Corrige gramática, pontuação e grafia de copy em português pela norma culta (vírgula, crase, concordância, regência, colocação, porquês, números, datas e valores em R$) sem mudar sentido, voz ou fatos. Use quando pedirem revisão de português, correção de vírgula ou crase ou revisão ortográfica antes de publicar.
 ---
 
 # Inboundfy Gramática
 
-Audita e corrige a gramática e a pontuação de copy em português com foco nos
-pilares que sustentam a autoridade do texto: a vírgula, o sinal que mais exige
-atenção, e as regras de crase, concordância, regência, colocação pronominal,
-porquês, paralelismo sintático e acentuação. Separa os usos obrigatórios dos
-usos proibidos e registra cada correção por trecho, preservando sentido, voz,
-fatos e a estrutura da frase. Para revisão ampla de prosa, use
-`inboundfy-copy-editor`; esta skill atua sobre a norma culta.
+Revisão de norma culta para copy pronta. A skill confere cada sinal de
+pontuação, cada concordância e cada crase, registra o achado com a regra que o
+sustenta e corrige sem mexer em sentido, tese, voz ou dado. Ela não reescreve
+para melhorar o estilo: isso é trabalho de `inboundfy-copy-editor` (regras do
+projeto) e de `inboundfy-copy-simplificar` (esforço de leitura).
 
 ## Verificação do setup
 
 Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md` no
-início. Se algum estiver ausente, informe o alerta canônico de
-`SKILL-AUTORIA.md` e encerre sem criar ou alterar artefatos.
-
-## Contexto exigido
-
-Leia `ESCRITA.md`, `context/marca-voz.md`, `context/publico.md`,
-`context/proibicoes.md` e `context/estruturas-proibidas.md`. Acrescente o
-contexto do canal quando a peça tiver regras próprias de formato. Consulte
-também [REFERENCIA.md](REFERENCIA.md) e os cinco contratos em
-`skills/_shared/`.
-
-Se faltar o texto ou o canal capazes de mudar a revisão, registre a lacuna e
-pergunte somente quando não for possível inferir do pedido.
+início. Se algum estiver ausente, apresente o alerta canônico de
+`SKILL-AUTORIA.md`, indique `inboundfy-setup` e encerre sem criar ou alterar
+artefatos. Depois leia `.inboundfy/context/empresa.md` e os Markdown marcados
+como relevantes em `.inboundfy/fontes-projeto.md`.
 
 ## Arquitetura de execução
 
@@ -45,81 +30,105 @@ compartilhado e use a referência desta pasta.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
 
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **copy**.
+Consulte [REFERENCIA.md](REFERENCIA.md) nos passos 1, 9 e 12 do fluxo. O grupo
+desta skill é **copy**.
+
+## Quando usar e quando não usar
+
+| Situação | Ação |
+| --- | --- |
+| Texto pronto vai para publicação e precisa de revisão de norma | Use esta skill. |
+| `inboundfy-copy-editor` encontrou erros de norma repetidos | Use esta skill sobre o arquivo inteiro. |
+| Texto tem problema de clareza, repetição ou tamanho | Use `inboundfy-copy-simplificar` antes. |
+| Texto viola voz ou proibições do projeto | Use `inboundfy-copy-editor`. |
+| Transcrição bruta precisa de limpeza | Use `inboundfy-planejamento` na fase de saneamento. |
+
+## Contexto exigido
+
+- `ESCRITA.md`: regras de pontuação do framework (sem ponto e vírgula, sem
+  travessão de prosa, sem vírgula antes de `e` entre orações).
+- `.inboundfy/context/marca-voz.md`: registro formal ou informal por canal e
+  exceções de norma aceitas pela marca.
+- `.inboundfy/context/glossario.md`: grafia oficial de marcas, produtos e
+  siglas.
+- `.inboundfy/context/publico.md`: persona, para escolher entre forma culta e
+  forma coloquial aceita.
+- `.inboundfy/context/proibicoes.md` e
+  `.inboundfy/context/estruturas-proibidas.md`: para não reintroduzir um veto
+  durante a correção.
+
+Acrescente o contexto do canal quando a peça tiver formato próprio. Se faltar
+o texto ou o canal, registre a lacuna e pergunte só quando não for possível
+inferir do pedido.
 
 ## Entrada esperada
 
-Receba texto em Markdown ou texto puro, geralmente um rascunho produzido por
-uma skill de canal, junto de canal, público e objetivo. Identifique o ID e a
-origem quando a peça fizer parte de um pacote.
+Texto em Markdown ou texto puro, geralmente um rascunho de skill de canal,
+junto de canal, persona e objetivo. Quando a peça pertence a um pacote,
+identifique o ID e o caminho de origem.
 
 ## Fluxo
 
-1. Leia `ESCRITA.md`, `context/marca-voz.md`, `context/proibicoes.md` e o
-   checklist de [REFERENCIA.md](REFERENCIA.md).
-2. Leia o texto inteiro, incluindo headings, listas, CTA, alt text e conteúdo
-   inserido em imagem.
-3. Confira a pontuação: cada vírgula contra as regras de uso obrigatório e
-   proibido da referência (aposto, vocativo, adjunto adverbial intercalado ou
-   invertido, conectivos, termos explicativos e termos coordenados) e os
-   demais sinais (ponto, dois-pontos, ponto e vírgula, travessão, aspas e
-   parênteses).
-4. Confira a estrutura da frase: nenhuma vírgula separa sujeito de predicado,
-   verbo de complemento, nem verbo de seu objeto.
-5. Confira a concordância verbal e nominal: verbos impessoais, porcentagens,
-   frações, partitivos e a variação de `anexo`, `incluso`, `mesmo`, `próprio`,
-   `meio` e `bastante`.
-6. Confira a crase e a regência: crase obrigatória e proibida (inclusive
-   locuções, horas exatas e paralelismo `de...a` / `da...à`), preposições
-   exigidas por verbos e nomes.
-7. Confira a colocação pronominal (início de frase e próclise por palavra
-   atrativa), o uso dos quatro porquês e as distinções `há` / `a` e `onde` /
-   `aonde` / relativo com preposição.
-8. Confira o paralelismo sintático em listas e sequências, e a ausência de
-   gerundismo e de `mesmo` como pronome pessoal.
-9. Registre cada achado com localização, trecho observado, regra ou fonte,
-   diagnóstico e ação necessária. Não use notas, médias ou percentuais.
-10. Corrija os trechos apontados, preservando sentido, voz e fatos.
-11. Releia o texto inteiro depois das correções e confirme que cada trecho
-    atende à norma ou à exceção documentada.
-12. Devolva o texto corrigido e o relatório conforme o modelo de
-    `REFERENCIA.md`.
+1. Leia `ESCRITA.md`, `marca-voz.md`, `glossario.md` e a tabela "Norma ou
+   registro da marca" de [REFERENCIA.md](REFERENCIA.md). Anote quais
+   variações coloquiais a voz aceita e em qual canal.
+2. Leia o texto inteiro, incluindo título, headings, listas, CTA, alt text,
+   assunto de email e texto inserido em imagem.
+3. Confira a pontuação com
+   [references/pontuacao.md](references/pontuacao.md): nenhuma vírgula entre
+   sujeito e verbo ou entre verbo e complemento. Aposto, vocativo, adjunto
+   deslocado, conectivo e termo explicativo isolados. Nenhuma vírgula antes de
+   `e` entre orações. Nenhum ponto e vírgula nem travessão de prosa.
+4. Confira a estrutura de cada frase longa: identifique sujeito, verbo e
+   complemento antes de mover qualquer sinal.
+5. Confira a concordância com
+   [references/concordancia-crase-e-regencia.md](references/concordancia-crase-e-regencia.md):
+   verbos impessoais, porcentagens, partitivos e as palavras variáveis
+   (`anexo`, `incluso`, `mesmo`, `próprio`, `meio`, `bastante`).
+6. Confira crase e regência no mesmo arquivo: crase proibida, obrigatória e o
+   paralelismo `de...a` e `da...à`, além da preposição exigida por verbos como
+   `acessar`, `assistir`, `implicar`, `visar` e `chegar`.
+7. Confira colocação pronominal, porquês, `há` e `a`, `onde` e `aonde` com
+   [references/colocacao-grafia-e-estilo.md](references/colocacao-grafia-e-estilo.md).
+8. Confira paralelismo em listas, gerundismo, `mesmo` como pronome, artigos
+   antes de siglas e a grafia de números, datas, horas, valores e marcas com
+   [references/numeros-datas-e-moeda.md](references/numeros-datas-e-moeda.md).
+9. Registre cada achado na tabela de [REFERENCIA.md](REFERENCIA.md) com
+   localização, trecho, regra, diagnóstico e ação. Não use notas, médias ou
+   percentuais.
+10. Corrija os trechos preservando sentido, voz e fatos. Quando a correção
+    exigir escolher um dado (parcela ou total, dia útil ou corrido), não
+    escolha: registre pendência para a skill dona do dado.
+11. Releia o texto inteiro depois das correções. Confirme que nenhuma
+    correção criou erro novo nem reintroduziu veto.
+12. Devolva o texto corrigido e o relatório no modelo de
+    [REFERENCIA.md](REFERENCIA.md).
 
 ## Saída
 
 Relatório de achados e texto corrigido, devolvidos à skill que chamou
 `inboundfy-copy-gramatica` (especialista de canal, `inboundfy-copy-editor` ou
-`inboundfy-planejamento`). Não salva arquivo próprio; a skill solicitante
+`inboundfy-planejamento`). Esta skill não salva arquivo próprio. A chamadora
 define onde persistir o resultado.
 
 ## Validação
 
-- Cada achado aponta para trecho e localização identificáveis.
-- Cada achado informa a regra aplicável, o diagnóstico e a ação.
-- Nenhuma vírgula separa sujeito e predicado, verbo e complemento, nem verbo e
-  objeto.
-- Apostos, vocativos, adjuntos adverbiais intercalados ou invertidos,
-  conectivos e termos explicativos estão isolados quando a norma exigir.
-- Termos coordenados e listas usam vírgula entre os itens e não antes do
-  último quando não há conectivo.
-- Verbos impessoais, porcentagens, frações, partitivos e adjetivos de
-  concordância nominal seguem a norma.
-- A crase aparece só antes de palavra feminina que admita artigo e exija
-  preposição; não ocorre antes de verbo, de palavra masculina, de pronomes
-  pessoais, demonstrativos ou indefinidos, nem de numerais cardinais.
-- Locuções conjuntivas, locuções adverbiais femininas, horas exatas e o
-  paralelismo `de...a` / `da...à` aplicam a crase obrigatória.
-- Regência verbal e nominal usa a preposição exigida pelo termo.
-- Pronomes oblíquos não abrem frase e seguem a próclise quando há palavra
-  atrativa.
-- Os quatro porquês estão aplicados conforme a função de cada forma.
-- `há` / `a` e `onde` / `aonde` / relativo com preposição estão aplicados
-  conforme o sentido.
-- Listas e sequências mantêm paralelismo sintático, sem gerundismo nem `mesmo`
-  como pronome pessoal.
-- A leitura integral foi refeita após as correções e o resultado descreve o
-  estado observado, sem nota ou percentual editorial.
+- Cada achado aponta trecho, localização e regra.
+- Nenhuma vírgula separa sujeito e predicado nem verbo e complemento.
+- Nenhuma vírgula antes de `e` liga duas orações.
+- Nenhum ponto e vírgula nem travessão de prosa corrida no texto final.
+- Crase, concordância, regência e colocação seguem a norma ou uma exceção
+  registrada em `marca-voz.md` para aquele canal.
+- Listas mantêm a mesma forma gramatical em todos os itens.
+- Valores, datas, horas e marcas seguem uma forma única na peça.
+- Nenhum número, preço, prazo ou nome mudou de valor durante a correção.
+- A leitura integral foi refeita depois das correções.
+
+## Idempotência
+
+Nova execução parte do texto atual e do novo pedido. Não repete mudanças já
+aplicadas, não acumula trocas decorativas e nunca sobrescreve a fonte original
+ou uma versão aprovada sem solicitação explícita.
 
 ## Responsabilidade do grupo
 
@@ -128,14 +137,10 @@ artefato claro e devolva um registro consumível pela skill chamadora.
 
 Antes do handoff, confirme os campos próprios deste grupo:
 
-- **grupo:** copy
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** correção de gramática e pontuação pela norma culta;
+- **grupo:** copy;
+- **entrada:** caminho ou ID da peça, canal e persona;
+- **transformação:** correção de gramática, pontuação e grafia pela norma
+  culta, respeitando exceções registradas;
 - **saída:** texto corrigido e relatório de achados;
-- **handoff:** especialista de canal, validadora ou solicitante.
-
-## Idempotência
-
-Nova execução parte do texto atual e do novo pedido. Não repita mudanças já
-aplicadas, não acumule trocas decorativas e nunca sobrescreva a fonte original
-ou uma versão aprovada sem solicitação explícita.
+- **handoff:** skill chamadora, com pendências de dado encaminhadas à skill
+  dona.

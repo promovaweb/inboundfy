@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Auditoria Seo"
-  short_description: "Executa auditoria seo no Inboundfy"
-  default_prompt: "Use $inboundfy-auditoria-seo para executar auditoria seo com as fontes do projeto."
+  display_name: "Inboundfy: Auditoria de SEO"
+  short_description: "Audita SEO e prioriza correções por página"
+  default_prompt: "Use $inboundfy-auditoria-seo para auditar o site, priorizar os achados por impacto e esforço e entregar o plano de correção."

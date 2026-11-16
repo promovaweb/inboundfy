@@ -13,6 +13,19 @@ distribuição e o roteamento das peças.
 - [ ] Substack
 - [ ] YouTube
 
+## Áreas de trabalho
+
+Marque as áreas que o projeto vai usar agora. Cada área tem uma skill de
+entrada (`inboundfy-area-*`) que recebe o pedido e encaminha para a skill certa.
+
+- [ ] Conteúdo e canais (`inboundfy-area-conteudo`)
+- [ ] SEO e busca (`inboundfy-area-seo`)
+- [ ] Copy e mensagem (`inboundfy-area-copy`)
+- [ ] Growth (`inboundfy-area-growth`)
+- [ ] Vendas e receita (`inboundfy-area-vendas`)
+- [ ] Dados e mensuração (`inboundfy-area-dados`)
+- [ ] Pesquisa e concorrência (`inboundfy-area-pesquisa`)
+
 ## Objetivos
 
 - **Objetivo de negócio:** PREENCHER

@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Growth Cro"
-  short_description: "Executa growth cro no Inboundfy"
-  default_prompt: "Use $inboundfy-growth-cro para executar growth cro com as fontes do projeto."
+  display_name: "Inboundfy: CRO de páginas e formulários"
+  short_description: "Diagnóstico e propostas de conversão da página"
+  default_prompt: "Use $inboundfy-growth-cro para auditar a página, justificar campos e separar correções de hipóteses usando as fontes da oferta."

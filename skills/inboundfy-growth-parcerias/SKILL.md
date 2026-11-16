@@ -1,16 +1,13 @@
 ---
 name: inboundfy-growth-parcerias
-description: Encontra e estrutura parcerias de conteúdo, distribuição e co-marketing com proposta, audiência, troca e próximos passos claros.
+description: Seleciona parceiros complementares e entrega proposta de co-marketing com contrapartidas, custos, uso de marca e acompanhamento. Use quando o pedido falar em parceria entre empresas, campanha conjunta, divulgação cruzada ou acordo de distribuição.
 ---
 
 # Parcerias de distribuição
 
-Use esta skill como capacidade especializada do Inboundfy. Ela organiza a tarefa e devolve material pronto para a orquestradora, sem substituir o setup, a voz, a persona ou a validação do canal.
+Planeje ações conjuntas com valor para os dois públicos. Distinga co-marketing de revenda, integração técnica, comissão e cadastro em marketplace.
 
 ## Arquitetura de execução
-
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
@@ -18,52 +15,54 @@ específica desta pasta.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
 
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **growth**.
-
 ## Contexto exigido
 
-Se a configuração estiver incompleta, acione `inboundfy-setup`. Consulte [REFERENCIA.md](REFERENCIA.md), `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`, `.inboundfy/context/marca-voz.md`, `.inboundfy/context/publico.md`, `.inboundfy/context/proibicoes.md`, `.inboundfy/context/glossario.md`, `.inboundfy/pipeline.md`, o acervo relacionado e `.inboundfy/framework/`.
+Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md` antes de alterar artefatos. Na ausência de qualquer sentinela, apresente:
 
-Leia também `.inboundfy/fontes-projeto.md`, as bases editoriais relacionadas e os documentos públicos citados. Antes de entregar copy, consulte `inboundfy-anti-slop` e `inboundfy-copy-edicao`.
+> O setup do Inboundfy ainda não foi concluído ou precisa de reparo neste
+> projeto. Execute `inboundfy-setup` para preparar os arquivos de apoio.
+
+Leia `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`, `.inboundfy/context/publico.md`, `.inboundfy/context/canais.md`, `.inboundfy/context/marca-voz.md`, `.inboundfy/context/glossario.md`, `.inboundfy/context/proibicoes.md` e `.inboundfy/context/estruturas-proibidas.md`. Localize a oferta e as fontes relacionadas ao pedido. Consulte `.inboundfy/framework/` para os contratos instalados. Acione `inboundfy-setup` quando a configuração precisar de reparo.
 
 ## Entrada esperada
 
-Receba um objetivo, um ou mais IDs de acervo, a persona, o canal, a oferta ou o fluxo que precisa ser planejado. Separe fatos confirmados, hipótese de trabalho e pergunta aberta.
+Receba objetivo, ofertas, personas, parceiros candidatos, ativos disponíveis, canais, verba, prazo e restrições de dados e marca. Aceite propostas de acordos entre empresas de `inboundfy-growth-referencias`; se houver comissão, preserve a regra para o programa de indicação.
+
+## Perguntas de diagnóstico
+
+- O parceiro atende a mesma pessoa com uma tarefa complementar?
+- O que cada lado entrega além de um logotipo?
+- A assimetria de audiência pode ser compensada por conteúdo ou acesso?
+- O cadastro permite entender quem poderá entrar em contato?
 
 ## Fluxo
 
-1. Leia [REFERENCIA.md](REFERENCIA.md) e confirme a intenção, o público, o canal e o resultado solicitado.
-2. Consulte voz, persona, proibições e dicionário antes de propor mensagem, segmento, preço, promessa ou CTA.
-3. Relacione cada afirmação ao acervo, à base editorial, à página canônica ou à pesquisa salva no item.
-4. Desenvolva um plano de parceria com encaixe, proposta, contrapartidas e mensagens.
-5. Revise o material com `inboundfy-anti-slop`, `inboundfy-copy-edicao` e a validação específica do canal quando houver copy pública.
-6. Registre caminho, ID, fontes, alcance da regra e pendências; peça confirmação antes de alterar uma configuração global.
+1. Leia [REFERENCIA.md](REFERENCIA.md) e confirme a complementaridade das ofertas, a audiência compartilhada e a capacidade de entrega dos dois lados.
+2. Leia [acordos e contrapartidas](references/acordos-e-contrapartidas.md). Compare parceiros por público, complementaridade, reciprocidade e facilidade operacional. Comece por um piloto de escopo pequeno.
+3. Mapeie ativos de cada lado e proponha entregas proporcionais ao valor oferecido. Audiência menor pode compensar com especialização ou produção.
+4. Formalize responsáveis, datas, custos, uso de marca, aprovação, tratamento de contatos e condição de encerramento.
+5. Prepare brief conjunto e links por origem. Execute a divulgação acordada e confronte entregas reais com o combinado.
+6. Reúna resultados dos dois lados, qualidade dos contatos e esforço. Registre renovação, ajuste ou encerramento.
+7. Entregue o plano com ID, fontes, estado, responsável e próxima ação. Para copy pública, leia `ESCRITA.md` e encaminhe a `inboundfy-copy-redacao`, à especialista do canal e à validadora pareada. Aplique `inboundfy-copy-editor` e `inboundfy-anti-slop`.
 
 ## Saída
 
-Um plano de parceria com encaixe, proposta, contrapartidas e mensagens. O material deve manter IDs, links relativos, fontes, persona, canal, estado e próxima ação.
+Entregue seleção de parceiros, proposta de piloto, acordo operacional, brief conjunto e balanço de contrapartidas. Salve no pacote já definido pelo projeto, com vínculos ao acervo, brief, persona e calendário. Use o campo `brief` nas peças finais. Não crie estrutura paralela ao setup.
 
 ## Validação
 
-- A finalidade e o público estão explícitos.
-- Toda afirmação comercial possui fonte local ou marcação de confirmação.
-- Voz, persona, proibições e dicionário foram aplicados.
-- O formato respeita o canal, o pipeline e o template correspondente.
-- Pendências ficaram registradas sem preenchimento inventado.
+Cada entrega tem responsável, prazo e comprovação. O acordo define uso de marca, tratamento de contatos, custo e encerramento. Nenhum participante entra em base de parceiro por suposição.
+
+Confira cálculos, denominadores, datas, fontes e autorização aplicável. Devolva promessas sem fonte ao brief. Mantenha o estado `revisao` enquanto houver pendência factual. A publicação depende do estado e da autorização existentes no projeto.
 
 ## Responsabilidade do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
+Transforme candidatos e ativos disponíveis em acordo de co-marketing com contrapartidas verificáveis e responsáveis dos dois lados. Registre grupo `growth`, entrada, transformação, saída, próxima skill, estado e pendências no handoff.
 
-Antes do handoff, confirme os campos próprios deste grupo:
+## Encaminhamentos
 
-- **grupo:** growth
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+Use `inboundfy-growth-eventos` para produzir encontro conjunto, `inboundfy-growth-referencias` para comissão e `inboundfy-growth-diretorios` para marketplace. Oportunidades de links editoriais seguem para `inboundfy-seo-links-externos`. Estudos de programas concorrentes seguem para `inboundfy-engenharia-reversa`.
 
 ## Idempotência
 
-Atualize o mesmo arquivo ou brief quando o ID já existir. Preserve texto aprovado, histórico, fontes e escolhas anteriores; abra uma nova versão apenas após pedido explícito.
+Atualize o plano pelo mesmo ID. Preserve fontes, versões aprovadas e histórico. Use parceiro + campanha + entrega como chave. Não repita convite recusado nem renove uso de marca automaticamente.

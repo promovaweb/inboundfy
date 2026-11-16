@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Copy Persuasao"
-  short_description: "Executa copy persuasao no Inboundfy"
-  default_prompt: "Use $inboundfy-copy-persuasao para executar copy persuasao com as fontes do projeto."
+  display_name: "Inboundfy: Persuasão"
+  short_description: "Diagnostica a persuasão da peça com prova real"
+  default_prompt: "Use $inboundfy-copy-persuasao para entender por que esta peça não convence e me dizer quais princípios aplicar, onde e com qual prova."

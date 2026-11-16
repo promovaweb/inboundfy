@@ -1,14 +1,17 @@
 ---
 name: inboundfy-anti-slop
-description: Audita textos de marketing para remover generalidades, sinais sintéticos e promessas sem base, respeitando voz, persona e canal.
+description: Audita e corrige texto de marketing em cada marco A0 a A6, removendo generalidades, sinais de texto sintético, fórmulas prontas e promessas sem fonte, preservando voz, persona e canal. Use quando a pessoa disser que o texto está genérico, com cara de IA, raso ou repetitivo, ou quando outra skill chegar a um marco de auditoria.
 ---
 
 # Anti-slop editorial
 
-Use esta skill em cada marco indicado em [ETAPAS.md](ETAPAS.md), antes de
-entregar texto público ou quando o usuário pedir uma auditoria de qualidade.
-Ela funciona como filtro editorial, não como estilo pronto. A direção vem da
-voz, da persona, da estratégia e do acervo.
+Filtro editorial, não estilo pronto. A direção vem da voz, da persona, da
+estratégia e do acervo. Os marcos, entradas e caminhos de registro estão em
+[ETAPAS.md](ETAPAS.md).
+
+## Verificação do setup
+
+Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md` antes de criar ou alterar artefatos. Se faltar um deles, informe: "O setup do Inboundfy ainda não foi concluído ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os arquivos de apoio." Encerre sem escrever. Após a confirmação, leia as fontes locais relevantes e `.inboundfy/context/empresa.md`.
 
 ## Arquitetura de execução
 
@@ -27,72 +30,71 @@ artefato. Quando a execução envolver mais de um marco, leia também
 
 ## Contexto exigido
 
-Consulte `.inboundfy/context/empresa.md`, `.inboundfy/framework/` e
-`inboundfy-setup` antes de continuar quando a instalação ou a configuração
-estiver incompleta.
-
-Leia [REFERENCIA.md](REFERENCIA.md), `AGENTS.md` do projeto, os oito arquivos
-de `.inboundfy/` e a base do acervo usada na peça. Consulte também as regras
-do framework em `.inboundfy/framework/`, sobretudo proibições globais,
-escrita, fontes e templates de canal. Leia `.inboundfy/context/aprendizado.md` para
-reaplicar orientações confirmadas no alcance da peça.
+- `AGENTS.md` do projeto e `.inboundfy/context/marca-voz.md`,
+  `.inboundfy/context/publico.md`, `.inboundfy/context/proibicoes.md`,
+  `.inboundfy/context/estruturas-proibidas.md` e
+  `.inboundfy/context/glossario.md`.
+- `.inboundfy/context/aprendizado.md`, para reaplicar orientações confirmadas
+  no alcance da peça.
+- A base do acervo usada na peça (`acervo/`, fontes locais, `pesquisa.md`).
+- Regras do framework em `.inboundfy/framework/`: proibições globais, escrita,
+  fontes e templates de canal. Sem essa pasta, acione `inboundfy-setup`.
 
 ## Entrada esperada
 
-Receba texto bruto, rascunho, peça final, relatório de auditoria ou pedido de
-reescrita. Identifique canal, persona, acervo, objetivo, estado do pipeline e
-código do marco A0 a A6. Se algum vínculo faltar, registre a lacuna antes de
-editar.
+Texto bruto, rascunho, peça final, relatório de auditoria ou pedido de
+reescrita, enviado pela pessoa ou pela skill do marco (por exemplo
+`inboundfy-base-editorial` em A2 e `inboundfy-base-validador` em A5).
+Identifique canal, persona, acervo, objetivo, estado do pipeline, código do
+marco A0 a A6 e modo (auditoria ou revisão autorizada). Vínculo ausente vira
+lacuna registrada antes de editar.
 
 ## Fluxo
 
-1. Identifique o marco em [ETAPAS.md](ETAPAS.md) e leia a entrada correspondente.
-2. Faça uma leitura literal contra `proibicoes.md` e o dicionário.
-3. Faça uma leitura de sentido: promessas, números, citações, nomes e fatos
-   precisam ter base em `acervo/`, fontes locais ou `pesquisa.md`.
-4. Remova aberturas genéricas, transições vazias, frases de efeito,
+1. Identifique o marco em [ETAPAS.md](ETAPAS.md) e leia a entrada indicada.
+2. Leia o diagnóstico e os passes de [REFERENCIA.md](REFERENCIA.md).
+3. Passe literal contra `proibicoes.md`, estruturas proibidas e glossário,
+   incluindo frontmatter, títulos, CTA e texto visual.
+4. Passe semântico: promessas, números, citações, nomes e fatos precisam de
+   base em `acervo/`, fontes locais ou `pesquisa.md`.
+5. Passe estrutural: aberturas genéricas, transições vazias, frases de efeito,
    encerramentos grandiosos, abstrações sem exemplo, adjetivos inflados,
-   perguntas retóricas repetidas e fórmulas de contraste usadas como atalho.
-5. Reescreva com detalhes verificáveis, verbos ativos, ritmo variado,
-   parágrafos proporcionais ao canal e vocabulário da persona.
-6. Compare cada trecho com `voz.md`. Preserve a identidade central da marca e
-   adapte profundidade, contexto e vocabulário à persona escolhida.
-7. Se a tarefa for auditoria, liste achados numerados com trecho, regra,
-   motivo e ação. Não altere o arquivo antes da autorização do usuário.
-8. Se a tarefa for produção ou revisão autorizada, corrija, registre o ciclo
-   e repita todos os passes antes de encaminhar ao próximo marco.
-9. Se uma fonte, configuração ou texto mudar, marque auditorias posteriores
-   como superadas e reexecute os marcos afetados.
+   perguntas retóricas repetidas e contrastes usados como atalho. Padrão de
+   estilo exige dois ou mais locais demonstrados no trecho.
+6. Compare cada trecho com a voz e a persona: preserve a identidade da marca e
+   adapte profundidade, contexto e vocabulário à persona. Preserve detalhe
+   autoral e não use contagem de palavras como substituto da leitura.
+7. Modo auditoria: liste achados numerados no template de
+   [REFERENCIA.md](REFERENCIA.md), com trecho, regra, motivo e ação. Não altere
+   o arquivo sem autorização do usuário.
+8. Modo revisão autorizada: reescreva com detalhes verificáveis, verbos ativos,
+   ritmo variado e parágrafos proporcionais ao canal. Acione
+   `inboundfy-copy-editor` com alcance `auditar-e-corrigir`, repita todos os passes no arquivo inteiro e
+   registre o ciclo.
+9. Se fonte, configuração ou texto mudar, marque as auditorias posteriores
+   como superadas e reexecute os marcos afetados, conforme
+   [ETAPAS.md](ETAPAS.md).
 
 ## Saída
 
-Entregue texto revisado ou relatório de auditoria. Registre o código do marco,
-o ciclo, o estado e os vínculos de voz, personas, proibições, dicionário,
-acervo e pesquisa. No fluxo completo, salve o registro no diretório indicado
-em [ETAPAS.md](ETAPAS.md).
+Texto revisado ou relatório de auditoria com código do marco, ciclo, estado e
+vínculos de voz, persona, proibições, glossário, acervo e pesquisa. No fluxo
+completo, o registro fica no diretório indicado em [ETAPAS.md](ETAPAS.md).
 
 ## Validação
 
-Confirme ausência de termos e estruturas vetados, presença de base para cada
-afirmação verificável, aderência à voz, adequação à persona, naturalidade do
-ritmo e compatibilidade com o canal. Texto sem fonte para uma afirmação
-sensível não pode avançar para o marco seguinte nem para publicação.
+- Nenhum termo ou estrutura vetada permanece.
+- Toda afirmação verificável tem base localizada.
+- Afirmação sensível sem fonte impede o avanço ao marco seguinte e à
+  publicação.
+- O registro do ciclo existe no caminho do marco.
 
 ## Responsabilidade do grupo
 
 Faça uma revisão específica de qualidade. Separe achado literal, semântico e estrutural e só libere após nova leitura integral.
 
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** qualidade
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
-
 ## Idempotência
 
 Uma nova auditoria preserva correções já aprovadas, registra o ciclo e só
-mantém como pendência os achados ainda presentes. Não transforme ajuste local
-em regra global sem confirmação. Alterações posteriores exigem nova execução
-dos marcos afetados.
+mantém como pendência os achados ainda presentes. Ajuste local não vira regra
+global sem confirmação.

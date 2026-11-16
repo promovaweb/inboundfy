@@ -1,10 +1,6 @@
 ---
 name: inboundfy-especialista-blog
-description: >
-  Escreve ou edita artigos de blog a partir de um brief aprovado (fase 5 do
-  pipeline). Aplica ESCRITA.md, a voz de context/marca-voz.md e a intenção de
-  busca validada por inboundfy-base-seo. Não decide estratégia nem pauta; recebe o
-  brief pronto.
+description: Escreve e revisa artigos de blog com intenção de busca, fontes, título e metadata a partir de brief aprovado. Use quando o pedido for redigir um post, atualizar um artigo ou transformar o brief de blog em texto para revisão.
 ---
 
 # Inboundfy Blog Redator
@@ -32,17 +28,11 @@ preflight, leia o catalogo e os Markdown relevantes para a tarefa.
 
 ## Arquitetura de execução
 
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
-
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
 - [Interação e handoff](../_shared/03-interacao-e-handoff.md): conduza escolhas e entregue o pacote seguinte.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
-
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **especialista**.
 
 ## Contexto exigido
 
@@ -61,57 +51,21 @@ Se qualquer um desses arquivos estiver no estado de template vazio para o
 dado que o artigo precisa, pare e acione a skill de manutenção correspondente
 (`CONTEXTO.md`) antes de escrever.
 
-## Estrutura persuasiva
-
-Artigo de blog é informativo por padrão e segue `ESCRITA.md` diretamente; não force AIDA, PAS ou PASTOR num texto que existe para responder uma
-intenção de busca, não para vender. A única técnica de
-`ESTRUTURAS-PERSUASIVAS.md` que se aplica aqui é **FAB**: sempre que o
-artigo mencionar um produto ou serviço da empresa, traduza a característica
-citada (`context/produtos.md` / `context/servicos.md`) em vantagem prática e
-benefício real para o leitor antes de fechar o parágrafo, em vez de deixar a
-menção solta como propaganda.
-
 ## Entrada esperada
 
-Um brief com: canal (blog), ângulo, objetivo, público-alvo, ativos de apoio
-(dados, exemplos, citações vindos de `inboundfy-planejamento` quando existir
-pacote), palavra-chave ou intenção de busca já validada, e restrições
-específicas da peça.
+Brief de blog aprovado por `inboundfy-planejamento` ou brief avulso do usuário, com ângulo, objetivo, persona, ativos de apoio, restrições e palavra-chave ou intenção de busca.
 
 ## Fluxo
 
-1. Leia o brief por completo antes de qualquer redação.
-2. Leia `ESCRITA.md` e os arquivos de contexto exigidos acima.
-3. Se o brief não trouxer intenção de busca validada, acione `inboundfy-base-seo`
-   antes de escrever título, description, slug ou outline; não escreva a
-   partir de tema solto sem pergunta real de busca por trás.
-4. Escreva o outline: um H1, hierarquia de H2/H3 cobrindo a dúvida real do
-   público, sem heading em pergunta seguido de resposta genérica. Use as
-   fórmulas de abertura por intenção de `REFERENCIA.md`.
-5. Escreva o corpo em prosa contínua, seguindo `ESCRITA.md`: mostre o objeto,
-   explique a função, dê exemplo real (de `context/` ou do material de
-   pesquisa do pacote), interprete o exemplo, aponte limite ou falha
-   provável.
-6. Insira menção a produto, serviço ou ferramenta apenas quando o brief
-   pedir e sempre com base no `context/` correspondente; nunca invente
-   funcionalidade ou preço.
-7. Feche com uma ação real, não uma frase decorativa. Use CTA definido em
-   `context/marca-voz.md` quando existir um padrão.
-8. Rode `inboundfy-copy-editor` no rascunho, trate os achados verificáveis e repita a leitura integral.
-9. Rode `inboundfy-base-seo` no perfil de metadata para confirmar title, description
-   e slug finais.
-10. Salve o artigo com frontmatter incluindo, no mínimo: `title`,
-    `description`, `slug`, e; se fizer parte de um pacote; `brief` apontando
-    para o arquivo em `04-briefs/`, seguindo o template de `REFERENCIA.md`.
-11. Encaminhe para `inboundfy-especialista-blog-imagem` quando o canal exigir imagem, e depois
-    para `inboundfy-planejamento`.
-
-## Encaminhamento obrigatório
-
-Antes de considerar o artigo pronto, acione `inboundfy-validador-blog`. Em
-caso de reprovação, aplique as correções do relatório e reenvie o artigo
-inteiro à mesma validadora até a aprovação. Só então avance para imagem e
-auditoria do pacote.
+1. Leia a entrada completa, `ESCRITA.md` e os contextos exigidos. Resolva lacunas obrigatórias com o planejamento ou a manutenção de contexto indicada por `CONTEXTO.md` antes de redigir. Consulte [o diagnóstico e os parâmetros de blog](REFERENCIA.md#diagnóstico-da-peça).
+2. Confirme a intenção com `inboundfy-base-seo` antes de escrever título, description, slug ou outline. Se faltar pergunta de busca, devolva o recorte ao planejamento.
+3. Monte um H1 e H2/H3 com função própria. Aplique o método e as aberturas por intenção de [REFERENCIA.md](REFERENCIA.md#método-de-produção). Execute A4 sobre outline, abertura e primeira unidade antes de expandir.
+4. Redija a explicação, o exemplo interpretado e seu limite. Use apenas fontes do contexto ou da pesquisa; confirme números, funcionalidades e preços. Ao mencionar oferta autorizada, consulte [estrutura editorial](references/estrutura-editorial.md). Feche com a ação prevista no brief.
+5. Execute `inboundfy-copy-editor`, trate os achados e releia o artigo inteiro. Confirme title, description e slug com `inboundfy-base-seo` no perfil de metadata.
+6. Salve no caminho definido em [Saída](#saída), com [o template da peça](REFERENCIA.md#template-da-peça), envelope compartilhado e `brief` em pacote. Na montagem, leia [o exemplo completo](references/exemplo-completo.md); preserve os parâmetros aprovados.
+7. Execute A5 com `inboundfy-anti-slop` e confira os 11 itens de [conferência do par](REFERENCIA.md#checklist-numerado-do-par). Entregue a `inboundfy-validador-blog` candidata, ID, caminho, brief ou entrada avulsa, persona, fontes, pendências e registros de revisão editorial e A5.
+8. Se receber reprovação de `inboundfy-validador-blog`, leia o relatório, corrija o alcance solicitado e repita revisão editorial, A5 e leitura integral. Reenvie à mesma validadora até aprovação da versão atual.
+9. Após aprovação textual, encaminhe à `inboundfy-especialista-blog-imagem` quando o canal exigir capa, com ID, brief, versão textual aprovada, slug, tema e formato. Retorne a `inboundfy-planejamento` com candidata, fontes, relatório aprovado e digest atual.
 
 ## Saída
 
@@ -130,15 +84,7 @@ Artigo em Markdown com frontmatter, salvo no caminho definido em
 
 ## Responsabilidade do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** especialista
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+O grupo `especialista` responde pela redação e pelas correções de artigos de blog. Preserve o brief, o ID, a origem factual e o estado real da candidata; encaminhe somente a versão aprovada. O [guia do grupo](REFERENCIA.md#guia-específico-do-grupo) define o registro da entrega.
 
 ## Idempotência
 

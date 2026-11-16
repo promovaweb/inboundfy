@@ -1,17 +1,12 @@
 ---
 name: inboundfy-base-validador
-description: >
-  Aplica o contrato transversal de validação a qualquer asset produzido pelo
-  Inboundfy. Use como base obrigatória das skills inboundfy-validador-* para
-  confrontar brief, metodologia, todos os contextos, fontes locais, regras e
-  contrato da skill produtora. Proibições e estruturas proibidas reprovam o
-  asset até correção ou exceção canônica confirmada.
+description: Aplica o contrato comum de validação a um asset do Inboundfy, confrontando brief, contextos, fontes, marca e proibições, e devolve relatório com achados localizados, digest e veredito. Use quando uma skill inboundfy-validador-* auditar uma peça ou a pessoa pedir para validar, aprovar ou reprovar um asset antes da publicação.
 ---
 
-# Inboundfy Base Validador
+# Validação transversal
 
 Base de julgamento compartilhada pelas validadoras de asset. Não substitui a
-validação específica do canal e não corrige o artefato diretamente.
+validação específica do canal e não corrige o artefato.
 
 ## Verificação do setup
 
@@ -59,84 +54,65 @@ precedência de `CONTEXTO.md` e registre conflitos sem inventar uma síntese.
 
 ## Entrada esperada
 
-Asset candidato, brief de origem, materiais-fonte, nome da skill produtora e
-nome da validadora específica que solicitou a auditoria.
+Asset candidato, brief de origem (ou indicação de peça avulsa), materiais-fonte
+e nome da skill produtora, enviados pela validadora de canal que aciona esta
+base. O nome da validadora é o da própria chamadora. Sem asset ou produtora
+identificados, registre impedimento.
 
 ## Fluxo
 
-1. Leia `REFERENCIA.md` e monte o manifesto de fontes da auditoria.
+1. Leia [REFERENCIA.md](REFERENCIA.md) e monte o manifesto de fontes.
 2. Leia o asset inteiro, o brief, a `SKILL.md` e a `REFERENCIA.md` da
-   produtora, além da referência da validadora específica.
-3. Carregue todos os arquivos de `.inboundfy/context/`, o catalogo e as
-   fontes locais relevantes. Registre arquivo ausente, template vazio e
-   conflito factual como impedimento; não peça à validadora para reparar apoio.
-   Se `brand/` existir, leia seus Markdown e inspecione os ativos aplicáveis.
-4. Verifique rastreabilidade factual, aderência ao brief, voz, escrita,
-   estrutura persuasiva, formato, acessibilidade, metadata, dimensões,
-   licenças e demais regras aplicáveis.
-5. Execute a conferência das proibições antes dos demais aspectos:
-   - execute um passe literal e compare cada termo, expressão e veto de
-     `context/proibicoes.md` com o asset inteiro, incluindo frontmatter,
-     headings, listas, CTA, alt text e texto incorporado em imagem;
-   - faça uma segunda leitura semântica, procurando paráfrase, variação
-     morfológica, tradução, eufemismo e tentativa de contornar o veto;
-   - confronte a arquitetura completa com cada categoria de
-     `context/estruturas-proibidas.md`: abertura, fechamento, vocabulário,
-     parágrafo, headings, listas, pontuação, fluidez e autoridade;
-   - marque qualquer ocorrência como reprovação automática. SEO, estética ou
-     aprovação parcial não anulam esse resultado.
-6. Aplique exceção somente quando o próprio arquivo canônico declarar de
-   forma explícita a condição permitida e o asset provar que a satisfaz.
-   Registre regra, condição e prova; não crie exceção por interpretação.
-7. Para texto público, acione `inboundfy-copy-editor` e registre cada achado
-   com trecho, localização, regra ou fonte, diagnóstico e ação. Não use notas
-   ou percentuais editoriais.
-8. Acione `inboundfy-anti-slop` no marco A5 para a leitura de generalidades,
-   ritmo, voz, persona, fonte e canal. Confirme o registro
+   produtora e a referência da validadora chamadora.
+3. Carregue todos os arquivos de `.inboundfy/context/`, o catalogo e as fontes
+   locais relevantes. Arquivo ausente, template vazio e conflito factual viram
+   impedimento: não peça à validadora para reparar apoio. Se `brand/` existir,
+   leia seus Markdown e inspecione os ativos aplicáveis.
+4. Execute o hard gate de proibições de [REFERENCIA.md](REFERENCIA.md) antes
+   dos demais aspectos, com os passes literal, semântico e estrutural.
+5. Siga o procedimento de julgamento de [REFERENCIA.md](REFERENCIA.md) para
+   rastreabilidade factual, aderência ao brief, voz, escrita, estrutura
+   persuasiva, formato, acessibilidade, metadata, dimensões e licenças. O passe
+   visual cobre imagem final, texto incorporado, logos e área de corte. Uma
+   inspeção não executada permanece pendente.
+6. Para texto público, acione `inboundfy-copy-editor` com canal, persona do
+   brief e alcance `auditar` (a validadora não corrige) e registre cada achado
+   com trecho, localização, regra ou fonte, diagnóstico e ação, sem notas ou
+   percentuais.
+7. Acione `inboundfy-anti-slop` no marco A5 e confirme o registro
    `auditorias/anti-slop/05-peca.md` ou seu equivalente no pacote.
-9. Produza um relatório com comprovação localizada, regra ou fonte violada,
-   correção verificável e destino de retorno. Antes de aprovar, execute
-   `inboundfy content digest <id>` e inclua no relatório o ID, o caminho
-   retornado, o SHA-256 completo e `Veredito: aprovado` nas linhas do formato
-   canônico definido em `REFERENCIA.md`.
-10. Depois da correção, descarte o resultado anterior como base de
-   aprovação, releia o asset inteiro e repita os dois passes do hard gate.
-11. Aprove somente quando o hard gate estiver zerado e não houver violação
-   nem pendência obrigatória.
-   Reprovação volta à skill produtora; divergência estratégica volta ao
-   briefing; falta factual irrecuperável é apresentada ao usuário.
+8. Preencha o relatório do template de [REFERENCIA.md](REFERENCIA.md). Antes de
+   aprovar, execute `inboundfy content digest <id>` depois da última alteração e
+   registre ID, caminho, SHA-256 completo e `Veredito: aprovado`. Marcador de
+   exemplo nunca vale como digest real.
+9. Depois de qualquer correção, descarte o resultado anterior, releia o asset
+   inteiro e repita o hard gate.
+10. Aprove só com hard gate zerado e sem pendência obrigatória. Reprovação
+    volta à produtora; divergência estratégica volta ao briefing; falta
+    factual irrecuperável vai ao usuário.
 
 ## Saída
 
-Relatório conforme `REFERENCIA.md`, salvo em
+Relatório conforme [REFERENCIA.md](REFERENCIA.md), salvo em
 `06-auditoria/assets/<canal>-<item>.md` no pacote ou junto ao asset avulso
 como `<nome-do-asset>.auditoria.md`.
 
 ## Validação
 
 - O manifesto prova que todas as classes de fonte aplicáveis foram lidas.
-- O relatório contém uma matriz completa de proibições e estruturas
-  proibidas, com resultado por categoria.
+- O relatório contém a matriz completa de proibições e estruturas proibidas,
+  com resultado por categoria.
 - Zero ocorrência literal, semântica ou estrutural permanece no asset.
-- O asset respeita `brand/` quando a pasta existe; divergência de voz, logo,
-  cor, tipografia ou aplicação reprova a peça.
+- Divergência de voz, logo, cor, tipografia ou aplicação em relação a `brand/`
+  reprova a peça.
 - Cada reprovação cita localização, prova, regra e correção.
 - Nenhum asset recebe aprovação condicional.
-- O relatório final descreve achados verificáveis, sem notas ou percentuais.
 - A skill de destino está registrada de forma inequívoca.
 - O relatório identifica o marco A5 e o ciclo executado.
 
 ## Responsabilidade do grupo
 
 Entregue uma função reutilizável, sem assumir canal ou negócio. Receba um artefato claro e devolva um registro consumível pela skill chamadora.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** base
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
 
 ## Idempotência
 

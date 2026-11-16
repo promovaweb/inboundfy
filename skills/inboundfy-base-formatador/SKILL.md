@@ -1,20 +1,12 @@
 ---
 name: inboundfy-base-formatador
-description: >
-  Skill transversal de lint e formatação Markdown final; heading, listas,
-  links, tabelas e frontmatter. Sempre a última ação antes de considerar um
-  artefato Markdown pronto. Não altera conteúdo editorial.
+description: Corrige a sintaxe Markdown de um artefato pronto (headings, listas, links, tabelas e frontmatter YAML) sem alterar o conteúdo editorial. Use quando uma skill produtora terminar o texto e precisar da última passada mecânica, ou quando a pessoa pedir lint, formatação Markdown ou correção de frontmatter.
 ---
 
-# Inboundfy Formatador
+# Formatação Markdown
 
-Última etapa mecânica antes de um artefato Markdown ser considerado pronto
-para `inboundfy-planejamento`.
-
-## Escopo
-
-Formata e valida estrutura Markdown. Não corrige conteúdo, tom ou voz; isso
-é `inboundfy-copy-editor`.
+Última passada mecânica antes de a chamadora considerar um artefato Markdown
+pronto. Conteúdo, tom e voz pertencem a `inboundfy-copy-editor`.
 
 ## Verificação do setup
 
@@ -40,55 +32,55 @@ artefato. O grupo desta skill é **base**.
 
 ## Contexto exigido
 
-Nenhum arquivo de `context/` é obrigatório. Consulte `context/glossario.md`
-apenas para confirmar grafia em link e texto âncora.
+Nenhum arquivo de `.inboundfy/context/` é obrigatório. Consulte
+`.inboundfy/context/glossario.md` apenas para confirmar grafia em link e texto
+âncora.
 
 ## Entrada esperada
 
-Um artefato Markdown já com o corpo definido, geralmente aprovado por
-`inboundfy-copy-editor`.
+Um artefato Markdown com o corpo definido, geralmente já revisado por
+`inboundfy-copy-editor`, mais o contrato da chamadora: campos obrigatórios do
+frontmatter e limite do corpo copiável. Sem contrato, confira só a sintaxe e
+registre os campos que não puderam ser conferidos.
 
 ## Fluxo
 
-1. Percorra o checklist completo de `REFERENCIA.md` item a item.
-2. Confira a hierarquia de headings: um único H1, sem pular nível (H2 antes
-   de H3).
-3. Confira formatação de listas: use lista apenas quando o conteúdo for
-   realmente uma sequência de itens paralelos, não como substituto de prosa.
-4. Confira links: texto âncora descritivo, sem "clique aqui", URL válida
-   dentro do que a skill pode verificar.
-5. Confira tabelas: cabeçalho presente, colunas alinhadas, sem célula vazia
-   sem indicação de "não informado".
-6. Confira frontmatter YAML: campos obrigatórios do canal presentes (título,
-   description, slug, `brief` quando aplicável), sintaxe YAML válida.
-7. Para post nativo de rede social, confirme que nenhuma sintaxe Markdown
-   vazou para o corpo copiável (ver diferenças por canal em
-   `REFERENCIA.md`).
-8. Aplique a formatação corrigida diretamente no arquivo.
+1. Leia a triagem e o procedimento de [REFERENCIA.md](REFERENCIA.md) antes da
+   primeira alteração.
+2. Separe corpo copiável, notas de produção e cercas de código. O interior das
+   cercas não entra na contagem de headings e não muda.
+3. Confira a hierarquia: um único H1 fora das cercas e nenhum nível pulado.
+4. Confira listas: linha vazia antes, indentação e itens paralelos. Lista usada
+   no lugar de prosa vira nota para a chamadora, sem reescrita.
+5. Confira links: âncora descritiva (nunca "clique aqui"), caminho relativo
+   resolvido e URL externa não verificada marcada como pendente.
+6. Confira tabelas: cabeçalho, número de colunas e célula vazia preenchida com
+   "não informado" apenas quando a chamadora autorizar.
+7. Analise o frontmatter com parser YAML e confira os campos do contrato
+   (título, description, slug, `brief` quando aplicável).
+8. Se o contrato exigir texto simples no corpo copiável, remova qualquer
+   sintaxe Markdown que tenha vazado para esse trecho.
+9. Aplique as correções no próprio arquivo, compare o diff e rode a conferência
+   de novo: a segunda execução precisa produzir diff vazio.
+10. Preencha o registro de formatação de [REFERENCIA.md](REFERENCIA.md) e
+    devolva à chamadora.
 
 ## Saída
 
-O mesmo artefato Markdown, com estrutura corrigida, salvo no mesmo caminho.
+O mesmo artefato no mesmo caminho, com a estrutura corrigida, e o registro de
+formatação com alterações, links não conferidos e destino de retorno.
 
 ## Validação
 
 - Um único H1 por documento.
 - Nenhum link com texto âncora genérico.
-- Frontmatter válido e completo para o canal.
+- Frontmatter válido e completo para o contrato recebido.
+- O diff contém só correções de sintaxe.
 
 ## Responsabilidade do grupo
 
 Entregue uma função reutilizável, sem assumir canal ou negócio. Receba um artefato claro e devolva um registro consumível pela skill chamadora.
 
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** base
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
-
 ## Idempotência
 
-Rodar novamente sobre um artefato já formatado não introduz mudança quando a
-estrutura já está correta.
+Rodar de novo sobre um artefato já formatado não introduz mudança.

@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Growth Criativos Anuncios"
-  short_description: "Executa growth criativos anuncios no Inboundfy"
-  default_prompt: "Use $inboundfy-growth-criativos-anuncios para executar growth criativos anuncios com as fontes do projeto."
+  display_name: "Inboundfy: Criativos de anúncios"
+  short_description: "Conceitos e peças de anúncios para teste"
+  default_prompt: "Use $inboundfy-growth-criativos-anuncios para preparar conceitos e peças de anúncio com comprovação, instruções de produção e medição por versão."

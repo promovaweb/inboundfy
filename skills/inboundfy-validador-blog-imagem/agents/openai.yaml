@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Validador blog-imagem"
-  short_description: "Valida o asset blog-imagem antes da entrega"
-  default_prompt: "Use $inboundfy-validador-blog-imagem para validar este asset e devolver correções à skill produtora quando necessário."
+  display_name: "Inboundfy: Revisão de fotografia de blog"
+  short_description: "Confere capa e thumbnail fotográficas de blog"
+  default_prompt: "Use $inboundfy-validador-blog-imagem para revisar o conjunto completo de $inboundfy-especialista-blog-imagem, aplicar os oito itens espelhados e devolver o relatório com achados, rodada e digest atual."

@@ -1,249 +1,133 @@
-# Referência do acervo
+# Condução de um item do acervo até a saída
 
-`inboundfy-acervo` é a skill mestre. Ela conduz o material desde a entrada
-até a peça final e chama as skills específicas na ordem descrita abaixo.
+O ID liga a origem, os derivados, a pesquisa e as peças. A orquestração confere os arquivos antes de avançar; um arquivo criado como template não prova que a etapa foi executada.
 
-## Ordem canônica
+## Diagnóstico de entrada e retomada
 
-| Fase | Skill principal | Artefato ou ação |
+Pergunte se o material é novo, se existe ID relacionado e qual saída foi pedida. Consulte o índice antes de criar pasta. Se o título estiver ausente, siga a seleção de título prevista na skill.
+
+| Entrada recebida | Primeira ação | Ponto de retomada |
 | --- | --- | --- |
-| 0 | `inboundfy-setup` | Configuração global, voz, personas, proibições, dicionário, canais e pipeline. |
-| 1 | `inboundfy-acervo` | ID, `bruto.md`, README, índices e arquivos de trabalho. |
-| 2 | `inboundfy-processar-acervo` | `processado.md` limpo pelas regras do projeto. |
-| 3 | `inboundfy-extrair-faq` | `faq.md` com perguntas, respostas e lacunas. |
-| 4 | `inboundfy-pesquisa-acervo` | `pesquisa.md` com pesquisa web e fontes locais. |
-| 5 | `inboundfy-base-editorial` | `base-editorial.md` com metadados e relações. |
-| 6 | `inboundfy-acervo` | `estrategia.md` com usos por canal. |
-| 7 | `inboundfy-planejamento` | Brief, direção editorial, data e prioridade. |
-| 8 | `inboundfy-producao` | Pasta final e texto do canal. |
-| 9 | Especialista do canal | Copy adaptada a formato, persona e objetivo. |
-| 10 | Anti-slop e validadora | Revisão de fonte, voz, dicionário, proibições e canal. |
-| 11 | `inboundfy-pipeline` | Estado, URL, data e publicação. |
-| 12 | `inboundfy-catalogo` | Índices de acervo, peças e calendário. |
+| Transcrição nova | Registrar origem sem edição | A0 e processamento |
+| `brainstorm.md` aprovado de `inboundfy-brainstorm` | Registrar o arquivo como bruto, com a origem no caminho do brainstorm | A0, processamento e pesquisa que reaproveita as fontes já registradas |
+| ID com processado pronto | Comparar derivados e auditoria A1 | FAQ ou pesquisa pendente |
+| Pesquisa atualizada | Marcar derivados posteriores como superados | Base editorial e A2 |
+| Pedido de peça sobre ID existente | Conferir base e seleção de persona | Matriz, brief e A3 |
+| Pedido só de organização | Completar pacote de acervo | Entregar sem produzir peça |
 
-As fases 2 a 6 podem ser retomadas individualmente. Quando a entrada for
-material novo, a skill mestre deve conduzir todas elas antes de propor uma
-peça. As fases 7 a 12 só seguem após o usuário escolher uso, canal, persona,
-direção e data quando esses dados forem necessários.
+## Roteiro verificável das onze etapas
 
-As auditorias anti-slop atravessam essa ordem: A0 após `bruto.md`, A1 após
-`processado.md`, A2 após a base editorial, A3 após estratégia e brief, A4 no
-início de uma peça longa, A5 antes da validadora e A6 antes do pipeline. Leia
-[ETAPAS.md](../inboundfy-anti-slop/ETAPAS.md) para o foco e o caminho de cada
-registro.
+1. Preparação: confira sentinelas, empresa, persona completa, canais ativos e estado do pipeline.
+2. Registro: crie ou retome ID; preserve bruto e registre A0 em modo somente leitura.
+3. Processamento: chame `inboundfy-processar-acervo`; confira A1 e FAQ de `inboundfy-extrair-faq`. Nos passos 3 a 7 e 9, leia [conteúdo das fases](references/conteudo-das-fases.md) para conferir cada derivado.
+4. Pesquisa: chame `inboundfy-pesquisa-acervo`; confira consulta web, fontes abertas e divergências.
+5. Base: chame `inboundfy-base-editorial`; confira afirmações com origem e A2.
+6. Possibilidades: leia [estratégia do acervo](references/estrategia-do-acervo.md) neste passo. Preencha a matriz apenas para canais ativos.
+7. Saída escolhida: use `inboundfy-planejamento` para registrar peça, calendário ou guarda para uso posterior. Confirme persona e recorte antes da etapa dependente.
+8. Produção: chame `inboundfy-producao` e especialista pareada ao canal; peça longa passa por A4 antes da expansão.
+9. Revisão: confira A5, relatório da validadora, A6 e formatação. Correção volta à produtora.
+10. Estado e catálogo: use `inboundfy-pipeline` e `inboundfy-catalogo`; URL e data reais sustentam o registro de publicação.
+11. Entrega: informe ID, caminhos, estado de cada arquivo, lacunas e próxima ação.
 
-## Contrato dos arquivos
+## Template de controle no README do acervo
 
-| Arquivo | Regra |
-| --- | --- |
-| `bruto.md` | Cópia preservada do material recebido; fonte única para reprocessamento. |
-| `processado.md` | Texto limpo, sem afirmações novas e alinhado à configuração do projeto. |
-| `faq.md` | Perguntas por parágrafo, entidade, fato, condição, exemplo e lacuna. |
-| `pesquisa.md` | Fontes web e locais, datas, URLs, relações e pontos pendentes. |
-| `base-editorial.md` | Núcleo, objetivo, atores, frases, fontes, personas e usos. |
-| `estrategia.md` | Possibilidades por canal ativo, formato, ângulo, CTA e reaproveitamento. |
-| `README.md` | Índice navegável, checklist da execução e links relativos. |
+```markdown
+---
+id: "<id>"
+titulo: <título escolhido>
+origem: <arquivo, relato ou URL>
+recebido_em: <AAAA-MM-DD>
+estado: rascunho
+---
+# <Título>
 
-## Pausas obrigatórias
+## Arquivos e fases
+| Fase | Arquivo | Estado | Conferência |
+| --- | --- | --- | --- |
+| Origem | [bruto](bruto.md) | preservado | A0 somente leitura |
+| Processamento | [processado](processado.md) | <estado> | A1 |
+| Perguntas | [FAQ](faq.md) | <estado> | Respostas localizadas |
+| Pesquisa | [pesquisa](pesquisa.md) | <estado> | Web e fontes abertas |
+| Base | [base editorial](base-editorial.md) | <estado> | A2 |
+| Possibilidades | [estratégia](estrategia.md) | <estado> | A3 |
 
-Pare e converse com o usuário quando faltar:
+## Saída escolhida
+<Peça agora, calendário ou guarda; persona e canal quando aplicáveis.>
 
-- configuração inicial ou persona completa;
-- canal ativo para a peça;
-- persona da peça;
-- título ou direção editorial;
-- confirmação de fato, oferta, preço, depoimento ou número;
-- data de calendário ou autorização para substituir peça revisada.
+## Peças relacionadas
+<ID, caminho, brief e relatório de validação de cada peça.>
 
-Use três opções materialmente diferentes quando a direção estiver aberta. A
-primeira é a recomendada; sempre permita resposta livre e registre o alcance.
-
-## Relatório mínimo
-
-```md
-id_acervo:
-caminho_acervo:
-arquivos:
-fontes_pesquisa:
-lacunas:
-possibilidades:
-pecas:
-personas:
-calendario:
-pipeline:
-pendencias:
+## Pendências
+<Pergunta, responsável, etapa afetada e próxima ação.>
 ```
+
+## Exemplo completo: Pinhão Bicicletas, empresa fictícia
+
+**Antes:** uma transcrição solta, intitulada “avisos”, contém seis envios e quatro respostas, mas nenhuma data completa ou conferência de visitas. Não existe registro da origem nem seleção de saída.
+
+**Execução:** o usuário escolhe o título “Avisos de revisão pelo WhatsApp”. O índice recebe `0042`. O bruto permanece igual. O processado remove repetições; a FAQ distingue respostas de visitas. A pesquisa registra que dados internos de comparecimento exigem agenda, sem atribuir à oficina resultados de fontes públicas. A base conserva seis envios e quatro respostas como observação isolada. O usuário escolhe guardar o pacote para uso posterior.
+
+**README entregue:**
+
+```markdown
+---
+id: "0042"
+titulo: Avisos de revisão pelo WhatsApp
+origem: transcrição enviada pelo usuário
+recebido_em: 2026-10-20
+estado: revisao
+---
+# Avisos de revisão pelo WhatsApp
+
+## Arquivos e fases
+| Fase | Arquivo | Estado | Conferência |
+| --- | --- | --- | --- |
+| Origem | [bruto](bruto.md) | preservado | A0 registrado |
+| Processamento | [processado](processado.md) | conferido | A1 registrado |
+| Perguntas | [FAQ](faq.md) | parcial | Visitas sem resposta |
+| Pesquisa | [pesquisa](pesquisa.md) | parcial | Pergunta interna enviada ao responsável |
+| Base | [base editorial](base-editorial.md) | parcial | A2 registra limite de uso |
+| Possibilidades | [estratégia](estrategia.md) | rascunho | Sem promessa de conversão |
+
+## Saída escolhida
+Guardar o pacote para uso posterior. Nenhuma peça foi produzida ou agendada.
+
+## Peças relacionadas
+Nenhuma.
+
+## Pendências
+Confirmar data e visitas com a responsável pela agenda. Retomar pesquisa e base antes de alegar resultado comercial.
+```
+
+O pacote pode ser entregue como registro parcial, sem receber aprovação para publicação. No pedido futuro de produção, a orquestradora retoma o mesmo ID e confere novamente as fontes alteradas.
+
+## Checklist numerado do item
+
+1. Índice foi consultado antes de criar ID.
+2. Bruto está preservado.
+3. Processado conserva sentido e tem A1.
+4. FAQ separa respostas, lacunas e conflitos.
+5. Pesquisa inclui web para material novo ou registra impossibilidade de concluir essa etapa.
+6. Base possui afirmações localizadas e A2.
+7. Matriz usa somente canais ativos.
+8. Escolha de saída e persona foram registradas antes da produção.
+9. Toda peça produzida possui brief, A5 e validadora pareada.
+10. A6 compara o conjunto quando existem várias peças.
+11. Pipeline, calendário e índices representam o estado real.
+12. Entrega informa arquivos e próxima ação, sem depender da conversa.
+
+## Erros comuns
+
+- Criar outro ID depois de interrupção. Retome o item já registrado.
+- Tratar template vazio como fase pronta. Abra o conteúdo e a conferência correspondente.
+- Marcar publicado porque o texto foi aprovado. Exija URL e data reais.
+- Produzir peças quando o pedido foi guardar o material. Registre a saída escolhida.
+- Pular a pesquisa porque a transcrição parece completa. A verificação web continua obrigatória para item novo.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-acervo**, do grupo
-**capacidade**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de acervo dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-acervo
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de acervo
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-acervo
-grupo: capacidade
-entrada: acervo/0042-2026-09-14-acervo/processado.md
-pedido: aplicar a etapa de acervo e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-acervo
-estado: aprovado
-entrada: acervo/0042-2026-09-14-acervo/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de acervo
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Um novo ciclo preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-acervo** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+A preparação segue [fontes](../_shared/01-preflight-e-fontes.md). Os derivados seguem [artefato](../_shared/02-contrato-de-artefato.md) e [contexto](../_shared/05-contexto-editorial.md). A saída escolhida segue [handoff](../_shared/03-interacao-e-handoff.md); interrupções seguem [retomada](../_shared/04-validacao-e-retomada.md).
 
 ## Guia específico do grupo
 
-Trabalhe a origem, suas versões derivadas, perguntas, fontes e relações. O bruto permanece intacto e cada derivado aponta para ele.
-
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-acervo** para executar esta função: Orquestra o ciclo completo do Inboundfy
-
-O grupo **acervo** trabalha com estes campos mínimos:
-
-- **bruto:** preencher com dado ligado ao pedido.
-- **processado:** preencher com dado ligado ao pedido.
-- **FAQ:** preencher com dado ligado ao pedido.
-- **pesquisa:** preencher com dado ligado ao pedido.
-- **base editorial:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-acervo
-grupo: acervo
-pedido: executar a função desta skill sobre o material selecionado
-entrada: acervo/0042-2026-09-14-material/bruto.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-acervo
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - acervo/0042-2026-09-14-material/bruto.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **acervo** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `METODOLOGIA.md`
-- `LIMPEZA-MATERIAL-BRUTO.md`
-- `TRADUCAO.md`
-- `docs/method/05-artefatos-e-estados.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Leia `METODOLOGIA.md` para fases, `CONTEXTO.md` para fontes e `inboundfy-anti-slop/ETAPAS.md` para A0 a A6. O acervo conserva a cadeia inteira. Cada especialista responde pelo seu artefato; a orquestradora verifica o retorno antes de avançar.

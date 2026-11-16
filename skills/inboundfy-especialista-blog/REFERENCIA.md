@@ -1,265 +1,149 @@
-# REFERENCIA.md; inboundfy-especialista-blog
+# Manual de artigo de blog
 
-Material de apoio para escrever artigos de blog que respondem intenção de
-busca real, com FAB aplicado a qualquer menção de produto.
+## Diagnóstico da peça
 
-## Template de frontmatter e estrutura
+1. Qual pergunta de busca o leitor precisa resolver nesta página?
+2. O brief pede procedimento, comparação ou explicação?
+3. Quais fontes sustentam os exemplos, limites e menções comerciais?
 
-```yaml
----
-title: <50-60 caracteres>
-description: <145-155 caracteres, com CTA>
-slug: <curto, sem stop words>
-focus-keyword: <intenção validada por inboundfy-base-seo>
-brief: acervo/<id>-<data>-<slug>/base-editorial.md
----
+Se o brief já responder, use a resposta registrada. Se faltar fato obrigatório, devolva a pergunta ao planejamento ou à manutenção de contexto indicada por `CONTEXTO.md`. Não crie uma estratégia nova para completar a peça.
 
-# <H1; mesma intenção do title>
+| Situação no brief | Tratamento | Evitar |
+| --- | --- | --- |
+| Leitor quer executar uma tarefa | Procedimento com entrada, passos e conferência | Ensaio que adia a resposta |
+| Leitor compara alternativas | Tabela com condições iguais e limites | Ranking sem fonte |
+| Leitor quer entender um termo | Definição situada e exemplo calculado | Abertura sobre a história do setor |
 
-<corpo em prosa contínua, hierarquia H2/H3>
-```
+## Formato e parâmetros editoriais
 
-## Fórmulas de abertura por intenção
+Markdown UTF-8 com um H1. Preserve `title`, `description`, `slug` e `brief` quando houver pacote. `title` usa até 60 caracteres como alvo editorial; `description` usa 145 a 155 caracteres. Essas faixas orientam redação, não garantem exibição em buscador. Não mude URL publicada sem pedido e plano do projeto.
 
-1. **Informativa**; abra pelo objeto e pela confusão comum: "Confundir X
-   com Y é o erro mais comum de quem começa a fazer [tarefa]. A diferença
-   está em [mecanismo real]." Não abra com "o que é X" seguido de definição
-   de dicionário.
-2. **Comparativa**; abra pelo regra de escolha, não pelos dois lados:
-   "A escolha entre X e Y quase nunca é sobre qual é melhor; é sobre qual
-   erro custa mais caro no seu caso." Depois desenvolva o regra.
-3. **Investigativa**; abra reconhecendo a dúvida legítima: "Vale a pena
-   trocar de sistema no meio do ano? Depende do que está doendo hoje, não
-   do que promete o vendedor." Depois traga prova dos dois lados.
+O brief fixa a extensão conforme a pergunta. Na ausência de faixa, proponha 800 a 1.400 palavras para um guia com várias etapas ou 400 a 700 para uma dúvida estreita. Registre a faixa antes da expansão; nunca complete palavras por repetição. O exemplo abaixo usa o segundo formato.
 
-## Exemplo completo (fictício)
+Salve no caminho de `context/canais.md`; em pacote, preserve `97-ativos-finais/blog/<slug>/README.md`. A imagem tem contrato separado. Use links descritivos, tabelas com cabeçalhos e texto alternativo quando houver imagem.
 
-Empresa fictícia: "Agenda Cronos", software de agendamento para clínicas
-pequenas. Intenção: investigativa ("vale a pena migrar de agenda de papel
-para um sistema?").
+## Método de produção
 
-```markdown
----
-title: Migrar da agenda de papel para um sistema: vale a pena?
-description: Comparamos o custo real de manter agenda de papel numa clínica pequena com o de migrar para um sistema, incluindo o que costuma dar errado na troca.
-slug: migrar-agenda-papel-sistema-vale-a-pena
-focus-keyword: vale a pena migrar agenda de papel para sistema
----
+No passo de redação, consulte [estrutura editorial e menções comerciais](references/estrutura-editorial.md).
 
-# Migrar da agenda de papel para um sistema: vale a pena?
+1. Separe pergunta principal, dúvidas secundárias e assuntos fora do recorte. Confirme a intenção com `inboundfy-base-seo` antes do outline.
+2. Escreva a resposta principal em duas frases. Distribua o mecanismo, a execução, a demonstração e a exceção nos H2. H3 serve para subdividir uma tarefa real.
+3. Abra pelo objeto da busca. Para procedimento, mostre entrada e resultado esperado; para comparação, explicite a diferença prática; para explicação, descreva o mecanismo.
+4. Desenvolva cada seção com explicação e exemplo interpretado. No procedimento, informe pré-requisito, ação, resultado observável e como tratar uma falha.
+5. Confira conta, unidade, período e fonte de cada número. Não converta um caso isolado em promessa geral. Aplique FAB somente às menções comerciais autorizadas.
+6. Termine com a ação prevista no brief. Passe por `inboundfy-copy-editor`, metadata de `inboundfy-base-seo`, A5 e validadora. Imagem segue para `inboundfy-especialista-blog-imagem` depois da aprovação textual.
 
-Uma recepção que ainda usa caderno de agendamento perde hora de atendimento
-todo santo dia em telefonema de confirmação e remarcação escrita a lápis. O
-custo não aparece na planilha do mês, mas aparece na fila de pessoas
-esperando enquanto alguém procura o nome certo na página certa.
+## Template da peça
 
-A pergunta não é se um sistema resolve isso; resolve. A pergunta é quando
-compensa trocar, porque toda migração tem um período no qual a equipe erra
-mais até se acostumar com o novo fluxo.
-
-## Quando a troca compensa
-
-Se a clínica agenda mais de trinta consultas por semana e tem mais de uma
-pessoa mexendo na mesma agenda, o caderno já criou um problema que nenhum
-treinamento resolve: duas pessoas escrevendo no mesmo horário sem ver a
-letra uma da outra. Um sistema de agendamento resolve isso mostrando o
-horário ocupado em tempo real para quem estiver com a tela aberta, o que
-elimina o double-booking sem depender de conferência manual.
-
-## O que costuma dar errado na migração
-
-A falha mais comum não é o sistema; é a recepção continuar anotando no
-caderno "por garantia" nas primeiras semanas, o que cria duas fontes de
-verdade e apaga o ganho da migração. O jeito de evitar isso é definir uma
-data de corte clara e desligar o caderno de vez, não aos poucos.
-```
-
-## Checklist de canal
-
-- [ ] Um H1 só, com a mesma intenção do `title`.
-- [ ] Nenhum heading em formato pergunta-resposta genérica.
-- [ ] Toda menção de produto/serviço fecha em benefício real (FAB), não
-      fica solta como propaganda.
-- [ ] `brief` presente no frontmatter quando parte de pacote.
-
-## Erros comuns
-
-- Escrever o artigo inteiro antes de rodar `inboundfy-base-seo`; o title e o
-  slug mudam o ângulo do artigo, não só a metadata.
-- Repetir a mesma estrutura de abertura em todo artigo do mesmo pacote (ver
-  `ESCRITA.md` sobre reaproveitamento mecânico entre peças do mesmo pacote).
-- Prometer resultado de produto sem base em `context/produtos.md` só para
-  soar mais persuasivo; isso é o oposto do que FAB pede.
-
-## Arquitetura aplicada
-
-Esta referência usa o contrato comum para a skill **inboundfy-especialista-blog**, do grupo
-**especialista**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de especialista blog dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
+Combine os campos específicos abaixo com o envelope de `../_shared/02-contrato-de-artefato.md`: ID, skill, tipo, estado, datas, entrada, contexto, fontes e próxima ação. Não substitua o template do consumidor por outro formato. Os campos abaixo complementam o contrato; `brief` é obrigatório em pacote e aponta para a origem efetiva.
 
 ```markdown
 ---
-id: {id}
+id: "{id}"
 skill: inboundfy-especialista-blog
+tipo: blog
+canal: blog
 estado: rascunho
-entrada: {caminho ou ID}
+persona: "{persona selecionada}"
+title: "{resposta prometida em até 60 caracteres}"
+description: "{resumo fiel com 145 a 155 caracteres}"
+slug: "{slug existente ou aprovado}"
+intencao: "{pergunta validada}"
+brief: "{caminho do brief aprovado}"
 fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
+  - "{fonte da afirmação ou dado}"
 ---
 
-# Registro de especialista blog
+# {Título alinhado à pergunta}
 
-## Resultado
+{Resposta principal e condição de uso.}
 
-{Conteúdo específico da etapa.}
+## {Mecanismo necessário para entender a tarefa}
 
-## Pendências
+{Explicação e exemplo com origem.}
 
-- {pergunta ou "nenhuma"}
+## {Procedimento ou comparação}
 
-## Próxima ação
+{Entradas, ações e resultado que o leitor pode conferir.}
 
-{verbo + objeto + caminho do arquivo seguinte}
+## {Limite ou falha provável}
+
+{Quando a orientação deixa de servir e como reconhecer isso.}
+
+{CTA previsto no brief.}
 ```
 
-## Exemplo operacional completo
+## Modelos por situação
 
-### Entrada ilustrativa
+### Modelo de comparação
 
-```yaml
-id: 0042
-skill: inboundfy-especialista-blog
-grupo: especialista
-entrada: acervo/0042-2026-09-14-especialista-blog/processado.md
-pedido: aplicar a etapa de especialista blog e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
+Use somente com intenção comparativa validada. Compare as alternativas na mesma tarefa, com a mesma unidade e condições.
 
 ```markdown
----
-id: 0042
-skill: inboundfy-especialista-blog
-estado: aprovado
-entrada: acervo/0042-2026-09-14-especialista-blog/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
+# {Alternativa A ou B para a tarefa da persona}
 
-# Registro de especialista blog
+{Diferença principal e condição que favorece cada alternativa.}
 
-## Resultado
+| Condição de uso | Alternativa A | Alternativa B | Fonte |
+| --- | --- | --- | --- |
+| {volume ou frequência} | {comportamento confirmado} | {comportamento confirmado} | {origem e data} |
+| {dependência ou pré-requisito} | {condição} | {condição} | {origem e data} |
 
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
+## {Aplicação do primeiro cenário}
 
-## Próxima ação
+{Exemplo com entrada igual para ambas e resultado interpretado.}
 
-{verbo + objeto + caminho do arquivo seguinte}
+## {Limite da comparação}
+
+{O que não foi medido e quando a orientação deixa de servir.}
+
+{Ação prevista no brief.}
 ```
 
-## Checklist ampliado
+Para atualização de artigo publicado, registre seções a manter, fatos a atualizar, links a conferir e alcance pedido. Preserve URL e âncoras existentes quando não houver pedido de mudança. Não reescreva o artigo inteiro por uma correção de preço.
 
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
+## Exemplo completo e leitura no fluxo
 
-## Erros comuns adicionais
+Na etapa de montagem da peça, leia [o exemplo completo da Fornada Clara](references/exemplo-completo.md). Ele inclui entrada aprovada e saída integral, com todos os blocos do canal. Na conferência final, compare com [o relatório preenchido da validadora](../inboundfy-validador-blog/REFERENCIA.md#exemplo-de-relatório-preenchido).
 
-- Executar **inboundfy-especialista-blog** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+## Checklist numerado do par
+
+Os números são os mesmos na produtora e na validadora. A classificação indica o tipo de leitura necessário; uma regra pode exigir mais de um passe. Marque não aplicável somente com justificativa verificável.
+
+1. [ ] **literal**: Campos `title`, `description`, `slug`, intenção e `brief` de pacote presentes; faixas editoriais registradas.
+2. [ ] **semântica**: Title, H1 e abertura respondem à mesma pergunta validada por `inboundfy-base-seo`.
+3. [ ] **estrutural**: Um H1 e H2/H3 com função própria; procedimento permite executar e conferir a tarefa.
+4. [ ] **semântica**: Exemplos têm interpretação, conta correta e limite; promessa e FAB conferem com fontes.
+5. [ ] **literal**: Links, grafias, unidade e período foram conferidos; URL existente foi preservada.
+6. [ ] **visual**: Tabelas, links e eventual alt text permitem leitura; imagem segue para a especialista de imagem.
+7. [ ] **literal**: ID, estado real, persona, origem e fontes estão ligados à peça; o exemplo fictício não virou contexto do consumidor.
+8. [ ] **semântica**: Voz e afirmações conferem com todos os contextos e fontes aplicáveis; lacuna factual permanece fora da copy.
+9. [ ] **estrutural**: Proibições foram revistas em passes literal e semântico/estrutural no arquivo inteiro, inclusive metadata, links e CTA.
+10. [ ] **visual**: `brand/` foi procurada; ativos existentes e texto visual foram inspecionados ou a ausência foi justificada.
+11. [ ] **estrutural**: Revisão de `inboundfy-copy-editor`, marco A5 e retorno da validadora foram registrados; mudança exige nova leitura integral.
+
+## Erros comuns de blog
+
+- Usar palavra-chave no título sem responder à pergunta na abertura. Refaça o recorte antes de acrescentar subtítulos.
+- Repetir definições para cumprir contagem. Troque a repetição por demonstração ou encerre a seção.
+- Atribuir à ferramenta o resultado de um caso isolado. Explique a condição observada e o limite.
+
+## Acompanhamento da peça
+
+Compare cliques orgânicos, consultas e ação final por URL e período. Queda de visitas pede conferir intenção, atualização factual e links antes de propor reescrita. Não prometa posição no buscador.
+
+Medição pertence ao planejamento e às integrações aprovadas. Esta especialista entrega copy e relação com as fontes. Não configura envio, publicação ou coleta por conta própria.
 
 ## Guia específico do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+O registro do grupo `especialista` identifica canal `blog`, persona, objetivo do brief, formato e `inboundfy-validador-blog` como destino de revisão. Entregue arquivo, fontes lidas, pendências e ação solicitada. Se houver reprovação, corrija apenas o alcance solicitado, releia a peça inteira e retorne à mesma validadora. A aprovação precede o retorno a `inboundfy-planejamento`; variantes de imagem mantêm seus fluxos próprios.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+## Arquitetura aplicada
 
-## Especificação operacional
+- Antes da redação ou auditoria: [preflight e fontes](../_shared/01-preflight-e-fontes.md).
+- Ao registrar a peça: [artefato e relações](../_shared/02-contrato-de-artefato.md).
+- Nas escolhas e entrega: [checkpoints e handoff](../_shared/03-interacao-e-handoff.md).
+- A cada rodada: [validação e retomada](../_shared/04-validacao-e-retomada.md).
+- Antes de qualquer texto público: [contexto editorial](../_shared/05-contexto-editorial.md).
 
-### Quando usar
-
-Use **inboundfy-especialista-blog** para executar esta função: Escreve ou edita artigos de blog a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md, a voz de context/marca-voz.md e a intenção de busca validada por inboundfy-base-seo. Não decide estratégia nem pauta; recebe o brief pronto.
-
-O grupo **especialista** trabalha com estes campos mínimos:
-
-- **canal:** preencher com dado ligado ao pedido.
-- **persona:** preencher com dado ligado ao pedido.
-- **objetivo:** preencher com dado ligado ao pedido.
-- **formato:** preencher com dado ligado ao pedido.
-- **validadora:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-blog
-grupo: especialista
-pedido: executar a função desta skill sobre o material selecionado
-entrada: briefs/0042-2026-09-14-blog/brief.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-blog
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - briefs/0042-2026-09-14-blog/brief.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **especialista** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `ESTRUTURAS-PERSUASIVAS.md`
-- `CONTEXTO.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Leia também `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md`, `CONTEXTO.md` e `METODOLOGIA.md`. Os caminhos `context/` resolvem para `.inboundfy/context/` no consumidor; preserve a resolução e os diretórios já configurados.

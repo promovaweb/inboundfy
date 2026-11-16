@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Especialista Instagram Imagem"
-  short_description: "Executa especialista instagram imagem no Inboundfy"
-  default_prompt: "Use $inboundfy-especialista-instagram-imagem para executar especialista instagram imagem com as fontes do projeto."
+  display_name: "Inboundfy: Imagens de Instagram"
+  short_description: "Produz post e pacote visual de Instagram"
+  default_prompt: "Use $inboundfy-especialista-instagram-imagem para produzir post e pacote visual de Instagram com brief aprovado, texto final e identidade do projeto. Aplique os oito itens do par e envie o conjunto completo a $inboundfy-validador-instagram-imagem."

@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Geo"
-  short_description: "Executa geo no Inboundfy com contexto"
-  default_prompt: "Use $inboundfy-geo para executar geo com as fontes do projeto."
+  display_name: "Inboundfy: Descoberta por IA"
+  short_description: "Prepara páginas para descoberta e citação por IA"
+  default_prompt: "Use $inboundfy-geo para testar como as IAs respondem às perguntas da persona e tornar as páginas do projeto citáveis, com fontes verificáveis."

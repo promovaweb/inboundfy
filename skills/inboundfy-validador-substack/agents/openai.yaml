@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Validador Substack"
-  short_description: "Executa validador substack no Inboundfy"
-  default_prompt: "Use $inboundfy-validador-substack para executar validador substack com as fontes do projeto."
+  display_name: "Inboundfy: Validação de peças Substack"
+  short_description: "Audita peças Substack, fontes e acesso"
+  default_prompt: "Use $inboundfy-validador-substack para auditar o pacote de inboundfy-especialista-substack. Aplique inboundfy-base-validador e os 11 itens espelhados; registre achados e digest atual no relatório. Devolva correções à produtora sem editar a candidata."

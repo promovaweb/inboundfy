@@ -1,223 +1,82 @@
-# Referência de SMS de relacionamento
-
-## Template
-
-```markdown
-# SMS de relacionamento
-
-- **ID:** {{id}}
-- **Objetivo:** {{objetivo}}
-- **Persona:** {{persona}}
-- **Canal:** {{canal}}
-- **Acervo:** {{acervo}}
-- **Fonte principal:** {{fonte}}
-- **Próxima ação:** {{cta}}
-
-## Plano
-
-{{plano}}
-
-## Pendências
-
-{{pendencias}}
-```
-
-## Guia específico
-
-Separe alerta, lembrete, ativação, transação e oferta. Confira consentimento, identificação, horário, limite de caracteres, link, instrução de saída e registro do envio.
-
-## Exemplo ilustrativo
-
-Uma empresa de software pode usar este modelo para organizar uma ação de teste com uma persona específica, ligar cada mensagem a um acervo e registrar a página de destino sem afirmar resultados ainda não medidos.
-
-## Checklist
-
-- [ ] ID e objetivo estão presentes.
-- [ ] Persona, canal e acervo estão vinculados.
-- [ ] Fontes e pendências estão localizadas.
-- [ ] Voz, proibições e dicionário foram conferidos.
-- [ ] Próxima ação e estado do pipeline estão claros.
-
-## Erros comuns
-
-- Começar pelo formato antes de confirmar objetivo, público e fonte.
-- Usar promessa, preço, número ou nome sem registro local.
-- Aplicar a mesma mensagem a personas com contextos diferentes.
-- Salvar o resultado sem caminho, ID ou alcance da escolha.
-
-## Relação com inboundfy-growth-sms
-
-Use este modelo como roteiro mínimo e acrescente apenas campos pedidos pelo projeto. O arquivo final deve ficar ligado ao acervo, à peça e ao calendário quando houver data.
+# SMS e WhatsApp com permissão e custo controlado
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-growth-sms**, do grupo
-**growth**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de sms dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-growth-sms
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de sms
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-growth-sms
-grupo: growth
-entrada: acervo/0042-2026-09-14-sms/processado.md
-pedido: aplicar a etapa de sms e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-growth-sms
-estado: aprovado
-entrada: acervo/0042-2026-09-14-sms/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de sms
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-growth-sms** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+Use os contratos de [fontes](../_shared/01-preflight-e-fontes.md), [artefato](../_shared/02-contrato-de-artefato.md), [handoff](../_shared/03-interacao-e-handoff.md), [validação](../_shared/04-validacao-e-retomada.md) e [contexto editorial](../_shared/05-contexto-editorial.md). O grupo é **growth**. O fluxo preserva relação com oferta, campanha, persona, canal e próxima ação.
 
 ## Guia específico do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
+Leia [permissões e canais](references/permissoes-e-canais.md) no passo 2 e [fluxos, custos e métricas](references/fluxos-custos-e-metricas.md) no passo 4. Captura de contato segue para `inboundfy-growth-popups`; reativação segue para `inboundfy-growth-retencao`; acompanhamento comercial segue para `inboundfy-growth-revops`; conteúdo longo segue para `inboundfy-especialista-email`. Medição adicional usa `inboundfy-metricas`.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+Pergunte: a pessoa pediu esta comunicação? Qual canal ela aceitou? O assunto precisa chegar agora? Existe equipe para responder? O sistema sabe que a compra já foi paga? A mensagem ainda seria útil depois da espera? Essas respostas definem a elegibilidade e o tempo do fluxo.
 
-## Especificação operacional
+## Template de fluxo de mensagem
 
-### Quando usar
-
-Use **inboundfy-growth-sms** para executar esta função: Planeja mensagens curtas por SMS para alerta, lembrete, ativação ou oferta com consentimento, frequência e saída claros.
-
-O grupo **growth** trabalha com estes campos mínimos:
-
-- **objetivo:** preencher com dado ligado ao pedido.
-- **público:** preencher com dado ligado ao pedido.
-- **canal:** preencher com dado ligado ao pedido.
-- **oferta:** preencher com dado ligado ao pedido.
-- **próxima ação:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
+```markdown
+---
+id: {{fluxo}}
 skill: inboundfy-growth-sms
 grupo: growth
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/estrategia.md
+estado: rascunho
+entrada: {{campanha ou evento}}
+fontes: [{{oferta}}, {{permissao}}, {{tabela de custos}}]
+persona: {{id}}
+proxima_skill: {{skill responsavel pela proxima acao}}
+---
+- Objetivo, oferta, finalidade e canal: {{dados}}
+- Permissão: {{origem, texto/versão, data, canal e finalidade}}
+- Entrada, espera e expiração: {{eventos e tempos}}
+- Elegibilidade antes do envio: {{permissão ativa, sem compra e sem supressão}}
+- Horário local e frequência acumulada: {{regra do projeto}}
+- Modelo/versão/categoria/janela: {{WhatsApp, se aplicável}}
+- Texto final com variáveis: {{mensagem}}
+- CTA, link e descadastro real: {{ações}}
+- Codificação e segmentos: {{SMS, se aplicável}}
+- Custo por envio e teto total: {{R$, data e fonte}}
+- Resposta humana e fallback: {{responsável e condições}}
+- Saídas: {{compra, resposta, recusa, expiração e falha}}
+- Métricas e comparação: {{definições, controle e janela}}
+- Testes, pendências e próxima ação: {{registros}}
 ```
 
-Saída:
+## Exemplo de operação brasileira fictícia
 
-```yaml
-id: 0042
-skill: inboundfy-growth-sms
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/estrategia.md
-proxima_skill: nome-da-proxima-skill
-```
+A Cesto do Sul, loja fictícia de utilidades de Porto Alegre, recebe pedidos com Pix e oferece atendimento por WhatsApp. A campanha `0085` quer ajudar pessoas que iniciaram checkout e aceitaram lembretes promocionais. As fontes simuladas são `.inboundfy/context/ofertas.md`, `.inboundfy/context/canais.md`, o registro de opt-in e o brief `acervo/0085-2026-11-15-checkout/brief.md`. A persona-03 é compradora recorrente. O estado é `rascunho` porque aprovação do modelo e preço do provedor ainda precisam de conferência.
 
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
+A captura fictícia apresenta opção desmarcada: “Quero receber pelo WhatsApp lembretes de checkout e ofertas da Cesto do Sul, até duas vezes por mês. Posso sair a qualquer momento.” Outra opção independente permite SMS. O registro guarda texto, versão, número, finalidade, canal e data. Uma compra sem marcação não entra na campanha.
 
-### Perguntas de conferência
+O fluxo espera duas horas após a saída do checkout. Antes do envio, confere pedido pago, permissão ativa, frequência acumulada e fuso. A política interna fictícia permite promoção apenas entre 9h e 18h em dias úteis no horário do destinatário, até duas por mês entre todas as campanhas. Não é uma regra legal universal. Sem mensagem anterior do usuário, usa modelo promocional submetido à aprovação.
 
-1. A entrada pertence ao grupo **growth** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
+Texto candidato de WhatsApp:
 
-### Referências de execução
+> Cesto do Sul: você pode retomar seu checkout pelo botão abaixo. Se precisar de ajuda com o pedido ou o Pix, responda aqui. Para parar os lembretes e ofertas, toque em Sair.
 
-Leia, na ordem necessária:
+Botões planejados: “Retomar checkout”, “Preciso de ajuda” e “Sair”. Link usa domínio próprio fictício e token sem dados pessoais na URL. O fluxo não afirma reserva de estoque nem validade de desconto inexistente. Pagamento confirmado encerra o lembrete. Resposta leva ao atendimento e suspende os contatos automáticos. Recusa remove a pessoa das promoções. Webhook duplicado não cria segundo envio.
 
-- `ESTRATEGIA.md`
-- `CONTEXTO.md`
-- `docs/method/05-artefatos-e-estados.md`
+O SMS alternativo, exclusivo para quem aceitou SMS, é: “Cesto do Sul: retome seu pedido em cesto.example/p/abc. Ajuda: cesto.example/ajuda. Sair: cesto.example/sair”. A prévia deve conferir a codificação após substituir o token. O domínio `.example` identifica endereço fictício; nenhum link serve para envio real. Não há fallback automático de WhatsApp para SMS sem opt-in específico.
 
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Na simulação, 500 pessoas elegíveis são sorteadas: 250 recebem o lembrete e 250 ficam no controle. No grupo de envio, 240 mensagens são entregues, 36 pessoas clicam, 24 compram e seis saem das promoções. O controle gera 15 compras na mesma janela de sete dias. Compra por pessoa alocada: 24/250 = 9,6% contra 15/250 = 6,0%, diferença observada de 3,6 pontos percentuais. A amostra é pequena e não sustenta promessa de repetição.
+
+Com custo hipotético de R$ 0,30 por mensagem entregue, a despesa variável seria R$ 72. Receita atribuída bruta a 24 pedidos de R$ 180 seria R$ 4.320; isso não equivale a incremento. As nove compras adicionais observadas produziriam R$ 1.620 de receita bruta diferencial. A margem hipotética de 35% gera R$ 567 antes da mensageria, ou R$ 495 após os R$ 72, ainda sem deduzir equipe e plataforma. A análise conserva incerteza da amostra e devoluções pendentes.
+
+Próxima ação: a responsável fictícia Mara Fontes confere modelo, preço, saída e teste de pagamento antes de pedir ativação. `inboundfy-growth-revops` recebe a regra de encaminhar “Preciso de ajuda” com pedido e contexto mínimo, sem exigir nova triagem.
+
+## Checklist de prontidão
+
+- [ ] O registro de opt-in cobre a finalidade e o canal.
+- [ ] Recusa funciona na prática e propaga para a fila.
+- [ ] Marca, CTA e ajuda são identificáveis.
+- [ ] Frequência soma as campanhas concorrentes.
+- [ ] Variáveis foram testadas com seus maiores valores esperados.
+- [ ] Janela e modelo do WhatsApp foram conferidos na data.
+- [ ] Compra e repetição de evento foram simuladas.
+- [ ] Custos, controle e limitações da medição estão explícitos.
+
+## Erros comuns em SMS e WhatsApp
+
+- Usar base de telefone como permissão: confira finalidade e canal aceitos.
+- Acrescentar promoção a aviso de pedido e tratá-lo como serviço: reclassifique e confira o modelo.
+- Contar texto sem substituir variáveis: teste nome, link e caracteres reais.
+- Prometer suporte imediato fora do horário: informe prazo atendível.
+- Enviar chave Pix ou dado sensível em massa: conduza ao ambiente autenticado do pedido.
+- Somar receita atribuída como receita adicional: compare grupo de controle e margem.

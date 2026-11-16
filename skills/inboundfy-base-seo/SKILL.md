@@ -1,22 +1,13 @@
 ---
 name: inboundfy-base-seo
-description: >
-  Skill transversal de SEO e intenção de busca. Classifica a intenção
-  (informativa, comparativa, transacional, investigativa), define title
-  (50-60 caracteres), description (145-155 caracteres), slug, headings e
-  linkagem interna. Usada por skills de canal de texto antes de escrever.
+description: Classifica a intenção de busca e devolve title, description, slug, outline de headings e links internos de uma peça indexável, antes da escrita ou na conferência do texto pronto. Use quando uma especialista de texto precisar de metadata, ou quando a pessoa pedir title, meta description, slug, intenção de busca ou otimização de um texto existente.
 ---
 
-# Inboundfy SEO
+# Metadata e intenção de busca
 
-Skill de apoio acionada por `inboundfy-especialista-blog` e demais skills de canal
-de texto indexável antes de qualquer título, outline ou parágrafo ser
-escrito.
-
-## Escopo
-
-Define metadata e estrutura de SEO. Não escreve o corpo do texto; isso é
-responsabilidade da skill de canal.
+Base acionada por `inboundfy-especialista-blog` e pelas demais skills de texto
+indexável. Ela define metadata e estrutura de SEO. O corpo do texto fica com a
+skill chamadora.
 
 ## Verificação do setup
 
@@ -42,63 +33,67 @@ artefato. O grupo desta skill é **base**.
 
 ## Contexto exigido
 
-- `context/publico.md`: jargão e nível técnico da persona, para alinhar
-  palavra-chave à forma real de busca.
-- `context/produtos.md`, `context/servicos.md` e `context/ferramentas.md`:
-  para linkagem interna correta na primeira menção de cada entidade.
+- `.inboundfy/context/publico.md`: jargão e nível técnico da persona, para
+  alinhar a palavra-chave à forma real de busca.
+- `.inboundfy/context/produtos.md`, `.inboundfy/context/servicos.md` e
+  `.inboundfy/context/ferramentas.md`: destinos de linkagem interna na
+  primeira menção de cada entidade.
 
 ## Entrada esperada
 
-Um tema ou brief de peça indexável (artigo de blog, artigo longo, página de
-conteúdo).
+Uma destas três entradas, sempre com a peça e a chamadora identificadas:
+
+- **Preparação:** tema ou brief de peça indexável (artigo de blog, artigo
+  longo, página de conteúdo), ou o plano de palavra-chave e cluster entregue
+  por `inboundfy-seo`.
+- **Conferência de metadata:** rascunho ou artigo pronto da especialista, para
+  confirmar title, description e slug finais.
+- **Otimização:** texto já publicado que precisa de title, description,
+  headings e links ajustados, como `inboundfy-area-seo` encaminha.
 
 ## Fluxo
 
-1. Classifique a intenção de busca por trás do tema usando a tabela de
-   `REFERENCIA.md`: informativa, comparativa, transacional ou investigativa.
-Quando nenhuma pergunta real do público justificar o tema, sinalize que a peça
-   não deve ser escrita a partir de tema solto sem validação de busca.
-2. Registre a pergunta-mãe e variações da busca, usando o jargão real de
-   `context/publico.md`.
-3. Defina o `title` entre 50 e 60 caracteres, sem repetir o nome da marca
-   como sufixo genérico, seguindo o template de `REFERENCIA.md`.
-4. Defina a `description` entre 145 e 155 caracteres, com a intenção clara e
-   um CTA.
-5. Defina um slug curto, sem stop words.
-6. Defina a hierarquia de headings (um H1, H2/H3 cobrindo a dúvida real),
-   sem heading em formato de pergunta seguido de resposta genérica.
-7. Identifique pontos de linkagem interna: primeira menção de produto,
-   serviço ou ferramenta deve linkar para a página própria registrada em
-   `context/produtos.md`, `context/servicos.md` ou `context/ferramentas.md`.
-8. Devolva o pacote de metadata e estrutura para a skill de canal escrever o
-   corpo.
+1. Leia o diagnóstico, o procedimento e o template de
+   [REFERENCIA.md](REFERENCIA.md). Identifique o modo pela entrada.
+2. Nomeie a pergunta principal numa frase e classifique a intenção
+   (informativa, comparativa, transacional ou investigativa) pela tabela de
+   [REFERENCIA.md](REFERENCIA.md). Registre se a intenção foi observada numa
+   consulta ou se continua hipótese.
+3. Sem pergunta real do público que justifique o tema, devolva à chamadora a
+   recomendação de não escrever a partir de tema solto.
+4. Registre variações da busca com o jargão de `.inboundfy/context/publico.md`.
+5. Defina title de 50 a 60 caracteres, sem o nome da marca como sufixo
+   genérico, e description de 145 a 155 caracteres com intenção clara e CTA.
+   As faixas são convenção editorial, sem garantia de exibição.
+6. Defina slug curto, legível e estável, sem retirar palavra necessária ao
+   assunto.
+7. Defina um H1 e H2/H3 que cubram a dúvida real, sem heading em pergunta
+   seguido de resposta genérica.
+8. Marque a primeira menção de cada produto, serviço ou ferramenta com link
+   para a página registrada no contexto.
+9. Compare páginas existentes. Se outra já responde à mesma pergunta,
+   recomende atualizá-la.
+10. No modo de conferência, compare o texto com o pacote e aponte só o que
+    diverge. No modo de otimização, preserve o que já funciona.
+11. Devolva o pacote à chamadora.
 
 ## Saída
 
-Pacote de metadata (intenção, title, description, slug, outline de headings,
-pontos de linkagem) devolvido para a skill de canal que chamou. Não salva
-arquivo final sozinha.
+Pacote do template de [REFERENCIA.md](REFERENCIA.md) (intenção, title,
+description, slug, outline, links internos, relação com páginas existentes e
+pendências) devolvido à skill chamadora. A base não salva arquivo final.
 
 ## Validação
 
-- Intenção de busca está classificada e justificada por pergunta real, não
-  por tema solto.
-- `title` e `description` respeitam os limites de caracteres.
-- Todo ponto de linkagem interna aponta para entidade confirmada em
-  `context/`.
-- Checklist de metadata de `REFERENCIA.md` cumprido item a item.
+- A intenção está justificada por pergunta real, não por tema solto.
+- `title` e `description` respeitam as faixas de caracteres, com contagem
+  registrada.
+- Todo link interno aponta para entidade confirmada em `.inboundfy/context/`.
+- O checklist de [REFERENCIA.md](REFERENCIA.md) foi cumprido item a item.
 
 ## Responsabilidade do grupo
 
 Entregue uma função reutilizável, sem assumir canal ou negócio. Receba um artefato claro e devolva um registro consumível pela skill chamadora.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** base
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
 
 ## Idempotência
 

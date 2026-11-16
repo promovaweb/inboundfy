@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy: Copy e mensagem"
+  short_description: "Encaminha pedidos de copy para a skill certa"
+  default_prompt: "Use $inboundfy-area-copy para entender meu pedido de copy e mensagem e encaminhar para a skill certa."

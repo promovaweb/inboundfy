@@ -1,23 +1,149 @@
-# Referência de material rico
+# Referência de material rico e captura de contatos
 
-## Ficha
+## Da pergunta do comprador ao recurso
 
-```md
-persona:
-tarefa:
-resultado:
-formato:
-promessa:
-escopo:
-fontes:
-cta:
-entrega:
-sequência_posterior:
+O recorte nasce de uma tarefa anterior à compra. “Guia de gestão” é amplo;
+“Planilha para conferir pedidos que vencem nesta semana” permite demonstrar
+o uso e verificar a entrega. O recurso deve produzir um resultado mesmo se
+a pessoa recusar a oferta seguinte.
+
+| Necessidade | Formato adequado | Unidade de utilidade | Limite a declarar |
+| --- | --- | --- | --- |
+| Conferir execução | Checklist | Item com ação e forma de conferir | Não substitui inspeção especializada |
+| Repetir rotina | Modelo editável | Estrutura com exemplo preenchido | Campos exigem adaptação |
+| Calcular ou comparar | Planilha | Entrada, fórmula e interpretação | Não garante resultado futuro |
+| Entender assunto complexo | Guia ou ebook | Explicação, exemplo e exercício | Exige tempo de leitura |
+| Aprender por prática | Aula curta ou sequência | Uma tarefa por encontro | Dependências e duração |
+| Consultar conhecimento próprio com agente | Pacote de instruções e referências | Resposta com fonte e localizador | Conteúdo e compatibilidade delimitados |
+
+| Acesso | Escolher quando | Forma de conferir |
+| --- | --- | --- |
+| Aberto | Alcance e uso importam mais que captura | Consumo útil e continuidade posterior |
+| Captura opcional | Recurso funciona na página, envio ajuda | Resultado disponível sem email |
+| Amostra mais entrega por contato | Formato integral tem valor claro | Amostra fiel e destino informado |
+| Complemento de artigo | Material aplica o assunto recém-lido | CTA explica o acréscimo concreto |
+
+Leia [Entrega, nutrição e uso](references/entrega-nutricao-e-uso.md) nos passos
+2 a 6 para roteiros, métricas e pacote de conhecimento para agentes.
+
+## Template de pacote
+
+```markdown
+---
+id: {{id}}
+skill: inboundfy-growth-lead-magnet
+grupo: growth
+tipo: plano-material-rico
+estado: rascunho
+entrada: [{{acervo}}]
+fontes: [{{base editorial}}, {{oferta}}]
+persona: {{id}}
+canal: {{canal}}
+oferta: {{id}}
+proxima_acao: {{responsavel e acao}}
+---
+Tarefa e resultado: {{o que a pessoa fará}}
+Formato e razão: {{formato, uso, pré-requisitos}}
+Promessa: {{texto conferível}}
+Escopo: {{inclui, exclui e tempo estimado}}
+| Unidade | Conteúdo | Fonte | Exercício ou uso |
+| --- | --- | --- | --- |
+| {{parte}} | {{conteudo}} | {{caminho}} | {{resultado}} |
+Captura: {{acesso, amostra, campos e finalidade}}
+Página: {{título, prévia, conteúdo, CTA e condições}}
+Entrega: {{link imediato, email, alternativa e responsável}}
+Nutrição: {{mensagem, gatilho, permissão, saída e destino}}
+Distribuição: {{canal ativo, recorte e calendário}}
+Medição: {{eventos, denominadores e janela}}
+Arquivos: {{material, página, emails e briefs relacionados}}
+Pendências e handoff: {{skill, estado e próxima ação}}
 ```
 
-O recurso deve resolver uma tarefa delimitada. Se a promessa depende de
-consultoria, ferramenta externa ou informação que não foi entregue, isso deve
-aparecer antes do cadastro.
+## Exemplo: planilha para uma oficina de bicicletas
+
+Caso brasileiro fictício. A Roda Organizada, de Sorocaba, vende software para
+oficinas por R$ 179/mês. A persona `persona-04` é gestora de uma oficina pequena.
+O acervo `acervo/0313-entregas/` reúne rotina de ordens de serviço e oferta
+fictícias. A tarefa é listar bicicletas prometidas para a semana e conferir
+peças pendentes antes de confirmar a entrega.
+
+Formato escolhido: planilha com abas “Como usar”, “Exemplo” e “Sua semana”.
+Colunas: código interno da ordem, data prometida, serviço, peça pendente,
+responsável e situação. O recurso não pede nome ou telefone do cliente.
+
+Conteúdo entregue no exemplo:
+
+| Ordem | Prometida para | Serviço | Peça pendente | Responsável fictício | Situação |
+| --- | --- | --- | --- | --- | --- |
+| OS-11 | Segunda | Revisão | Nenhuma | Nara | Pronta |
+| OS-12 | Quarta | Troca de corrente | Corrente | Ivo | Confirmar peça |
+| OS-13 | Sexta | Regulagem | Nenhuma | Nara | Em execução |
+
+Instrução: “Copie as ordens abertas, filtre as datas desta semana e confirme a
+peça pendente antes de prometer horário. Marque pronta apenas após a conferência
+da oficina.” Não há integração automática com estoque. A planilha inclui
+três verificações: data preenchida, responsável atribuído e peça confirmada.
+
+Página: “Planilha para conferir as entregas da sua oficina nesta semana”.
+Prévia: captura das três linhas fictícias. CTA: “Receber a planilha”.
+Email é obrigatório para o envio solicitado; nome é opcional. Campo separado,
+sem seleção inicial: “Quero receber conteúdos sobre organização de oficinas”.
+A política e o destino do dado ficam próximos do formulário, conforme
+configuração aprovada no projeto.
+
+Entrega: download na confirmação e email “Sua planilha de entregas está aqui”.
+Texto de serviço: “Faça uma cópia, leia a aba Como usar e preencha as ordens
+desta semana. Se o link não abrir, responda a esta mensagem.”
+Para quem autorizou relacionamento: no dia 2, exemplo de peça pendente; no
+dia 5, revisão da rotina; no dia 8, convite opcional para conhecer o software.
+Quem comprar sai da sequência de aquisição e segue para onboarding.
+
+Medição fictícia de piloto: 800 visitas elegíveis, 120 solicitações únicas,
+108 acessos ao arquivo, 30 contatos aderentes e 3 clientes em 45 dias.
+Captura = 15%; acesso = 90% das solicitações; aderência = 25%; cliente por
+solicitação = 2,5%. Acesso não comprova preenchimento. Um retorno voluntário
+de uso será solicitado para entender se a tarefa foi concluída.
+Custo de produção e distribuição: R$ 1.200; custo por contato aderente: R$ 40.
+As contagens são didáticas, sem benchmark ou conclusão causal.
+
+Saída: `acervo/0313-entregas/plano-material.md`, ID 0313, grupo growth,
+estado `revisao`; peças com seus briefs nos caminhos de canal do projeto.
+Handoff: `inboundfy-especialista-email` recebe três briefs de relacionamento;
+`inboundfy-rastreamento-conversao` recebe eventos de solicitação, acesso e
+cliente confirmado. Pendência: validadora conferir os links de cópia e entrega.
+Próxima ação: responsável testar o recurso em uma conta sem acesso prévio.
+
+## Checklist
+
+- [ ] Tarefa e resultado têm escopo verificável.
+- [ ] O exemplo preenchido permite começar sem consultoria.
+- [ ] Amostra pública corresponde ao arquivo entregue.
+- [ ] Fontes e direitos de distribuição estão conferidos.
+- [ ] Link abre sem permissão interna da empresa.
+- [ ] Entrega e inscrição promocional estão separadas.
+- [ ] Compradores e descadastrados saem da sequência pertinente.
+- [ ] Captura, acesso, uso e cliente possuem contagem distinta.
+
+## Erros comuns
+
+- Usar ebook longo para tarefa resolvida por uma folha: escolha formato pela aplicação.
+- Mostrar só capa e esconder conteúdo: publique uma amostra representativa.
+- Confundir email entregue com recurso usado: pergunte ou meça uma ação útil.
+- Contar contatos repetidos como novos leads: deduplique no mesmo horizonte.
+- Prometer acesso gratuito e levar direto à venda: entregue primeiro o recurso.
+- Redistribuir aula com participação de terceiros sem autorização específica: retire o conteúdo pendente do pacote público.
+
+## Guia específico do grupo
+
+Growth conecta o recurso à oferta sem transformar todo consumidor em comprador.
+Mantenha objetivo, público, canal, oferta e próxima ação no pacote.
+`inboundfy-growth-cro` recebe página e formulário;
+`inboundfy-growth-popups` recebe captura contextual;
+`inboundfy-planejamento` recebe novos assets de canal.
+
+Pergunte: o arquivo permite concluir a tarefa? O destinatário consegue abrir?
+Qual próximo passo ajuda quem ainda não quer comprar? Consulte
+`ESTRATEGIA.md`, `CONTEXTO.md` e `docs/method/05-artefatos-e-estados.md`.
 
 ## Arquitetura aplicada
 
@@ -29,165 +155,3 @@ Esta referência usa o contrato comum para a skill **inboundfy-growth-lead-magne
 - [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
 - [validação e retomada](../_shared/04-validacao-e-retomada.md);
 - [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de lead magnet dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-growth-lead-magnet
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de lead magnet
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-growth-lead-magnet
-grupo: growth
-entrada: acervo/0042-2026-09-14-lead-magnet/processado.md
-pedido: aplicar a etapa de lead magnet e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-growth-lead-magnet
-estado: aprovado
-entrada: acervo/0042-2026-09-14-lead-magnet/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de lead magnet
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-growth-lead-magnet** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
-
-## Guia específico do grupo
-
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
-
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-growth-lead-magnet** para executar esta função: Cria e melhora materiais ricos úteis para captura de contato, alinhando promessa, entrega, persona, formulário, nutrição e próxima ação.
-
-O grupo **growth** trabalha com estes campos mínimos:
-
-- **objetivo:** preencher com dado ligado ao pedido.
-- **público:** preencher com dado ligado ao pedido.
-- **canal:** preencher com dado ligado ao pedido.
-- **oferta:** preencher com dado ligado ao pedido.
-- **próxima ação:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-growth-lead-magnet
-grupo: growth
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/estrategia.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-growth-lead-magnet
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/estrategia.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **growth** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESTRATEGIA.md`
-- `CONTEXTO.md`
-- `docs/method/05-artefatos-e-estados.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.

@@ -1,223 +1,103 @@
-# Referência de Preço e embalagem
+# Pesquisa e proposta de preço
 
-## Template
+## Template de proposta
+
+Preencha no passo 1. O documento preserva a oferta vigente até a confirmação da mudança.
 
 ```markdown
-# Preço e embalagem
+---
+id: preco-{{oferta}}-{{rodada}}
+skill: inboundfy-growth-pricing
+grupo: growth
+estado: rascunho
+entrada: {{pedido e oferta atual}}
+persona: {{id}}
+fontes: [{{custos}}, {{pesquisa}}, {{contratos}}]
+proxima_skill: inboundfy-contexto-oferta
+---
+Objetivo: {{margem, adesão, previsibilidade ou expansão}}
+Preço vigente: {{R$, período, unidade e fonte}}
+Segmento e alternativa: {{tarefa e substituto}}
+Unidade proposta: {{unidade e relação com valor}}
 
-- **ID:** {{id}}
-- **Objetivo:** {{objetivo}}
-- **Persona:** {{persona}}
-- **Canal:** {{canal}}
-- **Acervo:** {{acervo}}
-- **Fonte principal:** {{fonte}}
-- **Próxima ação:** {{cta}}
+| Plano | Público/tarefa | Recursos | Limite | Excedente | Suporte | Mensal | Anual total/cobrança |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| {{nome}} | {{perfil}} | {{inclui}} | {{quantidade}} | {{regra}} | {{canal/prazo}} | {{R$}} | {{R$ e forma}} |
 
-## Plano
+## Cenários
+| Cenário | Clientes | Receita líquida | Custo variável | Contribuição | Premissas |
+| --- | --- | --- | --- | --- | --- |
+| {{conservador/base/alto}} | {{n}} | {{R$}} | {{R$}} | {{R$}} | {{fontes e hipóteses}} |
 
-{{plano}}
-
-## Pendências
-
-{{pendencias}}
+Teste: {{coorte, exposição, preço, métrica, prazo e responsável}}
+Migração: {{aviso, vigência, exceções e contratos preservados}}
+Pendências: {{dados faltantes}}
+Próxima ação: {{pessoa, arquivo, skill e data}}
 ```
 
-## Guia específico
+## Escolha da unidade de cobrança
 
-Compare unidade de valor, plano, limite, condição, público, ancoragem e caminho de upgrade. Toda cifra, prazo e condição precisa vir do arquivo de oferta.
+| Unidade | Adequada quando | Conferir | Falha provável |
+| --- | --- | --- | --- |
+| Mensalidade fixa | Uso e valor são relativamente estáveis | Margem por faixa de consumo | Poucos clientes intensivos absorvem a contribuição |
+| Pessoa ou equipe | Acesso individual acompanha valor | Contas compartilhadas e funções gratuitas | Preço desencoraja adoção por mais colegas |
+| Uso medido | Volume varia junto com valor | Medição, atraso e previsão de fatura | Conta imprevisível e contestação |
+| Transação | A operação gera valor por operação | Base, devolução e estorno | Cobrança sobre evento não concluído |
+| Módulo | Necessidades podem ser contratadas separadamente | Dependências entre módulos | Comparação confusa e recurso essencial ausente |
+| Fixo mais excedente | Há custo de disponibilidade e consumo variável | Franquia, teto e aviso | Surpresa no excedente ou medição tardia |
 
-## Exemplo ilustrativo
+O preço do concorrente ajuda a entender alternativas, mas não revela sua margem ou subsídios. Custos definem viabilidade; entrevistas e compras ajudam a entender valor e aceitação. Nenhuma dessas fontes, isolada, entrega um preço final universal.
 
-Uma empresa de software pode usar este modelo para organizar uma ação de teste com uma persona específica, ligar cada mensagem a um acervo e registrar a página de destino sem afirmar resultados ainda não medidos.
+## Exemplo de mudança brasileira
 
-## Checklist
+Caso fictício: a Balcão Organizado oferece gestão de encomendas a lojas de alimentação em Goiânia. O plano vigente custa R$ 120/mês, com até 200 pedidos. A pesquisa de `acervo/041-preco/` reúne oito entrevistas fictícias e coortes de consumo. A persona `cozinha-01` quer prever o gasto antes de aceitar encomendas de fim de semana.
 
-- [ ] ID e objetivo estão presentes.
-- [ ] Persona, canal e acervo estão vinculados.
-- [ ] Fontes e pendências estão localizadas.
-- [ ] Voz, proibições e dicionário foram conferidos.
-- [ ] Próxima ação e estado do pipeline estão claros.
+A equipe rejeita cobrança por usuário porque cozinheiras e atendimento compartilham a mesma operação. Propõe dois planos por faixa de pedidos: Essencial, R$ 149 até 200 pedidos; Equipe, R$ 249 até 600, com relatórios adicionais. Não há excedente automático no teste: o cliente recebe aviso e escolhe mudar de plano antes de ultrapassar o limite.
+
+Para 100 clientes Essencial, o cenário supõe R$ 14.900 de receita bruta. Impostos e taxas agregados são hipótese interna de 10%, resultando em R$ 13.410 líquidos. Custo variável de R$ 35 por cliente soma R$ 3.500. A contribuição seria R$ 9.910 antes dos custos fixos. Com 80 clientes, receita líquida seria R$ 10.728 e contribuição R$ 7.928. O cálculo mostra como perda de volume pode consumir parte do aumento nominal.
+
+A cobrança anual proposta é R$ 1.490 à vista, equivalente a dez mensalidades de R$ 149. Comparada a R$ 1.788 em doze mensalidades, representa desconto de R$ 298, ou 16,7%. O preço equivalente mensal de R$ 124,17 aparece acompanhado de “R$ 1.490 cobrados à vista”. Parcelamento e Pix permanecem pendentes de validação comercial; nenhum benefício é anunciado antes dessa confirmação.
+
+O teste inclui apenas novos compradores de uma coorte definida, com condições divulgadas de forma consistente. A equipe observa contratação paga, contribuição por comprador elegível, suporte e permanência em 60 dias. As entrevistas sugerem aceitação, mas não preveem a taxa de compra. O grupo de 100 clientes atuais mantém a condição contratada até existir um plano de transição aprovado.
+
+A saída `precos-cozinha-041.md` fica em `revisao`. O responsável fictício Tiago Vale confirma custos, forma anual e regra de limite. `inboundfy-contexto-oferta` recebe a proposta após confirmação; `inboundfy-growth-paywall` recebe somente a tabela aprovada. Os números são didáticos e não representam média de mercado.
+
+## Métricas e leitura
+
+- Receita média por conta = receita recorrente / contas pagantes, no mesmo período.
+- Contribuição = receita líquida menos custo variável de atender a coorte.
+- Conversão paga = novas contas pagantes / compradores elegíveis expostos ao teste.
+- Receita por comprador elegível = receita da coorte / expostos elegíveis, com janela explícita.
+- Retenção líquida de receita usa a mesma base inicial, perdas, reduções e expansão, sem somar novos clientes à base retida.
+
+Não escolha pelo preço que gera mais cliques no botão. Confirme compra, margem e continuidade. Referências setoriais exigem fonte primária, amostra, segmento e definição compatível; na ausência, use linha de base local e cenários.
+
+## Checklist da proposta
+
+- [ ] A unidade cresce de modo compreensível com o uso ou valor.
+- [ ] Recursos, suporte, limites e excedente estão completos.
+- [ ] Preço mensal e anual comparam o mesmo período.
+- [ ] A simulação separa receita bruta, líquida, contribuição e fixos.
+- [ ] Mudança de volume aparece nos cenários.
+- [ ] Clientes atuais têm tratamento definido separadamente.
+- [ ] O teste mede compra e permanência, com prazo e responsável.
 
 ## Erros comuns
 
-- Começar pelo formato antes de confirmar objetivo, público e fonte.
-- Usar promessa, preço, número ou nome sem registro local.
-- Aplicar a mesma mensagem a personas com contextos diferentes.
-- Salvar o resultado sem caminho, ID ou alcance da escolha.
-
-## Relação com inboundfy-growth-pricing
-
-Use este modelo como roteiro mínimo e acrescente apenas campos pedidos pelo projeto. O arquivo final deve ficar ligado ao acervo, à peça e ao calendário quando houver data.
+- Copiar o plano do concorrente sem conhecer o custo: simular margem própria.
+- Chamar interseção de pesquisa de preço ideal comprovado: tratá-la como candidato a teste.
+- Mostrar equivalente mensal sem total anual: exibir valor efetivamente cobrado.
+- Oferecer desconto permanente para objeção de utilidade: pesquisar a necessidade antes do incentivo.
+- Alterar plano sem revisar limite técnico: conferir cobrança, interface e atendimento.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-growth-pricing**, do grupo
-**growth**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de pricing dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-growth-pricing
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de pricing
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-growth-pricing
-grupo: growth
-entrada: acervo/0042-2026-09-14-pricing/processado.md
-pedido: aplicar a etapa de pricing e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-growth-pricing
-estado: aprovado
-entrada: acervo/0042-2026-09-14-pricing/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de pricing
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-growth-pricing** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+Use [fontes](../_shared/01-preflight-e-fontes.md) para separar custos confirmados de hipóteses, [artefato](../_shared/02-contrato-de-artefato.md) para versionar tabela, [handoff](../_shared/03-interacao-e-handoff.md) para registrar a confirmação comercial, [retomada](../_shared/04-validacao-e-retomada.md) para preservar contratos e [contexto editorial](../_shared/05-contexto-editorial.md) para revisar condições públicas.
 
 ## Guia específico do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
+Growth liga objetivo, público, canal, oferta e próxima ação. Esta skill propõe condições e teste; `inboundfy-contexto-oferta` mantém o dado canônico confirmado. `inboundfy-growth-paywall` aplica a oferta dentro do produto e `inboundfy-growth-retencao` acompanha permanência e redução de plano.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+## Leitura por etapa
 
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-growth-pricing** para executar esta função: Analisa preço, planos e embalagem a partir de valor, público, uso, condições comerciais e mensagens aprovadas.
-
-O grupo **growth** trabalha com estes campos mínimos:
-
-- **objetivo:** preencher com dado ligado ao pedido.
-- **público:** preencher com dado ligado ao pedido.
-- **canal:** preencher com dado ligado ao pedido.
-- **oferta:** preencher com dado ligado ao pedido.
-- **próxima ação:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-growth-pricing
-grupo: growth
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/estrategia.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-growth-pricing
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/estrategia.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **growth** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESTRATEGIA.md`
-- `CONTEXTO.md`
-- `docs/method/05-artefatos-e-estados.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+No passo 2, leia [pesquisa e transição](references/pesquisa-e-transicao.md) para preparar entrevistas e mudança de condições. Consulte `ESTRATEGIA.md`, `CONTEXTO.md` e `docs/method/05-artefatos-e-estados.md` ao preparar o handoff.

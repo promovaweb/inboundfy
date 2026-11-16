@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Growth Ferramentas Gratuitas"
-  short_description: "Executa growth ferramentas gratuitas no Inboundfy"
-  default_prompt: "Use $inboundfy-growth-ferramentas-gratuitas para executar growth ferramentas gratuitas com as fontes do projeto."
+  display_name: "Inboundfy: Ferramentas gratuitas de aquisição"
+  short_description: "Brief de ferramenta gratuita e aquisição"
+  default_prompt: "Use $inboundfy-growth-ferramentas-gratuitas para planejar uma ferramenta gratuita, detalhar cálculo e aceite e medir sua contribuição comercial."

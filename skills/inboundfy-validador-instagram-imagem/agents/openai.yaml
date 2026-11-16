@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Validador instagram-imagem"
-  short_description: "Valida o asset instagram-imagem antes da entrega"
-  default_prompt: "Use $inboundfy-validador-instagram-imagem para validar este asset e devolver correções à skill produtora quando necessário."
+  display_name: "Inboundfy: Revisão de imagens de Instagram"
+  short_description: "Confere post e pacote visual de Instagram"
+  default_prompt: "Use $inboundfy-validador-instagram-imagem para revisar o conjunto completo de $inboundfy-especialista-instagram-imagem, aplicar os oito itens espelhados e devolver o relatório com achados, rodada e digest atual."

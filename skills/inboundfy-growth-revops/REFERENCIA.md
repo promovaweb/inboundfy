@@ -1,223 +1,90 @@
-# Referência de Operação de receita
-
-## Template
-
-```markdown
-# Operação de receita
-
-- **ID:** {{id}}
-- **Objetivo:** {{objetivo}}
-- **Persona:** {{persona}}
-- **Canal:** {{canal}}
-- **Acervo:** {{acervo}}
-- **Fonte principal:** {{fonte}}
-- **Próxima ação:** {{cta}}
-
-## Plano
-
-{{plano}}
-
-## Pendências
-
-{{pendencias}}
-```
-
-## Guia específico
-
-Mapeie origem, captura, qualificação, passagem, atendimento, retorno, propriedade do registro, campos obrigatórios, SLA e leitura de receita entre equipes.
-
-## Exemplo ilustrativo
-
-Uma empresa de software pode usar este modelo para organizar uma ação de teste com uma persona específica, ligar cada mensagem a um acervo e registrar a página de destino sem afirmar resultados ainda não medidos.
-
-## Checklist
-
-- [ ] ID e objetivo estão presentes.
-- [ ] Persona, canal e acervo estão vinculados.
-- [ ] Fontes e pendências estão localizadas.
-- [ ] Voz, proibições e dicionário foram conferidos.
-- [ ] Próxima ação e estado do pipeline estão claros.
-
-## Erros comuns
-
-- Começar pelo formato antes de confirmar objetivo, público e fonte.
-- Usar promessa, preço, número ou nome sem registro local.
-- Aplicar a mesma mensagem a personas com contextos diferentes.
-- Salvar o resultado sem caminho, ID ou alcance da escolha.
-
-## Relação com inboundfy-growth-revops
-
-Use este modelo como roteiro mínimo e acrescente apenas campos pedidos pelo projeto. O arquivo final deve ficar ligado ao acervo, à peça e ao calendário quando houver data.
+# Operação de receita com donos e encaminhamento verificável
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-growth-revops**, do grupo
-**growth**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de revops dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-growth-revops
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de revops
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-growth-revops
-grupo: growth
-entrada: acervo/0042-2026-09-14-revops/processado.md
-pedido: aplicar a etapa de revops e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-growth-revops
-estado: aprovado
-entrada: acervo/0042-2026-09-14-revops/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de revops
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-growth-revops** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+A especificação usa o grupo **growth** e os contratos de [fontes](../_shared/01-preflight-e-fontes.md), [artefato](../_shared/02-contrato-de-artefato.md), [handoff](../_shared/03-interacao-e-handoff.md), [validação](../_shared/04-validacao-e-retomada.md) e [contexto editorial](../_shared/05-contexto-editorial.md). O ciclo comercial vive no CRM; `.inboundfy/pipeline.md` continua representando o estado dos materiais editoriais.
 
 ## Guia específico do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
+Relacione objetivo, público, canal, oferta e próxima ação ao mapa de receita. No passo 3, leia [etapas, pontuação e métricas](references/etapas-pontuacao-e-metricas.md); no passo 5, leia [roteamento e automação](references/roteamento-e-automacao.md). Qualificação outbound segue para `inboundfy-growth-prospeccao`; mensagens para `inboundfy-growth-email-frio` ou `inboundfy-growth-sms`; plano de medição para `inboundfy-metricas`, com objetivo, oferta, canais, eventos existentes, ferramentas, janela e dados disponíveis; atribuição para `inboundfy-atribuicao`; passagem pós-venda para `inboundfy-growth-onboarding`.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+Antes de desenhar automações, pergunte: qual sistema prevalece em conflito? Quem é dono da conta? O que comprova a aceitação comercial? Qual equipe cobre o horário? O que acontece quando faltam dados? Quem confere receita contratada, faturada e recebida? Um estágio preenchido sem condição observável apenas muda o nome da fila.
 
-## Especificação operacional
+## Template de especificação de RevOps
 
-### Quando usar
-
-Use **inboundfy-growth-revops** para executar esta função: Conecta marketing, vendas e atendimento por etapas, campos, responsabilidades, origem, handoff e leitura comum dos dados.
-
-O grupo **growth** trabalha com estes campos mínimos:
-
-- **objetivo:** preencher com dado ligado ao pedido.
-- **público:** preencher com dado ligado ao pedido.
-- **canal:** preencher com dado ligado ao pedido.
-- **oferta:** preencher com dado ligado ao pedido.
-- **próxima ação:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
+```markdown
+---
+id: {{operacao}}
 skill: inboundfy-growth-revops
 grupo: growth
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/estrategia.md
+estado: rascunho
+entrada: {{campanha ou pedido}}
+fontes: [{{oferta}}, {{CRM com data}}, {{regras da equipe}}]
+persona: {{id}}
+proxima_skill: {{skill seguinte}}
+---
+- Objetivo comercial, oferta e canais: {{dados}}
+- CRM canônico e entidades: {{conta, contato, oportunidade}}
+- Horário/fuso/capacidade: {{equipes e filas}}
+| Etapa | Entrada observável | Saída/campos | Dono | SLA e devolução |
+| --- | --- | --- | --- | --- |
+| {{etapa}} | {{evento}} | {{regra}} | {{papel}} | {{tempo e motivo}} |
+## Pontuação
+{{Dimensões, limiares, validade, exclusões e versão, ou qualificação manual.}}
+## Roteamento
+{{Precedência de dono, território, capacidade, fila alternativa e escalonamento.}}
+## Automação
+{{Gatilho, condição, ação, chave única, log, falha e reversão.}}
+## Painel
+{{Métrica, fórmula, origem, coorte, janela e responsável.}}
+## Piloto
+{{Casos de teste, alcance, comparação, monitoramento e reversão.}}
+## Próxima ação
+{{Responsável, arquivo, skill, estado e pendências.}}
 ```
 
-Saída:
+## Exemplo de operação brasileira fictícia
 
-```yaml
-id: 0042
-skill: inboundfy-growth-revops
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/estrategia.md
-proxima_skill: nome-da-proxima-skill
-```
+A Viga Solar, empresa fictícia de manutenção de sistemas fotovoltaicos comerciais de Goiânia, recebe solicitações de inspeção por formulário e respostas de prospecção. A persona-01 é responsável por instalações de pequenas redes varejistas. O plano `0086` aponta para `acervo/0086-2026-11-15-inspecao/estrategia.md`, `.inboundfy/context/servicos.md` e uma exportação fictícia do CRM. O estado é `rascunho`; nenhuma automação foi ativada.
 
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
+O CRM canônico registra conta por ID empresarial e unidade, contato por ID interno e e-mail conferido, oportunidade por conta, unidade e escopo. Um novo formulário gera solicitação única, não nova oportunidade automática. Receita contratada depende de contrato assinado; receita recebida depende de conciliação financeira. A oferta de inspeção começa em R$ 2.000 no exercício e não promete economia percentual.
 
-### Perguntas de conferência
+| Etapa | Entrada e saída observáveis | Responsável fictício | Prazo interno do exercício |
+| --- | --- | --- | --- |
+| Solicitação recebida | Formulário válido; sai após conferência de unidade e serviço | Assistente Iara Nunes | Triar em até duas horas úteis |
+| Qualificado por marketing (MQL) | Unidade atendida e pedido de inspeção; sai por aceite ou devolução | Iara | Encaminhar na mesma triagem |
+| Aceito por vendas (SAL) | Vendedor aceita tarefa; sai após conversa ou devolução justificada | Consultor Caio Leal | Aceitar em quatro horas úteis |
+| Qualificado por vendas (SQL) | Conversa confirma necessidade, função e prazo | Caio | Agendar inspeção ou registrar próxima data |
+| Oportunidade | Escopo e valor estimado registrados | Caio | Revisão semanal de próxima ação |
+| Ganho | Contrato assinado; cria passagem ao atendimento | Caio e equipe técnica | Passagem em um dia útil |
 
-1. A entrada pertence ao grupo **growth** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
+A equipe trabalha de segunda a sexta, 9h às 18h, horário de Goiânia. Solicitação recebida fora desse período ganha confirmação honesta e entra na contagem no próximo expediente. Conta com responsável existente mantém o dono. Entre contas novas da mesma região, a distribuição considera disponibilidade; ausência de consultor envia à fila da supervisora fictícia Lia Ramos. Depois de quatro horas úteis sem aceite, Lia recebe alerta. Transferência exige registro; um retorno tardio do provedor não troca o dono.
 
-### Referências de execução
+No modelo inicial fictício, adequação soma até 60 pontos: região 20, serviço 25, função 15. Intenção soma até 40: pedido de inspeção 30 e prazo informado 10. O encaminhamento MQL exige adequação mínima de 45 e intenção mínima de 30. Domínio de e-mail pessoal não exclui pequeno negócio automaticamente. Dado desconhecido segue para conferência. Recusa de contato retira elegibilidade para promoção, independentemente da pontuação.
 
-Leia, na ordem necessária:
+O teste de automação usa a chave `solicitacao_id + etapa + versao_da_regra`. Dois webhooks iguais precisam gerar um contato relacionado, uma tarefa e um alerta. Se a pesquisa de empresa exceder o tempo do formulário, a solicitação continua salva e segue para fila pendente. Um retorno tardio atualiza apenas campos conferidos, sem recriar tarefa nem calendário.
 
-- `ESTRATEGIA.md`
-- `CONTEXTO.md`
-- `docs/method/05-artefatos-e-estados.md`
+Na coorte fictícia de 40 solicitações únicas, 24 viram MQL, 18 recebem aceite, 12 chegam a SQL, oito geram oportunidade e três fecham. MQL/solicitação = 60%; aceite/MQL = 75%; SQL/aceite = 66,7%; ganho/oportunidade = 37,5%, assumindo as oito oportunidades já encerradas. Três contratos de R$ 2.000 somam R$ 6.000 contratados. Apenas dois pagamentos de R$ 2.000 conciliados somam R$ 4.000 recebidos. Com custo de aquisição total simulado de R$ 1.800, CAC = R$ 600 para os três clientes novos, sem confundir recebimento com aquisição.
 
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+As seis devoluções de MQL precisam de motivo. O painel mede tempo da primeira resposta humana e tarefas sem dono. Iara propõe piloto de cinco dias úteis em uma fila. Lia valida casos duplicados, conta conhecida, ausência de consultor, dados incompletos e recusa antes de pedir ativação. A próxima ação é entregar clientes ganhos a `inboundfy-growth-onboarding` com escopo, contrato, responsável e primeira visita; sem pendência de contexto, a equipe não precisa refazer a qualificação.
+
+## Checklist de operação
+
+- [ ] Entidades e chaves foram definidas.
+- [ ] Etapas usam entrada e saída observáveis.
+- [ ] MQL, SAL e SQL possuem sentidos distintos.
+- [ ] SLA usa expediente, fuso e responsável de cobertura.
+- [ ] Pontuação tem versão, validade e tratamento de desconhecidos.
+- [ ] Repetição, atraso e falha de integração foram simulados.
+- [ ] Painel separa contrato, faturamento e recebimento.
+- [ ] Piloto e reversão estão prontos antes de ativação.
+
+## Erros comuns de RevOps
+
+- Confundir pontuação alta com venda pronta: exija adequação e intenção.
+- Punir e-mail pessoal em negócios locais: confira identidade e função.
+- Recusar formulário porque enriquecimento falhou: preserve a solicitação em fila.
+- Trocar responsável após retorno tardio: respeite a atribuição vigente.
+- Duplicar oportunidades por novo formulário: relacione contato, unidade e escopo.
+- Medir velocidade só pelo bot: registre primeira ação humana útil.
+- Projetar fechamento com probabilidade arbitrária: calibre por coortes maduras e declare hipótese.

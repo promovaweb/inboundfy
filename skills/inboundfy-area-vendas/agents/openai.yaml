@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy: Vendas e receita"
+  short_description: "Encaminha pedidos comerciais para a skill certa"
+  default_prompt: "Use $inboundfy-area-vendas para entender meu pedido de vendas e receita e encaminhar para a skill certa."

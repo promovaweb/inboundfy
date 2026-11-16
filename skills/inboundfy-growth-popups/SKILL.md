@@ -1,16 +1,13 @@
 ---
 name: inboundfy-growth-popups
-description: Planeja pop-ups e formulários contextuais com motivo da exibição, oferta, frequência, saída e destino dos dados.
+description: Planeja popups, barras e formulários contextuais com texto, regras de exibição, fechamento acessível e destino dos dados. Use quando o pedido falar em captura, convite na página, frequência de popup, modal ou formulário por clique.
 ---
 
-# Pop-ups e captura
+# Popups e formulários contextuais
 
-Use esta skill como capacidade especializada do Inboundfy. Ela organiza a tarefa e devolve material pronto para a orquestradora, sem substituir o setup, a voz, a persona ou a validação do canal.
+Use para convite contextual, captura, aviso, pesquisa curta e formulário acionado por clique. Entregue texto, exibição e acompanhamento. Oferta de upgrade dentro do produto segue para `inboundfy-growth-paywall`; conteúdo do recurso segue para `inboundfy-growth-lead-magnet`.
 
 ## Arquitetura de execução
-
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
@@ -18,52 +15,64 @@ específica desta pasta.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
 
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **growth**.
-
 ## Contexto exigido
 
-Se a configuração estiver incompleta, acione `inboundfy-setup`. Consulte [REFERENCIA.md](REFERENCIA.md), `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`, `.inboundfy/context/marca-voz.md`, `.inboundfy/context/publico.md`, `.inboundfy/context/proibicoes.md`, `.inboundfy/context/glossario.md`, `.inboundfy/pipeline.md`, o acervo relacionado e `.inboundfy/framework/`.
+Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md`.
+Se faltar uma sentinela, apresente: “O setup do Inboundfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
+arquivos de apoio.” Encerre sem criar artefatos até o reparo.
 
-Leia também `.inboundfy/fontes-projeto.md`, as bases editoriais relacionadas e os documentos públicos citados. Antes de entregar copy, consulte `inboundfy-anti-slop` e `inboundfy-copy-edicao`.
+Leia `AGENTS.md`, `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`,
+`.inboundfy/context/publico.md`, `.inboundfy/context/ofertas.md`,
+`.inboundfy/context/produtos.md`, `.inboundfy/context/servicos.md` quando aplicável,
+`.inboundfy/context/canais.md`, `.inboundfy/context/marca-voz.md`,
+`.inboundfy/context/glossario.md`, `.inboundfy/context/proibicoes.md`,
+`.inboundfy/context/estruturas-proibidas.md` e aprendizados confirmados.
+Consulte o acervo relacionado, as fontes relevantes registradas no projeto,
+`.inboundfy/pipeline.md` e os documentos do método em `.inboundfy/framework/`.
+Se faltar dado comercial, encaminhe para `inboundfy-contexto-oferta` sem preenchê-lo
+por suposição. Leia `ESCRITA.md` antes de redigir texto público.
 
 ## Entrada esperada
 
-Receba um objetivo, um ou mais IDs de acervo, a persona, o canal, a oferta ou o fluxo que precisa ser planejado. Separe fatos confirmados, hipótese de trabalho e pergunta aberta.
+Receba finalidade, páginas, público, origem do tráfego, oferta ou recurso,
+formato atual, canais ativos, sistema de captura, preferências de comunicação
+e dados de desempenho. Aceite de `inboundfy-growth-sms` a necessidade de captura de permissão com finalidade, texto e canal separados. Informe outros overlays, banner de consentimento,
+chat e trechos de tarefa que devem permanecer livres de interrupção.
 
 ## Fluxo
 
-1. Leia [REFERENCIA.md](REFERENCIA.md) e confirme a intenção, o público, o canal e o resultado solicitado.
-2. Consulte voz, persona, proibições e dicionário antes de propor mensagem, segmento, preço, promessa ou CTA.
-3. Relacione cada afirmação ao acervo, à base editorial, à página canônica ou à pesquisa salva no item.
-4. Desenvolva um brief de captura com regra de exibição, texto, campos e acompanhamento.
-5. Revise o material com `inboundfy-anti-slop`, `inboundfy-copy-edicao` e a validação específica do canal quando houver copy pública.
-6. Registre caminho, ID, fontes, alcance da regra e pendências; peça confirmação antes de alterar uma configuração global.
+1. Leia [REFERENCIA.md](REFERENCIA.md). Confirme se o convite precisa interromper a leitura ou se CTA no conteúdo e barra atendem ao objetivo.
+2. Escolha formato, momento e público pela tarefa da página. Registre exclusões, versão da campanha e prioridade diante de outros componentes.
+3. Consulte [exibição, foco e acompanhamento](references/exibicao-foco-e-acompanhamento.md) para definir elegibilidade, gatilho, frequência, supressão, fechamento, foco e alternativa mobile.
+4. Escreva título, benefício concreto, formato entregue, campos, CTA, recusa e estados de envio. Confirme destino dos dados e finalidade aprovada para cada canal.
+5. Teste o roteiro de abertura, teclado, fechamento, erro, repetição, retorno e captura já existente. O estado confirmado no receptor governa sucesso e supressão.
+6. Peça a `inboundfy-rastreamento-conversao` eventos e comparação por população elegível, consultando `.inboundfy/context/integracoes.md`. Encaminhe a `inboundfy-experimentacao` o teste com grupo sem convite quando pertinente.
+7. Revise copy com `inboundfy-copy-editor` e `inboundfy-anti-slop`. Entregue captura e follow-up para as responsáveis de operação e canal, com estado e pendências.
 
 ## Saída
 
-Um brief de captura com regra de exibição, texto, campos e acompanhamento. O material deve manter IDs, links relativos, fontes, persona, canal, estado e próxima ação.
+Salve brief Markdown no diretório de trabalho registrado no projeto, com ID,
+grupo growth, entrada, fontes, persona, canal, oferta, estado e próxima ação.
+Inclua copy, matriz de exibição, regras de prioridade, requisitos de foco,
+campos, envio, destino dos dados, métricas e casos de aceite.
+Peças de canal mantêm `brief` e validação específica. Publicação e automação
+continuam com o responsável de implementação indicado no projeto.
 
 ## Validação
 
-- A finalidade e o público estão explícitos.
-- Toda afirmação comercial possui fonte local ou marcação de confirmação.
-- Voz, persona, proibições e dicionário foram aplicados.
-- O formato respeita o canal, o pipeline e o template correspondente.
-- Pendências ficaram registradas sem preenchimento inventado.
+- O convite corresponde ao assunto e à intenção da página.
+- Existe justificativa para o formato e alternativa menos interruptiva.
+- Campanhas não se sobrepõem nem reaparecem após recusa contra a regra.
+- Fechar, Escape, foco e uso mobile possuem comportamento definido.
+- O envio informa finalidade e separa entrega de inscrição promocional.
+- Reenvio e contato já existente não geram lead novo indevido.
+- A aferição inclui a conversão principal da página e reclamações.
 
 ## Responsabilidade do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** growth
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+Transforme objetivo da página e oferta em brief de captura com regras de exibição, entrega do recurso e follow-up por canal. Registre grupo `growth`, entrada, transformação, saída, próxima skill, estado e pendências no handoff.
 
 ## Idempotência
 
-Atualize o mesmo arquivo ou brief quando o ID já existir. Preserve texto aprovado, histórico, fontes e escolhas anteriores; abra uma nova versão apenas após pedido explícito.
+Atualize o mesmo ID de campanha sem apagar histórico de recusa, captura ou versão aprovada. Mudança de recurso não autoriza limpar supressões automaticamente. Preserve preferências e deduplicação ao retomar; nova regra de exibição exige registro do pedido e conferência dos estados afetados.

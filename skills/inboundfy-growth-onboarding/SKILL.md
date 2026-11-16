@@ -1,16 +1,13 @@
 ---
 name: inboundfy-growth-onboarding
-description: Planeja a comunicação inicial após a compra com marcos, instruções, dúvidas, ativação e voz adaptada ao estágio do cliente.
+description: Planeja onboarding com marcos de primeiro valor, mensagens por comportamento, ajuda e passagem ao uso recorrente. Use quando o pedido falar em boas-vindas, implantação, ativação, primeira tarefa ou clientes que não começaram a usar.
 ---
 
-# Onboarding de clientes
+# Onboarding e primeiro valor
 
-Use esta skill como capacidade especializada do Inboundfy. Ela organiza a tarefa e devolve material pronto para a orquestradora, sem substituir o setup, a voz, a persona ou a validação do canal.
+Organize a comunicação após compra ou acesso autorizado, do primeiro contato até o uso que demonstra valor. Esta skill entrega marcos, instruções e mensagens; criação de conta fica com `inboundfy-growth-signup` e uso recorrente com `inboundfy-growth-retencao`.
 
 ## Arquitetura de execução
-
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
@@ -18,52 +15,64 @@ específica desta pasta.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
 
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **growth**.
-
 ## Contexto exigido
 
-Se a configuração estiver incompleta, acione `inboundfy-setup`. Consulte [REFERENCIA.md](REFERENCIA.md), `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`, `.inboundfy/context/marca-voz.md`, `.inboundfy/context/publico.md`, `.inboundfy/context/links.md`, `.inboundfy/context/proibicoes.md`, `.inboundfy/context/glossario.md`, `.inboundfy/pipeline.md`, o acervo relacionado e `.inboundfy/framework/`.
+Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md`.
+Se faltar uma sentinela, apresente: “O setup do Inboundfy ainda não foi concluído
+ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
+arquivos de apoio.” Encerre sem criar artefatos até o reparo.
 
-Leia também `.inboundfy/fontes-projeto.md`, as bases editoriais relacionadas e os documentos públicos citados. Antes de entregar copy, consulte `inboundfy-anti-slop` e `inboundfy-copy-edicao`.
+Leia `AGENTS.md`, `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`,
+`.inboundfy/context/publico.md`, `.inboundfy/context/ofertas.md`,
+`.inboundfy/context/produtos.md`, `.inboundfy/context/servicos.md` quando aplicável,
+`.inboundfy/context/canais.md`, `.inboundfy/context/marca-voz.md`,
+`.inboundfy/context/glossario.md`, `.inboundfy/context/proibicoes.md`,
+`.inboundfy/context/estruturas-proibidas.md` e aprendizados confirmados.
+Consulte o acervo relacionado, as fontes relevantes registradas no projeto,
+`.inboundfy/pipeline.md` e os documentos do método em `.inboundfy/framework/`.
+Se faltar dado comercial, encaminhe para `inboundfy-contexto-oferta` sem preenchê-lo
+por suposição. Leia `ESCRITA.md` antes de redigir texto público.
 
 ## Entrada esperada
 
-Receba um objetivo, um ou mais IDs de acervo, a persona, o canal, a oferta ou o fluxo que precisa ser planejado. Separe fatos confirmados, hipótese de trabalho e pergunta aberta.
+Receba produto ou serviço, promessa da compra, persona, etapa de acesso, tarefas
+necessárias, dados de uso e atendimento, prazo de implantação e responsável.
+Aceite o brief de cadastro de `inboundfy-growth-signup` ou a passagem pós-venda de `inboundfy-growth-revops`, com acesso, escopo, responsável e pendências. Informe quem usa, quem administra e quem comprou. Para trial, registre duração,
+limites e condições já aprovadas, sem redefinir a oferta.
 
 ## Fluxo
 
-1. Leia [REFERENCIA.md](REFERENCIA.md) e confirme a intenção, o público, o canal e o resultado solicitado.
-2. Consulte voz, persona, proibições e dicionário antes de propor mensagem, segmento, preço, promessa ou CTA.
-3. Relacione cada afirmação ao acervo, à base editorial, à página canônica ou à pesquisa salva no item.
-4. Desenvolva um fluxo de onboarding com mensagens, marcos, canais e condições de passagem.
-5. Revise o material com `inboundfy-anti-slop`, `inboundfy-copy-edicao` e a validação específica do canal quando houver copy pública.
-6. Registre caminho, ID, fontes, alcance da regra e pendências; peça confirmação antes de alterar uma configuração global.
+1. Leia [REFERENCIA.md](REFERENCIA.md). Defina o resultado de primeiro valor e sua confirmação observável, distinguindo uso real, demonstração e configuração.
+2. Registre todos os passos entre acesso e resultado. Classifique cada um como necessário agora, adiável, preenchível com dado já confirmado ou opcional.
+3. Consulte [ativação e comunicação](references/ativacao-e-comunicacao.md) para modelar caminho mínimo, segmentos, checklist e estados vazios. Separe ação da pessoa de dependência da equipe.
+4. Escreva mensagens por estado: boas-vindas, primeira tarefa, ajuda contextual, retomada, marco concluído e próximo uso. Defina gatilho, espera, canal, responsável e condição de saída.
+5. Coordene email, produto e atendimento para impedir duplicação de mensagens. Encaminhe a `inboundfy-especialista-email` briefs aprovados com objetivo, etapa de relacionamento, público, ângulo, ativos e CTA, seguidos da validadora pareada.
+6. Peça a `inboundfy-rastreamento-conversao` a aferição dos marcos e a janela de coorte, consultando `.inboundfy/context/integracoes.md`. Peça a `inboundfy-experimentacao` o desenho de hipóteses.
+7. Revise instruções com `inboundfy-copy-editor` e `inboundfy-anti-slop`. Entregue a passagem para `inboundfy-growth-retencao` após o marco declarado, com pendências operacionais.
 
 ## Saída
 
-Um fluxo de onboarding com mensagens, marcos, canais e condições de passagem. O material deve manter IDs, links relativos, fontes, persona, canal, estado e próxima ação.
+Salve fluxo Markdown no diretório de trabalho registrado pelo projeto com ID,
+grupo growth, estado, entrada, fontes, persona, canal, oferta e próxima ação.
+Inclua mapa de passos, definição de primeiro valor, matriz de mensagens,
+checklist do cliente, dependências e métricas por coorte. Peças de canal mantêm
+brief e validação específica. Não ative automações ou prometa integração pronta
+apenas porque o fluxo foi escrito.
 
 ## Validação
 
-- A finalidade e o público estão explícitos.
-- Toda afirmação comercial possui fonte local ou marcação de confirmação.
-- Voz, persona, proibições e dicionário foram aplicados.
-- O formato respeita o canal, o pipeline e o template correspondente.
-- Pendências ficaram registradas sem preenchimento inventado.
+- O primeiro valor depende de resultado útil, não apenas login ou conclusão de tour.
+- Cada passo obrigatório possui motivo e alternativa se a pessoa não puder concluí-lo.
+- Dados demonstrativos estão identificados e não contam como uso real.
+- Toda mensagem tem gatilho, tempo, canal autorizado e regra de saída.
+- A conclusão de um marco encerra lembretes anteriores.
+- A janela de ativação está completa para todas as contas comparadas.
+- Quem comprou e quem executa recebem instruções compatíveis com seus papéis.
 
 ## Responsabilidade do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** growth
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+Transforme acesso autorizado em um fluxo até o primeiro valor e entregue à retenção o marco confirmado, a rotina seguinte e as dúvidas abertas. Registre grupo `growth`, entrada, transformação, saída, próxima skill, estado e pendências no handoff.
 
 ## Idempotência
 
-Atualize o mesmo arquivo ou brief quando o ID já existir. Preserve texto aprovado, histórico, fontes e escolhas anteriores; abra uma nova versão apenas após pedido explícito.
+Retome o mesmo ID e o último marco confirmado. Preserve mensagens aprovadas e histórico de gatilhos. Alterações na definição de ativação recebem versão e reprocessamento explícito; não compare coortes com definições diferentes nem reenvie boas-vindas ao cliente ativo.

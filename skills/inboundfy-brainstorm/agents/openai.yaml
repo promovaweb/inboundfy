@@ -1,4 +1,4 @@
 interface:
-  display_name: "Brainstorm Inboundfy"
-  short_description: "Transforma uma ideia em brainstorm validado"
-  default_prompt: "Use $inboundfy-brainstorm para transformar minha ideia em um brainstorm pesquisado e validado."
+  display_name: "Inboundfy: Brainstorm"
+  short_description: "Ideia curta vira tese, ângulos e pautas pesquisadas"
+  default_prompt: "Use $inboundfy-brainstorm para transformar minha ideia em um brainstorm pesquisado, com tese, ângulos e oportunidades por canal."

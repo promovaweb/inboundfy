@@ -1,131 +1,207 @@
-# Referência de escrita simples e útil
+# REFERENCIA.md; inboundfy-copy-simplificar
 
-Use esta referência ao simplificar texto existente. Ela traduz a regra de
-atenção do público em uma revisão prática para copy, emails, pitches,
-apresentações, publicações sociais e documentação que explica código ou
-sistemas. `ESCRITA.md`, as fontes locais, a voz da marca e as regras do canal
-continuam valendo.
+Referência para simplificar texto existente. Ela organiza as técnicas por
+nível (estrutura, frase, palavra), mostra quando cada uma serve, traz o modelo
+de registro e um caso completo com medição antes e depois. `ESCRITA.md`, as
+fontes locais, a voz da marca e as regras do canal continuam valendo.
 
-## Método de revisão
+## Mapa de leitura
 
-### 1. Localize a mensagem
+| Arquivo | Passo do fluxo | Conteúdo |
+| --- | --- | --- |
+| [references/medidas-de-leitura.md](references/medidas-de-leitura.md) | Passos 2 e 7 | Como medir frase, parágrafo e índice de leiturabilidade, e por que a medida não aprova texto. |
+| [references/tecnicas-de-simplificacao.md](references/tecnicas-de-simplificacao.md) | Passo 4 | Catálogo de técnicas com antes e depois. |
+| [references/simplificar-por-formato.md](references/simplificar-por-formato.md) | Passo 5 | Ajustes para email, página, post, WhatsApp, documentação técnica e texto legal. |
 
-Registre em uma frase o que o texto precisa comunicar. Separe fatos
-confirmados, condições, instruções e exemplos que ajudam o público a entender
-ou usar a informação.
+## Ordem das técnicas
 
-### 2. Leia pelo lado de quem recebe
+Aplique de cima para baixo. Ajustar palavra antes de resolver a estrutura
+gasta esforço em frases que talvez saiam.
 
-Em cada frase e parágrafo, pergunte:
-
-- Ainda há motivo para continuar?
-- A mensagem está clara na primeira leitura?
-- O raciocínio avança de um ponto para o próximo sem exigir adivinhação?
-- O trecho serve ao público ou só celebra o esforço e a intenção de quem
-  criou?
-
-Considere que o público dispõe de pouco tempo e tem outras prioridades. O
-esforço investido na peça, o entusiasmo da autoria ou a importância interna do
-assunto não bastam para justificar cada frase. O texto precisa oferecer algo
-reconhecível: clareza, explicação útil, uma ação possível, entretenimento ou
-perspectiva que ajude a entender o assunto. Se um trecho só valoriza o
-trabalho de autoria, repete algo já dito ou exige esforço sem retorno, retire
-ou refaça.
-
-Retire o que só repete, enfeita ou atrasa a mensagem. Quando faltar ligação
-entre duas ideias, explique a relação em vez de apenas encurtar.
-
-### 3. Preserve o que sustenta a compreensão
-
-Mantenha ressalvas, passos, exemplos, provas, limites e detalhes técnicos
-quando eles evitam interpretação errada ou ajudam a executar uma ação. Uma
-versão menor não é automaticamente mais simples. Prefira a formulação mais
-limpa que continua completa e fiel à fonte.
-
-### 4. Dê força adequada ao formato
-
-Identifique a qualidade que faz o material valer o tempo do público:
-utilidade, clareza didática, humor, provocação pertinente ou apresentação
-visual funcional. Escolha a qualidade compatível com a mensagem. Não fabrique
-conflito, urgência, promessa absoluta ou dramatização para tornar a peça
-chamativa.
+| Nível | Técnica | Use quando | Não use quando |
+| --- | --- | --- | --- |
+| Estrutura | Essencial primeiro | O pedido, o prazo ou a resposta aparecem só no fim | O formato exige contexto antes (relato, história de cliente) |
+| Estrutura | Corte de aquecimento | Abertura agradece, cumprimenta em excesso ou anuncia o que vem | A saudação é regra registrada da voz |
+| Estrutura | Corte de repetição | A mesma ideia volta com outras palavras | A repetição é resumo pedido pelo formato (ebook, aula) |
+| Estrutura | Lista para itens paralelos | Três ou mais passos, documentos ou opções do mesmo tipo | Os itens dependem um do outro por causa e efeito |
+| Frase | Ordem direta | Sujeito e verbo aparecem depois de orações intercaladas | A inversão destaca algo de propósito e a frase é curta |
+| Frase | Uma ideia por frase | A frase passa de 30 palavras com duas ou mais afirmações | A frase longa liga causa e consequência que precisam ficar juntas |
+| Frase | Verbo no lugar de nominalização | "realizar a análise", "efetuar o pagamento" | O substantivo é termo técnico do domínio |
+| Frase | Voz ativa com agente | O leitor precisa saber quem faz | O agente é irrelevante ou desconhecido |
+| Frase | Afirmativa no lugar de dupla negativa | "não é impossível", "não deixe de não" | A negativa é a informação (o que não está incluso) |
+| Palavra | Termo da persona | O texto usa jargão interno ou de ofício | O termo técnico é o que a persona procura na busca |
+| Palavra | Número concreto | "em breve", "diversos", "um valor acessível" | O número não tem fonte. Nesse caso, pendência |
+| Palavra | Corte de muleta | "basicamente", "de fato", "realmente", "no sentido de" | A palavra muda o sentido da frase |
 
 ## Template de registro
 
 ```markdown
-## Revisão de escrita
+---
+id: {{id}}
+skill: inboundfy-copy-simplificar
+estado: {{rascunho | revisao | aprovado}}
+entrada: {{caminho do original}}
+saida: {{caminho da versão revisada}}
+persona: {{persona-xx}}
+canal: {{canal}}
+alcance: {{leve | profundo}}
+fontes:
+  - {{caminho}}
+---
 
-- **Entrada:** caminho ou texto recebido
-- **Público:** persona ou público confirmado
-- **Canal:** formato da peça
-- **Objetivo:** mensagem principal preservada
-- **Alterações:** cortes, explicações ou reorganizações relevantes
-- **Conteúdo preservado:** fatos, condições, exemplos e instruções mantidos
-- **Fontes consultadas:** caminhos dos arquivos usados
-- **Pendências:** perguntas ou "nenhuma"
-- **Próxima ação:** destino ou skill seguinte
+# Simplificação: {{título}}
+
+## Frase-mensagem
+
+{{O que a persona precisa entender ou fazer, em uma frase.}}
+
+## Intocáveis
+
+- {{fato, valor, prazo, condição ou ressalva}}: {{presente na versão nova? sim}}
+
+## Medição de diagnóstico
+
+| Medida | Antes | Depois |
+| --- | --- | --- |
+| Palavras | {{n}} | {{n}} |
+| Média de palavras por frase | {{n}} | {{n}} |
+| Maior frase | {{n}} | {{n}} |
+| Índice de leiturabilidade | {{n}} | {{n}} |
+
+## Alterações relevantes
+
+| Técnica | Trecho antes | Trecho depois |
+| --- | --- | --- |
+| {{técnica}} | "{{antes}}" | "{{depois}}" |
+
+## Pendências
+
+- {{pergunta ou "nenhuma"}}
+
+## Próxima ação
+
+Enviar a versão para `inboundfy-copy-editor` e depois para {{skill}}.
 ```
 
-## Exemplo completo ilustrativo
+## Exemplo completo (ilustrativo)
 
-### Entrada
+Empresa fictícia: **Contábil Norte**, escritório de contabilidade de Belém (PA)
+que atende microempreendedores. Persona `persona-01`: dono de pequeno negócio,
+lê email no celular entre um atendimento e outro, conhece o DAS pelo nome, não
+conhece termos de escritório. Canal: email transacional. Alcance: `profundo`.
 
-Texto de um email de uma ferramenta fictícia:
+### Original
 
-> Estamos muito felizes em anunciar mais uma melhoria importante para a
-  experiência de todos. Agora, você pode ativar a confirmação de endereço em
-  Configurações > Conta. Com isso, alertas de cobrança são enviados ao email
-  cadastrado. Essa opção não altera as notificações de segurança.
+> Prezado(a) cliente, esperamos que esteja bem. Gostaríamos de informar que,
+> em virtude da substituição do sistema utilizado por este escritório para a
+> emissão do Documento de Arrecadação do Simples Nacional (DAS), faz-se
+> necessária a realização de uma atualização cadastral por parte dos
+> senhores, a fim de que não haja a ocorrência de eventuais pendências. Para
+> tanto, solicitamos o envio do número de celular com WhatsApp, do endereço de
+> email para recebimento das guias e do valor do faturamento referente ao mês
+> de novembro. Ressaltamos que o não envio das informações até o dia 20/12
+> poderá acarretar a impossibilidade de emissão da guia referente ao mês de
+> dezembro, o que poderá gerar a incidência de multa e juros. Informamos,
+> ainda, que os dados serão tratados em conformidade com a LGPD.
+> Colocamo-nos à disposição para quaisquer esclarecimentos que se fizerem
+> necessários.
 
-### Revisão
+### Frase-mensagem e intocáveis
 
-> Ative a confirmação de endereço em Configurações > Conta para receber
-  alertas de cobrança no email cadastrado. As notificações de segurança
-  continuam iguais.
+Frase-mensagem: "Mande três dados até 20/12 para receber a guia do DAS de
+dezembro."
 
-### Registro
+Intocáveis:
 
-- **Retirado:** abertura sobre o entusiasmo da empresa e avaliação vaga da
-  melhoria.
-- **Mantido:** local da configuração, efeito para os alertas de cobrança e
-  limite sobre notificações de segurança.
-- **Conferência:** a instrução continua executável e a ressalva permanece
-  explícita.
-- **Estado:** exemplo ilustrativo, sem fatos sobre produto real.
+- troca de sistema como motivo
+- os três dados (celular com WhatsApp, email, faturamento de novembro)
+- prazo 20/12
+- consequência (sem guia de dezembro, com multa e juros)
+- menção à LGPD
 
-## Checklist ampliado
+### Versão simplificada
 
-- [ ] A mensagem principal e o objetivo cabem em uma frase de trabalho.
-- [ ] O texto foi lido inteiro pelo lado do público e do canal.
-- [ ] Cada frase informa, explica, orienta, exemplifica ou mantém a voz de
-  forma relevante.
-- [ ] Cada parágrafo desenvolve uma ideia sem repetição ou lacuna de
-  raciocínio.
-- [ ] Trechos que só promovem a autoria ou o esforço foram retirados quando
-  não ajudam o público.
-- [ ] Fatos, limites, ressalvas, instruções e exemplos úteis foram
-  preservados.
-- [ ] A formulação está limpa sem ficar telegráfica ou vaga.
-- [ ] A peça tem uma qualidade forte adequada ao formato, sem exagero
-  fabricado.
-- [ ] A voz, os termos, as fontes e as regras do projeto foram respeitados.
-- [ ] A versão inteira passou por `inboundfy-copy-editor` depois dos ajustes.
+> **Assunto:** Mande 3 dados até 20/12 para receber a guia do DAS de dezembro
+>
+> Olá, Marcos. Trocamos o sistema que usamos para emitir a guia do DAS. Para
+> gerar a sua guia de dezembro, precisamos de três dados atualizados:
+>
+> - celular com WhatsApp
+> - email para receber as guias
+> - faturamento de novembro
+>
+> Responda este email ou mande os dados pelo WhatsApp (91) 98888-0000 até 20
+> de dezembro. Sem esses dados, não conseguimos emitir a guia de dezembro. O
+> DAS pago depois do vencimento tem multa e juros.
+>
+> Tratamos seus dados conforme a LGPD. Se tiver dúvida, responda este email.
 
-## Erros comuns adicionais
+### Medição de diagnóstico
 
-- **Tratar menos palavras como meta:** encurta explicações até o texto perder
-  sentido ou uso.
-- **Apagar ressalvas junto com a repetição:** remove um limite que protege a
-  leitura correta.
-- **Trocar termo preciso por palavra vaga:** simplifica o vocabulário, mas
-  aumenta o trabalho para entender.
-- **Forçar provocação ou humor:** cria um tom que não combina com a marca, o
-  público ou o assunto.
-- **Confundir esforço interno com benefício público:** mantém frases sobre
-  processo, equipe ou entusiasmo sem mostrar por que isso interessa a quem
-  recebe.
-- **Avaliar pelo tempo de produção:** conserva trechos só porque deram
-  trabalho para escrever.
+Contagem aproximada, feita por script simples de sílabas.
+
+| Medida | Antes | Depois |
+| --- | --- | --- |
+| Palavras | 141 | 85 |
+| Média de palavras por frase | 23,5 | 9 |
+| Maior frase | 49 | 16 |
+| Índice de leiturabilidade | 43 (difícil) | 78 (fácil) |
+
+### Alterações relevantes
+
+| Técnica | Trecho antes | Trecho depois |
+| --- | --- | --- |
+| Essencial primeiro | Pedido e prazo no meio e no fim | Pedido e prazo no assunto e no primeiro bloco |
+| Corte de aquecimento | "esperamos que esteja bem. Gostaríamos de informar que" | Saudação com nome |
+| Verbo no lugar de nominalização | "faz-se necessária a realização de uma atualização cadastral" | "precisamos de três dados atualizados" |
+| Lista para itens paralelos | Três dados numa frase de 35 palavras | Lista de três itens |
+| Termo da persona | "Documento de Arrecadação do Simples Nacional (DAS)" | "guia do DAS", termo que a persona usa |
+| Uma ideia por frase | Prazo, consequência e multa numa frase | Três frases curtas em sequência causal |
+
+### Pendências
+
+- O original não diz o canal de resposta. A versão acrescentou o WhatsApp do
+  escritório. Confirmar o número em `.inboundfy/context/enderecos.md` antes
+  do envio.
+- "Tratamos seus dados conforme a LGPD" continua vago. Dizer a finalidade
+  ("usamos esses dados só para emitir suas guias") deixaria a frase mais útil.
+  A versão não acrescentou porque a finalidade não estava na fonte.
+
+## Checklist
+
+- [ ] A frase-mensagem está escrita e continua verdadeira na versão nova.
+- [ ] Cada intocável foi conferido um por um.
+- [ ] O pedido, a resposta ou a ação aparecem no primeiro bloco.
+- [ ] Nenhuma frase passa de 30 palavras sem necessidade causal.
+- [ ] Nominalizações de ofício foram trocadas por verbos.
+- [ ] O agente aparece quando o leitor precisa saber quem faz.
+- [ ] Itens paralelos estão em lista. Relações de causa ficaram em prosa.
+- [ ] O vocabulário é o da persona, conferido em `publico.md`.
+- [ ] Grafias seguem `glossario.md`.
+- [ ] Nenhum dado novo entrou sem fonte. Acréscimos estão como pendência.
+- [ ] A medição foi registrada antes e depois.
+- [ ] A versão passou por `inboundfy-copy-editor`.
+
+## Erros comuns
+
+- **Tratar menos palavras como meta:** encurtar até a instrução perder o
+  passo que evitava erro.
+- **Apagar a ressalva junto com a repetição:** "exceto para planos anuais"
+  some e o cliente reclama depois.
+- **Trocar termo preciso por palavra vaga:** "nota fiscal de serviço" vira
+  "documento" e o leitor não sabe o que mandar.
+- **Simplificar o termo que a persona busca:** a persona técnica procura
+  "webhook". Trocar por "aviso automático" afasta quem conhece.
+- **Picotar tudo em frases curtas:** o texto vira escadinha e perde as
+  ligações de causa. Frase longa que liga causa e consequência pode ficar.
+- **Transformar argumento em lista:** lista serve para itens paralelos, não
+  para raciocínio.
+- **Inventar dado para ficar concreto:** "em até 2 dias úteis" sem fonte
+  troca uma vagueza por um compromisso que ninguém assumiu.
+- **Aprovar pelo índice:** texto com índice alto ainda pode estar errado,
+  frio ou fora da voz.
+- **Forçar humor ou provocação:** o tom precisa combinar com marca, persona
+  e assunto.
 
 ## Arquitetura aplicada
 
@@ -138,73 +214,17 @@ Esta referência atende à skill **inboundfy-copy-simplificar**, do grupo
 - [validação e retomada](../_shared/04-validacao-e-retomada.md);
 - [contexto editorial](../_shared/05-contexto-editorial.md).
 
-## Contrato específico
+## Guia específico do grupo
 
-- **Função:** simplificar texto existente com foco em leitura, compreensão e
-  utilidade.
-- **Entrada mínima:** texto ou caminho de origem, canal, público e objetivo.
-- **Saída mínima:** versão revisada, alterações relevantes, fontes, pendências
-  e próxima ação.
-- **Relação:** o resultado aponta para a origem e para a próxima skill.
-- **Preservação:** o bruto e as versões aprovadas permanecem disponíveis.
+O grupo **copy** trabalha sobre texto. Esta skill devolve uma versão nova e
+preserva o original. Os campos mínimos do registro são estes:
 
-## Especificação operacional
+- **objetivo:** frase-mensagem da peça;
+- **intocáveis:** lista conferida item a item;
+- **persona:** ID usado para escolher vocabulário;
+- **canal:** formato e limite de tamanho;
+- **revisão:** alterações relevantes, medição e encaminhamento para
+  `inboundfy-copy-editor`.
 
-### Quando usar
-
-Use **inboundfy-copy-simplificar** para executar esta função: Simplifica textos existentes para reduzir esforço de leitura e retirar excessos, preservando intenção, fatos, voz e formato do projeto.
-
-O grupo **copy** trabalha com estes campos mínimos:
-
-- **objetivo:** preencher com dado ligado ao pedido.
-- **mensagem:** preencher com dado ligado ao pedido.
-- **persona:** preencher com dado ligado ao pedido.
-- **canal:** preencher com dado ligado ao pedido.
-- **revisão:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-copy-simplificar
-grupo: copy
-pedido: executar a função desta skill sobre o material selecionado
-entrada: acervo/0042-2026-09-14-material/base-editorial.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-copy-simplificar
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - acervo/0042-2026-09-14-material/base-editorial.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **copy** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `CONTEXTO.md`
-- `SKILL-AUTORIA.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Em pacote de conteúdo, a versão simplificada usa o mesmo ID da peça e fica ao
+lado do original com sufixo de versão definido pela skill chamadora.

@@ -4,6 +4,34 @@ As mudanças relevantes do Inboundfy são registradas neste arquivo. A versão d
 framework, do CLI, do pacote npm, da tag Git e da GitHub Release é sempre a
 mesma.
 
+## [0.8.0](https://github.com/promovaweb/inboundfy/compare/v0.7.2...v0.8.0) (2026-11-16)
+
+### Funcionalidades
+
+* Sete skills de entrada por área, no grupo novo `area`: `inboundfy-area-conteudo`, `inboundfy-area-seo`, `inboundfy-area-copy`, `inboundfy-area-growth`, `inboundfy-area-vendas`, `inboundfy-area-dados` e `inboundfy-area-pesquisa`. Cada uma faz as perguntas de diagnóstico que faltam e encaminha o pedido para uma única skill da área.
+* Quatro skills novas: `inboundfy-growth-diretorios` (cadastro em diretórios, marketplaces e catálogos), `inboundfy-seo-links-externos` (conquista de links e menções), `inboundfy-engenharia-reversa` (estudo do marketing de um concorrente ou referência) e `inboundfy-rastreamento-conversao` (eventos, UTMs, pixels, API de conversões e consentimento).
+* `inboundfy-setup` passa a concentrar todas as configurações do projeto, com as etapas de configurações gerais, integrações e áreas de trabalho. O catálogo `skills/inboundfy-setup/references/integracoes.md` cobre 12 áreas e cerca de 50 ferramentas, com os nomes das variáveis de ambiente e um modelo de `.env.example`.
+* Novo modelo de contexto `.inboundfy/context/integracoes.md`, que registra ferramenta, estado do acesso, variáveis e escopo, sem guardar valores de segredo.
+* `.inboundfy/estrategia.md` ganha a seção Áreas de trabalho.
+* As 117 skills existentes foram reescritas com conteúdo próprio de cada tema: perguntas de diagnóstico, fluxos concretos, modelos para preencher, exemplos completos com empresas brasileiras fictícias e referências aprofundadas em `references/`.
+* O orquestrador `inboundfy` e o alias `inboundfy-iniciar` encaminham pedidos de área para as novas skills de entrada.
+
+### Documentação
+
+* Guia do usuário com oito capítulos novos: áreas de trabalho, configurações e integrações, cinco tutoriais passo a passo (do material ao post, lançamento, SEO, vendas B2B e medição) e um catálogo de exemplos de pedidos. Os capítulos entram também no ebook em PDF e EPUB.
+* Exemplos de conversa com as skills de área em `examples/areas/`.
+* `SKILLS.md`, `README.md` e `docs/method/09-arquitetura-das-skills.md` atualizados.
+
+### Correções
+
+* Os modelos `context/empresa.md`, `context/marca-voz.md` e `context/publico.md` passam a usar os rótulos que o `inboundfy doctor` confere. Antes, um projeto preenchido pelo modelo não chegava ao estado `ready`.
+* Travessões e termos vetados removidos dos modelos de contexto e dos templates.
+
+### Validação
+
+* `npm run skills:check` deixa de exigir o bloco genérico de especificação e passa a acusar qualquer sobra do esqueleto antigo. O modo `--write` só acrescenta os blocos de arquitetura ausentes e recompõe o catálogo.
+* Testes de assets com contagem dinâmica de skills, exigência de idempotência e teste novo para o setup e as integrações.
+
 ## [0.7.2] - 2026-11-14
 
 ### Corrigido

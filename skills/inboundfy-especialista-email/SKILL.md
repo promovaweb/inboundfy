@@ -1,9 +1,6 @@
 ---
 name: inboundfy-especialista-email
-description: >
-  Escreve e-mail avulso, de nutrição, convite ou follow-up a partir de um
-  brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de
-  context/marca-voz.md. Não decide sequência de nutrição; isso vem do brief.
+description: Escreve e-mails com assunto, pré-header, corpo, assinatura e CTA a partir de um brief aprovado. Use quando o pedido trouxer e-mail avulso, nutrição, convite, follow-up ou oferta para uma lista.
 ---
 
 # Inboundfy Email Redator
@@ -24,12 +21,9 @@ Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md` no in
 ausência de qualquer um, informe: "O setup do Inboundfy ainda não foi concluído
 ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
 arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
-preflight, leia o catalogo e os Markdown relevantes para a tarefa.
+preflight, leia o catálogo e os Markdown relevantes para a tarefa.
 
 ## Arquitetura de execução
-
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
@@ -37,13 +31,10 @@ específica desta pasta.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
 
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **especialista**.
-
 ## Contexto exigido
 
 - `context/marca-voz.md`: tom e assinatura padrão de e-mail.
-- `context/publico.md`: persona e etapa da jornada a que o e-mail se dirige.
+- `context/publico.md`: persona e etapa de relacionamento a que o e-mail se dirige.
 - `context/proibicoes.md`: vetos que reprovam o parágrafo.
 - `context/estruturas-proibidas.md`: catálogo genérico de padrões de texto com cara de IA, aplicado junto com `context/proibicoes.md`.
 - `context/produtos.md`, `context/servicos.md` e/ou `context/ofertas.md`:
@@ -56,65 +47,34 @@ pare e acione a skill de manutenção correspondente.
   que o brief declarar uma estrutura persuasiva, é aqui que a skill confere
   o que cada bloco da estrutura precisa conter antes de escrever.
 
-## Estrutura persuasiva por tipo de e-mail
-
-`inboundfy-planejamento` já decide e registra a estrutura no brief; esta seção
-orienta como aplicá-la especificamente em e-mail:
-
-- **E-mail avulso ou convite com uma única oferta clara** (ex.: convite para
-  um evento, anúncio de uma condição por tempo limitado): use **AIDA**. O
-  assunto e a primeira linha do corpo já carregam a Atenção; o corpo curto
-desenvolve o Interesse com um fato concreto; o parágrafo seguinte cria o
-  Desejo conectando o fato ao ganho real da persona; o fechamento é a Ação;   um único CTA, nunca dois pedidos concorrentes no mesmo e-mail.
-- **E-mail de nutrição** destinado à persona no início da jornada
-  (`context/publico.md`): use **PAS**. Abra nomeando o problema real que essa
-  etapa da jornada enfrenta, agite a consequência concreta de não resolver
-  agora (sem inflar além do que é verificável) e feche apresentando a
-  solução; que pode ser um conteúdo, não necessariamente uma oferta paga.
-- **E-mail de lançamento ou sequência de venda direta**, quando o brief
-  indicar objetivo de conversão com oferta detalhada em `context/ofertas.md`:
-  use **PASTOR**. Nesse formato mais longo, a Amplificação e o Testemunho
-  ganham espaço próprio; se não houver depoimento real disponível em
-  `context/`, pule o bloco de testemunho em vez de inventar um, e sinalize a
-  ausência ao usuário.
-- Sempre que o e-mail apresentar uma funcionalidade de produto ou serviço,
-  aplique **FAB** dentro do parágrafo correspondente: característica (o que
-  o produto tem, de `context/produtos.md`), vantagem (o que muda no uso) e
-  benefício (o ganho real para a persona); nunca pare no primeiro passo.
-
 ## Entrada esperada
 
-Um brief com: objetivo do e-mail, etapa da jornada, público-alvo, ângulo,
+Um brief com: objetivo do e-mail, etapa de relacionamento, público-alvo, ângulo,
 ativos de apoio e CTA esperado.
 
 ## Fluxo
 
-1. Leia o brief, `ESCRITA.md` e a estrutura persuasiva registrada no brief
+1. Leia o brief e consulte [REFERENCIA.md](REFERENCIA.md): aplique o diagnóstico, o método, o template e os itens 1 a 11 do checklist de `email`. Leia [o exemplo completo](references/exemplo-completo.md) na montagem da peça. Preserve os parâmetros já aprovados no brief.
+2. Leia `ESCRITA.md` e [a aplicação da estrutura](references/estruturas-persuasivas.md) registrada no brief
    (se houver); se o brief não declarar estrutura e o e-mail tiver objetivo
    comercial, volte para `inboundfy-planejamento` antes de escrever.
-2. Escreva o assunto e o pré-header primeiro, curtos e específicos, sem
-   clickbait vazio; no AIDA, o assunto já é o bloco de Atenção. Use as
-   fórmulas de assunto de `REFERENCIA.md`.
-3. Escreva o corpo seguindo os blocos da estrutura escolhida (seção acima),
+3. Escreva o assunto e o pré-header primeiro, curtos e específicos, sem
+   clickbait vazio; no AIDA, o assunto já é o bloco de Atenção. Siga o método de produção de [REFERENCIA.md](REFERENCIA.md).
+4. Escreva o corpo seguindo os blocos da estrutura escolhida conforme a referência por formato,
    em prosa direta, sem fragmentação artificial em blocos curtos só por
    convenção de e-mail marketing; aplique `ESCRITA.md` dentro de cada
    bloco, ajustando densidade ao canal, não abandonando o padrão de
    qualidade.
-4. Insira menção a produto, serviço ou oferta apenas com base no `context/`
+5. Insira menção a produto, serviço ou oferta apenas com base no `context/`
    correspondente, nunca por suposição, aplicando FAB quando for o caso.
-5. Feche com um único CTA claro, usando a assinatura padrão de
+6. Feche com um único CTA claro, usando a assinatura padrão de
    `context/marca-voz.md` quando existir.
-6. Rode `inboundfy-copy-editor`, trate os achados verificáveis e repita a leitura integral.
-7. Salve o e-mail com frontmatter incluindo, no mínimo, `assunto`,
+7. Rode `inboundfy-copy-editor`, trate os achados e registre a auditoria A5 de `inboundfy-anti-slop`. Repita a leitura integral.
+8. Salve o e-mail com frontmatter incluindo, no mínimo, `assunto`,
    `pre-header`, `estrutura` (aida/pas/pastor/nenhuma) e `brief` quando fizer
    parte de um pacote, seguindo o template de `REFERENCIA.md`.
-8. Encaminhe para `inboundfy-planejamento`.
-
-## Encaminhamento obrigatório
-
-Antes de considerar o email pronto, acione `inboundfy-validador-email`. Em
-caso de reprovação, aplique as correções do relatório e reenvie o arquivo
-inteiro até a aprovação.
+9. Envie a candidata inteira, brief, fontes e registros editoriais a `inboundfy-validador-email`. Corrija os achados pela especialista e repita a auditoria inteira até a aprovação.
+10. Após a aprovação, entregue arquivo e relatório a `inboundfy-planejamento`.
 
 ## Saída
 
@@ -135,15 +95,7 @@ Arquivo Markdown com frontmatter, salvo no caminho definido em
 
 ## Responsabilidade do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** especialista
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+O grupo `especialista` entrega assunto, pré-header, corpo, assinatura, rodapé e ação principal. A responsabilidade desta skill é conferir personalização e apresentação de envio sem disparar mensagens. Registre ID, objetivo recebido, persona, arquivos de origem e pendências no handoff para `inboundfy-validador-email`. Corrija os achados da rodada sem alterar o brief aprovado. Entregue ao planejamento somente após aprovação da candidata inteira.
 
 ## Idempotência
 

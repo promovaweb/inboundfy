@@ -1,16 +1,13 @@
 ---
 name: inboundfy-growth-email-frio
-description: Escreve sequências de prospecção por e-mail com personalização real, hipótese de valor, consentimento e saída simples.
+description: Escreve sequências B2B de prospecção com personalização verificável, cadência e tratamento das respostas. Use quando o pedido falar em email frio, cold email, primeira abordagem comercial ou acompanhamento de contatos prospectados.
 ---
 
 # E-mail de prospecção
 
-Use esta skill como capacidade especializada do Inboundfy. Ela organiza a tarefa e devolve material pronto para a orquestradora, sem substituir o setup, a voz, a persona ou a validação do canal.
+Escreva sequências B2B curtas com pertinência verificável, remetente identificável e tratamento das respostas. A pesquisa e a qualificação da lista pertencem a `inboundfy-growth-prospeccao`.
 
 ## Arquitetura de execução
-
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
@@ -18,10 +15,12 @@ específica desta pasta.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
 
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **growth**.
-
 ## Contexto exigido
+
+Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md`. Se faltar uma sentinela, encerre a escrita e apresente:
+
+> O setup do Inboundfy ainda não foi concluído ou precisa de reparo neste
+> projeto. Execute `inboundfy-setup` para preparar os arquivos de apoio.
 
 Se a configuração estiver incompleta, acione `inboundfy-setup`. Consulte [REFERENCIA.md](REFERENCIA.md), `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`, `.inboundfy/context/marca-voz.md`, `.inboundfy/context/publico.md`, `.inboundfy/context/proibicoes.md`, `.inboundfy/context/glossario.md`, `.inboundfy/pipeline.md`, o acervo relacionado e `.inboundfy/framework/`.
 
@@ -29,40 +28,36 @@ Leia também `.inboundfy/fontes-projeto.md`, as bases editoriais relacionadas e 
 
 ## Entrada esperada
 
-Receba um objetivo, um ou mais IDs de acervo, a persona, o canal, a oferta ou o fluxo que precisa ser planejado. Separe fatos confirmados, hipótese de trabalho e pergunta aberta.
+Receba lista qualificada com origem e data, persona e função, sinal específico, oferta com fonte, objetivo da conversa, remetente, capacidade diária e condições de envio registradas. Receba também exclusões, recusas anteriores, domínio de envio, histórico de entregabilidade e SLA de resposta. Lista sem procedência volta para `inboundfy-growth-prospeccao`.
 
 ## Fluxo
 
-1. Leia [REFERENCIA.md](REFERENCIA.md) e confirme a intenção, o público, o canal e o resultado solicitado.
-2. Consulte voz, persona, proibições e dicionário antes de propor mensagem, segmento, preço, promessa ou CTA.
-3. Relacione cada afirmação ao acervo, à base editorial, à página canônica ou à pesquisa salva no item.
-4. Desenvolva uma sequência curta de prospecção com assunto, corpo, follow-ups e regras de envio.
-5. Revise o material com `inboundfy-anti-slop`, `inboundfy-copy-edicao` e a validação específica do canal quando houver copy pública.
-6. Registre caminho, ID, fontes, alcance da regra e pendências; peça confirmação antes de alterar uma configuração global.
+1. Identifique a campanha, a lista qualificada e o objetivo da conversa. Separe redação da sequência de operação dos envios.
+2. Leia [REFERENCIA.md](REFERENCIA.md). Confira pertinência da lista, fonte, data, finalidade, base de tratamento registrada e lista de supressão. Consulte integrações disponíveis em `.inboundfy/context/integracoes.md` quando existir; nunca reproduza segredos no artefato.
+3. Leia [entrega e cadencia](references/entrega-e-cadencia.md) para preparar remetente, autenticação, validação de contatos, piloto, intervalos e parada. O plano não autoriza disparos.
+4. Redija abertura ligada a um sinal verificável, hipótese de problema, valor comprovável e um pedido pequeno. Prepare contatos posteriores com informação nova e encerramento claro.
+5. Leia [respostas e metricas](references/respostas-e-metricas.md) para classificar respostas, suspender a cadência e definir responsável, horários e encaminhamento ao CRM.
+6. Aplique `ESCRITA.md`, `inboundfy-copy-editor`, `inboundfy-copy-edicao` e `inboundfy-anti-slop`. Confira assunto, identidade, saída simples e fontes de toda promessa.
+7. Entregue sequência, regras de envio e tratamento das respostas com ID e estado. Encaminhe a operação de receita para `inboundfy-growth-revops` e material comercial para `inboundfy-enablement-vendas`.
 
 ## Saída
 
-Uma sequência curta de prospecção com assunto, corpo, follow-ups e regras de envio. O material deve manter IDs, links relativos, fontes, persona, canal, estado e próxima ação.
+Sequência de prospecção ligada ao ID de campanha no caminho já adotado pelo projeto consumidor, com assuntos, corpos, intervalos, sinal e fonte, segmentos, exclusões, limites de envio, regra de parada, responsável pelas respostas e tabela de métricas por coorte. Use o envelope compartilhado; não grave contatos pessoais no framework. Texto final em pacote preserva `brief` e revisão correspondente.
 
 ## Validação
 
-- A finalidade e o público estão explícitos.
-- Toda afirmação comercial possui fonte local ou marcação de confirmação.
-- Voz, persona, proibições e dicionário foram aplicados.
-- O formato respeita o canal, o pipeline e o template correspondente.
-- Pendências ficaram registradas sem preenchimento inventado.
+- A personalização explica a pertinência da oferta e tem fonte com data.
+- A lista não contém endereços inválidos, recusas ou contatos sem procedência.
+- SPF, DKIM, DMARC e resposta do remetente têm conferência ou pendência explícita.
+- O assunto corresponde ao corpo sem simular conversa anterior.
+- Cada mensagem contém identidade, um pedido e saída simples.
+- Resposta, recusa e falha permanente encerram ou suspendem a sequência conforme o tipo.
+- As taxas distinguem entrega, resposta humana, resposta positiva e reunião realizada.
+- Qualquer promessa sem fonte retorna à redação; envio depende do alcance autorizado.
 
 ## Responsabilidade do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** growth
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+Grupo **growth**. Registre entrada, transformação executada, arquivo de saída, estado, próxima skill e pendências no pacote de handoff.
 
 ## Idempotência
 

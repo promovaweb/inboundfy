@@ -7,23 +7,23 @@ padrão de qualidade humana que vale independentemente da voz escolhida aqui.
 
 ## Tom
 
-- **Em três adjetivos:** {ex.: direto, técnico, confiante}
-- **Idioma padrão de produção:** {idioma}
-- **Pessoa gramatical preferida:** {primeira pessoa, terceira pessoa, mista por canal}
+- **Três a cinco adjetivos:** {ex.: direto, técnico, confiante}
+- **Idioma e variante:** {ex.: português do Brasil}
+- **Pessoa verbal:** {primeira pessoa, terceira pessoa, mista por canal}
 - **Nível técnico do vocabulário:** {iniciante, intermediário, especialista}
-- **Humor é permitido?** {sim/não, e em que canal}
+- **Humor é permitido?** {sim/não, e por canal}
 
 ## Vocabulário preferido
 
 <!-- Palavras e expressões que a marca usa de propósito. -->
 
-- {termo} — usar em vez de {alternativa evitada}
+- {termo}: usar em vez de {alternativa evitada}
 
 ## Vocabulário evitado
 
 <!-- Diferente de proibicoes.md: aqui é preferência de estilo, não veto duro. -->
 
-- {termo evitado} — motivo
+- {termo evitado}: motivo
 
 ## Exemplos de bom texto
 
@@ -36,7 +36,7 @@ voz. Toda skill de redação deve ler isso antes de escrever. -->
 
 <!-- Trechos reais ou fabricados que representam o oposto da voz desejada. -->
 
-> {trecho a evitar} — motivo: {motivo}
+> {trecho a evitar}: motivo: {motivo}
 
 ## Assinatura e fechamento padrão
 

@@ -1,239 +1,190 @@
 # REFERENCIA.md; inboundfy-contexto-depoimentos
 
+Material de apoio para manter `context/depoimentos.json`. Consentimento,
+coleta e uso em peças estão detalhados em `references/`. Este arquivo traz o
+formato do registro, os estados de consentimento, o modelo de relato, um
+exemplo completo e as armadilhas.
+
+## Arquitetura aplicada
+
+Leia os contratos compartilhados conforme a etapa:
+
+- [preflight e fontes](../_shared/01-preflight-e-fontes.md), antes do passo 1;
+- [artefato e relações](../_shared/02-contrato-de-artefato.md), ao gravar o
+  registro;
+- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md), ao pedir
+  consentimento e no relato;
+- [validação e retomada](../_shared/04-validacao-e-retomada.md), no passo 9;
+- [contexto editorial](../_shared/05-contexto-editorial.md), para conferir
+  afirmações sensíveis da fala.
+
+Referências internas, lidas no passo 2 do fluxo:
+
+| Arquivo | Leia quando |
+| --- | --- |
+| [references/consentimento-e-lgpd.md](references/consentimento-e-lgpd.md) | registrar, ampliar ou revogar consentimento; foto; dado de terceiro na fala |
+| [references/coleta-e-uso.md](references/coleta-e-uso.md) | transcrição de áudio ou vídeo, avaliação pública, orientação de coleta, regras para a peça que cita |
+
 ## Template
+
+O arquivo é um objeto com a lista `depoimentos`. Cada item tem estes campos,
+nesta ordem. Campos sem valor recebem `""`. Nenhum campo é removido.
 
 ```json
 {
-  "id": "depo-0001",
-  "nome": "{{nome completo}}",
-  "cargo": "{{cargo ou \"\"}}",
-  "empresa": "{{empresa}}",
-  "depoimento": "{{citação literal}}",
-  "foto": "{{caminho ou URL ou \"\"}}",
-  "fonte": "{{entrevista, review, e-mail, formulário}}",
-  "data": "{{AAAA-MM-DD}}",
-  "consentimento": "{{autorizado|pendente|revogado}}",
-  "canaisAutorizados": ["{{website|linkedin|email|instagram|...}}"],
-  "produtoMencionado": "{{nome do produto, serviço ou plano, ou \"\"}}",
-  "resultadoMencionado": "{{número ou resultado citado, ou \"\"}}"
+  "depoimentos": [
+    {
+      "id": "depo-0001",
+      "nome": "{{nome completo}}",
+      "cargo": "{{cargo ou \"\"}}",
+      "empresa": "{{empresa}}",
+      "depoimento": "{{citação literal}}",
+      "foto": "{{caminho ou URL ou \"\"}}",
+      "fonte": "{{entrevista, avaliação pública, e-mail, WhatsApp, formulário, com detalhe}}",
+      "data": "{{AAAA-MM-DD}}",
+      "consentimento": "{{autorizado|pendente|revogado}}",
+      "canaisAutorizados": ["{{website|linkedin|email|instagram|youtube|anuncios|vendas|...}}"],
+      "produtoMencionado": "{{nome oficial do produto, serviço ou plano, ou \"\"}}",
+      "resultadoMencionado": "{{número ou resultado citado, ou \"\"}}"
+    }
+  ]
 }
+```
+
+| Campo | Regra |
+| --- | --- |
+| `id` | `depo-` mais quatro dígitos; maior existente mais um; nunca reaproveitado |
+| `nome` | como a pessoa autorizou aparecer; iniciais só se ela pediu |
+| `depoimento` | literal; trecho omitido marcado com `[...]` |
+| `fonte` | canal e referência que permite achar o original |
+| `data` | data da fala, não da gravação no arquivo |
+| `consentimento` | só três valores |
+| `canaisAutorizados` | vazio quando pendente ou revogado |
+| `resultadoMencionado` | número como a pessoa disse, sem arredondar |
+
+## Estados de consentimento
+
+| Estado | Pode aparecer em peça pública? | `canaisAutorizados` |
+| --- | --- | --- |
+| `autorizado` | sim, só nos canais listados | lista com pelo menos um canal |
+| `pendente` | não | `[]` |
+| `revogado` | não; peças existentes precisam retirar | `[]` |
+
+## Template de relato da alteração
+
+```markdown
+---
+skill: inboundfy-contexto-depoimentos
+arquivo: .inboundfy/context/depoimentos.json
+registro: {depo-NNNN}
+acao: {criado | atualizado | consentimento ampliado | consentimento revogado}
+---
+
+# Atualização de depoimentos
+
+## Registro
+
+- Pessoa e empresa: {nome, empresa}
+- Consentimento: {estado} para {canais}
+- Fonte: {fonte e data}
+
+## Checagens pendentes
+
+- {resultado numérico a confirmar, foto sem autorização, ou "nenhuma"}
+
+## Peças afetadas
+
+- {peças que usam o depoimento, na revogação; ou "não se aplica"}
+
+## Próxima ação
+
+{skill seguinte}
 ```
 
 ## Exemplo
 
-Entrada fictícia ("Estoquely"): Marina Alves, cofundadora, manda um e-mail
-agradecendo o suporte e cita que reduziu quase a metade do tempo de inventário
-desde que adotou o Plano Pro. A skill confirma que o e-mail autoriza uso em
-site e LinkedIn, grava a citação literal e aponta a foto enviada em anexo.
+Empresa ilustrativa: Estoquely, aplicativo de estoque para lojas pequenas.
+Pessoas e empresas fictícias.
+
+**Entrada.** O suporte encaminha um áudio de WhatsApp de Joana Prado, dona da
+loja Ateliê Joana, transcrito pelo próprio WhatsApp:
+
+> "oi gente, só passando pra agradecer, desde que comecei a usar o alerta eu
+> não perdi mais venda por falta de peça, antes era umas três por semana,
+> vocês salvaram meu dia das mães"
+
+**Passo 1.** Não há registro de Joana no arquivo. O maior `id` existente é
+`depo-0006`.
+
+**Passo 3, transcrição.** A transcrição automática pode ter erro. A skill
+pede ao suporte que confira com o áudio. O suporte confirma o texto. A skill
+mantém a fala e só acerta pontuação e maiúsculas, como a referência de coleta
+permite.
+
+**Passo 4, consentimento.** O áudio é um agradecimento, não uma autorização.
+A skill grava como pendente e sugere a mensagem de pedido de autorização de
+`references/consentimento-e-lgpd.md`. Dois dias depois, Joana responde por
+WhatsApp autorizando site e Instagram, com nome, loja e foto do perfil da
+loja.
+
+**Passo 6, checagem.** "Umas três por semana" é número aproximado dito pela
+cliente. Ele é registrado como ela disse, sem virar "100% menos vendas
+perdidas".
+
+**Registro final.**
 
 ```json
 {
   "id": "depo-0007",
-  "nome": "Marina Alves",
-  "cargo": "Cofundadora",
-  "empresa": "Estoquely",
-  "depoimento": "Desde que migramos para o Plano Pro, o tempo que a gente gastava contando estoque caiu quase pela metade.",
-  "foto": "assets/depoimentos/estoquely-marina-alves.jpg",
-  "fonte": "e-mail de agradecimento, 2026-10-10",
-  "data": "2026-10-10",
+  "nome": "Joana Prado",
+  "cargo": "Proprietária",
+  "empresa": "Ateliê Joana",
+  "depoimento": "Desde que comecei a usar o alerta, eu não perdi mais venda por falta de peça. Antes era umas três por semana. Vocês salvaram meu Dia das Mães.",
+  "foto": "assets/depoimentos/atelie-joana.jpg",
+  "fonte": "áudio de WhatsApp ao suporte, transcrição conferida pelo suporte; autorização por WhatsApp em 2026-05-14",
+  "data": "2026-05-12",
   "consentimento": "autorizado",
-  "canaisAutorizados": ["website", "linkedin"],
-  "produtoMencionado": "Plano Pro",
-  "resultadoMencionado": "reduziu quase pela metade o tempo de contagem de estoque"
+  "canaisAutorizados": ["website", "instagram"],
+  "produtoMencionado": "Alerta de Reposição",
+  "resultadoMencionado": "deixou de perder cerca de três vendas por semana por falta de peça"
 }
 ```
 
+**Relato.** Nenhuma checagem pendente. Próxima ação: o depoimento fica
+disponível para a landing do plano Essencial (`inboundfy-growth-cro`) e para
+o Instagram (`inboundfy-especialista-instagram`). E-mail e anúncios não estão
+autorizados.
+
 ## Checklist
 
-- [ ] O texto do `depoimento` é citação literal, sem paráfrase ou ajuste de
-      tom.
-- [ ] `consentimento` e `canaisAutorizados` estão preenchidos ou marcados
-      como pendentes.
-- [ ] Nome e empresa identificam a pessoa sem ambiguidade com outro registro.
-- [ ] `fonte` e `data` permitem rastrear a origem do depoimento.
-- [ ] `id` é único e segue a sequência existente no arquivo.
-- [ ] Nenhum depoimento existente foi removido, reescrito ou teve o
-      consentimento alterado sem pedido explícito do usuário.
+- [ ] O arquivo continua com a chave `depoimentos` e JSON válido.
+- [ ] Texto literal, com `[...]` em trecho omitido.
+- [ ] Transcrição de áudio ou vídeo conferida com o original.
+- [ ] Consentimento com um dos três estados.
+- [ ] Canais autorizados coerentes com o estado.
+- [ ] Nome, empresa, fonte e data presentes.
+- [ ] Autorização de foto confirmada quando há foto.
+- [ ] `id` novo e sequencial.
+- [ ] Nenhum registro removido ou reescrito sem pedido.
+- [ ] Na revogação, peças afetadas listadas.
 
 ## Erros comuns
 
-- Reescrever a fala do cliente para parecer mais "redonda"; isso destrói a
-  prova social, que vale exatamente pela voz real do cliente.
-- Gravar um depoimento com `consentimento: "autorizado"` sem confirmação
-  explícita de quem pode autorizar uso público.
-- Perder o vínculo entre o depoimento e o produto, plano ou resultado citado,
-  quando esse dado existe na fala do cliente.
-- Duplicar o mesmo depoimento com um novo `id` em vez de atualizar o
-  registro existente.
-- Publicar um depoimento com `canaisAutorizados` vazio ou `consentimento:
-  "pendente"` numa peça pública.
-
-## Arquitetura aplicada
-
-Esta referência usa o contrato comum para a skill **inboundfy-contexto-depoimentos**, do grupo
-**contexto**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de contexto depoimentos dentro do fluxo do Inboundfy.
-- **Entrada mínima:** resposta do usuário ou arquivo canônico do domínio.
-- **Saída mínima:** arquivo de contexto atualizado e registro da alteração.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
+- Reescrever a fala para ficar "mais redonda". A prova vale pela voz real.
+- Tratar agradecimento como autorização de uso público.
+- Usar avaliação pública do Google em anúncio sem pedir autorização. Estar
+  público não autoriza qualquer uso.
+- Arredondar ou inflar o número dito pelo cliente.
+- Apagar o registro na revogação. O histórico mostra quando a autorização
+  deixou de valer.
+- Criar novo `id` para o mesmo depoimento com foto nova.
 
 ## Guia específico do grupo
 
-Mantenha somente o domínio indicado no arquivo canônico. Grave fatos confirmados, preserve seções e pergunte antes de expandir o alcance.
+Mantenha somente o domínio indicado no arquivo canônico. Grave fatos
+confirmados, preserve registros e pergunte antes de ampliar canais. A escolha
+de qual trecho usar numa peça é da skill do canal, dentro do texto literal
+registrado aqui.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Template de operação
-
-```markdown
----
-id: {{id}}
-skill: inboundfy-contexto-depoimentos
-estado: rascunho
-entrada: {{caminho ou ID}}
-fontes:
-  - {{caminho}}
-proxima_skill: {{nome ou "pendente de confirmação"}}
----
-
-# Registro de contexto depoimentos
-
-## Resultado
-
-{{Conteúdo específico da etapa.}}
-
-## Pendências
-
-- {{pergunta ou "nenhuma"}}
-
-## Próxima ação
-
-{{verbo + objeto + caminho do arquivo seguinte}}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-contexto-depoimentos
-grupo: contexto
-entrada: {{caminho ou ID ligado ao pedido}}
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-contexto-depoimentos
-estado: aprovado
-entrada: {{caminho ou ID ligado ao pedido}}
-fontes:
-  - .inboundfy/context/depoimentos.json
-proxima_skill: {{skill seguinte ou "pendente de confirmação"}}
----
-
-# Registro de contexto depoimentos
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{{verbo + objeto + caminho do arquivo seguinte}}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-contexto-depoimentos** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-contexto-depoimentos** para executar esta função: Registra depoimentos de clientes em context/depoimentos.json, com nome, cargo, empresa, texto literal, foto e consentimento de uso. Use para guardar prova social de forma rastreável antes de qualquer peça citá-la.
-
-O grupo **contexto** trabalha com estes campos mínimos:
-
-- **arquivo canônico:** preencher com dado ligado ao pedido.
-- **fatos:** preencher com dado ligado ao pedido.
-- **preferências:** preencher com dado ligado ao pedido.
-- **fonte:** preencher com dado ligado ao pedido.
-- **alteração:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-contexto-depoimentos
-grupo: contexto
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/context/depoimentos.json
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-contexto-depoimentos
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/context/depoimentos.json
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **contexto** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `CONTEXTO.md`
-- `docs/method/02-contexto-fontes-e-precedencia.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Leituras de apoio do framework: `CONTEXTO.md` (exceção de formato JSON) e
+`docs/method/02-contexto-fontes-e-precedencia.md`.

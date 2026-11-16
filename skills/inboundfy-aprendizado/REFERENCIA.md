@@ -1,5 +1,27 @@
 # Referência de aprendizado
 
+O registro vive em `.inboundfy/context/aprendizado.md`, abaixo do heading
+`## Registros`. Cada orientação ganha um bloco com ID `AP-0000`, estado, tipo,
+alcance, mensagem literal e interpretação.
+
+## Arquitetura aplicada
+
+Esta referência usa o contrato comum para a skill **inboundfy-aprendizado**, do grupo
+**contexto**. Leia os detalhes compartilhados conforme a etapa atual:
+
+- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
+- [artefato e relações](../_shared/02-contrato-de-artefato.md);
+- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
+- [validação e retomada](../_shared/04-validacao-e-retomada.md);
+- [contexto editorial](../_shared/05-contexto-editorial.md).
+
+## Material de apoio por passo
+
+| Passo do fluxo | Arquivo | Uso |
+| --- | --- | --- |
+| 2 a 5 | [references/classificacao-e-alcance.md](references/classificacao-e-alcance.md) | Tipos, literal versus interpretação, alcances, pergunta de alcance e destino canônico. |
+| 6 a 10 | [references/aplicacao-e-conflitos.md](references/aplicacao-e-conflitos.md) | Estados do registro, filtro de leitura futura, substituição e efeito em peças existentes. |
+
 ## Template
 
 ```md
@@ -20,13 +42,84 @@
 - **Validação seguinte:** conferir na próxima revisão da peça
 ```
 
+O título curto descreve a regra, não a conversa: "tutor em vez de dono", e
+não "ajuste pedido pela Marina". Ao gravar o primeiro registro, troque a frase
+`Nenhum aprendizado registrado ainda.` pelo bloco; nos seguintes, acrescente
+no fim da seção, em ordem de ID.
+
 ## Exemplo
 
 O usuário informa: “não use a palavra automação neste post; prefiro falar em
 fluxo”. A skill registra a orientação como `correção`, alcance `peça`, preserva
-o texto recebido, altera o post atual e deixa o dicionário sem mudança. Se o
+o texto recebido, altera o post atual e deixa o glossário sem mudança. Se o
 usuário confirmar que a preferência vale para todo o projeto, a skill cria um
-registro com alcance `projeto` e atualiza o dicionário.
+registro com alcance `projeto` e atualiza o glossário.
+
+### Exemplo completo
+
+Exemplo fictício. A Trigal & Cia, padaria artesanal de Belo Horizonte, recebe
+encomendas pelo WhatsApp e cobra por Pix. Durante a revisão do post de blog
+`0005` ("Pão de fermentação natural: como conservar em casa"), a sócia Marina
+manda três mensagens.
+
+**Mensagem 1:** "Aqui não é 'delivery', a gente fala 'entrega'. Sempre."
+
+- Tipo `correção`; "sempre" informa alcance `projeto`. Não há pergunta.
+- É vocabulário preferido: atualiza `.inboundfy/context/marca-voz.md`, seção
+  de vocabulário, citando AP-0003.
+
+```md
+### AP-0003 | "entrega" em vez de "delivery"
+
+- **Estado:** aplicada
+- **Data:** 2026-11-15
+- **Tipo:** correção
+- **Alcance:** projeto
+- **Canal:** não se aplica
+- **Persona:** não se aplica
+- **Arquivo relacionado:** canais/blog/0005-2026-11-12-pao-de-fermentacao-natural-como-conservar/README.md
+- **Orientação recebida:** "Aqui não é 'delivery', a gente fala 'entrega'. Sempre."
+- **Interpretação:** usar "entrega" para o envio de pedidos; não usar "delivery" em nenhum canal.
+- **Aplicação:** duas ocorrências trocadas no post 0005.
+- **Arquivo canônico atualizado:** .inboundfy/context/marca-voz.md
+- **Fonte:** conversa de 2026-11-15 com a sócia
+- **Validação seguinte:** validadoras conferem "delivery" no passe literal.
+```
+
+**Mensagem 2:** "Talvez fique melhor terminar com a receita da torrada."
+
+- Tipo `sugestão`. Fica `proposta`. A skill pergunta:
+
+```markdown
+Registrei sua sugestão como AP-0004: "Talvez fique melhor terminar com a receita da torrada."
+Até onde ela vale?
+
+1. Só neste post (canais/blog/0005-.../README.md).
+2. Em todos os posts do blog que falem de pão.
+3. Em todo o projeto.
+
+Ou descreva outro alcance.
+```
+
+- Resposta: "Só nesse." O registro passa a `confirmada`, alcance `peça`. A
+  especialista do blog troca o fechamento. `marca-voz.md` não muda.
+
+**Mensagem 3:** "No Instagram a gente nunca mostra preço, só manda chamar no
+WhatsApp."
+
+- Tipo `alinhamento`, alcance `canal` (Instagram), explícito.
+- É preferência de canal, não grafia nem veto de negócio geral: fica só no
+  aprendizado. A produção do Instagram passa a listar AP-0005 nas escolhas.
+
+**Depois das mensagens:** a peça 0005 estava em `revisao`. A skill avisa a
+`inboundfy-validador-blog` que a rodada recomeça, roda `inboundfy-anti-slop`
+no marco A5 e entrega o relatório: AP-0003 aplicada (com arquivo canônico),
+AP-0004 confirmada para a peça, AP-0005 confirmada para o canal.
+
+**Três semanas depois:** Marina diz "pode usar 'delivery' nos anúncios do
+iFood". A skill cria AP-0009 com alcance `canal` (anúncios), escreve
+`Exceção de canal a AP-0003` na interpretação e mantém AP-0003 ativa, porque a
+regra geral continua valendo fora dos anúncios.
 
 ## Checklist
 
@@ -37,14 +130,23 @@ registro com alcance `projeto` e atualiza o dicionário.
 - [ ] O arquivo normativo só mudou após alcance confirmado.
 - [ ] A próxima execução consultará o registro aplicável.
 - [ ] Anti-slop e a validadora foram executados depois da alteração.
+- [ ] Registro substituído foi arquivado com remissão ao novo ID.
+- [ ] Peça aprovada afetada voltou para `revisao` pelo pipeline.
 
 ## Erros comuns
 
 - Transformar uma sugestão pontual em regra do projeto sem perguntar o alcance.
 - Apagar a orientação original depois de resumir sua aplicação.
-- Atualizar voz, dicionário ou proibições sem apontar o registro de aprendizado.
+- Atualizar voz, glossário ou proibições sem apontar o registro de aprendizado.
 - Reaplicar uma regra arquivada sem confirmação nova.
 - Confundir uma preferência de formato com uma regra de grafia.
+- **Gravar preço ou dado de produto como aprendizado.** O fato fica escondido
+  num arquivo que as skills de oferta não leem. Encaminhe a
+  `inboundfy-contexto-oferta`.
+- **Criar ID novo para a mesma orientação repetida.** Procure antes; a
+  repetição pode só confirmar um registro `proposta`.
+- **Reescrever peças publicadas por causa de regra nova.** A regra vale para
+  trabalho novo; o retroativo depende de pedido.
 
 ## Registro de alcance
 
@@ -59,178 +161,19 @@ registro com alcance `projeto` e atualiza o dicionário.
 
 Após registrar uma orientação confirmada, encaminhe:
 
-1. grafia para `inboundfy-voz` ou `dicionario.md`;
-2. característica de escrita para `inboundfy-voz`;
-3. veto de termo, promessa ou estrutura para `proibicoes.md`;
+1. grafia para `inboundfy-contexto-institucional` e `glossario.md`;
+2. característica de escrita para `inboundfy-voz` e `marca-voz.md`;
+3. veto de termo, promessa ou estrutura para `inboundfy-contexto-marca` e
+   `proibicoes.md`;
 4. preferência de peça para a produtora e a validadora do canal;
 5. mudança ampla para `inboundfy-acervo` e o próximo ciclo anti-slop.
-
-## Arquitetura aplicada
-
-Esta referência usa o contrato comum para a skill **inboundfy-aprendizado**, do grupo
-**contexto**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de aprendizado dentro do fluxo do Inboundfy.
-- **Entrada mínima:** resposta do usuário ou arquivo canônico do domínio.
-- **Saída mínima:** arquivo de contexto atualizado e registro da alteração.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
 
 ## Guia específico do grupo
 
 Mantenha somente o domínio indicado no arquivo canônico. Grave fatos confirmados, preserve seções e pergunte antes de expandir o alcance.
 
 Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Template de operação
-
-```markdown
----
-id: {{id}}
-skill: inboundfy-aprendizado
-estado: rascunho
-entrada: {{caminho ou ID}}
-fontes:
-  - {{caminho}}
-proxima_skill: {{nome ou "pendente de confirmação"}}
----
-
-# Registro de aprendizado
-
-## Resultado
-
-{{Conteúdo específico da etapa.}}
-
-## Pendências
-
-- {{pergunta ou "nenhuma"}}
-
-## Próxima ação
-
-{{verbo + objeto + caminho do arquivo seguinte}}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-aprendizado
-grupo: contexto
-entrada: {{caminho ou ID ligado ao pedido}}
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-aprendizado
-estado: aprovado
-entrada: {{caminho ou ID ligado ao pedido}}
-fontes:
-  - .inboundfy/context/aprendizado.md
-proxima_skill: {{skill seguinte ou "pendente de confirmação"}}
----
-
-# Registro de aprendizado
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{{verbo + objeto + caminho do arquivo seguinte}}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Um novo ciclo preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-aprendizado** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-aprendizado** para executar esta função: Registra sugestões, correções, alinhamentos e dicas do usuário, confirma o alcance e transforma aprendizados aprovados em regras reutilizáveis do projeto.
-
-O grupo **contexto** trabalha com estes campos mínimos:
-
-- **arquivo canônico:** preencher com dado ligado ao pedido.
-- **fatos:** preencher com dado ligado ao pedido.
-- **preferências:** preencher com dado ligado ao pedido.
-- **fonte:** preencher com dado ligado ao pedido.
-- **alteração:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-aprendizado
-grupo: contexto
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/context/inboundfy-aprendizado.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-aprendizado
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/context/inboundfy-aprendizado.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **contexto** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `CONTEXTO.md`
-- `docs/method/02-contexto-fontes-e-precedencia.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+No aprendizado, o arquivo canônico é `aprendizado.md`, o fato registrado é a
+mensagem literal, a preferência é a interpretação, a fonte é a conversa ou o
+arquivo de origem, e a alteração aponta para a peça e o arquivo canônico
+afetados.

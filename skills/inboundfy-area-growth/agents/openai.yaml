@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy: Growth"
+  short_description: "Encontra o gargalo do funil e encaminha"
+  default_prompt: "Use $inboundfy-area-growth para entender meu pedido de growth e encaminhar para a skill certa."

@@ -1,221 +1,116 @@
-# REFERENCIA.md; inboundfy-especialista-ebook-imagem
+# Capa de ebook e OpenGraph: produção
 
-## Formato
+O par `inboundfy-especialista-ebook-imagem` e `inboundfy-validador-ebook-imagem` usa a mesma numeração de conferência. Esta referência trata exclusivamente ebook-imagem. Dimensões abaixo são exemplos de trabalho já usados pelo framework, não limites universais de plataforma. `context/canais.md` define a dimensão exata do projeto.
 
-| Peça | Proporção | Dimensão comum |
+## Formato e pacote
+
+| Peça | Proporção | Dimensão de referência |
 | --- | --- | --- |
-| Capa de ebook | 1:1.4 (retrato, tipo A4/carta) | 1600×2240 |
-| Imagem OpenGraph | 1.91:1 | 1200×630 |
+| Capa | 1:1.4 | 1600×2240 |
+| OpenGraph | 1.91:1 | 1200×630 |
 
-## Exemplo de brief de imagem; capa (fictício)
+- Fonte ou motor: Geração por inboundfy-base-imagem com composição derivada.
+- Arquivos: capa.png, opengraph.png e README.md com título final e relação entre derivados.
+- Destino: `97-ativos-finais/ebook/<item>/`. Não criar caminhos alternativos.
+- Exporte em sRGB. Use PNG para texto e ilustração; fotografia pode usar JPEG ou formato aceito pelo canal. Abra a exportação, não apenas o arquivo de edição. Dimensão, extensão e peso reais entram no README.
 
-```text
-Formato: 1:1.4, 1600x2240
-Texto principal: "Guia de Onboarding para Times Remotos"
-Texto secundário: "Como estruturar os primeiros 30 dias sem depender de uma pessoa só"
-Tom visual: editorial, sóbrio, confiável
-Elemento de marca obrigatório: logo no rodapé da capa
+## Composição e escolha de abordagem
+
+| Situação observada | Ação |
+| --- | --- |
+| Título longo | Quebrar linhas preservando todas as palavras. |
+| Capa precisa de imagem conceitual | Gerar ilustração coerente sem simular comprovação de resultado. |
+| OpenGraph fica apertado | Reposicionar elementos; retirar subtítulo apenas com permissão do brief. |
+
+1. Copie título e subtítulo diretamente do ebook final. Registre caminho e versão. Não crie título alternativo para resolver espaço.
+2. Desenhe a capa em três áreas: título no terço superior, elemento visual no centro, autoria ou logo no rodapé conforme a marca. Planeje a quebra de linha antes de gerar.
+3. Passe dimensão, textos literais, paleta, tipografia e ativo do logo a `inboundfy-base-imagem`. Ilustração pode representar o tema; capa não pode inventar selos, edição ou endosso.
+4. Abra a capa e confira cada acento. Se título extenso perder legibilidade, reorganize linhas e reduza elementos decorativos antes de diminuir o texto.
+5. Derive o OpenGraph da mesma composição: reorganize título e ilustração em colunas, preserve paleta e família tipográfica. Não comprima a capa vertical dentro do retângulo horizontal.
+6. Faça previews de capa a 160 px de largura e de OpenGraph a 300 px. O título deve ser lido sem ampliar. Subtítulo pode ser omitido no OpenGraph somente se o brief permitir. Registre essa diferença.
+
+## Template de brief visual e entrega
+
+Preencha antes de chamar o motor ou buscar a foto. Preserve o envelope do contrato compartilhado no README. O texto entre chaves é campo de preenchimento.
+
+```yaml
+id: "{ID da peça}"
+skill: inboundfy-especialista-ebook-imagem
+estado: revisao
+brief: "04-briefs/{arquivo}.md"
+entrada: "{texto final e versão}"
+persona: "{ID confirmado}"
+fontes:
+  - "{context/canais.md e identidade visual}"
+titulo_literal: "{título final do ebook}"
+subtitulo_literal: "{subtítulo final ou ausente}"
+fonte_texto: "{caminho e versão}"
+capa: "{dimensão, quebras e posição do logo}"
+opengraph: "{dimensão e reorganização dos mesmos elementos}"
+subtitulo_no_opengraph: "{sim ou permissão para omitir}"
+elemento_comum: "{ilustração ou forma reconhecível}"
+alt_capa: "{descrição da capa}"
+alt_opengraph: "{descrição do derivado}"
+saidas:
+  - "{caminho de cada arquivo exportado}"
+preview: "{largura de teste, recorte e resultado observado}"
+pendencias: []
+proxima_skill: inboundfy-validador-ebook-imagem
 ```
 
-## Exemplo de brief de imagem; OpenGraph derivado (fictício)
+O README relaciona o brief, o texto final, cada exportação, suas dimensões, peso, alt e origem dos ativos. No pacote, mantenha `brief` no frontmatter. Texto longo em imagem exige transcrição acessível junto ao arquivo; o alt não substitui a transcrição.
 
-```text
-Formato: 1.91:1, 1200x630
-Texto principal: "Guia de Onboarding para Times Remotos"
-Texto secundário: (opcional; subtítulo curto, se couber com legibilidade)
-Tom visual: mesma paleta e tipografia da capa
-Elemento de marca obrigatório: logo, mesma posição relativa da capa
-```
+## Exemplo completo de produção
 
-## Checklist de capa de ebook
+A empresa fictícia brasileira **Oficina Ipê**, de Curitiba, oferece manutenção de bicicletas. O ebook aprovado para donos de oficinas chama-se “Caixa da oficina em dia”, com subtítulo “Registro semanal para quem recebe por Pix e cartão”. O material ensina registro financeiro; não promete lucro.
 
-- [ ] Título legível em miniatura de listagem/catálogo (thumbnail pequena
-      de página de ebooks).
-- [ ] Subtítulo, quando presente, não compete visualmente com o título;       hierarquia clara entre os dois.
-- [ ] Capa e OpenGraph compartilham identidade visual (mesma paleta,
-      tipografia, posição de logo), ajustando apenas a composição para a
-      proporção diferente.
-- [ ] Nenhum erro de grafia no título (confira `context/glossario.md`);       erro na capa é o mais visível de qualquer peça do ebook.
+Brief 0042: capa 1600×2240 e OpenGraph 1200×630 em `97-ativos-finais/ebook/caixa-oficina/`. Paleta fictícia: verde #164B3B, creme #FFF7E8 e amarelo #F1C75B. Fonte sem serifa aprovada pela marca; logo fornecido em `brand/logo.svg`.
 
-## Erros comuns
+Capa: margem de 100 px; título em três linhas (“Caixa da” / “oficina” / “em dia”), subtítulo em duas linhas abaixo, ilustração de caderno de caixa na metade inferior e logo no rodapé. Nenhum saldo, selo ou depoimento aparece. A ilustração não imita uma tela de banco.
 
-- Gerar a versão OpenGraph do zero, com composição totalmente diferente da
-  capa; quebra a identidade da publicação entre o material e o preview de
-  compartilhamento.
-- Título longo demais para o espaço da capa, forçando fonte pequena que
-  perde legibilidade em miniatura de catálogo.
-- Esquecer de revisar o subtítulo com o mesmo rigor do título; erro de
-  grafia no subtítulo é igualmente visível.
+OpenGraph: margem de 60 px; título literal à esquerda, caderno à direita, logo no rodapé. O brief autoriza omitir o subtítulo somente nesse derivado. A versão mantém verde, creme e o mesmo caderno. Alt da capa: “Capa de Caixa da oficina em dia, com caderno de registros e marca Oficina Ipê”. Alt do OpenGraph: “Caixa da oficina em dia, da Oficina Ipê, ao lado de um caderno ilustrado”.
+
+Entrega didática: `capa.png`, `opengraph.png`, `README.md` com título, subtítulo, dimensões, vínculo do ebook e permissão de omissão. Preview a 160 px permite ler o título da capa. Preview a 300 px permite ler o título do OpenGraph. Estado revisao; destino `inboundfy-validador-ebook-imagem`.
+
+## Checklist numerado espelhado
+
+Os números abaixo têm o mesmo significado nas duas skills. Registre `atende`, `não atende` ou `não aplicável` com justificativa; não use notas ou médias para aprovar.
+
+1. **Literal:** Título e subtítulo da capa coincidem com o ebook final, incluindo acentos; omissão no OpenGraph tem permissão registrada.
+2. **Literal:** Autoria, logo textual e alt seguem as grafias canônicas; vetos foram conferidos no texto incorporado e nos metadados.
+3. **Semântica:** Ilustração representa o assunto e não acrescenta certificação, endosso ou promessa ausente do ebook.
+4. **Semântica:** OpenGraph comunica o mesmo ebook; título alternativo não substitui o nome final sem novo brief.
+5. **Estrutural:** Capa e OpenGraph existem no diretório contratado e o README relaciona os dois ao ebook final.
+6. **Estrutural:** Capa e OpenGraph têm dimensões exatas e registro dos elementos comuns e das diferenças autorizadas.
+7. **Visual:** Título da capa é legível a 160 px; subtítulo é subordinado e o logo não compete com o título.
+8. **Visual:** OpenGraph é legível a 300 px sem esticar a capa e preserva paleta, fonte e elemento visual comum.
+
+## Erros comuns e correções
+
+- Esticar a capa no OpenGraph: recompor o mesmo material em outra grade.
+- Trocar título sem avisar: devolver a questão à especialista de texto.
+- Gerar logo com grafia aproximada: aplicar o ativo fornecido pela marca.
+
+## Medição e limites
+
+Comparar legibilidade nos dois previews e registrar peso por arquivo. Cliques no compartilhamento podem orientar outra composição, sem autorizar renomear o ebook. A dimensão de referência não substitui a configuração do canal. Se a plataforma mudar sua exigência, confirme a documentação oficial antes de alterar o projeto.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-especialista-ebook-imagem**, do grupo
-**especialista**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de especialista ebook imagem dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-especialista-ebook-imagem
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de especialista ebook imagem
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-ebook-imagem
-grupo: especialista
-entrada: acervo/0042-2026-09-14-especialista-ebook-imagem/processado.md
-pedido: aplicar a etapa de especialista ebook imagem e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-especialista-ebook-imagem
-estado: aprovado
-entrada: acervo/0042-2026-09-14-especialista-ebook-imagem/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de especialista ebook imagem
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-especialista-ebook-imagem** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): confirmar sentinelas e fontes antes de abrir o brief visual.
+- [Artefato e relações](../_shared/02-contrato-de-artefato.md): manter ID, estado, origem e relação com cada arquivo visual.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): registrar escolhas já confirmadas e pendências do formato.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): repetir a inspeção completa após cada correção.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): conferir persona, voz, glossário, aprendizado e proibições também nos pixels.
 
 ## Guia específico do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+A especialista prepara o conjunto completo e encaminha arquivos, fontes, medidas e previews a `inboundfy-validador-ebook-imagem`. Registre a fonte ou motor utilizado, sem expor segredos. Reaproveite a versão existente quando o pedido não exigir refação. Mudança em texto aprovado ou dado factual retorna à fonte responsável; ajuste visual não autoriza mudar a copy.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+## Preparação antes da execução
 
-## Especificação operacional
+No passo 1 do fluxo, leia [preparação do conjunto visual](references/preparacao.md) para conferir as perguntas do formato e a fonte de imagem permitida. Use as respostas já registradas no brief; pergunte apenas pelo dado ausente que altera a composição.
 
-### Quando usar
+## Entrega para a validadora
 
-Use **inboundfy-especialista-ebook-imagem** para executar esta função: Gera capa de ebook e imagem OpenGraph derivada, reaproveitando o motor de inboundfy-base-imagem com a identidade visual do usuário.
-
-O grupo **especialista** trabalha com estes campos mínimos:
-
-- **canal:** preencher com dado ligado ao pedido.
-- **persona:** preencher com dado ligado ao pedido.
-- **objetivo:** preencher com dado ligado ao pedido.
-- **formato:** preencher com dado ligado ao pedido.
-- **validadora:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-ebook-imagem
-grupo: especialista
-pedido: executar a função desta skill sobre o material selecionado
-entrada: briefs/0042-2026-09-14-ebook-imagem/brief.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-ebook-imagem
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - briefs/0042-2026-09-14-ebook-imagem/brief.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **especialista** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `ESTRUTURAS-PERSUASIVAS.md`
-- `CONTEXTO.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Encaminhe a `inboundfy-validador-ebook-imagem` o conjunto descrito em Formato e pacote, acompanhado de ID, brief, texto final e versão, fontes, medidas reais e previews. Inclua o registro de origem dos ativos e as pendências. Uma devolução mantém o mesmo ID e informa a rodada; ajuste os arquivos apontados e entregue novamente todas as exportações, não apenas o recorte corrigido.

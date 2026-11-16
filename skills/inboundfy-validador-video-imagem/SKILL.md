@@ -1,9 +1,6 @@
 ---
 name: inboundfy-validador-video-imagem
-description: >
-  Valida thumbnail produzida por inboundfy-especialista-video-imagem contra
-  roteiro, brief, todos os contextos, promessa, grafia, foco, contraste,
-  legibilidade e dimensões antes da entrega.
+description: Valida thumbnail de vídeo ligada ao roteiro contra brief, texto final, fontes e identidade visual, com relatório de correções. Use quando o pedido citar revisar ou aprovar thumbnail de vídeo ligada ao roteiro, conferindo promessa do roteiro, frase visual, foco e miniatura.
 ---
 
 # Inboundfy Validador Vídeo Imagem
@@ -17,12 +14,9 @@ Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md` no in
 ausência de qualquer um, informe: "O setup do Inboundfy ainda não foi concluído
 ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
 arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
-preflight, leia o catalogo e os Markdown relevantes para a tarefa.
+preflight, leia o catálogo e os Markdown relevantes para a tarefa.
 
 ## Arquitetura de execução
-
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
@@ -30,23 +24,22 @@ específica desta pasta.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
 
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **validador**.
-
 ## Contexto exigido
 
 Todos os Markdown de `context/`, com atenção a `context/canais.md`,
 `context/glossario.md`, `context/marca-voz.md`,
 `context/proibicoes.md` e `context/estruturas-proibidas.md`.
 
+Consulte `context/proibicoes.md`, `context/estruturas-proibidas.md`, `context/glossario.md`, `context/marca-voz.md`, `context/aprendizado.md` e `brand/` quando existir. Leia `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md` e `CONTEXTO.md` antes de compor ou revisar texto público. Falta de apoio obrigatório retorna a `inboundfy-setup`; esta skill não repara a instalação.
+
 ## Entrada esperada
 
-Thumbnail, roteiro, brief e identidade visual.
+Conjunto produzido por `inboundfy-especialista-video-imagem`: ID, brief aprovado, texto final e versão, README, todas as exportações e derivados, fontes, dimensões, previews e pendências. Aceite também roteiro e metadados aprovados de `inboundfy-especialista-youtube`, com título, tarefa mostrada, textos literais da thumbnail e origem canônica. Inclua licença e crédito para fotografia e autorização de pessoas quando aplicável. Na retomada, receba o relatório anterior e o conjunto corrigido completo.
 
 ## Fluxo
 
-1. Leia `REFERENCIA.md` e os contratos da produtora.
-2. Acione `inboundfy-base-validador`.
+1. Leia o [procedimento e modelo de relatório](REFERENCIA.md), as [perguntas do formato](references/preparacao.md) e os contratos de `inboundfy-especialista-video-imagem`. Confira a entrada contra o pacote recebido.
+2. Acione `inboundfy-base-validador` e registre o manifesto completo de contextos e fontes. Aplique os oito itens do [checklist espelhado](REFERENCIA.md#checklist-numerado-espelhado).
 3. Inspecione visualmente promessa, foco, contraste, texto, miniatura,
    grafia, identidade e dimensões.
 4. Reprovando, envie o relatório à `inboundfy-especialista-video-imagem` e
@@ -54,7 +47,7 @@ Thumbnail, roteiro, brief e identidade visual.
 
 ## Saída
 
-Relatório no caminho definido por `inboundfy-base-validador`.
+Relatório no caminho definido por `inboundfy-base-validador`, com ID, caminho e SHA-256 atuais do digest, resultado dos oito itens, achados localizados e rodada. Entregue-o a `inboundfy-especialista-video-imagem` para correção; uma aprovação corresponde somente à versão conferida.
 
 ## Validação
 
@@ -62,15 +55,7 @@ Aprove apenas quando a thumbnail promete o que o roteiro entrega.
 
 ## Responsabilidade do grupo
 
-Leia o asset inteiro contra brief, fontes, contexto e formato. Relate local, regra, fonte e ação; devolva à produtora sem editar o original.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** validador
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+Confira todos os arquivos de video-imagem e registre cada achado por número da lista espelhada. Devolva correções a `inboundfy-especialista-video-imagem` sem editar a peça. Aplique `inboundfy-base-validador`, todos os contextos, marca e marco A5 antes do veredito.
 
 ## Idempotência
 

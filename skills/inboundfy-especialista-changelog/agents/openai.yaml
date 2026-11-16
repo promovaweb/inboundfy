@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Especialista Changelog"
-  short_description: "Executa especialista changelog no Inboundfy"
-  default_prompt: "Use $inboundfy-especialista-changelog para executar especialista changelog com as fontes do projeto."
+  display_name: "Inboundfy: Redação de notas de versão"
+  short_description: "Produz notas de versão claras para usuários"
+  default_prompt: "Use $inboundfy-especialista-changelog para produzir notas de versão a partir da entrada aprovada. Consulte o método e o exemplo completo; aplique os 11 itens do par, a revisão editorial e A5 antes de encaminhar a inboundfy-validador-changelog."

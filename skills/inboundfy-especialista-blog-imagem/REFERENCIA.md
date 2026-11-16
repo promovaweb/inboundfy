@@ -1,232 +1,121 @@
-# REFERENCIA.md; inboundfy-especialista-blog-imagem
+# Fotografia de blog: produção
 
-Material de apoio para busca de foto real. Esta skill nunca gera imagem por
-IA; ver `SKILL.md`. Este documento cobre apenas estratégia de busca e
-seleção; para dimensão exata, confirme sempre em `context/canais.md`.
+O par `inboundfy-especialista-blog-imagem` e `inboundfy-validador-blog-imagem` usa a mesma numeração de conferência. Esta referência trata exclusivamente blog-imagem. Dimensões abaixo são exemplos de trabalho já usados pelo framework, não limites universais de plataforma. `context/canais.md` define a dimensão exata do projeto.
 
-## Formato
+## Formato e pacote
 
-| Peça | Proporção comum | Dimensão comum |
+| Peça | Proporção | Dimensão de referência |
 | --- | --- | --- |
 | Cover | 3:2 | 1200×800 |
 | Thumbnail | 12:5 | 1200×500 |
 
-Confirme em `context/canais.md`; cada projeto pode definir dimensão
-própria.
+- Fonte ou motor: Busca fotográfica licenciada; sem geração sintética.
+- Arquivos: cover.jpg, thumbnail.jpg, credito.md e README.md; frontmatter do artigo atualizado com a chave de capa já adotada pelo projeto.
+- Destino: `97-ativos-finais/blog/<slug>/`. Não criar caminhos alternativos.
+- Exporte em sRGB. Use PNG para texto e ilustração; fotografia pode usar JPEG ou formato aceito pelo canal. Abra a exportação, não apenas o arquivo de edição. Dimensão, extensão e peso reais entram no README.
 
-## Estratégia de busca de foto
+## Composição e escolha de abordagem
 
-1. Extraia do artigo o **objeto concreto** central (não o tema abstrato).
-   Um artigo sobre "gestão de tempo para times remotos" não deve buscar
-   "produtividade" (abstrato demais, resulta em clichê de escritório
-   genérico); busque o objeto real: "pessoa trabalhando em home office",
-   "calendário em mesa de trabalho", "videochamada em notebook".
-2. Prefira query com 2 a 3 palavras concretas e visuais, não a frase
-   completa do título do artigo.
-3. Evite metáfora abstrata na busca ("crescimento", "sucesso", "conexão");    essas queries retornam clichê de banco de imagens (aperto de mão,
-   gráfico subindo, luz no fim do túnel) que não tem relação real com o
-   conteúdo.
-4. Priorize foto com espaço negativo suficiente para o título sobrepor sem
-   cobrir o elemento principal da imagem, quando o layout do blog exigir
-   texto sobre a capa.
+| Situação observada | Ação |
+| --- | --- |
+| Objeto central visível nos dois recortes | Usar a foto e registrar coordenadas de corte. |
+| Foto bonita perde o objeto na faixa horizontal | Trocar candidato; não esticar o original. |
+| Licença ou autor não podem ser confirmados | Pedir fonte licenciada; não preencher crédito por suposição. |
 
-### Exemplo de query
+1. Leia o artigo inteiro e escreva uma frase sobre o objeto fotografável. Para um artigo sobre conferência de estoque, procure prateleira, caixa e contagem manual. Evite metáforas de sucesso.
+2. Consulte `context/integracoes.md` quando disponível para localizar o banco e o nome da variável. Confira apenas presença da chave no ambiente, sem imprimir seu valor. Sem chave, peça a configuração e interrompa a busca por API conforme o contrato.
+3. Faça três buscas com objetos concretos. Guarde três candidatos com ID, URL da página, autor, resolução e motivo de descarte ou seleção. Não trate resultado de busca como licença.
+4. Abra a página da foto escolhida e os termos de uso. Confirme uso comercial, recorte e atribuição. Salve URL e data da consulta. Respeite as exigências do banco para download e crédito.
+5. Baixe o original sem ampliação artificial. Calcule dois recortes independentes. Registre coordenadas x/y/largura/altura no original para reprodução. Use a mesma foto ou a mesma sessão.
+6. Exporte os dois arquivos e abra ambos. Leia marcas, placas e telas visíveis. Salve a nota de crédito antes de atualizar o artigo. Texto do próprio layout pode sobrepor a foto fora do arquivo; arte composta com título segue `inboundfy-base-imagem`.
 
-| Tema do artigo | Query ruim (abstrata/clichê) | Query boa (concreta) |
-| --- | --- | --- |
-| Migração de agendamento manual para software | "eficiência", "tecnologia" | "calendário digital em tablet", "recepção de clínica" |
-| Erro comum em contratação de freelancer | "sucesso profissional" | "reunião de contrato entre duas pessoas" |
-| Guia de configuração de servidor | "inovação" | "rack de servidor", "tela de terminal" |
+## Template de brief visual e entrega
 
-## Checklist de seleção
+Preencha antes de chamar o motor ou buscar a foto. Preserve o envelope do contrato compartilhado no README. O texto entre chaves é campo de preenchimento.
 
-- [ ] A foto mostra o objeto real do artigo, não uma metáfora genérica.
-- [ ] Nenhum texto, marca d'água ou logo de terceiro visível na foto.
-- [ ] Licença permite uso comercial e edição (corte/redimensionamento).
-- [ ] Cover e thumbnail usam a mesma foto ou fotos da mesma sessão, para
-      consistência visual do post.
-- [ ] Crédito registrado (autor, link, banco de origem) antes de considerar
-      a peça pronta.
+```yaml
+id: "{ID da peça}"
+skill: inboundfy-especialista-blog-imagem
+estado: revisao
+brief: "04-briefs/{arquivo}.md"
+entrada: "{texto final e versão}"
+persona: "{ID confirmado}"
+fontes:
+  - "{context/canais.md e identidade visual}"
+objeto: "{atividade mostrada no artigo}"
+banco: "{banco configurado}"
+variavel_api: "{somente nome}"
+foto_id: "{ID verificável}"
+pagina_foto: "{URL}"
+autor: "{nome informado pelo banco}"
+licenca_url: "{URL dos termos}"
+consulta_em: "{AAAA-MM-DD}"
+uso_comercial_e_corte: "{permissão encontrada}"
+credito_exigido: "{texto e destino}"
+cortes: "{coordenadas do cover e da thumbnail}"
+alt: "{descrição do assunto realmente visível}"
+saidas:
+  - "{caminho de cada arquivo exportado}"
+preview: "{largura de teste, recorte e resultado observado}"
+pendencias: []
+proxima_skill: inboundfy-validador-blog-imagem
+```
 
-## Erros comuns
+O README relaciona o brief, o texto final, cada exportação, suas dimensões, peso, alt e origem dos ativos. No pacote, mantenha `brief` no frontmatter. Texto longo em imagem exige transcrição acessível junto ao arquivo; o alt não substitui a transcrição.
 
-- Buscar pela emoção que o artigo quer transmitir em vez do objeto real que
-  ele descreve; resulta em foto de banco genérica e reconhecível como
-  clichê (aperto de mão, seta subindo, lightbulb).
-- Reutilizar a mesma foto para artigos de temas diferentes só porque ela é
-  "bonita"; quebra a relação real entre capa e conteúdo.
-- Esquecer de registrar o crédito antes de publicar, gerando pendência de
-  compliance de licença depois.
+## Exemplo completo de produção
+
+A empresa fictícia brasileira **Armazém Jatobá**, de Goiânia, publicou o artigo “Conferência de estoque antes da abertura”. A persona é dona de mercearia de bairro. O artigo ensina a contar caixas por prateleira, sem divulgar dados de clientes.
+
+Brief aprovado: capa fotográfica sem texto incorporado; cover 1200×800; thumbnail 1200×500; saída `97-ativos-finais/blog/conferencia-estoque/`.
+
+Busca planejada: “contagem caixas prateleira”, “estoque mercearia”, “conferência depósito”. Na simulação didática, o candidato F01 mostra uma mesa de escritório e é descartado. F02 tem logotipo na caixa e é descartado. F03 mostra uma pessoa contando caixas sem rótulo e permite os dois recortes.
+
+Registro simulado de F03: banco Banco Serra (fictício), autora Lia Monte Claro (fictícia), ID foto-031, página `https://banco-serra.example/fotos/031`, termos `https://banco-serra.example/licenca`, consulta 2026-11-15. A permissão simulada inclui uso comercial, corte e crédito “Foto: Lia Monte Claro / Banco Serra”. Esses endereços demonstram os campos, não comprovam licença para produção real.
+
+Original simulado 2400×1600. Cover: corte x=0, y=0, largura=2400, altura=1600, redução para 1200×800. Thumbnail: x=0, y=300, largura=2400, altura=1000, redução para 1200×500. Ambos mostram mãos, caixa e prateleira. Alt: “Pessoa conta caixas sem rótulo numa prateleira de estoque”. `credito.md` recebe origem, termos, data, cortes e atribuição. O frontmatter preserva a chave existente e passa a apontar para `cover.jpg`.
+
+Handoff didático: ID 0042, estado revisao, quatro arquivos relacionados, destino `inboundfy-validador-blog-imagem`. Uma execução real só recebe aprovação após comprovar a licença fora desta simulação.
+
+## Checklist numerado espelhado
+
+Os números abaixo têm o mesmo significado nas duas skills. Registre `atende`, `não atende` ou `não aplicável` com justificativa; não use notas ou médias para aprovar.
+
+1. **Literal:** Crédito contém autor, banco, URL da foto, URL dos termos e data; conferir cada campo com a página consultada.
+2. **Literal:** Alt e legenda descrevem a foto; grafias seguem o glossário e os vetos são conferidos também no frontmatter.
+3. **Semântica:** Objeto fotografado corresponde ao assunto do artigo, sem sugerir que a pessoa retratada é cliente da empresa.
+4. **Semântica:** Origem é fotografia real licenciada; arquivo sintético, licença ausente ou permissão incompatível reprova.
+5. **Estrutural:** Cover e thumbnail existem junto ao artigo no diretório contratado, com nota de crédito e vínculo no frontmatter.
+6. **Estrutural:** Dimensões dos dois arquivos são exatas; o original e as coordenadas dos dois cortes permitem reproduzir o resultado.
+7. **Visual:** Objeto continua reconhecível nos dois recortes; não há distorção, pixelização, texto incorporado ou marca indevida.
+8. **Visual:** Miniaturas mostram o mesmo assunto e alt corresponde a cada corte; crédito aparece no destino exigido pela licença.
+
+## Erros comuns e correções
+
+- Aceitar licença pela aparência do site: abrir os termos da foto.
+- Ampliar imagem pequena: buscar original suficiente para os dois cortes.
+- Inserir título na foto: manter arquivo fotográfico e usar o layout do artigo.
+
+## Medição e limites
+
+Registrar peso dos dois arquivos e nitidez no tamanho servido. Compressão não deve apagar detalhes do objeto; desempenho do artigo não comprova licença. A dimensão de referência não substitui a configuração do canal. Se a plataforma mudar sua exigência, confirme a documentação oficial antes de alterar o projeto.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-especialista-blog-imagem**, do grupo
-**especialista**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de especialista blog imagem dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-especialista-blog-imagem
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de especialista blog imagem
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-blog-imagem
-grupo: especialista
-entrada: acervo/0042-2026-09-14-especialista-blog-imagem/processado.md
-pedido: aplicar a etapa de especialista blog imagem e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-especialista-blog-imagem
-estado: aprovado
-entrada: acervo/0042-2026-09-14-especialista-blog-imagem/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de especialista blog imagem
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-especialista-blog-imagem** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): confirmar sentinelas e fontes antes de abrir o brief visual.
+- [Artefato e relações](../_shared/02-contrato-de-artefato.md): manter ID, estado, origem e relação com cada arquivo visual.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): registrar escolhas já confirmadas e pendências do formato.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): repetir a inspeção completa após cada correção.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): conferir persona, voz, glossário, aprendizado e proibições também nos pixels.
 
 ## Guia específico do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+A especialista prepara o conjunto completo e encaminha arquivos, fontes, medidas e previews a `inboundfy-validador-blog-imagem`. Registre a fonte ou motor utilizado, sem expor segredos. Reaproveite a versão existente quando o pedido não exigir refação. Mudança em texto aprovado ou dado factual retorna à fonte responsável; ajuste visual não autoriza mudar a copy.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+## Preparação antes da execução
 
-## Especificação operacional
+No passo 1 do fluxo, leia [preparação do conjunto visual](references/preparacao.md) para conferir as perguntas do formato e a fonte de imagem permitida. Use as respostas já registradas no brief; pergunte apenas pelo dado ausente que altera a composição.
 
-### Quando usar
+## Entrega para a validadora
 
-Use **inboundfy-especialista-blog-imagem** para executar esta função: Busca capa e thumbnail de post via banco de fotos real, nas dimensões exigidas pelo canal. Capas de blog NÃO são geradas por IA; esta skill usa exclusivamente foto real de banco de imagens, respeitando licença e crédito.
-
-O grupo **especialista** trabalha com estes campos mínimos:
-
-- **canal:** preencher com dado ligado ao pedido.
-- **persona:** preencher com dado ligado ao pedido.
-- **objetivo:** preencher com dado ligado ao pedido.
-- **formato:** preencher com dado ligado ao pedido.
-- **validadora:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-blog-imagem
-grupo: especialista
-pedido: executar a função desta skill sobre o material selecionado
-entrada: briefs/0042-2026-09-14-blog-imagem/brief.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-blog-imagem
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - briefs/0042-2026-09-14-blog-imagem/brief.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **especialista** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `ESTRUTURAS-PERSUASIVAS.md`
-- `CONTEXTO.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Encaminhe a `inboundfy-validador-blog-imagem` o conjunto descrito em Formato e pacote, acompanhado de ID, brief, texto final e versão, fontes, medidas reais e previews. Inclua o registro de origem dos ativos e as pendências. Uma devolução mantém o mesmo ID e informa a rodada; ajuste os arquivos apontados e entregue novamente todas as exportações, não apenas o recorte corrigido.

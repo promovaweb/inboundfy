@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Growth Retencao"
-  short_description: "Executa growth retencao no Inboundfy"
-  default_prompt: "Use $inboundfy-growth-retencao para executar growth retencao com as fontes do projeto."
+  display_name: "Inboundfy: Retenção e cancelamento"
+  short_description: "Revisa permanência, saída e pagamento recuperado"
+  default_prompt: "Use $inboundfy-growth-retencao para separar causas de saída, planejar intervenções pertinentes e acompanhar permanência paga por coorte."

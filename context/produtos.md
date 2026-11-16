@@ -12,8 +12,8 @@ funcionalidade que pode virar tema de conteúdo.
 - **Problema que resolve:** {problema}
 - **Como funciona, resumido:** {mecanismo, sem jargão de venda}
 - **Funcionalidades principais:**
-  - {funcionalidade 1} — o que ela permite fazer
-  - {funcionalidade 2} — o que ela permite fazer
+  - {funcionalidade 1}: o que ela permite fazer
+  - {funcionalidade 2}: o que ela permite fazer
 - **Limites reais / o que o produto não faz:** {limite}
 - **Estágio:** {em desenvolvimento, beta, geral disponível, descontinuado}
 - **Link oficial:** {url}

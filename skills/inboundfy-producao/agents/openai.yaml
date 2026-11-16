@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Producao"
-  short_description: "Executa producao no Inboundfy"
-  default_prompt: "Use $inboundfy-producao para executar producao com as fontes do projeto."
+  display_name: "Inboundfy: Produção por canal"
+  short_description: "Conduz peças do brief até a validação do canal"
+  default_prompt: "Use $inboundfy-producao para criar a peça deste canal a partir do acervo, confirmando personas, objetivo e CTA e levá-la pela especialista, pelos marcos A4 e A5 e pela validadora."

@@ -7,7 +7,7 @@ para conteúdo (fundadores, autores, porta-vozes, especialistas citáveis).
 
 ## {Nome da pessoa}
 
-- **Papel:** {cargo ou função — evite rótulo genérico, use o papel real}
+- **Papel:** {cargo ou função: evite rótulo genérico, use o papel real}
 - **Autoridade no tema:** {por que a opinião dessa pessoa vale como fonte}
 - **Voz quando fala em primeira pessoa:** {formal, direto, técnico, opinativo}
 - **Biografia curta (para rodapé ou "sobre o autor"):** {2-3 frases}

@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Growth Relacoes Publicas"
-  short_description: "Executa growth relacoes publicas no Inboundfy"
-  default_prompt: "Use $inboundfy-growth-relacoes-publicas para executar growth relacoes publicas com as fontes do projeto."
+  display_name: "Inboundfy: Relações públicas"
+  short_description: "Pautas verificáveis e preparação de porta-vozes"
+  default_prompt: "Use $inboundfy-growth-relacoes-publicas para preparar pauta, fontes, proposta editorial e porta-voz com fatos confirmados e acompanhamento."

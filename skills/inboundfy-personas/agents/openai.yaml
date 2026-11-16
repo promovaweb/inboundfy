@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Personas"
-  short_description: "Executa personas no Inboundfy"
-  default_prompt: "Use $inboundfy-personas para executar personas com as fontes do projeto."
+  display_name: "Inboundfy: Personas"
+  short_description: "Define personas com tarefas, objeções e fontes"
+  default_prompt: "Use $inboundfy-personas para construir ou revisar as personas deste projeto: classifique as fontes, agrupe por situação e tarefa, preencha a ficha com forças de mudança, estágio de consciência e frases literais, descreva a persona negativa e grave tudo em publico.md com ID estável."

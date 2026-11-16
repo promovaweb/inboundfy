@@ -55,11 +55,11 @@ origem: "ideia-do-usuario"
 
 ### {argumento específico}
 
-{Explicar mecanismo, evidência, exemplo e consequência.}
+{Explicar mecanismo, comprovação, exemplo e consequência.}
 
 ## Objeções
 
-| Objeção | Resposta apoiada | Evidência |
+| Objeção | Resposta apoiada | Comprovação |
 | --- | --- | --- |
 | {objeção real da audiência} | {resposta} | {context/ ou fonte} |
 
@@ -74,7 +74,7 @@ origem: "ideia-do-usuario"
 
 | Prioridade | Canal | Formato | Ângulo próprio | Ativos usados |
 | --- | --- | --- | --- | --- |
-| {alta, média ou baixa} | {canal ativo} | {formato} | {recorte exclusivo} | {argumentos e evidências} |
+| {alta, média ou baixa} | {canal ativo} | {formato} | {recorte exclusivo} | {argumentos e comprovações} |
 
 ## Restrições carregadas
 

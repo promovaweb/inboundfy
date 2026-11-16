@@ -1,53 +1,159 @@
-# Referência de Ferramentas gratuitas
+# Referência de ferramentas gratuitas de aquisição
 
-## Template
+## Seleção da tarefa e do formato
+
+Uma ferramenta de aquisição precisa resolver um trabalho que antecede o produto
+pago. Se a empresa vende organização de pedidos, calcular capacidade da cozinha
+tem relação direta com compra. Um gerador de frases populares pode atrair
+pessoas sem qualquer necessidade de organizar pedidos.
+
+| Tipo | Escolher quando | Saída mínima | Trabalho permanente |
+| --- | --- | --- | --- |
+| Calculadora | Entradas numéricas sustentam regra transparente | Valor, unidade e memória do cálculo | Revisar fórmula e premissas |
+| Gerador | Usuário precisa de um documento repetível | Conteúdo editável com limites | Revisar exemplos e qualidade |
+| Diagnóstico | Há regras verificáveis sobre um objeto | Achados com explicação e ação | Atualizar regras e falsos positivos |
+| Testador | Pergunta tem resultado técnico verificável | Resultado e condição do teste | Manter compatibilidade |
+| Simulador | Pessoa quer comparar cenários | Comparação sem promessa de resultado | Atualizar hipóteses |
+| Biblioteca consultável | Público precisa localizar recurso recorrente | Busca, filtro e material autorizado | Curadoria e atualização |
+
+| Construção | Usar quando | Confirmar antes de escolher |
+| --- | --- | --- |
+| Planilha piloto | Cálculo pode ser validado manualmente | Fórmula compreensível e acesso simples |
+| Plataforma visual | Formulário e regras são simples | Exportação, custo por uso e destino dos dados |
+| Código próprio | Regra ou experiência exige controle específico | Equipe, prazo e manutenção disponíveis |
+| Recurso incorporado | Solução existente cumpre a tarefa | Licença, coleta de dados e continuidade do fornecedor |
+
+No passo 3, leia [Especificação e operação](references/especificacao-e-operacao.md).
+No passo 5, use a mesma referência para cenários e conferência econômica.
+
+## Priorização das ideias
+
+Avalie cada candidata por aderência ao comprador, frequência da tarefa,
+disponibilidade de regra confiável, demanda observada e manutenção. Registre
+alto, médio ou baixo com justificativa local. Uma ideia sem fonte para o cálculo
+não deve vencer por parecer fácil de divulgar.
+
+| Sinal encontrado | Escolha |
+| --- | --- |
+| Clientes já usam planilha improvisada | Testar regra com eles antes da interface |
+| Muitas buscas, compradores diferentes da oferta | Tratar como alcance, sem previsão de leads qualificados |
+| API cara para resultado simples | Prototipar alternativa manual ou limitar escopo |
+| Dado pessoal dispensável | Calcular localmente ou usar valores anônimos |
+| Não há responsável pela atualização | Adiar publicação e nomear proprietário |
+
+## Template de brief
 
 ```markdown
-# Ferramentas gratuitas
-
-- **ID:** {{id}}
-- **Objetivo:** {{objetivo}}
-- **Persona:** {{persona}}
-- **Canal:** {{canal}}
-- **Acervo:** {{acervo}}
-- **Fonte principal:** {{fonte}}
-- **Próxima ação:** {{cta}}
-
-## Plano
-
-{{plano}}
-
-## Pendências
-
-{{pendencias}}
+---
+id: {{id}}
+skill: inboundfy-growth-ferramentas-gratuitas
+grupo: growth
+tipo: brief-ferramenta
+estado: rascunho
+entrada: [{{acervo ou pedido}}]
+fontes: [{{regra}}, {{produto}}, {{pesquisa}}]
+persona: {{id}}
+canal: {{distribuicao}}
+oferta: {{produto relacionado}}
+proxima_acao: {{responsavel e entrega}}
+---
+Tarefa e situação: {{verbo, objeto, frequência}}
+Alternativa atual: {{como resolve hoje}}
+Valor gratuito: {{resultado entregue sem compra}}
+Próximo uso pago: {{continuidade pertinente}}
+Escopo inicial: {{inclui e exclui}}
+Construção escolhida: {{método, razão, prazo e proprietário}}
+| Entrada | Tipo/unidade | Faixa | Valor padrão | Finalidade |
+| --- | --- | --- | --- | --- |
+| {{nome}} | {{tipo}} | {{faixa}} | {{sem padrão se pessoal}} | {{uso}} |
+Regra/fórmula e fonte: {{expressão, versão e limites}}
+Saída: {{resultado, interpretação e exportação}}
+Casos de aceite: {{entradas e resultados esperados}}
+Captura: {{aberta, opcional ou parcial; finalidade e destino}}
+Custos: {{construção, operação, distribuição e suporte}}
+Cenários: {{uso, lead qualificado, cliente e contribuição}}
+Distribuição: {{página, conteúdo de apoio, canal e responsável}}
+Medição: {{eventos e horizonte comercial}}
+Manutenção: {{cadência, gatilhos de revisão e retirada}}
+Pendências e handoff: {{skill, arquivo, estado e ação}}
 ```
 
-## Guia específico
+## Exemplo: capacidade de produção de uma confeitaria
 
-Defina tarefa resolvida, entrada mínima, resultado entregue, limite de uso, captura opcional, página, CTA e métrica. O recurso precisa ter utilidade antes do formulário.
+Empresa e números fictícios. A Fornada Clara, de Campinas, oferece software de
+organização de encomendas por R$ 149/mês. A persona `persona-03` é dona de uma
+confeitaria que aceita pedidos por WhatsApp e perde a conta das horas disponíveis.
+Entrada: entrevistas sintéticas em `acervo/0312-capacidade/`, oferta fictícia
+e planilha de capacidade fornecida como regra.
 
-## Exemplo ilustrativo
+A ferramenta escolhida é uma calculadora de capacidade semanal. Recebe horas
+produtivas da equipe, horas já comprometidas e tempo médio por encomenda.
+Não recebe nome de cliente, telefone ou conteúdo de conversa.
 
-Uma empresa de software pode usar este modelo para organizar uma ação de teste com uma persona específica, ligar cada mensagem a um acervo e registrar a página de destino sem afirmar resultados ainda não medidos.
+Regra: capacidade adicional = piso((horas disponíveis − horas comprometidas) /
+horas por encomenda), com mínimo zero. Valores do caso: 40 horas disponíveis,
+28 comprometidas, 1,5 hora por encomenda. Resultado: piso(12/1,5) = 8
+encomendas adicionais. Copy: “Sua estimativa é de 8 encomendas adicionais
+nesta semana. O cálculo usa tempo médio e não inclui imprevistos ou compras.”
+
+Aceites: 40/40/1,5 retorna zero; 40/28/0 pede tempo maior que zero;
+40/45/1,5 retorna zero e informa excesso de cinco horas; campo “1,5” é
+interpretado como uma hora e meia. Não aceitar valor negativo nem mostrar
+capacidade negativa. A equipe valida os cálculos na planilha antes da interface.
+
+O resultado fica aberto. CTA: “Organizar as encomendas no Fornada Clara”.
+Um botão separado oferece receber a planilha por email; o envio não inclui
+permissão automática para campanhas. A página de apoio explica como estimar
+tempo por encomenda. A distribuição começa em conteúdo sobre agenda semanal
+e newsletter com público já autorizado.
+
+Cenário base, inteiramente hipotético: 1.000 usuários mensais, 600 resultados,
+60 contatos opcionais, 24 contatos aderentes e 3 novos clientes. Construção:
+R$ 3.000; operação mensal: R$ 150; conteúdo e divulgação: R$ 300.
+Contribuição mensal por cliente assumida: R$ 90 por seis meses, sem
+extrapolar permanência. Contribuição de 3 clientes: R$ 1.620.
+Após R$ 450 de operação/distribuição, sobra R$ 1.170 para recuperar a construção
+se o cenário se repetir. Não registrar isso como retorno realizado.
+
+Saída: `acervo/0312-capacidade/brief-ferramenta.md`, ID 0312, estado
+`revisao`, grupo growth, fontes locais e persona declaradas. Pendência:
+validar o tempo por encomenda com usuárias do piloto. Próxima ação:
+responsável de produto executar os aceites na planilha.
+Handoff para `inboundfy-rastreamento-conversao`: medir início, resultado
+válido, CTA e cliente posterior, com versão da fórmula e origem. O brief
+segue para execução técnica só após o aceite da regra.
 
 ## Checklist
 
-- [ ] ID e objetivo estão presentes.
-- [ ] Persona, canal e acervo estão vinculados.
-- [ ] Fontes e pendências estão localizadas.
-- [ ] Voz, proibições e dicionário foram conferidos.
-- [ ] Próxima ação e estado do pipeline estão claros.
+- [ ] O resultado gratuito resolve uma tarefa completa.
+- [ ] A relação com produto pago aparece sem falsa necessidade.
+- [ ] Fórmula, unidade, arredondamento e fonte estão registrados.
+- [ ] Casos extremos possuem resposta definida.
+- [ ] Captura e destino dos dados estão explícitos.
+- [ ] O custo inclui manutenção e suporte.
+- [ ] Distribuição e responsável pela atualização estão nomeados.
+- [ ] Uso, lead aderente e cliente são medidos separadamente.
 
 ## Erros comuns
 
-- Começar pelo formato antes de confirmar objetivo, público e fonte.
-- Usar promessa, preço, número ou nome sem registro local.
-- Aplicar a mesma mensagem a personas com contextos diferentes.
-- Salvar o resultado sem caminho, ID ou alcance da escolha.
+- Produzir nota de diagnóstico sem regra explicável: mostre os achados que formam o resultado.
+- Exibir “economia garantida” a partir de premissa do visitante: identifique estimativa e limites.
+- Exigir cadastro para cálculo anunciado como aberto: cumpra o acesso prometido.
+- Financiar ferramenta por tráfego bruto: estime contribuição de clientes aderentes.
+- Manter API indisponível sem alternativa: mostre erro útil e preserve entradas.
+- Publicar resultado compartilhável com dados do usuário: compartilhe apenas quando houver escolha explícita e conteúdo revisado.
 
-## Relação com inboundfy-growth-ferramentas-gratuitas
+## Guia específico do grupo
 
-Use este modelo como roteiro mínimo e acrescente apenas campos pedidos pelo projeto. O arquivo final deve ficar ligado ao acervo, à peça e ao calendário quando houver data.
+Growth conecta tarefa útil, aquisição e continuidade comercial. Entregue objetivo,
+público, canal, oferta e próxima ação junto do contrato funcional.
+`inboundfy-growth-lead-magnet` recebe a versão baixável;
+`inboundfy-growth-distribuicao` recebe divulgação; `inboundfy-seo` recebe busca.
+A equipe executora recebe aceites e limitações, sem promessa de software pronto.
+
+Confirme: quem revisa a regra? A saída ainda ajuda se ninguém preencher contato?
+Qual custo muda a cada uso? Consulte `ESTRATEGIA.md`, `CONTEXTO.md` e
+`docs/method/05-artefatos-e-estados.md` antes de salvar o handoff.
 
 ## Arquitetura aplicada
 
@@ -59,165 +165,3 @@ Esta referência usa o contrato comum para a skill **inboundfy-growth-ferramenta
 - [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
 - [validação e retomada](../_shared/04-validacao-e-retomada.md);
 - [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de ferramentas gratuitas dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-growth-ferramentas-gratuitas
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de ferramentas gratuitas
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-growth-ferramentas-gratuitas
-grupo: growth
-entrada: acervo/0042-2026-09-14-ferramentas-gratuitas/processado.md
-pedido: aplicar a etapa de ferramentas gratuitas e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-growth-ferramentas-gratuitas
-estado: aprovado
-entrada: acervo/0042-2026-09-14-ferramentas-gratuitas/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de ferramentas gratuitas
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-growth-ferramentas-gratuitas** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
-
-## Guia específico do grupo
-
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
-
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-growth-ferramentas-gratuitas** para executar esta função: Estrutura uma ferramenta gratuita de aquisição com utilidade, escopo, entrada, resultado, CTA e caminho de relacionamento.
-
-O grupo **growth** trabalha com estes campos mínimos:
-
-- **objetivo:** preencher com dado ligado ao pedido.
-- **público:** preencher com dado ligado ao pedido.
-- **canal:** preencher com dado ligado ao pedido.
-- **oferta:** preencher com dado ligado ao pedido.
-- **próxima ação:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-growth-ferramentas-gratuitas
-grupo: growth
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/estrategia.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-growth-ferramentas-gratuitas
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/estrategia.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **growth** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESTRATEGIA.md`
-- `CONTEXTO.md`
-- `docs/method/05-artefatos-e-estados.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.

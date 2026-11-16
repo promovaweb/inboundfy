@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Aprendizado"
-  short_description: "Registra feedback e aplica regras confirmadas"
-  default_prompt: "Use $inboundfy-aprendizado para registrar e reaplicar esta orientação com o alcance confirmado."
+  display_name: "Inboundfy: Aprendizado"
+  short_description: "Guarda orientações e aplica só no alcance confirmado"
+  default_prompt: "Use $inboundfy-aprendizado para registrar esta orientação com o texto literal, confirmar até onde ela vale e aplicá-la à peça e aos arquivos de contexto correspondentes."

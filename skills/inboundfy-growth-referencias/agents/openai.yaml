@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Growth Referencias"
-  short_description: "Executa growth referencias no Inboundfy"
-  default_prompt: "Use $inboundfy-growth-referencias para executar growth referencias com as fontes do projeto."
+  display_name: "Inboundfy: Programa de indicação"
+  short_description: "Indicações, benefícios e conciliação de afiliados"
+  default_prompt: "Use $inboundfy-growth-referencias para desenhar programa de indicação com benefício, elegibilidade, atribuição e conciliação sem duplicatas."

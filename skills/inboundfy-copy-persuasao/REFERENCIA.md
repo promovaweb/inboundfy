@@ -1,5 +1,34 @@
 # Referência de psicologia aplicada
 
+Este arquivo apoia os passos 1 a 6 do fluxo de `SKILL.md`: mapa de forças,
+estágios da mensagem, registro de STEPPS, template do diagnóstico, exemplo
+completo e checklist.
+
+## Arquitetura aplicada
+
+Esta referência usa o contrato comum para a skill **inboundfy-copy-persuasao**, do grupo
+**copy**. Leia os detalhes compartilhados conforme a etapa atual:
+
+- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
+- [artefato e relações](../_shared/02-contrato-de-artefato.md);
+- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
+- [validação e retomada](../_shared/04-validacao-e-retomada.md);
+- [contexto editorial](../_shared/05-contexto-editorial.md).
+
+## Materiais de apoio
+
+| Arquivo | Passo do fluxo | Conteúdo |
+| --- | --- | --- |
+| [references/catalogo-de-principios.md](references/catalogo-de-principios.md) | Passo 3 | Princípios de comportamento por estágio, com uso honesto e forma abusiva. |
+| [references/limites-eticos-e-legais.md](references/limites-eticos-e-legais.md) | Passo 5 | Teste de transparência, CDC, CONAR, LGPD e padrões enganosos de interface. |
+
+## Guia específico do grupo
+
+A persuasão nesta skill é organização de motivo real. Os campos do grupo são
+**objetivo** (comportamento pedido), **mensagem** (o motivo que a persona
+tem para agir), **persona** (forças que a prendem e a puxam), **canal**
+(onde a aplicação aparece) e **revisão** (teste ético, fontes, anti-slop).
+
 ## Perguntas de análise
 
 - A pessoa entende por que isso importa para sua situação?
@@ -7,6 +36,33 @@
 - A prova confirma a promessa e tem contexto?
 - A ação seguinte é simples e reversível quando apropriado?
 - A urgência tem prazo ou condição real?
+
+## Mapa de forças de mudança
+
+Toda troca de comportamento tem duas forças a favor e duas contra. A copy
+fortalece as primeiras e responde às segundas.
+
+| Força | Pergunta | Como a copy trabalha |
+| --- | --- | --- |
+| Empurrão (dor atual) | O que incomoda hoje? | Nomear a situação com as palavras da persona. |
+| Atração (ganho novo) | O que a pessoa imagina conseguir? | Mostrar o resultado concreto e o mecanismo. |
+| Ansiedade (medo da troca) | O que pode dar errado? | Prova, garantia, demonstração, condição clara. |
+| Hábito (apego ao atual) | O que funciona "bem o suficiente" hoje? | Reconhecer o que a pessoa já faz e reduzir o esforço de troca. |
+
+Se a ansiedade e o hábito forem maiores que o empurrão e a atração, nenhum
+princípio de persuasão resolve. Nesse caso, devolva para
+`inboundfy-copy-oferta` (a oferta precisa reduzir o esforço) ou para
+`inboundfy-copy-posicionamento` (a persona pode estar errada).
+
+## Estágios da mensagem
+
+| Estágio | O leitor pergunta | Princípios típicos |
+| --- | --- | --- |
+| Atenção | "Isso é para mim?" | Relevância pessoal, especificidade, curiosidade com resposta logo depois. |
+| Compreensão | "Entendi o que é?" | Fluência (frase simples), exemplo concreto, comparação com algo conhecido. |
+| Confiança | "Posso acreditar?" | Prova social real, autoridade com credencial, admissão de limite, garantia. |
+| Ação | "Vale fazer agora?" | Primeiro passo pequeno, padrão recomendado, custo de adiar real, redução de esforço. |
+| Pós-ação | "Fiz a escolha certa?" | Confirmação clara, próximo passo, sensação de progresso. |
 
 ## Compartilhamento com STEPPS
 
@@ -36,175 +92,139 @@ continua dependendo das fontes, da voz e das regras do canal.
 Nunca invente escassez, depoimento, autoridade, número, medo ou consenso.
 Explique as condições antes de pedir a ação.
 
-## Arquitetura aplicada
-
-Esta referência usa o contrato comum para a skill **inboundfy-copy-persuasao**, do grupo
-**copy**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de psicologia dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
+## Template de diagnóstico persuasivo
 
 ```markdown
 ---
-id: {id}
+id: {{id}}
 skill: inboundfy-copy-persuasao
 estado: rascunho
-entrada: {caminho ou ID}
+entrada: {{caminho da peça ou do brief}}
+persona_principal: {{persona-xx}}
+comportamento_desejado: {{verbo + objeto}}
+custo_para_pessoa: {{dinheiro, tempo, exposição}}
 fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
+  - .inboundfy/context/depoimentos.json
+  - .inboundfy/context/ofertas.md
+proxima_skill: {{inboundfy-copy-redacao | inboundfy-copy-edicao | especialista}}
 ---
 
-# Registro de psicologia
+# Diagnóstico persuasivo: {{peça}}
 
-## Resultado
+## Forças
 
-{Conteúdo específico da etapa.}
+| Força | O que a persona sente | Fonte |
+| --- | --- | --- |
+| Empurrão | {{...}} | {{...}} |
+| Atração | {{...}} | {{...}} |
+| Ansiedade | {{...}} | {{...}} |
+| Hábito | {{...}} | {{...}} |
+
+## Princípios escolhidos
+
+| Estágio | Princípio | Aplicação (trecho ou instrução) | Sustentação | Teste ético |
+| --- | --- | --- | --- | --- |
+| {{...}} | {{...}} | {{...}} | {{fonte}} | {{aprovado / ajustado}} |
+
+## Removido ou rejeitado
+
+- {{trecho ou princípio}}: {{motivo}}
+
+## Opções de abertura
+
+1. Recomendada: {{...}}
+2. {{...}}
+3. {{...}}
 
 ## Pendências
 
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
+- {{prova que falta ou "nenhuma"}}
 ```
 
-## Exemplo operacional completo
+## Exemplo completo: página de orçamento de energia solar
 
-### Entrada ilustrativa
+Dados fictícios e ilustrativos. A Lumina Solar é uma empresa inventada que
+instala painéis solares residenciais em Belo Horizonte e região. O
+orçamento é gratuito e pedido pelo WhatsApp.
+
+### Entrada
 
 ```yaml
-id: 0042
-skill: inboundfy-copy-persuasao
-grupo: copy
-entrada: acervo/0042-2026-09-14-psicologia/processado.md
-pedido: aplicar a etapa de psicologia e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-copy-persuasao
-estado: aprovado
-entrada: acervo/0042-2026-09-14-psicologia/processado.md
+entrada: canais/site/0311-2026-10-22-orcamento-solar/README.md
+comportamento_desejado: pedir orçamento pelo WhatsApp
+persona_principal: persona-03 (casal com conta de luz acima de R$ 450, casa própria)
+problema_relatado: a página recebe visitas e poucas pessoas clicam no WhatsApp
 fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de psicologia
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
+  - .inboundfy/context/depoimentos.json (2 depoimentos com consentimento)
+  - .inboundfy/context/ofertas.md (financiamento em até 72x por parceiro; vistoria gratuita)
+  - acervo/0311-2026-10-22-orcamento-solar/faq.md
 ```
 
-## Checklist ampliado
+### Trecho original do topo
 
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
+> ÚLTIMAS VAGAS! A tarifa de energia vai disparar e quem não instalar agora
+> vai pagar caro. Não fique para trás: seus vizinhos já economizam. Peça seu
+> orçamento HOJE.
 
-## Erros comuns adicionais
+### Forças mapeadas
 
-- Executar **inboundfy-copy-persuasao** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+| Força | Leitura | Fonte |
+| --- | --- | --- |
+| Empurrão | Conta alta todo mês | `faq.md`: pergunta mais frequente é "quanto vou economizar?" |
+| Atração | Conta menor e valorização do imóvel | Simulações do acervo |
+| Ansiedade | Medo de golpe, de dano no telhado e de não ter retorno | `faq.md`: 4 das 10 perguntas tratam telhado e garantia |
+| Hábito | "Pagar a conta" não exige nenhuma ação | Entrevistas do acervo |
 
-## Guia específico do grupo
+A página original só trabalhava o empurrão, com medo. Não respondia à
+ansiedade, que é a força mais forte nesta persona.
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
+### Princípios escolhidos
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+| Estágio | Princípio | Aplicação | Sustentação |
+| --- | --- | --- | --- |
+| Atenção | Relevância pessoal | "Sua conta passa de R$ 450? Veja quanto ela cairia com painéis no seu telhado." | Perfil da persona |
+| Confiança | Prova social real | Depoimento de Marcos e Lívia, Contagem, com foto da instalação | `depoimentos.json` |
+| Confiança | Admissão de limite | "Nem todo telhado serve. Na vistoria gratuita, dizemos se o seu serve antes de qualquer proposta." | Processo registrado em `ofertas.md` |
+| Ação | Primeiro passo pequeno | CTA "Mandar foto da conta pelo WhatsApp", com microcopy "a simulação chega em até 1 dia útil" | Processo comercial |
 
-## Especificação operacional
+### Removido
 
-### Quando usar
+- "ÚLTIMAS VAGAS": não há limite de vagas registrado. Escassez inventada.
+- "A tarifa vai disparar": previsão sem fonte. Medo artificial.
+- "Seus vizinhos já economizam": consenso sem número.
+- "Não fique para trás": culpa e pressão social sem dado.
 
-Use **inboundfy-copy-persuasao** para executar esta função: Usa princípios de comportamento e persuasão com transparência para organizar mensagens, reduzir incerteza e ajudar a persona a avançar.
+### Interpretação
 
-O grupo **copy** trabalha com estes campos mínimos:
+A taxa baixa vinha da ansiedade não respondida, não de falta de urgência. O
+novo topo troca pressão por informação e transforma a vistoria em resposta
+ao medo do telhado. A falha provável seria manter "últimas vagas" por hábito
+de campanha: sem quantidade e data registradas, isso configura publicidade
+enganosa.
 
-- **objetivo:** preencher com dado ligado ao pedido.
-- **mensagem:** preencher com dado ligado ao pedido.
-- **persona:** preencher com dado ligado ao pedido.
-- **canal:** preencher com dado ligado ao pedido.
-- **revisão:** preencher com dado ligado ao pedido.
+## Checklist
 
-### Exemplo específico ilustrativo
+- [ ] O comportamento desejado está escrito com verbo e objeto.
+- [ ] As quatro forças estão mapeadas com fonte.
+- [ ] Cada princípio escolhido responde a uma força mapeada.
+- [ ] Toda prova social vem de `depoimentos.json` ou fonte registrada.
+- [ ] Urgência e escassez têm data, quantidade ou motivo verificável.
+- [ ] Preço total, fidelidade e renovação aparecem antes do CTA quando existem.
+- [ ] Cada aplicação passou no teste de limites éticos e legais.
+- [ ] Princípios rejeitados estão registrados com motivo.
+- [ ] Três opções de abertura ou CTA foram apresentadas quando cabível.
 
-Entrada:
+## Erros comuns
 
-```yaml
-id: 0042
-skill: inboundfy-copy-persuasao
-grupo: copy
-pedido: executar a função desta skill sobre o material selecionado
-entrada: acervo/0042-2026-09-14-material/base-editorial.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-copy-persuasao
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - acervo/0042-2026-09-14-material/base-editorial.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **copy** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `CONTEXTO.md`
-- `SKILL-AUTORIA.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+- **Empilhar gatilhos.** Escassez, urgência, autoridade e prova social no
+  mesmo bloco. O leitor percebe a pressão e desconfia.
+- **Contador falso.** Cronômetro que reinicia ao recarregar a página. Além de
+  enganoso, é fácil de descobrir e destrói a confiança.
+- **Autoridade emprestada.** Citar "especialistas recomendam" sem nome,
+  credencial e fonte.
+- **Responder só à dor.** Agitar o problema e ignorar o medo da troca, que
+  quase sempre é a força que mais impede a ação.
+- **Ancoragem desonesta.** Preço "de" que nunca foi praticado. O CDC trata
+  como publicidade enganosa.
+- **Escolha padrão contra a pessoa.** Caixa de renovação automática ou de
+  envio de ofertas já marcada sem informação clara.

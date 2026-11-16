@@ -1,253 +1,166 @@
-# REFERENCIA.md; inboundfy-especialista-newsletter
+# Manual de edição de newsletter
 
-Material de apoio para escrever edições de newsletter editorial longa.
+## Diagnóstico da peça
 
-## Template de estrutura de edição
+1. Qual tese conecta toda a edição?
+2. O formato é análise, curadoria ou lançamento autorizado?
+3. A edição será enviada por e-mail, publicada na web ou distribuída nos dois formatos?
 
-```yaml
----
-assunto: <quando distribuída por e-mail>
-titulo: <quando publicada como artigo próprio>
-description: <145-155 caracteres>
-brief: acervo/<id>-<data>-<slug>/base-editorial.md
----
+Se o brief já responder, use a resposta registrada. Se faltar fato obrigatório, devolva a pergunta ao planejamento ou à manutenção de contexto indicada por `CONTEXTO.md`. Não crie uma estratégia nova para completar a peça.
 
-# <Título da edição>
+| Situação no brief | Tratamento | Evitar |
+| --- | --- | --- |
+| Há argumento central e caso | Análise: observação, explicação, contraponto e consequência | Opinião sem fonte apresentada como fato |
+| Há várias fontes ligadas ao mesmo tema | Curadoria comentada com síntese própria | Boletim de links desconexos |
+| Brief pede lançamento | PASTOR com oferta confirmada e voz editorial | Anúncio inserido em análise não comercial |
 
-<Abertura reconhecível; situação ou observação real do período>
+## Formato e parâmetros editoriais
 
-<Corpo; desenvolvimento de uma ou poucas ideias centrais>
+Preserve `assunto` para envio por e-mail, `titulo`, `description` com 145 a 155 caracteres e `brief` em pacote. Inclua `pre-header` quando houver envio. Registre edição, data, distribuição e tese em metadata interna. A publicação web tem um H1; no envio, mantenha o título conforme o template já instalado.
 
-<Seção de produto/ferramenta; opcional, só quando o brief pedir, com FAB>
+Alvo editorial: assunto até 50 caracteres, pré-header de 40 a 100, análise de 600 a 1.200 palavras; curadoria de 400 a 900 com 3 a 5 fontes realmente comentadas. Um brief de edição breve pode reduzir a extensão, como no exemplo completo abaixo. Não trate a faixa como limite técnico de provedor.
 
-<Fechamento; sem enfeite, com CTA único>
-```
+Arquivo Markdown no canal newsletter de `context/canais.md`. Preserve rodapé e assinatura do projeto. Links de fonte e descadastro cumprem funções de referência e serviço; a edição continua tendo uma ação principal. Não force um botão em cada seção.
 
-## Estrutura de edição por tipo
+## Método de produção
 
-- **Edição de opinião/análise**: abertura situa o tema do período, corpo
-  desenvolve uma tese central com exemplo interpretado, fechamento traz a
-  posição do autor sem moralizar.
-- **Edição de curadoria**: abertura conecta os itens por um fio comum (não
-  uma lista solta), cada item comentado com uma frase de contexto real, não
-  só um link.
-- **Edição de lançamento/oferta**: segue a lógica de PASTOR de
-  `inboundfy-especialista-email`, mas com desenvolvimento mais longo por bloco.
+No passo de redação, consulte [estrutura editorial e menções comerciais](references/estrutura-editorial.md).
 
-## Exemplo completo (fictício, edição de opinião)
+1. Reduza o ângulo do brief a uma frase: o que esta edição ajuda a entender agora? Separe assuntos que pertencem à edição seguinte.
+2. Escolha o tratamento já permitido pelo brief: análise desenvolve argumento e contraponto; curadoria conecta fontes comentadas; lançamento segue a estrutura comercial indicada.
+3. Abra com situação específica do período ou do material-fonte. Desenvolva a relação causal antes de mostrar o exemplo. Não atribua experiência pessoal ao autor sem comprovação.
+4. Interprete o exemplo e acrescente seu limite. Na curadoria, cada fonte recebe resumo fiel, comentário próprio e relação com a tese; não entregue uma sequência de links sem explicação.
+5. Insira produto somente quando solicitado. Complete FAB e retome o argumento editorial. Termine com CTA único coerente com a edição.
+6. Prepare metadata de e-mail e web conforme distribuição. Leia a edição inteira em voz alta, aplique `inboundfy-copy-editor`, A5 e validadora. Não altere a cadência nem envie a lista.
 
-Empresa fictícia: "Agenda Cronos".
+## Template da peça
 
-```markdown
----
-assunto: Por que a fila de espera não é sobre falta de gente
-titulo: Por que a fila de espera não é sobre falta de gente
-description: A fila de espera de uma clínica pequena quase nunca é sobre número de profissionais; é sobre como o tempo de cada um é encaixado na agenda.
-brief: acervo/<id>-<data>-<slug>/base-editorial.md
----
-
-# Por que a fila de espera não é sobre falta de gente
-
-Toda clínica que reclama de fila de espera pensa primeiro em contratar mais
-gente. Na prática, boa parte das filas que vejo têm origem em outro lugar:
-o encaixe de horário que deixa quinze minutos ociosos entre uma consulta e
-outra, multiplicado por semana, sem que ninguém perceba porque o buraco é
-pequeno demais para chamar atenção isolado.
-
-Esse tipo de perda só aparece quando alguém soma o mês inteiro. Um sistema
-de agendamento que mostra o dia inteiro numa grade visual facilita enxergar
-o buraco antes de ele virar hábito; não porque o sistema "otimiza"
-sozinho, mas porque ele torna o problema visível para quem decide o
-encaixe.
-
-Contratar mais gente sem resolver o encaixe só desloca o problema para uma
-agenda maior com o mesmo buraco proporcional.
-```
-
-## Checklist de canal
-
-- [ ] Corpo em prosa contínua, sem fragmentação artificial em blocos curtos.
-- [ ] Seção de produto (se houver) fecha em benefício real (FAB), não fica
-      como anúncio solto no meio do texto editorial.
-- [ ] CTA único no fechamento.
-
-## Erros comuns
-
-- Transformar a newsletter numa lista de tópicos picados só porque o e-mail
-  "pede" escaneabilidade; o valor do canal é a leitura contínua.
-- Misturar duas ideias centrais sem transição, deixando a edição sem fio
-  condutor.
-- Inserir seção de produto em toda edição mesmo quando o brief não pediu.
-
-## Arquitetura aplicada
-
-Esta referência usa o contrato comum para a skill **inboundfy-especialista-newsletter**, do grupo
-**especialista**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de especialista newsletter dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
+Combine os campos específicos abaixo com o envelope de `../_shared/02-contrato-de-artefato.md`: ID, skill, tipo, estado, datas, entrada, contexto, fontes e próxima ação. Não substitua o template do consumidor por outro formato. Os campos abaixo complementam o contrato; `brief` é obrigatório em pacote e aponta para a origem efetiva.
 
 ```markdown
 ---
-id: {id}
+id: "{id}"
 skill: inboundfy-especialista-newsletter
+tipo: newsletter
+canal: newsletter
 estado: rascunho
-entrada: {caminho ou ID}
+persona: "{persona selecionada}"
+assunto: "{somente quando enviada}"
+pre-header: "{complemento para envio}"
+titulo: "{título da edição}"
+description: "{resumo com 145 a 155 caracteres}"
+edicao: "{número}"
+distribuicao: "{email|web|ambos}"
+tese: "{uma afirmação que o corpo desenvolve}"
+brief: "{caminho do brief aprovado}"
 fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
+  - "{fonte da afirmação ou dado}"
 ---
 
-# Registro de especialista newsletter
+# {Título da edição}
 
-## Resultado
+{Abertura situada que introduz a tese.}
 
-{Conteúdo específico da etapa.}
+{Explicação desenvolvida com fonte e ligação causal.}
 
-## Pendências
+{Caso interpretado ou curadoria comentada por um fio comum.}
 
-- {pergunta ou "nenhuma"}
+{Contraponto e limite.}
 
-## Próxima ação
+{Fechamento que aplica o argumento à rotina do leitor.}
 
-{verbo + objeto + caminho do arquivo seguinte}
+[{Ação principal}]({destino})
+
+{Assinatura e rodapé conforme distribuição.}
 ```
 
-## Exemplo operacional completo
+## Modelos por situação
 
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-newsletter
-grupo: especialista
-entrada: acervo/0042-2026-09-14-especialista-newsletter/processado.md
-pedido: aplicar a etapa de especialista newsletter e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
+### Modelo de curadoria comentada
 
 ```markdown
----
-id: 0042
-skill: inboundfy-especialista-newsletter
-estado: aprovado
-entrada: acervo/0042-2026-09-14-especialista-newsletter/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
+# {Título que conecta as fontes}
 
-# Registro de especialista newsletter
+{Abertura que explica o fio comum e sua utilidade para a persona.}
 
-## Resultado
+## {Primeira leitura}
 
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
+[{Fonte e título}]({URL confirmada}). {Resumo fiel do argumento}. {Comentário próprio: consequência concreta e limite da fonte}.
 
-## Próxima ação
+## {Segunda leitura}
 
-{verbo + objeto + caminho do arquivo seguinte}
+[{Fonte e título}]({URL confirmada}). {O que acrescenta ou contrapõe à primeira}. {O que o leitor pode conferir na própria rotina}.
+
+## {Terceira leitura}
+
+[{Fonte e título}]({URL confirmada}). {Nova informação sem repetir as anteriores}. {Limitação ou condição de aplicação}.
+
+{Síntese que conecta as leituras, sem transformar opinião em consenso.}
+
+[{Ação principal aprovada}]({destino})
+
+{Assinatura e rodapé conforme distribuição.}
 ```
 
-## Checklist ampliado
+### Modelo de preparação do envio
 
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
+```yaml
+edicao: "{número}"
+distribuicao: "{email|web|ambos}"
+segmento: "{grupo definido no brief}"
+assunto: "{promessa da edição}"
+pre-header: "{complemento}"
+remetente: "{identidade autorizada}"
+reply_to: "{endereço confirmado}"
+previa_movel: "{artefato conferido ou pendente}"
+versao_texto: "{artefato conferido ou pendente}"
+rodape: "{template vigente}"
+```
 
-## Erros comuns adicionais
+Metadados operacionais não entram no corpo público. Na versão web, retire instruções internas do envio. Na versão de e-mail, preserve fontes e serviço sem acrescentar ofertas concorrentes.
 
-- Executar **inboundfy-especialista-newsletter** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+## Exemplo completo e leitura no fluxo
+
+Na etapa de montagem da peça, leia [o exemplo completo da Fornada Clara](references/exemplo-completo.md). Ele inclui entrada aprovada e saída integral, com todos os blocos do canal. Na conferência final, compare com [o relatório preenchido da validadora](../inboundfy-validador-newsletter/REFERENCIA.md#exemplo-de-relatório-preenchido).
+
+## Checklist numerado do par
+
+Os números são os mesmos na produtora e na validadora. A classificação indica o tipo de leitura necessário; uma regra pode exigir mais de um passe. Marque não aplicável somente com justificativa verificável.
+
+1. [ ] **literal**: Título, description de 145 a 155 caracteres e `brief` de pacote presentes; envio inclui assunto e pré-header.
+2. [ ] **semântica**: A edição sustenta uma tese ligada ao brief, sem atribuir experiência pessoal não documentada.
+3. [ ] **estrutural**: Abertura, desenvolvimento, exemplo interpretado, contraponto e fechamento progridem sem repetição.
+4. [ ] **semântica**: Fontes da curadoria têm comentário próprio; menções comerciais autorizadas aplicam FAB e têm fonte.
+5. [ ] **estrutural**: Fechamento tem ação principal única; links de referência e serviço não viram ofertas concorrentes.
+6. [ ] **visual**: Versões web e e-mail mantêm leitura contínua, assinatura, links e rodapé; marca foi conferida quando presente.
+7. [ ] **literal**: ID, estado real, persona, origem e fontes estão ligados à peça; o exemplo fictício não virou contexto do consumidor.
+8. [ ] **semântica**: Voz e afirmações conferem com todos os contextos e fontes aplicáveis; lacuna factual permanece fora da copy.
+9. [ ] **estrutural**: Proibições foram revistas em passes literal e semântico/estrutural no arquivo inteiro, inclusive metadata, links e CTA.
+10. [ ] **visual**: `brand/` foi procurada; ativos existentes e texto visual foram inspecionados ou a ausência foi justificada.
+11. [ ] **estrutural**: Revisão de `inboundfy-copy-editor`, marco A5 e retorno da validadora foram registrados; mudança exige nova leitura integral.
+
+## Erros comuns de newsletter
+
+- Colar cinco links e chamar de curadoria. Explique por que cada fonte muda a leitura do tema.
+- Escrever em primeira pessoa um caso que veio de terceiro. Atribua a origem sem simular vivência.
+- Inserir anúncio sem ligação com a edição. Retire ou integre somente se o brief permitir.
+
+## Acompanhamento da peça
+
+Compare cliques úteis, respostas pertinentes e descadastros por edição e segmento. Na curadoria, diferencie clique em fonte e ação principal. Não avalie valor editorial apenas por abertura.
+
+Medição pertence ao planejamento e às integrações aprovadas. Esta especialista entrega copy e relação com as fontes. Não configura envio, publicação ou coleta por conta própria.
 
 ## Guia específico do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+O registro do grupo `especialista` identifica canal `newsletter`, persona, objetivo do brief, formato e `inboundfy-validador-newsletter` como destino de revisão. Entregue arquivo, fontes lidas, pendências e ação solicitada. Se houver reprovação, corrija apenas o alcance solicitado, releia a peça inteira e retorne à mesma validadora. A aprovação precede o retorno a `inboundfy-planejamento`; variantes de imagem mantêm seus fluxos próprios.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+## Arquitetura aplicada
 
-## Especificação operacional
+- Antes da redação ou auditoria: [preflight e fontes](../_shared/01-preflight-e-fontes.md).
+- Ao registrar a peça: [artefato e relações](../_shared/02-contrato-de-artefato.md).
+- Nas escolhas e entrega: [checkpoints e handoff](../_shared/03-interacao-e-handoff.md).
+- A cada rodada: [validação e retomada](../_shared/04-validacao-e-retomada.md).
+- Antes de qualquer texto público: [contexto editorial](../_shared/05-contexto-editorial.md).
 
-### Quando usar
-
-Use **inboundfy-especialista-newsletter** para executar esta função: Escreve newsletter longa e editorial (por e-mail ou publicação própria) a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md.
-
-O grupo **especialista** trabalha com estes campos mínimos:
-
-- **canal:** preencher com dado ligado ao pedido.
-- **persona:** preencher com dado ligado ao pedido.
-- **objetivo:** preencher com dado ligado ao pedido.
-- **formato:** preencher com dado ligado ao pedido.
-- **validadora:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-newsletter
-grupo: especialista
-pedido: executar a função desta skill sobre o material selecionado
-entrada: briefs/0042-2026-09-14-newsletter/brief.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-newsletter
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - briefs/0042-2026-09-14-newsletter/brief.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **especialista** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `ESTRUTURAS-PERSUASIVAS.md`
-- `CONTEXTO.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Leia também `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md`, `CONTEXTO.md` e `METODOLOGIA.md`. Os caminhos `context/` resolvem para `.inboundfy/context/` no consumidor; preserve a resolução e os diretórios já configurados.

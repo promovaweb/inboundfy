@@ -1,9 +1,6 @@
 ---
 name: inboundfy-especialista-instagram
-description: >
-  Escreve legenda de post, carrossel textual e roteiro de vídeo curto
-  (Reels, Shorts, TikTok) a partir de um brief aprovado (fase 5 do
-  pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md.
+description: Escreve legenda, carrossel textual e roteiro de vídeo curto com CTA e descrição acessível. Use quando o pedido trouxer post de Instagram, slides de carrossel, Reels, Shorts ou TikTok a partir de brief aprovado.
 ---
 
 # Inboundfy Instagram Redator
@@ -23,21 +20,15 @@ Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md` no in
 ausência de qualquer um, informe: "O setup do Inboundfy ainda não foi concluído
 ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
 arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
-preflight, leia o catalogo e os Markdown relevantes para a tarefa.
+preflight, leia o catálogo e os Markdown relevantes para a tarefa.
 
 ## Arquitetura de execução
-
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
 - [Interação e handoff](../_shared/03-interacao-e-handoff.md): conduza escolhas e entregue o pacote seguinte.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
-
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **especialista**.
 
 ## Contexto exigido
 
@@ -48,25 +39,6 @@ artefato. O grupo desta skill é **especialista**.
 - `ESTRUTURAS-PERSUASIVAS.md` (contexto compartilhado do framework): quando o
   brief marcar objetivo comercial.
 
-## Estrutura persuasiva por formato
-
-- **Legenda de post** com CTA de conversão: use **AIDA**; a primeira linha
-  antes do "mais" é a Atenção, o corpo mantém o Interesse com um fato
-  concreto, o parágrafo seguinte cria o Desejo, e o fechamento é a Ação
-  (link na bio, comentário, DM).
-- **Carrossel textual**: o formato de slides já espelha naturalmente o
-  **PAS**; slide 1-2 nomeiam o Problema real da persona
-  (`context/publico.md`), slide 3-4 agitam a consequência concreta, os
-  slides finais entregam a Solução e fecham com CTA no último slide. Use
-  PASTOR apenas quando o brief pedir um carrossel mais longo com prova
-  social real disponível em `context/`.
-- **Roteiro de vídeo curto**: gancho nos primeiros segundos como bloco de
-  Atenção do AIDA funciona bem para formato de conversão rápida; para
-  formato de conscientização, PAS com problema nomeado logo no início
-  também funciona.
-- Sempre que qualquer formato apresentar um produto, aplique **FAB** dentro
-  do bloco correspondente: característica, vantagem, benefício.
-
 ## Entrada esperada
 
 Um brief indicando o formato (post, carrossel ou vídeo curto), ângulo,
@@ -74,30 +46,24 @@ ativos de apoio e CTA.
 
 ## Fluxo
 
-1. Leia o brief e identifique o formato de saída esperado.
-2. Para **legenda de post**: escreva gancho na primeira linha, corpo curto e
+1. Leia o brief, diagnóstico, parâmetros e checklist em [REFERENCIA.md](REFERENCIA.md). Na redação, abra [modelos e exemplo](references/modelos-e-exemplo.md) e [a aplicação das estruturas](references/estruturas-persuasivas.md). Preserve as escolhas aprovadas; estrutura comercial obrigatória ausente retorna ao planejamento.
+2. Leia o brief e identifique o formato de saída esperado.
+3. Para **legenda de post**: escreva gancho na primeira linha, corpo curto e
    direto, CTA e, se aplicável, indicação de hashtags relevantes ao tema;    sem lista de hashtags genéricas desconectadas do conteúdo.
-3. Para **carrossel textual**: escreva slide a slide, um argumento por
+4. Para **carrossel textual**: escreva slide a slide, um argumento por
    slide, com progressão lógica entre eles e fechamento com CTA no último
    slide; cada slide precisa fazer sentido isolado, mas a sequência
-   completa também precisa ter coerência de raciocínio. Use o template de
-   carrossel e as fórmulas de gancho de `REFERENCIA.md`.
-4. Para **roteiro de vídeo curto**: escreva o texto falado com gancho nos
-   primeiros segundos, um único argumento central, e fechamento com CTA
+   completa também precisa ter coerência de raciocínio. Use o modelo de carrossel vinculado no passo de redação.
+5. Para **roteiro de vídeo curto**: escreva o texto falado com gancho nos
+   primeiros segundos, um único argumento central e fechamento com CTA
    falado; sem indicação de corte técnico fora do escopo desta skill.
-5. Aplique `ESCRITA.md` ajustando densidade ao formato curto, sem
+6. Aplique `ESCRITA.md` ajustando densidade ao formato curto, sem
    reintroduzir slop ou fragmentação vazia.
-6. Rode `inboundfy-copy-editor`, trate os achados verificáveis e repita a leitura integral.
-7. Salve com frontmatter incluindo `formato` (post/carrossel/video-curto) e
+7. Rode `inboundfy-copy-editor`, trate os achados e registre a auditoria A5 de `inboundfy-anti-slop`. Repita a leitura integral.
+8. Salve com frontmatter incluindo `formato` (post/carrossel/video-curto) e
    `brief` quando fizer parte de um pacote.
-8. Encaminhe para `inboundfy-especialista-instagram-imagem` quando o formato exigir peça
-   visual, e depois para `inboundfy-planejamento`.
-
-## Encaminhamento obrigatório
-
-Antes de considerar o asset pronto, acione
-`inboundfy-validador-instagram`. Em caso de reprovação, aplique as correções
-do relatório e reenvie o conjunto inteiro até a aprovação.
+9. Envie a candidata inteira, brief, fontes e registros editoriais a `inboundfy-validador-instagram`. Corrija os achados pela especialista e repita a auditoria inteira até a aprovação.
+10. Com a copy aprovada, entregue o pacote de arte descrito em Responsabilidade do grupo a `inboundfy-especialista-instagram-imagem`, quando previsto no brief. Retorne a `inboundfy-planejamento` com os arquivos aprovados e relatórios correspondentes.
 
 ## Saída
 
@@ -113,15 +79,7 @@ Instagram, com um arquivo por slide quando o formato for carrossel.
 
 ## Responsabilidade do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** especialista
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+Produza legenda, carrossel textual ou roteiro curto de Instagram para o formato aprovado. Use a lista numerada de `REFERENCIA.md` antes de enviar à `inboundfy-validador-instagram`. Quando houver arte, encaminhe a copy aprovada para `inboundfy-especialista-instagram-imagem`, com ordem de slides, alt text, proporção do brief e textos literais.
 
 ## Idempotência
 

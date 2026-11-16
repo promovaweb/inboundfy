@@ -1,189 +1,133 @@
-# Referência de anti-slop de código
+# Revisão de código com comportamento preservado
 
-## Lista de revisão
+A revisão remove complexidade sem função e melhora os limites de dados. Uma função menor não é automaticamente melhor: a mudança precisa facilitar leitura ou manutenção sem alterar o contrato público por acidente.
 
-- [ ] entradas têm tipos e validação claros;
-- [ ] erros preservam contexto útil;
-- [ ] funções não acumulam cópias desnecessárias;
-- [ ] não há cast usado para calar o compilador;
-- [ ] comentários explicam razão, contrato ou limite;
-- [ ] escrita preserva dados existentes;
-- [ ] testes cobrem o comportamento alterado;
-- [ ] documentação aponta caminhos e comandos reais.
+## Diagnóstico da mudança
 
-## Relato
+Identifique comando de entrada, formatos aceitos, mensagens de erro, arquivos gravados e consumidores da API. Pergunte qual comportamento será observado antes e depois. Leia os testes existentes antes de introduzir outra camada.
 
-Registre arquivo, trecho, consequência, ação aplicada e comando de validação.
+| Achado | Tratamento | Conferência necessária |
+| --- | --- | --- |
+| Comentário repete a linha seguinte | Remover comentário | Diff sem alteração funcional |
+| Helper usado uma vez sem simplificar leitura | Integrar ao chamador | Mesma entrada, saída e erros |
+| Duplicação de regra de caminho | Centralizar na função existente | Caminho válido e tentativa de saída da raiz |
+| `any` na fronteira de JSON | Validar estrutura e estreitar tipo | Payload válido, incompleto e malformado |
+| `unknown` na entrada externa | Manter até validação | Não converter por cast sem checagem |
+| Cópia repetida de acumulador | Avaliar atualização local controlada | Mesma ordem e resultado |
+| Mensagem genérica de erro | Nomear operação e campo | Não expor segredo nem conteúdo privado |
+
+## Procedimento de revisão
+
+1. Leia `AGENTS.md`, `package.json`, tipos públicos, chamadores e testes ligados ao arquivo.
+2. Descreva comportamento atual em entrada, transformação, saída, erro e persistência. Diferencie simplificação de mudança funcional.
+3. Localize código morto, cast injustificado, abstração sem uso e comentário sem informação adicional.
+4. Faça uma mudança por motivo. Preserve ID, caminho, serialização, ordem e mensagem pública quando fazem parte do contrato.
+5. Se a mudança toca escrita, confira temporário, renomeação, proteção contra saída da raiz e segunda execução.
+6. Rode typecheck e testes pertinentes já existentes. Acrescente teste somente quando protege um comportamento real alterado ou antes descoberto sem cobertura.
+7. Leia o diff completo. Confirme que nenhum log novo expõe token, variável secreta ou conteúdo de cliente.
+8. Entregue alteração, motivo, verificação executada e limite restante. Não anuncie teste que não rodou.
+
+## Template de relatório técnico
+
+```markdown
+# Revisão de <arquivo ou mudança>
+
+## Contrato observado
+- Entrada: <tipo e exemplo>
+- Saída: <tipo e exemplo>
+- Erros: <condições públicas>
+- Persistência: <arquivos ou nenhuma>
+
+## Achados e alterações
+| Local | Problema | Mudança | Comportamento preservado |
+| --- | --- | --- | --- |
+| <linha/função> | <problema concreto> | <ação> | <contrato> |
+
+## Verificação
+- <comando, resultado e alcance>
+- Segunda execução: <resultado ou não aplicável com motivo>
+
+## Pendências
+<Problema fora do alcance ou nenhuma.>
+```
+
+## Exemplo completo: exportador fictício da Pinhão Bicicletas
+
+O exportador soma os valores em centavos de ordens já validadas. O tipo `Ordem` contém `valorCentavos: number`. A revisão encontra um comentário que narra a linha e um array intermediário desnecessário para a soma.
+
+**Antes:**
+
+```ts
+type Ordem = { valorCentavos: number };
+function somar(ordens: Ordem[]): number {
+  // Mapeia as ordens para obter os valores.
+  const valores = ordens.map((ordem) => ordem.valorCentavos);
+  return valores.reduce((total, valor) => total + valor, 0);
+}
+```
+
+**Depois:**
+
+```ts
+type Ordem = { valorCentavos: number };
+function somar(ordens: Ordem[]): number {
+  return ordens.reduce((total, ordem) => total + ordem.valorCentavos, 0);
+}
+```
+
+Relatório preenchido:
+
+```markdown
+# Revisão de somar
+
+## Contrato observado
+- Entrada: lista de ordens validadas; valores em centavos.
+- Saída: soma numérica; lista vazia retorna 0.
+- Erros: validação externa permanece no chamador.
+- Persistência: nenhuma.
+
+## Achados e alterações
+| Local | Problema | Mudança | Comportamento preservado |
+| --- | --- | --- | --- |
+| somar, linhas 3 a 5 | Array intermediário e comentário narrativo | Somar diretamente por reduce | Ordem da soma, valor inicial e retorno |
+
+## Verificação
+- Caso vazio: 0 antes e depois.
+- Valores 12000 e 3500: 15500 antes e depois.
+- Typecheck: executar no projeto consumidor antes de integrar.
+- Segunda execução: não aplicável; a função não grava arquivos.
+
+## Pendências
+Executar as verificações do projeto real. O exemplo mostra raciocínio local, sem alegar execução de suíte.
+```
+
+O ganho aqui é uma passagem de leitura a menos na função, sem promessa de desempenho medida. Uma fronteira que recebe JSON ainda precisaria validar a estrutura antes de chamar `somar`. Converter o payload com `as Ordem[]` não faria essa validação.
+
+## Checklist numerado
+
+1. Contrato público foi identificado antes do diff.
+2. Simplificação possui motivo concreto.
+3. Fronteiras externas validam dados antes de estreitar tipos.
+4. `unknown` legítimo não foi removido apenas para satisfazer estilo.
+5. Erros e serialização continuam compatíveis.
+6. Caminhos e escrita atômica foram conferidos quando aplicáveis.
+7. Testes executados correspondem ao comportamento afetado.
+8. Nenhum segredo aparece em log ou relatório.
+9. Documentação reflete a implementação final.
+10. Segunda execução não altera resultado persistente sem nova entrada.
+
+## Erros comuns
+
+- Trocar `any` por cast e declarar o problema resolvido. Valide os dados.
+- Criar helper para cada linha. Preserve unidade de leitura.
+- Refatorar mensagens públicas junto de uma limpeza local. Separe mudança funcional.
+- Escrever teste que apenas repete a implementação. Teste entrada e comportamento observável.
+- Confundir ausência de teste com aprovação. Registre o que foi e o que não foi executado.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-anti-slop-codigo**, do grupo
-**qualidade**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de anti slop codigo dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-anti-slop-codigo
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de anti slop codigo
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-anti-slop-codigo
-grupo: qualidade
-entrada: acervo/0042-2026-09-14-anti-slop-codigo/processado.md
-pedido: aplicar a etapa de anti slop codigo e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-anti-slop-codigo
-estado: aprovado
-entrada: acervo/0042-2026-09-14-anti-slop-codigo/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de anti slop codigo
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-anti-slop-codigo** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+Use [fontes](../_shared/01-preflight-e-fontes.md) para localizar contratos. Registre a revisão por [artefato](../_shared/02-contrato-de-artefato.md) e preserve linguagem de documentação por [contexto](../_shared/05-contexto-editorial.md). Entregue com [handoff](../_shared/03-interacao-e-handoff.md) e compare execuções por [retomada](../_shared/04-validacao-e-retomada.md).
 
 ## Guia específico do grupo
 
-Faça uma revisão específica de qualidade. Separe achado literal, semântico e estrutural e só libere após nova leitura integral.
-
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-anti-slop-codigo** para executar esta função: Revisa código e documentação do CLI para remover complexidade sem função, tipos frouxos e comentários genéricos sem mudar comportamento.
-
-O grupo **qualidade** trabalha com estes campos mínimos:
-
-- **texto:** preencher com dado ligado ao pedido.
-- **voz:** preencher com dado ligado ao pedido.
-- **dicionário:** preencher com dado ligado ao pedido.
-- **proibições:** preencher com dado ligado ao pedido.
-- **retorno:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-anti-slop-codigo
-grupo: qualidade
-pedido: executar a função desta skill sobre o material selecionado
-entrada: canais/blog/0042-2026-09-14-peca/artigo.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-anti-slop-codigo
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - canais/blog/0042-2026-09-14-peca/artigo.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **qualidade** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `LIMPEZA-MATERIAL-BRUTO.md`
-- `docs/method/07-validacao-e-testes.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Esta skill trata qualidade do framework, scripts e integrações. Use `inboundfy-anti-slop` para prosa pública. Leia scripts do `package.json` antes de escolher comandos; no Inboundfy, `npm run typecheck`, testes pertinentes e `node scripts/validar-framework.mjs` cobrem contratos diferentes.

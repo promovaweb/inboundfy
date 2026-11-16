@@ -1,16 +1,16 @@
-# context/ — Dados do Usuário
+# Dados do usuário em context/
 
 Esta pasta concentra a informação de negócio real do usuário. A única
 exceção é `estruturas-proibidas.md`: vive aqui por conveniência operacional
 (a mesma auditoria de `inboundfy-copy-editor` lê os arquivos desta pasta em
 sequência), mas seu conteúdo é genérico e pré-preenchido pelo framework, não
-dado específico de negócio — ver `../ESCRITA.md`. Veja `../CONTEXTO.md` para
+dado específico de negócio: ver `../ESCRITA.md`. Veja `../CONTEXTO.md` para
 o que cada arquivo resolve, a precedência entre eles e o formato esperado.
 
 Todos os arquivos abaixo chegam como template com placeholders entre `{ }` e
 comentários `<!-- -->` explicando o que preencher. Preencha sob demanda: o
 mínimo para começar é `empresa.md`, `marca-voz.md`, um item em `produtos.md`
-(ou `servicos.md`) e um canal em `canais.md` — `inboundfy-setup` conduz esse
+(ou `servicos.md`) e um canal em `canais.md`: `inboundfy-setup` conduz esse
 preenchimento inicial. A única exceção de formato é `depoimentos.json`: cada
 depoimento é um registro repetível com os mesmos campos, por isso o arquivo
 chega como uma lista JSON vazia em vez de Markdown.
@@ -29,6 +29,7 @@ chega como uma lista JSON vazia em vez de Markdown.
 | `links.md` | URLs oficiais, perfis sociais, páginas e destinos de conversão. |
 | `canais.md` | Canais ativos, cadência, diretório de trabalho. |
 | `ferramentas.md` | Stack e ferramentas mencionáveis. |
+| `integracoes.md` | Integrações por área, estado do acesso, variáveis de ambiente e configurações gerais, preenchido pelo `inboundfy-setup`. Nunca guarda valores de segredo. |
 | `campanhas.md` | Campanhas, objetivos, período e estado. |
 | `glossario.md` | Grafia oficial de marcas e termos. |
 | `proibicoes.md` | Vetos editoriais específicos do usuário. |
@@ -36,6 +37,6 @@ chega como uma lista JSON vazia em vez de Markdown.
 | `aprendizado.md` | Sugestões, correções, alinhamentos e dicas confirmadas. |
 | `depoimentos.json` | Depoimentos de clientes: nome, cargo, empresa, citação literal, foto e consentimento de uso por canal. |
 
-Nunca apague uma seção inteira de um desses arquivos ao atualizar — edite o
+Nunca apague uma seção inteira de um desses arquivos ao atualizar: edite o
 conteúdo da seção e preserve a estrutura, para que qualquer skill que leia o
 arquivo continue encontrando os mesmos cabeçalhos.

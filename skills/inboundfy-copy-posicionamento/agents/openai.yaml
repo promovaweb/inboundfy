@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Copy Posicionamento"
-  short_description: "Executa copy posicionamento no Inboundfy"
-  default_prompt: "Use $inboundfy-copy-posicionamento para executar copy posicionamento com as fontes do projeto."
+  display_name: "Inboundfy: Posicionamento"
+  short_description: "Define posicionamento e mapa de mensagens por persona"
+  default_prompt: "Use $inboundfy-copy-posicionamento para definir o posicionamento deste produto contra as alternativas reais e montar o mapa de mensagens por persona."

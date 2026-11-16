@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Validador podcast"
-  short_description: "Valida o asset podcast antes da entrega"
-  default_prompt: "Use $inboundfy-validador-podcast para validar este asset e devolver correções à skill produtora quando necessário."
+  display_name: "Inboundfy: Validação de pautas e shownotes"
+  short_description: "Audita pautas, shownotes e tempos do episódio"
+  default_prompt: "Use $inboundfy-validador-podcast para auditar o pacote de inboundfy-especialista-podcast. Aplique inboundfy-base-validador e os 11 itens espelhados; registre achados e digest atual no relatório. Devolva correções à produtora sem editar a candidata."

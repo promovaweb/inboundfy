@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Validador email"
-  short_description: "Valida o asset email antes da entrega"
-  default_prompt: "Use $inboundfy-validador-email para validar este asset e devolver correções à skill produtora quando necessário."
+  display_name: "Inboundfy: Validação de E-mail"
+  short_description: "Entrega auditoria de E-mail com correções localizadas."
+  default_prompt: "Use $inboundfy-validador-email para revisar a candidata de E-mail, conferir cada item da especialista pareada e devolver relatório com fontes e correções localizadas."

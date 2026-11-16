@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Iniciar"
-  short_description: "Alias compatível da orquestradora Inboundfy"
-  default_prompt: "Use $inboundfy-iniciar para encaminhar o pedido original a $inboundfy."
+  display_name: "Inboundfy: Iniciar (atalho)"
+  short_description: "Repassa o pedido original para $inboundfy"
+  default_prompt: "Use $inboundfy-iniciar para repassar este pedido, sem mudanças, à orquestradora $inboundfy."

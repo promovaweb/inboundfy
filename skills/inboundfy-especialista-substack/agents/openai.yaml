@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Especialista Substack"
-  short_description: "Executa especialista substack no Inboundfy"
-  default_prompt: "Use $inboundfy-especialista-substack para executar especialista substack com as fontes do projeto."
+  display_name: "Inboundfy: Redação de peças Substack"
+  short_description: "Produz artigos e newsletters para Substack"
+  default_prompt: "Use $inboundfy-especialista-substack para produzir peças Substack a partir da entrada aprovada. Consulte o método e o exemplo completo; aplique os 11 itens do par, a revisão editorial e A5 antes de encaminhar a inboundfy-validador-substack."

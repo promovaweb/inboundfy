@@ -1,9 +1,6 @@
 ---
 name: inboundfy-especialista-infografico
-description: >
-  Escreve a copy final de infográfico a partir de um brief aprovado (fase 5
-  do pipeline); título, blocos visuais, legenda e alt text, curta e
-  factual, sem prosa longa.
+description: Escreve título, blocos, legenda e descrição acessível de infográfico com fontes para os dados. Use quando o pedido trouxer texto para infográfico, comparação de valores, diagrama ou visualização de um processo.
 ---
 
 # Inboundfy Infografico Redator
@@ -22,21 +19,15 @@ Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md` no in
 ausência de qualquer um, informe: "O setup do Inboundfy ainda não foi concluído
 ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
 arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
-preflight, leia o catalogo e os Markdown relevantes para a tarefa.
+preflight, leia o catálogo e os Markdown relevantes para a tarefa.
 
 ## Arquitetura de execução
-
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
 - [Interação e handoff](../_shared/03-interacao-e-handoff.md): conduza escolhas e entregue o pacote seguinte.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
-
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **especialista**.
 
 ## Contexto exigido
 
@@ -48,17 +39,7 @@ artefato. O grupo desta skill é **especialista**.
 - `context/produtos.md`, `context/servicos.md` ou dado de pesquisa do pacote,
   quando o infográfico apresentar dado numérico.
 - `ESTRUTURAS-PERSUASIVAS.md` (contexto compartilhado do framework): apenas
-  para a técnica FAB, ver seção abaixo.
-
-## Estrutura persuasiva
-
-Infográfico é factual e telegráfico por natureza; não força blocos de
-AIDA, PAS ou PASTOR. Quando o brief for um infográfico comparativo ou de
-apresentação de produto (ex.: "por que usar X"), aplique **FAB** por bloco
-visual: cada bloco nomeia uma característica, o texto mínimo do bloco indica
-a vantagem, e a legenda de acompanhamento (que passa por `inboundfy-copy-editor`)
-fecha no benefício real para o leitor; sem transformar o bloco visual em
-parágrafo longo.
+  para a técnica FAB aplicada na referência por formato.
 
 ## Entrada esperada
 
@@ -67,30 +48,24 @@ e fonte do dado.
 
 ## Fluxo
 
-1. Leia o brief e confirme a fonte de cada dado numérico; nunca crie dado
+1. Leia o brief, diagnóstico, parâmetros e checklist em [REFERENCIA.md](REFERENCIA.md). Na redação, abra [modelos e exemplo](references/modelos-e-exemplo.md) e [a aplicação das estruturas](references/estruturas-persuasivas.md). Preserve as escolhas aprovadas; estrutura comercial obrigatória ausente retorna ao planejamento.
+2. Leia o brief e confirme a fonte de cada dado numérico; nunca crie dado
    ou estatística sem origem rastreável.
-2. Escreva um título curto que resuma a tese central em uma linha.
-3. Escreva cada bloco com texto mínimo necessário para ser lido rapidamente
+3. Escreva um título curto que resuma a tese central em uma linha.
+4. Escreva cada bloco com texto mínimo necessário para ser lido rapidamente
    dentro da peça visual; frases curtas aqui são uma escolha de canal, não
-   uma violação de `ESCRITA.md`. Use o template de bloco visual de
-   `REFERENCIA.md`.
-4. Escreva a legenda de acompanhamento (para uso em post que compartilha o
+   uma violação de `ESCRITA.md`. Use o modelo de bloco visual vinculado no passo de redação.
+5. Escreva a legenda de acompanhamento (para uso em post que compartilha o
    infográfico) e o alt text descritivo da imagem.
-5. Rode `inboundfy-copy-editor` na legenda (o texto de prosa contínua do
+6. Rode `inboundfy-copy-editor` na legenda (o texto de prosa contínua do
    conjunto; ele cruza `context/proibicoes.md` e
    `context/estruturas-proibidas.md`),
    não nos blocos curtos do infográfico, que são intencionalmente
    telegráficos.
-6. Salve com frontmatter incluindo `titulo`, `fonte-dos-dados` e `brief`
+7. Registre a auditoria A5 de `inboundfy-anti-slop` do conjunto. Salve com frontmatter incluindo `titulo`, `fonte-dos-dados` e `brief`
    quando fizer parte de um pacote.
-7. Encaminhe para `inboundfy-especialista-infografico-imagem` e depois para
-   `inboundfy-planejamento`.
-
-## Encaminhamento obrigatório
-
-Antes de considerar a copy pronta, acione
-`inboundfy-validador-infografico`. Em caso de reprovação, aplique as correções
-do relatório e reenvie o arquivo inteiro até a aprovação.
+8. Envie a candidata inteira, brief, fontes e registros editoriais a `inboundfy-validador-infografico`. Corrija os achados pela especialista e repita a auditoria inteira até a aprovação.
+9. Com a copy aprovada, entregue o pacote de arte descrito em Responsabilidade do grupo a `inboundfy-especialista-infografico-imagem`, quando previsto no brief. Retorne a `inboundfy-planejamento` com os arquivos aprovados e relatórios correspondentes.
 
 ## Saída
 
@@ -106,15 +81,7 @@ Arquivo Markdown com título, blocos, legenda e alt text, salvo no caminho de
 
 ## Responsabilidade do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** especialista
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+Produza título, blocos, legenda e alt text de infográfico para o formato aprovado. Use a lista numerada de `REFERENCIA.md` antes de enviar à `inboundfy-validador-infografico`. Encaminhe a copy aprovada para `inboundfy-especialista-infografico-imagem`, com IDs dos blocos, fontes e ordem de leitura. A arte não pode abreviar a fonte nem alterar a unidade.
 
 ## Idempotência
 

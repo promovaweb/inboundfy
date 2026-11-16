@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Contexto Publico"
-  short_description: "Executa contexto publico no Inboundfy"
-  default_prompt: "Use $inboundfy-contexto-publico para executar contexto publico com as fontes do projeto."
+  display_name: "Inboundfy: Contexto de público"
+  short_description: "Personas com dor, objeção, canais e jargão"
+  default_prompt: "Use $inboundfy-contexto-publico para criar ou corrigir uma persona no bloco canônico de publico.md, com fonte e nível de confiança."

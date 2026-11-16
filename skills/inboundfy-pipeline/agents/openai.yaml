@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Pipeline"
-  short_description: "Gerencia estados e aprovações de conteúdo"
-  default_prompt: "Use $inboundfy-pipeline para atualizar o estado de uma peça e conferir seu relatório de validação."
+  display_name: "Inboundfy: Pipeline de conteúdo"
+  short_description: "Atualiza estados e confere aprovações das peças"
+  default_prompt: "Use $inboundfy-pipeline para mudar o estado desta peça, conferindo a passagem permitida, o relatório da validadora e o SHA-256 atual antes de aprovar, agendar ou publicar."

@@ -1,6 +1,6 @@
 {
   "versao_contrato": 2,
-  "quantidade": 117,
+  "quantidade": 128,
   "referencias_compartilhadas": [
     "skills/_shared/01-preflight-e-fontes.md",
     "skills/_shared/02-contrato-de-artefato.md",
@@ -12,7 +12,7 @@
     {
       "id": "inboundfy",
       "grupo": "orquestrador",
-      "descricao": "Orquestra inbound marketing baseado em IA, desde o setup do projeto e a entrada no acervo até a produção, revisão, calendário e registro das peças por canal.",
+      "descricao": "Recebe qualquer pedido de inbound marketing, confere o setup e encaminha para brainstorm, estratégia, acervo, área ou peça de canal, mantendo IDs, estados e relatório. Use quando a pessoa pedir conteúdo, campanha, post, artigo, email, SEO ou marketing sem indicar qual skill usar.",
       "skill": "skills/inboundfy/SKILL.md",
       "referencia": "skills/inboundfy/REFERENCIA.md",
       "interface": "skills/inboundfy/agents/openai.yaml",
@@ -33,7 +33,7 @@
     {
       "id": "inboundfy-acervo",
       "grupo": "acervo",
-      "descricao": "Orquestra o ciclo completo do Inboundfy",
+      "descricao": "Conduz um item do acervo do registro do material bruto até processado, FAQ, pesquisa, base editorial, matriz de reaproveitamento, peças por canal, revisão, calendário e catálogo. Use quando a pessoa enviar transcrição, documento ou link para o acervo, pedir para retomar um ID ou reaproveitar um material em vários canais.",
       "skill": "skills/inboundfy-acervo/SKILL.md",
       "referencia": "skills/inboundfy-acervo/REFERENCIA.md",
       "interface": "skills/inboundfy-acervo/agents/openai.yaml",
@@ -54,7 +54,7 @@
     {
       "id": "inboundfy-anti-slop",
       "grupo": "qualidade",
-      "descricao": "Audita textos de marketing para remover generalidades, sinais sintéticos e promessas sem base, respeitando voz, persona e canal.",
+      "descricao": "Audita e corrige texto de marketing em cada marco A0 a A6, removendo generalidades, sinais de texto sintético, fórmulas prontas e promessas sem fonte, preservando voz, persona e canal. Use quando a pessoa disser que o texto está genérico, com cara de IA, raso ou repetitivo, ou quando outra skill chegar a um marco de auditoria.",
       "skill": "skills/inboundfy-anti-slop/SKILL.md",
       "referencia": "skills/inboundfy-anti-slop/REFERENCIA.md",
       "interface": "skills/inboundfy-anti-slop/agents/openai.yaml",
@@ -75,7 +75,7 @@
     {
       "id": "inboundfy-anti-slop-codigo",
       "grupo": "qualidade",
-      "descricao": "Revisa código e documentação do CLI para remover complexidade sem função, tipos frouxos e comentários genéricos sem mudar comportamento.",
+      "descricao": "Revisa código, scripts, integrações e documentação técnica do Inboundfy para remover abstração sem uso, tipos frouxos, casts e comentários que só narram a linha, sem mudar o comportamento. Use quando a pessoa pedir refatoração, limpeza, revisão de código do CLI ou disser que o código está inchado, confuso ou com cara de gerado.",
       "skill": "skills/inboundfy-anti-slop-codigo/SKILL.md",
       "referencia": "skills/inboundfy-anti-slop-codigo/REFERENCIA.md",
       "interface": "skills/inboundfy-anti-slop-codigo/agents/openai.yaml",
@@ -96,7 +96,7 @@
     {
       "id": "inboundfy-aprendizado",
       "grupo": "contexto",
-      "descricao": "Registra sugestões, correções, alinhamentos e dicas do usuário, confirma o alcance e transforma aprendizados aprovados em regras reutilizáveis do projeto.",
+      "descricao": "Registra sugestões, correções, alinhamentos e dicas da pessoa com o texto literal, confirma até onde valem (peça, canal ou projeto) e transforma o que foi aprovado em regra reutilizável no contexto. Use quando a pessoa disser não faça mais isso, sempre use, prefiro, corrija, a partir de agora ou anote para as próximas.",
       "skill": "skills/inboundfy-aprendizado/SKILL.md",
       "referencia": "skills/inboundfy-aprendizado/REFERENCIA.md",
       "interface": "skills/inboundfy-aprendizado/agents/openai.yaml",
@@ -115,9 +115,156 @@
       ]
     },
     {
+      "id": "inboundfy-area-conteudo",
+      "grupo": "area",
+      "descricao": "Recebe pedidos de conteúdo, identifica se a entrada é ideia, campanha, material bruto, brief ou peça pronta e encaminha para a skill certa do fluxo editorial. Use quando o pedido falar em pauta, post, artigo, newsletter, vídeo, podcast, ebook, calendário ou reaproveitar material sem dizer a etapa.",
+      "skill": "skills/inboundfy-area-conteudo/SKILL.md",
+      "referencia": "skills/inboundfy-area-conteudo/REFERENCIA.md",
+      "interface": "skills/inboundfy-area-conteudo/agents/openai.yaml",
+      "perfil": {
+        "entrada": "pedido em linguagem natural ligado à área e estado do projeto",
+        "saida": "diagnóstico curto, rota escolhida e pacote de entrada para a skill da área",
+        "validacao": "setup pronto, objetivo identificado, skill única escolhida e dados ausentes pedidos",
+        "handoff": "skill da área indicada pela tabela de roteamento"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-area-copy",
+      "grupo": "area",
+      "descricao": "Recebe pedidos de texto e mensagem, identifica se o trabalho é escrever, editar, posicionar, ofertar ou persuadir e encaminha para a skill de copy certa. Use quando o pedido falar em copy, texto de página, headline, oferta, posicionamento, revisar texto ou ajustar a voz.",
+      "skill": "skills/inboundfy-area-copy/SKILL.md",
+      "referencia": "skills/inboundfy-area-copy/REFERENCIA.md",
+      "interface": "skills/inboundfy-area-copy/agents/openai.yaml",
+      "perfil": {
+        "entrada": "pedido em linguagem natural ligado à área e estado do projeto",
+        "saida": "diagnóstico curto, rota escolhida e pacote de entrada para a skill da área",
+        "validacao": "setup pronto, objetivo identificado, skill única escolhida e dados ausentes pedidos",
+        "handoff": "skill da área indicada pela tabela de roteamento"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-area-dados",
+      "grupo": "area",
+      "descricao": "Recebe pedidos de medição e encaminha para métricas, rastreamento de conversões, atribuição ou experimentação. Use quando o pedido falar em GA4, Tag Manager, pixel, UTM, painel, KPI, qual canal vende, teste A/B ou números que não batem.",
+      "skill": "skills/inboundfy-area-dados/SKILL.md",
+      "referencia": "skills/inboundfy-area-dados/REFERENCIA.md",
+      "interface": "skills/inboundfy-area-dados/agents/openai.yaml",
+      "perfil": {
+        "entrada": "pedido em linguagem natural ligado à área e estado do projeto",
+        "saida": "diagnóstico curto, rota escolhida e pacote de entrada para a skill da área",
+        "validacao": "setup pronto, objetivo identificado, skill única escolhida e dados ausentes pedidos",
+        "handoff": "skill da área indicada pela tabela de roteamento"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-area-growth",
+      "grupo": "area",
+      "descricao": "Recebe pedidos de crescimento, localiza o gargalo do funil entre aquisição, ativação, retenção, receita e indicação e encaminha para a skill de growth certa. Use quando o pedido falar em crescer, mais leads, mais vendas, conversão, churn, lançamento, anúncios ou indicação.",
+      "skill": "skills/inboundfy-area-growth/SKILL.md",
+      "referencia": "skills/inboundfy-area-growth/REFERENCIA.md",
+      "interface": "skills/inboundfy-area-growth/agents/openai.yaml",
+      "perfil": {
+        "entrada": "pedido em linguagem natural ligado à área e estado do projeto",
+        "saida": "diagnóstico curto, rota escolhida e pacote de entrada para a skill da área",
+        "validacao": "setup pronto, objetivo identificado, skill única escolhida e dados ausentes pedidos",
+        "handoff": "skill da área indicada pela tabela de roteamento"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-area-pesquisa",
+      "grupo": "area",
+      "descricao": "Recebe pedidos de pesquisa de cliente, personas, concorrentes e referências de mercado e encaminha para a skill que coleta e organiza a pesquisa. Use quando o pedido falar em entrevistas, personas, concorrência, estudar um concorrente ou debater uma estratégia.",
+      "skill": "skills/inboundfy-area-pesquisa/SKILL.md",
+      "referencia": "skills/inboundfy-area-pesquisa/REFERENCIA.md",
+      "interface": "skills/inboundfy-area-pesquisa/agents/openai.yaml",
+      "perfil": {
+        "entrada": "pedido em linguagem natural ligado à área e estado do projeto",
+        "saida": "diagnóstico curto, rota escolhida e pacote de entrada para a skill da área",
+        "validacao": "setup pronto, objetivo identificado, skill única escolhida e dados ausentes pedidos",
+        "handoff": "skill da área indicada pela tabela de roteamento"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-area-seo",
+      "grupo": "area",
+      "descricao": "Recebe pedidos de busca orgânica, faz o diagnóstico mínimo e encaminha para auditoria, palavra-chave, arquitetura, schema, links, GEO ou ASO. Use quando o pedido falar em SEO, Google, tráfego orgânico, ranqueamento, Search Console, ChatGPT ou AI Overviews sem dizer a etapa.",
+      "skill": "skills/inboundfy-area-seo/SKILL.md",
+      "referencia": "skills/inboundfy-area-seo/REFERENCIA.md",
+      "interface": "skills/inboundfy-area-seo/agents/openai.yaml",
+      "perfil": {
+        "entrada": "pedido em linguagem natural ligado à área e estado do projeto",
+        "saida": "diagnóstico curto, rota escolhida e pacote de entrada para a skill da área",
+        "validacao": "setup pronto, objetivo identificado, skill única escolhida e dados ausentes pedidos",
+        "handoff": "skill da área indicada pela tabela de roteamento"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
+      "id": "inboundfy-area-vendas",
+      "grupo": "area",
+      "descricao": "Recebe pedidos comerciais e encaminha para prospecção, email frio, kit de vendas, processo de receita, preço ou oferta. Use quando o pedido falar em vender para empresas, lista de prospects, cadência, reunião, objeções, CRM, funil comercial ou preço.",
+      "skill": "skills/inboundfy-area-vendas/SKILL.md",
+      "referencia": "skills/inboundfy-area-vendas/REFERENCIA.md",
+      "interface": "skills/inboundfy-area-vendas/agents/openai.yaml",
+      "perfil": {
+        "entrada": "pedido em linguagem natural ligado à área e estado do projeto",
+        "saida": "diagnóstico curto, rota escolhida e pacote de entrada para a skill da área",
+        "validacao": "setup pronto, objetivo identificado, skill única escolhida e dados ausentes pedidos",
+        "handoff": "skill da área indicada pela tabela de roteamento"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
       "id": "inboundfy-arquitetura-site",
       "grupo": "capacidade",
-      "descricao": "Planeja hierarquia, navegação, hubs, páginas, URLs e links internos para conectar intenção, oferta e conteúdo.",
+      "descricao": "Entrega hierarquia de páginas, mapa de URLs, navegação, links internos e plano de redirecionamentos. Use quando o pedido for planejar um site, reorganizar menus e hubs, abrir seções ou preparar uma migração.",
       "skill": "skills/inboundfy-arquitetura-site/SKILL.md",
       "referencia": "skills/inboundfy-arquitetura-site/REFERENCIA.md",
       "interface": "skills/inboundfy-arquitetura-site/agents/openai.yaml",
@@ -138,7 +285,7 @@
     {
       "id": "inboundfy-aso",
       "grupo": "capacidade",
-      "descricao": "Melhora título, descrição, imagens, prova e descoberta de páginas de aplicativo sem prometer funções não confirmadas.",
+      "descricao": "Entrega auditoria e pacote de metadados, roteiros visuais, respostas a avaliações e testes para páginas de aplicativos. Use quando o pedido falar em ASO, App Store, Google Play, buscas na loja, screenshots ou conversão em instalações.",
       "skill": "skills/inboundfy-aso/SKILL.md",
       "referencia": "skills/inboundfy-aso/REFERENCIA.md",
       "interface": "skills/inboundfy-aso/agents/openai.yaml",
@@ -159,7 +306,7 @@
     {
       "id": "inboundfy-atribuicao",
       "grupo": "capacidade",
-      "descricao": "Organiza a leitura de origem, jornada e receita do conteúdo sem confundir fonte, modelo, proxy e contribuição real de cada canal.",
+      "descricao": "Entrega um relatório comparado de fontes, modelos e janelas de atribuição, com distorções e próximo teste. Use quando os números de GA4, mídia e CRM divergem ou quando o pedido for ligar conteúdo, canais e receita.",
       "skill": "skills/inboundfy-atribuicao/SKILL.md",
       "referencia": "skills/inboundfy-atribuicao/REFERENCIA.md",
       "interface": "skills/inboundfy-atribuicao/agents/openai.yaml",
@@ -180,7 +327,7 @@
     {
       "id": "inboundfy-auditoria-seo",
       "grupo": "capacidade",
-      "descricao": "Audita descoberta, intenção, metadata, conteúdo, links, rastreabilidade e saúde editorial de uma peça ou conjunto de páginas.",
+      "descricao": "Entrega uma auditoria técnica, de conteúdo e SEO local com achados por URL e correções priorizadas por impacto e esforço. Use quando o tráfego orgânico cair, páginas não forem indexadas ou for preciso revisar uma migração ou piloto.",
       "skill": "skills/inboundfy-auditoria-seo/SKILL.md",
       "referencia": "skills/inboundfy-auditoria-seo/REFERENCIA.md",
       "interface": "skills/inboundfy-auditoria-seo/agents/openai.yaml",
@@ -201,7 +348,7 @@
     {
       "id": "inboundfy-base-editorial",
       "grupo": "base",
-      "descricao": "Constrói a base editorial de um acervo a partir do material processado, pesquisa, FAQ e fontes relacionadas para orientar futuras peças de marketing.",
+      "descricao": "Monta o base-editorial.md de um item do acervo com afirmações numeradas, fontes, objeções, perguntas e lacunas, a partir de bruto, processado, FAQ e pesquisa. Use quando inboundfy-acervo chegar à base editorial ou a pessoa pedir resumo rastreável, matéria-prima para peças ou o que um material permite dizer.",
       "skill": "skills/inboundfy-base-editorial/SKILL.md",
       "referencia": "skills/inboundfy-base-editorial/REFERENCIA.md",
       "interface": "skills/inboundfy-base-editorial/agents/openai.yaml",
@@ -222,7 +369,7 @@
     {
       "id": "inboundfy-base-formatador",
       "grupo": "base",
-      "descricao": "Skill transversal de lint e formatação Markdown final; heading, listas, links, tabelas e frontmatter. Sempre a última ação antes de considerar um artefato Markdown pronto. Não altera conteúdo editorial.",
+      "descricao": "Corrige a sintaxe Markdown de um artefato pronto (headings, listas, links, tabelas e frontmatter YAML) sem alterar o conteúdo editorial. Use quando uma skill produtora terminar o texto e precisar da última passada mecânica, ou quando a pessoa pedir lint, formatação Markdown ou correção de frontmatter.",
       "skill": "skills/inboundfy-base-formatador/SKILL.md",
       "referencia": "skills/inboundfy-base-formatador/REFERENCIA.md",
       "interface": "skills/inboundfy-base-formatador/agents/openai.yaml",
@@ -243,7 +390,7 @@
     {
       "id": "inboundfy-base-imagem",
       "grupo": "base",
-      "descricao": "Motor genérico de geração de card, slide ou thumbnail sintético para peças sociais (LinkedIn, Instagram, capa de carrossel, thumbnail de vídeo, webinar). Usa geração de imagem por IA com a identidade visual registrada em context/marca-voz.md. É a base que as skills de imagem por canal (inboundfy-especialista-linkedin-imagem, inboundfy-especialista-instagram-imagem, etc.) reaproveitam.",
+      "descricao": "Gera card, slide, thumbnail ou capa sintética com as medidas, o texto aprovado e a identidade visual confirmada, confere o arquivo exportado e devolve imagem, texto alternativo e manifesto. Use quando uma especialista de imagem por canal pedir a arte ou a pessoa pedir card, capa de carrossel, thumbnail de vídeo ou arte de webinar com texto.",
       "skill": "skills/inboundfy-base-imagem/SKILL.md",
       "referencia": "skills/inboundfy-base-imagem/REFERENCIA.md",
       "interface": "skills/inboundfy-base-imagem/agents/openai.yaml",
@@ -264,7 +411,7 @@
     {
       "id": "inboundfy-base-seo",
       "grupo": "base",
-      "descricao": "Skill transversal de SEO e intenção de busca. Classifica a intenção (informativa, comparativa, transacional, investigativa), define title (50-60 caracteres), description (145-155 caracteres), slug, headings e linkagem interna. Usada por skills de canal de texto antes de escrever.",
+      "descricao": "Classifica a intenção de busca e devolve title, description, slug, outline de headings e links internos de uma peça indexável, antes da escrita ou na conferência do texto pronto. Use quando uma especialista de texto precisar de metadata, ou quando a pessoa pedir title, meta description, slug, intenção de busca ou otimização de um texto existente.",
       "skill": "skills/inboundfy-base-seo/SKILL.md",
       "referencia": "skills/inboundfy-base-seo/REFERENCIA.md",
       "interface": "skills/inboundfy-base-seo/agents/openai.yaml",
@@ -285,7 +432,7 @@
     {
       "id": "inboundfy-base-validador",
       "grupo": "base",
-      "descricao": "Aplica o contrato transversal de validação a qualquer asset produzido pelo Inboundfy. Use como base obrigatória das skills inboundfy-validador-* para confrontar brief, metodologia, todos os contextos, fontes locais, regras e contrato da skill produtora. Proibições e estruturas proibidas reprovam o asset até correção ou exceção canônica confirmada.",
+      "descricao": "Aplica o contrato comum de validação a um asset do Inboundfy, confrontando brief, contextos, fontes, marca e proibições, e devolve relatório com achados localizados, digest e veredito. Use quando uma skill inboundfy-validador-* auditar uma peça ou a pessoa pedir para validar, aprovar ou reprovar um asset antes da publicação.",
       "skill": "skills/inboundfy-base-validador/SKILL.md",
       "referencia": "skills/inboundfy-base-validador/REFERENCIA.md",
       "interface": "skills/inboundfy-base-validador/agents/openai.yaml",
@@ -306,7 +453,7 @@
     {
       "id": "inboundfy-brainstorm",
       "grupo": "brainstorm",
-      "descricao": "Orquestra uma ideia até brainstorm.md pesquisado e aprovado, executando as etapas 00 a 04, consultando context/, ESCRITA.md e os dois arquivos de proibições. Use quando o usuário trouxer uma ideia curta e quiser desenvolvê-la sem coordenar skills manualmente.",
+      "descricao": "Desenvolve uma ideia curta até brainstorm.md pesquisado e aprovado, com tese, recorte, ângulos testados e oportunidades por canal, nas etapas de triagem a validação. Use quando a pessoa trouxer uma frase, pergunta ou tema sem tese e disser que quer ideias, ângulos, pautas ou ajuda para desenvolver um assunto.",
       "skill": "skills/inboundfy-brainstorm/SKILL.md",
       "referencia": "skills/inboundfy-brainstorm/REFERENCIA.md",
       "interface": "skills/inboundfy-brainstorm/agents/openai.yaml",
@@ -327,7 +474,7 @@
     {
       "id": "inboundfy-catalogo",
       "grupo": "capacidade",
-      "descricao": "Reconstrói e mantém os índices de acervo, bases editoriais, peças por canal e calendário para localizar rapidamente todo material do projeto.",
+      "descricao": "Reconcilia índices de acervo, peças e calendário com os arquivos do projeto e entrega um relatório de divergências. Use quando faltar um material na busca, houver edição manual, índice inválido ou pedido de consulta por canal, persona ou estado.",
       "skill": "skills/inboundfy-catalogo/SKILL.md",
       "referencia": "skills/inboundfy-catalogo/REFERENCIA.md",
       "interface": "skills/inboundfy-catalogo/agents/openai.yaml",
@@ -348,7 +495,7 @@
     {
       "id": "inboundfy-concorrentes",
       "grupo": "capacidade",
-      "descricao": "Pesquisa concorrentes e alternativas para orientar posicionamento, páginas comparativas, diferenciação, conteúdo SEO e argumentos de venda.",
+      "descricao": "Entrega perfis datados de concorrentes e substitutos, mapa de posicionamento, lacunas e briefs de páginas comparativas. Use quando o pedido for comparar ofertas, entender perdas para rivais, planejar alternativas a um produto ou preparar argumentos de vendas.",
       "skill": "skills/inboundfy-concorrentes/SKILL.md",
       "referencia": "skills/inboundfy-concorrentes/REFERENCIA.md",
       "interface": "skills/inboundfy-concorrentes/agents/openai.yaml",
@@ -369,7 +516,7 @@
     {
       "id": "inboundfy-conselho-marketing",
       "grupo": "capacidade",
-      "descricao": "Organiza uma leitura executiva do marketing com contexto, perguntas, opções, próximos passos e registro das escolhas do projeto.",
+      "descricao": "Entrega um parecer simulado com lentes de marketing, divergências, recomendação e próximo teste ou execução. Use quando a equipe hesitar entre caminhos de estratégia, oferta, preço, posicionamento ou canais e quiser confrontar alternativas.",
       "skill": "skills/inboundfy-conselho-marketing/SKILL.md",
       "referencia": "skills/inboundfy-conselho-marketing/REFERENCIA.md",
       "interface": "skills/inboundfy-conselho-marketing/agents/openai.yaml",
@@ -390,7 +537,7 @@
     {
       "id": "inboundfy-contexto-concorrentes",
       "grupo": "contexto",
-      "descricao": "Preenche e mantém context/concorrentes.md. Ative quando o usuário informar ou corrigir dado sobre um concorrente; o que oferece, ponto forte real, diferença verificável, se pode ser citado nominalmente.",
+      "descricao": "Registra e corrige concorrentes em .inboundfy/context/concorrentes.md, com oferta, público, ponto forte real, diferença comprovada e permissão de citação nominal. Use quando a pessoa disser \"cadastre a concorrente\", \"a X mudou o preço\", \"podemos citar a X?\" ou trouxer fatos de uma pesquisa de concorrentes.",
       "skill": "skills/inboundfy-contexto-concorrentes/SKILL.md",
       "referencia": "skills/inboundfy-contexto-concorrentes/REFERENCIA.md",
       "interface": "skills/inboundfy-contexto-concorrentes/agents/openai.yaml",
@@ -411,7 +558,7 @@
     {
       "id": "inboundfy-contexto-depoimentos",
       "grupo": "contexto",
-      "descricao": "Registra depoimentos de clientes em context/depoimentos.json, com nome, cargo, empresa, texto literal, foto e consentimento de uso. Use para guardar prova social de forma rastreável antes de qualquer peça citá-la.",
+      "descricao": "Registra depoimentos de clientes em .inboundfy/context/depoimentos.json com texto literal, autor, empresa, foto, fonte e consentimento por canal. Use quando a pessoa enviar um elogio, áudio, print de WhatsApp ou avaliação pública, ou pedir para autorizar, ampliar ou revogar o uso de um depoimento.",
       "skill": "skills/inboundfy-contexto-depoimentos/SKILL.md",
       "referencia": "skills/inboundfy-contexto-depoimentos/REFERENCIA.md",
       "interface": "skills/inboundfy-contexto-depoimentos/agents/openai.yaml",
@@ -432,7 +579,7 @@
     {
       "id": "inboundfy-contexto-institucional",
       "grupo": "contexto",
-      "descricao": "Mantém os dados institucionais, as pessoas, os endereços, os links oficiais e o glossário do projeto em arquivos canônicos separados. Use para registrar ou corrigir fatos da empresa antes de qualquer produção de conteúdo.",
+      "descricao": "Mantém os dados institucionais em .inboundfy/context/ (empresa, pessoas, endereços, links e glossário) com fonte confirmada. Use quando a pessoa informar ou corrigir nome da empresa, porta-voz, CNPJ, WhatsApp oficial, endereço, site, perfil de rede social ou a grafia oficial de uma marca ou produto.",
       "skill": "skills/inboundfy-contexto-institucional/SKILL.md",
       "referencia": "skills/inboundfy-contexto-institucional/REFERENCIA.md",
       "interface": "skills/inboundfy-contexto-institucional/agents/openai.yaml",
@@ -453,7 +600,7 @@
     {
       "id": "inboundfy-contexto-marca",
       "grupo": "contexto",
-      "descricao": "Preenche e mantém context/marca-voz.md, context/proibicoes.md e context/estruturas-proibidas.md. Ative quando o usuário definir ou ajustar tom, vocabulário, exemplos de voz, registrar um veto editorial, ou editar o catálogo de padrões de texto com cara de IA.",
+      "descricao": "Mantém voz, proibições de negócio e estruturas proibidas em .inboundfy/context/ (marca-voz.md, proibicoes.md e estruturas-proibidas.md). Use quando a pessoa ajustar o tom, enviar um trecho bom ou ruim, disser \"nunca escreva\", \"não podemos prometer\", \"não cite o concorrente\" ou apontar um padrão de texto com cara de IA.",
       "skill": "skills/inboundfy-contexto-marca/SKILL.md",
       "referencia": "skills/inboundfy-contexto-marca/REFERENCIA.md",
       "interface": "skills/inboundfy-contexto-marca/agents/openai.yaml",
@@ -474,7 +621,7 @@
     {
       "id": "inboundfy-contexto-oferta",
       "grupo": "contexto",
-      "descricao": "Mantém produtos, serviços e ofertas comerciais nos arquivos canônicos do projeto. Use para registrar fatos confirmados sobre a solução, seus planos, condições, diferenciais e limites antes da criação de copy.",
+      "descricao": "Registra produtos, serviços e ofertas em .inboundfy/context/ com funcionamento, limites, escopo, preço, pagamento, condições e data de confirmação. Use quando a pessoa disser que lançou um recurso, mudou o escopo de um serviço, alterou preço ou plano, criou desconto ou condição temporária, ou corrigiu o que está incluso.",
       "skill": "skills/inboundfy-contexto-oferta/SKILL.md",
       "referencia": "skills/inboundfy-contexto-oferta/REFERENCIA.md",
       "interface": "skills/inboundfy-contexto-oferta/agents/openai.yaml",
@@ -495,7 +642,7 @@
     {
       "id": "inboundfy-contexto-operacao",
       "grupo": "contexto",
-      "descricao": "Mantém canais, ferramentas e campanhas nos arquivos canônicos do Inboundfy. Use para registrar onde a empresa publica, quais recursos utiliza e como cada campanha deve ser acompanhada pelas demais skills do framework.",
+      "descricao": "Registra canais ativos, ferramentas citáveis e campanhas em .inboundfy/context/ (canais.md, ferramentas.md e campanhas.md), com cadência, destino, KPI, período e status. Use quando a pessoa disser que vai começar ou parar de publicar num canal, mudou a cadência, adotou uma ferramenta, abriu ou encerrou uma campanha.",
       "skill": "skills/inboundfy-contexto-operacao/SKILL.md",
       "referencia": "skills/inboundfy-contexto-operacao/REFERENCIA.md",
       "interface": "skills/inboundfy-contexto-operacao/agents/openai.yaml",
@@ -516,7 +663,7 @@
     {
       "id": "inboundfy-contexto-publico",
       "grupo": "contexto",
-      "descricao": "Preenche e mantém context/publico.md. Ative quando o usuário definir ou corrigir uma persona ou segmento; perfil, dor principal, objeção comum, onde consome conteúdo, jargão próprio.",
+      "descricao": "Registra e corrige personas em .inboundfy/context/publico.md no bloco canônico, com contexto de compra, dor, objeção, canais, jargão, fonte e nível de confiança. Use quando a pessoa descrever a cliente ideal, disser que a objeção mudou, pedir para separar segmentos ou trouxer um achado de pesquisa já aprovado.",
       "skill": "skills/inboundfy-contexto-publico/SKILL.md",
       "referencia": "skills/inboundfy-contexto-publico/REFERENCIA.md",
       "interface": "skills/inboundfy-contexto-publico/agents/openai.yaml",
@@ -537,7 +684,7 @@
     {
       "id": "inboundfy-copy-edicao",
       "grupo": "copy",
-      "descricao": "Revisa copy existente preservando a mensagem, corrigindo clareza, força, ritmo, voz, factualidade e conformidade com o projeto.",
+      "descricao": "Revisa e atualiza copy existente em passagens de intenção, clareza, voz, prova, especificidade e conformidade, sem mudar a tese nem os fatos confirmados. Use quando a pessoa pedir para revisar, melhorar, encurtar ou atualizar um texto antigo, ou disser que a página não converte.",
       "skill": "skills/inboundfy-copy-edicao/SKILL.md",
       "referencia": "skills/inboundfy-copy-edicao/REFERENCIA.md",
       "interface": "skills/inboundfy-copy-edicao/agents/openai.yaml",
@@ -558,7 +705,7 @@
     {
       "id": "inboundfy-copy-editor",
       "grupo": "copy",
-      "descricao": "Audita e corrige prosa por achados verificáveis, com referência aos contextos e às regras editoriais do Inboundfy. Registra trecho, origem, diagnóstico e ação, e repete a leitura integral após as correções.",
+      "descricao": "Audita prosa pronta contra as proibições, as estruturas proibidas, o ESCRITA.md e a voz da marca, registra cada achado com trecho e regra e corrige o padrão no arquivo inteiro. Use quando um rascunho precisar da última leitura antes da validadora do canal ou a pessoa pedir para conferir se o texto segue as regras do projeto.",
       "skill": "skills/inboundfy-copy-editor/SKILL.md",
       "referencia": "skills/inboundfy-copy-editor/REFERENCIA.md",
       "interface": "skills/inboundfy-copy-editor/agents/openai.yaml",
@@ -579,7 +726,7 @@
     {
       "id": "inboundfy-copy-gramatica",
       "grupo": "copy",
-      "descricao": "Audita e corrige a gramática e a pontuação de copy em português: vírgula, crase, concordância verbal e nominal, regência, colocação pronominal, os quatro porquês, paralelismo sintático e a acentuação, aplicando a norma culta sem alterar sentido, voz ou fatos.",
+      "descricao": "Corrige gramática, pontuação e grafia de copy em português pela norma culta (vírgula, crase, concordância, regência, colocação, porquês, números, datas e valores em R$) sem mudar sentido, voz ou fatos. Use quando pedirem revisão de português, correção de vírgula ou crase ou revisão ortográfica antes de publicar.",
       "skill": "skills/inboundfy-copy-gramatica/SKILL.md",
       "referencia": "skills/inboundfy-copy-gramatica/REFERENCIA.md",
       "interface": "skills/inboundfy-copy-gramatica/agents/openai.yaml",
@@ -600,7 +747,7 @@
     {
       "id": "inboundfy-copy-oferta",
       "grupo": "copy",
-      "descricao": "Estrutura, nomeia e melhora ofertas com clareza de resultado, mecanismo, prova, condições, objeções e próximo passo para cada persona.",
+      "descricao": "Monta e revisa ofertas com resultado, mecanismo, escopo, bônus, garantia, preço, condição, urgência real e nome, entregando uma ficha versionada por persona. Use quando a pessoa falar em oferta, pacote, garantia, bônus, condição de pagamento ou disser que a página está boa e ninguém compra.",
       "skill": "skills/inboundfy-copy-oferta/SKILL.md",
       "referencia": "skills/inboundfy-copy-oferta/REFERENCIA.md",
       "interface": "skills/inboundfy-copy-oferta/agents/openai.yaml",
@@ -621,7 +768,7 @@
     {
       "id": "inboundfy-copy-persuasao",
       "grupo": "copy",
-      "descricao": "Usa princípios de comportamento e persuasão com transparência para organizar mensagens, reduzir incerteza e ajudar a persona a avançar.",
+      "descricao": "Diagnostica por que uma mensagem convence ou não, mapeia as forças da persona e escolhe princípios de persuasão com prova real, dentro do CDC e da LGPD. Use quando o pedido falar em persuasão, gatilhos mentais, objeções, prova social, urgência, compartilhamento ou peça que não convence.",
       "skill": "skills/inboundfy-copy-persuasao/SKILL.md",
       "referencia": "skills/inboundfy-copy-persuasao/REFERENCIA.md",
       "interface": "skills/inboundfy-copy-persuasao/agents/openai.yaml",
@@ -642,7 +789,7 @@
     {
       "id": "inboundfy-copy-posicionamento",
       "grupo": "copy",
-      "descricao": "Mantém o contexto de produto, mercado, posicionamento, público, diferenciação, provas e mensagens que orientam todo o Inboundfy.",
+      "descricao": "Define o posicionamento de produto ou serviço (alternativas, diferenças com prova, cliente ideal e categoria) e monta o mapa de mensagens por persona. Use quando falarem em posicionamento, reposicionamento, diferencial, proposta de valor ou na pergunta por que escolher a empresa e não a alternativa.",
       "skill": "skills/inboundfy-copy-posicionamento/SKILL.md",
       "referencia": "skills/inboundfy-copy-posicionamento/REFERENCIA.md",
       "interface": "skills/inboundfy-copy-posicionamento/agents/openai.yaml",
@@ -663,7 +810,7 @@
     {
       "id": "inboundfy-copy-redacao",
       "grupo": "copy",
-      "descricao": "Produz copy de marketing baseada no acervo, na oferta, na persona, na voz e no objetivo do canal, com revisão anti-slop integrada.",
+      "descricao": "Escreve copy nova de páginas, emails, posts, roteiros, títulos, CTAs e microcopy a partir do acervo, da oferta, da persona e da voz, com marcos anti-slop. Use quando a pessoa pedir para escrever, criar ou redigir uma landing page, página de vendas, email ou qualquer texto que ainda não existe.",
       "skill": "skills/inboundfy-copy-redacao/SKILL.md",
       "referencia": "skills/inboundfy-copy-redacao/REFERENCIA.md",
       "interface": "skills/inboundfy-copy-redacao/agents/openai.yaml",
@@ -684,7 +831,7 @@
     {
       "id": "inboundfy-copy-simplificar",
       "grupo": "copy",
-      "descricao": "Simplifica textos existentes para reduzir esforço de leitura e retirar excessos, preservando intenção, fatos, voz e formato do projeto.",
+      "descricao": "Simplifica textos existentes para reduzir o esforço de leitura, cortando repetição e aquecimento e pondo as frases em ordem direta, sem perder fatos, ressalvas ou voz. Use quando disserem que o texto está difícil, longo, confuso, burocrático, cheio de jargão ou precisa caber num limite.",
       "skill": "skills/inboundfy-copy-simplificar/SKILL.md",
       "referencia": "skills/inboundfy-copy-simplificar/REFERENCIA.md",
       "interface": "skills/inboundfy-copy-simplificar/agents/openai.yaml",
@@ -705,7 +852,7 @@
     {
       "id": "inboundfy-dados-estruturados",
       "grupo": "capacidade",
-      "descricao": "Organiza dados estruturados e JSON-LD a partir de fatos confirmados do site, produto, organização, artigo ou evento.",
+      "descricao": "Entrega JSON-LD validado, mapa de entidades e roteiro de implementação com fatos visíveis e confirmados da página. Use quando o pedido citar Schema.org, dados estruturados, erros no Search Console, breadcrumbs ou marcação de produtos e artigos.",
       "skill": "skills/inboundfy-dados-estruturados/SKILL.md",
       "referencia": "skills/inboundfy-dados-estruturados/REFERENCIA.md",
       "interface": "skills/inboundfy-dados-estruturados/agents/openai.yaml",
@@ -726,7 +873,7 @@
     {
       "id": "inboundfy-enablement-vendas",
       "grupo": "capacidade",
-      "descricao": "Cria materiais para vendas usando problemas reais, objeções, oferta, provas, voz e limites de afirmação do projeto.",
+      "descricao": "Cria decks, roteiros, battlecards e respostas a objeções com fontes para o time comercial. Use quando o pedido falar em apresentação de vendas, one-pager, demonstração, follow-up no WhatsApp ou calculadora de ROI.",
       "skill": "skills/inboundfy-enablement-vendas/SKILL.md",
       "referencia": "skills/inboundfy-enablement-vendas/REFERENCIA.md",
       "interface": "skills/inboundfy-enablement-vendas/agents/openai.yaml",
@@ -745,9 +892,30 @@
       ]
     },
     {
+      "id": "inboundfy-engenharia-reversa",
+      "grupo": "capacidade",
+      "descricao": "Produz um estudo de canais, ofertas, funil e cadência de uma referência, com fontes datadas e hipóteses de teste próprias. Use quando o pedido for entender o marketing de um concorrente, reconstruir seu funil ou estudar suas campanhas.",
+      "skill": "skills/inboundfy-engenharia-reversa/SKILL.md",
+      "referencia": "skills/inboundfy-engenharia-reversa/REFERENCIA.md",
+      "interface": "skills/inboundfy-engenharia-reversa/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
       "id": "inboundfy-especialista-blog",
       "grupo": "especialista",
-      "descricao": "Escreve ou edita artigos de blog a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md, a voz de context/marca-voz.md e a intenção de busca validada por inboundfy-base-seo. Não decide estratégia nem pauta; recebe o brief pronto.",
+      "descricao": "Escreve e revisa artigos de blog com intenção de busca, fontes, título e metadata a partir de brief aprovado. Use quando o pedido for redigir um post, atualizar um artigo ou transformar o brief de blog em texto para revisão.",
       "skill": "skills/inboundfy-especialista-blog/SKILL.md",
       "referencia": "skills/inboundfy-especialista-blog/REFERENCIA.md",
       "interface": "skills/inboundfy-especialista-blog/agents/openai.yaml",
@@ -768,7 +936,7 @@
     {
       "id": "inboundfy-especialista-blog-imagem",
       "grupo": "especialista",
-      "descricao": "Busca capa e thumbnail de post via banco de fotos real, nas dimensões exigidas pelo canal. Capas de blog NÃO são geradas por IA; esta skill usa exclusivamente foto real de banco de imagens, respeitando licença e crédito.",
+      "descricao": "Busca capa e thumbnail de blog em banco de fotos reais, com licença, crédito e recortes nas dimensões do canal. Use quando o pedido citar foto para artigo, capa de blog, thumbnail fotográfica ou troca de imagem do post.",
       "skill": "skills/inboundfy-especialista-blog-imagem/SKILL.md",
       "referencia": "skills/inboundfy-especialista-blog-imagem/REFERENCIA.md",
       "interface": "skills/inboundfy-especialista-blog-imagem/agents/openai.yaml",
@@ -789,7 +957,7 @@
     {
       "id": "inboundfy-especialista-changelog",
       "grupo": "especialista",
-      "descricao": "Escreve entrada de changelog ou release note a partir de um brief aprovado (fase 5 do pipeline) ou diretamente de um release de produto. Aplica ESCRITA.md e a voz de context/marca-voz.md.",
+      "descricao": "Escreve entradas de changelog e notas de versão com mudança, alcance, disponibilidade e ação necessária a partir de release ou brief. Use quando o pedido for anunciar uma correção, explicar uma melhoria ou redigir release notes para usuários.",
       "skill": "skills/inboundfy-especialista-changelog/SKILL.md",
       "referencia": "skills/inboundfy-especialista-changelog/REFERENCIA.md",
       "interface": "skills/inboundfy-especialista-changelog/agents/openai.yaml",
@@ -810,7 +978,7 @@
     {
       "id": "inboundfy-especialista-ebook",
       "grupo": "especialista",
-      "descricao": "Escreve arquitetura e capítulos de ebook a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md em formato de livro curto.",
+      "descricao": "Escreve arquitetura e capítulos de ebook com promessa, progressão, exemplos e fontes a partir de brief aprovado. Use quando o pedido for montar um livro curto, desenvolver capítulos ou revisar um ebook antes da capa e diagramação.",
       "skill": "skills/inboundfy-especialista-ebook/SKILL.md",
       "referencia": "skills/inboundfy-especialista-ebook/REFERENCIA.md",
       "interface": "skills/inboundfy-especialista-ebook/agents/openai.yaml",
@@ -831,7 +999,7 @@
     {
       "id": "inboundfy-especialista-ebook-imagem",
       "grupo": "especialista",
-      "descricao": "Gera capa de ebook e imagem OpenGraph derivada, reaproveitando o motor de inboundfy-base-imagem com a identidade visual do usuário.",
+      "descricao": "Gera capa de ebook e imagem OpenGraph com título final, identidade visual e composição derivada. Use quando o pedido citar capa de ebook, capa de material rico, imagem de compartilhamento ou adaptação horizontal da capa.",
       "skill": "skills/inboundfy-especialista-ebook-imagem/SKILL.md",
       "referencia": "skills/inboundfy-especialista-ebook-imagem/REFERENCIA.md",
       "interface": "skills/inboundfy-especialista-ebook-imagem/agents/openai.yaml",
@@ -852,7 +1020,7 @@
     {
       "id": "inboundfy-especialista-email",
       "grupo": "especialista",
-      "descricao": "Escreve e-mail avulso, de nutrição, convite ou follow-up a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md. Não decide sequência de nutrição; isso vem do brief.",
+      "descricao": "Escreve e-mails com assunto, pré-header, corpo, assinatura e CTA a partir de um brief aprovado. Use quando o pedido trouxer e-mail avulso, nutrição, convite, follow-up ou oferta para uma lista.",
       "skill": "skills/inboundfy-especialista-email/SKILL.md",
       "referencia": "skills/inboundfy-especialista-email/REFERENCIA.md",
       "interface": "skills/inboundfy-especialista-email/agents/openai.yaml",
@@ -873,7 +1041,7 @@
     {
       "id": "inboundfy-especialista-infografico",
       "grupo": "especialista",
-      "descricao": "Escreve a copy final de infográfico a partir de um brief aprovado (fase 5 do pipeline); título, blocos visuais, legenda e alt text, curta e factual, sem prosa longa.",
+      "descricao": "Escreve título, blocos, legenda e descrição acessível de infográfico com fontes para os dados. Use quando o pedido trouxer texto para infográfico, comparação de valores, diagrama ou visualização de um processo.",
       "skill": "skills/inboundfy-especialista-infografico/SKILL.md",
       "referencia": "skills/inboundfy-especialista-infografico/REFERENCIA.md",
       "interface": "skills/inboundfy-especialista-infografico/agents/openai.yaml",
@@ -894,7 +1062,7 @@
     {
       "id": "inboundfy-especialista-infografico-imagem",
       "grupo": "especialista",
-      "descricao": "Gera a peça final de infográfico (formato típico 9:16) a partir da copy aprovada, reaproveitando o motor de inboundfy-base-imagem.",
+      "descricao": "Gera infográfico visual a partir da copy aprovada, preservando valores, unidades, fontes e sequência dos blocos. Use quando o pedido citar arte de infográfico, gráfico ilustrado, composição de dados ou transformar texto aprovado em imagem.",
       "skill": "skills/inboundfy-especialista-infografico-imagem/SKILL.md",
       "referencia": "skills/inboundfy-especialista-infografico-imagem/REFERENCIA.md",
       "interface": "skills/inboundfy-especialista-infografico-imagem/agents/openai.yaml",
@@ -915,7 +1083,7 @@
     {
       "id": "inboundfy-especialista-instagram",
       "grupo": "especialista",
-      "descricao": "Escreve legenda de post, carrossel textual e roteiro de vídeo curto (Reels, Shorts, TikTok) a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md.",
+      "descricao": "Escreve legenda, carrossel textual e roteiro de vídeo curto com CTA e descrição acessível. Use quando o pedido trouxer post de Instagram, slides de carrossel, Reels, Shorts ou TikTok a partir de brief aprovado.",
       "skill": "skills/inboundfy-especialista-instagram/SKILL.md",
       "referencia": "skills/inboundfy-especialista-instagram/REFERENCIA.md",
       "interface": "skills/inboundfy-especialista-instagram/agents/openai.yaml",
@@ -936,7 +1104,7 @@
     {
       "id": "inboundfy-especialista-instagram-imagem",
       "grupo": "especialista",
-      "descricao": "Gera imagem de feed e pacote completo de carrossel para Instagram, reaproveitando o motor de inboundfy-base-imagem com a proporção exigida por cada formato.",
+      "descricao": "Gera post, carrossel e peças verticais de Instagram com textos aprovados, grade de marca e proporção do destino. Use quando o pedido citar arte de feed, slides de carrossel, Story, capa de Reels ou pacote visual para Instagram.",
       "skill": "skills/inboundfy-especialista-instagram-imagem/SKILL.md",
       "referencia": "skills/inboundfy-especialista-instagram-imagem/REFERENCIA.md",
       "interface": "skills/inboundfy-especialista-instagram-imagem/agents/openai.yaml",
@@ -957,7 +1125,7 @@
     {
       "id": "inboundfy-especialista-linkedin",
       "grupo": "especialista",
-      "descricao": "Escreve post nativo ou artigo longo de LinkedIn a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md, sempre em primeira pessoa quando o brief indicar autor, e sem Markdown no corpo copiável do post.",
+      "descricao": "Escreve post nativo ou artigo de LinkedIn com autoria, fontes e ação final do brief aprovado. Use quando o pedido trouxer post profissional, artigo de LinkedIn, texto copiável para o feed ou publicação assinada.",
       "skill": "skills/inboundfy-especialista-linkedin/SKILL.md",
       "referencia": "skills/inboundfy-especialista-linkedin/REFERENCIA.md",
       "interface": "skills/inboundfy-especialista-linkedin/agents/openai.yaml",
@@ -978,7 +1146,7 @@
     {
       "id": "inboundfy-especialista-linkedin-imagem",
       "grupo": "especialista",
-      "descricao": "Gera imagem de post e capa de artigo de LinkedIn, reaproveitando o motor de inboundfy-base-imagem com a proporção exigida pelo canal.",
+      "descricao": "Gera imagem de post e capa de artigo de LinkedIn com texto final, identidade visual e proporção do formato. Use quando o pedido citar card para LinkedIn, arte de post, capa de artigo ou destaque visual de um dado aprovado.",
       "skill": "skills/inboundfy-especialista-linkedin-imagem/SKILL.md",
       "referencia": "skills/inboundfy-especialista-linkedin-imagem/REFERENCIA.md",
       "interface": "skills/inboundfy-especialista-linkedin-imagem/agents/openai.yaml",
@@ -999,7 +1167,7 @@
     {
       "id": "inboundfy-especialista-newsletter",
       "grupo": "especialista",
-      "descricao": "Escreve newsletter longa e editorial (por e-mail ou publicação própria) a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md.",
+      "descricao": "Escreve newsletters editoriais com tese, curadoria comentada, fontes e metadata de e-mail ou web a partir de brief aprovado. Use quando o pedido for redigir uma edição longa, preparar um boletim analítico ou revisar newsletter para validação.",
       "skill": "skills/inboundfy-especialista-newsletter/SKILL.md",
       "referencia": "skills/inboundfy-especialista-newsletter/REFERENCIA.md",
       "interface": "skills/inboundfy-especialista-newsletter/agents/openai.yaml",
@@ -1020,7 +1188,7 @@
     {
       "id": "inboundfy-especialista-podcast",
       "grupo": "especialista",
-      "descricao": "Escreve pauta e shownotes de episódio de podcast a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md.",
+      "descricao": "Escreve pautas de gravação e shownotes de podcast com blocos, perguntas, participantes e fontes a partir de brief aprovado. Use quando o pedido for preparar um episódio, organizar uma entrevista ou redigir notas da gravação final para revisão.",
       "skill": "skills/inboundfy-especialista-podcast/SKILL.md",
       "referencia": "skills/inboundfy-especialista-podcast/REFERENCIA.md",
       "interface": "skills/inboundfy-especialista-podcast/agents/openai.yaml",
@@ -1041,7 +1209,7 @@
     {
       "id": "inboundfy-especialista-substack",
       "grupo": "especialista",
-      "descricao": "Adapta um acervo aprovado para artigo ou newsletter no Substack, respeitando voz, persona, estrutura longa, referências e CTA do projeto.",
+      "descricao": "Adapta acervo aprovado para artigos e newsletters no Substack com tese, fontes, persona e condição de acesso definida. Use quando o pedido for escrever uma edição, reconstruir um argumento do acervo ou preparar uma peça Substack para revisão.",
       "skill": "skills/inboundfy-especialista-substack/SKILL.md",
       "referencia": "skills/inboundfy-especialista-substack/REFERENCIA.md",
       "interface": "skills/inboundfy-especialista-substack/agents/openai.yaml",
@@ -1062,7 +1230,7 @@
     {
       "id": "inboundfy-especialista-video",
       "grupo": "especialista",
-      "descricao": "Escreve roteiro de vídeo longo e talking head a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md, com cenas e apoio visual mínimo.",
+      "descricao": "Escreve roteiro de vídeo com cenas e apoio visual mínimo ou outline de talking head a partir do brief aprovado. Use quando o pedido trouxer vídeo longo, fala de apresentador, roteiro para gravação ou sequência de cenas.",
       "skill": "skills/inboundfy-especialista-video/SKILL.md",
       "referencia": "skills/inboundfy-especialista-video/REFERENCIA.md",
       "interface": "skills/inboundfy-especialista-video/agents/openai.yaml",
@@ -1083,7 +1251,7 @@
     {
       "id": "inboundfy-especialista-video-imagem",
       "grupo": "especialista",
-      "descricao": "Gera thumbnail de vídeo longo (formato típico 1280x720), reaproveitando o motor de inboundfy-base-imagem com foco em legibilidade e taxa de clique.",
+      "descricao": "Gera thumbnail de vídeo com frase aprovada, foco visual e legibilidade em miniatura, ligada ao roteiro final. Use quando o pedido citar capa de vídeo, thumbnail de YouTube, imagem para vídeo longo ou refação da miniatura.",
       "skill": "skills/inboundfy-especialista-video-imagem/SKILL.md",
       "referencia": "skills/inboundfy-especialista-video-imagem/REFERENCIA.md",
       "interface": "skills/inboundfy-especialista-video-imagem/agents/openai.yaml",
@@ -1104,7 +1272,7 @@
     {
       "id": "inboundfy-especialista-webinar",
       "grupo": "especialista",
-      "descricao": "Escreve a copy de página ou convite de webinar/evento a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md.",
+      "descricao": "Escreve copy de página ou convite de webinar com promessa da sessão, agenda, logística e inscrição. Use quando o pedido trouxer divulgação de evento, página de webinar, convite para sessão ao vivo ou CTA de inscrição.",
       "skill": "skills/inboundfy-especialista-webinar/SKILL.md",
       "referencia": "skills/inboundfy-especialista-webinar/REFERENCIA.md",
       "interface": "skills/inboundfy-especialista-webinar/agents/openai.yaml",
@@ -1125,7 +1293,7 @@
     {
       "id": "inboundfy-especialista-webinar-imagem",
       "grupo": "especialista",
-      "descricao": "Gera thumbnail quadrada de evento/webinar, reaproveitando o motor de inboundfy-base-imagem com a identidade visual do usuário.",
+      "descricao": "Gera thumbnail de webinar com título, data, horário e apresentador confirmados, na identidade visual do projeto. Use quando o pedido citar capa de evento, arte de webinar, thumbnail de aula ao vivo ou imagem da página de inscrição.",
       "skill": "skills/inboundfy-especialista-webinar-imagem/SKILL.md",
       "referencia": "skills/inboundfy-especialista-webinar-imagem/REFERENCIA.md",
       "interface": "skills/inboundfy-especialista-webinar-imagem/agents/openai.yaml",
@@ -1146,7 +1314,7 @@
     {
       "id": "inboundfy-especialista-youtube",
       "grupo": "especialista",
-      "descricao": "Adapta um acervo aprovado para roteiro, título, descrição e CTA de YouTube, alinhando formato, persona, voz e publicação.",
+      "descricao": "Produz pacote de YouTube com roteiro, título, descrição, CTA e fontes a partir de acervo e brief aprovados. Use quando o pedido trouxer vídeo para YouTube, metadados, descrição copiável, capítulos ou adaptação de roteiro.",
       "skill": "skills/inboundfy-especialista-youtube/SKILL.md",
       "referencia": "skills/inboundfy-especialista-youtube/REFERENCIA.md",
       "interface": "skills/inboundfy-especialista-youtube/agents/openai.yaml",
@@ -1167,7 +1335,7 @@
     {
       "id": "inboundfy-estrategia",
       "grupo": "estratégia",
-      "descricao": "Define estratégia de inbound marketing, temas, canais, jornada, cadência, campanhas e reaproveitamento do acervo para um projeto.",
+      "descricao": "Define a estratégia de uma campanha ou período: kickoff com objetivo e KPI, pesquisa de mercado, pilares e mapa de temas por etapa de compra, fases, mix de canais e calendário com reaproveitamento do acervo. Use quando a pessoa falar em campanha nova, plano de marketing, estratégia de conteúdo, pilares, mix de canais, trimestre ou lançamento.",
       "skill": "skills/inboundfy-estrategia/SKILL.md",
       "referencia": "skills/inboundfy-estrategia/REFERENCIA.md",
       "interface": "skills/inboundfy-estrategia/agents/openai.yaml",
@@ -1188,7 +1356,7 @@
     {
       "id": "inboundfy-experimentacao",
       "grupo": "capacidade",
-      "descricao": "Planeja testes de copy, oferta, CTA, página, email e distribuição com hipótese, métrica, variantes, janela e registro no pipeline.",
+      "descricao": "Planeja testes A/B e registra a leitura dos resultados com hipótese, amostra e janela. Use quando o pedido falar em testar copy, oferta, CTA, página, email, variantes, significância ou experimento de marketing.",
       "skill": "skills/inboundfy-experimentacao/SKILL.md",
       "referencia": "skills/inboundfy-experimentacao/REFERENCIA.md",
       "interface": "skills/inboundfy-experimentacao/agents/openai.yaml",
@@ -1209,7 +1377,7 @@
     {
       "id": "inboundfy-extrair-faq",
       "grupo": "acervo",
-      "descricao": "Extrai uma FAQ ampla de um item do acervo, relacionando perguntas, respostas, fontes, lacunas e pontos que precisam de confirmação.",
+      "descricao": "Extrai faq.md de um item do acervo, com perguntas numeradas por tema, respostas localizadas no bruto e no processado, estado de cada resposta e lacunas para pesquisa. Use quando a pessoa pedir FAQ, perguntas e respostas, dúvidas do material ou o mapa do que a transcrição responde e do que falta confirmar.",
       "skill": "skills/inboundfy-extrair-faq/SKILL.md",
       "referencia": "skills/inboundfy-extrair-faq/REFERENCIA.md",
       "interface": "skills/inboundfy-extrair-faq/agents/openai.yaml",
@@ -1230,7 +1398,7 @@
     {
       "id": "inboundfy-geo",
       "grupo": "capacidade",
-      "descricao": "Prepara conteúdo para ser encontrado, compreendido e citado por mecanismos de resposta de IA, sem abandonar intenção humana, SEO e fontes verificáveis.",
+      "descricao": "Prepara páginas e um plano de presença da marca em respostas de IA, com perguntas monitoradas e fontes citáveis. Use quando o pedido falar em GEO, busca generativa, aparecer no ChatGPT, citações por IA ou monitorar respostas.",
       "skill": "skills/inboundfy-geo/SKILL.md",
       "referencia": "skills/inboundfy-geo/REFERENCIA.md",
       "interface": "skills/inboundfy-geo/agents/openai.yaml",
@@ -1251,7 +1419,7 @@
     {
       "id": "inboundfy-growth-anuncios",
       "grupo": "growth",
-      "descricao": "Planeja campanhas de mídia paga, públicos, mensagens, orçamento, eventos e páginas de destino alinhados ao contexto do projeto.",
+      "descricao": "Planeja campanhas e auditorias de mídia paga com públicos, orçamento, conversões e páginas de destino. Use quando o pedido falar em anúncios, tráfego pago, Google Ads, Meta Ads, CPA, CAC, ROAS ou verba de mídia.",
       "skill": "skills/inboundfy-growth-anuncios/SKILL.md",
       "referencia": "skills/inboundfy-growth-anuncios/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-anuncios/agents/openai.yaml",
@@ -1272,7 +1440,7 @@
     {
       "id": "inboundfy-growth-comunidade",
       "grupo": "growth",
-      "descricao": "Planeja participação e conteúdo para comunidades com utilidade real, regras de presença e adaptação por persona.",
+      "descricao": "Planeja participação em comunidades e grupos próprios com acolhimento, rituais, moderação e medição. Use quando o pedido falar em comunidade, grupo de clientes, participação entre membros, moderadores ou encontros recorrentes.",
       "skill": "skills/inboundfy-growth-comunidade/SKILL.md",
       "referencia": "skills/inboundfy-growth-comunidade/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-comunidade/agents/openai.yaml",
@@ -1293,7 +1461,7 @@
     {
       "id": "inboundfy-growth-criativos-anuncios",
       "grupo": "growth",
-      "descricao": "Cria conceitos e variações de criativos pagos a partir de oferta, persona, canal e voz, com mensagens verificáveis.",
+      "descricao": "Cria conceitos, textos, roteiros e especificações visuais para anúncios com fontes e plano de teste. Use quando o pedido falar em criativos pagos, variações de anúncios, roteiro de campanha, abertura de vídeo ou renovação de peças.",
       "skill": "skills/inboundfy-growth-criativos-anuncios/SKILL.md",
       "referencia": "skills/inboundfy-growth-criativos-anuncios/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-criativos-anuncios/agents/openai.yaml",
@@ -1314,7 +1482,7 @@
     {
       "id": "inboundfy-growth-cro",
       "grupo": "growth",
-      "descricao": "Audita páginas, formulários e CTAs para melhorar conversão com clareza de proposta, hierarquia, prova, objeções e menor esforço de entendimento.",
+      "descricao": "Audita páginas e formulários comerciais e entrega diagnóstico, copy proposta e hipóteses de conversão. Use quando o pedido falar em CRO, landing page, formulário de orçamento, poucos leads ou abandono antes do envio.",
       "skill": "skills/inboundfy-growth-cro/SKILL.md",
       "referencia": "skills/inboundfy-growth-cro/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-cro/agents/openai.yaml",
@@ -1333,9 +1501,30 @@
       ]
     },
     {
+      "id": "inboundfy-growth-diretorios",
+      "grupo": "growth",
+      "descricao": "Prepara kits de cadastro e rodadas de envio a diretórios, marketplaces e catálogos setoriais. Use quando o pedido falar em cadastrar produto, listar ferramenta, publicar em catálogo ou acompanhar contatos de listagens.",
+      "skill": "skills/inboundfy-growth-diretorios/SKILL.md",
+      "referencia": "skills/inboundfy-growth-diretorios/REFERENCIA.md",
+      "interface": "skills/inboundfy-growth-diretorios/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, público, oferta, canal e contexto operacional",
+        "saida": "plano, recomendação ou artefato de crescimento",
+        "validacao": "objetivo ligado a público, ação, canal, medida e fonte",
+        "handoff": "estratégia, planejamento, copy ou orquestrador"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
       "id": "inboundfy-growth-distribuicao",
       "grupo": "growth",
-      "descricao": "Planeja submissões e distribuição em diretórios, bases e canais externos sem duplicar conteúdo ou criar cadastro sem autorização.",
+      "descricao": "Organiza a distribuição de conteúdo do acervo com destinos, adaptações, permissões e medição por origem. Use quando o pedido falar em divulgar conteúdo, circular artigo, republicar guia, propor contribuição editorial ou reaproveitar gravação.",
       "skill": "skills/inboundfy-growth-distribuicao/SKILL.md",
       "referencia": "skills/inboundfy-growth-distribuicao/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-distribuicao/agents/openai.yaml",
@@ -1356,7 +1545,7 @@
     {
       "id": "inboundfy-growth-email-frio",
       "grupo": "growth",
-      "descricao": "Escreve sequências de prospecção por e-mail com personalização real, hipótese de valor, consentimento e saída simples.",
+      "descricao": "Escreve sequências B2B de prospecção com personalização verificável, cadência e tratamento das respostas. Use quando o pedido falar em email frio, cold email, primeira abordagem comercial ou acompanhamento de contatos prospectados.",
       "skill": "skills/inboundfy-growth-email-frio/SKILL.md",
       "referencia": "skills/inboundfy-growth-email-frio/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-email-frio/agents/openai.yaml",
@@ -1377,7 +1566,7 @@
     {
       "id": "inboundfy-growth-eventos",
       "grupo": "growth",
-      "descricao": "Planeja aquisição, conteúdo, convite, inscrição, cobertura e pós-evento a partir do objetivo, público e oferta confirmados.",
+      "descricao": "Planeja eventos próprios, palestras, participação e patrocínio com orçamento e acompanhamento comercial. Use quando o pedido falar em evento, encontro, feira, webinar, patrocínio, inscrição ou retorno dos contatos após o encontro.",
       "skill": "skills/inboundfy-growth-eventos/SKILL.md",
       "referencia": "skills/inboundfy-growth-eventos/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-eventos/agents/openai.yaml",
@@ -1398,7 +1587,7 @@
     {
       "id": "inboundfy-growth-ferramentas-gratuitas",
       "grupo": "growth",
-      "descricao": "Estrutura uma ferramenta gratuita de aquisição com utilidade, escopo, entrada, resultado, CTA e caminho de relacionamento.",
+      "descricao": "Planeja calculadoras, geradores e diagnósticos gratuitos com especificação, captura e medição de aquisição. Use quando o pedido falar em ferramenta gratuita, calculadora online, gerador, teste interativo ou recurso útil para atrair compradores.",
       "skill": "skills/inboundfy-growth-ferramentas-gratuitas/SKILL.md",
       "referencia": "skills/inboundfy-growth-ferramentas-gratuitas/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-ferramentas-gratuitas/agents/openai.yaml",
@@ -1419,7 +1608,7 @@
     {
       "id": "inboundfy-growth-influenciadores",
       "grupo": "growth",
-      "descricao": "Seleciona criadores por afinidade de público, contexto, formato e integridade da mensagem, sem inventar alcance ou resultado.",
+      "descricao": "Seleciona criadores e planeja pilotos com remuneração, direitos de uso e medição comercial. Use quando o pedido falar em influenciadores, criadores, embaixadores, cachê, conteúdo patrocinado ou licença para usar publicações em anúncios.",
       "skill": "skills/inboundfy-growth-influenciadores/SKILL.md",
       "referencia": "skills/inboundfy-growth-influenciadores/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-influenciadores/agents/openai.yaml",
@@ -1440,7 +1629,7 @@
     {
       "id": "inboundfy-growth-lancamento",
       "grupo": "growth",
-      "descricao": "Planeja comunicação de lançamento de produto, serviço, recurso, campanha ou evento com narrativa, canais, calendário, oferta e acompanhamento.",
+      "descricao": "Planeja lançamentos com prontidão, mensagens por público, calendário e acompanhamento da adoção. Use quando o pedido falar em lançar produto, anunciar recurso, abrir acesso antecipado, lista de espera ou campanha de novidade.",
       "skill": "skills/inboundfy-growth-lancamento/SKILL.md",
       "referencia": "skills/inboundfy-growth-lancamento/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-lancamento/agents/openai.yaml",
@@ -1461,7 +1650,7 @@
     {
       "id": "inboundfy-growth-lead-magnet",
       "grupo": "growth",
-      "descricao": "Cria e melhora materiais ricos úteis para captura de contato, alinhando promessa, entrega, persona, formulário, nutrição e próxima ação.",
+      "descricao": "Planeja materiais ricos com tarefa útil, captura, entrega e relacionamento ligados à oferta. Use quando o pedido falar em lead magnet, ebook gratuito, planilha para download, checklist, isca digital ou material para captar contatos.",
       "skill": "skills/inboundfy-growth-lead-magnet/SKILL.md",
       "referencia": "skills/inboundfy-growth-lead-magnet/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-lead-magnet/agents/openai.yaml",
@@ -1482,7 +1671,7 @@
     {
       "id": "inboundfy-growth-loops",
       "grupo": "growth",
-      "descricao": "Desenha ciclos de aquisição, ativação, conteúdo, indicação e retorno com entradas, ações, saídas e sinais de continuidade.",
+      "descricao": "Desenha ciclos de crescimento com retorno mensurável e rotinas com gatilho, estado, limites e parada. Use quando o pedido falar em growth loop, ciclo de indicação, conteúdo gerado pelo uso, reinvestimento ou operação recorrente de crescimento.",
       "skill": "skills/inboundfy-growth-loops/SKILL.md",
       "referencia": "skills/inboundfy-growth-loops/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-loops/agents/openai.yaml",
@@ -1503,7 +1692,7 @@
     {
       "id": "inboundfy-growth-onboarding",
       "grupo": "growth",
-      "descricao": "Planeja a comunicação inicial após a compra com marcos, instruções, dúvidas, ativação e voz adaptada ao estágio do cliente.",
+      "descricao": "Planeja onboarding com marcos de primeiro valor, mensagens por comportamento, ajuda e passagem ao uso recorrente. Use quando o pedido falar em boas-vindas, implantação, ativação, primeira tarefa ou clientes que não começaram a usar.",
       "skill": "skills/inboundfy-growth-onboarding/SKILL.md",
       "referencia": "skills/inboundfy-growth-onboarding/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-onboarding/agents/openai.yaml",
@@ -1524,7 +1713,7 @@
     {
       "id": "inboundfy-growth-parcerias",
       "grupo": "growth",
-      "descricao": "Encontra e estrutura parcerias de conteúdo, distribuição e co-marketing com proposta, audiência, troca e próximos passos claros.",
+      "descricao": "Seleciona parceiros complementares e entrega proposta de co-marketing com contrapartidas, custos, uso de marca e acompanhamento. Use quando o pedido falar em parceria entre empresas, campanha conjunta, divulgação cruzada ou acordo de distribuição.",
       "skill": "skills/inboundfy-growth-parcerias/SKILL.md",
       "referencia": "skills/inboundfy-growth-parcerias/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-parcerias/agents/openai.yaml",
@@ -1545,7 +1734,7 @@
     {
       "id": "inboundfy-growth-paywall",
       "grupo": "growth",
-      "descricao": "Estrutura mensagens e experiências de acesso pago com clareza sobre valor, limites, preço, alternativa e próxima ação.",
+      "descricao": "Planeja telas e estados de acesso pago com limites, preço, pagamento pendente e retorno à tarefa após upgrade. Use quando o pedido falar em paywall, fim de trial, recurso pago, limite atingido ou conversão dentro do produto.",
       "skill": "skills/inboundfy-growth-paywall/SKILL.md",
       "referencia": "skills/inboundfy-growth-paywall/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-paywall/agents/openai.yaml",
@@ -1566,7 +1755,7 @@
     {
       "id": "inboundfy-growth-popups",
       "grupo": "growth",
-      "descricao": "Planeja pop-ups e formulários contextuais com motivo da exibição, oferta, frequência, saída e destino dos dados.",
+      "descricao": "Planeja popups, barras e formulários contextuais com texto, regras de exibição, fechamento acessível e destino dos dados. Use quando o pedido falar em captura, convite na página, frequência de popup, modal ou formulário por clique.",
       "skill": "skills/inboundfy-growth-popups/SKILL.md",
       "referencia": "skills/inboundfy-growth-popups/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-popups/agents/openai.yaml",
@@ -1587,7 +1776,7 @@
     {
       "id": "inboundfy-growth-pricing",
       "grupo": "growth",
-      "descricao": "Analisa preço, planos e embalagem a partir de valor, público, uso, condições comerciais e mensagens aprovadas.",
+      "descricao": "Entrega proposta de preço e planos com unidade de cobrança, pesquisa de valor, simulação de margem e transição de clientes. Use quando o pedido falar em precificação, mensalidade, plano anual, limites, reajuste ou migração de preço.",
       "skill": "skills/inboundfy-growth-pricing/SKILL.md",
       "referencia": "skills/inboundfy-growth-pricing/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-pricing/agents/openai.yaml",
@@ -1608,7 +1797,7 @@
     {
       "id": "inboundfy-growth-prospeccao",
       "grupo": "growth",
-      "descricao": "Organiza listas, segmentos, sinais, mensagens e cadências de prospecção ligadas a oferta, persona e autorização de contato.",
+      "descricao": "Pesquisa e qualifica listas de contas com fontes, sinais datados, contatos conferidos e prioridade explicada. Use quando o pedido falar em prospecção B2B, lista de leads, cliente ideal, enriquecimento de contatos ou seleção de contas para abordagem.",
       "skill": "skills/inboundfy-growth-prospeccao/SKILL.md",
       "referencia": "skills/inboundfy-growth-prospeccao/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-prospeccao/agents/openai.yaml",
@@ -1629,7 +1818,7 @@
     {
       "id": "inboundfy-growth-referencias",
       "grupo": "growth",
-      "descricao": "Estrutura um programa de indicação com momento certo, benefício, mensagem, regras, rastreio e experiência para quem indica e recebe.",
+      "descricao": "Estrutura programas de indicação e afiliados com elegibilidade, benefícios, atribuição e conciliação de recompensas. Use quando o pedido falar em indicação de clientes, comissão, cupom de afiliado, recompensa ou programa de recomendação.",
       "skill": "skills/inboundfy-growth-referencias/SKILL.md",
       "referencia": "skills/inboundfy-growth-referencias/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-referencias/agents/openai.yaml",
@@ -1650,7 +1839,7 @@
     {
       "id": "inboundfy-growth-relacoes-publicas",
       "grupo": "growth",
-      "descricao": "Prepara pautas, mensagens para imprensa, porta-vozes, fontes e acompanhamento sem criar notícia, número ou declaração não confirmada.",
+      "descricao": "Prepara pautas, propostas editoriais, fontes e porta-vozes com fatos confirmados e acompanhamento de cobertura. Use quando o pedido falar em assessoria de imprensa, relações públicas, convite para podcast, entrevista ou resposta pública.",
       "skill": "skills/inboundfy-growth-relacoes-publicas/SKILL.md",
       "referencia": "skills/inboundfy-growth-relacoes-publicas/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-relacoes-publicas/agents/openai.yaml",
@@ -1671,7 +1860,7 @@
     {
       "id": "inboundfy-growth-retencao",
       "grupo": "growth",
-      "descricao": "Planeja comunicação de retenção e cancelamento com base em motivos reais, estágio do cliente, produto e voz da marca.",
+      "descricao": "Planeja retenção, cancelamento e recuperação de pagamento com diagnóstico por coorte, mensagens e acompanhamento da permanência paga. Use quando o pedido falar em churn, perda de clientes, pausa, reativação, inadimplência ou cobrança falha.",
       "skill": "skills/inboundfy-growth-retencao/SKILL.md",
       "referencia": "skills/inboundfy-growth-retencao/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-retencao/agents/openai.yaml",
@@ -1692,7 +1881,7 @@
     {
       "id": "inboundfy-growth-revops",
       "grupo": "growth",
-      "descricao": "Conecta marketing, vendas e atendimento por etapas, campos, responsabilidades, origem, handoff e leitura comum dos dados.",
+      "descricao": "Entrega mapa de operação de receita com etapas, campos, pontuação, responsáveis, SLA e automações de CRM. Use quando o pedido falar em RevOps, qualificação de leads, roteamento comercial, passagem para vendas ou conciliação de dados do funil.",
       "skill": "skills/inboundfy-growth-revops/SKILL.md",
       "referencia": "skills/inboundfy-growth-revops/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-revops/agents/openai.yaml",
@@ -1713,7 +1902,7 @@
     {
       "id": "inboundfy-growth-signup",
       "grupo": "growth",
-      "descricao": "Melhora o fluxo de cadastro com proposta clara, campos necessários, mensagens de erro, confiança, ativação e próximo passo.",
+      "descricao": "Revisa cadastro e primeiro acesso com campos necessários, autenticação, estados, mensagens e eventos de conta criada. Use quando o pedido falar em signup, abandono de cadastro, verificação de email, convite de equipe ou primeiro login.",
       "skill": "skills/inboundfy-growth-signup/SKILL.md",
       "referencia": "skills/inboundfy-growth-signup/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-signup/agents/openai.yaml",
@@ -1734,7 +1923,7 @@
     {
       "id": "inboundfy-growth-sms",
       "grupo": "growth",
-      "descricao": "Planeja mensagens curtas por SMS para alerta, lembrete, ativação ou oferta com consentimento, frequência e saída claros.",
+      "descricao": "Planeja fluxos de SMS e WhatsApp com permissão por canal, mensagens, frequência, saída, custo e atendimento. Use quando o pedido falar em lembrete por celular, alerta, campanha de SMS, opt-in, modelo de WhatsApp ou mensagens de ativação.",
       "skill": "skills/inboundfy-growth-sms/SKILL.md",
       "referencia": "skills/inboundfy-growth-sms/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-sms/agents/openai.yaml",
@@ -1755,7 +1944,7 @@
     {
       "id": "inboundfy-growth-social",
       "grupo": "growth",
-      "descricao": "Planeja presença social multicanal a partir de acervo, persona, voz, formatos, cadência e caminhos de relacionamento.",
+      "descricao": "Entrega plano de presença social com papéis por canal, pilares, formatos, escuta, briefs e cadência de produção e resposta. Use quando o pedido falar em redes sociais, calendário de posts, séries de conteúdo, rotina dos perfis ou métricas sociais.",
       "skill": "skills/inboundfy-growth-social/SKILL.md",
       "referencia": "skills/inboundfy-growth-social/REFERENCIA.md",
       "interface": "skills/inboundfy-growth-social/agents/openai.yaml",
@@ -1776,7 +1965,7 @@
     {
       "id": "inboundfy-iniciar",
       "grupo": "entrada",
-      "descricao": "Alias compatível que encaminha a solicitação recebida para $inboundfy, sem repetir a entrevista, criar artefatos ou iniciar outro fluxo.",
+      "descricao": "Encaminha o pedido original, sem alterar nada, para a orquestradora $inboundfy, sem repetir entrevista nem criar arquivos. Use quando um atalho antigo, um script ou uma instrução anterior chamar $inboundfy-iniciar ou pedir para iniciar o Inboundfy.",
       "skill": "skills/inboundfy-iniciar/SKILL.md",
       "referencia": "skills/inboundfy-iniciar/REFERENCIA.md",
       "interface": "skills/inboundfy-iniciar/agents/openai.yaml",
@@ -1797,7 +1986,7 @@
     {
       "id": "inboundfy-metricas",
       "grupo": "capacidade",
-      "descricao": "Define medição de marketing para ligar acervo, canais, campanhas, conteúdo, leads e receita a perguntas de negócio compreensíveis.",
+      "descricao": "Define um plano de medição com métricas, eventos, UTMs e painel ligado às perguntas do negócio. Use quando o pedido falar em indicadores de marketing, metas, medir campanhas, plano de analytics ou dicionário de eventos.",
       "skill": "skills/inboundfy-metricas/SKILL.md",
       "referencia": "skills/inboundfy-metricas/REFERENCIA.md",
       "interface": "skills/inboundfy-metricas/agents/openai.yaml",
@@ -1818,7 +2007,7 @@
     {
       "id": "inboundfy-personas",
       "grupo": "capacidade",
-      "descricao": "Entrevista, registra e mantém personas de marketing, relacionando problemas, linguagem, canais, ofertas e contexto de compra sem criar perfis genéricos.",
+      "descricao": "Constrói e atualiza fichas de personas com tarefas, gatilhos, objeções e fontes em publico.md. Use quando o pedido falar em definir público, perfil de cliente, ICP, persona negativa, papéis na compra ou segmentação por necessidade.",
       "skill": "skills/inboundfy-personas/SKILL.md",
       "referencia": "skills/inboundfy-personas/REFERENCIA.md",
       "interface": "skills/inboundfy-personas/agents/openai.yaml",
@@ -1839,7 +2028,7 @@
     {
       "id": "inboundfy-pesquisa-acervo",
       "grupo": "acervo",
-      "descricao": "Pesquisa fontes externas para validar e enriquecer um item do acervo, registra links e confronta lacunas sem substituir a origem fornecida pelo usuário.",
+      "descricao": "Pesquisa na web as afirmações e lacunas de um item do acervo e grava pesquisa.md com fontes abertas, datas, alcance, resultado e encaminhamento à base editorial, sem alterar a origem. Use quando a pessoa pedir para pesquisar, checar fatos, confirmar dados, buscar fontes ou atualizar a informação de um material do acervo.",
       "skill": "skills/inboundfy-pesquisa-acervo/SKILL.md",
       "referencia": "skills/inboundfy-pesquisa-acervo/REFERENCIA.md",
       "interface": "skills/inboundfy-pesquisa-acervo/agents/openai.yaml",
@@ -1860,7 +2049,7 @@
     {
       "id": "inboundfy-pesquisa-cliente",
       "grupo": "capacidade",
-      "descricao": "Pesquisa dores, linguagem, desejos, objeções e contexto de compra para enriquecer personas, acervo, estratégia e copy de inbound marketing.",
+      "descricao": "Pesquisa clientes e organiza falas, temas e linguagem num relatório com fontes e limites da amostra. Use quando o pedido falar em entrevistas, voz do cliente, dores, objeções, avaliações, motivos de perda ou pesquisa de público.",
       "skill": "skills/inboundfy-pesquisa-cliente/SKILL.md",
       "referencia": "skills/inboundfy-pesquisa-cliente/REFERENCIA.md",
       "interface": "skills/inboundfy-pesquisa-cliente/agents/openai.yaml",
@@ -1881,7 +2070,7 @@
     {
       "id": "inboundfy-pipeline",
       "grupo": "capacidade",
-      "descricao": "Gerencia os estados de conteúdo, confere passagens permitidas e vincula aprovação ao relatório e ao SHA-256 atual antes de agendar ou publicar.",
+      "descricao": "Atualiza estados de peças pelo CLI e confere relatórios, datas e URLs nas passagens do pipeline. Use quando o pedido falar em mover para revisão, aprovar conteúdo, agendar, registrar publicação, arquivar ou corrigir um estado.",
       "skill": "skills/inboundfy-pipeline/SKILL.md",
       "referencia": "skills/inboundfy-pipeline/REFERENCIA.md",
       "interface": "skills/inboundfy-pipeline/agents/openai.yaml",
@@ -1902,7 +2091,7 @@
     {
       "id": "inboundfy-planejamento",
       "grupo": "planejamento",
-      "descricao": "Converte oportunidades do acervo em um calendário editorial mensal com checklist, canais, personas, caminhos das peças e estados de produção.",
+      "descricao": "Leva o material pelas etapas 00 a 06 do pipeline editorial (triagem, saneamento, pesquisa, oportunidades, brief, produção e auditoria) e registra brief, prioridade, data e estado em calendario/AAAA-MM.md, sem escrever copy final. Use quando a pessoa pedir pauta, brief, calendário editorial, prioridades do mês ou o que publicar e quando.",
       "skill": "skills/inboundfy-planejamento/SKILL.md",
       "referencia": "skills/inboundfy-planejamento/REFERENCIA.md",
       "interface": "skills/inboundfy-planejamento/agents/openai.yaml",
@@ -1923,7 +2112,7 @@
     {
       "id": "inboundfy-processar-acervo",
       "grupo": "acervo",
-      "descricao": "Processa um material bruto com a configuração do projeto, remove ruído editorial, aplica o dicionário e prepara FAQ sem alterar a fonte original.",
+      "descricao": "Limpa o bruto.md de um item do acervo e grava processado.md com grafia do glossário, proibições aplicadas, alterações registradas e auditoria A1, sem tocar no original. Use quando a pessoa pedir para limpar, revisar ou processar uma transcrição, áudio transcrito ou texto copiado já registrado no acervo.",
       "skill": "skills/inboundfy-processar-acervo/SKILL.md",
       "referencia": "skills/inboundfy-processar-acervo/REFERENCIA.md",
       "interface": "skills/inboundfy-processar-acervo/agents/openai.yaml",
@@ -1944,7 +2133,7 @@
     {
       "id": "inboundfy-producao",
       "grupo": "capacidade",
-      "descricao": "Produz peças de inbound marketing por canal a partir do acervo, base editorial, voz e persona, mantendo templates, frontmatter e links de origem.",
+      "descricao": "Conduz a produção de peças por canal, entregando brief e insumos à especialista e à validadora pareada. Use quando o pedido falar em produzir conteúdo do acervo, criar uma peça, adaptar para outro canal ou retomar uma produção.",
       "skill": "skills/inboundfy-producao/SKILL.md",
       "referencia": "skills/inboundfy-producao/REFERENCIA.md",
       "interface": "skills/inboundfy-producao/agents/openai.yaml",
@@ -1963,9 +2152,30 @@
       ]
     },
     {
+      "id": "inboundfy-rastreamento-conversao",
+      "grupo": "capacidade",
+      "descricao": "Entrega um plano de eventos, UTMs, pixels e APIs de conversão com testes de disparo e recebimento por destino. Use quando o pedido citar GA4, GTM, eventos duplicados, Pix pago, origem perdida ou falhas de coleta.",
+      "skill": "skills/inboundfy-rastreamento-conversao/SKILL.md",
+      "referencia": "skills/inboundfy-rastreamento-conversao/REFERENCIA.md",
+      "interface": "skills/inboundfy-rastreamento-conversao/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
       "id": "inboundfy-seo",
       "grupo": "capacidade",
-      "descricao": "Planeja e audita SEO de conteúdo e páginas usando intenção de busca, arquitetura, termos do projeto, links e dados confirmados do acervo.",
+      "descricao": "Planeja termos, clusters e briefs SEO ou revisa páginas com intenção, metadados e links internos. Use quando o pedido falar em palavras-chave, tráfego orgânico, otimização on-page, pauta para busca ou briefing de página.",
       "skill": "skills/inboundfy-seo/SKILL.md",
       "referencia": "skills/inboundfy-seo/REFERENCIA.md",
       "interface": "skills/inboundfy-seo/agents/openai.yaml",
@@ -1984,9 +2194,30 @@
       ]
     },
     {
+      "id": "inboundfy-seo-links-externos",
+      "grupo": "capacidade",
+      "descricao": "Prepara ativos citáveis e um plano de links externos com oportunidades editoriais, mensagens e links conferidos. Use quando o pedido falar em backlinks, menções sem link, recuperação de links ou divulgação de pesquisas.",
+      "skill": "skills/inboundfy-seo-links-externos/SKILL.md",
+      "referencia": "skills/inboundfy-seo-links-externos/REFERENCIA.md",
+      "interface": "skills/inboundfy-seo-links-externos/agents/openai.yaml",
+      "perfil": {
+        "entrada": "objetivo, artefato, contexto, canal e estado informados",
+        "saida": "análise, plano ou registro consumível pela skill seguinte",
+        "validacao": "dados presentes, fontes ligadas, alcance respeitado e próxima ação",
+        "handoff": "skill indicada pelo tipo do resultado ou pedido de dado ausente"
+      },
+      "referencias_compartilhadas": [
+        "skills/_shared/01-preflight-e-fontes.md",
+        "skills/_shared/02-contrato-de-artefato.md",
+        "skills/_shared/03-interacao-e-handoff.md",
+        "skills/_shared/04-validacao-e-retomada.md",
+        "skills/_shared/05-contexto-editorial.md"
+      ]
+    },
+    {
       "id": "inboundfy-seo-programatico",
       "grupo": "capacidade",
-      "descricao": "Planeja páginas em escala com dados, modelo editorial, campos variáveis, validação, linkagem e limites contra páginas vazias.",
+      "descricao": "Planeja páginas em escala com base de dados, modelo, regras de publicação e lote piloto. Use quando o pedido falar em SEO programático, uma página por cidade, páginas por segmento, combinações de busca ou modelos com dados variáveis.",
       "skill": "skills/inboundfy-seo-programatico/SKILL.md",
       "referencia": "skills/inboundfy-seo-programatico/REFERENCIA.md",
       "interface": "skills/inboundfy-seo-programatico/agents/openai.yaml",
@@ -2007,7 +2238,7 @@
     {
       "id": "inboundfy-setup",
       "grupo": "entrada",
-      "descricao": "Conduz a entrevista inicial, prepara a configuração do projeto consumidor e confere canais, personas, voz, negócio, pipeline e índices do Inboundfy.",
+      "descricao": "Conduz a entrevista inicial e grava as configurações do projeto: empresa, canais, personas, voz, pipeline, áreas de trabalho, integrações e variáveis de ambiente. Use quando a pessoa disser instalar, configurar, começar do zero, setup, doctor com erro, ativar canal ou área, ou ligar uma ferramenta como Google Analytics, CRM ou ClickUp.",
       "skill": "skills/inboundfy-setup/SKILL.md",
       "referencia": "skills/inboundfy-setup/REFERENCIA.md",
       "interface": "skills/inboundfy-setup/agents/openai.yaml",
@@ -2028,7 +2259,7 @@
     {
       "id": "inboundfy-validador-blog",
       "grupo": "validador",
-      "descricao": "Valida artigo de blog produzido por inboundfy-especialista-blog contra brief, fontes, todos os contextos, escrita, proibições, SEO e contrato do canal. Use sempre antes de considerar um artigo pronto.",
+      "descricao": "Valida artigos de blog contra brief, fontes, intenção de busca, metadata e proibições do projeto. Use quando houver artigo candidato, relatório devolvido ou pedido de revisar um post antes de seguir para imagem e auditoria do pacote.",
       "skill": "skills/inboundfy-validador-blog/SKILL.md",
       "referencia": "skills/inboundfy-validador-blog/REFERENCIA.md",
       "interface": "skills/inboundfy-validador-blog/agents/openai.yaml",
@@ -2049,7 +2280,7 @@
     {
       "id": "inboundfy-validador-blog-imagem",
       "grupo": "validador",
-      "descricao": "Valida capa e thumbnail produzidas por inboundfy-especialista-blog-imagem contra artigo, brief, todos os contextos, origem fotográfica, licença, crédito, dimensões e contrato visual antes da entrega.",
+      "descricao": "Valida capa e thumbnail fotográficas de blog contra brief, texto final, fontes e identidade visual, com relatório de correções. Use quando o pedido citar revisar ou aprovar capa e thumbnail fotográficas de blog, conferindo fotografia, licença, crédito e os dois recortes.",
       "skill": "skills/inboundfy-validador-blog-imagem/SKILL.md",
       "referencia": "skills/inboundfy-validador-blog-imagem/REFERENCIA.md",
       "interface": "skills/inboundfy-validador-blog-imagem/agents/openai.yaml",
@@ -2070,7 +2301,7 @@
     {
       "id": "inboundfy-validador-changelog",
       "grupo": "validador",
-      "descricao": "Valida changelog produzido por inboundfy-especialista-changelog contra release, brief, todos os contextos, escrita, proibições, precisão técnica e contrato do canal antes da entrega.",
+      "descricao": "Valida changelogs e notas de versão contra release entregue, brief, fontes técnicas, alcance e proibições. Use quando houver entrada candidata ou corrigida para conferir precisão, disponibilidade e instruções antes da entrega ao planejamento.",
       "skill": "skills/inboundfy-validador-changelog/SKILL.md",
       "referencia": "skills/inboundfy-validador-changelog/REFERENCIA.md",
       "interface": "skills/inboundfy-validador-changelog/agents/openai.yaml",
@@ -2091,7 +2322,7 @@
     {
       "id": "inboundfy-validador-ebook",
       "grupo": "validador",
-      "descricao": "Valida ebook produzido por inboundfy-especialista-ebook contra brief, fontes, todos os contextos, escrita, proibições, progressão dos capítulos e estruturas persuasivas antes da entrega.",
+      "descricao": "Valida ebooks completos contra brief, promessa, sumário, progressão dos capítulos, fontes e proibições. Use quando houver livro candidato ou capítulos corrigidos para conferir antes da capa, diagramação e auditoria do pacote.",
       "skill": "skills/inboundfy-validador-ebook/SKILL.md",
       "referencia": "skills/inboundfy-validador-ebook/REFERENCIA.md",
       "interface": "skills/inboundfy-validador-ebook/agents/openai.yaml",
@@ -2112,7 +2343,7 @@
     {
       "id": "inboundfy-validador-ebook-imagem",
       "grupo": "validador",
-      "descricao": "Valida capa e OpenGraph produzidos por inboundfy-especialista-ebook-imagem contra ebook, brief, todos os contextos, identidade, grafia, legibilidade, consistência e dimensões antes da entrega.",
+      "descricao": "Valida capa de ebook e OpenGraph contra brief, texto final, fontes e identidade visual, com relatório de correções. Use quando o pedido citar revisar ou aprovar capa de ebook e OpenGraph, conferindo título, subtítulo, capa e derivado OpenGraph.",
       "skill": "skills/inboundfy-validador-ebook-imagem/SKILL.md",
       "referencia": "skills/inboundfy-validador-ebook-imagem/REFERENCIA.md",
       "interface": "skills/inboundfy-validador-ebook-imagem/agents/openai.yaml",
@@ -2133,7 +2364,7 @@
     {
       "id": "inboundfy-validador-email",
       "grupo": "validador",
-      "descricao": "Valida email produzido por inboundfy-especialista-email contra brief, fontes, todos os contextos, escrita, proibições, oferta, estrutura persuasiva e contrato do canal antes da entrega.",
+      "descricao": "Valida assunto, pré-header, CTA, personalização e oferta da peça de E-mail e entrega relatório de correções à especialista pareada. Use quando o pedido trouxer revisão de e-mail, nutrição, convite ou follow-up antes da entrega.",
       "skill": "skills/inboundfy-validador-email/SKILL.md",
       "referencia": "skills/inboundfy-validador-email/REFERENCIA.md",
       "interface": "skills/inboundfy-validador-email/agents/openai.yaml",
@@ -2154,7 +2385,7 @@
     {
       "id": "inboundfy-validador-infografico",
       "grupo": "validador",
-      "descricao": "Valida copy de infográfico produzida por inboundfy-especialista-infografico contra brief, fontes, todos os contextos, proibições, dados, legenda, acessibilidade e contrato do canal.",
+      "descricao": "Valida dados, unidades, fontes, blocos, legenda e alt text da peça de Infográfico e entrega relatório de correções à especialista pareada. Use quando o pedido trouxer revisão de copy de infográfico, dados visuais ou blocos comparativos antes da entrega.",
       "skill": "skills/inboundfy-validador-infografico/SKILL.md",
       "referencia": "skills/inboundfy-validador-infografico/REFERENCIA.md",
       "interface": "skills/inboundfy-validador-infografico/agents/openai.yaml",
@@ -2175,7 +2406,7 @@
     {
       "id": "inboundfy-validador-infografico-imagem",
       "grupo": "validador",
-      "descricao": "Valida infográfico visual produzido por inboundfy-especialista-infografico-imagem contra copy aprovada, brief, todos os contextos, dados, fontes, hierarquia, acessibilidade e dimensões.",
+      "descricao": "Valida infográfico visual com copy aprovada contra brief, texto final, fontes e identidade visual, com relatório de correções. Use quando o pedido citar revisar ou aprovar infográfico visual com copy aprovada, conferindo valores, unidades, fontes, escala e ordem dos blocos.",
       "skill": "skills/inboundfy-validador-infografico-imagem/SKILL.md",
       "referencia": "skills/inboundfy-validador-infografico-imagem/REFERENCIA.md",
       "interface": "skills/inboundfy-validador-infografico-imagem/agents/openai.yaml",
@@ -2196,7 +2427,7 @@
     {
       "id": "inboundfy-validador-instagram",
       "grupo": "validador",
-      "descricao": "Valida legenda, carrossel ou roteiro curto produzido por inboundfy-especialista-instagram contra brief, todos os contextos, escrita, proibições, progressão, CTA e contrato do formato.",
+      "descricao": "Valida formato, progressão dos slides, fala, duração e CTA da peça de Instagram e entrega relatório de correções à especialista pareada. Use quando o pedido trouxer revisão de legenda, carrossel, Reels ou roteiro curto antes da entrega.",
       "skill": "skills/inboundfy-validador-instagram/SKILL.md",
       "referencia": "skills/inboundfy-validador-instagram/REFERENCIA.md",
       "interface": "skills/inboundfy-validador-instagram/agents/openai.yaml",
@@ -2217,7 +2448,7 @@
     {
       "id": "inboundfy-validador-instagram-imagem",
       "grupo": "validador",
-      "descricao": "Valida post, carrossel ou visual vertical produzido por inboundfy-especialista-instagram-imagem contra texto, brief, todos os contextos, identidade, sequência, zonas seguras, legibilidade e proporção.",
+      "descricao": "Valida post e pacote visual de Instagram contra brief, texto final, fontes e identidade visual, com relatório de correções. Use quando o pedido citar revisar ou aprovar post e pacote visual de Instagram, conferindo texto por slide, sequência, zonas seguras e proporções.",
       "skill": "skills/inboundfy-validador-instagram-imagem/SKILL.md",
       "referencia": "skills/inboundfy-validador-instagram-imagem/REFERENCIA.md",
       "interface": "skills/inboundfy-validador-instagram-imagem/agents/openai.yaml",
@@ -2238,7 +2469,7 @@
     {
       "id": "inboundfy-validador-linkedin",
       "grupo": "validador",
-      "descricao": "Valida post ou artigo produzido por inboundfy-especialista-linkedin contra brief, todos os contextos, escrita, proibições, autoria, formato nativo e contrato do canal antes da entrega.",
+      "descricao": "Valida autoria, primeira linha, corpo copiável, fontes e CTA da peça de LinkedIn e entrega relatório de correções à especialista pareada. Use quando o pedido trouxer revisão de post nativo, artigo ou publicação de LinkedIn antes da entrega.",
       "skill": "skills/inboundfy-validador-linkedin/SKILL.md",
       "referencia": "skills/inboundfy-validador-linkedin/REFERENCIA.md",
       "interface": "skills/inboundfy-validador-linkedin/agents/openai.yaml",
@@ -2259,7 +2490,7 @@
     {
       "id": "inboundfy-validador-linkedin-imagem",
       "grupo": "validador",
-      "descricao": "Valida imagem de post ou capa produzida por inboundfy-especialista-linkedin-imagem contra texto, brief, todos os contextos, identidade, grafia, legibilidade e proporção antes da entrega.",
+      "descricao": "Valida imagem de post ou capa de LinkedIn contra brief, texto final, fontes e identidade visual, com relatório de correções. Use quando o pedido citar revisar ou aprovar imagem de post ou capa de LinkedIn, conferindo texto, identidade, miniatura e formato de post ou artigo.",
       "skill": "skills/inboundfy-validador-linkedin-imagem/SKILL.md",
       "referencia": "skills/inboundfy-validador-linkedin-imagem/REFERENCIA.md",
       "interface": "skills/inboundfy-validador-linkedin-imagem/agents/openai.yaml",
@@ -2280,7 +2511,7 @@
     {
       "id": "inboundfy-validador-newsletter",
       "grupo": "validador",
-      "descricao": "Valida newsletter produzida por inboundfy-especialista-newsletter contra brief, fontes, todos os contextos, escrita, proibições, fluidez editorial, menções institucionais e contrato do canal.",
+      "descricao": "Valida newsletters contra brief, tese, fluidez editorial, fontes, CTA e metadata de web ou e-mail. Use quando houver edição candidata ou corrigida para revisar antes de retornar ao planejamento e ao fluxo de envio do projeto.",
       "skill": "skills/inboundfy-validador-newsletter/SKILL.md",
       "referencia": "skills/inboundfy-validador-newsletter/REFERENCIA.md",
       "interface": "skills/inboundfy-validador-newsletter/agents/openai.yaml",
@@ -2301,7 +2532,7 @@
     {
       "id": "inboundfy-validador-podcast",
       "grupo": "validador",
-      "descricao": "Valida pauta e shownotes produzidos por inboundfy-especialista-podcast contra brief, todos os contextos, escrita, proibições, participantes, links e contrato do canal antes da entrega.",
+      "descricao": "Valida pautas e shownotes de podcast contra brief, participantes, gravação final, tempos, links e proibições. Use quando houver roteiro de conversa ou notas candidatas para conferir a fase do episódio e revisar antes da entrega ao planejamento.",
       "skill": "skills/inboundfy-validador-podcast/SKILL.md",
       "referencia": "skills/inboundfy-validador-podcast/REFERENCIA.md",
       "interface": "skills/inboundfy-validador-podcast/agents/openai.yaml",
@@ -2322,7 +2553,7 @@
     {
       "id": "inboundfy-validador-substack",
       "grupo": "validador",
-      "descricao": "Revisa uma peça Substack contra o acervo, base editorial, voz, persona, proibições, fontes, links e o contrato do canal.",
+      "descricao": "Valida peças Substack contra acervo, base editorial, persona, fontes, links, acesso e proibições do projeto. Use quando houver README candidato ou edição corrigida para revisar antes de retornar ao planejamento e ao fluxo de publicação.",
       "skill": "skills/inboundfy-validador-substack/SKILL.md",
       "referencia": "skills/inboundfy-validador-substack/REFERENCIA.md",
       "interface": "skills/inboundfy-validador-substack/agents/openai.yaml",
@@ -2343,7 +2574,7 @@
     {
       "id": "inboundfy-validador-video",
       "grupo": "validador",
-      "descricao": "Valida roteiro de vídeo produzido por inboundfy-especialista-video contra brief, todos os contextos, escrita, proibições, autoria, fala, estrutura e contrato do canal antes da entrega.",
+      "descricao": "Valida fala, cenas, duração, apresentador e apoio visual da peça de Vídeo e entrega relatório de correções à especialista pareada. Use quando o pedido trouxer revisão de roteiro de vídeo, talking head ou cenas para gravação antes da entrega.",
       "skill": "skills/inboundfy-validador-video/SKILL.md",
       "referencia": "skills/inboundfy-validador-video/REFERENCIA.md",
       "interface": "skills/inboundfy-validador-video/agents/openai.yaml",
@@ -2364,7 +2595,7 @@
     {
       "id": "inboundfy-validador-video-imagem",
       "grupo": "validador",
-      "descricao": "Valida thumbnail produzida por inboundfy-especialista-video-imagem contra roteiro, brief, todos os contextos, promessa, grafia, foco, contraste, legibilidade e dimensões antes da entrega.",
+      "descricao": "Valida thumbnail de vídeo ligada ao roteiro contra brief, texto final, fontes e identidade visual, com relatório de correções. Use quando o pedido citar revisar ou aprovar thumbnail de vídeo ligada ao roteiro, conferindo promessa do roteiro, frase visual, foco e miniatura.",
       "skill": "skills/inboundfy-validador-video-imagem/SKILL.md",
       "referencia": "skills/inboundfy-validador-video-imagem/REFERENCIA.md",
       "interface": "skills/inboundfy-validador-video-imagem/agents/openai.yaml",
@@ -2385,7 +2616,7 @@
     {
       "id": "inboundfy-validador-webinar",
       "grupo": "validador",
-      "descricao": "Valida página ou convite produzido por inboundfy-especialista-webinar contra brief, todos os contextos, escrita, proibições, apresentador, oferta, agenda e estrutura persuasiva antes da entrega.",
+      "descricao": "Valida agenda, data, horário, fuso, apresentador, oferta e inscrição da peça de Webinar e entrega relatório de correções à especialista pareada. Use quando o pedido trouxer revisão de página de webinar, convite de evento ou inscrição antes da entrega.",
       "skill": "skills/inboundfy-validador-webinar/SKILL.md",
       "referencia": "skills/inboundfy-validador-webinar/REFERENCIA.md",
       "interface": "skills/inboundfy-validador-webinar/agents/openai.yaml",
@@ -2406,7 +2637,7 @@
     {
       "id": "inboundfy-validador-webinar-imagem",
       "grupo": "validador",
-      "descricao": "Valida thumbnail produzida por inboundfy-especialista-webinar-imagem contra copy, brief, todos os contextos, título, data, apresentador, identidade, legibilidade e dimensões antes da entrega.",
+      "descricao": "Valida thumbnail com dados do webinar contra brief, texto final, fontes e identidade visual, com relatório de correções. Use quando o pedido citar revisar ou aprovar thumbnail com dados do webinar, conferindo título, data, horário, fuso e apresentador confirmado.",
       "skill": "skills/inboundfy-validador-webinar-imagem/SKILL.md",
       "referencia": "skills/inboundfy-validador-webinar-imagem/REFERENCIA.md",
       "interface": "skills/inboundfy-validador-webinar-imagem/agents/openai.yaml",
@@ -2427,7 +2658,7 @@
     {
       "id": "inboundfy-validador-youtube",
       "grupo": "validador",
-      "descricao": "Revisa uma peça YouTube contra o acervo, base editorial, voz, persona, proibições, fontes, metadados e contrato do canal.",
+      "descricao": "Valida roteiro, título, descrição, capítulos, links e CTA da peça de YouTube e entrega relatório de correções à especialista pareada. Use quando o pedido trouxer revisão de pacote YouTube, metadados ou descrição de vídeo antes da entrega.",
       "skill": "skills/inboundfy-validador-youtube/SKILL.md",
       "referencia": "skills/inboundfy-validador-youtube/REFERENCIA.md",
       "interface": "skills/inboundfy-validador-youtube/agents/openai.yaml",
@@ -2448,7 +2679,7 @@
     {
       "id": "inboundfy-voz",
       "grupo": "capacidade",
-      "descricao": "Conduz a definição da voz da empresa, seus tons por situação e seu vocabulário, usando exemplos aprovados para orientar copy gerada por IA.",
+      "descricao": "Define o guia de voz da empresa em marca-voz.md com atributos, tons e exemplos testados. Use quando o pedido falar em voz da marca, tom por canal, jeito de escrever, analisar textos aprovados ou padronizar a comunicação.",
       "skill": "skills/inboundfy-voz/SKILL.md",
       "referencia": "skills/inboundfy-voz/REFERENCIA.md",
       "interface": "skills/inboundfy-voz/agents/openai.yaml",

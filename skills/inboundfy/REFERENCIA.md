@@ -7,7 +7,14 @@ interno, não uma lista de skills que o usuário precise escolher.
 
 | Pedido | Skill |
 | --- | --- |
-| Configurar projeto | `inboundfy-setup` |
+| Configurar projeto, integrações ou variáveis de ambiente | `inboundfy-setup` |
+| Pedido de conteúdo e canais sem etapa clara | `inboundfy-area-conteudo` |
+| Pedido de SEO, busca ou respostas de IA | `inboundfy-area-seo` |
+| Pedido de copy, oferta ou revisão de texto | `inboundfy-area-copy` |
+| Pedido de crescimento em qualquer etapa do funil | `inboundfy-area-growth` |
+| Pedido comercial: prospecção, cadência, kit de vendas | `inboundfy-area-vendas` |
+| Pedido de métricas, rastreamento ou atribuição | `inboundfy-area-dados` |
+| Pedido de pesquisa de cliente ou concorrência | `inboundfy-area-pesquisa` |
 | Fluxo completo de material | `inboundfy-acervo` |
 | Receber material | `inboundfy-acervo` |
 | Limpar material | `inboundfy-processar-acervo` |
@@ -27,6 +34,10 @@ interno, não uma lista de skills que o usuário precise escolher.
 | GEO | `inboundfy-geo` |
 | Conversão | `inboundfy-growth-cro` |
 | Medir e atribuir | `inboundfy-metricas` / `inboundfy-atribuicao` |
+| Eventos, pixels e UTMs | `inboundfy-rastreamento-conversao` |
+| Links externos | `inboundfy-seo-links-externos` |
+| Diretórios e catálogos | `inboundfy-growth-diretorios` |
+| Estudar o marketing de uma referência | `inboundfy-engenharia-reversa` |
 | Testar | `inboundfy-experimentacao` |
 | Lançar | `inboundfy-growth-lancamento` |
 | Material rico | `inboundfy-growth-lead-magnet` |
@@ -51,164 +62,50 @@ Esta referência usa o contrato comum para a skill **inboundfy**, do grupo
 - [validação e retomada](../_shared/04-validacao-e-retomada.md);
 - [contexto editorial](../_shared/05-contexto-editorial.md).
 
-## Contrato específico
-
-- **Função:** executar a capacidade de inboundfy dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de inboundfy
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy
-grupo: orquestrador
-entrada: acervo/0042-2026-09-14-inboundfy/processado.md
-pedido: aplicar a etapa de inboundfy e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy
-estado: aprovado
-entrada: acervo/0042-2026-09-14-inboundfy/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de inboundfy
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Um novo ciclo preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
-
 ## Guia específico do grupo
 
-Coordene as etapas sem duplicar trabalho. Mantenha a ordem, as escolhas, os IDs, as pendências e o relatório final visíveis.
+Coordene as etapas sem duplicar trabalho. Quando o pedido nomeia uma etapa
+conhecida, vá direto à skill da tabela. Quando nomeia só uma área ("quero
+crescer", "melhorar o SEO"), entregue o pedido à skill `inboundfy-area-*`
+correspondente, que faz o diagnóstico e escolhe a rota.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+## Template de relatório da coordenação
 
-## Especificação operacional
+```markdown
+# Coordenação {data}
 
-### Quando usar
-
-Use **inboundfy** para executar esta função: Orquestra inbound marketing baseado em IA, desde o setup do projeto e a entrada no acervo até a produção, revisão, calendário e registro das peças por canal.
-
-O grupo **orquestrador** trabalha com estes campos mínimos:
-
-- **pedido:** preencher com dado ligado ao pedido.
-- **estado do projeto:** preencher com dado ligado ao pedido.
-- **IDs:** preencher com dado ligado ao pedido.
-- **etapas:** preencher com dado ligado ao pedido.
-- **próxima skill:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy
-grupo: orquestrador
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/fontes-projeto.md
+- Pedido: {texto original}
+- Setup: {pronto | pendente: etapa}
+- Rota: {skill ou área escolhida e motivo}
+- IDs envolvidos: {acervo, peça, campanha}
+- Resultado: {caminhos produzidos}
+- Pendências: {perguntas abertas}
+- Próxima ação: {skill e objetivo}
 ```
 
-Saída:
+## Exemplo
 
-```yaml
-id: 0042
-skill: inboundfy
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/fontes-projeto.md
-proxima_skill: nome-da-proxima-skill
-```
+**Pedido:** "Quero vender mais o plano anual do nosso app de treino."
 
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
+1. `inboundfy doctor --strict` passa.
+2. O pedido não nomeia etapa: é crescimento de receita. Rota:
+   `inboundfy-area-growth`.
+3. A área pergunta onde o número está pior. Resposta: muita gente testa,
+   pouca gente assina o anual. Rota escolhida: `inboundfy-growth-paywall`,
+   com `inboundfy-growth-pricing` como próxima etapa.
+4. O relatório registra a rota, o pacote entregue e a próxima etapa.
 
-### Perguntas de conferência
+## Checklist
 
-1. A entrada pertence ao grupo **orquestrador** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
+- [ ] O doctor rodou antes de qualquer escrita.
+- [ ] O pedido original ficou registrado sem edição.
+- [ ] Uma única skill recebeu o pedido por vez.
+- [ ] Peças públicas passaram por anti-slop A5, A6 e validador do canal.
+- [ ] O relatório lista caminhos, IDs, estado e próxima ação.
 
-### Referências de execução
+## Erros comuns
 
-Leia, na ordem necessária:
-
-- `README.md`
-- `METODOLOGIA.md`
-- `ESTRATEGIA.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+- Pedir ao usuário que escolha a skill quando o pedido já indica o resultado.
+- Executar duas sequências paralelas para o mesmo item.
+- Pular a área e escolher uma skill pelo nome do canal, sem diagnóstico.
+- Aprovar peça sem o relatório da validadora vinculado ao hash.

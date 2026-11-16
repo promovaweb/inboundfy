@@ -19,8 +19,8 @@ Os capítulos deste diretório também formam o
 leitura, compartilhamento e impressão, enquanto o EPUB permite ajustar fonte e
 tamanho no leitor digital.
 
-- [Baixe o PDF](../../ebook/Inboundfy-Guia-do-Usuario-v0.7.2.pdf).
-- [Baixe o EPUB](../../ebook/Inboundfy-Guia-do-Usuario-v0.7.2.epub).
+- [Baixe o PDF](../../ebook/Inboundfy-Guia-do-Usuario-v0.8.0.pdf).
+- [Baixe o EPUB](../../ebook/Inboundfy-Guia-do-Usuario-v0.8.0.epub).
 - [Consulte a edição e os hashes](../../ebook/README.md).
 
 ## Percurso completo
@@ -38,9 +38,22 @@ Leia na ordem:
 9. [Validação e correções](08-validacao-e-correcoes.md)
 10. [Atualização e reparo](09-atualizacao-e-reparo.md)
 11. [Solução de problemas](10-solucao-de-problemas.md)
+12. [Áreas de trabalho](11-areas-de-trabalho.md)
+13. [Configurações e integrações](12-configuracoes-e-integracoes.md)
+14. [Tutorial: do material ao post](13-tutorial-do-material-ao-post.md)
+15. [Tutorial: lançamento de uma turma](14-tutorial-lancamento.md)
+16. [Tutorial: SEO de um site parado](15-tutorial-seo.md)
+17. [Tutorial: vendas B2B](16-tutorial-vendas-b2b.md)
+18. [Tutorial: medição de ponta a ponta](17-tutorial-medicao.md)
+19. [Exemplos de pedidos](18-exemplos-de-pedidos.md)
+
+Os itens de 1 a 11 formam o percurso de instalação e primeiras entregas. Os
+itens de 12 a 19 ampliam a operação depois que o projeto já está rodando.
 
 Os [exemplos executáveis](../../examples/README.md) mostram relatórios,
-reprovações, correções e aprovações preenchidos com informações fictícias.
+reprovações, correções e aprovações preenchidos com informações fictícias. As
+[conversas com skills de área](../../examples/areas/README.md) mostram o
+diagnóstico de cada área antes do encaminhamento.
 
 ## Skills principais
 
@@ -52,6 +65,13 @@ reprovações, correções e aprovações preenchidos com informações fictíci
 
 Uma skill especialista pode ser chamada diretamente quando já existe um brief
 claro para uma única peça.
+
+Para pedidos recorrentes dentro de um domínio, existem sete skills de área:
+`inboundfy-area-conteudo`, `inboundfy-area-seo`, `inboundfy-area-copy`,
+`inboundfy-area-growth`, `inboundfy-area-vendas`, `inboundfy-area-dados` e
+`inboundfy-area-pesquisa`. Cada uma faz o diagnóstico mínimo da área e
+encaminha para a skill especializada. O percurso está em
+[Áreas de trabalho](11-areas-de-trabalho.md).
 
 ## Um exemplo de ponta a ponta
 

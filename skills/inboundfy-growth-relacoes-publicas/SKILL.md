@@ -1,16 +1,13 @@
 ---
 name: inboundfy-growth-relacoes-publicas
-description: Prepara pautas, mensagens para imprensa, porta-vozes, fontes e acompanhamento sem criar notícia, número ou declaração não confirmada.
+description: Prepara pautas, propostas editoriais, fontes e porta-vozes com fatos confirmados e acompanhamento de cobertura. Use quando o pedido falar em assessoria de imprensa, relações públicas, convite para podcast, entrevista ou resposta pública.
 ---
 
 # Relações públicas
 
-Use esta skill como capacidade especializada do Inboundfy. Ela organiza a tarefa e devolve material pronto para a orquestradora, sem substituir o setup, a voz, a persona ou a validação do canal.
+Construa pauta com interesse editorial e fatos verificáveis. Separe cobertura espontânea de espaço patrocinado e de trabalho destinado a obter links externos.
 
 ## Arquitetura de execução
-
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
@@ -18,52 +15,54 @@ específica desta pasta.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
 
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **growth**.
-
 ## Contexto exigido
 
-Se a configuração estiver incompleta, acione `inboundfy-setup`. Consulte [REFERENCIA.md](REFERENCIA.md), `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`, `.inboundfy/context/marca-voz.md`, `.inboundfy/context/publico.md`, `.inboundfy/context/proibicoes.md`, `.inboundfy/context/glossario.md`, `.inboundfy/pipeline.md`, o acervo relacionado e `.inboundfy/framework/`.
+Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md` antes de alterar artefatos. Na ausência de qualquer sentinela, apresente:
 
-Leia também `.inboundfy/fontes-projeto.md`, as bases editoriais relacionadas e os documentos públicos citados. Antes de entregar copy, consulte `inboundfy-anti-slop` e `inboundfy-copy-edicao`.
+> O setup do Inboundfy ainda não foi concluído ou precisa de reparo neste
+> projeto. Execute `inboundfy-setup` para preparar os arquivos de apoio.
+
+Leia `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`, `.inboundfy/context/publico.md`, `.inboundfy/context/canais.md`, `.inboundfy/context/marca-voz.md`, `.inboundfy/context/glossario.md`, `.inboundfy/context/proibicoes.md` e `.inboundfy/context/estruturas-proibidas.md`. Localize a oferta e as fontes relacionadas ao pedido. Consulte `.inboundfy/framework/` para os contratos instalados. Acione `inboundfy-setup` quando a configuração precisar de reparo.
 
 ## Entrada esperada
 
-Receba um objetivo, um ou mais IDs de acervo, a persona, o canal, a oferta ou o fluxo que precisa ser planejado. Separe fatos confirmados, hipótese de trabalho e pergunta aberta.
+Receba fato, data, fontes, método, porta-voz, materiais, público afetado, veículos candidatos e condição de divulgação.
+
+## Perguntas de diagnóstico
+
+- Que fato interessa ao leitor além da empresa?
+- O número tem amostra, período e método?
+- O porta-voz pode responder dentro do prazo editorial?
+- Há informação não confirmada que deve permanecer fora da proposta?
 
 ## Fluxo
 
-1. Leia [REFERENCIA.md](REFERENCIA.md) e confirme a intenção, o público, o canal e o resultado solicitado.
-2. Consulte voz, persona, proibições e dicionário antes de propor mensagem, segmento, preço, promessa ou CTA.
-3. Relacione cada afirmação ao acervo, à base editorial, à página canônica ou à pesquisa salva no item.
-4. Desenvolva um press brief com pauta, ângulo, fontes, porta-voz e contatos.
-5. Revise o material com `inboundfy-anti-slop`, `inboundfy-copy-edicao` e a validação específica do canal quando houver copy pública.
-6. Registre caminho, ID, fontes, alcance da regra e pendências; peça confirmação antes de alterar uma configuração global.
+1. Leia [REFERENCIA.md](REFERENCIA.md) e confirme qual fato é noticiável, quem pode confirmá-lo e qual público será afetado.
+2. Leia [pautas, porta-vozes e respostas](references/pautas-porta-vozes-e-respostas.md). Avalie novidade, consequência concreta, comprovação e aderência à editoria. Sem fato suficiente, prepare conteúdo próprio em vez de forçar notícia.
+3. Pesquise veículos, profissionais e programas com cobertura recente compatível. Registre fonte, data, abordagem e prazo editorial.
+4. Monte ficha da pauta, método dos números, materiais autorizados, porta-voz e respostas a perguntas difíceis.
+5. Prepare proposta personalizada, resposta a pedido de fonte ou apresentação para podcast. Registre exclusividade e embargo apenas quando aceitos.
+6. Acompanhe publicação, correções factuais e dúvidas. Separe citação, mensagem compreendida, tráfego e efeito comercial.
+7. Entregue o plano com ID, fontes, estado, responsável e próxima ação. Para proposta editorial ou resposta pública, leia `ESCRITA.md` e encaminhe a `inboundfy-copy-redacao` objetivo, canal, formato, persona, CTA, data e fontes. Peças para canais com especialista recebem brief aprovado e validadora pareada. Aplique `inboundfy-copy-editor` e `inboundfy-anti-slop`.
 
 ## Saída
 
-Um press brief com pauta, ângulo, fontes, porta-voz e contatos. O material deve manter IDs, links relativos, fontes, persona, canal, estado e próxima ação.
+Entregue ficha de pauta, lista comentada de contatos, proposta editorial, preparação de porta-voz e acompanhamento de cobertura. Salve no pacote já definido pelo projeto, com vínculos ao acervo, brief, persona e calendário. Use o campo `brief` nas peças finais. Não crie estrutura paralela ao setup.
 
 ## Validação
 
-- A finalidade e o público estão explícitos.
-- Toda afirmação comercial possui fonte local ou marcação de confirmação.
-- Voz, persona, proibições e dicionário foram aplicados.
-- O formato respeita o canal, o pipeline e o template correspondente.
-- Pendências ficaram registradas sem preenchimento inventado.
+Números, declarações e casos precisam de fonte e autorização. Exclusividade não pode ser oferecida simultaneamente a vários veículos. Resposta pública distingue fatos confirmados, investigação e horário da próxima atualização.
+
+Confira cálculos, denominadores, datas, fontes e autorização aplicável. Devolva promessas sem fonte ao brief. Mantenha o estado `revisao` enquanto houver pendência factual. A publicação depende do estado e da autorização existentes no projeto.
 
 ## Responsabilidade do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
+Transforme fato confirmado em proposta editorial e preparação de porta-voz, com responsáveis por contato e resposta. Registre grupo `growth`, entrada, transformação, saída, próxima skill, estado e pendências no handoff.
 
-Antes do handoff, confirme os campos próprios deste grupo:
+## Encaminhamentos
 
-- **grupo:** growth
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+Use `inboundfy-seo-links-externos` para menções sem link, ativos linkáveis e digital PR orientada a links. Use `inboundfy-growth-influenciadores` para inserção paga e `inboundfy-growth-lancamento` para calendário de novidade. Análise de imprensa concorrente segue para `inboundfy-engenharia-reversa`.
 
 ## Idempotência
 
-Atualize o mesmo arquivo ou brief quando o ID já existir. Preserve texto aprovado, histórico, fontes e escolhas anteriores; abra uma nova versão apenas após pedido explícito.
+Atualize o plano pelo mesmo ID. Preserve fontes, versões aprovadas e histórico. Use pauta + contato + abordagem como chave. Consulte envios anteriores e não repita proposta recusada sem fato novo.

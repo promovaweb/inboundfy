@@ -47,7 +47,8 @@ describe("validação de assets", () => {
     expect(await checkFiles()).toEqual([]);
     const catalogo = JSON.parse(await readFile(join(RAIZ, "skills", "catalogo.json"), "utf8"));
     const diretorios = new Set((await readdir(join(RAIZ, "skills"), { withFileTypes: true })).filter((item) => item.isDirectory() && item.name.startsWith("inboundfy")).map((item) => item.name));
-    expect(catalogo.quantidade).toBe(117);
+    expect(catalogo.quantidade).toBe(diretorios.size);
+    expect(catalogo.skills.filter((item: { grupo: string }) => item.grupo === "area")).toHaveLength(7);
     expect(new Set(catalogo.skills.map((item: { id: string }) => item.id))).toEqual(diretorios);
     expect(catalogo.referencias_compartilhadas).toHaveLength(5);
     for (const item of catalogo.skills) {
@@ -112,8 +113,19 @@ describe("validação de assets", () => {
     expect(alias).toContain("nenhuma gravação local");
   });
 
-  test("script de enriquecimento é idempotente", () => {
-    return expect(writeFiles()).resolves.toMatchObject({ count: 117 });
+  test("script de enriquecimento é idempotente", async () => {
+    const total = (await readdir(join(RAIZ, "skills"), { withFileTypes: true })).filter((item) => item.isDirectory() && item.name.startsWith("inboundfy")).length;
+    await expect(writeFiles()).resolves.toMatchObject({ count: total, changed: 0 });
+  });
+
+  test("setup concentra configurações e integrações", async () => {
+    const skill = await readFile(join(RAIZ, "skills", "inboundfy-setup", "SKILL.md"), "utf8");
+    const catalogoIntegracoes = await readFile(join(RAIZ, "skills", "inboundfy-setup", "references", "integracoes.md"), "utf8");
+    const modelo = await readFile(join(RAIZ, "context", "integracoes.md"), "utf8");
+    expect(skill).toContain("references/integracoes.md");
+    expect(skill).toContain("inboundfy-area-");
+    expect(catalogoIntegracoes).toContain("GA4_PROPERTY_ID");
+    expect(modelo).toContain("Nunca grave aqui o valor");
   });
 
   test("acervo é a skill mestre do fluxo", async () => {
@@ -194,10 +206,10 @@ describe("validação de assets", () => {
   test("documentação completa e instalada pelo setup", async () => {
     const user = (await readdir(join(RAIZ, "docs", "user"))).filter((name) => /^\d\d-.*\.md$/.test(name)).sort();
     const method = (await readdir(join(RAIZ, "docs", "method"))).filter((name) => /^\d\d-.*\.md$/.test(name)).sort();
-    expect(user).toHaveLength(11);
+    expect(user).toHaveLength(19);
     expect(method).toHaveLength(11);
     expect(user[0]).toMatch(/^00-/);
-    expect(user.at(-1)).toMatch(/^10-/);
+    expect(user.at(-1)).toMatch(/^18-/);
     expect(method[0]).toMatch(/^00-/);
     expect(method.at(-1)).toMatch(/^10-/);
     expect(await readFile(join(RAIZ, "skills", "inboundfy-setup", "SKILL.md"), "utf8")).toContain(".inboundfy/framework/docs/");
@@ -248,14 +260,14 @@ describe("validação de assets", () => {
     expect(new Set(ordem).size).toBe(ordem.length);
     expect(new Set(ordem)).toEqual(encontrados);
     expect(ordem[0]).toBe("docs/user/README.md");
-    expect(ordem.at(-1)).toBe("docs/user/10-solucao-de-problemas.md");
+    expect(ordem.at(-1)).toBe("docs/user/18-exemplos-de-pedidos.md");
   });
 
   test("ebook publicado está sincronizado", async () => {
     const manifesto = JSON.parse(await readFile(join(RAIZ, "ebook", "build.json"), "utf8"));
     const pacote = JSON.parse(await readFile(join(RAIZ, "package.json"), "utf8"));
     expect(manifesto.version).toBe(pacote.version);
-    expect(Object.keys(manifesto.document_metadata)).toHaveLength(12);
+    expect(Object.keys(manifesto.document_metadata)).toHaveLength(20);
     expect(manifesto.sources).toContain(".ebook/build-ebook.mjs");
     await expect(stat(join(RAIZ, "ebook", "ebook-inboundfy.pdf"))).resolves.toBeTruthy();
     await expect(stat(join(RAIZ, "ebook", "ebook-inboundfy.epub"))).resolves.toBeTruthy();

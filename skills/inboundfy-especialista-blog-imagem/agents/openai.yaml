@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Especialista Blog Imagem"
-  short_description: "Executa especialista blog imagem no Inboundfy"
-  default_prompt: "Use $inboundfy-especialista-blog-imagem para executar especialista blog imagem com as fontes do projeto."
+  display_name: "Inboundfy: Fotografia de blog"
+  short_description: "Produz capa e thumbnail fotográficas de blog"
+  default_prompt: "Use $inboundfy-especialista-blog-imagem para produzir capa e thumbnail fotográficas de blog com brief aprovado, texto final e identidade do projeto. Aplique os oito itens do par e envie o conjunto completo a $inboundfy-validador-blog-imagem."

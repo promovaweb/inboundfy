@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Anti Slop"
-  short_description: "Executa anti slop no Inboundfy"
-  default_prompt: "Use $inboundfy-anti-slop para executar o marco A0 a A6 aplicável, com as fontes do projeto."
+  display_name: "Inboundfy: Revisão anti-slop"
+  short_description: "Texto sem generalidades, na voz e com fontes"
+  default_prompt: "Use $inboundfy-anti-slop para revisar este texto, tirar o que soa genérico ou sem fonte e manter a voz da marca."

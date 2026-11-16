@@ -1,223 +1,104 @@
-# Referência de Parcerias de distribuição
+# Referência de parcerias de distribuição
 
-## Template
+## Método e escolhas
 
-```markdown
-# Parcerias de distribuição
+O melhor encaixe reúne a mesma persona e tarefas complementares. Compare valor para o público e capacidade de execução antes do tamanho das listas. Uma parceria pequena pode produzir uma oficina útil; uma grande pode exigir trabalho que a equipe não consegue cumprir.
 
-- **ID:** {{id}}
-- **Objetivo:** {{objetivo}}
-- **Persona:** {{persona}}
-- **Canal:** {{canal}}
-- **Acervo:** {{acervo}}
-- **Fonte principal:** {{fonte}}
-- **Próxima ação:** {{cta}}
+| Necessidade | Tipo de parceria | Entrega inicial | Responsável seguinte |
+| --- | --- | --- | --- |
+| Testar público complementar | Co-marketing | Conteúdo ou oficina conjunta | Esta skill |
+| Conectar produtos | Integração | Validação técnica e caso de uso | Equipe de produto |
+| Remunerar indicação | Afiliado | Regra de comissão | inboundfy-growth-referencias |
+| Vender por terceiro | Revenda | Modelo comercial e atendimento | Responsável comercial |
+| Descoberta em ecossistema | Marketplace | Cadastro e requisitos | inboundfy-growth-diretorios |
 
-## Plano
+Leia [o procedimento de parcerias de distribuição](references/acordos-e-contrapartidas.md) no passo 2 do fluxo, antes de preencher o plano. Ele detalha execução, medição e tratamento das exceções.
 
-{{plano}}
+## Template de trabalho
 
-## Pendências
+Copie o envelope para o pacote do projeto. Preencha também a tabela específica abaixo.
 
-{{pendencias}}
+```yaml
+id: "{{id}}"
+skill: inboundfy-growth-parcerias
+grupo: growth
+tipo: plano-parcerias
+estado: rascunho
+entrada: ["{{acervo ou pedido}}"]
+brief: "{{caminho do brief}}"
+persona: "{{id da persona}}"
+canal: "{{canal ativo}}"
+oferta: "{{oferta confirmada}}"
+fontes: ["{{contexto}}", "{{fonte do tema}}"]
+responsavel: "{{pessoa}}"
+janela: "{{início e fim}}"
+orcamento_reais: "{{valor aprovado}}"
+proxima_skill: "{{skill e ação solicitada}}"
+pendencias: ["{{pergunta ou nenhuma}}"]
 ```
 
-## Guia específico
+| Item do acordo | Empresa A | Empresa B | Prazo | Conferência |
+| --- | --- | --- | --- | --- |
+| Produção | {{entrega}} | {{entrega}} | {{data}} | {{arquivo aprovado}} |
+| Divulgação | {{canal e quantidade}} | {{canal e quantidade}} | {{data}} | {{URLs/relatório}} |
+| Custos | {{R$}} | {{R$}} | {{data}} | {{conciliação}} |
+| Contatos | {{finalidade/acesso}} | {{finalidade/acesso}} | {{prazo}} | {{texto e configuração}} |
+| Marca | {{usos permitidos}} | {{usos permitidos}} | {{fim}} | {{aprovação}} |
 
-Mapeie afinidade de audiência, oferta complementar, formato, canal, contrapartida, responsável, prazo e mensagem de convite. Registre a autorização antes de usar marca ou base de contatos.
+Convite: “Atendemos {{persona}} em {{tarefa A}}. Seu público trabalha com {{tarefa B}}. Propomos {{entrega útil}}. Nossa equipe assume {{produção}}. Sua equipe pode assumir {{contrapartida}}. Vamos conferir esse piloto para {{data}}?”
 
-## Exemplo ilustrativo
+## Exemplo completo brasileiro fictício
 
-Uma empresa de software pode usar este modelo para organizar uma ação de teste com uma persona específica, ligar cada mensagem a um acervo e registrar a página de destino sem afirmar resultados ainda não medidos.
+Todos os nomes, documentos e números deste exemplo são fictícios. Resultados simulados servem para demonstrar a conferência, sem prometer desempenho.
+
+A fictícia **Estoque de Perto**, de Goiânia, vende controle para lojas de materiais. A fictícia **Conta da Obra** oferece contabilidade para o mesmo público. O plano `par-023` usa `acervo/023-fechamento/processado.md`, persona `gestora-material` e brief `conteudo/lojas/04-briefs/par-023.md`.
+
+Estoque de Perto tem 800 assinantes ativos; Conta da Obra tem 2.000. A primeira produz planilha e aula. A segunda divulga a oficina em duas edições da newsletter e oferece uma especialista. Ambas aprovam marca e texto até D−5. Os contatos de inscrição recebem o acesso. Comunicações comerciais de cada empresa são apresentadas separadamente no formulário, com finalidade clara. A equipe não troca planilhas de contatos indiscriminadamente.
+
+O custo fictício é R$ 2.400, dividido igualmente. Em 21 dias, a oficina recebe 120 inscrições únicas, 70 da origem A e 50 da origem B. Há 24 pedidos comerciais para A e 16 para B; seis pessoas pedem ambos. A entrega total reúne 34 pessoas com interesse comercial, não 40 pessoas distintas. Para A, custo por pedido = R$ 1.200/24 = R$ 50; para B, R$ 75.
+
+A responsável fictícia Sora confere as duas divulgações e o arquivo final. Estado `revisao`, aguardando oportunidades após 30 dias. O handoff a `inboundfy-growth-eventos` inclui roteiro, inscrições e responsáveis. Uma proposta posterior de comissão segue para `inboundfy-growth-referencias`.
+
+## Métricas e leitura do resultado
+
+- Cumprimento = entregas concluídas no prazo / entregas combinadas por parceiro.
+- Pessoas novas elegíveis: exclua base já existente de cada lado, com método de comparação autorizado.
+- Custo por contato qualificado = custo próprio / contatos que atendem à regra comercial própria.
+- Conversão por origem e por empresa destinatária: separe origem do acesso e empresa procurada.
+- Sobreposição: conte pessoas únicas no total e interseção entre interesses. Não some bases como audiência inédita.
+
+Use a mediana histórica de ações comparáveis do próprio projeto como referência. Separe canal, formato, público e período. Se faltar histórico, trate a primeira rodada como linha inicial. Números dos exemplos são hipóteses de planejamento ou resultados simulados, nunca médias de mercado. Para adotar uma referência externa, registre fonte primária, data, amostra e método antes de comparar.
 
 ## Checklist
 
-- [ ] ID e objetivo estão presentes.
-- [ ] Persona, canal e acervo estão vinculados.
-- [ ] Fontes e pendências estão localizadas.
-- [ ] Voz, proibições e dicionário foram conferidos.
-- [ ] Próxima ação e estado do pipeline estão claros.
+- [ ] Ofertas complementares e persona compartilhada foram demonstradas.
+- [ ] Contrapartidas têm quantidade, prazo e responsável.
+- [ ] Uso de marca tem finalidade e duração.
+- [ ] Tratamento de contatos foi explicado no cadastro.
+- [ ] Encerramento e entrega parcial têm procedimento.
+- [ ] Fontes, ID, brief, persona e responsável acompanham o plano.
+- [ ] Pendências têm responsável e data de retorno.
+- [ ] O handoff inclui arquivos, estado e ação solicitada.
 
 ## Erros comuns
 
-- Começar pelo formato antes de confirmar objetivo, público e fonte.
-- Usar promessa, preço, número ou nome sem registro local.
-- Aplicar a mesma mensagem a personas com contextos diferentes.
-- Salvar o resultado sem caminho, ID ou alcance da escolha.
-
-## Relação com inboundfy-growth-parcerias
-
-Use este modelo como roteiro mínimo e acrescente apenas campos pedidos pelo projeto. O arquivo final deve ficar ligado ao acervo, à peça e ao calendário quando houver data.
+- Exigir igualdade de lista: negocie valor de produção e especialização.
+- Prometer dados sem definir finalidade: resolva antes de abrir inscrições.
+- Fazer acordo só verbal: registre entregas e aprovação.
+- Trocar links como finalidade única do co-marketing: encaminhe trabalho de backlinks à skill própria.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-growth-parcerias**, do grupo
-**growth**. Leia os detalhes compartilhados conforme a etapa atual:
+A skill `inboundfy-growth-parcerias` pertence ao grupo **growth**. Aplique os contratos conforme o trabalho avança:
 
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de parcerias dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-growth-parcerias
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de parcerias
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-growth-parcerias
-grupo: growth
-entrada: acervo/0042-2026-09-14-parcerias/processado.md
-pedido: aplicar a etapa de parcerias e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-growth-parcerias
-estado: aprovado
-entrada: acervo/0042-2026-09-14-parcerias/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de parcerias
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-growth-parcerias** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): confirme instalação, contexto e origem dos dados.
+- [Contrato de artefato](../_shared/02-contrato-de-artefato.md): registre ID, estado e relações.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): registre escolhas e alcance.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): confira o artefato inteiro após correções.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): mantenha persona, voz, dicionário e proibições.
 
 ## Guia específico do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
+A unidade é um acordo operacional de ação conjunta. O plano responde quem faz, quem divulga, quem paga, quem aprova e como o público recebe valor.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-growth-parcerias** para executar esta função: Encontra e estrutura parcerias de conteúdo, distribuição e co-marketing com proposta, audiência, troca e próximos passos claros.
-
-O grupo **growth** trabalha com estes campos mínimos:
-
-- **objetivo:** preencher com dado ligado ao pedido.
-- **público:** preencher com dado ligado ao pedido.
-- **canal:** preencher com dado ligado ao pedido.
-- **oferta:** preencher com dado ligado ao pedido.
-- **próxima ação:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-growth-parcerias
-grupo: growth
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/estrategia.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-growth-parcerias
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/estrategia.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **growth** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESTRATEGIA.md`
-- `CONTEXTO.md`
-- `docs/method/05-artefatos-e-estados.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Registre objetivo, público, canal, oferta e próxima ação no plano. Encaminhe produção para `inboundfy-planejamento` quando houver pacote. Encaminhe peça avulsa com brief aprovado à especialista correspondente. Não preencha arquivos de contexto com fatos simulados deste manual.

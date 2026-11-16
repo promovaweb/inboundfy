@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Seo"
-  short_description: "Executa seo no Inboundfy com contexto"
-  default_prompt: "Use $inboundfy-seo para executar seo com as fontes do projeto."
+  display_name: "Inboundfy: SEO de conteúdo"
+  short_description: "Planeja termos, clusters e briefs de páginas SEO"
+  default_prompt: "Use $inboundfy-seo para descobrir o que a persona busca, montar o cluster e o briefing SEO da página com as fontes do projeto."

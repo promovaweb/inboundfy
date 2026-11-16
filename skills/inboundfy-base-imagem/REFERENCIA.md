@@ -1,230 +1,106 @@
-# REFERENCIA.md; inboundfy-base-imagem
+# Motor de composição com identidade confirmada
 
-Material de apoio para compor peças visuais sintéticas (card, slide,
-thumbnail com texto) com identidade de marca consistente.
+A chamadora entrega dimensões, texto aprovado, finalidade e arquivos de marca. Esta base devolve uma composição sintética conferida. Fotografia documental e captura de produto seguem a fonte exigida pelo brief.
 
-## Tabela de formatos por canal
+## Diagnóstico da composição
 
-| Peça | Proporção | Dimensão comum |
+Confirme: a imagem precisa demonstrar um fato ou apenas ilustrar uma ideia? O texto cabe no espaço útil? Existe logo oficial? Qual corte o destino aplica? A marca permite fotografia, ilustração ou ambos?
+
+| Necessidade | Procedimento | Condição de entrega |
 | --- | --- | --- |
-| Carrossel Instagram/LinkedIn | 4:5 | 1080×1350 |
-| Post de feed | 1:1 | 1080×1080 |
-| Thumbnail de vídeo longo | 16:9 | 1280×720 |
-| Capa de webinar / evento | 1:1 | 1080×1080 |
-| Infográfico | 9:16 | 1080×1920 |
-| Story / vídeo curto | 9:16 | 1080×1920 |
-| Capa de LinkedIn (artigo) | 1.91:1 | 1200×627 |
+| Ilustração conceitual | Gerar cena com identidade definida | Registrar que a cena é sintética |
+| Tela real de produto | Solicitar captura autorizada à chamadora | Não desenhar interface fictícia como captura |
+| Logo e assinatura | Usar arquivo oficial recebido | Não recriar símbolo por prompt |
+| Texto longo ou tabela | Compor com ferramenta de layout disponível | Não aceitar grafia aproximada |
+| Dimensão não suportada pelo motor | Gerar com área de corte planejada | Ajustar exportação e conferir pixels finais |
+| Marca ainda indefinida | Listar os arquivos faltantes | Devolver pedido de identidade |
 
-Confirme sempre em `context/canais.md`; a tabela acima é o padrão de
-mercado mais comum, não uma regra fixa do framework.
+## Procedimento do motor
 
-## Checklist de composição
+1. Registre largura, altura, proporção, formato de arquivo, área segura e peso máximo recebidos. A base não escolhe esses valores pelo nome de um canal.
+2. Abra paleta, tipografia, logos e exemplos aprovados de `brand/`. Identifique qual arquivo autoriza cada escolha.
+3. Separe conteúdo obrigatório de ornamento. Ordene título, imagem principal e assinatura conforme a leitura pretendida.
+4. Escreva instrução visual com sujeito, ação, ambiente, posição dos elementos e espaço reservado para texto. Inclua exclusões específicas: dado pessoal, marca de terceiro, interface simulada ou símbolo não autorizado.
+5. Gere com a ferramenta disponível. Registre nome do motor e versão quando informada. Não registre credenciais. Consulte `context/integracoes.md` para a integração configurada.
+6. Abra o arquivo produzido. Compare palavra por palavra com o texto aprovado, incluindo acentos, preços e pontuação.
+7. Confira proporção, recorte e nitidez. Veja a composição no tamanho de leitura e numa miniatura de 320 px de largura como teste editorial local.
+8. Se houver falha, altere somente a instrução responsável. Preserve a versão anterior. Repita todas as conferências no novo arquivo.
+9. Entregue imagem, texto alternativo e manifesto à chamadora. A aprovação específica permanece com a validadora pareada.
 
-- [ ] Um único foco visual por peça; se há mais de um elemento competindo
-      por atenção, corte um.
-- [ ] Contraste de texto sobre fundo suficiente para leitura em miniatura
-      (teste mental: a peça ainda é legível do tamanho de um ícone?).
-- [ ] Paleta e tipografia conferem com a identidade visual do usuário, não
-      com uma escolha genérica de "design bonito".
-- [ ] Logo presente apenas quando o canal exigir, no tamanho e posição
-      definidos pela identidade visual do usuário.
-- [ ] Nenhum erro de grafia no texto da peça (confira
-      `context/glossario.md`).
-- [ ] Margem de segurança suficiente para o texto não cortar em diferentes
-      proporções de exibição (feed vs. story, por exemplo).
+## Template de pedido visual
 
-## Estrutura de brief de imagem
-
-Toda skill de canal que chama `inboundfy-base-imagem` deve fornecer:
-
-```text
-Formato: <proporção e dimensão>
-Texto principal: <título ou dado central, curto>
-Texto secundário: <subtítulo, se houver>
-Tom visual: <sóbrio, vibrante, técnico, editorial; de context/marca-voz.md>
-Elemento de marca obrigatório: <logo, cor de destaque, ícone>
+```yaml
+id: "<id>"
+brief: <caminho>
+arquivo_destino: <caminho definido pela chamadora>
+largura_px: <inteiro>
+altura_px: <inteiro>
+formato: <png|jpg|webp>
+peso_maximo_bytes: <valor ou não definido>
+area_segura_px: {topo: <n>, direita: <n>, base: <n>, esquerda: <n>}
+texto_literal: [<título>, <complemento>]
+fontes_marca: [<paleta>, <tipografia>, <logo>]
+cena: <objeto, ação e ambiente>
+composicao: <posições e hierarquia>
+exclusoes: [<elementos incompatíveis>]
+motor: <ferramenta disponível>
 ```
+
+## Exemplo completo: peça fictícia da Pinhão Bicicletas
+
+O pedido traz 1200 × 800 px, PNG, título “Freio revisado antes de sair” e logo oficial fictício. A identidade de demonstração usa fundo creme `#FFF4DC`, texto escuro `#17392B` e fonte fornecida pela empresa. Esses valores servem apenas para este exemplo.
+
+**Primeira instrução inadequada:** “Faça uma arte bonita de bicicleta.” Ela não informa texto, espaço ou função.
+
+**Instrução trabalhada:** “Ilustração lateral de uma bicicleta parada numa oficina organizada. Posicione a roda dianteira no terço direito e reserve o lado esquerdo para o título literal ‘Freio revisado antes de sair’. Fundo creme #FFF4DC e texto #17392B. Use o arquivo de logo recebido sem redesenhar. Não inclua pessoas identificáveis, preço, selos de certificação ou números de desempenho. Preserve 60 px livres nas quatro bordas. Exporte 1200 × 800 px em PNG.”
+
+**Primeira saída observada:** a última palavra perdeu uma letra e o logo ficou no corte. A rodada foi reprovada. A correção reduziu a cena para ampliar a área de texto e reposicionou o arquivo oficial dentro da margem.
+
+**Manifesto da segunda saída:**
+
+```yaml
+id: "0042"
+arquivo: arte.png
+largura_px: 1200
+altura_px: 800
+formato: png
+motor: ferramenta disponível registrada na execução
+origem_visual: composição sintética
+texto_conferido: "Freio revisado antes de sair"
+logo: brand/logo-oficial.svg
+paleta: brand/cores.md
+area_segura_px: 60
+miniatura_conferida: sim
+alt: "Bicicleta com destaque para o freio dianteiro e título sobre a revisão antes de sair."
+estado: candidato-para-validacao
+```
+
+O nome do motor precisa ser preenchido com o valor real durante uma execução. O exemplo não afirma que uma imagem foi gerada nesta documentação.
+
+## Checklist numerado da imagem
+
+1. Arquivo abre e usa a dimensão recebida.
+2. Texto literal está completo, com grafia e acentos corretos.
+3. Logo veio do arquivo oficial.
+4. Paleta e tipografia possuem fonte de marca.
+5. Nenhum elemento obrigatório toca a área de corte.
+6. Leitura funciona no tamanho de destino e na miniatura de teste.
+7. Texto alternativo transmite a informação essencial sem repetir uma legenda inteira.
+8. Motor, origem sintética e versões estão registrados.
+9. A validadora recebe o arquivo final, não apenas o prompt.
 
 ## Erros comuns
 
-- Gerar peça com texto longo demais para o formato; se o texto não cabe
-  legível, peça para a skill de canal encurtar antes, não reduza a fonte
-  até ficar ilegível.
-- Inventar paleta ou tipografia quando o usuário ainda não definiu
-  identidade visual; pare e sinalize a ausência (ver `SKILL.md`), não
-  escolha uma paleta genérica "profissional".
-- Reaproveitar a mesma composição para peças de canais diferentes só
-  trocando o texto; ajuste proporção e hierarquia ao canal real.
+- Aprovar texto pelo prompt sem abrir a imagem. O motor pode alterar letras.
+- Esticar uma imagem para caber. Refaça o corte ou a composição preservando a proporção.
+- Redesenhar logo com IA. Insira o ativo oficial.
+- Apresentar pessoa sintética como cliente. Use cena conceitual identificada.
+- Guardar token no manifesto. Registre apenas o nome da integração.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-base-imagem**, do grupo
-**base**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de base imagem dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-base-imagem
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de base imagem
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-base-imagem
-grupo: base
-entrada: acervo/0042-2026-09-14-base-imagem/processado.md
-pedido: aplicar a etapa de base imagem e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-base-imagem
-estado: aprovado
-entrada: acervo/0042-2026-09-14-base-imagem/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de base imagem
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-base-imagem** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+Carregue [fontes](../_shared/01-preflight-e-fontes.md) e [contexto editorial](../_shared/05-contexto-editorial.md) antes do pedido. O manifesto segue [artefato](../_shared/02-contrato-de-artefato.md). Devolva com [handoff](../_shared/03-interacao-e-handoff.md) e preserve versões conforme [retomada](../_shared/04-validacao-e-retomada.md).
 
 ## Guia específico do grupo
 
-Entregue uma função reutilizável, sem assumir canal ou negócio. Receba um artefato claro e devolva um registro consumível pela skill chamadora.
-
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-base-imagem** para executar esta função: Motor genérico de geração de card, slide ou thumbnail sintético para peças sociais (LinkedIn, Instagram, capa de carrossel, thumbnail de vídeo, webinar). Usa geração de imagem por IA com a identidade visual registrada em context/marca-voz.md. É a base que as skills de imagem por canal (inboundfy-especialista-linkedin-imagem, inboundfy-especialista-instagram-imagem, etc.) reaproveitam.
-
-O grupo **base** trabalha com estes campos mínimos:
-
-- **entrada:** preencher com dado ligado ao pedido.
-- **regra:** preencher com dado ligado ao pedido.
-- **resultado:** preencher com dado ligado ao pedido.
-- **fontes:** preencher com dado ligado ao pedido.
-- **retorno:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-base-imagem
-grupo: base
-pedido: executar a função desta skill sobre o material selecionado
-entrada: acervo/0042-2026-09-14-material/processado.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-base-imagem
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - acervo/0042-2026-09-14-material/processado.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **base** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `CONTEXTO.md`
-- `SKILL-AUTORIA.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+A base recebe medidas e conteúdo, sem escolher canal, campanha ou legenda. Leia esta referência no passo de montar o pedido visual. Use `inboundfy-base-validador` para o contrato comum e retorne à especialista chamadora para a conferência do destino.

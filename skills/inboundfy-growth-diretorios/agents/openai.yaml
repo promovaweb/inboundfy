@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy: Cadastros em diretórios"
+  short_description: "Kit de cadastro e acompanhamento de listagens"
+  default_prompt: "Use $inboundfy-growth-diretorios para preparar o kit e priorizar cadastros da oferta nos catálogos pertinentes ao público."

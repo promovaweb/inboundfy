@@ -1,223 +1,100 @@
-# Referência de Marketing de eventos
+# Referência de marketing de eventos
 
-## Template
+## Método e escolhas
 
-```markdown
-# Marketing de eventos
+Escolha primeiro o papel da empresa. Uma palestra oferece autoridade; uma oficina permite observar execução; um encontro pequeno aprofunda relações; um estande compra acesso e exige equipe para qualificar conversas. O formato só faz sentido quando serve ao resultado prioritário.
 
-- **ID:** {{id}}
-- **Objetivo:** {{objetivo}}
-- **Persona:** {{persona}}
-- **Canal:** {{canal}}
-- **Acervo:** {{acervo}}
-- **Fonte principal:** {{fonte}}
-- **Próxima ação:** {{cta}}
+| Objetivo | Formato ou papel | Preparação determinante | Medida central |
+| --- | --- | --- | --- |
+| Ensinar tarefa | Oficina própria | Exercício e suporte | Pessoas que concluem tarefa |
+| Abrir conversas com contas | Encontro curado | Convites e agenda prévia | Reuniões realizadas |
+| Expor conhecimento | Palestra | Tese, demonstração e ensaio | Conversas qualificadas após sessão |
+| Avaliar canal presencial | Participação sem estande | Lista de pessoas e reuniões | Custo por reunião |
+| Acessar público já reunido | Patrocínio | Público comprovado e contrapartidas | Custo por oportunidade |
 
-## Plano
+Leia [o procedimento de marketing de eventos](references/producao-e-acompanhamento.md) no passo 2 do fluxo, antes de preencher o plano. Ele detalha execução, medição e tratamento das exceções.
 
-{{plano}}
+## Template de trabalho
 
-## Pendências
+Copie o envelope para o pacote do projeto. Preencha também a tabela específica abaixo.
 
-{{pendencias}}
+```yaml
+id: "{{id}}"
+skill: inboundfy-growth-eventos
+grupo: growth
+tipo: plano-eventos
+estado: rascunho
+entrada: ["{{acervo ou pedido}}"]
+brief: "{{caminho do brief}}"
+persona: "{{id da persona}}"
+canal: "{{canal ativo}}"
+oferta: "{{oferta confirmada}}"
+fontes: ["{{contexto}}", "{{fonte do tema}}"]
+responsavel: "{{pessoa}}"
+janela: "{{início e fim}}"
+orcamento_reais: "{{valor aprovado}}"
+proxima_skill: "{{skill e ação solicitada}}"
+pendencias: ["{{pergunta ou nenhuma}}"]
 ```
 
-## Guia específico
+| Prazo | Entrega | Responsável | Dependência | Conferência | Alternativa |
+| --- | --- | --- | --- | --- | --- |
+| {{data/fuso}} | {{convite/ensaio/sessão/retorno}} | {{pessoa}} | {{condição}} | {{teste}} | {{plano alternativo}} |
 
-Divida pré-evento, inscrição, confirmação, lembrete, experiência, cobertura e pós-evento. Relacione cada etapa ao objetivo, à persona, ao canal e à próxima ação.
+Ficha da conversa: pessoa/empresa, tarefa relatada, interesse explícito, material pedido, próximo passo combinado, responsável e data. Não trate leitura de crachá como pedido de contato.
 
-## Exemplo ilustrativo
+## Exemplo completo brasileiro fictício
 
-Uma empresa de software pode usar este modelo para organizar uma ação de teste com uma persona específica, ligar cada mensagem a um acervo e registrar a página de destino sem afirmar resultados ainda não medidos.
+Todos os nomes, documentos e números deste exemplo são fictícios. Resultados simulados servem para demonstrar a conferência, sem prometer desempenho.
+
+A fictícia **Mesa de Caixa**, de Belo Horizonte, vende organização financeira para padarias. O evento `evt-031` é uma oficina online para a persona `gestora-padaria`, em 18/03, às 15h de Brasília, com 40 vagas. Fontes: `acervo/031-fechamento/processado.md`, oferta e canais. Brief: `conteudo/padarias/04-briefs/evt-031.md`. A tarefa é montar um fechamento diário em planilha.
+
+A responsável fictícia Leda faz ensaio dois dias antes. O roteiro reserva cinco minutos para contexto, vinte para exercício, dez para perguntas e cinco para próximos passos opcionais. O apoio técnico entrega planilha por email se a transmissão cair. O convite explica tarefa, horário e gravação. WhatsApp só atende quem escolheu receber lembrete por esse canal.
+
+Orçamento simulado: R$ 300 de ferramenta, R$ 400 de divulgação e R$ 800 de horas, total R$ 1.500. Das 60 pessoas interessadas, 40 confirmam vaga, 28 comparecem e 20 concluem o exercício. Oito pedem conversa; seis reuniões acontecem e três viram oportunidades. Comparecimento: 28/40 = 70%. Custo por reunião realizada: R$ 1.500/6 = R$ 250. Custo por oportunidade: R$ 500.
+
+Leda envia material aos participantes e responde individualmente aos oito pedidos no dia seguinte. Os demais recebem apenas o acompanhamento previsto na inscrição. Estado do plano: `revisao`, aguardando resultado das três oportunidades em 30 dias. O handoff para `inboundfy-growth-revops` inclui contexto e próximos passos, sem atribuir receita ainda ausente.
+
+## Métricas e leitura do resultado
+
+- Comparecimento = presentes únicos / inscrições confirmadas. Separe lista de espera.
+- Conclusão da tarefa = participantes que completam exercício / presentes elegíveis.
+- Custo por reunião = custo total / reuniões qualificadas realizadas, não apenas agendadas.
+- Oportunidade originada exige definição do CRM. Influência em negócio já existente deve ser reportada separadamente.
+- Ponto de equilíbrio = custo total / margem de contribuição média por venda. Use horizonte explícito, sem confundir receita com margem.
+
+Use a mediana histórica de ações comparáveis do próprio projeto como referência. Separe canal, formato, público e período. Se faltar histórico, trate a primeira rodada como linha inicial. Números dos exemplos são hipóteses de planejamento ou resultados simulados, nunca médias de mercado. Para adotar uma referência externa, registre fonte primária, data, amostra e método antes de comparar.
 
 ## Checklist
 
-- [ ] ID e objetivo estão presentes.
-- [ ] Persona, canal e acervo estão vinculados.
-- [ ] Fontes e pendências estão localizadas.
-- [ ] Voz, proibições e dicionário foram conferidos.
-- [ ] Próxima ação e estado do pipeline estão claros.
+- [ ] Papel da empresa e resultado prioritário foram escolhidos.
+- [ ] Custo inclui equipe, deslocamento e acompanhamento.
+- [ ] Ensaio, acessibilidade e alternativa técnica estão previstos.
+- [ ] Registro de conversa inclui próximo passo combinado.
+- [ ] Pessoas sem pedido comercial recebem tratamento próprio.
+- [ ] Fontes, ID, brief, persona e responsável acompanham o plano.
+- [ ] Pendências têm responsável e data de retorno.
+- [ ] O handoff inclui arquivos, estado e ação solicitada.
 
 ## Erros comuns
 
-- Começar pelo formato antes de confirmar objetivo, público e fonte.
-- Usar promessa, preço, número ou nome sem registro local.
-- Aplicar a mesma mensagem a personas com contextos diferentes.
-- Salvar o resultado sem caminho, ID ou alcance da escolha.
-
-## Relação com inboundfy-growth-eventos
-
-Use este modelo como roteiro mínimo e acrescente apenas campos pedidos pelo projeto. O arquivo final deve ficar ligado ao acervo, à peça e ao calendário quando houver data.
+- Julgar evento por inscrições: acompanhe presença, tarefa e reunião realizada.
+- Comprar patrocínio sem perfil do público: peça dados de edições comparáveis.
+- Enviar apresentação genérica depois: retome o problema mencionado pela pessoa.
+- Esquecer acompanhamento no orçamento: reserve horas antes de aprovar a produção.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-growth-eventos**, do grupo
-**growth**. Leia os detalhes compartilhados conforme a etapa atual:
+A skill `inboundfy-growth-eventos` pertence ao grupo **growth**. Aplique os contratos conforme o trabalho avança:
 
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de eventos dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-growth-eventos
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de eventos
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-growth-eventos
-grupo: growth
-entrada: acervo/0042-2026-09-14-eventos/processado.md
-pedido: aplicar a etapa de eventos e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-growth-eventos
-estado: aprovado
-entrada: acervo/0042-2026-09-14-eventos/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de eventos
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-growth-eventos** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): confirme instalação, contexto e origem dos dados.
+- [Contrato de artefato](../_shared/02-contrato-de-artefato.md): registre ID, estado e relações.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): registre escolhas e alcance.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): confira o artefato inteiro após correções.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): mantenha persona, voz, dicionário e proibições.
 
 ## Guia específico do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
+A unidade é uma edição de evento e seu acompanhamento. Registre papel, objetivo, público, orçamento, experiência e oportunidade, sem transformar presença em autorização comercial irrestrita.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-growth-eventos** para executar esta função: Planeja aquisição, conteúdo, convite, inscrição, cobertura e pós-evento a partir do objetivo, público e oferta confirmados.
-
-O grupo **growth** trabalha com estes campos mínimos:
-
-- **objetivo:** preencher com dado ligado ao pedido.
-- **público:** preencher com dado ligado ao pedido.
-- **canal:** preencher com dado ligado ao pedido.
-- **oferta:** preencher com dado ligado ao pedido.
-- **próxima ação:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-growth-eventos
-grupo: growth
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/estrategia.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-growth-eventos
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/estrategia.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **growth** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESTRATEGIA.md`
-- `CONTEXTO.md`
-- `docs/method/05-artefatos-e-estados.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Registre objetivo, público, canal, oferta e próxima ação no plano. Encaminhe produção para `inboundfy-planejamento` quando houver pacote. Encaminhe peça avulsa com brief aprovado à especialista correspondente. Não preencha arquivos de contexto com fatos simulados deste manual.

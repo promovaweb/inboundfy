@@ -8,6 +8,24 @@ locais efetivamente lidas. Se `brand/` existir, registre seus Markdown e os
 ativos visuais inspecionados. Marque cada item como `lido`, `não aplicável`
 com justificativa ou `impedimento`.
 
+## Hard gate de proibições
+
+Execute esta conferência antes dos demais aspectos do asset.
+
+1. Passe literal: compare cada termo, expressão e veto de
+   `context/proibicoes.md` com o asset inteiro, incluindo frontmatter,
+   headings, listas, CTA, alt text e texto incorporado em imagem.
+2. Passe semântico: procure paráfrase, variação morfológica, tradução,
+   eufemismo e tentativa de contornar o veto.
+3. Passe estrutural: confronte a arquitetura completa com cada categoria de
+   `context/estruturas-proibidas.md` (abertura, fechamento, vocabulário,
+   parágrafo, headings, listas, pontuação, fluidez e autoridade).
+4. Qualquer ocorrência reprova o asset. SEO, estética ou aprovação parcial
+   não anulam esse resultado.
+5. Exceção vale só quando o próprio arquivo canônico declara a condição
+   permitida e o asset prova que a satisfaz. Registre regra, condição e
+   prova; interpretação não cria exceção.
+
 ## Template do relatório
 
 ```markdown
@@ -55,12 +73,11 @@ com justificativa ou `impedimento`.
 - Rodada <número>: <veredito e síntese>
 ```
 
-## Exemplo fictício
+## Exemplo preenchido de correção
 
-Uma afirmação de preço divergente de `context/ofertas.md` recebe veredito
-`reprovado`, aponta o parágrafo, cita o valor encontrado e o valor canônico,
-manda remover ou corrigir a afirmação e retorna à produtora pareada. A
-validadora só aprova em nova rodada após reler o arquivo inteiro.
+A oficina fictícia Pinhão Bicicletas anuncia R$ 80 e prazo no mesmo dia, mas a oferta informa R$ 120 e prazo após avaliação. A primeira rodada reprova preço e prazo; a segunda exige leitura integral e digest novo após corrigir ambos.
+
+No passo de redigir o relatório, leia [o relatório completo e sua retomada](references/exemplo-de-validacao.md). Ele mostra manifesto, matriz, achados, encaminhamento e histórico preenchidos. Os marcadores de digest do exemplo nunca autorizam uma aprovação real.
 
 ## Checklist
 
@@ -104,164 +121,27 @@ Esta referência usa o contrato comum para a skill **inboundfy-base-validador**,
 - [validação e retomada](../_shared/04-validacao-e-retomada.md);
 - [contexto editorial](../_shared/05-contexto-editorial.md).
 
-## Contrato específico
+## Procedimento de julgamento
 
-- **Função:** executar a capacidade de base validador dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
+1. Receba ID, arquivo, brief, produtora e validadora. Confirme que todos apontam para o mesmo item.
+2. Liste fontes realmente abertas. Para cada contexto, registre como afeta o asset; um template sem conteúdo não conta como fonte confirmada.
+3. Execute quatro passes distintos: literal, semântico, estrutural e visual. O passe visual inclui imagem final, texto incorporado, logos e área de corte.
+4. Confronte cada regra da produtora com um resultado localizado. “Aprovado” sem inspeção não conta como resultado.
+5. Registre achados por local, trecho, regra, diagnóstico e ação testável. Não use média nem nota para compensar falhas.
+6. Classifique o retorno pela tabela abaixo e salve no caminho canônico.
+7. Releia a versão corrigida inteira e calcule o digest somente depois da última mudança.
 
-## Template de operação
+| Situação | Veredito | Destino |
+| --- | --- | --- |
+| Regra violada com correção conhecida | reprovado | Produtora pareada |
+| Objetivo, público ou oferta do brief contradiz a peça pedida | devolvido para briefing | Planejamento |
+| Fonte obrigatória ausente ou conflitante | impedido | Responsável pelo fato ou setup |
+| Todas as conferências concluídas sem achado | aprovado | Chamadora, com digest atual |
 
-```markdown
----
-id: {id}
-skill: inboundfy-base-validador
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
+## Perguntas antes do veredito
 
-# Registro de base validador
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-base-validador
-grupo: base
-entrada: acervo/0042-2026-09-14-base-validador/processado.md
-pedido: aplicar a etapa de base validador e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-base-validador
-estado: aprovado
-entrada: acervo/0042-2026-09-14-base-validador/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de base validador
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-base-validador** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+A versão analisada é a mesma entregue? O preço pertence à oferta atual? Existe tentativa de dizer uma promessa vetada com sinônimos? O visual apresenta como fato algo ausente das fontes? O arquivo contém conteúdo de produção que vazaria para o leitor? A exceção está escrita no arquivo canônico ou foi apenas inferida?
 
 ## Guia específico do grupo
 
-Entregue uma função reutilizável, sem assumir canal ou negócio. Receba um artefato claro e devolva um registro consumível pela skill chamadora.
-
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-base-validador** para executar esta função: Aplica o contrato transversal de validação a qualquer asset produzido pelo Inboundfy. Use como base obrigatória das skills inboundfy-validador-* para confrontar brief, metodologia, todos os contextos, fontes locais, regras e contrato da skill produtora. Proibições e estruturas proibidas reprovam o asset até correção ou exceção canônica confirmada.
-
-O grupo **base** trabalha com estes campos mínimos:
-
-- **entrada:** preencher com dado ligado ao pedido.
-- **regra:** preencher com dado ligado ao pedido.
-- **resultado:** preencher com dado ligado ao pedido.
-- **fontes:** preencher com dado ligado ao pedido.
-- **retorno:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-base-validador
-grupo: base
-pedido: executar a função desta skill sobre o material selecionado
-entrada: acervo/0042-2026-09-14-material/processado.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-base-validador
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - acervo/0042-2026-09-14-material/processado.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **base** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `CONTEXTO.md`
-- `SKILL-AUTORIA.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+O relatório é a saída desta base; o asset continua sob responsabilidade da produtora. Mantenha as linhas canônicas de asset, ID, SHA-256 e veredito. A validadora de canal acrescenta seus testes ao contrato comum. Consulte `METODOLOGIA.md`, `CONTEXTO.md` e `ESCRITA.md` no primeiro ciclo; consulte novamente qualquer regra alterada entre rodadas.

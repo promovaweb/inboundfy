@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Pesquisa Acervo"
-  short_description: "Executa pesquisa acervo no Inboundfy"
-  default_prompt: "Use $inboundfy-pesquisa-acervo para executar pesquisa acervo com as fontes do projeto."
+  display_name: "Inboundfy: Pesquisa do acervo"
+  short_description: "Fatos do acervo checados com fontes abertas e datadas"
+  default_prompt: "Use $inboundfy-pesquisa-acervo para checar as afirmações e lacunas deste item do acervo na web e gravar o pesquisa.md com as fontes."

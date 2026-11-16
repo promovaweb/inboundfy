@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Base Seo"
-  short_description: "Executa base seo no Inboundfy"
-  default_prompt: "Use $inboundfy-base-seo para executar base seo com as fontes do projeto."
+  display_name: "Inboundfy: Metadata e intenção de busca"
+  short_description: "Title, description, slug e outline prontos para a peça"
+  default_prompt: "Use $inboundfy-base-seo para definir intenção de busca, title, description, slug, headings e links internos desta peça."

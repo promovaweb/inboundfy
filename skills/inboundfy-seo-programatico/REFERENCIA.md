@@ -1,53 +1,8 @@
 # Referência de SEO programático
 
-## Template
-
-```markdown
-# SEO programático
-
-- **ID:** {{id}}
-- **Objetivo:** {{objetivo}}
-- **Persona:** {{persona}}
-- **Canal:** {{canal}}
-- **Acervo:** {{acervo}}
-- **Fonte principal:** {{fonte}}
-- **Próxima ação:** {{cta}}
-
-## Plano
-
-{{plano}}
-
-## Pendências
-
-{{pendencias}}
-```
-
-## Guia específico
-
-Defina conjunto de páginas, fonte de dados, campos obrigatórios, modelo de título, conteúdo único, links, canonical, regra de não publicação e revisão por amostra.
-
-## Exemplo ilustrativo
-
-Uma empresa de software pode usar este modelo para organizar uma ação de teste com uma persona específica, ligar cada mensagem a um acervo e registrar a página de destino sem afirmar resultados ainda não medidos.
-
-## Checklist
-
-- [ ] ID e objetivo estão presentes.
-- [ ] Persona, canal e acervo estão vinculados.
-- [ ] Fontes e pendências estão localizadas.
-- [ ] Voz, proibições e dicionário foram conferidos.
-- [ ] Próxima ação e estado do pipeline estão claros.
-
-## Erros comuns
-
-- Começar pelo formato antes de confirmar objetivo, público e fonte.
-- Usar promessa, preço, número ou nome sem registro local.
-- Aplicar a mesma mensagem a personas com contextos diferentes.
-- Salvar o resultado sem caminho, ID ou alcance da escolha.
-
-## Relação com inboundfy-seo-programatico
-
-Use este modelo como roteiro mínimo e acrescente apenas campos pedidos pelo projeto. O arquivo final deve ficar ligado ao acervo, à peça e ao calendário quando houver data.
+Material de apoio de `inboundfy-seo-programatico`. O `SKILL.md` diz a ordem;
+este arquivo diz como validar o padrão, montar o modelo e liberar os lotes,
+com modelos e um caso completo.
 
 ## Arquitetura aplicada
 
@@ -60,164 +15,252 @@ Esta referência usa o contrato comum para a skill **inboundfy-seo-programatico*
 - [validação e retomada](../_shared/04-validacao-e-retomada.md);
 - [contexto editorial](../_shared/05-contexto-editorial.md).
 
-## Contrato específico
+## Mapa de leitura
 
-- **Função:** executar a capacidade de seo programatico dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
+| Passo do fluxo | Arquivo | Para quê |
+| --- | --- | --- |
+| 3 | [padrões e validação de demanda](references/padroes-e-validacao-de-demanda.md) | Escolher o tipo de padrão, testar demanda e intenção das variações. |
+| 4, 6 e 7 | [modelo de página e dados](references/modelo-de-pagina-e-dados.md) | Especificar a base, os blocos do modelo, as condicionais e a regra de não publicação. |
+| 8 e 9 | [indexação, piloto e monitoramento](references/indexacao-piloto-e-monitoramento.md) | Canônicas, sitemap, links, lote piloto, amostra e sinais de conteúdo raso. |
 
-## Template de operação
+## Tipos de padrão
 
-```markdown
+| Padrão | Exemplo de busca | Dado único que sustenta a página | Quando evitar |
+| --- | --- | --- | --- |
+| Local | dedetização em {{cidade}} | Unidade, equipe, prazo, preço e depoimento da cidade | A empresa não atende de fato a cidade |
+| Segmento ou público | sistema de agenda para {{segmento}} | Fluxo, recurso e caso próprios do segmento | O produto é igual para todos os segmentos |
+| Integração | integração {{produto}} com {{ferramenta}} | O que sincroniza, como configurar, limites | A integração não existe ou é só por planilha |
+| Comparativo | {{A}} vs {{B}}, alternativa a {{X}} | Tabela de recursos e preços com data | Não há dado confiável sobre o concorrente |
+| Modelo ou template | modelo de {{documento}} | O arquivo para baixar e o guia de preenchimento | O modelo é genérico e existe igual em todo lugar |
+| Glossário | o que é {{termo}} | Definição, exemplo brasileiro e relação com o produto | Termos que ninguém busca |
+| Diretório ou banco | {{categoria}} em {{região}}, lista de {{itens}} | Base própria, curada e atualizada | Base copiada de outro site |
+| Dados e estatística | {{indicador}} em {{cidade}} | Número oficial com fonte e data | Dado não muda entre páginas |
+
+## Métricas de referência
+
+| Métrica | Referência | Leitura |
+| --- | --- | --- |
+| Tamanho do lote piloto | Entre 20 e 100 páginas | Pequeno para corrigir o modelo, grande para gerar dado |
+| Páginas indexadas após 6 a 8 semanas | Acima de 60% do lote | Abaixo de 30% indica conteúdo raso ou duplicado |
+| Páginas com impressão após 8 semanas | Acima de 50% das indexadas | Páginas sem impressão não respondem a busca real |
+| Diferença de texto entre páginas irmãs | Mais de 40% do corpo varia | Menos que isso tende a ser lido como duplicado |
+| Amostra de revisão humana | 10% do lote, no mínimo 10 páginas | Abaixo disso, erros do modelo passam |
+| Relatório "Rastreada, mas não indexada" | Menos de 20% do conjunto | Acima disso, pause os lotes seguintes |
+
+Prefira os dados do Search Console do projeto a qualquer faixa geral.
+
+## Template de plano de SEO programático
+
+````markdown
 ---
-id: {id}
+id: {{id}}
 skill: inboundfy-seo-programatico
+tipo: seo-programatico
 estado: rascunho
-entrada: {caminho ou ID}
+entrada:
+  - {{acervo/<id>-<data>-<slug>/}}
+personas:
+  - {{persona-xx}}
 fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
+  - {{base de dados, ferramenta e data de consulta}}
+proxima_skill: {{inboundfy-arquitetura-site | inboundfy-dados-estruturados}}
 ---
 
-# Registro de seo programatico
+# SEO programático: {{conjunto}}
 
-## Resultado
+## Padrão de busca
 
-{Conteúdo específico da etapa.}
+- **Parte fixa:** {{}}
+- **Parte variável:** {{cidade, segmento, ferramenta, termo}}
+- **Intenção:** {{informativa | investigativa | comparativa | transacional | local}}
+- **Combinações possíveis:** {{n}}
+- **Combinações com dado suficiente:** {{n}}
+
+### Amostra de demanda
+
+| Variação | Volume | Formato da SERP | Concorrente no topo |
+| --- | --- | --- | --- |
+| {{}} | {{n ou sem dado}} | {{}} | {{}} |
+
+## Base de dados
+
+| Campo | Tipo | Fonte | Atualização | Obrigatório para publicar |
+| --- | --- | --- | --- | --- |
+| {{campo}} | {{texto, número, URL, lista}} | {{}} | {{mensal, anual}} | {{sim/não}} |
+
+## Modelo de página
+
+- **URL:** /{{prefixo}}/{{variavel}}/
+- **Title:** {{fórmula com variável}}
+- **Meta description:** {{fórmula}}
+- **H1:** {{fórmula}}
+- **Blocos:**
+  1. {{bloco}}: {{fixo | variável | condicional}}, campos {{}}
+- **CTA:** {{texto}} → {{URL de links.md}}
+- **Marcação:** {{tipo}} → `inboundfy-dados-estruturados`
+
+## Regra de não publicação
+
+- {{condição}} → {{não gerar | gerar com noindex | fundir em página regional}}
+
+## Indexação e links
+
+- **Hub:** /{{prefixo}}/
+- **Canônica:** autorreferente em cada página
+- **Sitemap:** sitemap-{{conjunto}}.xml
+- **Links:** hub → páginas; página → {{n}} irmãs; página → oferta
+
+## Lote piloto
+
+- **Páginas:** {{n}}, escolhidas por {{regra}}
+- **Amostra de revisão:** {{n}} páginas, revisor {{}}
+- **Prazo de leitura:** {{semanas}}
+- **Liberação do próximo lote se:** {{métricas}}
 
 ## Pendências
 
-- {pergunta ou "nenhuma"}
+- {{pergunta ou "nenhuma"}}
 
 ## Próxima ação
 
-{verbo + objeto + caminho do arquivo seguinte}
-```
+{{verbo + objeto + caminho}}
+````
 
-## Exemplo operacional completo
+## Exemplo completo: NotaPronta
 
-### Entrada ilustrativa
+Empresa fictícia, usada só para ilustrar. Não vira contexto de projeto.
 
-```yaml
-id: 0042
-skill: inboundfy-seo-programatico
-grupo: capacidade
-entrada: acervo/0042-2026-09-14-seo-programatico/processado.md
-pedido: aplicar a etapa de seo programatico e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
+**Contexto.** A NotaPronta é um emissor de nota fiscal de serviço (NFS-e)
+para prestadores e pequenas empresas, com plano a partir de R$ 59 por mês,
+pago por Pix ou cartão e suporte por WhatsApp. O sistema emite em 380
+municípios. Cada prefeitura tem regras próprias: padrão do sistema, exigência
+de certificado digital, alíquota de ISS, código de serviço e cadastro prévio
+no portal. A persona (`persona-02`, Juliana) é psicóloga com CNPJ no Simples
+Nacional que precisa emitir a primeira nota.
 
-### Saída ilustrativa
+**Pedido.** "Queremos uma página para cada cidade onde emitimos nota."
 
-```markdown
----
-id: 0042
-skill: inboundfy-seo-programatico
-estado: aprovado
-entrada: acervo/0042-2026-09-14-seo-programatico/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
+**Diagnóstico registrado.**
 
-# Registro de seo programatico
+1. Padrão: `como emitir nota fiscal de serviço em {{cidade}}` e `NFS-e
+   {{cidade}}`.
+2. As variações têm busca: capitais com milhares de buscas mensais, cidades
+   médias com dezenas.
+3. Dado próprio por cidade: padrão do sistema (nacional ou municipal),
+   necessidade de certificado digital, link do portal da prefeitura, prazo
+   médio de liberação do cadastro, faixa de ISS, telas do processo e número
+   de clientes ativos na cidade.
+4. Fonte: base interna do time de implantação, revisada a cada trimestre e
+   portais das prefeituras com data de consulta.
+5. 380 municípios; 212 com todos os campos obrigatórios preenchidos.
+6. CTA: teste grátis de 7 dias e "falar no WhatsApp", URLs em `links.md`.
+7. O site usa um gerador estático que lê planilha e cria URL, sitemap e
+   `noindex` por campo, conforme `.inboundfy/context/integracoes.md`.
 
-## Resultado
+**Três recortes apresentados.**
 
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
+1. **Recomendado.** Páginas por município só para os 212 com dado completo,
+   piloto com 40 (as 15 capitais com clientes e 25 cidades médias), hub
+   `/nfse/` com busca por cidade e estado.
+2. Uma página por estado, com tabela das cidades. Menos páginas, menos
+   esforço de dado, perde a busca por cidade.
+3. Todas as 380 cidades de uma vez, com texto genérico onde falta dado.
+   Maior cobertura e alta chance de páginas sem indexação.
 
-## Próxima ação
+A equipe escolhe o recorte 1.
 
-{verbo + objeto + caminho do arquivo seguinte}
-```
+**Base de dados (trecho).**
 
-## Checklist ampliado
+| Campo | Fonte | Obrigatório |
+| --- | --- | --- |
+| municipio, uf, slug | IBGE | sim |
+| padrao_sistema | base de implantação | sim |
+| exige_certificado | base de implantação | sim |
+| url_portal_prefeitura | portal oficial, data de consulta | sim |
+| prazo_cadastro_dias | base de implantação | sim |
+| aliquota_iss_faixa | legislação municipal, data de consulta | não |
+| clientes_ativos | sistema interno | não (exibe só acima de 10) |
+| depoimento_id | `context/depoimentos.json` com consentimento | não |
 
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
+**Modelo de página.**
 
-## Erros comuns adicionais
+- **URL:** `/nfse/{{uf}}/{{slug}}/`
+- **Title:** "Como emitir NFS-e em {{municipio}} ({{uf}}): passo a passo"
+- **H1:** "Nota fiscal de serviço em {{municipio}}"
+- **Blocos:** resposta direta com padrão e certificado (variável); passo a
+  passo com telas do portal (variável); prazo do cadastro e documentos
+  (variável); ISS (condicional: só aparece com fonte); como a NotaPronta
+  emite em {{municipio}} (fixo com variáveis); depoimento (condicional);
+  perguntas frequentes da cidade (variável, extraídas do suporte); cidades
+  próximas (variável).
+- **Marcação:** Article, HowTo só se o passo a passo for visível,
+  BreadcrumbList.
 
-- Executar **inboundfy-seo-programatico** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+**Regra de não publicação.**
+
+- Falta campo obrigatório → página não é gerada; a cidade aparece no hub como
+  "em breve" sem link.
+- Prefeitura migrou para o padrão nacional sem tela atualizada → `noindex`
+  até nova captura.
+- Duas cidades com conteúdo igual em mais de 60% do corpo → revisão manual
+  antes de publicar.
+
+**Indexação e links.** Hub `/nfse/` e hubs por estado; cada cidade linka para
+o hub do estado e para três cidades próximas; sitemap `sitemap-nfse.xml`;
+canônica autorreferente.
+
+**Piloto e liberação.** 40 páginas; revisão humana de todas no piloto (o
+modelo é novo); leitura em oito semanas. Libera o lote de 80 seguintes se
+mais de 60% estiverem indexadas, mais de metade tiver impressão e a taxa de
+início de teste grátis for igual ou maior que a do blog.
+
+**Pendências.** Confirmar consentimento dos depoimentos por cidade;
+confirmar com o jurídico o uso de capturas de tela dos portais.
+
+**Handoff.** `inboundfy-arquitetura-site` para incluir `/nfse/` no menu e no
+rodapé; `inboundfy-dados-estruturados` para o JSON-LD do modelo;
+`inboundfy-auditoria-seo` na oitava semana.
+
+## Checklist
+
+- [ ] O padrão de busca tem parte fixa e parte variável escritas.
+- [ ] A amostra mostra demanda e intenção para as variações.
+- [ ] As sete perguntas de diagnóstico têm resposta ou pendência.
+- [ ] Cada página tem ao menos um dado próprio que muda a resposta.
+- [ ] Cada campo da base tem fonte, atualização e responsável.
+- [ ] Três recortes foram apresentados e a escolha foi registrada.
+- [ ] O modelo separa blocos fixos, variáveis e condicionais.
+- [ ] A regra de não publicação cobre falta de dado e semelhança excessiva.
+- [ ] URL, canônica, sitemap e hub do conjunto estão definidos.
+- [ ] Nenhuma página do conjunto fica sem link de entrada.
+- [ ] O piloto tem tamanho, amostra, prazo e métricas de liberação.
+- [ ] Dados de concorrentes e depoimentos seguem os arquivos de contexto.
+
+## Erros comuns
+
+- **Trocar só o nome da cidade.** Páginas iguais com a variável trocada são
+  lidas como duplicadas e raramente indexam. O dado único é o que justifica
+  a página.
+- **Publicar todas as combinações.** Combinação sem dado vira página vazia e
+  puxa a avaliação do conjunto inteiro para baixo.
+- **Prometer atendimento onde a empresa não atua.** Página local de cidade
+  sem atendimento real engana a pessoa e gera reclamação.
+- **Comparativo com dado velho do concorrente.** Preço e recurso mudam.
+  Registre a data e revise a cada trimestre.
+- **Texto gerado por IA sem revisão para preencher blocos.** Variação de
+  texto sem variação de informação não resolve conteúdo raso.
+- **Esquecer o hub.** Páginas sem hub e sem links entre irmãs ficam órfãs e o
+  rastreador não as encontra.
+- **Escalar antes do piloto.** Um erro no modelo se repete em mil páginas.
+- **Depoimento sem consentimento.** Nome e cidade de cliente são dados
+  pessoais. Use só os registrados com consentimento em
+  `context/depoimentos.json`.
 
 ## Guia específico do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
+Aplique a capacidade ao objetivo informado, relacionando fontes, persona,
+canal, estado e próxima ação sem assumir dados ausentes.
 
 Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-seo-programatico** para executar esta função: Planeja páginas em escala com dados, modelo editorial, campos variáveis, validação, linkagem e limites contra páginas vazias.
-
-O grupo **capacidade** trabalha com estes campos mínimos:
-
-- **objetivo:** preencher com dado ligado ao pedido.
-- **entrada:** preencher com dado ligado ao pedido.
-- **contexto:** preencher com dado ligado ao pedido.
-- **resultado:** preencher com dado ligado ao pedido.
-- **próxima ação:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-seo-programatico
-grupo: capacidade
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/context/empresa.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-seo-programatico
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **capacidade** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `README.md`
-- `CONTEXTO.md`
-- `SKILL-AUTORIA.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Para SEO programático, os campos próprios são: padrão de busca, base de
+dados, modelo, regra de não publicação e lote piloto.

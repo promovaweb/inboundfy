@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy: Conteúdo e canais"
+  short_description: "Encaminha pedidos de conteúdo para a skill certa"
+  default_prompt: "Use $inboundfy-area-conteudo para entender meu pedido de conteúdo e canais e encaminhar para a skill certa."

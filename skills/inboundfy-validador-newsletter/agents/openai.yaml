@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Validador newsletter"
-  short_description: "Valida o asset newsletter antes da entrega"
-  default_prompt: "Use $inboundfy-validador-newsletter para validar este asset e devolver correções à skill produtora quando necessário."
+  display_name: "Inboundfy: Validação de newsletters"
+  short_description: "Audita tese, fontes e versões de newsletter"
+  default_prompt: "Use $inboundfy-validador-newsletter para auditar o pacote de inboundfy-especialista-newsletter. Aplique inboundfy-base-validador e os 11 itens espelhados; registre achados e digest atual no relatório. Devolva correções à produtora sem editar a candidata."

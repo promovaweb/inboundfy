@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Planejamento"
-  short_description: "Executa planejamento no Inboundfy"
-  default_prompt: "Use $inboundfy-planejamento para executar planejamento com as fontes do projeto."
+  display_name: "Inboundfy: Planejamento editorial"
+  short_description: "Transforma material em briefs priorizados no calendário"
+  default_prompt: "Use $inboundfy-planejamento para levar este material pelo pipeline editorial, com oportunidades, briefs, produção, auditoria e calendário."

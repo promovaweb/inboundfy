@@ -1,9 +1,6 @@
 ---
 name: inboundfy-validador-ebook
-description: >
-  Valida ebook produzido por inboundfy-especialista-ebook contra brief,
-  fontes, todos os contextos, escrita, proibições, progressão dos capítulos
-  e estruturas persuasivas antes da entrega.
+description: Valida ebooks completos contra brief, promessa, sumário, progressão dos capítulos, fontes e proibições. Use quando houver livro candidato ou capítulos corrigidos para conferir antes da capa, diagramação e auditoria do pacote.
 ---
 
 # Inboundfy Validador Ebook
@@ -20,17 +17,11 @@ preflight, leia o catalogo e os Markdown relevantes para a tarefa.
 
 ## Arquitetura de execução
 
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
-
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
 - [Interação e handoff](../_shared/03-interacao-e-handoff.md): conduza escolhas e entregue o pacote seguinte.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
-
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **validador**.
 
 ## Contexto exigido
 
@@ -41,17 +32,16 @@ Todos os Markdown de `context/`, com atenção a `context/marca-voz.md`,
 
 ## Entrada esperada
 
-Ebook candidato completo, brief, outline e materiais-fonte.
+Pacote de `inboundfy-especialista-ebook`: ebook markdown completo, em arquivo único ou capítulos separados, ID, caminho da candidata, brief ou entrada avulsa, persona, fontes lidas, pendências e registros de revisão editorial e A5. Inclua relatório anterior nas novas rodadas.
 
 ## Fluxo
 
-1. Leia `REFERENCIA.md`, `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md` e os
-   contratos da produtora.
-2. Acione `inboundfy-base-validador` para o ebook inteiro.
-3. Confira promessa, sumário, progressão, repetição, fontes, PAS/AIDA/FAB
-   quando aplicáveis e consistência entre capítulos.
-4. Reprovando, envie o relatório à `inboundfy-especialista-ebook`; depois da
-   correção, releia e valide o ebook inteiro.
+1. Leia [o procedimento e as categorias](REFERENCIA.md#procedimento-para-este-canal) e o [contrato da produtora](../inboundfy-especialista-ebook/SKILL.md). Carregue a candidata inteira, entrada, brief, fontes e todos os contextos exigidos; não limite a leitura ao manifesto recebido.
+2. Acione `inboundfy-base-validador` com candidata, brief ou indicação de peça avulsa, fontes e `inboundfy-especialista-ebook` como produtora. Compare promessa, sumário, entregas por capítulo, repetição, remissões, fontes, PAS/AIDA/FAB autorizados e consistência do livro completo. Use [os 11 itens espelhados](REFERENCIA.md#checklist-numerado-do-par) sem alterar sua numeração.
+3. Execute passes literal, semântico, estrutural e visual sobre a versão inteira, incluindo metadata, links e CTA. Inspecione `brand/` e ativos existentes; justifique ausências. Registre revisão de `inboundfy-copy-editor` e A5 conforme a base.
+4. Preencha [o relatório canônico e o quadro do canal](REFERENCIA.md#template-de-relatório); consulte [o exemplo preenchido](REFERENCIA.md#exemplo-de-relatório-preenchido). Localize trecho, regra, fonte e ação para cada achado. Não edite a candidata nem conceda aprovação parcial.
+5. Devolva reprovação a `inboundfy-especialista-ebook` com relatório e ação solicitada. Aceite a versão corrigida e repita todos os passes sobre o conjunto inteiro. Divergência de finalidade volta ao planejamento; fato obrigatório ausente vai ao responsável pelo contexto.
+6. Antes de aprovar, obtenha ID, caminho e SHA-256 completo por `inboundfy content digest <id>`. Vincule o relatório à versão atual e devolva o resultado a `inboundfy-especialista-ebook`; a produtora conduz o próximo encaminhamento. Mudança posterior exige nova rodada.
 
 ## Saída
 
@@ -63,15 +53,7 @@ Aprove somente sem capítulo repetido, afirmação sem fonte ou achado aberto.
 
 ## Responsabilidade do grupo
 
-Leia o asset inteiro contra brief, fontes, contexto e formato. Relate local, regra, fonte e ação; devolva à produtora sem editar o original.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** validador
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+O grupo `validador` responde pela auditoria de ebooks e pelo relatório ligado ao digest atual. A produtora altera a candidata. Consulte [o guia do grupo](REFERENCIA.md#guia-específico-do-grupo) para registrar devolução, pendência factual e retomada.
 
 ## Idempotência
 

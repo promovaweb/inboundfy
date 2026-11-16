@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Copy Simplificar"
-  short_description: "Simplifica texto sem perder sentido ou informação útil"
-  default_prompt: "Use $inboundfy-copy-simplificar para simplificar este texto para o público e canal indicados, preservando fatos, intenção, voz e limites."
+  display_name: "Inboundfy: Simplificar Texto"
+  short_description: "Reduz o esforço de leitura sem perder fatos"
+  default_prompt: "Use $inboundfy-copy-simplificar para deixar este texto mais fácil de ler para a persona e o canal indicados, sem perder fatos, ressalvas nem a voz da marca."

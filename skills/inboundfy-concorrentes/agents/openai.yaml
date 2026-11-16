@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Concorrentes"
-  short_description: "Executa concorrentes no Inboundfy"
-  default_prompt: "Use $inboundfy-concorrentes para executar concorrentes com as fontes do projeto."
+  display_name: "Inboundfy: Concorrentes"
+  short_description: "Pesquisa rivais e prepara comparações com fontes"
+  default_prompt: "Use $inboundfy-concorrentes para pesquisar os concorrentes do projeto, comparar ofertas com o mesmo recorte e indicar lacunas de mensagem e conteúdo."

@@ -1,6 +1,6 @@
 ---
 name: inboundfy-iniciar
-description: Alias compatível que encaminha a solicitação recebida para $inboundfy, sem repetir a entrevista, criar artefatos ou iniciar outro fluxo.
+description: Encaminha o pedido original, sem alterar nada, para a orquestradora $inboundfy, sem repetir entrevista nem criar arquivos. Use quando um atalho antigo, um script ou uma instrução anterior chamar $inboundfy-iniciar ou pedir para iniciar o Inboundfy.
 ---
 
 # Iniciar o Inboundfy

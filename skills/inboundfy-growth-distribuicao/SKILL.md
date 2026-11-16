@@ -1,16 +1,13 @@
 ---
 name: inboundfy-growth-distribuicao
-description: Planeja submissões e distribuição em diretórios, bases e canais externos sem duplicar conteúdo ou criar cadastro sem autorização.
+description: Organiza a distribuição de conteúdo do acervo com destinos, adaptações, permissões e medição por origem. Use quando o pedido falar em divulgar conteúdo, circular artigo, republicar guia, propor contribuição editorial ou reaproveitar gravação.
 ---
 
-# Distribuição externa
+# Distribuição de conteúdo
 
-Use esta skill como capacidade especializada do Inboundfy. Ela organiza a tarefa e devolve material pronto para a orquestradora, sem substituir o setup, a voz, a persona ou a validação do canal.
+Leve conteúdo já sustentado pelo acervo a leitores compatíveis. Cadastros em listas e marketplaces seguem para `inboundfy-growth-diretorios`. Conquista de backlinks segue para `inboundfy-seo-links-externos`.
 
 ## Arquitetura de execução
-
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
@@ -18,52 +15,53 @@ específica desta pasta.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
 
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **growth**.
-
 ## Contexto exigido
 
-Se a configuração estiver incompleta, acione `inboundfy-setup`. Consulte [REFERENCIA.md](REFERENCIA.md), `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`, `.inboundfy/context/marca-voz.md`, `.inboundfy/context/publico.md`, `.inboundfy/context/proibicoes.md`, `.inboundfy/context/glossario.md`, `.inboundfy/pipeline.md`, o acervo relacionado e `.inboundfy/framework/`.
+Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md` antes de alterar artefatos. Na ausência de qualquer sentinela, apresente:
 
-Leia também `.inboundfy/fontes-projeto.md`, as bases editoriais relacionadas e os documentos públicos citados. Antes de entregar copy, consulte `inboundfy-anti-slop` e `inboundfy-copy-edicao`.
+> O setup do Inboundfy ainda não foi concluído ou precisa de reparo neste
+> projeto. Execute `inboundfy-setup` para preparar os arquivos de apoio.
+
+Leia `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`, `.inboundfy/context/publico.md`, `.inboundfy/context/canais.md`, `.inboundfy/context/marca-voz.md`, `.inboundfy/context/glossario.md`, `.inboundfy/context/proibicoes.md` e `.inboundfy/context/estruturas-proibidas.md`. Localize a oferta e as fontes relacionadas ao pedido. Consulte `.inboundfy/framework/` para os contratos instalados. Acione `inboundfy-setup` quando a configuração precisar de reparo.
 
 ## Entrada esperada
 
-Receba um objetivo, um ou mais IDs de acervo, a persona, o canal, a oferta ou o fluxo que precisa ser planejado. Separe fatos confirmados, hipótese de trabalho e pergunta aberta.
+Receba ID do acervo, peça canônica, persona, destinos candidatos, capacidade de adaptação, orçamento e objetivo de conversão. Aceite planos de material rico, ferramenta, evento ou lançamento como origem do pedido; identifique o asset e seu estado. Se houver apenas brief ou gravação bruta, prepare a produção pelo `inboundfy-planejamento` antes da distribuição.
+
+## Perguntas de diagnóstico
+
+- O conteúdo já responde à pergunta do leitor sem depender de uma venda?
+- O destino aceita contribuição da marca e link externo?
+- Há novo contexto para justificar outra distribuição?
+- Qual evento diferencia visita de consumo útil?
 
 ## Fluxo
 
-1. Leia [REFERENCIA.md](REFERENCIA.md) e confirme a intenção, o público, o canal e o resultado solicitado.
-2. Consulte voz, persona, proibições e dicionário antes de propor mensagem, segmento, preço, promessa ou CTA.
-3. Relacione cada afirmação ao acervo, à base editorial, à página canônica ou à pesquisa salva no item.
-4. Desenvolva um mapa de destinos externos, requisitos, mensagem e acompanhamento.
-5. Revise o material com `inboundfy-anti-slop`, `inboundfy-copy-edicao` e a validação específica do canal quando houver copy pública.
-6. Registre caminho, ID, fontes, alcance da regra e pendências; peça confirmação antes de alterar uma configuração global.
+1. Leia [REFERENCIA.md](REFERENCIA.md) e confirme qual conteúdo está pronto, quem deve recebê-lo e qual ação define uma visita útil.
+2. Leia [rotas e adaptações](references/rotas-e-adaptacoes.md). Monte uma matriz de destinos por adequação de público, intenção, permissão e esforço. Priorize uma rodada pequena com resposta mensurável.
+3. Converta a peça principal em versões autossuficientes para cada destino. Registre trecho, contribuição original, CTA e página canônica.
+4. Defina agenda de envios, responsável, janela de retorno e chave para evitar duplicatas. Valide URL, UTM e experiência móvel.
+5. Compare visitas úteis e conversões por destino. Atualize a próxima rodada com o aprendizado, sem repetir envios recusados.
+6. Entregue o plano com ID, fontes, estado, responsável e próxima ação. Para copy pública, leia `ESCRITA.md` e encaminhe a `inboundfy-copy-redacao`, à especialista do canal e à validadora pareada. Aplique `inboundfy-copy-editor` e `inboundfy-anti-slop`.
 
 ## Saída
 
-Um mapa de destinos externos, requisitos, mensagem e acompanhamento. O material deve manter IDs, links relativos, fontes, persona, canal, estado e próxima ação.
+Entregue matriz priorizada de destinos, briefs de adaptação, agenda de envios e leitura de conversão por origem. Salve no pacote já definido pelo projeto, com vínculos ao acervo, brief, persona e calendário. Use o campo `brief` nas peças finais. Não crie estrutura paralela ao setup.
 
 ## Validação
 
-- A finalidade e o público estão explícitos.
-- Toda afirmação comercial possui fonte local ou marcação de confirmação.
-- Voz, persona, proibições e dicionário foram aplicados.
-- O formato respeita o canal, o pipeline e o template correspondente.
-- Pendências ficaram registradas sem preenchimento inventado.
+Cada destino precisa ter público compatível, regra consultada, URL, adaptação, responsável e data. Um envio recusado não entra automaticamente em nova tentativa. Cliques e conversões precisam usar a mesma janela declarada.
+
+Confira cálculos, denominadores, datas, fontes e autorização aplicável. Devolva promessas sem fonte ao brief. Mantenha o estado `revisao` enquanto houver pendência factual. A publicação depende do estado e da autorização existentes no projeto.
 
 ## Responsabilidade do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
+Grupo **growth**. Registre entrada, transformação executada, arquivo de saída, estado, próxima skill e pendências no pacote de handoff.
 
-Antes do handoff, confirme os campos próprios deste grupo:
+## Encaminhamentos
 
-- **grupo:** growth
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+Encaminhe cadastros a `inboundfy-growth-diretorios`, relacionamento para backlinks a `inboundfy-seo-links-externos` e análise de distribuição de concorrente a `inboundfy-engenharia-reversa`. Use `inboundfy-growth-parcerias` para acordos editoriais e `inboundfy-growth-social` para a rotina dos perfis.
 
 ## Idempotência
 
-Atualize o mesmo arquivo ou brief quando o ID já existir. Preserve texto aprovado, histórico, fontes e escolhas anteriores; abra uma nova versão apenas após pedido explícito.
+Atualize o plano pelo mesmo ID. Preserve fontes, versões aprovadas e histórico. Identifique cada envio por acervo + destino + versão. Reaproveitar o acervo não autoriza reenviar a mesma proposta.

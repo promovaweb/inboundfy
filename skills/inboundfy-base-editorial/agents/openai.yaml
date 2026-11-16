@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Base Editorial"
-  short_description: "Executa base editorial no Inboundfy"
-  default_prompt: "Use $inboundfy-base-editorial para executar base editorial com as fontes do projeto."
+  display_name: "Inboundfy: Base editorial"
+  short_description: "Base editorial rastreável de um item do acervo"
+  default_prompt: "Use $inboundfy-base-editorial para montar a base editorial deste item do acervo, com afirmações numeradas, fontes, objeções e lacunas."

@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Validador infografico-imagem"
-  short_description: "Valida o asset infografico-imagem antes da entrega"
-  default_prompt: "Use $inboundfy-validador-infografico-imagem para validar este asset e devolver correções à skill produtora quando necessário."
+  display_name: "Inboundfy: Revisão de imagem de infográfico"
+  short_description: "Confere infográfico visual com copy aprovada"
+  default_prompt: "Use $inboundfy-validador-infografico-imagem para revisar o conjunto completo de $inboundfy-especialista-infografico-imagem, aplicar os oito itens espelhados e devolver o relatório com achados, rodada e digest atual."

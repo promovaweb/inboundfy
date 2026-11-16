@@ -1,5 +1,44 @@
 # Referência de GEO
 
+Material de apoio de `inboundfy-geo`. O `SKILL.md` diz a ordem; este arquivo
+diz como fazer cada passo, com modelos e um caso completo.
+
+## Arquitetura aplicada
+
+Esta referência usa o contrato comum para a skill **inboundfy-geo**, do grupo
+**capacidade**. Leia os detalhes compartilhados conforme a etapa atual:
+
+- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
+- [artefato e relações](../_shared/02-contrato-de-artefato.md);
+- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
+- [validação e retomada](../_shared/04-validacao-e-retomada.md);
+- [contexto editorial](../_shared/05-contexto-editorial.md).
+
+## Mapa de leitura
+
+| Passo do fluxo | Arquivo | Para quê |
+| --- | --- | --- |
+| 3 e 4 | [monitoramento em plataformas de IA](references/monitoramento-em-plataformas-de-ia.md) | Montar a carteira de perguntas, rodar o teste manual, separar citação de recomendação. |
+| 5 | [blocos citáveis e autoridade](references/blocos-citaveis-e-autoridade.md) | Reescrever páginas em blocos extraíveis, com dados próprios, fontes e autoria. |
+| 6 | [acesso de robôs e presença externa](references/acesso-de-robos-e-presenca-externa.md) | Conferir `robots.txt`, avaliar `llms.txt` e mapear presença em terceiros. |
+
+## Como as respostas de IA escolhem fontes
+
+O que se sabe com segurança e o que é hipótese de mercado:
+
+| Afirmação | Situação |
+| --- | --- |
+| A visão geral de IA do Google usa o índice do Google e as mesmas regras de qualidade da busca | Orientação oficial do Google |
+| Não existe marcação especial para entrar na visão geral de IA; vale o SEO comum | Orientação oficial do Google |
+| ChatGPT com busca, Perplexity e Copilot consultam índices de busca na hora da pergunta e citam links | Comportamento observável nas próprias interfaces |
+| Robôs de IA respeitam `robots.txt` pelo nome do agente publicado por cada empresa | Documentação das plataformas |
+| Páginas com resposta direta, tabela e dado próprio são citadas com mais frequência | Hipótese apoiada em estudos de mercado, sem garantia |
+| Presença em avaliações, comunidades e vídeo aumenta a chance de recomendação | Hipótese apoiada em observação de mercado |
+| `llms.txt` ajuda modelos a entender o site | Hipótese sem adoção confirmada pelos grandes buscadores |
+
+Todo artefato marca cada recomendação como **oficial**, **observável** ou
+**hipótese**.
+
 ## Estrutura de resposta citável
 
 1. Resposta curta para a pergunta principal.
@@ -17,175 +56,229 @@
 - a resposta continua útil mesmo sem o CTA;
 - links internos apontam para páginas que desenvolvem o assunto.
 
-## Arquitetura aplicada
+## Modos de trabalho
 
-Esta referência usa o contrato comum para a skill **inboundfy-geo**, do grupo
-**capacidade**. Leia os detalhes compartilhados conforme a etapa atual:
+| Modo | Quando escolher | Entrega principal |
+| --- | --- | --- |
+| Diagnóstico de visibilidade | Ninguém sabe como a marca aparece nas IAs | Carteira de perguntas com teste datado e classificação |
+| Otimização de página | Uma página deveria ser citada e não é | Revisão com blocos citáveis propostos |
+| Correção de informação | A IA diz preço, função ou região errados | Lista de fontes erradas e páginas a corrigir ou criar |
+| Plano de presença | Concorrentes aparecem por fontes de terceiros | Lista priorizada de diretórios, avaliações, comunidades e vídeos |
 
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
+## Métricas de referência
 
-## Contrato específico
+| Métrica | Como medir | Leitura |
+| --- | --- | --- |
+| Taxa de citação | Perguntas com link do site entre as fontes ÷ perguntas testadas | Começa perto de zero em marca pequena; meta inicial de 10% a 20% em seis meses |
+| Taxa de recomendação | Perguntas com a marca sugerida como opção ÷ perguntas testadas | Mais importante que a citação para perguntas de escolha |
+| Participação nas respostas | Menções da marca ÷ menções de todas as marcas nas mesmas respostas | Compare com os três concorrentes principais |
+| Exatidão | Respostas com preço, função e região corretos ÷ respostas que citam a marca | Abaixo de 100% exige correção de fonte |
+| Tráfego de referência de IA | Sessões com origem chatgpt.com, perplexity.ai, gemini.google.com, copilot.microsoft.com | Costuma ser pequeno em volume e com conversão acima da média orgânica |
+| Impressões na busca | Search Console, incluindo buscas com visão geral de IA | O Google não separa esse recurso no relatório |
 
-- **Função:** executar a capacidade de geo dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
+As respostas mudam entre execuções. Teste cada pergunta ao menos duas vezes
+por rodada e compare tendências mensais, não respostas isoladas.
 
-## Template de operação
+## Template de registro GEO
 
 ```markdown
 ---
-id: {id}
+id: {{id}}
 skill: inboundfy-geo
+tipo: {{diagnostico-geo | revisao-geo | plano-presenca}}
 estado: rascunho
-entrada: {caminho ou ID}
+entrada:
+  - {{acervo/<id>-<data>-<slug>/ ou URL}}
+personas:
+  - {{persona-xx}}
 fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
+  - {{caminho ou URL com data de consulta}}
+proxima_skill: {{skill seguinte}}
 ---
 
-# Registro de geo
+# GEO: {{tema}}
 
-## Resultado
+## Carteira de perguntas
 
-{Conteúdo específico da etapa.}
+| # | Pergunta | Tipo | Página que deveria responder | Prioridade |
+| --- | --- | --- | --- | --- |
+| P1 | {{pergunta como a persona faria}} | {{definição, como fazer, comparação, melhor opção, preço}} | {{URL}} | {{alta/média/baixa}} |
+
+## Teste de {{AAAA-MM-DD}}
+
+| Pergunta | Plataforma | Marca citada? | Marca recomendada? | Quem aparece no lugar | Fontes citadas | Informação errada |
+| --- | --- | --- | --- | --- | --- | --- |
+| P1 | {{ChatGPT}} | {{sim/não}} | {{sim/não}} | {{concorrente}} | {{URLs}} | {{nenhuma ou descrição}} |
+
+## Achados
+
+| # | Achado | Situação | Ação | Skill |
+| --- | --- | --- | --- | --- |
+| 1 | {{}} | {{oficial, observável ou hipótese}} | {{}} | {{}} |
+
+## Blocos citáveis propostos
+
+### {{URL}}
+
+- **Pergunta:** {{}}
+- **Resposta em até 3 frases:** {{}}
+- **Tabela ou lista:** {{descrição}}
+- **Dado próprio com fonte:** {{}}
+- **Autoria e data:** {{}}
+
+## Acesso técnico
+
+- **robots.txt:** {{agentes permitidos e vetados}}
+- **Conteúdo visível sem JavaScript:** {{sim/não}}
+- **llms.txt:** {{existe, proposto como hipótese, não se aplica}}
+
+## Presença externa
+
+| Site | Tipo | Situação | Ação | Skill |
+| --- | --- | --- | --- | --- |
+| {{}} | {{diretório, avaliação, comunidade, vídeo}} | {{ausente, desatualizado, ativo}} | {{}} | {{inboundfy-growth-diretorios ou inboundfy-seo-links-externos}} |
+
+## Plano escolhido
+
+{{opção escolhida, opções rejeitadas e motivo}}
 
 ## Pendências
 
-- {pergunta ou "nenhuma"}
+- {{pergunta ou "nenhuma"}}
 
 ## Próxima ação
 
-{verbo + objeto + caminho do arquivo seguinte}
+{{verbo + objeto + caminho}}
 ```
 
-## Exemplo operacional completo
+## Exemplo completo: Agenda Viva
 
-### Entrada ilustrativa
+Empresa fictícia, usada só para ilustrar. Não vira contexto de projeto.
 
-```yaml
-id: 0042
-skill: inboundfy-geo
-grupo: capacidade
-entrada: acervo/0042-2026-09-14-geo/processado.md
-pedido: aplicar a etapa de geo e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
+**Contexto.** A Agenda Viva é um software de agendamento on-line para salões,
+barbearias e clínicas de estética, com sede em Recife. Plano a partir de
+R$ 89 por mês, cobrança por Pix ou cartão, lembrete automático por WhatsApp
+e sinal de reserva por Pix. A persona principal (`persona-02`, Júlio) é dono
+de uma barbearia com quatro cadeiras que perde cerca de oito horários por
+semana com faltas.
 
-### Saída ilustrativa
+**Pedido.** "Quando alguém pergunta ao ChatGPT qual sistema usar para
+barbearia, só aparecem os concorrentes."
 
-```markdown
----
-id: 0042
-skill: inboundfy-geo
-estado: aprovado
-entrada: acervo/0042-2026-09-14-geo/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
+**Carteira montada (trecho).**
 
-# Registro de geo
+| # | Pergunta | Tipo | Página |
+| --- | --- | --- | --- |
+| P1 | Qual o melhor sistema de agendamento para barbearia? | melhor opção | /barbearias/ |
+| P2 | Como reduzir faltas de clientes no salão? | como fazer | /blog/reduzir-faltas/ |
+| P3 | Sistema de agendamento com lembrete por WhatsApp | melhor opção | /recursos/whatsapp/ |
+| P4 | Quanto custa um sistema de agenda para salão? | preço | /planos/ |
+| P5 | Como cobrar sinal de reserva por Pix? | como fazer | não existe |
 
-## Resultado
+**Teste de 2026-11-13 (resumo).** Cinco perguntas, quatro plataformas, duas
+execuções cada.
 
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
+- P1 e P3: dois concorrentes recomendados em todas as plataformas. As
+  fontes citadas eram uma lista de "melhores sistemas" num blog de gestão e
+  perfis em site de avaliação de software. A Agenda Viva não tem perfil nesse
+  site.
+- P2: o Perplexity citou um artigo de concorrente com dados de faltas. O
+  artigo da Agenda Viva começa com três parágrafos de contexto e não tem
+  número próprio.
+- P4: o Gemini disse que a Agenda Viva custa R$ 59, preço de 2024. A fonte
+  era uma página antiga de comparação num blog de terceiros.
+- P5: nenhuma plataforma citou fonte da Agenda Viva. Não há página sobre o
+  assunto.
 
-## Próxima ação
+**Achados classificados.**
 
-{verbo + objeto + caminho do arquivo seguinte}
-```
+| # | Achado | Situação | Ação | Skill |
+| --- | --- | --- | --- | --- |
+| 1 | Ausência no site de avaliação usado como fonte | observável | Criar perfil e pedir avaliações a clientes ativos | `inboundfy-growth-diretorios` |
+| 2 | Ausência nas listas de "melhores sistemas" | observável | Contatar autores com dados atualizados | `inboundfy-seo-links-externos` |
+| 3 | Artigo de faltas sem resposta inicial nem dado | hipótese apoiada | Reescrever com bloco citável e dado da base de clientes | `inboundfy-especialista-blog` |
+| 4 | Preço antigo repetido | observável | Pedir correção ao blog e deixar o preço visível em texto na página de planos | `inboundfy-seo-links-externos` |
+| 5 | Pergunta sem página | observável | Criar guia de sinal por Pix | `inboundfy-seo` e especialista |
 
-## Checklist ampliado
+**Três planos apresentados.**
 
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
+1. **Recomendado.** Começar pela presença externa (perfil no site de
+   avaliação, pedido de avaliações, correção do preço) e, em paralelo,
+   reescrever o artigo de faltas. Ataca as fontes que as IAs já usam.
+2. Criar primeiro o guia de sinal por Pix e reescrever três páginas. Mais
+   controle, efeito mais lento nas perguntas de escolha.
+3. Só monitorar por dois meses antes de agir. Menor esforço, sem mudança
+   esperada.
 
-## Erros comuns adicionais
+A equipe escolhe o plano 1.
 
-- Executar **inboundfy-geo** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+**Bloco citável proposto para `/blog/reduzir-faltas/`.**
+
+> Faltas em salões e barbearias caem quando o cliente confirma o horário
+> perto do atendimento e paga um sinal. Nos 1.200 estabelecimentos que usam a
+> Agenda Viva, a taxa de faltas caiu de 14% para 6% nos três meses depois de
+> ativar lembrete por WhatsApp 24 horas antes e sinal de R$ 15 por Pix.
+
+Fonte: relatório interno de 2026-10, registrado em
+`acervo/0207-2026-11-13-faltas/pesquisa.md`. Autoria: Larissa Nunes,
+gerente de sucesso do cliente (nome fictício). Data de atualização visível.
+
+**LGPD.** O dado agregado não expõe cliente nem estabelecimento. O pedido de
+avaliações vai só para clientes que autorizaram contato de marketing.
+
+**Pendências.** Confirmar se o relatório interno pode ser publicado;
+confirmar o preço vigente em `.inboundfy/context/ofertas.md`.
+
+**Métricas para a próxima rodada (2026-12-13).** Taxa de recomendação em P1
+e P3, exatidão do preço em P4, sessões com origem em plataformas de IA.
+
+## Checklist
+
+- [ ] O modo de trabalho foi escolhido e registrado.
+- [ ] A carteira tem perguntas de definição, como fazer, comparação, melhor
+  opção e preço.
+- [ ] Cada teste tem plataforma, data, resposta e fontes citadas.
+- [ ] Cada pergunta foi testada ao menos duas vezes na rodada.
+- [ ] Citação e recomendação foram registradas separadamente.
+- [ ] Informação errada sobre a marca tem fonte identificada.
+- [ ] Cada recomendação está marcada como oficial, observável ou hipótese.
+- [ ] Os blocos citáveis respondem nas primeiras frases e funcionam sozinhos.
+- [ ] Dados próprios têm fonte interna e autorização de uso.
+- [ ] O `robots.txt` foi conferido para os agentes das plataformas.
+- [ ] A presença externa tem skill responsável por item.
+- [ ] Três planos foram apresentados e a escolha foi registrada.
+- [ ] A próxima rodada de teste tem data.
+
+## Erros comuns
+
+- **Prometer posição em resposta de IA.** Nenhuma plataforma garante
+  citação. Trabalhe com taxa e tendência.
+- **Testar uma vez e concluir.** A mesma pergunta gera respostas diferentes.
+  Repita e compare por mês.
+- **Escrever para robô.** Repetir a pergunta em todo heading e encher a
+  página de FAQ artificial piora a leitura e não tem efeito comprovado.
+- **Vetar todos os robôs de IA por padrão.** Vetar o robô de busca de
+  uma plataforma tira a marca das respostas dela. Separe robô de treino de
+  robô de busca antes de vetar qualquer um.
+- **Tratar `llms.txt` como obrigação.** É hipótese. Pode ser criado com
+  baixo esforço, sem expectativa de resultado.
+- **Ignorar fontes de terceiros.** Em perguntas de "melhor opção", as IAs
+  costumam citar listas, avaliações e comunidades, não o site da marca.
+- **Inventar dado para parecer citável.** Número sem fonte é fabricação e
+  viola as proibições do projeto.
+- **Conteúdo só em JavaScript ou imagem.** Preço e descrição precisam estar
+  em texto no HTML.
 
 ## Guia específico do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
+Aplique a capacidade ao objetivo informado, relacionando fontes, persona,
+canal, estado e próxima ação sem assumir dados ausentes.
 
 Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+Para GEO, os campos próprios são: pergunta monitorada, plataforma, data do
+teste, situação da recomendação (oficial, observável ou hipótese) e próxima
+skill.
 
-## Especificação operacional
+## Roteiro de diagnóstico
 
-### Quando usar
-
-Use **inboundfy-geo** para executar esta função: Prepara conteúdo para ser encontrado, compreendido e citado por mecanismos de resposta de IA, sem abandonar intenção humana, SEO e fontes verificáveis.
-
-O grupo **capacidade** trabalha com estes campos mínimos:
-
-- **objetivo:** preencher com dado ligado ao pedido.
-- **entrada:** preencher com dado ligado ao pedido.
-- **contexto:** preencher com dado ligado ao pedido.
-- **resultado:** preencher com dado ligado ao pedido.
-- **próxima ação:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-geo
-grupo: capacidade
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/context/empresa.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-geo
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **capacidade** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `README.md`
-- `CONTEXTO.md`
-- `SKILL-AUTORIA.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+No passo 2 do fluxo, leia [as perguntas de diagnóstico](references/diagnostico.md). Pergunte somente o que os insumos não responderem.

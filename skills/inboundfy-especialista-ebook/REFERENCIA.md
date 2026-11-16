@@ -1,245 +1,164 @@
-# REFERENCIA.md; inboundfy-especialista-ebook
+# Manual de ebook
 
-Material de apoio para arquitetura editorial e escrita de capítulos de
-ebook.
+## Diagnóstico da peça
 
-## Template de arquitetura
+1. Qual tarefa completa o leitor conseguirá executar ao terminar?
+2. Qual conhecimento ele já tem e qual entrega depende do capítulo anterior?
+3. A entrega é arquivo único, capítulos separados ou texto para diagramação?
 
-```yaml
+Se o brief já responder, use a resposta registrada. Se faltar fato obrigatório, devolva a pergunta ao planejamento ou à manutenção de contexto indicada por `CONTEXTO.md`. Não crie uma estratégia nova para completar a peça.
+
+| Situação no brief | Tratamento | Evitar |
+| --- | --- | --- |
+| Aprender procedimento completo | Capítulos por dependência: preparar, executar, conferir | Capítulos intercambiáveis |
+| Consultar conceitos | Unidades autônomas com índice e remissões | Repetir introdução a cada capítulo |
+| Material comercial educativo | Desenvolvimento útil e oferta apenas no ponto autorizado | Usar cada capítulo para repetir o anúncio |
+
+## Formato e parâmetros editoriais
+
+Preserve `titulo`, `promessa`, sumário de capítulos e `brief` em pacote. Declare `publico`, modo de entrega, extensão combinada e relação dos arquivos. Um arquivo único tem um H1 para o livro e H2 por capítulo; capítulos separados respeitam a hierarquia do template instalado.
+
+Negocie a extensão pelo conteúdo: guia breve de 3 a 5 capítulos pode ter 3.000 a 6.000 palavras; manual extenso exige outra faixa registrada. Não existe equivalência fixa entre palavras e páginas. O exemplo é um microebook completo de três capítulos solicitado no brief, sem representar o tamanho de todo projeto.
+
+Salve arquivo único ou capítulos no caminho de ebook em `context/canais.md`. Para diagramação, entregue títulos, tabelas simples, legendas, remissões e sugestões de quebra claramente separadas do texto. Não simule números de página antes da paginação. Texto alternativo e ordem de leitura pertencem à conferência do arquivo exportado quando ele existir.
+
+## Método de produção
+
+No passo de redação, consulte [estrutura editorial e menções comerciais](references/estrutura-editorial.md).
+
+1. Escreva a promessa como tarefa verificável. Separe entradas necessárias, resultado final e assuntos fora do livro.
+2. Monte uma tabela por capítulo: entrada, aprendizado, exercício ou demonstração e entrega. Se dois capítulos entregarem a mesma coisa, una-os ou mude a função de um deles.
+3. Valide o sumário e execute A4 sobre abertura e primeira unidade antes de expandir. Um capítulo técnico precisa de desenvolvimento, demonstração e limite, não de frases para preencher páginas.
+4. Redija em ordem de dependência. Reutilize o mesmo caso para mostrar evolução, mas acrescente uma operação nova em cada capítulo. Confira consistência de nomes e números entre todas as unidades.
+5. Use PAS na abertura comercial e AIDA compacto no fechamento comercial somente conforme brief. Produto autorizado recebe FAB. O restante segue prosa informativa.
+6. Faça revisão por capítulo com `inboundfy-copy-editor`, leitura integral entre capítulos, A5 e validadora. Depois encaminhe a `inboundfy-especialista-ebook-imagem`; paginação e exportação seguem o projeto.
+
+## Template da peça
+
+Combine os campos específicos abaixo com o envelope de `../_shared/02-contrato-de-artefato.md`: ID, skill, tipo, estado, datas, entrada, contexto, fontes e próxima ação. Não substitua o template do consumidor por outro formato. Os campos abaixo complementam o contrato; `brief` é obrigatório em pacote e aponta para a origem efetiva.
+
+```markdown
 ---
-titulo: <título do ebook>
-promessa: <o que o leitor sabe fazer ou resolve ao terminar>
-publico: <persona de context/publico.md>
-brief: acervo/<id>-<data>-<slug>/base-editorial.md
+id: "{id}"
+skill: inboundfy-especialista-ebook
+tipo: ebook
+canal: ebook
+estado: rascunho
+persona: "{persona selecionada}"
+titulo: "{nome do livro}"
+promessa: "{tarefa verificável}"
+publico: "{persona}"
+capitulos: ["{preparação}", "{execução}", "{conferência}"]
+modo_entrega: "{unico|capitulos}"
+extensao: "{faixa aprovada pelo brief}"
+brief: "{caminho do brief aprovado}"
+fontes:
+  - "{fonte da afirmação ou dado}"
 ---
+
+# {Título}
+
+{Abertura: problema situado, alcance e resultado do livro.}
 
 ## Sumário
-1. <Capítulo 1; o que entrega>
-2. <Capítulo 2; o que entrega, diferente do capítulo 1>
-3. <Capítulo 3; o que entrega, diferente dos anteriores>
+
+1. {Preparação e entrega}
+2. {Execução e entrega}
+3. {Conferência e entrega}
+
+## 1. {Preparação}
+
+{Entradas, contexto e exemplo. Termine com o material necessário ao capítulo 2.}
+
+## 2. {Execução}
+
+{Procedimento desenvolvido com caso interpretado. Termine com resultado a conferir.}
+
+## 3. {Conferência}
+
+{Teste, exceção e limite.}
+
+{CTA único autorizado.}
+
+## Fontes
+
+{Origens ligadas às afirmações e dados.}
 ```
 
-Cada capítulo deve responder: o que este capítulo entrega que o anterior
-não entregou? Se a resposta for vaga, a estrutura tem sobreposição e
-precisa ser refeita.
+## Modelos por situação
 
-## Exemplo de arquitetura (fictício)
-
-Tema: migrar de agenda de papel para sistema numa clínica pequena.
+### Modelo de arquitetura antes dos capítulos
 
 ```markdown
-Promessa: o leitor sai sabendo se deve migrar, quando migrar e como evitar
-o erro mais comum da transição.
+Promessa: {tarefa final}.
+Conhecimento inicial: {o que a persona já sabe}.
+Entradas: {materiais ou dados necessários}.
+Fora do alcance: {assuntos que este livro não resolve}.
+Formato e extensão: {arquivo único ou capítulos e faixa aprovada}.
 
-1. Por que a agenda de papel custa mais do que parece (o problema invisível)
-2. Os sinais de que chegou a hora de migrar (regra de escolha)
-3. O erro mais comum na transição e como evitá-lo (execução)
+| Capítulo | Entrada recebida | Operação ensinada | Entrega ao próximo capítulo | Fonte |
+| --- | --- | --- | --- | --- |
+| 1. {preparar} | {situação inicial} | {ação} | {material preparado} | {origem} |
+| 2. {executar} | {material do capítulo 1} | {ação nova} | {resultado observável} | {origem} |
+| 3. {conferir} | {resultado do capítulo 2} | {teste e exceção} | {tarefa final realizada} | {origem} |
 ```
 
-## Exemplo de capítulo (fictício, trecho)
+### Modelo de entrega à diagramação
 
 ```markdown
-# Capítulo 2; Os sinais de que chegou a hora de migrar
-
-Nem toda clínica pequena precisa trocar de sistema agora. O sinal mais
-confiável não é o tamanho da clínica; é quantas pessoas diferentes mexem
-na mesma agenda ao longo do dia. Quando duas ou mais pessoas escrevem no
-mesmo caderno em turnos diferentes, o possibilidade de marcar o mesmo horário duas
-vezes cresce toda semana, mesmo que ninguém erre por descuido.
-
-Esse tipo de conflito só aparece quando o paciente liga reclamando; e até
-lá, ele já custou uma vaga perdida.
+Arquivos: {relação dos capítulos em ordem}.
+Sumário: {títulos idênticos aos capítulos}.
+Capa: encaminhar à inboundfy-especialista-ebook-imagem após aprovação textual.
+Tabelas: {seção, largura pretendida e legenda}.
+Remissões: {origem e destino por título, sem páginas inventadas}.
+Acessibilidade: {ordem de leitura, alt text e cabeçalhos a conferir no exportado}.
+Pendências: {arquivo ou confirmação que ainda falta}.
 ```
 
-## Checklist de canal
+A diagramação pode alterar a paginação, mas não deve mudar o sentido de fórmulas, ressalvas ou CTA. Alteração de texto no exportado exige nova revisão da versão correspondente.
 
-- [ ] Cada capítulo tem entrega própria, sem repetir o anterior.
-- [ ] Sumário reflete progressão lógica, não lista de tópicos soltos.
-- [ ] Capítulo de abertura comercial (se houver) usa PAS; capítulo de
-      fechamento comercial (se houver) usa AIDA compacto; ver Estrutura
-      persuasiva em `SKILL.md`.
-- [ ] Nenhum capítulo vira "dica rápida" fragmentada sem pedido explícito
-      do brief.
+## Exemplo completo e leitura no fluxo
 
-## Erros comuns
+Na etapa de montagem da peça, leia [o exemplo completo da Fornada Clara](references/exemplo-completo.md). Ele inclui entrada aprovada e saída integral, com todos os blocos do canal. Na conferência final, compare com [o relatório preenchido da validadora](../inboundfy-validador-ebook/REFERENCIA.md#exemplo-de-relatório-preenchido).
 
-- Definir sumário com capítulos que dizem a mesma coisa com títulos
-  diferentes; teste: se dois capítulos pudessem trocar de ordem sem
-  perda, a estrutura está fraca.
-- Encher capítulo com repetição de tese para atingir tamanho, em vez de
-  desenvolver com situação, mecanismo, exemplo e limite (ver `ESCRITA.md`).
-- Inserir seção de produto em capítulo que o brief não marcou como
-  comercial.
+## Checklist numerado do par
 
-## Arquitetura aplicada
+Os números são os mesmos na produtora e na validadora. A classificação indica o tipo de leitura necessário; uma regra pode exigir mais de um passe. Marque não aplicável somente com justificativa verificável.
 
-Esta referência usa o contrato comum para a skill **inboundfy-especialista-ebook**, do grupo
-**especialista**. Leia os detalhes compartilhados conforme a etapa atual:
+1. [ ] **literal**: Título, promessa, público, sumário, extensão combinada, modo de entrega e `brief` de pacote estão presentes.
+2. [ ] **semântica**: A promessa corresponde à tarefa realizada e ao conhecimento inicial da persona.
+3. [ ] **estrutural**: Cada capítulo recebe uma entrada e entrega algo novo; remissões e sequência permitem seguir a tarefa.
+4. [ ] **semântica**: Casos, contas e termos são consistentes entre capítulos; limites e fontes acompanham as afirmações.
+5. [ ] **estrutural**: PAS/AIDA só aparecem nas partes comerciais autorizadas; FAB tem fonte e o fechamento tem CTA único.
+6. [ ] **visual**: Sumário e hierarquia permitem diagramação; tabelas e legendas são legíveis; exportação só é atestada após inspeção.
+7. [ ] **literal**: ID, estado real, persona, origem e fontes estão ligados à peça; o exemplo fictício não virou contexto do consumidor.
+8. [ ] **semântica**: Voz e afirmações conferem com todos os contextos e fontes aplicáveis; lacuna factual permanece fora da copy.
+9. [ ] **estrutural**: Proibições foram revistas em passes literal e semântico/estrutural no arquivo inteiro, inclusive metadata, links e CTA.
+10. [ ] **visual**: `brand/` foi procurada; ativos existentes e texto visual foram inspecionados ou a ausência foi justificada.
+11. [ ] **estrutural**: Revisão de `inboundfy-copy-editor`, marco A5 e retorno da validadora foram registrados; mudança exige nova leitura integral.
 
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
+## Erros comuns de ebook
 
-## Contrato específico
+- Dividir um artigo em capítulos sem acrescentar entregas. Refaça a tabela de dependências.
+- Inserir páginas fictícias no sumário Markdown. Aguarde o arquivo diagramado.
+- Revisar capítulos separados sem reler a sequência. Faça uma passagem só de números, nomes e remissões.
 
-- **Função:** executar a capacidade de especialista ebook dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
+## Acompanhamento da peça
 
-## Template de operação
+Acompanhe acesso ao arquivo e ação final quando o projeto tiver medição autorizada. Download não comprova leitura; use respostas ou exercício concluído para avaliar utilidade sem prometer taxa de conclusão.
 
-```markdown
----
-id: {id}
-skill: inboundfy-especialista-ebook
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de especialista ebook
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-ebook
-grupo: especialista
-entrada: acervo/0042-2026-09-14-especialista-ebook/processado.md
-pedido: aplicar a etapa de especialista ebook e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-especialista-ebook
-estado: aprovado
-entrada: acervo/0042-2026-09-14-especialista-ebook/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de especialista ebook
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-especialista-ebook** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+Medição pertence ao planejamento e às integrações aprovadas. Esta especialista entrega copy e relação com as fontes. Não configura envio, publicação ou coleta por conta própria.
 
 ## Guia específico do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+O registro do grupo `especialista` identifica canal `ebook`, persona, objetivo do brief, formato e `inboundfy-validador-ebook` como destino de revisão. Entregue arquivo, fontes lidas, pendências e ação solicitada. Se houver reprovação, corrija apenas o alcance solicitado, releia a peça inteira e retorne à mesma validadora. A aprovação precede o retorno a `inboundfy-planejamento`; variantes de imagem mantêm seus fluxos próprios.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+## Arquitetura aplicada
 
-## Especificação operacional
+- Antes da redação ou auditoria: [preflight e fontes](../_shared/01-preflight-e-fontes.md).
+- Ao registrar a peça: [artefato e relações](../_shared/02-contrato-de-artefato.md).
+- Nas escolhas e entrega: [checkpoints e handoff](../_shared/03-interacao-e-handoff.md).
+- A cada rodada: [validação e retomada](../_shared/04-validacao-e-retomada.md).
+- Antes de qualquer texto público: [contexto editorial](../_shared/05-contexto-editorial.md).
 
-### Quando usar
-
-Use **inboundfy-especialista-ebook** para executar esta função: Escreve arquitetura e capítulos de ebook a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md em formato de livro curto.
-
-O grupo **especialista** trabalha com estes campos mínimos:
-
-- **canal:** preencher com dado ligado ao pedido.
-- **persona:** preencher com dado ligado ao pedido.
-- **objetivo:** preencher com dado ligado ao pedido.
-- **formato:** preencher com dado ligado ao pedido.
-- **validadora:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-ebook
-grupo: especialista
-pedido: executar a função desta skill sobre o material selecionado
-entrada: briefs/0042-2026-09-14-ebook/brief.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-ebook
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - briefs/0042-2026-09-14-ebook/brief.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **especialista** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `ESTRUTURAS-PERSUASIVAS.md`
-- `CONTEXTO.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Leia também `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md`, `CONTEXTO.md` e `METODOLOGIA.md`. Os caminhos `context/` resolvem para `.inboundfy/context/` no consumidor; preserve a resolução e os diretórios já configurados.

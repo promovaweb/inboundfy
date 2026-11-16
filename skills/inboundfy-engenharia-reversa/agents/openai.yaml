@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy: Engenharia reversa"
+  short_description: "Reconstrói funis e propõe testes próprios"
+  default_prompt: "Use $inboundfy-engenharia-reversa para estudar o marketing da referência indicada e propor testes próprios com fontes, limites e custo."

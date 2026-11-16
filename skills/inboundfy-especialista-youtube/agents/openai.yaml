@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Especialista Youtube"
-  short_description: "Executa especialista youtube no Inboundfy"
-  default_prompt: "Use $inboundfy-especialista-youtube para executar especialista youtube com as fontes do projeto."
+  display_name: "Inboundfy: Redação de YouTube"
+  short_description: "Produz YouTube com fontes e revisão pareada."
+  default_prompt: "Use $inboundfy-especialista-youtube para produzir a peça de YouTube com o brief aprovado, consultar os modelos do canal e encaminhar o conjunto à validadora pareada."

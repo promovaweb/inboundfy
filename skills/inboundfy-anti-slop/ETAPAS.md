@@ -49,7 +49,7 @@ acionar a especialista quando o problema estiver na direção.
 
 Antes de expandir uma peça longa, audite o outline, a abertura e a primeira
 unidade substancial. Apresente três caminhos materialmente diferentes quando a
-direção ainda estiver aberta, com o caminho recomendado primeiro, e aguarde a
+direção ainda estiver aberta, com o caminho recomendado primeiro. Aguarde a
 opinião do usuário. Registre a escolha e o alcance no brief ou no arquivo de
 trabalho.
 
@@ -109,5 +109,5 @@ Um ciclo `pendente` aguarda resposta, fonte ou escolha do usuário. A palavra
 
 Uma alteração em texto, brief, persona, voz, dicionário, proibição, fonte ou
 canal invalida as auditorias posteriores ao ponto alterado. Preserve os
-registros anteriores no histórico, marque-os como superados e execute as
+registros anteriores no histórico, marque-os como superados e execute os
 ciclos necessários novamente.

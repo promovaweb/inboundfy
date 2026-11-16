@@ -1,6 +1,6 @@
 ---
 name: inboundfy-setup
-description: Conduz a entrevista inicial, prepara a configuração do projeto consumidor e confere canais, personas, voz, negócio, pipeline e índices do Inboundfy.
+description: Conduz a entrevista inicial e grava as configurações do projeto: empresa, canais, personas, voz, pipeline, áreas de trabalho, integrações e variáveis de ambiente. Use quando a pessoa disser instalar, configurar, começar do zero, setup, doctor com erro, ativar canal ou área, ou ligar uma ferramenta como Google Analytics, CRM ou ClickUp.
 ---
 
 # Configurar o Inboundfy
@@ -10,8 +10,7 @@ O setup prepara o projeto consumidor. Não edite o framework instalado em
 
 ## Arquitetura de execução
 
-Como skill de setup, ela prepara as sentinelas e as fontes do projeto; as demais skills confirmam essas sentinelas antes de escrever. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
+Esta skill cria as sentinelas e as fontes do projeto. As demais skills conferem essas sentinelas antes de escrever.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
@@ -27,16 +26,21 @@ artefato. O grupo desta skill é **entrada**.
 Leia [REFERENCIA.md](REFERENCIA.md), `AGENTS.md`, `.inboundfy/README.md`,
 `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`, `.inboundfy/context/marca-voz.md`,
 `.inboundfy/context/publico.md`, `.inboundfy/context/links.md`, `.inboundfy/context/proibicoes.md`, `.inboundfy/context/glossario.md`,
-`.inboundfy/context/aprendizado.md` e `.inboundfy/pipeline.md`. Confira `inboundfy
-doctor` antes e depois.
+`.inboundfy/context/aprendizado.md`, `.inboundfy/context/integracoes.md` e
+`.inboundfy/pipeline.md`. Confira `inboundfy doctor` antes e depois. Na etapa
+de integrações, leia [references/integracoes.md](references/integracoes.md).
+
+Esta é a única skill que cria ou altera configuração. As demais skills leem
+os arquivos acima e devolvem para cá qualquer configuração ausente.
 
 ## Entrada esperada
 
 Pergunte nome e atividade da empresa, site, país, região, idioma, pessoas,
 produtos, serviços, ofertas, endereço físico, registro legal, contatos, URLs
 oficiais, redes sociais, fontes,
-restrições, objetivos, canais, cadência, personas, voz, vocabulário e estados
-do pipeline. Aproveite arquivos existentes sem apagar respostas.
+restrições, objetivos, canais, cadência, personas, voz, vocabulário, estados
+do pipeline, agente principal, fuso, moeda, áreas de trabalho e ferramentas
+usadas em cada área. Aproveite arquivos existentes sem apagar respostas.
 
 ## Fluxo
 
@@ -55,9 +59,21 @@ do pipeline. Aproveite arquivos existentes sem apagar respostas.
    durante o setup ou em execuções futuras.
 4. Em `estrategia.md`, ofereça Blog, Email, LinkedIn, Instagram, Substack e
    YouTube. Marque apenas os canais escolhidos e rode `inboundfy project sync`.
-5. Garanta pelo menos uma persona completa. Registre uma fonte para cada bloco
+5. Registre as configurações gerais (agente, fuso, moeda, idioma de
+   publicação, quem aprova mudanças) na seção Regras do projeto de
+   `context/integracoes.md`.
+6. Conduza a etapa de integrações com
+   [references/integracoes.md](references/integracoes.md): área por área,
+   registre ferramenta, estado, variáveis e escopo em
+   `context/integracoes.md`, escreva os nomes no `.env.example` e peça que a
+   pessoa coloque os valores no `.env`, fora do Git. Nunca peça nem grave
+   segredo em arquivo versionado.
+7. Pergunte quais áreas o projeto vai usar (conteúdo, SEO, copy, growth,
+   vendas, dados, pesquisa), registre em `estrategia.md` e apresente a skill
+   `inboundfy-area-*` de cada área ativa como porta de entrada.
+8. Garanta pelo menos uma persona completa. Registre uma fonte para cada bloco
    factual e deixe perguntas abertas onde a resposta não chegou.
-6. Quando os campos mínimos estiverem preenchidos, rode
+9. Quando os campos mínimos estiverem preenchidos, rode
    `inboundfy context ready --yes` e depois `inboundfy doctor --strict`.
 
 ## Saída
@@ -70,11 +86,13 @@ de instruções do projeto.
 
 O setup só está pronto quando o doctor encontra os arquivos, a estratégia tem
 ao menos um canal marcado, `context/publico.md` tem uma persona completa e o
-estado está `ready`. Confirme que nenhum arquivo do framework foi sobrescrito.
+estado está `ready`. Confirme que nenhum arquivo do framework foi sobrescrito,
+que `context/integracoes.md` lista cada ferramenta com estado e que nenhum
+valor de segredo aparece em arquivo versionado.
 
 ## Responsabilidade do grupo
 
-Prepare ou encaminhe a execução. Preserve respostas existentes e não crie conteúdo antes de o contexto mínimo estar pronto.
+Entregue o projeto em estado `ready` ou com as perguntas abertas listadas. Nenhuma peça nasce antes disso.
 
 Antes do handoff, confirme os campos próprios deste grupo:
 

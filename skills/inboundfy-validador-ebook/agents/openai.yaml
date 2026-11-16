@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Validador ebook"
-  short_description: "Valida o asset ebook antes da entrega"
-  default_prompt: "Use $inboundfy-validador-ebook para validar este asset e devolver correções à skill produtora quando necessário."
+  display_name: "Inboundfy: Validação de ebooks"
+  short_description: "Audita promessa e progressão de ebooks"
+  default_prompt: "Use $inboundfy-validador-ebook para auditar o pacote de inboundfy-especialista-ebook. Aplique inboundfy-base-validador e os 11 itens espelhados; registre achados e digest atual no relatório. Devolva correções à produtora sem editar a candidata."

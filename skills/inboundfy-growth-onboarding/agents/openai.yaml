@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Growth Onboarding"
-  short_description: "Executa growth onboarding no Inboundfy"
-  default_prompt: "Use $inboundfy-growth-onboarding para executar growth onboarding com as fontes do projeto."
+  display_name: "Inboundfy: Onboarding e primeiro valor"
+  short_description: "Desenha marcos, mensagens e ajuda até o primeiro valor."
+  default_prompt: "Use $inboundfy-growth-onboarding para planejar onboarding por comportamento, definir primeiro valor e entregar comunicação e métricas por coorte."

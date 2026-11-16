@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Estrategia"
-  short_description: "Executa estrategia no Inboundfy"
-  default_prompt: "Use $inboundfy-estrategia para executar estrategia com as fontes do projeto."
+  display_name: "Inboundfy: Estratégia de inbound"
+  short_description: "Entrega objetivo, plano de campanha e calendário"
+  default_prompt: "Use $inboundfy-estrategia para planejar esta campanha, do kickoff com objetivo e KPI até o plano de canais e o calendário."

@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Copy Redacao"
-  short_description: "Executa copy redacao no Inboundfy"
-  default_prompt: "Use $inboundfy-copy-redacao para executar copy redacao com as fontes do projeto."
+  display_name: "Inboundfy: Redação de Copy"
+  short_description: "Escreve páginas, emails, posts e CTAs do zero"
+  default_prompt: "Use $inboundfy-copy-redacao para escrever esta peça a partir do brief, do acervo e da persona, com opções de título e CTA para eu escolher."

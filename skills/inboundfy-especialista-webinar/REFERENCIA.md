@@ -1,268 +1,120 @@
-# REFERENCIA.md; inboundfy-especialista-webinar
+# Manual de Webinar
 
-Material de apoio para copy de página/convite de webinar em estrutura
-PASTOR completa.
+A página precisa permitir que a pessoa saiba o que será entregue, quando acontece, quem apresenta e como recebe acesso. O convite curto preserva esses dados sem tentar reproduzir toda a página. A copy não inventa escassez, testemunho nem condição de inscrição.
 
-## Template PASTOR completo
+## Diagnóstico antes da redação
 
-```yaml
----
-data: <data e horário>
-apresentador: <de context/pessoas.md>
-formato: <ao vivo|gravado>
-estrutura: pastor
-brief: acervo/<id>-<data>-<slug>/base-editorial.md
----
+1. A entrega é página ou convite? O evento é ao vivo ou gravado?
+2. Qual data, horário, fuso e duração estão confirmados? O evento exige inscrição até alguma data real?
+3. A agenda ensina o que a promessa anuncia? Existe pré-requisito ou material que a pessoa deve preparar?
+4. Quem apresenta e qual competência aparece no registro de pessoas?
+5. A inscrição é gratuita ou paga? Inclui gravação, material, certificado ou suporte? Por quanto tempo?
+6. Qual destino recebe a inscrição e o que acontece após o envio? Quais dados o formulário solicita?
 
-## Problema
-<dor real da persona>
+## Formato e orçamento de texto
 
-## Amplificar
-<custo concreto de não resolver>
+| Saída | Faixa editorial | Ordem de leitura |
+| --- | --- | --- |
+| página | 450 a 900 palavras quando necessárias | Título, entrega, dados do evento, descrição, agenda, apresentador, condições, CTA e dúvidas práticas |
+| convite | 100 a 220 palavras | Título, promessa específica, data com fuso, formato, apresentador, condições essenciais e CTA |
+| título | 6 a 14 palavras | Tema e tarefa entregue, sem resultado comercial garantido |
+| botão | 2 a 5 palavras como referência | Verbo que descreve a inscrição ou compra real |
 
-## História/Solução
-<o que a sessão entrega e por que o apresentador é a pessoa certa>
+Mantenha `data`, `apresentador`, `formato`, `estrutura: pastor|aida|nenhuma`, `brief` e envelope compartilhado. Acrescente horário, fuso, duração, preço quando houver e destino da inscrição. Em evento pago, a copy deve manter preço e condições autorizadas; não invente pagamento por Pix ou parcelamento só porque o público é brasileiro.
 
-## Testemunho
-<resultado real de edição anterior, se existir; omitir se não houver>
+As faixas são escolhas editoriais, não limites universais da plataforma nem
+promessas de alcance. O brief aprovado pode ajustá-las com motivo registrado.
+Confirme limites técnicos na ajuda oficial ou no campo de publicação da conta
+antes do envio; registre a data. Não transforme corte de interface em tamanho do gancho.
 
-## Oferta
-<o que a inscrição inclui, data, formato>
+## Método de construção
 
-## Resposta
-<CTA de inscrição>
-```
+1. Registre os dados logísticos a partir do brief e da oferta antes de escrever a promessa. Sem data ou oferta confirmada, mantenha a pendência fora do corpo público e devolva o campo ao responsável.
+2. Faça uma tabela promessa versus agenda: cada resultado anunciado precisa de um tópico e tempo de entrega plausível.
+3. Escolha a estrutura aprovada:
 
-## Exemplo completo preenchido (fictício)
+| Situação | Organização | Cuidados |
+| --- | --- | --- |
+| Página de inscrição com explicação e oferta | PASTOR | Problema, consequência, solução, testemunho só com fonte, oferta e resposta |
+| Convite curto | AIDA compacto | Abertura concreta, utilidade, entrega e inscrição |
+| Evento estritamente informativo | Organização de serviço | Priorizar dados, agenda e acesso sem dramatização |
 
-```markdown
----
-data: 14 de outubro, 19h
-apresentador: Marina Alves, especialista em operação de clínicas
-formato: ao vivo
-estrutura: pastor
-brief: acervo/<id>-<data>-<slug>/base-editorial.md
----
+4. Apresente a competência do palestrante no tema da sessão. Um cargo não comprova qualquer especialidade.
+5. Escreva a agenda com entregas concretas. “Montar uma tabela com pedido, prazo e responsável” permite conferência; “melhores práticas” não delimita conteúdo.
+6. Descreva o que a inscrição inclui e o que a pessoa recebe depois. Repita o mesmo CTA apenas quando a página longa precisar; todas as ocorrências levam à mesma ação e ao mesmo destino.
+7. Confira divulgação de gravação, disponibilidade do material e texto sobre uso dos dados com as condições do projeto. Copie somente condições confirmadas; não redija garantia jurídica por conta própria.
+8. Rode `inboundfy-copy-editor`. Releia horários, links, condições e promessa depois da edição.
 
-## Problema
+## Template do canal
 
-Toda semana, alguma clínica pequena perde paciente por conta de fila de
-espera que ninguém planejou; ela simplesmente aconteceu, encaixe por
-encaixe.
+No passo de escrita, abra [modelos prontos](references/modelos-e-exemplo.md).
+Use o modelo do formato aprovado. Complete o envelope compartilhado antes
+dos campos do canal. Separe corpo público, fontes e notas de produção.
 
-## Amplificar
+## Exemplo com empresa brasileira fictícia
 
-Cada semana que passa sem revisar o encaixe da agenda é uma semana de
-horas perdidas que não aparecem em relatório nenhum, só na sala de espera
-lotada e no paciente que desiste de remarcar.
+A Linha de Forno, consultoria fictícia para pequenas padarias em Salvador, oferece uma sessão gratuita sobre organização de encomendas. O exemplo usa evento simulado de 45 minutos, com gravação por sete dias. Não existe edição anterior nem depoimento; o bloco de testemunho é omitido com justificativa nas notas.
 
-## História/Solução
+A entrada e a peça completa estão em [modelos e exemplo](references/modelos-e-exemplo.md).
+Os números, nomes e condições deste caso não viram contexto de outro projeto.
 
-Nessa sessão ao vivo, Marina Alves mostra como três clínicas pequenas
-reduziram fila de espera sem contratar ninguém a mais, só reorganizando o
-encaixe de horário a partir de uma grade visual da agenda inteira.
+## Checklist numerado do canal
 
-## Testemunho
+A numeração coincide com `inboundfy-validador-webinar`. Registre conforme, falha ou
+não aplicável, com motivo e local. O passe visual avalia copy e apoio previsto.
+A arte final segue para a validadora de imagem correspondente, quando houver.
 
-Na última edição, participantes relataram identificar o próprio buraco de
-agenda ainda durante a sessão, ao vivo, ao aplicar o exercício proposto.
+1. [ ] **Literal | Envelope e formato.** ID, brief, persona, data, apresentador, formato, estrutura, estado e destino estão registrados.
+2. [ ] **Literal | Dados do evento.** Data, horário, fuso, duração e formato são consistentes no corpo, metadados, convite e apoio visual previsto.
+3. [ ] **Semântica | Promessa e agenda.** Cada entrega anunciada encontra tópico específico e duração plausível; não há resultado garantido além da sessão.
+4. [ ] **Semântica | Apresentador.** Nome e competência no assunto conferem com o registro de pessoas.
+5. [ ] **Estrutural | Estrutura.** PASTOR segue a ordem aprovada, com testemunho omitido se faltar fonte; convite AIDA permanece compacto.
+6. [ ] **Semântica | Testemunho e urgência.** Depoimentos, inscritos, edições anteriores e escassez têm comprovação; ausência não é preenchida por invenção.
+7. [ ] **Literal | Oferta.** Preço ou gratuidade, materiais, gravação, prazo de acesso e demais condições conferem com a fonte da oferta.
+8. [ ] **Semântica | Inscrição.** CTA descreve a ação real, usa destino confirmado e explica como chega o acesso; repetições mantêm a mesma ação.
+9. [ ] **Estrutural | Informações práticas.** Pré-requisitos, funcionamento, campos de inscrição e condições de uso dos dados aplicáveis foram confirmados ou encaminhados como pendência.
+10. [ ] **Visual | Handoff de imagem.** Textos literais, data, fuso e hierarquia para a thumbnail estão separados e coerentes com a página.
+11. [ ] **Literal | Prosa e vetos.** Título, corpo, CTA, metadados e notas respeitam dicionário e proibições sem paráfrase de veto.
+12. [ ] **Estrutural | Revisão do conjunto.** Auditorias de copy e A5 estão vinculadas; página, convite e derivados foram relidos antes da aprovação.
 
-## Oferta
+## Erros comuns do canal
 
-Inscrição gratuita inclui acesso à sessão ao vivo, gravação por 30 dias e
-uma planilha de diagnóstico de encaixe de agenda.
+- Omitir fuso porque o evento é brasileiro: a inscrição pode vir de outra região.
+- Prometer gravação por 30 dias quando a oferta diz sete: confira a condição literal.
+- Usar “últimas vagas” sem controle real: remova a urgência fabricada.
+- Inventar resultado de edição anterior para completar PASTOR: omita o testemunho e registre a ausência nas notas.
+- Divulgar agenda genérica e promessa específica: vincule cada entrega ao tópico correspondente.
+- Deixar o convite com preço ou horário antigo depois de alterar a página: releia todos os derivados.
 
-## Resposta
+## Medição após a publicação
 
-Inscreva-se e receba o link de acesso por e-mail antes do dia 14.
-```
-
-## Checklist de canal
-
-- [ ] Os seis blocos do PASTOR estão presentes e na ordem certa (ou o bloco
-      de Testemunho foi omitido por falta de dado real, nunca inventado).
-- [ ] Apresentador confere com `context/pessoas.md`.
-- [ ] Agenda/tópicos específicos, não genéricos o suficiente para qualquer
-      webinar do mercado.
-- [ ] Convite curto (quando usado) usa AIDA compacto, não o PASTOR inteiro.
-
-## Erros comuns
-
-- Inventar número de inscritos ou resultado de edição anterior para
-  preencher o bloco de Testemunho.
-- Prometer conteúdo que a sessão não vai entregar só para reforçar o bloco
-  de Amplificar.
-- Usar a mesma agenda de tópicos genérica em todo webinar do mesmo tema.
+Acompanhe inscrições por visitas da página e presença por inscrições confirmadas. Para cada taxa, registre numerador, denominador e período. Uma taxa alta de inscrição com presença baixa pede conferir horário, acesso e lembretes; compare as condições antes de atribuir a diferença à promessa. A revisão não envia convites nem altera o calendário.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-especialista-webinar**, do grupo
-**especialista**. Leia os detalhes compartilhados conforme a etapa atual:
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): confirme sentinelas e origens.
+- [Artefato e relações](../_shared/02-contrato-de-artefato.md): preserve envelope, ID e brief.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): registre escolhas e perguntas.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): preserve o histórico.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): aplique persona, voz e proibições.
 
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de especialista webinar dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-especialista-webinar
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de especialista webinar
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-webinar
-grupo: especialista
-entrada: acervo/0042-2026-09-14-especialista-webinar/processado.md
-pedido: aplicar a etapa de especialista webinar e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-especialista-webinar
-estado: aprovado
-entrada: acervo/0042-2026-09-14-especialista-webinar/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de especialista webinar
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-especialista-webinar** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+Resolva caminhos abreviados `context/` por `.inboundfy/fontes-projeto.md`.
+A instalação usa `.inboundfy/context/`. Não mova fontes nem grave dados do consumidor no framework.
 
 ## Guia específico do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+`inboundfy-especialista-webinar` produz copy de página ou convite de webinar a partir do brief aprovado.
+Leia `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md` e `CONTEXTO.md`.
+Preserve o caminho definido por `context/canais.md`. Nos pacotes, mantenha
+`brief` apontado para `04-briefs/` e o relatório em `06-auditoria/assets/`.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+Encaminhe a copy aprovada a `inboundfy-especialista-webinar-imagem`, com título, data, horário, fuso, formato e apresentador literais. Alteração logística exige nova conferência da página, convite e thumbnail.
 
-## Especificação operacional
+Acione `inboundfy-copy-editor` no alcance definido pela SKILL.md e
+`inboundfy-validador-webinar` antes de considerar a peça pronta. Corrija os achados e
+envie o conjunto para nova leitura integral. Após a aprovação, entregue a
+`inboundfy-planejamento` arquivos, fontes, pendências e próxima ação.
 
-### Quando usar
+## Estruturas na redação
 
-Use **inboundfy-especialista-webinar** para executar esta função: Escreve a copy de página ou convite de webinar/evento a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md.
-
-O grupo **especialista** trabalha com estes campos mínimos:
-
-- **canal:** preencher com dado ligado ao pedido.
-- **persona:** preencher com dado ligado ao pedido.
-- **objetivo:** preencher com dado ligado ao pedido.
-- **formato:** preencher com dado ligado ao pedido.
-- **validadora:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-webinar
-grupo: especialista
-pedido: executar a função desta skill sobre o material selecionado
-entrada: briefs/0042-2026-09-14-webinar/brief.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-webinar
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - briefs/0042-2026-09-14-webinar/brief.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **especialista** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `ESTRUTURAS-PERSUASIVAS.md`
-- `CONTEXTO.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+No passo de redação, consulte [a aplicação por formato](references/estruturas-persuasivas.md) para executar a estrutura já aprovada no brief.

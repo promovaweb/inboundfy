@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy: Dados e mensuração"
+  short_description: "Encaminha pedidos de medição para a skill certa"
+  default_prompt: "Use $inboundfy-area-dados para entender meu pedido de dados e mensuração e encaminhar para a skill certa."

@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Growth Loops"
-  short_description: "Executa growth loops no Inboundfy"
-  default_prompt: "Use $inboundfy-growth-loops para executar growth loops com as fontes do projeto."
+  display_name: "Inboundfy: Loops de crescimento"
+  short_description: "Mapa de ciclos e rotina de acompanhamento"
+  default_prompt: "Use $inboundfy-growth-loops para mapear um ciclo de crescimento e definir rotina com gatilho, estado, limites, medição e parada."

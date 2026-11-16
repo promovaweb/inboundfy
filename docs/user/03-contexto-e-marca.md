@@ -53,6 +53,7 @@ Detalhes de precedência estão em [CONTEXTO.md](../../CONTEXTO.md).
 | `proibicoes.md` | vetos específicos do negócio |
 | `estruturas-proibidas.md` | padrões genéricos de escrita artificial |
 | `depoimentos.json` | depoimentos de clientes: nome, cargo, empresa, citação literal, foto e consentimento de uso |
+| `integracoes.md` | configurações gerais, ferramentas por área, estado de cada acesso e variáveis de ambiente esperadas |
 | `.inboundfy/context/aprendizado.md` | sugestões, correções, alinhamentos e dicas confirmadas |
 
 `depoimentos.json` é o único arquivo de `context/` em formato JSON em vez de
@@ -68,6 +69,22 @@ para `canaisAutorizados`; sem essa confirmação, o registro fica marcado como
 Use a skill `inboundfy-contexto-*` ligada ao arquivo. Ela pergunta, registra a
 origem e atualiza o conteúdo sem mudar o caminho. Quando o próprio arquivo
 estiver ausente, execute primeiro `inboundfy-setup` para restaurar o template.
+
+## Integrações registradas no contexto
+
+`context/integracoes.md` guarda quais ferramentas o projeto usa, o estado de
+cada acesso e os nomes das variáveis de ambiente. Nenhum valor de chave,
+token ou senha é gravado ali. As skills de dados, SEO e growth consultam esse
+arquivo antes de prometer um relatório que depende de ferramenta conectada.
+
+As áreas de trabalho também leem esse arquivo no diagnóstico. A área de dados
+verifica GA4, Tag Manager e Search Console. A área de SEO verifica Search
+Console e ferramentas de palavra-chave. A área de growth verifica contas de
+anúncio e pixel. Quando o acesso está marcado como `sem acesso`, o pedido
+segue registrado e a pendência aparece no arquivo.
+
+O percurso completo está em
+[Configurações e integrações](12-configuracoes-e-integracoes.md).
 
 ## Como conferir a marca
 

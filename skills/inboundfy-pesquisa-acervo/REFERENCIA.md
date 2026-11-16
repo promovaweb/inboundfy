@@ -1,178 +1,120 @@
-# Referência da pesquisa
+# Pesquisa ligada às afirmações do acervo
 
-Cada linha precisa ter pergunta, fonte, URL, data de acesso, resumo, relação
-com o acervo e encaminhamento. A pesquisa pertence ao acervo, não ao framework.
+A pesquisa responde perguntas delimitadas. Ela amplia contexto e atualiza informação, mas não transforma uma fonte externa em resultado obtido pela empresa.
+
+## Diagnóstico da afirmação
+
+Pergunte qual frase precisa de confirmação, qual parte pode mudar com o tempo e qual fonte teria acesso direto ao fato. Faça uma consulta por lacuna, evitando pesquisa ampla sem relação com o material.
+
+| Afirmação | Fonte prioritária | Limite de uso |
+| --- | --- | --- |
+| Funcionalidade de produto | Documentação oficial e notas de versão | Recurso disponível não prova adoção pelo cliente |
+| Resultado do próprio negócio | Registro interno autorizado | Fonte pública não substitui dado interno |
+| Estatística de mercado | Pesquisa original com método e período | Não misturar amostra nacional com caso local |
+| Regra de plataforma | Ajuda ou documentação oficial atual | Registrar data e configuração aplicável |
+| Relato sem fonte acessível | Responsável pelo material | Manter como não confirmado |
+
+## Procedimento de consulta
+
+1. Extraia de FAQ e processado uma lista de afirmações A01, A02. Registre qual uso editorial depende de cada uma.
+2. Transforme cada lacuna numa pergunta verificável. Defina região, produto, versão e período quando relevantes.
+3. Pesquise na web e abra a página original. Não use snippet como confirmação.
+4. Leia método, atualização e alcance. Procure a fonte primária apontada por uma notícia ou resumo.
+5. Registre URL, título, organização, publicação quando disponível, acesso, resumo próprio e relação com A01.
+6. Confronte versões incompatíveis. Uma fonte mais recente só prevalece se tratar do mesmo objeto e alcance.
+7. Diferencie `confirmado`, `contrariado`, `parcial` e `não localizado`. Ausência na busca não prova inexistência.
+8. Escreva recomendações de uso para a base editorial. Não corrija o bruto para fazê-lo concordar com a pesquisa.
+
+## Template de pesquisa.md
+
+```markdown
+---
+id: "<id do acervo>"
+entrada: [processado.md, faq.md]
+pesquisado_em: <AAAA-MM-DD>
+---
+# Pesquisa sobre <tema>
+
+## A01. <Afirmação ou lacuna>
+
+- Pergunta: <pergunta verificável>
+- Consulta: <termos, região e período>
+- Uso pretendido: <trecho que depende da resposta>
+
+### F01. <Título da fonte>
+
+- URL: <link direto>
+- Organização: <responsável>
+- Publicação ou atualização: <data ou não informada>
+- Acesso: <AAAA-MM-DD>
+- Resumo: <síntese própria>
+- Alcance: <objeto, amostra, versão ou região>
+- Resultado: confirmado | contrariado | parcial | não localizado
+- Relação com o acervo: <o que a fonte permite afirmar>
+- Limite: <o que continua sem resposta>
+
+## Encaminhamento à base editorial
+<Afirmações utilizáveis, atribuição necessária e perguntas internas.>
+```
+
+## Exemplo trabalhado: oficina fictícia Pinhão Bicicletas
+
+**Entrada:** o relato diz “o botão de exportar garante que a mensagem foi entregue”. O manual interno fictício do aplicativo descrito no acervo explica apenas exportação do histórico.
+
+**Antes:** pesquisa genérica por “vantagens de mensagens”, sem fonte ligada ao botão.
+
+**Depois:**
+
+```markdown
+# Pesquisa sobre exportação e entrega de mensagens
+
+## A01. Exportar histórico comprova entrega?
+
+- Pergunta: o comando exportar inclui recibo de entrega por mensagem?
+- Consulta: nome do aplicativo, exportar histórico, recibo de entrega.
+- Uso pretendido: explicar como conferir os avisos enviados pela oficina.
+
+### F01. Manual fictício recebido com o acervo
+
+- URL: não aplicável; fonte local em fontes/manual-mensagens.md.
+- Organização: fornecedora fictícia Mensagem do Bairro.
+- Publicação ou atualização: não informada.
+- Acesso: 2026-10-20.
+- Resumo: o manual descreve a exportação das conversas, sem informar recibos por mensagem.
+- Alcance: função de exportação descrita no documento recebido.
+- Resultado: parcial.
+- Relação com o acervo: pode explicar a exportação, sem afirmar entrega.
+- Limite: a documentação não responde como consultar recibos.
+
+## Encaminhamento à base editorial
+Retirar a equivalência entre exportar e comprovar entrega. Perguntar ao responsável qual tela contém os recibos. A pesquisa web permanece necessária antes de concluir o material novo.
+```
+
+Este exemplo mostra como registrar uma fonte local sem inventar URL ou consulta executada. Numa execução real com material novo, acrescente as páginas abertas na web; se não houver acesso, marque a etapa como pendente. A ficha local acima, sozinha, não satisfaz a pesquisa web obrigatória.
+
+## Checklist numerado
+
+1. Cada consulta responde uma lacuna identificada.
+2. Fontes web foram abertas, não apenas encontradas.
+3. URL aponta para a página original.
+4. Organização, data de acesso e alcance estão registrados.
+5. Resumo usa redação própria e conserva ressalvas.
+6. Resultado diferencia confirmação de ausência de resposta.
+7. Divergências mantêm as duas fontes.
+8. Informação externa tem atribuição própria.
+9. Perguntas sobre resultados internos voltam ao responsável do projeto.
+
+## Erros comuns
+
+- Pesquisar apenas para confirmar a tese inicial. Procure também condições que a limitem.
+- Misturar versões de um produto. Registre a versão de cada fonte.
+- Inventar consulta, URL ou data para completar template. Declare a etapa não executada.
+- Atribuir estatística de mercado à empresa do acervo. Mantenha a atribuição original.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-pesquisa-acervo**, do grupo
-**capacidade**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de pesquisa acervo dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-pesquisa-acervo
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de pesquisa acervo
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-pesquisa-acervo
-grupo: capacidade
-entrada: acervo/0042-2026-09-14-pesquisa-acervo/processado.md
-pedido: aplicar a etapa de pesquisa acervo e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-pesquisa-acervo
-estado: aprovado
-entrada: acervo/0042-2026-09-14-pesquisa-acervo/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de pesquisa acervo
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-pesquisa-acervo** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+Use [fontes](../_shared/01-preflight-e-fontes.md) para a procedência, [artefato](../_shared/02-contrato-de-artefato.md) para vínculos e [contexto](../_shared/05-contexto-editorial.md) para vocabulário. Encaminhe com [handoff](../_shared/03-interacao-e-handoff.md) e preserve fontes anteriores por [retomada](../_shared/04-validacao-e-retomada.md).
 
 ## Guia específico do grupo
 
-Trabalhe a origem, suas versões derivadas, perguntas, fontes e relações. O bruto permanece intacto e cada derivado aponta para ele.
-
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-pesquisa-acervo** para executar esta função: Pesquisa fontes externas para validar e enriquecer um item do acervo, registra links e confronta lacunas sem substituir a origem fornecida pelo usuário.
-
-O grupo **acervo** trabalha com estes campos mínimos:
-
-- **bruto:** preencher com dado ligado ao pedido.
-- **processado:** preencher com dado ligado ao pedido.
-- **FAQ:** preencher com dado ligado ao pedido.
-- **pesquisa:** preencher com dado ligado ao pedido.
-- **base editorial:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-pesquisa-acervo
-grupo: acervo
-pedido: executar a função desta skill sobre o material selecionado
-entrada: acervo/0042-2026-09-14-material/bruto.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-pesquisa-acervo
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - acervo/0042-2026-09-14-material/bruto.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **acervo** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `METODOLOGIA.md`
-- `LIMPEZA-MATERIAL-BRUTO.md`
-- `TRADUCAO.md`
-- `docs/method/05-artefatos-e-estados.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Esta capacidade entrega `pesquisa.md` para `inboundfy-base-editorial` e `inboundfy-acervo`. Leia o método no início de cada consulta. Consulte `CONTEXTO.md` para precedência e `ESCRITA.md` para separar fato, interpretação e alegação comercial.

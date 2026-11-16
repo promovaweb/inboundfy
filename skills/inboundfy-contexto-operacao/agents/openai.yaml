@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Contexto de Operação"
-  short_description: "Mantém canais, ferramentas e campanhas"
-  default_prompt: "Use $inboundfy-contexto-operacao para atualizar canais, ferramentas ou campanhas com dados do projeto."
+  display_name: "Inboundfy: Contexto de operação"
+  short_description: "Canais, ferramentas e campanhas registrados"
+  default_prompt: "Use $inboundfy-contexto-operacao para registrar um canal ativo, uma ferramenta que pode ser citada ou uma campanha com objetivo, KPI, período e status."

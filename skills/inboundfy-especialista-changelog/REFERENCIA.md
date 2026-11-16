@@ -1,236 +1,143 @@
-# REFERENCIA.md; inboundfy-especialista-changelog
+# Manual de entrada de changelog
 
-Material de apoio para traduzir mudança técnica em entrada de changelog
-legível.
+## Diagnóstico da peça
 
-## Template de entrada
+1. Qual versão e data constam na fonte técnica?
+2. Quem recebe a mudança agora e quem ainda não recebe?
+3. Existe ação necessária ou alteração de comportamento que precisa de instrução?
 
-```yaml
----
-data: <data do release>
-tipo: <novidade|melhoria|correcao>
-brief: acervo/<id>-<data>-<slug>/base-editorial.md
----
+Se o brief já responder, use a resposta registrada. Se faltar fato obrigatório, devolva a pergunta ao planejamento ou à manutenção de contexto indicada por `CONTEXTO.md`. Não crie uma estratégia nova para completar a peça.
 
-## <Nome da funcionalidade ou área afetada>
+| Situação no brief | Tratamento | Evitar |
+| --- | --- | --- |
+| Recurso antes inexistente | Novidade: capacidade, acesso e primeira ação | Anunciar antes da liberação |
+| Mesmo recurso com uso alterado | Melhoria: antes, agora e alcance | Prometer ganho de tempo sem medição |
+| Comportamento incorreto corrigido | Correção: sintoma e comportamento restaurado | Expor dados de cliente ou detalhes internos |
 
-<O que mudou, em uma ou duas frases diretas>
+## Formato e parâmetros editoriais
 
-<Por que importa para quem usa>
+Entrada Markdown com `data` em AAAA-MM-DD e `tipo` entre `novidade`, `melhoria`, `correcao`. Mantenha `brief` em pacote. Acrescente versão, alcance e fonte técnica sem substituir os campos existentes. Use H2 para a área afetada quando a entrada for anexada ao histórico; o arquivo que a recebe mantém seu H1.
 
-<Ação necessária, se houver; ou "nenhuma ação necessária">
-```
+Como alvo editorial, use título de até 80 caracteres e 80 a 250 palavras por entrada. Uma migração pode exigir passos extras; registre o motivo de ultrapassar essa faixa. Não invente número de versão. Data de postagem e data de disponibilidade devem ser distinguidas quando forem diferentes.
 
-## Exemplo completo (fictício)
+A saída continua no caminho do canal changelog em `context/canais.md`. Não renomeie arquivo histórico ou categorias já adotadas pelo projeto. Capturas só entram quando mostram a versão descrita e não exibem dados pessoais.
 
-```markdown
----
-data: 2026-03-10
-tipo: melhoria
-brief: acervo/<id>-<data>-<slug>/base-editorial.md
----
+## Método de produção
 
-## Grade visual de agenda
+1. Extraia da nota técnica o comportamento anterior, o atual, a versão, a data e o público afetado. PR aberto não comprova disponibilidade.
+2. Relacione cada mudança a uma fonte e descarte refatorações sem efeito público, salvo pedido técnico explícito.
+3. Classifique como `novidade`, `melhoria` ou `correcao` conforme o efeito descrito. Caso o release misture tipos, faça entradas separadas ou use o formato já instalado.
+4. Escreva primeiro o efeito que a pessoa verá. Depois explique alcance, condição de acesso e ação necessária. Traduza nomes internos usando `context/glossario.md`.
+5. Para migração, registre pré-requisito, passos, prazo confirmado e forma de conferir a conclusão. Para mudança automática, diga expressamente que não há ação necessária.
+6. Confira texto contra a versão entregue, aplique `inboundfy-copy-editor`, A5 e validadora. Preserve a ordem e o arquivo histórico do canal.
 
-A visualização da agenda agora mostra o dia inteiro numa grade única, com
-os horários ocupados destacados, em vez da lista sequencial por paciente.
+## Template da peça
 
-Isso facilita ver de uma vez os buracos entre consultas que antes só
-apareciam ao rolar a lista item por item; útil para quem organiza o
-encaixe de horário na recepção.
-
-Nenhuma ação necessária: a grade aparece automaticamente na próxima vez que
-a agenda for aberta.
-```
-
-## Checklist de canal
-
-- [ ] Nome de produto/funcionalidade confere com `context/produtos.md` e
-      `context/glossario.md`.
-- [ ] Diz claramente o que mudou, para quem importa e se há ação necessária.
-- [ ] Sem jargão de commit interno ("refatora módulo X", "fix de race
-      condition"); traduza para o efeito visível ao usuário.
-- [ ] Classificação de tipo (novidade/melhoria/correção) condiz com a
-      mudança descrita.
-
-## Erros comuns
-
-- Copiar a mensagem de commit ou pull request como se fosse a entrada final
-; o changelog é para o usuário, não para o time técnico.
-- Omitir a ação necessária quando ela existe (ex.: "é preciso reconectar a
-  integração X").
-- Descrever a mudança em termos vagos ("melhorias de performance") sem
-  dizer o que o usuário percebe na prática.
-
-## Arquitetura aplicada
-
-Esta referência usa o contrato comum para a skill **inboundfy-especialista-changelog**, do grupo
-**especialista**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de especialista changelog dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
+Combine os campos específicos abaixo com o envelope de `../_shared/02-contrato-de-artefato.md`: ID, skill, tipo, estado, datas, entrada, contexto, fontes e próxima ação. Não substitua o template do consumidor por outro formato. Os campos abaixo complementam o contrato; `brief` é obrigatório em pacote e aponta para a origem efetiva.
 
 ```markdown
 ---
-id: {id}
+id: "{id}"
 skill: inboundfy-especialista-changelog
+tipo: changelog
+canal: changelog
 estado: rascunho
-entrada: {caminho ou ID}
+persona: "{persona selecionada}"
+data: "{AAAA-MM-DD da disponibilidade}"
+tipo: "{novidade|melhoria|correcao}"
+versao: "{versão confirmada}"
+alcance: "{planos e contas atendidos}"
+fonte_tecnica: "{release ou registro entregue}"
+brief: "{caminho do brief aprovado}"
 fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
+  - "{fonte da afirmação ou dado}"
 ---
 
-# Registro de especialista changelog
+## {Área ou funcionalidade pelo nome público}
 
-## Resultado
+{Comportamento novo e contraste factual com o anterior.}
 
-{Conteúdo específico da etapa.}
+{Quem recebe, condições e limite conhecido.}
 
-## Pendências
+{Ação necessária com passos ou declaração de ausência.}
 
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
+{Como conferir o resultado e contato já autorizado, se necessário.}
 ```
 
-## Exemplo operacional completo
+## Modelos por situação
 
-### Entrada ilustrativa
+### Modelo de migração necessária
 
-```yaml
-id: 0042
-skill: inboundfy-especialista-changelog
-grupo: especialista
-entrada: acervo/0042-2026-09-14-especialista-changelog/processado.md
-pedido: aplicar a etapa de especialista changelog e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
+A mudança só recebe instrução de migração quando a fonte técnica a exigir. Preencha o prazo e a consequência com dados confirmados, sem criar urgência editorial.
 
 ```markdown
----
-id: 0042
-skill: inboundfy-especialista-changelog
-estado: aprovado
-entrada: acervo/0042-2026-09-14-especialista-changelog/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
+## {Integração ou recurso afetado}
 
-# Registro de especialista changelog
+A partir de {data confirmada}, {mudança observável}. Ela atende {contas elegíveis} na versão {versão entregue}.
 
-## Resultado
+Antes de começar: {permissão, dependência e cópia necessária conforme fonte}.
 
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
+1. Abra {tela pública}.
+2. Execute {ação exigida}.
+3. Confira {sinal de conclusão}.
 
-## Próxima ação
+Conclua até {prazo confirmado}. Após essa data, {consequência confirmada da não atualização}.
 
-{verbo + objeto + caminho do arquivo seguinte}
+Se {falha documentada}, use {orientação ou contato autorizado}. {Limite conhecido}.
 ```
 
-## Checklist ampliado
+### Modelo de correção sem ação
 
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
+```markdown
+## {Sintoma corrigido}
 
-## Erros comuns adicionais
+Corrigimos {comportamento incorreto} que afetava {público e condição}. Agora {comportamento restaurado}.
 
-- Executar **inboundfy-especialista-changelog** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+A correção está disponível em {versão e data}. Nenhuma ação é necessária. Confira {sinal visível se útil}.
+```
+
+## Exemplo completo e leitura no fluxo
+
+Na etapa de montagem da peça, leia [o exemplo completo da Fornada Clara](references/exemplo-completo.md). Ele inclui entrada aprovada e saída integral, com todos os blocos do canal. Na conferência final, compare com [o relatório preenchido da validadora](../inboundfy-validador-changelog/REFERENCIA.md#exemplo-de-relatório-preenchido).
+
+## Checklist numerado do par
+
+Os números são os mesmos na produtora e na validadora. A classificação indica o tipo de leitura necessário; uma regra pode exigir mais de um passe. Marque não aplicável somente com justificativa verificável.
+
+1. [ ] **literal**: Data, tipo, versão confirmada, alcance, fonte técnica e `brief` de pacote estão presentes.
+2. [ ] **semântica**: A mudança existe na versão entregue; disponibilidade e público correspondem à fonte técnica.
+3. [ ] **semântica**: O texto explica efeito visível, comportamento anterior e limite sem promessa não medida.
+4. [ ] **estrutural**: Entrada separa mudança, alcance, ação e conferência; migração tem passos completos quando aplicável.
+5. [ ] **literal**: Grafia pública e tipo correspondem ao contexto; nomes internos e dados de cliente foram removidos.
+6. [ ] **visual**: Hierarquia encaixa no histórico; capturas, se houver, mostram a versão correta sem dados pessoais.
+7. [ ] **literal**: ID, estado real, persona, origem e fontes estão ligados à peça; o exemplo fictício não virou contexto do consumidor.
+8. [ ] **semântica**: Voz e afirmações conferem com todos os contextos e fontes aplicáveis; lacuna factual permanece fora da copy.
+9. [ ] **estrutural**: Proibições foram revistas em passes literal e semântico/estrutural no arquivo inteiro, inclusive metadata, links e CTA.
+10. [ ] **visual**: `brand/` foi procurada; ativos existentes e texto visual foram inspecionados ou a ausência foi justificada.
+11. [ ] **estrutural**: Revisão de `inboundfy-copy-editor`, marco A5 e retorno da validadora foram registrados; mudança exige nova leitura integral.
+
+## Erros comuns de changelog
+
+- Anunciar PR como recurso disponível. Exija confirmação do release entregue.
+- Escrever apenas “melhorias de desempenho”. Descreva o efeito observado sem inventar percentual.
+- Omitir que a liberação atende apenas um plano. Informe o alcance perto da mudança.
+
+## Acompanhamento da peça
+
+Após publicação autorizada por outro fluxo, acompanhe acesso à nota, adoção do recurso entre contas elegíveis e contatos sobre migração. Não atribua à nota toda variação de uso.
+
+Medição pertence ao planejamento e às integrações aprovadas. Esta especialista entrega copy e relação com as fontes. Não configura envio, publicação ou coleta por conta própria.
 
 ## Guia específico do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+O registro do grupo `especialista` identifica canal `changelog`, persona, objetivo do brief, formato e `inboundfy-validador-changelog` como destino de revisão. Entregue arquivo, fontes lidas, pendências e ação solicitada. Se houver reprovação, corrija apenas o alcance solicitado, releia a peça inteira e retorne à mesma validadora. A aprovação precede o retorno a `inboundfy-planejamento`; variantes de imagem mantêm seus fluxos próprios.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+## Arquitetura aplicada
 
-## Especificação operacional
+- Antes da redação ou auditoria: [preflight e fontes](../_shared/01-preflight-e-fontes.md).
+- Ao registrar a peça: [artefato e relações](../_shared/02-contrato-de-artefato.md).
+- Nas escolhas e entrega: [checkpoints e handoff](../_shared/03-interacao-e-handoff.md).
+- A cada rodada: [validação e retomada](../_shared/04-validacao-e-retomada.md).
+- Antes de qualquer texto público: [contexto editorial](../_shared/05-contexto-editorial.md).
 
-### Quando usar
-
-Use **inboundfy-especialista-changelog** para executar esta função: Escreve entrada de changelog ou release note a partir de um brief aprovado (fase 5 do pipeline) ou diretamente de um release de produto. Aplica ESCRITA.md e a voz de context/marca-voz.md.
-
-O grupo **especialista** trabalha com estes campos mínimos:
-
-- **canal:** preencher com dado ligado ao pedido.
-- **persona:** preencher com dado ligado ao pedido.
-- **objetivo:** preencher com dado ligado ao pedido.
-- **formato:** preencher com dado ligado ao pedido.
-- **validadora:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-changelog
-grupo: especialista
-pedido: executar a função desta skill sobre o material selecionado
-entrada: briefs/0042-2026-09-14-changelog/brief.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-changelog
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - briefs/0042-2026-09-14-changelog/brief.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **especialista** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `ESTRUTURAS-PERSUASIVAS.md`
-- `CONTEXTO.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Leia também `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md`, `CONTEXTO.md` e `METODOLOGIA.md`. Os caminhos `context/` resolvem para `.inboundfy/context/` no consumidor; preserve a resolução e os diretórios já configurados.

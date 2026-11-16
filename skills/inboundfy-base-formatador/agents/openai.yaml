@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Base Formatador"
-  short_description: "Executa base formatador no Inboundfy"
-  default_prompt: "Use $inboundfy-base-formatador para executar base formatador com as fontes do projeto."
+  display_name: "Inboundfy: Formatação Markdown"
+  short_description: "Markdown corrigido sem mexer no conteúdo editorial"
+  default_prompt: "Use $inboundfy-base-formatador para corrigir headings, listas, links, tabelas e frontmatter deste arquivo Markdown sem alterar o texto."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy: Rastreamento de conversão"
+  short_description: "Planeja eventos e comprova coleta por destino"
+  default_prompt: "Use $inboundfy-rastreamento-conversao para mapear emissores, definir eventos e testar recebimento, deduplicação e consentimento por destino."

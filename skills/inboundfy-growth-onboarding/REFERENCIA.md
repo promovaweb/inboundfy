@@ -1,53 +1,161 @@
-# Referência de Onboarding de clientes
+# Referência de onboarding e primeiro valor
 
-## Template
+## Definição de primeiro valor
+
+O primeiro valor é um resultado que a pessoa reconhece como útil. Criar perfil,
+conectar conta ou assistir a uma apresentação podem ser pré-requisitos, mas não
+substituem o resultado. Comece pela promessa de compra e pergunte qual objeto
+ficará pronto para uso na rotina.
+
+| Negócio | Marco útil possível | Sinal insuficiente | Dependência |
+| --- | --- | --- | --- |
+| Gestão de encomendas | Primeira semana de produção organizada | Abrir painel vazio | Pedidos ou exemplo identificado |
+| Serviço de automação | Primeiro fluxo real conferido pelo cliente | Reunião inicial realizada | Acesso e validação técnica |
+| Agendamento | Primeiro horário disponível publicado | Perfil com foto | Agenda e regra de disponibilidade |
+| Conteúdo por assinatura | Primeira atividade aplicada | Vídeo iniciado | Material e tempo de prática |
+| Produto de equipe | Responsável executa tarefa compartilhada | Convite enviado | Colega aceita e participa |
+
+O marco começa como hipótese de ativação. Compare retenção posterior de quem
+o alcançou e de quem não o alcançou, dentro de coortes observáveis. Associação
+não prova que forçar a ação causará retenção. Se não houver dados, descreva
+o marco como proposto e planeje observação.
+
+## Escolha do caminho de ajuda
+
+| Situação | Caminho | Cuidado operacional |
+| --- | --- | --- |
+| Tarefa simples e reversível | Estado vazio com ação direta | Não abrir tour antes da tarefa |
+| Configuração necessária em várias etapas | Checklist curto com progresso real | Não marcar item fictício como concluído |
+| Resultado depende de base de dados | Importação guiada e exemplo separado | Exemplo não conta como ativação |
+| Implantação exige outro papel | Convite contextual e passagem de responsabilidade | Não cobrar ação de quem não possui acesso |
+| Serviço com execução pela equipe | Cronograma, insumos e ponto de validação | Não chamar espera da equipe de abandono do cliente |
+| Pessoa parou após erro | Ajuda vinculada ao erro e retomada | Preservar trabalho já realizado |
+
+Leia [Ativação e comunicação por estado](references/ativacao-e-comunicacao.md)
+nos passos 2 a 6 antes de especificar automações ou comparar coortes.
+
+## Template do fluxo
 
 ```markdown
-# Onboarding de clientes
-
-- **ID:** {{id}}
-- **Objetivo:** {{objetivo}}
-- **Persona:** {{persona}}
-- **Canal:** {{canal}}
-- **Acervo:** {{acervo}}
-- **Fonte principal:** {{fonte}}
-- **Próxima ação:** {{cta}}
-
-## Plano
-
-{{plano}}
-
-## Pendências
-
-{{pendencias}}
+---
+id: {{id}}
+skill: inboundfy-growth-onboarding
+grupo: growth
+tipo: fluxo-onboarding
+estado: rascunho
+entrada: [{{compra, brief ou acervo}}]
+fontes: [{{produto}}, {{oferta}}, {{dados de uso}}]
+persona: {{id e papel}}
+canal: {{produto, email ou atendimento}}
+oferta: {{id}}
+proxima_acao: {{responsavel e entrega}}
+---
+Promessa da compra: {{resultado confirmado}}
+Primeiro valor: {{objeto útil e ação que o confirma}}
+Evento e janela: {{evento, início do relógio e prazo}}
+População: {{contas elegíveis e exclusões}}
+| Passo | Ação | Necessário agora? | Responsável | Falha/alternativa |
+| --- | --- | --- | --- | --- |
+| {{etapa}} | {{verbo}} | {{razão}} | {{papel}} | {{retomada}} |
+| Estado/gatilho | Espera | Canal | Mensagem/CTA | Saída e responsável |
+| --- | --- | --- | --- | --- |
+| {{condição}} | {{tempo}} | {{canal}} | {{texto}} | {{evento de saída}} |
+Checklist visível: {{ações com progresso verdadeiro}}
+Ajuda: {{acesso, erro e dependência humana}}
+Métricas: {{ativação, tempo, retorno e atendimento}}
+Teste: {{hipótese, controle, variante e encerramento}}
+Pendências: {{perguntas abertas}}
+Handoff: {{arquivos, skill, estado e ação}}
 ```
 
-## Guia específico
+## Exemplo: primeira escala de uma clínica de banho e tosa
 
-Modele boas-vindas, primeiro valor, instrução, marco de ativação, ajuda, alerta e passagem ao uso recorrente. Use a voz adequada ao estágio e à familiaridade da pessoa.
+Caso brasileiro fictício. A Agenda de Pêlo, de Ribeirão Preto, vende agenda
+para pequenos pet shops por R$ 129/mês. A persona `persona-05`, recepcionista,
+precisa organizar a próxima semana; a dona da loja comprou o plano.
+Entrada: `acervo/0314-primeira-semana/`, manual do produto, oferta e
+contagens sintéticas. O exemplo não descreve uma empresa real.
 
-## Exemplo ilustrativo
+Primeiro valor proposto: publicar a disponibilidade da semana com pelo menos
+um serviço e confirmar um agendamento real. Janela: sete dias após acesso
+liberado à conta da loja. Convite enviado e teste com dados de demonstração
+não satisfazem o marco.
 
-Uma empresa de software pode usar este modelo para organizar uma ação de teste com uma persona específica, ligar cada mensagem a um acervo e registrar a página de destino sem afirmar resultados ainda não medidos.
+O fluxo anterior pedia logotipo, descrição da loja, convite de toda a equipe,
+integração de pagamento e cadastro de serviços antes de abrir a agenda.
+O novo plano conserva serviço, duração e horário; adia logotipo e descrição;
+oferece convite apenas ao atribuir atendimento; deixa pagamento para o uso
+que realmente o exige.
+
+| Estado | Mensagem proposta | Canal e tempo | Saída |
+| --- | --- | --- | --- |
+| Acesso liberado | “Sua agenda está pronta para configurar. Comece pelo serviço mais frequente.” CTA: “Adicionar serviço” | Produto e email de boas-vindas | Serviço criado |
+| Agenda vazia | “Defina os horários da próxima semana. Você pode ajustar cada dia antes de publicar.” | Produto após serviço criado | Disponibilidade publicada |
+| Sem disponibilidade | “Falta escolher os horários para receber o primeiro agendamento. Retome de onde parou.” | Email após 24 h, se ainda pendente | Publicação ou pedido de ajuda |
+| Espera de autorização | “A responsável pela loja precisa confirmar os horários. Envie a solicitação por este link.” | Produto no estado pertinente | Aprovação da responsável |
+| Primeiro agendamento real | “O primeiro horário está confirmado. Confira agora a lista da semana.” | Produto após confirmação | Passagem ao uso semanal |
+| Erro de importação | “Não foi possível ler esta coluna. Ajuste a duração em minutos e tente novamente.” | Ajuda junto ao arquivo | Importação válida |
+
+Ajuda humana: se houver duas falhas seguidas de importação, oferecer atendimento.
+Após o marco, retirar lembretes de configuração. WhatsApp só entra se esse canal
+estiver ativo e autorizado no contexto; a existência do telefone da loja não
+basta para enviar campanhas.
+
+Piloto sintético: 100 contas com sete dias completos de observação; 80 criaram
+serviço, 60 publicaram horários e 40 confirmaram agendamento real. Ativação =
+40/100 = 40%. As 20 contas recém-abertas ficam fora desta leitura até completar
+a janela. Entre as 40 ativadas, tempo p50 = dois dias e p90 = seis dias.
+Também relatar 60 contas sem marco para não esconder as que ficaram pendentes.
+
+Hipótese: adiar logotipo deve aumentar ativação em sete dias. A meta interna
+ilustrativa é 48%, sem promessa. `inboundfy-experimentacao` define amostra e
+encerramento; a métrica de acompanhamento é retorno com uso real na quarta
+semana, além de pedidos de ajuda por conta. Um fluxo mais curto pode reduzir
+tempo sem melhorar uso recorrente.
+
+Saída: `acervo/0314-primeira-semana/fluxo-onboarding.md`, ID 0314,
+grupo growth, estado `revisao`, fontes, persona e oferta ligadas.
+Pendência: validar se primeiro agendamento prevê retorno na quarta semana.
+Próxima ação: responsável de produto conferir os estados do fluxo.
+Handoff para `inboundfy-especialista-email`: briefs de boas-vindas e retomada;
+para `inboundfy-rastreamento-conversao`: `servico_criado`,
+`disponibilidade_publicada`, `agendamento_real_confirmado`, ID da conta
+pseudonimizado e versão do marco. Para `inboundfy-growth-retencao`: contas
+com marco confirmado, rotina semanal e dúvidas ainda abertas.
 
 ## Checklist
 
-- [ ] ID e objetivo estão presentes.
-- [ ] Persona, canal e acervo estão vinculados.
-- [ ] Fontes e pendências estão localizadas.
-- [ ] Voz, proibições e dicionário foram conferidos.
-- [ ] Próxima ação e estado do pipeline estão claros.
+- [ ] O resultado de primeiro valor está ligado à promessa de compra.
+- [ ] Janela, unidade e evento do marco estão definidos.
+- [ ] Configuração e demonstração não se confundem com uso real.
+- [ ] Cada passo obrigatório possui motivo.
+- [ ] Cada lembrete tem condição de saída.
+- [ ] A pessoa retoma sem refazer o trabalho.
+- [ ] Dependências da equipe aparecem com responsável.
+- [ ] Retenção posterior e volume de ajuda acompanham ativação.
 
 ## Erros comuns
 
-- Começar pelo formato antes de confirmar objetivo, público e fonte.
-- Usar promessa, preço, número ou nome sem registro local.
-- Aplicar a mesma mensagem a personas com contextos diferentes.
-- Salvar o resultado sem caminho, ID ou alcance da escolha.
+- Disparar sequência inteira por calendário fixo: avaliar o estado antes de cada envio.
+- Tratar clique no email como ativação: confirmar o resultado útil no produto.
+- Exigir todos os recursos na primeira sessão: conservar apenas o necessário ao primeiro uso.
+- Cobrar implantação do usuário enquanto a equipe deve liberar acesso: separar os responsáveis.
+- Melhorar tempo apenas entre quem concluiu e omitir abandonos: mostrar toda a coorte.
+- Misturar uso demonstrativo e real: identificar o tipo de dado no evento.
+- Mostrar progresso inventado: contar apenas tarefas efetivamente concluídas.
 
-## Relação com inboundfy-growth-onboarding
+## Guia específico do grupo
 
-Use este modelo como roteiro mínimo e acrescente apenas campos pedidos pelo projeto. O arquivo final deve ficar ligado ao acervo, à peça e ao calendário quando houver data.
+Growth organiza o caminho ao primeiro valor, seus canais e a continuidade
+operacional. A skill não redefine condições de trial, preço ou produto.
+`inboundfy-growth-signup` recebe problemas anteriores à conta;
+`inboundfy-growth-paywall` recebe passagem ao acesso pago;
+`inboundfy-growth-retencao` recebe uso recorrente.
+
+Confirme antes de entregar: o cliente consegue executar a próxima tarefa?
+Quem resolve cada dependência? Qual evento encerra os lembretes?
+Consulte `ESTRATEGIA.md`, `CONTEXTO.md` e
+`docs/method/05-artefatos-e-estados.md` para salvar o fluxo.
 
 ## Arquitetura aplicada
 
@@ -59,165 +167,3 @@ Esta referência usa o contrato comum para a skill **inboundfy-growth-onboarding
 - [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
 - [validação e retomada](../_shared/04-validacao-e-retomada.md);
 - [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de onboarding dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-growth-onboarding
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de onboarding
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-growth-onboarding
-grupo: growth
-entrada: acervo/0042-2026-09-14-onboarding/processado.md
-pedido: aplicar a etapa de onboarding e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-growth-onboarding
-estado: aprovado
-entrada: acervo/0042-2026-09-14-onboarding/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de onboarding
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-growth-onboarding** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
-
-## Guia específico do grupo
-
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
-
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-growth-onboarding** para executar esta função: Planeja a comunicação inicial após a compra com marcos, instruções, dúvidas, ativação e voz adaptada ao estágio do cliente.
-
-O grupo **growth** trabalha com estes campos mínimos:
-
-- **objetivo:** preencher com dado ligado ao pedido.
-- **público:** preencher com dado ligado ao pedido.
-- **canal:** preencher com dado ligado ao pedido.
-- **oferta:** preencher com dado ligado ao pedido.
-- **próxima ação:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-growth-onboarding
-grupo: growth
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/estrategia.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-growth-onboarding
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/estrategia.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **growth** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESTRATEGIA.md`
-- `CONTEXTO.md`
-- `docs/method/05-artefatos-e-estados.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.

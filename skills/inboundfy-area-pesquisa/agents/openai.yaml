@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy: Pesquisa e concorrência"
+  short_description: "Encaminha pesquisas de mercado para a skill certa"
+  default_prompt: "Use $inboundfy-area-pesquisa para entender meu pedido de pesquisa e concorrência e encaminhar para a skill certa."

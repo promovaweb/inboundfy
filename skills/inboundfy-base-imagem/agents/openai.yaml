@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Base Imagem"
-  short_description: "Executa base imagem no Inboundfy"
-  default_prompt: "Use $inboundfy-base-imagem para executar base imagem com as fontes do projeto."
+  display_name: "Inboundfy: Composição de imagem"
+  short_description: "Card ou thumbnail conferido com a identidade da marca"
+  default_prompt: "Use $inboundfy-base-imagem para gerar esta arte com as medidas e o texto que passei, usando a identidade visual da marca."

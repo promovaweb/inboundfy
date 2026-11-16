@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy: Links externos"
+  short_description: "Planeja links externos e confere publicações"
+  default_prompt: "Use $inboundfy-seo-links-externos para escolher ativos citáveis, localizar oportunidades editoriais e acompanhar os links recebidos."

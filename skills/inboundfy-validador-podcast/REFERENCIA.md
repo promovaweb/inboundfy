@@ -1,194 +1,219 @@
-# REFERENCIA.md; inboundfy-validador-podcast
+# Auditoria de pauta e shownotes de podcast
 
-Use o template de `inboundfy-base-validador` com a produtora
-`inboundfy-especialista-podcast`.
+## Preparação da rodada
 
-## Checklist específico
+Leia integralmente a candidata, o brief, acervo e a [produtora pareada](../inboundfy-especialista-podcast/SKILL.md), incluindo [seu manual](../inboundfy-especialista-podcast/REFERENCIA.md) e o exemplo completo. Aplique `inboundfy-base-validador` antes da conferência do canal. A validadora relata; ela não altera a candidata.
 
-- [ ] Participantes e competências conferem com o contexto.
-- [ ] A pauta orienta conversa, sem roteiro fechado artificial.
-- [ ] Os shownotes foram lidos por inteiro e cada achado verificável foi tratado.
-- [ ] Links apontam para endereços confirmados.
-- [ ] Blocos cobrem o objetivo do brief.
+O manifesto inclui todos os Markdown de `.inboundfy/context/`, `.inboundfy/fontes-projeto.md`, fontes locais relevantes, regras editoriais, histórico e `brand/` quando existir. Não limite a leitura aos arquivos citados pela produtora. Ausência obrigatória ou conflito factual impede aprovação e recebe destino explícito.
 
-## Exemplo fictício
+## Procedimento para este canal
 
-Se o shownote atribui cargo desatualizado ao convidado, reprove, cite o
-contexto e devolva à produtora.
+1. Confirme o formato de pauta e shownotes de podcast e a versão recebida; identifique o caminho e o ID sem renomear a peça.
+2. Compare os campos e parâmetros com o brief. Os alvos editoriais da produtora não são limites técnicos universais. Uma faixa diferente precisa estar registrada no brief, não ser aceita silenciosamente.
+3. Aplique os itens 1 a 6 do checklist ao conteúdo específico de `podcast`. Registre trechos e fontes; gosto pessoal não produz reprovação.
+4. Aplique os itens 7 a 11 ao conjunto inteiro. Execute passe literal de vetos, passe semântico de paráfrases e leitura estrutural do documento. Inspecione texto visual quando existir.
+5. Registre `inboundfy-copy-editor` e A5 conforme a base. Preencha matriz, achados e encaminhamento. Não use nota, percentual editorial ou aprovação condicional.
+6. Após correção, releia tudo, repita os passes e execute `inboundfy content digest <id>` para obter caminho e SHA-256 completo da versão final antes de aprovar. Copie os campos canônicos da base. Mudança posterior invalida a aprovação anterior.
 
-## Erros comuns
+## Checklist numerado do par
 
-Aplicar a régua de prosa pública à pauta interna e ignorá-la nos shownotes.
+Esta lista espelha exatamente a produtora. Resultado permitido por item: conforme, não conforme ou não aplicável com justificativa. Qualquer ocorrência de veto literal, semântico ou estrutural reprova a peça. Falta visual obrigatória também exige correção antes de aprovação.
 
-## Arquitetura aplicada
+1. [ ] **literal**: Participantes, data, fase, episódio, duração, fonte final e `brief` de pacote foram registrados; nomes conferem com contexto.
+2. [ ] **estrutural**: Pauta tem blocos, objetivos, perguntas abertas, transições e tempos previstos cuja soma cabe na duração.
+3. [ ] **semântica**: Shownotes descrevem apenas a edição final; pauta não foi usada como prova de fala ou assunto gravado.
+4. [ ] **literal**: Tempos crescem dentro da duração final e foram conferidos; sem áudio, não há tempos inventados.
+5. [ ] **semântica**: Resumo específico, atribuições e links têm fonte; prosa pública passou por revisão e CTA é único.
+6. [ ] **visual**: Shownotes permitem leitura e navegação por capítulos; capa ou player existente respeita marca e acessibilidade.
+7. [ ] **literal**: ID, estado real, persona, origem e fontes estão ligados à peça; o exemplo fictício não virou contexto do consumidor.
+8. [ ] **semântica**: Voz e afirmações conferem com todos os contextos e fontes aplicáveis; lacuna factual permanece fora da copy.
+9. [ ] **estrutural**: Proibições foram revistas em passes literal e semântico/estrutural no arquivo inteiro, inclusive metadata, links e CTA.
+10. [ ] **visual**: `brand/` foi procurada; ativos existentes e texto visual foram inspecionados ou a ausência foi justificada.
+11. [ ] **estrutural**: Revisão de `inboundfy-copy-editor`, marco A5 e retorno da validadora foram registrados; mudança exige nova leitura integral.
 
-Esta referência usa o contrato comum para a skill **inboundfy-validador-podcast**, do grupo
-**validador**. Leia os detalhes compartilhados conforme a etapa atual:
+## Categorias e alcance da leitura
 
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
+| Categoria | Leitura aplicada a podcast | Registro necessário |
+| --- | --- | --- |
+| Literal | Campos, nomes, URLs, números e termos vedados, inclusive frontmatter | Campo ou trecho exato e origem da regra |
+| Semântica | Promessa, fatos, intenção, atribuição e paráfrase de veto | O que a frase afirma e qual fonte a sustenta ou contradiz |
+| Estrutural | Ordem dos blocos, função das seções e pedidos ao leitor | Relação entre seções e item numerado violado |
+| Visual | Hierarquia, tabelas, ativos de marca e prévia disponível | Artefato realmente inspecionado; ausência justificada quando aplicável |
 
-## Contrato específico
+Uma imagem não inspecionada não recebe resultado conforme. Se não houver recurso de prévia, registre a limitação e não afirme teste de tela. Se o brief exigir exportação ou prévia, mantenha essa pendência obrigatória aberta.
 
-- **Função:** executar a capacidade de validador podcast dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
+## Template de relatório
 
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-validador-podcast
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de validador podcast
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-validador-podcast
-grupo: validador
-entrada: acervo/0042-2026-09-14-validador-podcast/processado.md
-pedido: aplicar a etapa de validador podcast e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
+Use [o relatório canônico da base](../inboundfy-base-validador/REFERENCIA.md#template-do-relatório), preservando todas as suas seções e rótulos. Salve em `06-auditoria/assets/<canal>-<item>.md` no pacote ou `<nome-do-asset>.auditoria.md` junto da peça avulsa. O quadro de canal complementa o relatório da base, sem substituir manifesto, matriz ou histórico.
 
 ```markdown
----
-id: 0042
-skill: inboundfy-validador-podcast
-estado: aprovado
-entrada: acervo/0042-2026-09-14-validador-podcast/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
+# Validação de asset; podcast/{item}
 
-# Registro de validador podcast
+- **Asset:** `{caminho da candidata}`
+- **Brief:** {caminho ou peça avulsa}
+- **Produtora:** inboundfy-especialista-podcast
+- **Validadora:** inboundfy-validador-podcast
+- **Rodada:** {número}
+- **ID da peça:** `{ID}`
+- **SHA-256 da peça:** `{hash completo obtido pelo digest da candidata}`
+- **Veredito:** {aprovado | reprovado | devolvido para briefing | impedido}
 
-## Resultado
+## Fontes carregadas
 
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
+| Arquivo ou ativo | Estado | Uso na auditoria |
+| --- | --- | --- |
+| {cada contexto, fonte, regra e ativo} | {lido ou impedimento} | {campo ou afirmação conferida} |
 
-## Próxima ação
+## Conferência do canal
 
-{verbo + objeto + caminho do arquivo seguinte}
+| Item | Categoria | Resultado | Comprovação localizada |
+| --- | --- | --- | --- |
+| {1 a 11, uma linha por item} | {categoria do checklist} | {resultado} | {local e fonte} |
+
+## Achados
+
+| Localização | Trecho observado | Regra ou fonte | Diagnóstico e correção |
+| --- | --- | --- | --- |
+| {arquivo e seção} | {trecho} | {item e origem} | {alteração verificável, sem editar a candidata} |
+
+## Conferência de proibições
+
+{Matriz completa da base: vetos de negócio, aberturas, fechamentos, vocabulário, parágrafos, headings/listas, pontuação/fluidez e autoridade/dados.}
+
+## Marca e apresentação
+
+{Arquivos e ativos inspecionados, resultados e pendências.}
+
+## A5 e revisão editorial
+
+{Caminho, ciclo e resultado do A5; achados do copy-editor e tratamento.}
+
+## Encaminhamento
+
+- **Destino:** {produtora, planejamento, usuário ou nenhum}
+- **Instrução:** {correção e nova leitura integral}
+
+## Histórico
+
+- Rodada {número}: {síntese e veredito}.
 ```
 
-## Checklist ampliado
+## Exemplo de relatório preenchido
 
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
+Este relatório é uma demonstração de reprovação. Empresa, pessoas, arquivos e rodada são fictícios. A versão defeituosa contém a alteração descrita abaixo em relação ao [exemplo integral](../inboundfy-especialista-podcast/references/exemplo-completo.md). Não representa auditoria realizada no consumidor. O hash não foi calculado, pois não existe candidata persistida; esta demonstração nunca autoriza estado aprovado.
 
-## Erros comuns adicionais
+```markdown
+# Validação de asset; podcast/fornada
 
-- Executar **inboundfy-validador-podcast** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+- **Asset:** `canais/podcast/0042-2026-09-14-fornada/README.md`
+- **Brief:** conteudo/fornada/04-briefs/podcast-fornada.md
+- **Produtora:** inboundfy-especialista-podcast
+- **Validadora:** inboundfy-validador-podcast
+- **Rodada:** 1
+- **ID da peça:** `0042`
+- **SHA-256 da peça:** não calculado; demonstração sem candidata persistida
+- **Veredito:** reprovado
+
+## Fontes carregadas
+
+| Arquivo ou ativo | Estado | Uso na auditoria |
+| --- | --- | --- |
+| conteudo/fornada/04-briefs/podcast-fornada.md | lido | Formato e objetivo específico de podcast |
+| acervo/0042-2026-09-14-fornada/base-editorial.md | lido | Persona-01 e base factual do caso |
+| acervo/0042-2026-09-14-fornada/processado.md | lido | Caso didático de fechamento |
+| acervo/0042-2026-09-14-fornada/episodio-final.mp3 | lido | Duração final 12:00 e capítulos da simulação |
+| .inboundfy/fontes-projeto.md | lido | Registro didático das fontes locais |
+| .inboundfy/context/empresa.md | lido | Empresa fictícia em Campinas |
+| .inboundfy/context/marca-voz.md | lido | Voz direta e assinatura da equipe |
+| .inboundfy/context/publico.md | lido | Persona-01, responsável pelo balcão |
+| .inboundfy/context/produtos.md e servicos.md | lido | Nenhuma funcionalidade ou oferta acrescida |
+| .inboundfy/context/ofertas.md | lido | Sem oferta paga nesta peça |
+| .inboundfy/context/pessoas.md | lido | Lia e Beto pertencem ao caso fictício |
+| .inboundfy/context/links.md e ferramentas.md | lido | Destino didático da ficha, sem integração real |
+| .inboundfy/context/canais.md e integracoes.md | lido | Caminho demonstrativo, sem envio autorizado |
+| .inboundfy/context/glossario.md e aprendizado.md | lido | Grafias e alcance da orientação |
+| .inboundfy/context/proibicoes.md e estruturas-proibidas.md | lido | Passes integralmente realizados na simulação |
+| Demais Markdown encontrados no contexto didático | lido | Nenhum conflito com a peça |
+| SKILL.md e REFERENCIA.md da produtora e validadora | lido | Contrato de podcast e checklist 1 a 11 |
+| ESCRITA.md, ESTRUTURAS-PERSUASIVAS.md, CONTEXTO.md e METODOLOGIA.md | lido | Prosa, fontes e fluxo |
+| brand/ | não aplicável | Ausente no cenário didático |
+
+## Conferência do canal
+
+| Item | Resultado | Comprovação localizada |
+| --- | --- | --- |
+| 1 | conforme | Frontmatter conferido contra template do canal |
+| 2 | conforme | Intenção, atribuição e alcance comparados com a origem |
+| 3 | conforme | Blocos e ação principal lidos na sequência completa |
+| 4 | não conforme | capítulos, marca 13:20: 13:20: encerramento |
+| 5 | conforme | Links, grafias e fechamento conferidos no escopo do canal |
+| 6 | conforme | Hierarquia legível no Markdown; sem mídia ou prévia exigida |
+| 7 | conforme | ID, persona e origem didática presentes nas relações |
+| 8 | conforme | Afirmações comparadas com o contexto didático |
+| 9 | conforme | Passes literal e semântico/estrutural sem veto na simulação |
+| 10 | não aplicável | brand/ ausente no cenário |
+| 11 | não conforme | Candidata ainda exige correção e nova rodada |
+
+## Achados
+
+| Localização | Trecho observado | Regra ou fonte | Diagnóstico e correção |
+| --- | --- | --- | --- |
+| README.md, capítulos, marca 13:20 | 13:20: encerramento | Áudio final tem 12:00; encerramento inicia 10:05 | Substituir pelo tempo conferido e revisar todas as marcações no áudio final. |
+
+## Conferência de proibições
+
+| Categoria | Passe literal | Passe semântico/estrutural | Ocorrências |
+| --- | --- | --- | --- |
+| Vetos de negócio | aprovado | aprovado | nenhuma |
+| Aberturas proibidas | aprovado | aprovado | nenhuma |
+| Fechamentos proibidos | aprovado | aprovado | nenhuma |
+| Vocabulário proibido | aprovado | aprovado | nenhuma |
+| Estruturas de parágrafo | aprovado | aprovado | nenhuma |
+| Headings e listas | aprovado | aprovado | nenhuma |
+| Pontuação e fluidez | aprovado | aprovado | nenhuma |
+| Autoridade e dados | aprovado | aprovado | nenhuma |
+
+## Marca e apresentação
+
+Sem brand/ ou imagem no cenário. Conferida a hierarquia do Markdown. Nenhuma inspeção de provedor ou publicação foi simulada como teste real.
+
+## A5 e revisão editorial
+
+Registro didático: auditorias/anti-slop/05-peca.md, ciclo 1. A revisão localizou o mesmo achado descrito acima. Correção ainda não aplicada; novo A5 e nova leitura integral serão necessários.
+
+## Encaminhamento
+
+- **Destino:** inboundfy-especialista-podcast
+- **Instrução:** Substituir pelo tempo conferido e revisar todas as marcações no áudio final. Devolver a peça inteira para nova rodada, incluindo digest real antes de qualquer aprovação.
+
+## Histórico
+
+- Rodada 1: reprovado pelo achado localizado; nenhuma candidata foi alterada pela validadora.
+```
+
+Na execução real, liste cada arquivo do manifesto individualmente, com o caminho efetivo. As linhas agrupadas acima resumem somente o cenário fictício. Para aprovação real, o relatório precisa de ID, caminho e SHA-256 completo retornados por `inboundfy content digest <id>` e `Veredito: aprovado`, conforme o formato canônico da base.
+
+## Erros comuns de auditoria
+
+- Publicar assunto cortado na edição porque estava na pauta. Reouça a versão final.
+- Transformar perguntas em falas atribuídas ao convidado. Preserve as perguntas como guia.
+- Copiar tempos do áudio bruto para o final. Reconfira depois de qualquer corte.
+- Aprovar apenas os campos visíveis do canal e omitir vetos no frontmatter ou no CTA. Faça os passes sobre o conjunto inteiro.
+- Declarar texto visual conforme sem abrir o ativo. Registre ausência ou pendência, conforme o brief.
+- Corrigir a candidata dentro da validadora. Descreva a alteração necessária e devolva à produtora.
 
 ## Guia específico do grupo
 
-Leia o asset inteiro contra brief, fontes, contexto e formato. Relate local, regra, fonte e ação; devolva à produtora sem editar o original.
+O grupo `validador` registra asset, brief, fontes, achados e estado real. Reprovação retorna a `inboundfy-especialista-podcast`; divergência de finalidade volta a `inboundfy-planejamento`; fato obrigatório ausente vai ao responsável pelo contexto. Não transforme ausência factual em aprovação parcial. Preserve relatório e histórico por rodada no mesmo caminho. Uma alteração de origem exige nova auditoria completa.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+## Arquitetura aplicada
 
-## Especificação operacional
+- Antes da redação ou auditoria: [preflight e fontes](../_shared/01-preflight-e-fontes.md).
+- Ao registrar a peça: [artefato e relações](../_shared/02-contrato-de-artefato.md).
+- Nas escolhas e entrega: [checkpoints e handoff](../_shared/03-interacao-e-handoff.md).
+- A cada rodada: [validação e retomada](../_shared/04-validacao-e-retomada.md).
+- Antes de qualquer texto público: [contexto editorial](../_shared/05-contexto-editorial.md).
 
-### Quando usar
+Na auditoria, consulte também `docs/method/07-validacao-e-testes.md`.
 
-Use **inboundfy-validador-podcast** para executar esta função: Valida pauta e shownotes produzidos por inboundfy-especialista-podcast contra brief, todos os contextos, escrita, proibições, participantes, links e contrato do canal antes da entrega.
-
-O grupo **validador** trabalha com estes campos mínimos:
-
-- **asset:** preencher com dado ligado ao pedido.
-- **brief:** preencher com dado ligado ao pedido.
-- **fontes:** preencher com dado ligado ao pedido.
-- **achados:** preencher com dado ligado ao pedido.
-- **estado:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-validador-podcast
-grupo: validador
-pedido: executar a função desta skill sobre o material selecionado
-entrada: canais/podcast/0042-2026-09-14-peca/README.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-validador-podcast
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - canais/podcast/0042-2026-09-14-peca/README.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **validador** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `CONTEXTO.md`
-- `docs/method/07-validacao-e-testes.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Leia também `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md`, `CONTEXTO.md` e `METODOLOGIA.md`. Os caminhos `context/` resolvem para `.inboundfy/context/` no consumidor; preserve a resolução e os diretórios já configurados.

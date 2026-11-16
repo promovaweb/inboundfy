@@ -1,225 +1,114 @@
-# REFERENCIA.md; inboundfy-especialista-linkedin-imagem
+# Imagem de post e capa de artigo LinkedIn: produção
 
-## Formato
+O par `inboundfy-especialista-linkedin-imagem` e `inboundfy-validador-linkedin-imagem` usa a mesma numeração de conferência. Esta referência trata exclusivamente linkedin-imagem. Dimensões abaixo são exemplos de trabalho já usados pelo framework, não limites universais de plataforma. `context/canais.md` define a dimensão exata do projeto.
 
-| Peça | Proporção | Dimensão comum |
+## Formato e pacote
+
+| Peça | Proporção | Dimensão de referência |
 | --- | --- | --- |
-| Imagem de post nativo | 1:1 ou 4:5 | 1080×1080 ou 1080×1350 |
-| Capa de artigo longo | 1.91:1 | 1200×627 |
+| Post | 1:1 ou 4:5 | 1080×1080 ou 1080×1350 |
+| Capa de artigo | 1.91:1 aproximada | 1200×627 |
 
-Confirme sempre em `context/canais.md`. Post no formato 4:5 ocupa mais
-espaço vertical no feed do que 1:1; prefira 4:5 quando o objetivo for
-maximizar atenção no scroll.
+- Fonte ou motor: Geração por inboundfy-base-imagem com frase do texto final.
+- Arquivos: post.png ou capa-artigo.png e README.md ligado ao texto correspondente.
+- Destino: `97-ativos-finais/linkedin/<item>/`. Não criar caminhos alternativos.
+- Exporte em sRGB. Use PNG para texto e ilustração; fotografia pode usar JPEG ou formato aceito pelo canal. Abra a exportação, não apenas o arquivo de edição. Dimensão, extensão e peso reais entram no README.
 
-## Exemplo de brief de imagem (post nativo, fictício)
+## Composição e escolha de abordagem
 
-```text
-Formato: 4:5, 1080x1350
-Texto principal: "3 sinais de que seu processo de onboarding está falho"
-Texto secundário: (nenhum; post nativo usa só o texto principal)
-Tom visual: direto, técnico, alto contraste
-Elemento de marca obrigatório: logo no canto inferior direito, cor de destaque da marca no fundo
+| Situação observada | Ação |
+| --- | --- |
+| Post com tese curta | Uma frase visual; explicação permanece no texto do post. |
+| Artigo com título e subtítulo | Capa horizontal com título dominante e subtítulo de apoio. |
+| Estatística exige ressalva extensa | Usar outra frase aprovada ou pedir nova copy; não esconder a ressalva. |
+
+1. Identifique post ou artigo no brief. Capa de perfil e banner institucional têm outro uso; não substitua a peça por esses formatos.
+2. Leia o texto final e selecione uma frase que permaneça verdadeira sozinha. Preserve ressalvas que mudam o sentido. Se o dado depende de amostra ou período, mantenha a identificação visível ou escolha uma frase sem número.
+3. Para post, planeje uma frase central e um objeto visual; mantenha explicação na legenda. Para artigo, organize título e subtítulo aprovado com hierarquia editorial.
+4. Passe texto literal e formato a `inboundfy-base-imagem`. Use identidade da série quando registrada, sem fabricar interface, relatório, selo ou depoimento.
+5. Abra o arquivo a 300 px de largura e simule o recorte do destino. Confira palavras, marca e leitura. Legibilidade exige preview real, não uma impressão mental.
+6. Salve a imagem junto ao texto e registre qual frase e qual seção autorizaram seu conteúdo. Se a frase precisar mudar, devolva a alteração à especialista de texto antes de gerar outra versão.
+
+## Template de brief visual e entrega
+
+Preencha antes de chamar o motor ou buscar a foto. Preserve o envelope do contrato compartilhado no README. O texto entre chaves é campo de preenchimento.
+
+```yaml
+id: "{ID da peça}"
+skill: inboundfy-especialista-linkedin-imagem
+estado: revisao
+brief: "04-briefs/{arquivo}.md"
+entrada: "{texto final e versão}"
+persona: "{ID confirmado}"
+fontes:
+  - "{context/canais.md e identidade visual}"
+destino: "{post nativo ou artigo}"
+frase_literal: "{trecho aprovado}"
+origem_frase: "{arquivo e seção}"
+subtitulo: "{somente quando aprovado para capa de artigo}"
+serie_visual: "{referência local ou não aplicável}"
+objeto_visual: "{objeto que explica a tese}"
+alt: "{texto e elemento visual relevantes}"
+saidas:
+  - "{caminho de cada arquivo exportado}"
+preview: "{largura de teste, recorte e resultado observado}"
+pendencias: []
+proxima_skill: inboundfy-validador-linkedin-imagem
 ```
 
-## Exemplo de brief de imagem (capa de artigo, fictício)
+O README relaciona o brief, o texto final, cada exportação, suas dimensões, peso, alt e origem dos ativos. No pacote, mantenha `brief` no frontmatter. Texto longo em imagem exige transcrição acessível junto ao arquivo; o alt não substitui a transcrição.
 
-```text
-Formato: 1.91:1, 1200x627
-Texto principal: "Como estruturar um processo de onboarding em 30 dias"
-Texto secundário: "Guia prático para times de até 20 pessoas"
-Tom visual: editorial, sóbrio
-Elemento de marca obrigatório: logo pequeno no canto, sem sobrepor o texto
-```
+## Exemplo completo de produção
 
-## Checklist específico de LinkedIn
+A empresa fictícia brasileira **Nuvem de Papel**, de Belo Horizonte, presta organização administrativa para escritórios. O post aprovado explica que o responsável por cada prazo precisa constar no registro da equipe.
 
-- [ ] Texto legível no tamanho de miniatura de feed (teste reduzindo a
-      imagem a ~300px de largura mentalmente).
-- [ ] Proporção certa para o formato pedido (post vs. capa de artigo não
-      compartilham a mesma proporção).
-- [ ] Sem excesso de texto; post nativo funciona melhor com uma frase
-      curta e de alto impacto, não um parágrafo inteiro na imagem.
-- [ ] Consistência visual com outras peças recentes do mesmo canal, se o
-      usuário mantiver série ou identidade de post.
+Brief 0042 pede um post 1080×1350 em `97-ativos-finais/linkedin/responsavel-prazo/`. Frase literal aprovada: “Cada prazo precisa de uma pessoa responsável”. A imagem mostra uma ficha ilustrada com os campos “Prazo” e “Responsável”, sem dados pessoais. A ficha é ilustração explicativa, não captura do produto. Fundo azul escuro, texto creme e logo fornecido pela marca no rodapé, com margem de 72 px.
 
-## Erros comuns
+Alt: “Frase Cada prazo precisa de uma pessoa responsável, acompanhada por ficha ilustrada de prazo e responsável”. README aponta para a seção “Registro de responsabilidades” do texto final, preserva a frase e identifica `post.png`, 1080×1350. A 300 px, a frase e os dois rótulos podem ser lidos.
 
-- Usar a mesma proporção para post e capa de artigo; são contextos de
-  exibição diferentes no LinkedIn e a proporção errada corta a imagem.
-- Colocar texto secundário longo em post nativo; o formato de post
-  favorece uma única frase de impacto, não um bloco de texto duplo.
-- Ignorar o teste de miniatura; uma imagem que parece boa em tela cheia
-  pode ficar ilegível no tamanho reduzido do feed.
+Variante prevista no mesmo modelo para outro brief de artigo: `capa-artigo.png`, 1200×627; título aprovado “Como registrar os prazos da equipe”; subtítulo “Campos e revisão semanal”. Não usar a proporção do post para a capa. A composição horizontal mantém a ficha à direita e título à esquerda. Essa variante exige seu próprio vínculo e revisão, sem trocar o arquivo do post.
+
+Entrega do brief 0042: `post.png` e README, estado revisao, destino `inboundfy-validador-linkedin-imagem`.
+
+## Checklist numerado espelhado
+
+Os números abaixo têm o mesmo significado nas duas skills. Registre `atende`, `não atende` ou `não aplicável` com justificativa; não use notas ou médias para aprovar.
+
+1. **Literal:** Frase, dados e subtítulo coincidem com o texto aprovado; grafias e vetos incluem alt e metadados.
+2. **Literal:** README identifica o trecho do texto que autoriza a frase e o destino exato: post ou artigo.
+3. **Semântica:** Frase isolada preserva condições do argumento; imagem não transforma ilustração em captura ou comprovação real.
+4. **Semântica:** Imagem atende à tese do post ou artigo e não insere promessa comercial, selo ou depoimento adicional.
+5. **Estrutural:** Post ou capa usa o arquivo e o diretório contratados com vínculo ao texto correspondente.
+6. **Estrutural:** Proporção e dimensões correspondem ao destino; capa de perfil não foi confundida com capa de artigo.
+7. **Visual:** Texto é legível no preview real de 300 px e não fica cortado no destino previsto.
+8. **Visual:** Logo, paleta e tipografia seguem a marca e a série registrada; título domina o subtítulo quando presente.
+
+## Erros comuns e correções
+
+- Criar imagem com o parágrafo inteiro: usar a frase aprovada.
+- Retirar condição de um número: preservar a ressalva ou trocar o trecho.
+- Usar banner de perfil como capa de artigo: conferir destino no brief.
+
+## Medição e limites
+
+Registrar leitura a 300 px e, após publicação autorizada, cliques ou interações por impressão segundo o objetivo. Comparar posts e artigos separadamente, com período e amostra. A dimensão de referência não substitui a configuração do canal. Se a plataforma mudar sua exigência, confirme a documentação oficial antes de alterar o projeto.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-especialista-linkedin-imagem**, do grupo
-**especialista**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de especialista linkedin imagem dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-especialista-linkedin-imagem
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de especialista linkedin imagem
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-linkedin-imagem
-grupo: especialista
-entrada: acervo/0042-2026-09-14-especialista-linkedin-imagem/processado.md
-pedido: aplicar a etapa de especialista linkedin imagem e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-especialista-linkedin-imagem
-estado: aprovado
-entrada: acervo/0042-2026-09-14-especialista-linkedin-imagem/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de especialista linkedin imagem
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-especialista-linkedin-imagem** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): confirmar sentinelas e fontes antes de abrir o brief visual.
+- [Artefato e relações](../_shared/02-contrato-de-artefato.md): manter ID, estado, origem e relação com cada arquivo visual.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): registrar escolhas já confirmadas e pendências do formato.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): repetir a inspeção completa após cada correção.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): conferir persona, voz, glossário, aprendizado e proibições também nos pixels.
 
 ## Guia específico do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+A especialista prepara o conjunto completo e encaminha arquivos, fontes, medidas e previews a `inboundfy-validador-linkedin-imagem`. Registre a fonte ou motor utilizado, sem expor segredos. Reaproveite a versão existente quando o pedido não exigir refação. Mudança em texto aprovado ou dado factual retorna à fonte responsável; ajuste visual não autoriza mudar a copy.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+## Preparação antes da execução
 
-## Especificação operacional
+No passo 1 do fluxo, leia [preparação do conjunto visual](references/preparacao.md) para conferir as perguntas do formato e a fonte de imagem permitida. Use as respostas já registradas no brief; pergunte apenas pelo dado ausente que altera a composição.
 
-### Quando usar
+## Entrega para a validadora
 
-Use **inboundfy-especialista-linkedin-imagem** para executar esta função: Gera imagem de post e capa de artigo de LinkedIn, reaproveitando o motor de inboundfy-base-imagem com a proporção exigida pelo canal.
-
-O grupo **especialista** trabalha com estes campos mínimos:
-
-- **canal:** preencher com dado ligado ao pedido.
-- **persona:** preencher com dado ligado ao pedido.
-- **objetivo:** preencher com dado ligado ao pedido.
-- **formato:** preencher com dado ligado ao pedido.
-- **validadora:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-linkedin-imagem
-grupo: especialista
-pedido: executar a função desta skill sobre o material selecionado
-entrada: briefs/0042-2026-09-14-linkedin-imagem/brief.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-linkedin-imagem
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - briefs/0042-2026-09-14-linkedin-imagem/brief.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **especialista** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `ESTRUTURAS-PERSUASIVAS.md`
-- `CONTEXTO.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Encaminhe a `inboundfy-validador-linkedin-imagem` o conjunto descrito em Formato e pacote, acompanhado de ID, brief, texto final e versão, fontes, medidas reais e previews. Inclua o registro de origem dos ativos e as pendências. Uma devolução mantém o mesmo ID e informa a rodada; ajuste os arquivos apontados e entregue novamente todas as exportações, não apenas o recorte corrigido.

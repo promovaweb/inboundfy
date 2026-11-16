@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Processar Acervo"
-  short_description: "Executa processar acervo no Inboundfy"
-  default_prompt: "Use $inboundfy-processar-acervo para executar processar acervo com as fontes do projeto."
+  display_name: "Inboundfy: Processar acervo"
+  short_description: "Transcrição limpa em processado.md, original intacto"
+  default_prompt: "Use $inboundfy-processar-acervo para limpar o bruto deste item do acervo e gravar o processado.md com as alterações registradas."

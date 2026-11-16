@@ -11,10 +11,11 @@ setup e encaminha a tarefa ao grupo apropriado. Chame uma skill especialista
 diretamente quando a solicitação já definir a operação e o usuário pedir esse
 atalho. `inboundfy-iniciar` permanece como alias compatível.
 
-O catálogo contém 117 skills: 20 especialistas de canal, 20 validadoras,
-25 capacidades de growth, 8 capacidades de copy, 8 skills de contexto, 4 de
-acervo, 3 grupos de etapas e as capacidades de base, qualidade, entrada e
-orquestração.
+O catálogo contém 128 skills, contadas a partir de `ls -d skills/inboundfy-*/`
+mais a orquestradora `inboundfy`: 20 especialistas de canal, 20 validadoras, 26
+capacidades de growth, 22 capacidades de apoio, 8 capacidades de copy, 8
+skills de contexto, 7 skills de área, 4 de acervo, 5 de base, 3 grupos de
+etapas e as skills de entrada e orquestração.
 
 Para descoberta por máquina, consulte [`skills/catalogo.json`](skills/catalogo.json).
 Cada diretório também possui `REFERENCIA.md`, cinco referências compartilhadas
@@ -24,7 +25,9 @@ e `agents/openai.yaml`.
 
 ```text
 usuário ──→ $inboundfy ──→ setup | brainstorm [00–04] | estratégia [00–03]
-                                      | acervo | peça direta
+                    │                 | acervo | peça direta
+                    └──→ área de trabalho (conteúdo, SEO, copy, growth,
+                                              vendas, dados, pesquisa)
 ideia ──→ brainstorm [00–04] ──┐
 campanha ──→ estratégia [00–03]├──→ planejamento [00–06]
 material bruto ──────────────┘        ↓
@@ -37,7 +40,8 @@ material bruto ──────────────┘        ↓
 
 Os números representam etapas internas obrigatórias. Cada grupo tem uma única
 skill pública e referências numeradas dentro de `references/etapas/`. Base,
-contexto, especialistas e validadoras são selecionadas pela responsabilidade.
+contexto, área, especialistas e validadoras são selecionadas pela
+responsabilidade.
 
 ## Como a orquestradora escolhe o grupo
 
@@ -58,6 +62,8 @@ quando necessário.
   família `inboundfy-contexto-*`, conforme o domínio do arquivo.
 - É uma capacidade mecânica reutilizável (SEO, formatação, edição, imagem)
   → grupo 1 (`inboundfy-base-*`).
+- O assunto é recorrente e pertence a um domínio único → skill de área
+  (`inboundfy-area-*`), que faz o diagnóstico e encaminha.
 - Existe um asset candidato aguardando aprovação → grupo 7
   (`inboundfy-validador-<canal>[-imagem]`) de mesmo sufixo da produtora.
 
@@ -68,12 +74,29 @@ o resto do catálogo.
 
 | Skill | Papel |
 | --- | --- |
-| [inboundfy-setup](skills/inboundfy-setup/SKILL.md) | Instala, atualiza e repara os arquivos de apoio, além de inventariar os Markdown em maiúsculas do projeto sem alterar as fontes. |
+| [inboundfy-setup](skills/inboundfy-setup/SKILL.md) | Instala, atualiza e repara os arquivos de apoio, além de levantar os Markdown em maiúsculas do projeto sem alterar as fontes. |
 | [inboundfy](skills/inboundfy/SKILL.md) | Entrada padrão: verifica setup e encaminha ideias, campanhas, acervo e pedidos de conteúdo. |
 | [inboundfy-brainstorm](skills/inboundfy-brainstorm/SKILL.md) | Executa automaticamente as fases 00 a 04 do brainstorm e entrega `brainstorm.md` aprovado. |
 | [inboundfy-iniciar](skills/inboundfy-iniciar/SKILL.md) | Alias compatível que encaminha pedidos para `inboundfy`. |
 | [inboundfy-acervo](skills/inboundfy-acervo/SKILL.md) | Skill mestre: conduz entrada, processamento, pesquisa, base editorial, estratégia, produção, validação, calendário e catálogo. |
 | [inboundfy-extrair-faq](skills/inboundfy-extrair-faq/SKILL.md) | Extrai perguntas, respostas, fontes e lacunas de cada item do acervo. |
+
+## 0A. `inboundfy-area-*` — Entrada por área de trabalho
+
+Recebem um pedido em linguagem natural, fazem de três a cinco perguntas de
+diagnóstico e entregam um pacote de entrada a uma única skill da área. Não
+produzem o resultado final. O projeto ativa as áreas que usa em
+`.inboundfy/estrategia.md`.
+
+| Skill | Área | Rotas principais |
+| --- | --- | --- |
+| [inboundfy-area-conteudo](skills/inboundfy-area-conteudo/SKILL.md) | conteúdo e canais | `inboundfy-brainstorm`, `inboundfy-acervo`, `inboundfy-planejamento`, `inboundfy-producao` |
+| [inboundfy-area-seo](skills/inboundfy-area-seo/SKILL.md) | SEO e busca | `inboundfy-auditoria-seo`, `inboundfy-arquitetura-site`, `inboundfy-base-seo`, `inboundfy-geo` |
+| [inboundfy-area-copy](skills/inboundfy-area-copy/SKILL.md) | copy e mensagem | `inboundfy-copy-redacao`, `inboundfy-copy-editor`, `inboundfy-copy-oferta`, `inboundfy-anti-slop` |
+| [inboundfy-area-growth](skills/inboundfy-area-growth/SKILL.md) | growth | `inboundfy-growth-*` e `inboundfy-experimentacao` |
+| [inboundfy-area-vendas](skills/inboundfy-area-vendas/SKILL.md) | vendas e receita | `inboundfy-growth-prospeccao`, `inboundfy-growth-email-frio`, `inboundfy-growth-revops` |
+| [inboundfy-area-dados](skills/inboundfy-area-dados/SKILL.md) | dados e mensuração | `inboundfy-metricas`, `inboundfy-rastreamento-conversao`, `inboundfy-atribuicao` |
+| [inboundfy-area-pesquisa](skills/inboundfy-area-pesquisa/SKILL.md) | pesquisa e concorrência | `inboundfy-pesquisa-cliente`, `inboundfy-personas`, `inboundfy-engenharia-reversa` |
 
 ## Capacidades transversais, copy e growth
 
@@ -89,6 +112,7 @@ otimização.
 | [inboundfy-estrategia](skills/inboundfy-estrategia/SKILL.md) | Liga objetivo, oferta, persona, canal, cadência e calendário. |
 | [inboundfy-pesquisa-cliente](skills/inboundfy-pesquisa-cliente/SKILL.md) | Pesquisa linguagem, tarefas, dores, desejos e objeções. |
 | [inboundfy-concorrentes](skills/inboundfy-concorrentes/SKILL.md) | Analisa alternativas, mensagens, provas e lacunas de conteúdo. |
+| [inboundfy-engenharia-reversa](skills/inboundfy-engenharia-reversa/SKILL.md) | Reconstrói canais, funil e cadência de uma referência e propõe testes próprios. |
 | [inboundfy-copy-oferta](skills/inboundfy-copy-oferta/SKILL.md) | Estrutura resultado, mecanismo, prova, condições e CTA. |
 | [inboundfy-copy-redacao](skills/inboundfy-copy-redacao/SKILL.md) | Redige peças orientadas por acervo, canal e persona. |
 | [inboundfy-copy-edicao](skills/inboundfy-copy-edicao/SKILL.md) | Edita copy preservando intenção e melhorando clareza e ritmo. |
@@ -101,6 +125,7 @@ otimização.
 | [inboundfy-growth-lead-magnet](skills/inboundfy-growth-lead-magnet/SKILL.md) | Cria materiais ricos e a sequência de relacionamento. |
 | [inboundfy-growth-lancamento](skills/inboundfy-growth-lancamento/SKILL.md) | Organiza anúncio, demonstração, prova e acompanhamento. |
 | [inboundfy-metricas](skills/inboundfy-metricas/SKILL.md) | Define perguntas, eventos, UTMs, métricas e leitura de desempenho. |
+| [inboundfy-rastreamento-conversao](skills/inboundfy-rastreamento-conversao/SKILL.md) | Planeja eventos, pixels e APIs de conversão e comprova o recebimento. |
 | [inboundfy-atribuicao](skills/inboundfy-atribuicao/SKILL.md) | Compara origens, jornadas, modelos e receita. |
 | [inboundfy-experimentacao](skills/inboundfy-experimentacao/SKILL.md) | Planeja testes de mensagem, oferta, CTA e distribuição. |
 | [inboundfy-anti-slop](skills/inboundfy-anti-slop/SKILL.md) | Audita linguagem, fonte, voz, persona, ritmo e canal antes da publicação. |
@@ -112,6 +137,7 @@ otimização.
 | [inboundfy-growth-parcerias](skills/inboundfy-growth-parcerias/SKILL.md) | Estrutura parcerias de conteúdo, distribuição e co-marketing. |
 | [inboundfy-growth-comunidade](skills/inboundfy-growth-comunidade/SKILL.md) | Planeja conteúdo e presença útil em comunidades. |
 | [inboundfy-growth-distribuicao](skills/inboundfy-growth-distribuicao/SKILL.md) | Organiza distribuição em diretórios, bases e canais externos. |
+| [inboundfy-growth-diretorios](skills/inboundfy-growth-diretorios/SKILL.md) | Prioriza cadastros em diretórios e marketplaces e acompanha envios. |
 | [inboundfy-growth-email-frio](skills/inboundfy-growth-email-frio/SKILL.md) | Cria prospecção por e-mail com personalização e saída simples. |
 | [inboundfy-growth-eventos](skills/inboundfy-growth-eventos/SKILL.md) | Planeja aquisição, convite, cobertura e pós-evento. |
 | [inboundfy-growth-ferramentas-gratuitas](skills/inboundfy-growth-ferramentas-gratuitas/SKILL.md) | Estrutura ferramentas gratuitas para aquisição e relacionamento. |
@@ -123,6 +149,7 @@ otimização.
 | [inboundfy-growth-popups](skills/inboundfy-growth-popups/SKILL.md) | Planeja pop-ups, formulários e regras de captura. |
 | [inboundfy-growth-pricing](skills/inboundfy-growth-pricing/SKILL.md) | Analisa preço, planos, embalagem e mensagens de comparação. |
 | [inboundfy-seo-programatico](skills/inboundfy-seo-programatico/SKILL.md) | Planeja páginas SEO em escala com modelo e revisão. |
+| [inboundfy-seo-links-externos](skills/inboundfy-seo-links-externos/SKILL.md) | Organiza ativos citáveis, menções e conquista de links externos. |
 | [inboundfy-growth-prospeccao](skills/inboundfy-growth-prospeccao/SKILL.md) | Organiza prospecção multicanal por segmento e sinal. |
 | [inboundfy-growth-relacoes-publicas](skills/inboundfy-growth-relacoes-publicas/SKILL.md) | Prepara pautas, press briefings, porta-vozes e fontes. |
 | [inboundfy-growth-referencias](skills/inboundfy-growth-referencias/SKILL.md) | Estrutura programas de indicação e sua medição. |
@@ -162,7 +189,7 @@ skill de planejamento ou especialista.
 
 ## 1B. `inboundfy-growth-*` — Crescimento e distribuição
 
-Os 25 IDs desta família organizam aquisição, ativação, retenção, mídia,
+Os 26 IDs desta família organizam aquisição, ativação, retenção, mídia,
 distribuição, conversão e operação de crescimento. Eles aparecem também na
 lista de capacidades acima e são ativados apenas quando o objetivo do trabalho
 pedir a especialidade correspondente.
@@ -284,9 +311,9 @@ Cada especialista acima possui uma validadora de mesmo sufixo:
 <!-- markdownlint-enable MD013 -->
 
 As 20 validadoras aplicam `inboundfy-base-validador`, leem todos os arquivos
-de `.inboundfy/context/`, o inventário e as fontes locais relevantes, além do
-brief e dos contratos da produtora. Uma reprovação retorna à produtora
-pareada com localização, evidência, regra violada e correção verificável. O
+de `.inboundfy/context/`, o registro de peças e as fontes locais relevantes,
+além do brief e dos contratos da produtora. Uma reprovação retorna à produtora
+pareada com localização, comprovação, regra violada e correção verificável. O
 asset só avança após nova rodada aprovada.
 
 ## Regra central

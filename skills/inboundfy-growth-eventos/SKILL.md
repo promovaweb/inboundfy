@@ -1,16 +1,13 @@
 ---
 name: inboundfy-growth-eventos
-description: Planeja aquisição, conteúdo, convite, inscrição, cobertura e pós-evento a partir do objetivo, público e oferta confirmados.
+description: Planeja eventos próprios, palestras, participação e patrocínio com orçamento e acompanhamento comercial. Use quando o pedido falar em evento, encontro, feira, webinar, patrocínio, inscrição ou retorno dos contatos após o encontro.
 ---
 
 # Marketing de eventos
 
-Use esta skill como capacidade especializada do Inboundfy. Ela organiza a tarefa e devolve material pronto para a orquestradora, sem substituir o setup, a voz, a persona ou a validação do canal.
+Organize a operação antes, durante e depois do encontro. Acordos entre marcas ficam em `inboundfy-growth-parcerias`. Comunicação de novidade fica em `inboundfy-growth-lancamento`.
 
 ## Arquitetura de execução
-
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
@@ -18,52 +15,53 @@ específica desta pasta.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
 
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **growth**.
-
 ## Contexto exigido
 
-Se a configuração estiver incompleta, acione `inboundfy-setup`. Consulte [REFERENCIA.md](REFERENCIA.md), `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`, `.inboundfy/context/marca-voz.md`, `.inboundfy/context/publico.md`, `.inboundfy/context/proibicoes.md`, `.inboundfy/context/glossario.md`, `.inboundfy/pipeline.md`, o acervo relacionado e `.inboundfy/framework/`.
+Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md` antes de alterar artefatos. Na ausência de qualquer sentinela, apresente:
 
-Leia também `.inboundfy/fontes-projeto.md`, as bases editoriais relacionadas e os documentos públicos citados. Antes de entregar copy, consulte `inboundfy-anti-slop` e `inboundfy-copy-edicao`.
+> O setup do Inboundfy ainda não foi concluído ou precisa de reparo neste
+> projeto. Execute `inboundfy-setup` para preparar os arquivos de apoio.
+
+Leia `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`, `.inboundfy/context/publico.md`, `.inboundfy/context/canais.md`, `.inboundfy/context/marca-voz.md`, `.inboundfy/context/glossario.md`, `.inboundfy/context/proibicoes.md` e `.inboundfy/context/estruturas-proibidas.md`. Localize a oferta e as fontes relacionadas ao pedido. Consulte `.inboundfy/framework/` para os contratos instalados. Acione `inboundfy-setup` quando a configuração precisar de reparo.
 
 ## Entrada esperada
 
-Receba um objetivo, um ou mais IDs de acervo, a persona, o canal, a oferta ou o fluxo que precisa ser planejado. Separe fatos confirmados, hipótese de trabalho e pergunta aberta.
+Receba formato, data, fuso, público, tema, capacidade, papel da empresa, equipe, orçamento, destino dos contatos e resultado esperado.
+
+## Perguntas de diagnóstico
+
+- Quem precisa estar presente para o evento cumprir seu objetivo?
+- Que tarefa o participante consegue fazer ao terminar?
+- Qual custo inclui deslocamento, horas e acompanhamento?
+- Quem atende o interesse comercial na semana seguinte?
 
 ## Fluxo
 
-1. Leia [REFERENCIA.md](REFERENCIA.md) e confirme a intenção, o público, o canal e o resultado solicitado.
-2. Consulte voz, persona, proibições e dicionário antes de propor mensagem, segmento, preço, promessa ou CTA.
-3. Relacione cada afirmação ao acervo, à base editorial, à página canônica ou à pesquisa salva no item.
-4. Desenvolva um plano de evento com mensagens por etapa e peças necessárias.
-5. Revise o material com `inboundfy-anti-slop`, `inboundfy-copy-edicao` e a validação específica do canal quando houver copy pública.
-6. Registre caminho, ID, fontes, alcance da regra e pendências; peça confirmação antes de alterar uma configuração global.
+1. Leia [REFERENCIA.md](REFERENCIA.md) e confirme o papel da empresa no evento, o público necessário e o resultado prioritário.
+2. Leia [produção e acompanhamento](references/producao-e-acompanhamento.md). Compare organizar, palestrar, patrocinar ou apenas participar pelo custo total e pela quantidade provável de conversas qualificadas.
+3. Monte cronograma reverso, orçamento com horas da equipe, convites, inscrição, ensaio e alternativa para falha de transmissão.
+4. Prepare roteiro, acessibilidade, acolhimento, registro de interesse e autorização de imagem. Registre contexto e próxima ação por conversa.
+5. Separe pedidos imediatos, interessados em material e pessoas sem intenção comercial. Faça acompanhamento contextual e encaminhe oportunidades ao CRM.
+6. Entregue o plano com ID, fontes, estado, responsável e próxima ação. Para copy pública, leia `ESCRITA.md` e encaminhe a `inboundfy-copy-redacao`, à especialista do canal e à validadora pareada. Aplique `inboundfy-copy-editor` e `inboundfy-anti-slop`.
 
 ## Saída
 
-Um plano de evento com mensagens por etapa e peças necessárias. O material deve manter IDs, links relativos, fontes, persona, canal, estado e próxima ação.
+Entregue plano de evento, orçamento, cronograma, roteiro de experiência, briefs de convite e acompanhamento por segmento. Salve no pacote já definido pelo projeto, com vínculos ao acervo, brief, persona e calendário. Use o campo `brief` nas peças finais. Não crie estrutura paralela ao setup.
 
 ## Validação
 
-- A finalidade e o público estão explícitos.
-- Toda afirmação comercial possui fonte local ou marcação de confirmação.
-- Voz, persona, proibições e dicionário foram aplicados.
-- O formato respeita o canal, o pipeline e o template correspondente.
-- Pendências ficaram registradas sem preenchimento inventado.
+Confirme acesso, fuso, capacidade, ensaio, alternativa técnica, identificação de interessados e responsável pelo acompanhamento. Patrocínio precisa de entregas verificáveis e custo por conversa previsto.
+
+Confira cálculos, denominadores, datas, fontes e autorização aplicável. Devolva promessas sem fonte ao brief. Mantenha o estado `revisao` enquanto houver pendência factual. A publicação depende do estado e da autorização existentes no projeto.
 
 ## Responsabilidade do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
+Grupo **growth**. Registre entrada, transformação executada, arquivo de saída, estado, próxima skill e pendências no pacote de handoff.
 
-Antes do handoff, confirme os campos próprios deste grupo:
+## Encaminhamentos
 
-- **grupo:** growth
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+Use `inboundfy-growth-parcerias` para contrapartidas, `inboundfy-growth-comunidade` para encontros recorrentes e `inboundfy-growth-revops` para encaminhamento ao CRM. Use `inboundfy-growth-distribuicao` para reaproveitar gravações e `inboundfy-growth-diretorios` para cadastros em agendas setoriais.
 
 ## Idempotência
 
-Atualize o mesmo arquivo ou brief quando o ID já existir. Preserve texto aprovado, histórico, fontes e escolhas anteriores; abra uma nova versão apenas após pedido explícito.
+Atualize o plano pelo mesmo ID. Preserve fontes, versões aprovadas e histórico. Mantenha uma inscrição por pessoa e edição. Não dispare lembrete após cancelamento nem repita atendimento já concluído.

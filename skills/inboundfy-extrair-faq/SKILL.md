@@ -1,6 +1,6 @@
 ---
 name: inboundfy-extrair-faq
-description: Extrai uma FAQ ampla de um item do acervo, relacionando perguntas, respostas, fontes, lacunas e pontos que precisam de confirmação.
+description: "Extrai faq.md de um item do acervo, com perguntas numeradas por tema, respostas localizadas no bruto e no processado, estado de cada resposta e lacunas para pesquisa. Use quando a pessoa pedir FAQ, perguntas e respostas, dúvidas do material ou o mapa do que a transcrição responde e do que falta confirmar."
 ---
 
 # Extrair FAQ do acervo
@@ -8,6 +8,10 @@ description: Extrai uma FAQ ampla de um item do acervo, relacionando perguntas, 
 Esta skill transforma o bruto e o processado em uma base de perguntas para
 pesquisa, planejamento, produção e atendimento. Ela não redige a peça final
 nem substitui a base editorial.
+
+## Verificação do setup
+
+Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md` antes de criar ou alterar artefatos. Se faltar um deles, informe: "O setup do Inboundfy ainda não foi concluído ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os arquivos de apoio." Encerre sem escrever. Após a confirmação, leia as fontes locais relevantes e `.inboundfy/context/empresa.md`.
 
 ## Arquitetura de execução
 
@@ -33,59 +37,52 @@ Se a configuração estiver incompleta, acione `inboundfy-setup`. Leia
 
 ## Entrada esperada
 
-Receba um ID do acervo com `bruto.md` e `processado.md` disponíveis. Aceite
-retomada de um `faq.md` já existente, mantendo perguntas confirmadas e
-ampliando somente os trechos ainda não cobertos.
+O ID de um item do acervo com `bruto.md` e `processado.md` na mesma pasta,
+entregue por `inboundfy-processar-acervo` depois do registro A1 em
+`auditorias/anti-slop/01-processado.md`. Aceite retomada de um `faq.md` já
+existente, mantendo perguntas confirmadas e ampliando somente os trechos ainda
+não cobertos.
 
 ## Fluxo
+
+Antes de percorrer as unidades de sentido, leia a tabela de estados e a extração por unidade de [REFERENCIA.md](REFERENCIA.md).
 
 1. Leia cada parágrafo do bruto e do processado sem usar memória externa como
    resposta.
 2. Extraia perguntas sobre fato, pessoa, empresa, produto, serviço, lugar,
    definição, causa, mecanismo, condição, consequência, exemplo, comparação,
    intenção, público, objeção, oferta, CTA, data, número, fonte e lacuna.
-3. Para cada pergunta, registre resposta, origem, estado e observação.
-4. Use os estados `respondida`, `parcial`, `conflitante` e `pendente`.
-5. Preserve perguntas repetidas quando elas cobrem ângulos diferentes; una
+3. Numere as perguntas (Q01, Q02) e registre resposta, origem por parágrafo ou
+   marca temporal, estado (`respondida`, `parcial`, `conflitante` ou
+   `pendente`) e observação.
+4. Preserve perguntas repetidas quando elas cobrem ângulos diferentes; una
    apenas duplicações exatas.
-6. Consulte `.inboundfy/context/glossario.md` para nomes e grafias. Não transforme
+5. Consulte `.inboundfy/context/glossario.md` para nomes e grafias. Não transforme
    uma pergunta em fato sem origem no material ou na pesquisa registrada.
-7. Escreva `faq.md` com uma seção por tema e uma seção final de lacunas.
+6. Escreva `faq.md` no template de [REFERENCIA.md](REFERENCIA.md), com uma
+   seção por tema e a tabela final de lacunas.
+7. Na tabela de lacunas, aponte as verificáveis fora do projeto para
+   `inboundfy-pesquisa-acervo` e as internas para o responsável pelo material.
+
+Antes da entrega, acione `inboundfy-copy-editor` sobre a prosa produzida, trate os achados e releia o derivado inteiro. O original recebido permanece intacto.
 
 ## Saída
 
-Grave `faq.md` no diretório do item. Cada registro deve seguir este formato:
-
-```md
-### Pergunta
-
-**Resposta:** <resposta localizada ou "não informado">
-**Origem:** `bruto.md#trecho` ou `processado.md#trecho`
-**Estado:** respondida | parcial | conflitante | pendente
-**Observação:** <limite, fonte necessária ou pergunta para o usuário>
-```
-
-A saída deve cobrir o maior número possível de perguntas úteis sem repetir
-frases vazias. O README do acervo deve continuar apontando para `faq.md`.
+`faq.md` na pasta do item, no template de [REFERENCIA.md](REFERENCIA.md):
+perguntas numeradas por tema, cada uma com resposta, origem, estado e
+observação, e a tabela `Lacunas para a próxima etapa`. O README do acervo
+continua apontando para `faq.md`. O arquivo segue para
+`inboundfy-pesquisa-acervo` e, depois, para `inboundfy-base-editorial`.
 
 ## Validação
 
-Confirme cobertura por parágrafo, entidades, fatos, números, condições,
-exemplos, objeções e lacunas. Confira todas as grafias contra o dicionário e
-separe respostas localizadas de perguntas sem resposta. Não crie números,
-fontes, depoimentos ou intenções ausentes.
+Confira a checklist numerada de [REFERENCIA.md](REFERENCIA.md) e as grafias
+contra o glossário. Número, fonte, depoimento ou intenção ausente do material
+fica como pergunta pendente.
 
 ## Responsabilidade do grupo
 
 Trabalhe a origem, suas versões derivadas, perguntas, fontes e relações. O bruto permanece intacto e cada derivado aponta para ele.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** acervo
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
 
 ## Idempotência
 

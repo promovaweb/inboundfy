@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Growth Email Frio"
-  short_description: "Executa growth email frio no Inboundfy"
-  default_prompt: "Use $inboundfy-growth-email-frio para executar growth email frio com as fontes do projeto."
+  display_name: "Inboundfy: E-mail de prospecção"
+  short_description: "Sequência B2B com cadência e resposta comercial"
+  default_prompt: "Use $inboundfy-growth-email-frio para escrever uma sequência de prospecção com sinal verificável, entrega conferida e tratamento das respostas."

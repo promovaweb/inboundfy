@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Validador Youtube"
-  short_description: "Executa validador youtube no Inboundfy"
-  default_prompt: "Use $inboundfy-validador-youtube para executar validador youtube com as fontes do projeto."
+  display_name: "Inboundfy: Validação de YouTube"
+  short_description: "Entrega auditoria de YouTube com correções localizadas."
+  default_prompt: "Use $inboundfy-validador-youtube para revisar a candidata de YouTube, conferir cada item da especialista pareada e devolver relatório com fontes e correções localizadas."

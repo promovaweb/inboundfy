@@ -1,6 +1,6 @@
 # Fontes Markdown do Projeto
 
-> Inventário gerado por `inboundfy-setup`. Os arquivos originais permanecem em
+> Registro de fontes gerado por `inboundfy-setup`. Os arquivos originais permanecem em
 > seus caminhos e não são copiados para `.inboundfy/`.
 
 ## Metadados
@@ -16,7 +16,7 @@ uma letra e use somente letras maiúsculas, números, hífens ou sublinhados.
 `README.md`, `AGENTS.md`, `PRODUCT.md` e `COPY-GUIDE.md` são exemplos válidos.
 `readme.md` e `Product.md` ficam fora.
 
-Se `brand/` existir na raiz, todo Markdown dentro dela entra no inventário,
+Se `brand/` existir na raiz, todo Markdown dentro dela entra no registro,
 independentemente de usar maiúsculas ou minúsculas. A pasta pode conter
 manual, voz, tokens, aplicações, logos e outras fontes canônicas de marca.
 Ativos não Markdown permanecem no caminho original e são consultados pelas

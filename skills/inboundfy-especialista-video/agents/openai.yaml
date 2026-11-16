@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Especialista Video"
-  short_description: "Executa especialista video no Inboundfy"
-  default_prompt: "Use $inboundfy-especialista-video para executar especialista video com as fontes do projeto."
+  display_name: "Inboundfy: Redação de Vídeo"
+  short_description: "Produz Vídeo com fontes e revisão pareada."
+  default_prompt: "Use $inboundfy-especialista-video para produzir a peça de Vídeo com o brief aprovado, consultar os modelos do canal e encaminhar o conjunto à validadora pareada."

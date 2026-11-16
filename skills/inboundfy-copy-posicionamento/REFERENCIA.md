@@ -1,27 +1,8 @@
-# Referência de produto e mercado
+# Referência de posicionamento
 
-## Base de mensagem
-
-```md
-empresa:
-produto_ou_serviço:
-para_quem:
-trabalho_do_cliente:
-problema:
-resultado:
-mecanismo:
-diferenciação:
-provas:
-limites:
-alternativas:
-oferta:
-fontes:
-```
-
-## Regra de uso
-
-Esta base orienta as demais skills, mas não substitui a leitura da persona,
-voz, proibições, dicionário e acervo específico da peça.
+Este arquivo apoia os passos 1 a 8 do fluxo de `SKILL.md`: classificação das
+fontes, declaração de posicionamento, template do documento, exemplo
+completo e checklist.
 
 ## Arquitetura aplicada
 
@@ -34,164 +15,232 @@ Esta referência usa o contrato comum para a skill **inboundfy-copy-posicionamen
 - [validação e retomada](../_shared/04-validacao-e-retomada.md);
 - [contexto editorial](../_shared/05-contexto-editorial.md).
 
-## Contrato específico
+## Materiais de apoio
 
-- **Função:** executar a capacidade de produto marketing dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-copy-posicionamento
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de produto marketing
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-copy-posicionamento
-grupo: copy
-entrada: acervo/0042-2026-09-14-produto-marketing/processado.md
-pedido: aplicar a etapa de produto marketing e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-copy-posicionamento
-estado: aprovado
-entrada: acervo/0042-2026-09-14-produto-marketing/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de produto marketing
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-copy-posicionamento** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+| Arquivo | Passo do fluxo | Conteúdo |
+| --- | --- | --- |
+| [references/componentes-de-posicionamento.md](references/componentes-de-posicionamento.md) | Passos 2 a 4 | Alternativas, atributos, valor, cliente ideal, categoria, forças de troca e palavras do cliente. |
+| [references/mapa-de-mensagens.md](references/mapa-de-mensagens.md) | Passo 6 | Mensagem central, pilares, provas por persona e uso nos canais. |
 
 ## Guia específico do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
+Posicionamento é a escolha do lugar que o produto ocupa na cabeça do cliente
+quando ele compara opções. Os campos do grupo são **objetivo** (para que o
+posicionamento será usado agora), **mensagem** (declaração e pilares),
+**persona** (cliente ideal e variações), **canal** (onde o mapa de mensagens
+será aplicado) e **revisão** (fontes, glossário, proibições e voz).
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+Esta base orienta as demais skills, mas não substitui a leitura da persona,
+voz, proibições, dicionário e acervo específico da peça.
 
-## Especificação operacional
+## Classificação das fontes
 
-### Quando usar
+| Classe | Exemplo | Uso permitido |
+| --- | --- | --- |
+| Fato confirmado | Número de clientes no CRM, preço em `ofertas.md`, depoimento com consentimento | Pode virar mensagem e prova. |
+| Fala de cliente | Trecho de entrevista, avaliação, mensagem de WhatsApp registrada | Fonte das palavras do cliente; prova quando autorizada. |
+| Opinião da equipe | "Nosso suporte é o melhor" | Hipótese a confirmar; não vira mensagem pública. |
+| Hipótese | "Construtoras médias devem preferir isso" | Registrar com a forma de testar. |
+| Fonte externa | Relatório de mercado, dado público | Contexto, com link e data de consulta. |
 
-Use **inboundfy-copy-posicionamento** para executar esta função: Mantém o contexto de produto, mercado, posicionamento, público, diferenciação, provas e mensagens que orientam todo o Inboundfy.
+## Declaração de posicionamento
 
-O grupo **copy** trabalha com estes campos mínimos:
+Molde clássico, útil como rascunho interno (não é copy pública):
 
-- **objetivo:** preencher com dado ligado ao pedido.
-- **mensagem:** preencher com dado ligado ao pedido.
-- **persona:** preencher com dado ligado ao pedido.
-- **canal:** preencher com dado ligado ao pedido.
-- **revisão:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-copy-posicionamento
-grupo: copy
-pedido: executar a função desta skill sobre o material selecionado
-entrada: acervo/0042-2026-09-14-material/base-editorial.md
+```text
+Para {cliente ideal} que {situação ou necessidade},
+{produto} é {categoria}
+que {valor principal}.
+Diferente de {alternativa principal},
+{produto} {diferença com prova}.
 ```
 
-Saída:
+Escreva três versões que mudem de verdade uma escolha: o cliente ideal, a
+categoria ou a alternativa principal. Três frases com sinônimos não são três
+opções.
 
-```yaml
-id: 0042
+## Template do documento de posicionamento
+
+```markdown
+---
+id: {{id}}
 skill: inboundfy-copy-posicionamento
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
+versao: {{v1}}
+estado: rascunho
+produto: {{nome oficial conforme glossario.md}}
 fontes:
-  - acervo/0042-2026-09-14-material/base-editorial.md
-proxima_skill: nome-da-proxima-skill
+  - {{entrevistas, CRM, depoimentos, pesquisa de concorrentes}}
+proxima_skill: {{inboundfy-contexto-publico | inboundfy-contexto-oferta | inboundfy-copy-redacao}}
+---
+
+# Posicionamento: {{produto}}
+
+## Alternativas reais
+
+| Alternativa | O que faz bem | Onde falha para o cliente ideal | Fonte |
+| --- | --- | --- | --- |
+| {{...}} | {{...}} | {{...}} | {{...}} |
+
+## Atributos diferentes e valor
+
+| Atributo | Prova | Valor para o cliente |
+| --- | --- | --- |
+| {{...}} | {{...}} | {{...}} |
+
+## Cliente ideal
+
+- Situação: {{o que acontece na empresa ou na vida da pessoa}}
+- Sinais observáveis: {{tamanho, ferramenta usada, gatilho de compra}}
+- Fora do perfil: {{quem não deve comprar e por quê}}
+
+## Categoria
+
+{{Como o cliente procura e nomeia este tipo de solução.}}
+
+## Forças de troca
+
+| Força | Leitura | Fonte |
+| --- | --- | --- |
+| Empurrão | {{...}} | {{...}} |
+| Atração | {{...}} | {{...}} |
+| Ansiedade | {{...}} | {{...}} |
+| Hábito | {{...}} | {{...}} |
+
+## Palavras do cliente
+
+| Para descrever | O cliente diz | A empresa dizia |
+| --- | --- | --- |
+| {{problema}} | {{...}} | {{...}} |
+
+## Declaração escolhida
+
+{{declaração}}
+
+Opções rejeitadas: {{resumo e motivo}}
+
+## Mapa de mensagens
+
+{{ver references/mapa-de-mensagens.md}}
+
+## Hipóteses abertas
+
+| Hipótese | Como testar | Responsável |
+| --- | --- | --- |
+| {{...}} | {{...}} | {{...}} |
+
+## Atualizações encaminhadas
+
+| Skill | Arquivo | Conteúdo | Alcance confirmado |
+| --- | --- | --- | --- |
+| inboundfy-contexto-publico | publico.md | {{...}} | {{projeto}} |
 ```
 
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
+## Exemplo completo: software de gestão de obras
 
-### Perguntas de conferência
+Dados fictícios e ilustrativos. O Gestor Obra é um SaaS inventado, de
+Goiânia, que controla orçamento e compras de obras para pequenas
+construtoras. Custa R$ 290 por mês por empresa.
 
-1. A entrada pertence ao grupo **copy** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
+### Entrada
 
-### Referências de execução
+```yaml
+descricao_atual: "Sistema completo de gestão para construção civil"
+clientes: 140 construtoras ativas em outubro de 2026 (CRM)
+entrevistas: 9 clientes e 4 ex-clientes, registradas em acervo/0402-2026-10-15-entrevistas/
+concorrentes: acervo/0398-2026-10-08-concorrentes/pesquisa.md
+```
 
-Leia, na ordem necessária:
+### Alternativas reais
 
-- `ESCRITA.md`
-- `CONTEXTO.md`
-- `SKILL-AUTORIA.md`
+| Alternativa | O que faz bem | Onde falha para o cliente ideal | Fonte |
+| --- | --- | --- | --- |
+| Planilha no Excel ou Google | Grátis, flexível, todo mundo sabe usar | Ninguém atualiza na obra; o engenheiro descobre o estouro no fim do mês | 7 de 9 entrevistas |
+| ERP de construção de grande porte | Completo, integra contabilidade | Implantação de meses, custo acima de R$ 1.500 por mês | Pesquisa de concorrentes |
+| Mestre de obras anotando no caderno e no WhatsApp | Rápido, sem treinamento | Compra duplicada, nota fiscal perdida | 5 de 9 entrevistas |
 
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+### Atributos diferentes e valor
+
+| Atributo | Prova | Valor para o cliente |
+| --- | --- | --- |
+| Lançamento de compra pelo WhatsApp com foto da nota | Recurso em produção desde março de 2026 | O mestre de obras registra sem abrir sistema; o escritório vê no mesmo dia. |
+| Alerta quando uma etapa passa de 90% do orçado | Recurso em produção | O dono descobre o estouro enquanto ainda dá para negociar. |
+| Implantação em uma semana com importação da planilha | Média de 6 dias nos últimos 30 clientes (CRM) | Não para a obra para trocar de ferramenta. |
+
+### Cliente ideal
+
+- Situação: construtora que toca de 2 a 10 obras residenciais ao mesmo tempo
+  e controla custos em planilha.
+- Sinais observáveis: dono ou engenheiro que já perdeu margem por compra fora
+  do orçamento; equipe de obra que usa WhatsApp.
+- Fora do perfil: incorporadoras com obras acima de 20 mil m², que precisam
+  de integração contábil completa.
+
+### Palavras do cliente
+
+| Para descrever | O cliente diz | A empresa dizia |
+| --- | --- | --- |
+| O problema | "A obra estoura e eu só fico sabendo no fim" | "Falta de visibilidade gerencial" |
+| O resultado | "Saber quanto já gastei em cada etapa" | "Gestão integrada de custos" |
+| A categoria | "Controle de obra", "planilha de obra" | "ERP para construção civil" |
+
+### Declarações apresentadas
+
+1. **Recomendada:** Para construtoras que tocam até 10 obras e controlam
+   custos em planilha, o Gestor Obra é um controle de obra pelo WhatsApp que
+   avisa quando uma etapa vai estourar o orçamento. Diferente da planilha,
+   o registro acontece na obra, no momento da compra.
+2. Para construtoras pequenas que acham o ERP caro e lento, o Gestor Obra é
+   um ERP simples que fica pronto em uma semana. (Compete com ERP, que não é
+   a alternativa da maioria dos clientes ideais.)
+3. Para engenheiros responsáveis por várias obras, o Gestor Obra é um painel
+   de custos por etapa. (Recorta pelo cargo, mas quem compra é o dono.)
+
+O usuário escolheu a declaração 1.
+
+### Atualizações encaminhadas
+
+| Skill | Arquivo | Conteúdo |
+| --- | --- | --- |
+| inboundfy-contexto-publico | publico.md | Cliente ideal e sinais observáveis |
+| inboundfy-contexto-concorrentes | concorrentes.md | Planilha, ERP grande e caderno como alternativas |
+| inboundfy-contexto-oferta | produtos.md | Atributos com prova e limite (sem integração contábil) |
+| inboundfy-contexto-institucional | glossario.md | "controle de obra" como termo de categoria |
+
+### Interpretação
+
+A descrição "sistema completo de gestão" colocava o produto contra ERPs
+grandes, uma disputa que ele perderia. As entrevistas mostraram que a
+alternativa real é a planilha. A nova categoria usa a palavra do cliente e
+o diferencial nasce do momento do registro. A falha provável seria escolher
+a declaração 2 por parecer mais ampla: ela atrai clientes fora do perfil e
+aumenta o cancelamento.
+
+## Checklist
+
+- [ ] Fato, fala de cliente, opinião, hipótese e fonte externa estão
+      classificados.
+- [ ] A alternativa principal é a que o cliente usaria de verdade, inclusive
+      "não fazer nada".
+- [ ] Cada atributo diferente tem prova e valor para o cliente.
+- [ ] O cliente ideal tem situação, sinais observáveis e fora do perfil.
+- [ ] A categoria usa as palavras do cliente.
+- [ ] Três declarações diferentes foram apresentadas e uma foi escolhida.
+- [ ] O mapa de mensagens cobre cada persona ativa.
+- [ ] Nomes conferem com `glossario.md`.
+- [ ] Hipóteses abertas têm forma de teste.
+- [ ] Atualizações de contexto foram encaminhadas com alcance confirmado.
+
+## Erros comuns
+
+- **Posicionar contra o concorrente famoso.** A maioria dos clientes ideais
+  compara com planilha, caderno ou não fazer nada.
+- **Diferencial que todo mundo tem.** "Suporte humanizado" e "fácil de usar"
+  aparecem em toda página do setor. Sem prova específica, não diferencia.
+- **Cliente ideal largo demais.** "PMEs" não ajuda a escolher palavra,
+  exemplo nem canal.
+- **Inventar categoria nova sem necessidade.** Categoria que ninguém procura
+  exige explicar o problema antes de vender; só vale com verba e paciência.
+- **Usar opinião da equipe como prova.** "Nosso atendimento é excelente"
+  precisa de nota de avaliação, tempo de resposta ou depoimento.
+- **Gravar direto no contexto.** Esta skill encaminha; a skill de contexto
+  registra com o formato de `CONTEXTO.md`.

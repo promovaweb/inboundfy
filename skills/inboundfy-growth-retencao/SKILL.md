@@ -1,16 +1,13 @@
 ---
 name: inboundfy-growth-retencao
-description: Planeja comunicação de retenção e cancelamento com base em motivos reais, estágio do cliente, produto e voz da marca.
+description: Planeja retenção, cancelamento e recuperação de pagamento com diagnóstico por coorte, mensagens e acompanhamento da permanência paga. Use quando o pedido falar em churn, perda de clientes, pausa, reativação, inadimplência ou cobrança falha.
 ---
 
-# Retenção e cancelamento
+# Retenção, saída e recuperação de pagamento
 
-Use esta skill como capacidade especializada do Inboundfy. Ela organiza a tarefa e devolve material pronto para a orquestradora, sem substituir o setup, a voz, a persona ou a validação do canal.
+Use para estudar perda de clientes, oferecer ajuda pertinente, desenhar cancelamento claro e recuperar pagamentos falhos. Retenção é continuidade útil e paga, não dificuldade para sair. Ativação inicial segue para `inboundfy-growth-onboarding`.
 
 ## Arquitetura de execução
-
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
@@ -18,52 +15,52 @@ específica desta pasta.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
 
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **growth**.
-
 ## Contexto exigido
 
-Se a configuração estiver incompleta, acione `inboundfy-setup`. Consulte [REFERENCIA.md](REFERENCIA.md), `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`, `.inboundfy/context/marca-voz.md`, `.inboundfy/context/publico.md`, `.inboundfy/context/proibicoes.md`, `.inboundfy/context/glossario.md`, `.inboundfy/pipeline.md`, o acervo relacionado e `.inboundfy/framework/`.
+Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md`. Na ausência de sentinela, apresente o alerta canônico do preflight e acione `inboundfy-setup` antes de criar artefatos.
 
-Leia também `.inboundfy/fontes-projeto.md`, as bases editoriais relacionadas e os documentos públicos citados. Antes de entregar copy, consulte `inboundfy-anti-slop` e `inboundfy-copy-edicao`.
+Leia `.inboundfy/context/empresa.md`, `.inboundfy/context/ofertas.md`, `.inboundfy/context/produtos.md`, `.inboundfy/context/publico.md`, `.inboundfy/context/integracoes.md`, `.inboundfy/context/marca-voz.md`, `.inboundfy/context/glossario.md`, `.inboundfy/context/proibicoes.md` e `.inboundfy/estrategia.md`. Consulte `.inboundfy/framework/`, contratos, regras de cobrança e exportações por coorte. Permissões e finalidades das mensagens seguem a política informada do projeto.
 
 ## Entrada esperada
 
-Receba um objetivo, um ou mais IDs de acervo, a persona, o canal, a oferta ou o fluxo que precisa ser planejado. Separe fatos confirmados, hipótese de trabalho e pergunta aberta.
+Receba base inicial de contas e receita recorrente, perdas e reduções, expansão da mesma base, falhas de pagamento, motivos de saída, tempo de uso, planos, recursos disponíveis, regras de pausa e cancelamento. Aceite marcos, rotina seguinte e dúvidas de `inboundfy-growth-onboarding` ou o plano de uso posterior de `inboundfy-growth-paywall`. Se ainda faltar acompanhamento, registre a coleta necessária antes de concluir sobre retenção. Peça fonte, período e definição de cada número antes de calcular churn.
+
+## Perguntas de diagnóstico
+
+- A conta saiu por escolha, falta de uso, problema do produto ou falha de cobrança?
+- Os clientes ainda não ativados recebem a mesma intervenção que os recorrentes?
+- Pausa e redução de plano existem de fato no sistema e no contrato?
+- A aceitação de oferta resulta em pagamento e uso posterior ou apenas adia a saída?
 
 ## Fluxo
 
-1. Leia [REFERENCIA.md](REFERENCIA.md) e confirme a intenção, o público, o canal e o resultado solicitado.
-2. Consulte voz, persona, proibições e dicionário antes de propor mensagem, segmento, preço, promessa ou CTA.
-3. Relacione cada afirmação ao acervo, à base editorial, à página canônica ou à pesquisa salva no item.
-4. Desenvolva um plano de mensagens e intervenções para retenção ou cancelamento.
-5. Revise o material com `inboundfy-anti-slop`, `inboundfy-copy-edicao` e a validação específica do canal quando houver copy pública.
-6. Registre caminho, ID, fontes, alcance da regra e pendências; peça confirmação antes de alterar uma configuração global.
+1. Leia [REFERENCIA.md](REFERENCIA.md), reconcilie contas e receita da base inicial e separe cancelamento voluntário, falha de pagamento, redução de plano e expansão.
+2. Analise coortes por entrada, plano, segmento e tempo de uso. Separe relato de motivo, comportamento observado e hipótese; dado ausente não vira conta saudável.
+3. Escolha intervenção conforme a causa: ajuda de uso, resolução técnica, revisão de plano, pausa disponível ou saída direta. Não ofereça desconto como resposta automática a toda solicitação.
+4. Desenhe cancelamento com acesso claro, motivo opcional, alternativa pertinente e confirmação de vigência, cobrança e acesso a dados. A pessoa pode seguir sem aceitar oferta ou responder pesquisa.
+5. Leia [coortes e cobrança](references/coortes-e-cobranca.md). Para pagamento falho, confira motivo, tentativas já realizadas pelo provedor, prazo, avisos e atualização de meio de pagamento. Não duplique cobrança nem registre Pix emitido como recuperado.
+6. Defina mensagens por evento, finalidade, canal autorizado, espera, limite, expiração e saída da automação. Leia `ESCRITA.md` e aplique `inboundfy-copy-editor`; Para `inboundfy-growth-sms`, inclua evento, origem e texto do opt-in, canal, fuso, frequência, custo, provedor e atendimento; no WhatsApp, modelo e última mensagem recebida. Campos ausentes permanecem pendentes.
+7. Prepare testes de pausa, retorno, cancelamento, reenvio, pagamento confirmado e recusa. Envie eventos e conciliação a `inboundfy-rastreamento-conversao` e condições comerciais novas a `inboundfy-growth-pricing`.
+8. Acompanhe permanência paga, contribuição e reclamações após a intervenção. Entregue achados de produto ao responsável e teste causal a `inboundfy-experimentacao`. Uma oferta aceita sem acompanhamento não conta como retenção consolidada.
 
 ## Saída
 
-Um plano de mensagens e intervenções para retenção ou cancelamento. O material deve manter IDs, links relativos, fontes, persona, canal, estado e próxima ação.
+Entregue `retencao-<id>.md` no diretório operacional já registrado, com diagnóstico por coorte, mapa motivo-intervenção, fluxo de saída, recuperação de pagamento, mensagens, testes e leitura posterior. Mantenha ID, grupo growth, público, canal, oferta, fontes, estado, pendências e próxima ação.
 
 ## Validação
 
-- A finalidade e o público estão explícitos.
-- Toda afirmação comercial possui fonte local ou marcação de confirmação.
-- Voz, persona, proibições e dicionário foram aplicados.
-- O formato respeita o canal, o pipeline e o template correspondente.
-- Pendências ficaram registradas sem preenchimento inventado.
+- Base inicial, perdas, redução e expansão usam a mesma população e período.
+- Cliente novo não entra como receita retida da base inicial.
+- Pausa, desconto e redução só aparecem se a operação puder cumprir.
+- Cancelamento continua acessível sem pesquisa obrigatória ou conversa forçada.
+- Pagamento recuperado exige confirmação do provedor e conciliação.
+- Automação termina após pagamento, recusa, cancelamento ou prazo definido.
+- O resultado acompanha permanência e margem além da aceitação imediata.
 
 ## Responsabilidade do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** growth
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+Transforme perdas por coorte em intervenções por causa e fluxo de saída; entregue mensagens e aferição aos responsáveis de canal e cobrança. Registre grupo `growth`, entrada, transformação, saída, próxima skill, estado e pendências no handoff.
 
 ## Idempotência
 
-Atualize o mesmo arquivo ou brief quando o ID já existir. Preserve texto aprovado, histórico, fontes e escolhas anteriores; abra uma nova versão apenas após pedido explícito.
+Use conta + assinatura + evento + etapa para localizar a intervenção. Preserve motivo, oferta mostrada, resposta e versão. Reenvio técnico não cria nova cobrança ou incentivo. Uma conta cancelada só volta à recorrência após confirmação própria de reativação.

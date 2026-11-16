@@ -1,240 +1,116 @@
-# REFERENCIA.md; inboundfy-especialista-linkedin
+# Manual de LinkedIn
 
-Material de apoio para post nativo e artigo longo de LinkedIn.
+O post entrega um argumento completo no feed. O artigo desenvolve uma dúvida com mais espaço e subtítulos. A autoria determina quais experiências podem aparecer em primeira pessoa; uma fonte externa não vira lembrança do autor.
 
-## Template de frontmatter
+## Diagnóstico antes da redação
 
-```yaml
----
-formato: <post|artigo>
-autor: <nome de context/pessoas.md, se houver>
-estrutura: <aida|pas|nenhuma>
-brief: acervo/<id>-<data>-<slug>/base-editorial.md
----
-```
+1. O brief solicita post nativo ou artigo? Qual dúvida profissional deve resolver?
+2. Quem assina? O tema e a experiência constam em `context/pessoas.md`?
+3. A abertura se sustenta sem adjetivos de autoridade nem resultado emprestado?
+4. Quais fontes sustentam números, casos e condições de oferta?
+5. O fechamento pede conversa, leitura ou ação comercial? Qual destino recebe o clique?
 
-Corpo do post nativo: texto puro, sem nenhum símbolo de Markdown, pronto
-para colar direto no campo de post.
+## Formato e orçamento de texto
 
-## Fórmulas de gancho (primeira linha, antes do "ver mais")
+| Formato | Faixa editorial | Estrutura |
+| --- | --- | --- |
+| post | 800 a 1.800 caracteres com espaços; encurte se a ideia terminar antes | Abertura concreta, argumento em parágrafos e ação final |
+| artigo | 700 a 1.400 palavras quando a profundidade justificar | Título, introdução, subtítulos, exemplo interpretado, limite e fechamento |
+| título de artigo | 40 a 80 caracteres como meta | Tema e recorte que o corpo entrega |
 
-1. **Confissão de erro real**: "Passei dois anos vendendo agenda de papel
-   como 'suficiente para clínica pequena'. Eu estava errado, e o motivo não
-   é o que parece."; funciona quando há autor definido com autoridade real.
-2. **Dado contraintuitivo**: "A clínica que mais perde paciente por fila não
-   é a menor. É a que tem mais gente mexendo na mesma agenda."; precisa de
-   dado ou observação real, não estatística inventada.
-3. **Cena reconhecível**: "Recepção lotada, telefone tocando, e alguém
-   procurando um nome na página errada do caderno."; abre pela imagem, não
-   pela tese.
+Post: bloco de texto puro pronto para colar. Frontmatter, headings do arquivo e notas ficam fora dele. Hashtags opcionais não são headings Markdown. Artigo: Markdown pode estruturar o arquivo, mas confira a apresentação no editor. Mantenha `formato: post|artigo`, `autor` quando definido, `estrutura`, `brief` e envelope compartilhado. Conte o bloco copiável, não todo o README. Evite caracteres estilizados para simular negrito.
 
-## Exemplo completo; post nativo com AIDA (fictício)
+As faixas são escolhas editoriais, não limites universais da plataforma nem
+promessas de alcance. O brief aprovado pode ajustá-las com motivo registrado.
+Confirme limites técnicos na ajuda oficial ou no campo de publicação da conta
+antes do envio; registre a data. Não transforme corte de interface em tamanho do gancho.
 
-```text
-Passei dois anos ouvindo donos de clínica dizerem que "caderno resolve" pra
-agenda pequena.
+## Método de construção
 
-Não resolve. E o motivo não é velocidade; é que duas pessoas escrevendo no
-mesmo caderno em turnos diferentes vão marcar o mesmo horário pra pacientes
-diferentes, mais cedo ou mais tarde.
+1. Confira autoria e competência antes de redigir. Sem experiência documentada, escreva explicação sustentada por fontes sem inventar relato pessoal.
+2. Escolha a abertura pela fonte disponível:
 
-Esse erro só aparece quando o paciente liga reclamando. Até lá, já custou
-uma vaga e uma recepção pedindo desculpa.
+| Fonte | Abertura adequada | Limite |
+| --- | --- | --- |
+| Relato autorizado | Incidente e interpretação do autor | Não ampliar para todo o mercado |
+| Dado documentado | Valor, base e recorte | Não atribuir causalidade sem suporte |
+| Procedimento de produto | Dúvida prática e objeto | Não converter função em resultado financeiro |
 
-Se sua clínica tem mais de uma pessoa mexendo na agenda, vale conferir
-quantas vezes isso já aconteceu esse mês; a resposta costuma surpreender.
+3. Para post, desenvolva causa, exemplo e aplicação em parágrafos completos. Para artigo, anote a pergunta respondida por cada seção; inclua interpretação e variação que pede ajuste.
+4. Respeite a estrutura aprovada: AIDA para ação comercial curta, PAS para problema e solução, FAB para funcionalidade. Não force venda na peça educativa.
+5. Feche com pergunta que o público possa responder pela própria prática ou com destino específico. Evite pedir comentário apenas para aumentar distribuição.
+6. Rode `inboundfy-copy-editor` e confirme se a revisão preservou voz e competência do autor.
 
-Como você lida com esse tipo de conflito de horário hoje?
-```
+## Template do canal
 
-## Checklist de canal
+No passo de escrita, abra [modelos prontos](references/modelos-e-exemplo.md).
+Use o modelo do formato aprovado. Complete o envelope compartilhado antes
+dos campos do canal. Separe corpo público, fontes e notas de produção.
 
-- [ ] Post nativo sem nenhuma sintaxe Markdown (`#`, `**`, `[]()`).
-- [ ] Primeira linha funciona sozinha, sem depender do "ver mais" para fazer
-      sentido.
-- [ ] Quando há autor, o texto está em primeira pessoa e dentro da
-      competência registrada em `context/pessoas.md`.
-- [ ] Fechamento com CTA claro ou pergunta genuína; nunca as duas coisas
-      competindo.
+## Exemplo com empresa brasileira fictícia
 
-## Erros comuns
+A Giro de Bairro, empresa fictícia de software para oficinas em Curitiba, publica um post de Elisa Moura, pessoa fictícia. O registro autoriza sua fala sobre ordens de serviço, mas não contém resultado de receita. A peça explica como o campo Próxima ação permite retomar um serviço.
 
-- Deixar `**negrito**` ou `#heading` no corpo copiável; quebra a renderização
-  no LinkedIn e expõe a sintaxe crua.
-- Assinar post técnico com pessoa sem competência registrada no tema (ver
-  `context/pessoas.md`).
-- Fechar com pergunta retórica óbvia ("concorda?") em vez de pergunta que
-  gera resposta real.
+A entrada e a peça completa estão em [modelos e exemplo](references/modelos-e-exemplo.md).
+Os números, nomes e condições deste caso não viram contexto de outro projeto.
+
+## Checklist numerado do canal
+
+A numeração coincide com `inboundfy-validador-linkedin`. Registre conforme, falha ou
+não aplicável, com motivo e local. O passe visual avalia copy e apoio previsto.
+A arte final segue para a validadora de imagem correspondente, quando houver.
+
+1. [ ] **Literal | Envelope.** Formato, autor quando houver, estrutura, ID, brief, persona e fontes estão vinculados.
+2. [ ] **Literal | Post copiável.** Post nativo contém texto puro, sem headings, asteriscos de ênfase ou links Markdown no bloco público.
+3. [ ] **Semântica | Autoria.** Pessoa gramatical, competência e experiência correspondem ao registro de pessoas; caso externo não vira vivência própria.
+4. [ ] **Semântica | Abertura.** A primeira linha nomeia assunto e recorte; o corpo sustenta os dados e a promessa.
+5. [ ] **Estrutural | Argumento.** Post desenvolve uma ideia em parágrafos; artigo responde à dúvida em seções sem repetição ou fragmentação artificial.
+6. [ ] **Semântica | Fontes e limites.** Casos, números e funcionalidades possuem origem; exemplo não vira comprovação de resultado geral.
+7. [ ] **Estrutural | Formato e contagem.** Bloco copiável ou artigo foi contado; ajustes de faixa estão registrados e o campo de destino comporta a peça.
+8. [ ] **Semântica | Persuasão.** AIDA, PAS e FAB aparecem quando pedidos, sem substituir fatos nem forçar venda no texto informativo.
+9. [ ] **Semântica | Fechamento.** Há uma ação final ligada ao argumento; a pergunta pede resposta concreta e o destino existe.
+10. [ ] **Visual | Apresentação.** Quebras preservam raciocínio; caracteres estilizados não simulam negrito; alt text acompanha imagem prevista.
+11. [ ] **Literal | Vetos e dicionário.** Copy, título, metadados e notas respeitam termos e estruturas canônicas.
+12. [ ] **Estrutural | Revisão e entrega.** Auditorias de copy e A5 estão vinculadas; a validadora recebe o texto inteiro antes do handoff.
+
+## Erros comuns do canal
+
+- Atribuir “dezenas de clientes” ao autor sem fonte: explique o mecanismo sem fabricar vivência.
+- Deixar asteriscos no post copiável: separe formatação do arquivo e corpo público.
+- Prometer faturamento porque o produto organiza ordens: descreva a função comprovável.
+- Criar uma escada de frases de impacto: desenvolva a explicação em parágrafos.
+- Alongar observação simples para preencher artigo: ajuste o formato pelo brief.
+- Fechar com pergunta retórica e resposta pronta: peça uma informação concreta da prática do público.
+
+## Medição após a publicação
+
+Para conversa, observe comentários que tragam prática ou objeção. Para clique, compare cliques no destino rastreado e impressões da mesma janela. Registre autor, formato, tema e tamanho para comparar peças semelhantes. Alcance alto sem resposta ao objetivo pede revisão do recorte e da chamada.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-especialista-linkedin**, do grupo
-**especialista**. Leia os detalhes compartilhados conforme a etapa atual:
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): confirme sentinelas e origens.
+- [Artefato e relações](../_shared/02-contrato-de-artefato.md): preserve envelope, ID e brief.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): registre escolhas e perguntas.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): preserve o histórico.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): aplique persona, voz e proibições.
 
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de especialista linkedin dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-especialista-linkedin
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de especialista linkedin
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-linkedin
-grupo: especialista
-entrada: acervo/0042-2026-09-14-especialista-linkedin/processado.md
-pedido: aplicar a etapa de especialista linkedin e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-especialista-linkedin
-estado: aprovado
-entrada: acervo/0042-2026-09-14-especialista-linkedin/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de especialista linkedin
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-especialista-linkedin** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+Resolva caminhos abreviados `context/` por `.inboundfy/fontes-projeto.md`.
+A instalação usa `.inboundfy/context/`. Não mova fontes nem grave dados do consumidor no framework.
 
 ## Guia específico do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+`inboundfy-especialista-linkedin` produz post nativo ou artigo de LinkedIn a partir do brief aprovado.
+Leia `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md` e `CONTEXTO.md`.
+Preserve o caminho definido por `context/canais.md`. Nos pacotes, mantenha
+`brief` apontado para `04-briefs/` e o relatório em `06-auditoria/assets/`.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+Se houver imagem no brief, encaminhe a copy aprovada para `inboundfy-especialista-linkedin-imagem`, com título, texto literal e alt text previsto.
 
-## Especificação operacional
+Acione `inboundfy-copy-editor` no alcance definido pela SKILL.md e
+`inboundfy-validador-linkedin` antes de considerar a peça pronta. Corrija os achados e
+envie o conjunto para nova leitura integral. Após a aprovação, entregue a
+`inboundfy-planejamento` arquivos, fontes, pendências e próxima ação.
 
-### Quando usar
+## Estruturas na redação
 
-Use **inboundfy-especialista-linkedin** para executar esta função: Escreve post nativo ou artigo longo de LinkedIn a partir de um brief aprovado (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md, sempre em primeira pessoa quando o brief indicar autor, e sem Markdown no corpo copiável do post.
-
-O grupo **especialista** trabalha com estes campos mínimos:
-
-- **canal:** preencher com dado ligado ao pedido.
-- **persona:** preencher com dado ligado ao pedido.
-- **objetivo:** preencher com dado ligado ao pedido.
-- **formato:** preencher com dado ligado ao pedido.
-- **validadora:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-linkedin
-grupo: especialista
-pedido: executar a função desta skill sobre o material selecionado
-entrada: briefs/0042-2026-09-14-linkedin/brief.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-linkedin
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - briefs/0042-2026-09-14-linkedin/brief.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **especialista** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `ESTRUTURAS-PERSUASIVAS.md`
-- `CONTEXTO.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+No passo de redação, consulte [a aplicação por formato](references/estruturas-persuasivas.md) para executar a estrutura já aprovada no brief.

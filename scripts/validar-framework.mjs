@@ -117,6 +117,7 @@ const CONTEXT_TEMPLATES = new Set([
   "links.md",
   "canais.md",
   "ferramentas.md",
+  "integracoes.md",
   "campanhas.md",
   "glossario.md",
   "proibicoes.md",

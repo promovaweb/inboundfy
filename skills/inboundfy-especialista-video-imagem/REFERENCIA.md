@@ -1,224 +1,116 @@
-# REFERENCIA.md; inboundfy-especialista-video-imagem
+# Thumbnail de vídeo longo: produção
 
-## Formato
+O par `inboundfy-especialista-video-imagem` e `inboundfy-validador-video-imagem` usa a mesma numeração de conferência. Esta referência trata exclusivamente video-imagem. Dimensões abaixo são exemplos de trabalho já usados pelo framework, não limites universais de plataforma. `context/canais.md` define a dimensão exata do projeto.
 
-| Peça | Proporção | Dimensão comum |
+## Formato e pacote
+
+| Peça | Proporção | Dimensão de referência |
 | --- | --- | --- |
-| Thumbnail de vídeo longo | 16:9 | 1280×720 |
+| Thumbnail | 16:9 | 1280×720 |
 
-## Princípios de CTR (taxa de clique) para thumbnail
+- Fonte ou motor: Geração por inboundfy-base-imagem com um foco visual.
+- Arquivos: thumbnail.png e README.md com frase, título do vídeo e trecho do roteiro que sustenta a promessa.
+- Destino: `97-ativos-finais/video/<item>/`. Não criar caminhos alternativos.
+- Exporte em sRGB. Use PNG para texto e ilustração; fotografia pode usar JPEG ou formato aceito pelo canal. Abra a exportação, não apenas o arquivo de edição. Dimensão, extensão e peso reais entram no README.
 
-- **Texto curto e grande**: 3 a 5 palavras no máximo, em fonte grande o
-  bastante para ler em miniatura de celular (teste reduzindo a imagem a
-  ~120px de largura mentalmente).
-- **Um único foco visual**: rosto com expressão clara (quando o vídeo for
-  talking head), objeto central do vídeo, ou um número/dado de forte
-  impacto; nunca os três competindo ao mesmo tempo.
-- **Contraste alto**: cor de fundo e cor de texto em oposição forte (claro
-  sobre escuro ou vice-versa), não tons próximos que se confundem em tela
-  pequena.
-- **Curiosidade sem clickbait vazio**: o texto da thumbnail promete algo que
-  o vídeo realmente entrega; thumbnail que promete e não cumpre aumenta
-  clique mas derruba retenção.
+## Composição e escolha de abordagem
 
-## Exemplo de brief de imagem (fictício)
+| Situação observada | Ação |
+| --- | --- |
+| Apresentador reconhecível faz parte do brief | Usar foto autorizada como foco, sem alterar identidade. |
+| Tutorial depende de uma ação concreta | Mostrar o objeto ou recorte real da ação. |
+| Número só existe como hipótese | Retirar o número; pedir frase sustentada pelo roteiro. |
 
-```text
-Formato: 16:9, 1280x720
-Texto principal: "Por que seu deploy trava às sextas"
-Texto secundário: (nenhum; thumbnail favorece texto único)
-Tom visual: alto contraste, direto
-Elemento de marca obrigatório: logo pequeno no canto inferior
+1. Leia tema, título e abertura do roteiro. Localize o trecho que entrega a promessa da thumbnail e registre a seção ou tempo previsto. Sem entrega no roteiro, peça revisão do brief.
+2. Escreva texto de três a cinco palavras. Conte palavras separadas por espaço e mantenha o sentido aprovado. A thumbnail complementa o título, sem adicionar valor, prazo ou resultado sem fonte.
+3. Escolha apenas um foco: rosto autorizado, objeto demonstrado ou número comprovado. Não empilhe os três. Captura de produto deve vir do produto; uma imagem sintética não pode fingir demonstração real.
+4. Passe texto, foco, contraste e dimensão a `inboundfy-base-imagem`. Reserve espaço para a sobreposição de duração e demais elementos do destino. Não gere um rosto identificável para representar o apresentador.
+5. Abra a saída a 120 px de largura. Leia a frase e reconheça o foco sem ampliar. Se falhar, reduza decoração, reorganize linhas e aumente contraste antes de trocar a mensagem.
+6. Compare lado a lado thumbnail, título e roteiro. Registre os três no README e envie o pacote completo à validadora. Variações para teste só são criadas quando autorizadas e recebem identificação própria.
+
+## Template de brief visual e entrega
+
+Preencha antes de chamar o motor ou buscar a foto. Preserve o envelope do contrato compartilhado no README. O texto entre chaves é campo de preenchimento.
+
+```yaml
+id: "{ID da peça}"
+skill: inboundfy-especialista-video-imagem
+estado: revisao
+brief: "04-briefs/{arquivo}.md"
+entrada: "{texto final e versão}"
+persona: "{ID confirmado}"
+fontes:
+  - "{context/canais.md e identidade visual}"
+titulo_video: "{título aprovado}"
+texto_thumbnail: "{três a cinco palavras}"
+contagem_palavras: "{total}"
+entrega_no_roteiro: "{arquivo, seção ou tempo previsto}"
+foco_unico: "{rosto autorizado, objeto ou número com fonte}"
+origem_foco: "{ativo e permissão}"
+sobreposicoes: "{máscara do destino}"
+alt: "{frase e assunto visual}"
+saidas:
+  - "{caminho de cada arquivo exportado}"
+preview: "{largura de teste, recorte e resultado observado}"
+pendencias: []
+proxima_skill: inboundfy-validador-video-imagem
 ```
 
-## Checklist de CTR
+O README relaciona o brief, o texto final, cada exportação, suas dimensões, peso, alt e origem dos ativos. No pacote, mantenha `brief` no frontmatter. Texto longo em imagem exige transcrição acessível junto ao arquivo; o alt não substitui a transcrição.
 
-- [ ] Texto legível em miniatura reduzida a ~120px de largura.
-- [ ] Um único foco visual (rosto, objeto ou número), sem poluição.
-- [ ] Contraste forte entre texto e fundo.
-- [ ] Texto da thumbnail é coerente com o que o vídeo entrega (sem
-      clickbait vazio).
-- [ ] Grafia confere com `context/glossario.md`.
+## Exemplo completo de produção
 
-## Erros comuns
+A empresa fictícia brasileira **Serra Oficina Digital**, de Joinville, produz um vídeo sobre identificação de recebimentos no fechamento de caixa. O título aprovado é “Como conferir os recebimentos por Pix no fim do dia”. O roteiro demonstra a comparação de comprovante e registro na seção “Conferência final”, a partir de 02:10 no plano de edição.
 
-- Colocar o roteiro inteiro resumido em texto pequeno na thumbnail; o
-  formato exige uma única frase de impacto, não um resumo.
-- Usar cores da paleta de marca que têm baixo contraste entre si (ex.: duas
-  tonalidades de azul próximas) só para "respeitar a identidade visual";   ajuste a saturação/luminosidade mantendo a paleta reconhecível, mas com
-  contraste suficiente para leitura.
-- Prometer no texto algo que o vídeo não desenvolve, gerando queda de
-  retenção mesmo com clique alto.
+Brief 0042: 1280×720 em `97-ativos-finais/video/conferencia-pix/`. Texto literal da thumbnail: “Confira cada Pix recebido” (quatro palavras). Foco único: caderno ilustrado de conferência com símbolo simples de confirmação. Não há rosto, saldo bancário, tela de banco nem alegação de ganho financeiro.
+
+Composição: texto creme sobre fundo azul escuro à esquerda; caderno à direita; margem de 64 px; canto inferior direito livre para duração. O logo fornecido aparece pequeno no canto superior, conforme a marca fictícia. Alt: “Confira cada Pix recebido, ao lado de um caderno ilustrado de conferência”.
+
+README registra frase, contagem quatro, título literal, caminho do roteiro, seção de entrega, origem ilustrativa do caderno e preview a 120 px. O título informa a tarefa completa; a thumbnail destaca a conferência. Entrega: `thumbnail.png` e README, estado revisao, destino `inboundfy-validador-video-imagem`.
+
+## Checklist numerado espelhado
+
+Os números abaixo têm o mesmo significado nas duas skills. Registre `atende`, `não atende` ou `não aplicável` com justificativa; não use notas ou médias para aprovar.
+
+1. **Literal:** Texto da thumbnail tem três a cinco palavras e coincide com a frase aprovada; grafias e vetos são conferidos na imagem e no alt.
+2. **Literal:** Título do vídeo e trecho de entrega no roteiro estão registrados e correspondem à versão candidata.
+3. **Semântica:** Promessa da thumbnail é cumprida pelo roteiro e não acrescenta prazo, valor ou resultado sem fonte.
+4. **Semântica:** Rosto, captura ou número têm origem e permissão; ilustração não finge demonstração ou identidade real.
+5. **Estrutural:** Thumbnail e README estão no diretório contratado, com vínculo ao roteiro ou pacote YouTube e ao brief.
+6. **Estrutural:** Dimensão é exata e o preview inclui a sobreposição de duração do destino.
+7. **Visual:** Texto pode ser lido a 120 px e há um único foco visual reconhecível.
+8. **Visual:** Contraste e hierarquia preservam leitura; logo e sobreposição não cobrem texto ou assunto principal.
+
+## Erros comuns e correções
+
+- Usar sete palavras para resumir o roteiro: voltar à frase de três a cinco palavras.
+- Repetir o título inteiro: destacar a ação aprovada.
+- Aumentar curiosidade com promessa falsa: exigir trecho do roteiro que a entrega.
+
+## Medição e limites
+
+CTR é cliques divididos por impressões na mesma superfície. Interpretar junto com retenção inicial, período e amostra; clique alto com abandono não comprova adequação da promessa. A dimensão de referência não substitui a configuração do canal. Se a plataforma mudar sua exigência, confirme a documentação oficial antes de alterar o projeto.
 
 ## Arquitetura aplicada
 
-Esta referência usa o contrato comum para a skill **inboundfy-especialista-video-imagem**, do grupo
-**especialista**. Leia os detalhes compartilhados conforme a etapa atual:
-
-- [preflight e fontes](../_shared/01-preflight-e-fontes.md);
-- [artefato e relações](../_shared/02-contrato-de-artefato.md);
-- [checkpoints e handoff](../_shared/03-interacao-e-handoff.md);
-- [validação e retomada](../_shared/04-validacao-e-retomada.md);
-- [contexto editorial](../_shared/05-contexto-editorial.md).
-
-## Contrato específico
-
-- **Função:** executar a capacidade de especialista video imagem dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
-
-## Template de operação
-
-```markdown
----
-id: {id}
-skill: inboundfy-especialista-video-imagem
-estado: rascunho
-entrada: {caminho ou ID}
-fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
----
-
-# Registro de especialista video imagem
-
-## Resultado
-
-{Conteúdo específico da etapa.}
-
-## Pendências
-
-- {pergunta ou "nenhuma"}
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Exemplo operacional completo
-
-### Entrada ilustrativa
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-video-imagem
-grupo: especialista
-entrada: acervo/0042-2026-09-14-especialista-video-imagem/processado.md
-pedido: aplicar a etapa de especialista video imagem e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
-
-### Saída ilustrativa
-
-```markdown
----
-id: 0042
-skill: inboundfy-especialista-video-imagem
-estado: aprovado
-entrada: acervo/0042-2026-09-14-especialista-video-imagem/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
-
-# Registro de especialista video imagem
-
-## Resultado
-
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
-
-## Próxima ação
-
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-especialista-video-imagem** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+- [Preflight e fontes](../_shared/01-preflight-e-fontes.md): confirmar sentinelas e fontes antes de abrir o brief visual.
+- [Artefato e relações](../_shared/02-contrato-de-artefato.md): manter ID, estado, origem e relação com cada arquivo visual.
+- [Interação e handoff](../_shared/03-interacao-e-handoff.md): registrar escolhas já confirmadas e pendências do formato.
+- [Validação e retomada](../_shared/04-validacao-e-retomada.md): repetir a inspeção completa após cada correção.
+- [Contexto editorial](../_shared/05-contexto-editorial.md): conferir persona, voz, glossário, aprendizado e proibições também nos pixels.
 
 ## Guia específico do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
+A especialista prepara o conjunto completo e encaminha arquivos, fontes, medidas e previews a `inboundfy-validador-video-imagem`. Registre a fonte ou motor utilizado, sem expor segredos. Reaproveite a versão existente quando o pedido não exigir refação. Mudança em texto aprovado ou dado factual retorna à fonte responsável; ajuste visual não autoriza mudar a copy.
 
-Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
+## Preparação antes da execução
 
-## Especificação operacional
+No passo 1 do fluxo, leia [preparação do conjunto visual](references/preparacao.md) para conferir as perguntas do formato e a fonte de imagem permitida. Use as respostas já registradas no brief; pergunte apenas pelo dado ausente que altera a composição.
 
-### Quando usar
+## Entrega para a validadora
 
-Use **inboundfy-especialista-video-imagem** para executar esta função: Gera thumbnail de vídeo longo (formato típico 1280x720), reaproveitando o motor de inboundfy-base-imagem com foco em legibilidade e taxa de clique.
+Encaminhe a `inboundfy-validador-video-imagem` o conjunto descrito em Formato e pacote, acompanhado de ID, brief, texto final e versão, fontes, medidas reais e previews. Inclua o registro de origem dos ativos e as pendências. Uma devolução mantém o mesmo ID e informa a rodada; ajuste os arquivos apontados e entregue novamente todas as exportações, não apenas o recorte corrigido.
 
-O grupo **especialista** trabalha com estes campos mínimos:
+## Entrada de pacote YouTube
 
-- **canal:** preencher com dado ligado ao pedido.
-- **persona:** preencher com dado ligado ao pedido.
-- **objetivo:** preencher com dado ligado ao pedido.
-- **formato:** preencher com dado ligado ao pedido.
-- **validadora:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-video-imagem
-grupo: especialista
-pedido: executar a função desta skill sobre o material selecionado
-entrada: briefs/0042-2026-09-14-video-imagem/brief.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-especialista-video-imagem
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - briefs/0042-2026-09-14-video-imagem/brief.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **especialista** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `ESCRITA.md`
-- `ESTRUTURAS-PERSUASIVAS.md`
-- `CONTEXTO.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+No passo 1, aceite também o pacote aprovado de `inboundfy-especialista-youtube`, com título, tarefa mostrada, textos literais da thumbnail e trecho correspondente do roteiro. Preserve a origem em `canais/youtube/`; mantenha as imagens no destino visual contratado e registre o vínculo no README. A revisão visual retorna a `inboundfy-especialista-video-imagem`; alteração na copy volta à especialista de texto que a produziu.

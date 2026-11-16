@@ -1,8 +1,6 @@
 ---
 name: inboundfy-especialista-infografico-imagem
-description: >
-  Gera a peça final de infográfico (formato típico 9:16) a partir da copy
-  aprovada, reaproveitando o motor de inboundfy-base-imagem.
+description: Gera infográfico visual a partir da copy aprovada, preservando valores, unidades, fontes e sequência dos blocos. Use quando o pedido citar arte de infográfico, gráfico ilustrado, composição de dados ou transformar texto aprovado em imagem.
 ---
 
 # Inboundfy Infografico Imagem
@@ -10,12 +8,6 @@ description: >
 Skill de imagem para infográfico. Reaproveita `inboundfy-base-imagem` como
 motor, com maior densidade de blocos de texto e dado do que uma peça social
 comum.
-
-## Fonte da imagem: geração sintética via inboundfy-base-imagem
-
-Infográfico é composição gráfica de dados e blocos de texto sobre fundo de
-marca; caso de `inboundfy-base-imagem`, com a particularidade de comportar
-múltiplos blocos em vez de um único foco visual.
 
 ## Escopo
 
@@ -28,12 +20,9 @@ Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md` no in
 ausência de qualquer um, informe: "O setup do Inboundfy ainda não foi concluído
 ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os
 arquivos de apoio." Encerre sem criar ou alterar artefatos. Depois do
-preflight, leia o catalogo e os Markdown relevantes para a tarefa.
+preflight, leia o catálogo e os Markdown relevantes para a tarefa.
 
 ## Arquitetura de execução
-
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
@@ -41,20 +30,23 @@ específica desta pasta.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
 
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **especialista**.
-
 ## Contexto exigido
 
 - `context/canais.md`: dimensão exigida (geralmente `9:16`).
 - O que `inboundfy-base-imagem` já exige: `context/marca-voz.md` e a
   identidade visual do usuário.
 
+Consulte `context/proibicoes.md`, `context/estruturas-proibidas.md`, `context/glossario.md`, `context/marca-voz.md`, `context/aprendizado.md` e `brand/` quando existir. Leia `ESCRITA.md`, `ESTRUTURAS-PERSUASIVAS.md` e `CONTEXTO.md` antes de compor ou revisar texto público. Falta de apoio obrigatório retorna a `inboundfy-setup`; esta skill não repara a instalação.
+
 ## Entrada esperada
 
 O texto final de `inboundfy-especialista-infografico`: título, blocos e alt text.
 
+Receba também ID, brief aprovado, versão da copy aprovada pela validadora de texto e formato do canal. Na retomada, leia o relatório de `inboundfy-validador-infografico-imagem` e identifique a rodada a corrigir.
+
 ## Fluxo
+
+Antes da composição, leia [preparação do conjunto visual](references/preparacao.md). No passo 1, consulte [formato, template e exemplo](REFERENCIA.md) para montar o brief visual. Ao chamar `inboundfy-base-imagem`, informe medidas em pixels, proporção, formato, área segura, peso máximo, texto literal aprovado, ativos oficiais e destino. Receba imagem, alt e manifesto para compor o README.
 
 1. Confirme a dimensão exigida em `context/canais.md`.
 2. Organize os blocos de texto na hierarquia de leitura vertical de
@@ -71,6 +63,8 @@ O texto final de `inboundfy-especialista-infografico`: título, blocos e alt tex
 6. Salve junto ao artefato de texto do mesmo item.
 
 ## Encaminhamento obrigatório
+
+Aplique os oito itens do [checklist espelhado](REFERENCIA.md#checklist-numerado-espelhado) a todos os arquivos.
 
 Antes de considerar a imagem pronta, acione
 `inboundfy-validador-infografico-imagem`. Em caso de reprovação, corrija os
@@ -89,15 +83,7 @@ Arquivo de imagem final salvo em `97-ativos-finais/infografico/<item>/`.
 
 ## Responsabilidade do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** especialista
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+Produza infografico.png e README.md com transcrição integral, fontes e alt text. Mantenha o estado `revisao` até o relatório de `inboundfy-validador-infografico-imagem` aprovar a versão atual. Envie à validadora ID, brief, versão do texto, README, todas as exportações e derivados, fontes, dimensões, previews e pendências. Receba o relatório por rodada e reenvie o conjunto completo após corrigir os achados.
 
 ## Idempotência
 

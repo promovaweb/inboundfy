@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Growth Influenciadores"
-  short_description: "Executa growth influenciadores no Inboundfy"
-  default_prompt: "Use $inboundfy-growth-influenciadores para executar growth influenciadores com as fontes do projeto."
+  display_name: "Inboundfy: Parcerias com influenciadores"
+  short_description: "Seleção de criadores, pilotos e direitos de uso"
+  default_prompt: "Use $inboundfy-growth-influenciadores para montar um piloto com criadores, seleção por público, remuneração, licença e medição líquida."

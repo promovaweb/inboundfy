@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Especialista Infografico Imagem"
-  short_description: "Executa especialista infografico imagem no Inboundfy"
-  default_prompt: "Use $inboundfy-especialista-infografico-imagem para executar especialista infografico imagem com as fontes do projeto."
+  display_name: "Inboundfy: Imagem de infográfico"
+  short_description: "Produz infográfico visual com copy aprovada"
+  default_prompt: "Use $inboundfy-especialista-infografico-imagem para produzir infográfico visual com copy aprovada com brief aprovado, texto final e identidade do projeto. Aplique os oito itens do par e envie o conjunto completo a $inboundfy-validador-infografico-imagem."

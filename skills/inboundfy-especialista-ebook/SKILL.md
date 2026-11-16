@@ -1,9 +1,6 @@
 ---
 name: inboundfy-especialista-ebook
-description: >
-  Escreve arquitetura e capítulos de ebook a partir de um brief aprovado
-  (fase 5 do pipeline). Aplica ESCRITA.md e a voz de context/marca-voz.md em
-  formato de livro curto.
+description: Escreve arquitetura e capítulos de ebook com promessa, progressão, exemplos e fontes a partir de brief aprovado. Use quando o pedido for montar um livro curto, desenvolver capítulos ou revisar um ebook antes da capa e diagramação.
 ---
 
 # Inboundfy Ebook Redator
@@ -25,17 +22,11 @@ preflight, leia o catalogo e os Markdown relevantes para a tarefa.
 
 ## Arquitetura de execução
 
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
-
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
 - [Interação e handoff](../_shared/03-interacao-e-handoff.md): conduza escolhas e entregue o pacote seguinte.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
-
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **especialista**.
 
 ## Contexto exigido
 
@@ -49,54 +40,21 @@ artefato. O grupo desta skill é **especialista**.
   capítulo de abertura de ebook com função comercial e para trechos que
   apresentam produto.
 
-## Estrutura persuasiva
-
-O corpo do ebook é majoritariamente informativo e segue `ESCRITA.md`
-diretamente; capítulo de desenvolvimento não precisa forçar AIDA, PAS ou
-PASTOR. Duas exceções valem a pena:
-
-- **Capítulo ou introdução de abertura**, quando o ebook funciona como isca
-  de geração de demanda: use **PAS** para nomear o problema que trouxe o
-  leitor até o material, agitar a consequência real de não resolvê-lo, e
-  situar o ebook como o caminho de solução que o restante do livro
-  desenvolve.
-- **Capítulo final ou seção de oferta**, quando o brief indicar que o ebook
-  fecha com uma chamada comercial: use **AIDA** compacto; retomar a
-  Atenção do tema, reforçar o Interesse com o que o leitor já aprendeu,
-  conectar ao Desejo por resolver de vez, e fechar com uma Ação única
-  (`context/ofertas.md`).
-- Qualquer trecho que descreva uma funcionalidade de produto ou serviço
-  aplica **FAB**: característica, vantagem, benefício, sempre com base em
-  `context/`.
-
 ## Entrada esperada
 
-Um brief com: tema, promessa central, público-alvo, ativos de apoio (do
-pacote, quando existir) e, se já definida, a estrutura de capítulos.
+Brief de ebook aprovado ou avulso, com tema, promessa central, persona, objetivo, ativos de apoio e estrutura de capítulos quando já definida.
 
 ## Fluxo
 
-1. Leia o brief e `ESCRITA.md`.
-2. Se a estrutura de capítulos ainda não existir, defina-a: promessa central,
-   progressão lógica entre capítulos, e o que cada capítulo entrega que o
-   anterior não entregou. Use o template de arquitetura de `REFERENCIA.md`.
-3. Escreva cada capítulo em prosa de livro curto; desenvolvimento contínuo,
-   exemplo interpretado, sem fragmentação em blocos de "dica rápida" a menos
-   que o brief peça explicitamente um capítulo de checklist.
-4. Insira menção a produto ou serviço apenas com base em `context/`, e apenas
-   quando o brief indicar que o ebook tem função de geração de demanda.
-5. Feche cada capítulo com transição para o próximo, e o ebook inteiro com
-   CTA único e claro.
-6. Rode `inboundfy-copy-editor` por capítulo, trate os achados verificáveis e repita a leitura integral.
-7. Salve com frontmatter incluindo `titulo`, `promessa`, sumário de
-   capítulos e `brief` quando fizer parte de um pacote.
-8. Encaminhe para `inboundfy-especialista-ebook-imagem` e depois para `inboundfy-planejamento`.
-
-## Encaminhamento obrigatório
-
-Antes de considerar o ebook pronto, acione `inboundfy-validador-ebook`. Em
-caso de reprovação, aplique as correções do relatório e reenvie o ebook
-inteiro até a aprovação. Só então avance para imagem e auditoria do pacote.
+1. Leia a entrada completa, `ESCRITA.md` e os contextos exigidos. Resolva lacunas obrigatórias com o planejamento ou a manutenção de contexto indicada por `CONTEXTO.md` antes de redigir. Consulte [o diagnóstico e os parâmetros de ebook](REFERENCIA.md#diagnóstico-da-peça).
+2. Defina a arquitetura se ainda faltar: promessa, entrada e entrega de cada capítulo. Use [o modelo de arquitetura](REFERENCIA.md#modelos-por-situação). Execute A4 sobre sumário, abertura e primeira unidade antes de expandir.
+3. Escreva por dependência entre capítulos, em prosa contínua com demonstração e limite. Evite repetir entregas ou fragmentar em dicas, salvo formato pedido no brief. Aplique [a estrutura editorial](references/estrutura-editorial.md) somente nas partes comerciais autorizadas.
+4. Confira nomes, números, remissões e transições no conjunto. Termine o livro com CTA único. Preserve títulos, tabelas e legendas para diagramação; não atribua páginas antes da paginação.
+5. Execute `inboundfy-copy-editor` por capítulo, trate os achados e releia o livro inteiro. Confira também [o modelo de entrega à diagramação](REFERENCIA.md#modelos-por-situação).
+6. Salve no caminho definido em [Saída](#saída), com [o template da peça](REFERENCIA.md#template-da-peça), envelope compartilhado e `brief` em pacote. Na montagem, leia [o exemplo completo](references/exemplo-completo.md); preserve os parâmetros aprovados.
+7. Execute A5 com `inboundfy-anti-slop` e confira os 11 itens de [conferência do par](REFERENCIA.md#checklist-numerado-do-par). Entregue a `inboundfy-validador-ebook` candidata, ID, caminho, brief ou entrada avulsa, persona, fontes, pendências e registros de revisão editorial e A5.
+8. Se receber reprovação de `inboundfy-validador-ebook`, leia o relatório, corrija o alcance solicitado e repita revisão editorial, A5 e leitura integral. Reenvie à mesma validadora até aprovação da versão atual.
+9. Após aprovação textual, encaminhe à `inboundfy-especialista-ebook-imagem` para capa e OpenGraph, com ID, brief, versão textual aprovada, título, subtítulo e formato. Retorne a `inboundfy-planejamento` com livro, relação dos capítulos, fontes, relatório aprovado e digest atual.
 
 ## Saída
 
@@ -113,15 +71,7 @@ ebook.
 
 ## Responsabilidade do grupo
 
-Produza somente o asset do canal indicado pelo brief. Respeite voz, persona, fontes, formato, template e validadora do mesmo sufixo.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** especialista
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+O grupo `especialista` responde pela redação e pelas correções de ebooks. Preserve o brief, o ID, a origem factual e o estado real da candidata; encaminhe somente a versão aprovada. O [guia do grupo](REFERENCIA.md#guia-específico-do-grupo) define o registro da entrega.
 
 ## Idempotência
 

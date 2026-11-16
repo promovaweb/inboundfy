@@ -1,9 +1,13 @@
 ---
 name: inboundfy-pesquisa-acervo
-description: Pesquisa fontes externas para validar e enriquecer um item do acervo, registra links e confronta lacunas sem substituir a origem fornecida pelo usuário.
+description: "Pesquisa na web as afirmações e lacunas de um item do acervo e grava pesquisa.md com fontes abertas, datas, alcance, resultado e encaminhamento à base editorial, sem alterar a origem. Use quando a pessoa pedir para pesquisar, checar fatos, confirmar dados, buscar fontes ou atualizar a informação de um material do acervo."
 ---
 
 # Pesquisar acervo
+
+## Verificação do setup
+
+Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md` antes de criar ou alterar artefatos. Se faltar um deles, informe: "O setup do Inboundfy ainda não foi concluído ou precisa de reparo neste projeto. Execute `inboundfy-setup` para preparar os arquivos de apoio." Encerre sem escrever. Após a confirmação, leia as fontes locais relevantes e `.inboundfy/context/empresa.md`.
 
 ## Arquitetura de execução
 
@@ -31,41 +35,43 @@ relacionadas. A pesquisa web é obrigatória para material novo.
 
 ## Entrada esperada
 
-ID do acervo e seu conteúdo já processado. Registre consulta, data, fonte,
-trecho resumido, relação com o material e limite da fonte.
+O ID de um item do acervo com `processado.md` e `faq.md` na mesma pasta,
+entregues por `inboundfy-processar-acervo` e `inboundfy-extrair-faq`. A tabela
+`Lacunas para a próxima etapa` da FAQ indica as perguntas verificáveis fora do
+projeto. Um `pesquisa.md` existente é retomado, sem perder as fontes anteriores.
 
 ## Fluxo
 
-1. Extraia afirmações que precisam de confirmação, contexto ou atualização.
+Antes da primeira consulta, leia a tabela de fontes prioritárias e o procedimento de [REFERENCIA.md](REFERENCIA.md). Sem acesso web, mantenha a etapa pendente e declare isso em `pesquisa.md`.
+
+1. Numere (A01, A02) as afirmações de `processado.md` e as lacunas de
+   `faq.md` que precisam de confirmação, contexto ou atualização.
 2. Faça pesquisa web com fontes primárias e referências especializadas.
    Compare mais de uma fonte quando o assunto tiver versões conflitantes.
-3. Salve em `pesquisa.md` a pergunta, a URL, o título, a data de acesso, o
-   resumo e a forma como a fonte afeta o conteúdo.
-4. Marque concordâncias, divergências, lacunas e fatos que precisam de resposta
-   do usuário. Não altere `bruto.md` nem `processado.md` sem voltar à skill
+3. Abra cada página e salve a ficha da fonte no template de
+   [REFERENCIA.md](REFERENCIA.md), com resultado `confirmado`, `contrariado`,
+   `parcial` ou `não localizado`.
+4. Registre divergências com as duas fontes e as perguntas que voltam ao
+   usuário. Não altere `bruto.md` nem `processado.md` sem voltar à skill
    correspondente.
+
+Antes da entrega, acione `inboundfy-copy-editor` sobre a prosa produzida, trate os achados e releia o derivado inteiro. O original recebido permanece intacto.
 
 ## Saída
 
-Uma pesquisa rastreável dentro da pasta do acervo, com links clicáveis e uma
-seção de encaminhamentos para a base editorial.
+`pesquisa.md` na pasta do item, com afirmações numeradas, fichas de fonte
+com links clicáveis e a seção `Encaminhamento à base editorial`. O arquivo
+segue para `inboundfy-base-editorial` junto com `bruto.md`, `processado.md` e
+`faq.md` do mesmo ID.
 
 ## Validação
 
-Confira URL, data, título, escopo da fonte e relação com cada afirmação. Não
-trate resultado de busca como fonte sem abrir a página original.
+Confira a checklist numerada de [REFERENCIA.md](REFERENCIA.md). Resultado de
+busca sem a página original aberta não conta como fonte.
 
 ## Responsabilidade do grupo
 
 Trabalhe a origem, suas versões derivadas, perguntas, fontes e relações. O bruto permanece intacto e cada derivado aponta para ele.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** acervo
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
 
 ## Idempotência
 

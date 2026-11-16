@@ -1,16 +1,13 @@
 ---
 name: inboundfy-growth-signup
-description: Melhora o fluxo de cadastro com proposta clara, campos necessários, mensagens de erro, confiança, ativação e próximo passo.
+description: Revisa cadastro e primeiro acesso com campos necessários, autenticação, estados, mensagens e eventos de conta criada. Use quando o pedido falar em signup, abandono de cadastro, verificação de email, convite de equipe ou primeiro login.
 ---
 
-# Cadastro e ativação
+# Cadastro e primeiro acesso
 
-Use esta skill como capacidade especializada do Inboundfy. Ela organiza a tarefa e devolve material pronto para a orquestradora, sem substituir o setup, a voz, a persona ou a validação do canal.
+Use para desenhar ou revisar a passagem entre intenção de cadastro, conta criada e primeira tarefa útil. Formulário de orçamento sem criação de conta pertence a `inboundfy-growth-cro`; orientação após a conta criada segue para `inboundfy-growth-onboarding`.
 
 ## Arquitetura de execução
-
-Ela confirma as sentinelas antes de criar ou alterar qualquer artefato. O trabalho segue o contrato compartilhado e usa a referência
-específica desta pasta.
 
 - [Preflight e fontes](../_shared/01-preflight-e-fontes.md): carregue o contexto e registre as origens.
 - [Contrato de artefato](../_shared/02-contrato-de-artefato.md): mantenha ID, estado, fontes e relações.
@@ -18,52 +15,52 @@ específica desta pasta.
 - [Validação e retomada](../_shared/04-validacao-e-retomada.md): revise, devolva e retome sem perder versões.
 - [Contexto editorial](../_shared/05-contexto-editorial.md): aplique voz, personas, dicionário e proibições quando houver texto.
 
-Consulte [REFERENCIA.md](REFERENCIA.md) no passo do fluxo que monta o
-artefato. O grupo desta skill é **growth**.
-
 ## Contexto exigido
 
-Se a configuração estiver incompleta, acione `inboundfy-setup`. Consulte [REFERENCIA.md](REFERENCIA.md), `.inboundfy/context/empresa.md`, `.inboundfy/estrategia.md`, `.inboundfy/context/marca-voz.md`, `.inboundfy/context/publico.md`, `.inboundfy/context/proibicoes.md`, `.inboundfy/context/glossario.md`, `.inboundfy/pipeline.md`, o acervo relacionado e `.inboundfy/framework/`.
+Confirme `.inboundfy/framework/VERSAO.md` e `.inboundfy/fontes-projeto.md`. Ausência de sentinela exige apresentar o alerta canônico do preflight e acionar `inboundfy-setup` antes de escrever.
 
-Leia também `.inboundfy/fontes-projeto.md`, as bases editoriais relacionadas e os documentos públicos citados. Antes de entregar copy, consulte `inboundfy-anti-slop` e `inboundfy-copy-edicao`.
+Leia `.inboundfy/context/empresa.md`, `.inboundfy/context/publico.md`, `.inboundfy/context/ofertas.md`, `.inboundfy/context/produtos.md`, `.inboundfy/context/integracoes.md`, `.inboundfy/context/marca-voz.md`, `.inboundfy/context/glossario.md`, `.inboundfy/context/proibicoes.md` e `.inboundfy/estrategia.md`. Consulte `.inboundfy/framework/`, páginas de origem, suporte, autenticação e regras de privacidade. Não altere controles de acesso para elevar conversão.
 
 ## Entrada esperada
 
-Receba um objetivo, um ou mais IDs de acervo, a persona, o canal, a oferta ou o fluxo que precisa ser planejado. Separe fatos confirmados, hipótese de trabalho e pergunta aberta.
+Receba URLs, dispositivos prioritários, oferta de entrada, métodos de autenticação, campos atuais, verificação exigida, regra de conta existente e primeira tarefa de valor. Inclua dados por etapa, origem e dispositivo, erros conhecidos, prazo e equipe executora.
+
+## Perguntas de diagnóstico
+
+- O visitante sabe o que terá após criar conta e se haverá cobrança?
+- Qual dado é indispensável antes do primeiro uso e qual pode ser pedido depois?
+- O problema está no formulário, no email de verificação, no login ou na tarefa inicial?
+- Uma pessoa convidada para uma equipe recebe o mesmo fluxo de quem cria uma empresa?
 
 ## Fluxo
 
-1. Leia [REFERENCIA.md](REFERENCIA.md) e confirme a intenção, o público, o canal e o resultado solicitado.
-2. Consulte voz, persona, proibições e dicionário antes de propor mensagem, segmento, preço, promessa ou CTA.
-3. Relacione cada afirmação ao acervo, à base editorial, à página canônica ou à pesquisa salva no item.
-4. Desenvolva um brief de cadastro com estados, textos, campos e eventos.
-5. Revise o material com `inboundfy-anti-slop`, `inboundfy-copy-edicao` e a validação específica do canal quando houver copy pública.
-6. Registre caminho, ID, fontes, alcance da regra e pendências; peça confirmação antes de alterar uma configuração global.
+1. Leia [REFERENCIA.md](REFERENCIA.md). Percorra cadastro e primeiro acesso em celular e computador no ambiente autorizado, incluindo conta existente e convite.
+2. Registre as etapas e a fonte de sucesso de cada uma. Separe visita, início, envio, conta criada, verificação, primeiro login e ativação.
+3. Para cada campo, associe finalidade operacional, necessidade imediata, validação e etapa futura possível. Use [estados e verificação](references/estados-e-verificacao.md) para erros, acessibilidade e métodos de autenticação.
+4. Defina proposta, ação principal, informação de preço/cartão e expectativa de próximo passo. Preserve termos necessários e permissão promocional como finalidades distintas.
+5. Prepare telas e mensagens de estado: preenchimento, processamento, erro, email enviado, link expirado, conta existente e sucesso. Não revele informação de conta além do padrão de proteção aprovado pela equipe técnica.
+6. Desenhe o primeiro uso com uma tarefa concreta e ajuda pertinente. Encaminhe eventos e deduplicação a `inboundfy-rastreamento-conversao`; associe conta criada à ativação sem transportar dados pessoais em UTMs.
+7. Teste navegação por teclado, leitor de tela quando disponível, preenchimento automático, falha de rede, repetição e retomada. Planeje comparação com `inboundfy-experimentacao` e revise textos com `ESCRITA.md` e `inboundfy-copy-editor`.
+8. Entregue brief técnico, achados reproduzíveis, métrica e próxima ação a produto. Após criar a conta, entregue a `inboundfy-growth-onboarding` persona e papéis, oferta, acesso liberado, tarefa inicial, eventos já confirmados e pendências; preserve o marco se já ocorreu.
 
 ## Saída
 
-Um brief de cadastro com estados, textos, campos e eventos. O material deve manter IDs, links relativos, fontes, persona, canal, estado e próxima ação.
+Salve `cadastro-<id>.md` no diretório de campanha ou produto já registrado, com mapa de etapas, justificativa de campos, telas, textos, eventos, casos de aceite e plano de leitura. Preserve ID, grupo growth, público, canal, oferta, fontes, estado, pendências, responsável técnico e próxima ação.
 
 ## Validação
 
-- A finalidade e o público estão explícitos.
-- Toda afirmação comercial possui fonte local ou marcação de confirmação.
-- Voz, persona, proibições e dicionário foram aplicados.
-- O formato respeita o canal, o pipeline e o template correspondente.
-- Pendências ficaram registradas sem preenchimento inventado.
+- O cadastro explica oferta, cobrança e próximo passo antes do envio.
+- Cada campo tem finalidade, necessidade imediata e validação descritas.
+- Conta criada e ativação possuem confirmações distintas e eventos únicos.
+- Erros preservam dados seguros e permitem nova tentativa.
+- Convite, conta existente, link expirado e falha de email têm tratamento definido.
+- A pessoa consegue operar o fluxo com teclado e foco previsível.
+- Remover controles de segurança não aparece como solução de conversão.
 
 ## Responsabilidade do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
-
-Antes do handoff, confirme os campos próprios deste grupo:
-
-- **grupo:** growth
-- **entrada:** caminho ou ID ligado ao pedido;
-- **transformação:** ação principal descrita no fluxo;
-- **saída:** arquivo, resposta ou relatório com formato definido;
-- **handoff:** próxima skill, estado e pendências.
+Transforme intenção de cadastro em especificação de conta criada e primeiro acesso; entregue ao onboarding a tarefa inicial e as pendências. Registre grupo `growth`, entrada, transformação, saída, próxima skill, estado e pendências no handoff.
 
 ## Idempotência
 
-Atualize o mesmo arquivo ou brief quando o ID já existir. Preserve texto aprovado, histórico, fontes e escolhas anteriores; abra uma nova versão apenas após pedido explícito.
+Use ID do fluxo e versão de telas. Preserve campos e textos aprovados até revisão solicitada. Reenvio não cria nova conta; convite mantém a equipe de destino. Nova rodada compara a mesma definição de evento e registra qualquer mudança de contagem.

@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Atribuicao"
-  short_description: "Executa atribuicao no Inboundfy"
-  default_prompt: "Use $inboundfy-atribuicao para executar atribuicao com as fontes do projeto."
+  display_name: "Inboundfy: Atribuição"
+  short_description: "Compara atribuição e indica a próxima medição"
+  default_prompt: "Use $inboundfy-atribuicao para comparar as fontes de conversão do projeto, ler cada modelo de atribuição e recomendar a próxima correção ou teste."

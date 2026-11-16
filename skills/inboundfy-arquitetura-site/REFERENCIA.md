@@ -1,53 +1,8 @@
 # Referência de Arquitetura de site
 
-## Template
-
-```markdown
-# Arquitetura de site
-
-- **ID:** {{id}}
-- **Objetivo:** {{objetivo}}
-- **Persona:** {{persona}}
-- **Canal:** {{canal}}
-- **Acervo:** {{acervo}}
-- **Fonte principal:** {{fonte}}
-- **Próxima ação:** {{cta}}
-
-## Plano
-
-{{plano}}
-
-## Pendências
-
-{{pendencias}}
-```
-
-## Guia específico
-
-Organize páginas por intenção e tarefa, defina hubs, níveis de navegação, URLs, breadcrumbs, links entre acervo e oferta e ordem de implementação. Evite páginas sem função.
-
-## Exemplo ilustrativo
-
-Uma empresa de software pode usar este modelo para organizar uma ação de teste com uma persona específica, ligar cada mensagem a um acervo e registrar a página de destino sem afirmar resultados ainda não medidos.
-
-## Checklist
-
-- [ ] ID e objetivo estão presentes.
-- [ ] Persona, canal e acervo estão vinculados.
-- [ ] Fontes e pendências estão localizadas.
-- [ ] Voz, proibições e dicionário foram conferidos.
-- [ ] Próxima ação e estado do pipeline estão claros.
-
-## Erros comuns
-
-- Começar pelo formato antes de confirmar objetivo, público e fonte.
-- Usar promessa, preço, número ou nome sem registro local.
-- Aplicar a mesma mensagem a personas com contextos diferentes.
-- Salvar o resultado sem caminho, ID ou alcance da escolha.
-
-## Relação com inboundfy-arquitetura-site
-
-Use este modelo como roteiro mínimo e acrescente apenas campos pedidos pelo projeto. O arquivo final deve ficar ligado ao acervo, à peça e ao calendário quando houver data.
+Material de apoio de `inboundfy-arquitetura-site`. O `SKILL.md` diz a ordem;
+este arquivo diz como montar cada parte do mapa, com modelos e um caso
+completo.
 
 ## Arquitetura aplicada
 
@@ -60,164 +15,276 @@ Esta referência usa o contrato comum para a skill **inboundfy-arquitetura-site*
 - [validação e retomada](../_shared/04-validacao-e-retomada.md);
 - [contexto editorial](../_shared/05-contexto-editorial.md).
 
-## Contrato específico
+## Mapa de leitura
 
-- **Função:** executar a capacidade de arquitetura site dentro do fluxo do Inboundfy.
-- **Entrada mínima:** ID ou pedido, arquivos relacionados, fontes locais e
-  escolhas já confirmadas.
-- **Saída mínima:** registro com ID, estado, fontes, pendências e próxima ação.
-- **Relação:** o resultado aponta para a entrada e para a skill seguinte.
-- **Preservação:** o original e as versões aprovadas permanecem disponíveis.
+| Passo do fluxo | Arquivo | Para quê |
+| --- | --- | --- |
+| 3 e 4 | [hierarquia e URLs](references/hierarquia-e-urls.md) | Classificar páginas atuais, definir níveis, hubs e padrões de URL por tipo de site. |
+| 6 e 7 | [navegação e links internos](references/navegacao-e-links-internos.md) | Menu, rodapé, breadcrumbs, navegação contextual e plano de links. |
+| 8 | [migração e redirecionamentos](references/migracao-e-redirecionamentos.md) | Tabela 301, troca de plataforma ou domínio e conferência pós-migração. |
 
-## Template de operação
+## Tipos de trabalho
 
-```markdown
+| Tipo | Quando escolher | Entrega principal |
+| --- | --- | --- |
+| Site novo | Projeto sem site ou com site de uma página | Árvore completa, URLs e ordem de lançamento |
+| Reorganização | Menu confuso, categorias demais, páginas órfãs | Classificação das páginas atuais e nova árvore |
+| Nova seção | Novo produto, nova cidade, blog ou central de ajuda | Hub da seção, URLs e links com o resto do site |
+| Migração | Troca de domínio, plataforma ou padrão de URL | Tabela de redirecionamentos e plano de conferência |
+
+## Profundidade: plana ou funda
+
+| Estrutura | Quando funciona | Consequência quando exagera |
+| --- | --- | --- |
+| Plana (tudo a um ou dois cliques) | Sites com até cerca de 50 páginas, serviço local, SaaS pequeno | Menu lotado e sem agrupamento |
+| Em hubs (Home, hub, página) | Sites com várias ofertas, cidades ou temas | Hub vazio que só lista links |
+| Funda (quatro níveis ou mais) | Lojas grandes e catálogos com filtros | Páginas importantes longe da Home e pouco rastreadas |
+
+Regra prática: páginas comerciais a no máximo três cliques da Home. Hub só
+existe quando tem texto próprio que ajuda a escolher entre as páginas filhas.
+
+## Métricas de referência
+
+| Métrica | Referência | Leitura |
+| --- | --- | --- |
+| Itens no menu principal | Entre 5 e 7 | Acima disso a pessoa deixa de ler o menu |
+| Profundidade de páginas comerciais | Até 3 cliques | Mais fundo, o rastreador visita menos e a pessoa desiste |
+| Páginas órfãs | Zero | Página sem link de entrada demora a ser descoberta |
+| Links de entrada de página comercial | Ao menos 3 contextuais | Sinaliza importância ao buscador |
+| Páginas com tráfego zero em 12 meses | Revisar se passam de 30% do site | Indica conteúdo sem função ou duplicado |
+| Cadeia de redirecionamento | Um salto | Dois ou mais saltos perdem sinal e deixam a página lenta |
+
+Prefira os dados do projeto (Search Console, analytics, rastreamento) a
+qualquer faixa geral.
+
+## Template de mapa de arquitetura
+
+````markdown
 ---
-id: {id}
+id: {{id}}
 skill: inboundfy-arquitetura-site
+tipo: arquitetura-site
 estado: rascunho
-entrada: {caminho ou ID}
+entrada:
+  - {{acervo/<id>-<data>-<slug>/ ou sitemap atual}}
+personas:
+  - {{persona-xx}}
 fontes:
-  - {caminho}
-proxima_skill: {nome ou "pendente de confirmação"}
+  - {{caminho ou URL com data de consulta}}
+proxima_skill: {{inboundfy-seo | inboundfy-dados-estruturados | outra}}
 ---
 
-# Registro de arquitetura site
+# Arquitetura de site: {{projeto ou seção}}
 
-## Resultado
+## Objetivo e tipo de site
 
-{Conteúdo específico da etapa.}
+- **Tipo de trabalho:** {{site novo | reorganização | nova seção | migração}}
+- **Tipo de site:** {{serviço local | SaaS | loja | conteúdo | misto}}
+- **Tarefas principais da persona:** {{1, 2, 3}}
+- **Ações de negócio:** {{tarefa → ação → URL de links.md}}
+
+## Classificação das páginas atuais
+
+| URL atual | Tráfego 12 meses | Função | Ação | Destino |
+| --- | --- | --- | --- | --- |
+| {{/url/}} | {{n}} | {{}} | {{manter, fundir, reescrever, remover}} | {{URL ou "410"}} |
+
+## Árvore de páginas
+
+```text
+Home (/)
+├── {{Hub}} (/{{hub}}/)
+│   ├── {{Página}} (/{{hub}}/{{pagina}}/)
+│   └── {{Página}} (/{{hub}}/{{pagina}}/)
+├── {{Página comercial}} (/{{slug}}/)
+└── Blog (/blog/)
+```
+
+## Mapa visual
+
+```mermaid
+graph TD
+  H[Home] --> A[{{Hub}}]
+  A --> A1[{{Página}}]
+  H --> B[{{Página comercial}}]
+```
+
+## Tabela de URLs
+
+| Página | URL | Tipo | Nível | Intenção | Pai | Estado |
+| --- | --- | --- | --- | --- | --- | --- |
+| {{}} | /{{}}/ | {{hub, serviço, artigo}} | {{1, 2, 3}} | {{}} | {{}} | {{existe, criar}} |
+
+## Navegação
+
+- **Menu principal:** {{itens na ordem}}
+- **Botão de ação no cabeçalho:** {{texto}} → {{URL}}
+- **Rodapé:** {{grupos e itens}}
+- **Breadcrumb:** {{padrão, ex.: Home > Hub > Página}}
+
+## Links internos
+
+| De | Para | Âncora | Tipo |
+| --- | --- | --- | --- |
+| {{}} | {{}} | {{}} | {{contextual, hub, relacionado}} |
+
+## Redirecionamentos
+
+| Origem | Destino | Código | Motivo |
+| --- | --- | --- | --- |
+| {{/antiga/}} | {{/nova/}} | 301 | {{}} |
+
+## Ordem de implementação
+
+1. {{etapa}}: {{páginas}}, {{responsável}}
 
 ## Pendências
 
-- {pergunta ou "nenhuma"}
+- {{pergunta ou "nenhuma"}}
 
 ## Próxima ação
 
-{verbo + objeto + caminho do arquivo seguinte}
+{{verbo + objeto + caminho}}
+````
+
+## Exemplo completo: Lavô Lavanderias
+
+Empresa fictícia, usada só para ilustrar. Não vira contexto de projeto.
+
+**Contexto.** A Lavô tem quatro lavanderias self-service em Recife (Boa
+Viagem, Casa Forte, Graças e Pina) e um serviço de coleta e entrega pedido
+pelo WhatsApp. O ciclo de lavagem custa R$ 18, a secagem R$ 16 e o plano
+mensal de coleta sai a R$ 189, pago por Pix. O site atual, num construtor de
+páginas, tem 38 URLs: Home, uma página por unidade com endereço repetido,
+uma página "Serviços" com tudo junto, 22 posts de blog e nove páginas de
+promoções antigas. A persona principal (`persona-01`, Caio) mora num
+apartamento sem área de serviço e quer resolver a roupa da semana sem perder
+o sábado.
+
+**Pedido.** "O site não aparece quando alguém busca lavanderia no bairro e
+ninguém acha o plano de coleta."
+
+**Diagnóstico registrado.**
+
+1. Tipo: serviço local com várias unidades e um serviço por assinatura.
+2. Tarefas: achar a unidade mais perto e o horário; saber o preço; pedir
+   coleta.
+3. Ações: rota no mapa, pedido pelo WhatsApp, assinatura do plano.
+4. Páginas com tráfego: as quatro de unidade e o post "como lavar edredom"
+   (1.900 visitas no ano).
+5. Sem função: nove páginas de promoções vencidas, sem tráfego.
+6. A plataforma permite URL própria e redirecionamento 301 por página.
+7. Atendimento em quatro bairros, com coleta em toda a Zona Sul.
+
+**Classificação (trecho).**
+
+| URL atual | Tráfego 12 meses | Ação | Destino |
+| --- | --- | --- | --- |
+| /unidade-boa-viagem | 2.300 | reescrever | /unidades/boa-viagem/ |
+| /servicos | 640 | dividir | /lavagem-self-service/ e /coleta-e-entrega/ |
+| /promo-carnaval-2024 | 0 | remover | 410 |
+| /blog/como-lavar-edredom | 1.900 | manter, linkar | sem mudança |
+
+**Três estruturas apresentadas.**
+
+1. **Recomendada.** Dois serviços na raiz (`/lavagem-self-service/` e
+   `/coleta-e-entrega/`), hub `/unidades/` com uma página por bairro, página
+   `/precos/` e blog. Cada unidade ganha horário, fotos, preço e link para o
+   pedido de coleta.
+2. Hub por bairro como entrada principal, com os serviços dentro de cada
+   unidade. Funciona para busca local e duplica a explicação dos serviços
+   quatro vezes.
+3. Site de uma página com âncoras e as unidades como seções. Simples de
+   manter e fraco para busca por bairro.
+
+A equipe escolhe a estrutura 1.
+
+**Árvore resultante.**
+
+```text
+Home (/)
+├── Lavagem self-service (/lavagem-self-service/)
+├── Coleta e entrega (/coleta-e-entrega/)
+├── Preços (/precos/)
+├── Unidades (/unidades/)
+│   ├── Boa Viagem (/unidades/boa-viagem/)
+│   ├── Casa Forte (/unidades/casa-forte/)
+│   ├── Graças (/unidades/gracas/)
+│   └── Pina (/unidades/pina/)
+├── Blog (/blog/)
+└── Privacidade (/privacidade/)
 ```
 
-## Exemplo operacional completo
+**Navegação.** Menu com cinco itens: Self-service, Coleta e entrega, Preços,
+Unidades, Blog. Botão "Pedir coleta no WhatsApp" fixo no cabeçalho. Rodapé
+com as quatro unidades, horários, CNPJ e link para a política de
+privacidade, porque o pedido de coleta coleta nome, endereço e telefone e
+precisa informar o uso desses dados pela LGPD. Breadcrumb em unidades e
+blog: Home > Unidades > Boa Viagem.
 
-### Entrada ilustrativa
+**Links internos (trecho).** Cada unidade → `/coleta-e-entrega/` com âncora
+"coleta e entrega em {{bairro}}". O post do edredom → `/lavagem-self-service/`
+com âncora "máquinas para edredom e cobertor". `/precos/` → as duas páginas
+de serviço.
 
-```yaml
-id: 0042
-skill: inboundfy-arquitetura-site
-grupo: capacidade
-entrada: acervo/0042-2026-09-14-arquitetura-site/processado.md
-pedido: aplicar a etapa de arquitetura site e entregar o próximo registro
-contexto:
-  persona: persona-01
-  voz: .inboundfy/context/marca-voz.md
-  dicionario: .inboundfy/context/glossario.md
-  proibicoes: .inboundfy/context/proibicoes.md
-```
+**Redirecionamentos.** Quatro URLs de unidade com 301 para o novo padrão;
+`/servicos` com 301 para `/lavagem-self-service/`, porque a maior parte do
+tráfego buscava lavagem; nove promoções com 410.
 
-### Saída ilustrativa
+**Ordem de implementação.** 1) Páginas de serviço e preços. 2) Hub e
+unidades com redirecionamentos. 3) Remoção das promoções. 4) Links dos posts
+antigos.
 
-```markdown
----
-id: 0042
-skill: inboundfy-arquitetura-site
-estado: aprovado
-entrada: acervo/0042-2026-09-14-arquitetura-site/processado.md
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: {skill seguinte ou "pendente de confirmação"}
----
+**Pendências.** Confirmar se Pina mantém horário 24 horas; confirmar o raio
+de coleta em `ofertas.md`.
 
-# Registro de arquitetura site
+**Handoff.** `inboundfy-seo` para briefing das páginas de unidade e de coleta;
+`inboundfy-dados-estruturados` para LocalBusiness por unidade e
+BreadcrumbList; `inboundfy-auditoria-seo` duas semanas depois da publicação.
 
-## Resultado
+## Checklist
 
-A etapa foi executada com a fonte indicada, mantendo as perguntas abertas
-separadas do material confirmado.
+- [ ] O tipo de trabalho e o tipo de site estão registrados.
+- [ ] As sete perguntas de diagnóstico têm resposta ou pendência.
+- [ ] Toda página atual tem ação: manter, fundir, reescrever, criar ou remover.
+- [ ] Três estruturas foram apresentadas e a escolha foi registrada.
+- [ ] A árvore e o Mermaid mostram a mesma hierarquia.
+- [ ] Toda página tem função, intenção e página pai.
+- [ ] Páginas comerciais ficam a até três cliques da Home.
+- [ ] O menu principal tem entre cinco e sete itens.
+- [ ] Breadcrumb e URL seguem a mesma hierarquia.
+- [ ] Nenhuma página planejada fica órfã.
+- [ ] Toda URL alterada tem 301 para destino equivalente, sem cadeia.
+- [ ] Remoções sem destino equivalente recebem 410, com motivo.
+- [ ] A ordem de implementação está escrita com responsável.
 
-## Próxima ação
+## Erros comuns
 
-{verbo + objeto + caminho do arquivo seguinte}
-```
-
-## Checklist ampliado
-
-- [ ] O ID, o grupo e o objetivo aparecem no registro.
-- [ ] A entrada foi lida sem substituir o original.
-- [ ] Voz, personas, dicionário e proibições foram conferidos quando aplicáveis.
-- [ ] Fontes, perguntas abertas e relações estão registradas.
-- [ ] O resultado segue para a skill correta ou pede a informação que falta.
-- [ ] Uma nova rodada preserva o histórico e atualiza somente o alcance pedido.
-
-## Erros comuns adicionais
-
-- Executar **inboundfy-arquitetura-site** sem o arquivo de entrada ligado ao ID.
-- Declarar a etapa concluída sem preencher o campo de próxima ação.
-- Misturar dado confirmado, hipótese e preferência no mesmo parágrafo.
-- Reescrever um arquivo aprovado sem registrar a nova solicitação.
+- **Desenhar o menu pelo organograma.** "Quem somos", "Soluções" e
+  "Institucional" refletem a empresa. O menu segue as tarefas da persona.
+- **Hub que só lista links.** Uma página "Serviços" com cinco cartões e
+  nenhum texto não ajuda a escolher nem ranqueia. Dê ao hub explicação,
+  comparação e prova.
+- **Uma página por unidade com texto copiado.** Quatro páginas iguais com o
+  endereço trocado parecem duplicadas. Cada unidade precisa de horário,
+  fotos, equipe, estacionamento ou outro dado próprio.
+- **Trocar URL sem tabela de redirecionamento.** O tráfego das páginas
+  antigas cai para zero e leva semanas para voltar.
+- **Redirecionar tudo para a Home.** O buscador trata como página removida.
+  Redirecione para o equivalente ou responda 410.
+- **Categorias demais no blog.** Vinte categorias com dois posts cada geram
+  páginas finas. Agrupe em quatro a seis temas.
+- **URL com data ou ID de sistema.** `/2023/05/post-123` envelhece e
+  esconde o assunto. Use slug descritivo.
+- **Esquecer a página de privacidade quando há formulário.** Pedido de
+  coleta, orçamento ou cadastro coleta dados pessoais e precisa da política
+  acessível pela LGPD.
 
 ## Guia específico do grupo
 
-Aplique a capacidade ao objetivo informado, relacionando fontes, persona, canal, estado e próxima ação sem assumir dados ausentes.
+Aplique a capacidade ao objetivo informado, relacionando fontes, persona,
+canal, estado e próxima ação sem assumir dados ausentes.
 
 Use o campo **grupo** no registro para facilitar busca, relação e manutenção.
-
-## Especificação operacional
-
-### Quando usar
-
-Use **inboundfy-arquitetura-site** para executar esta função: Planeja hierarquia, navegação, hubs, páginas, URLs e links internos para conectar intenção, oferta e conteúdo.
-
-O grupo **capacidade** trabalha com estes campos mínimos:
-
-- **objetivo:** preencher com dado ligado ao pedido.
-- **entrada:** preencher com dado ligado ao pedido.
-- **contexto:** preencher com dado ligado ao pedido.
-- **resultado:** preencher com dado ligado ao pedido.
-- **próxima ação:** preencher com dado ligado ao pedido.
-
-### Exemplo específico ilustrativo
-
-Entrada:
-
-```yaml
-id: 0042
-skill: inboundfy-arquitetura-site
-grupo: capacidade
-pedido: executar a função desta skill sobre o material selecionado
-entrada: .inboundfy/context/empresa.md
-```
-
-Saída:
-
-```yaml
-id: 0042
-skill: inboundfy-arquitetura-site
-estado: pronto-para-handoff
-resultado: arquivo ou relatório salvo no caminho definido pelo fluxo
-fontes:
-  - .inboundfy/context/empresa.md
-proxima_skill: nome-da-proxima-skill
-```
-
-O exemplo é ilustrativo. Troque o ID, o caminho, o estado e as fontes pelos
-valores reais, sem apagar o material original.
-
-### Perguntas de conferência
-
-1. A entrada pertence ao grupo **capacidade** e tem um ID localizável?
-2. O resultado registra todos os campos mínimos desta skill?
-3. O contexto aplicável foi lido antes da transformação?
-4. A saída aponta para a fonte, para o estado e para a próxima ação?
-5. Uma nova rodada preserva a versão anterior e registra o novo pedido?
-
-### Referências de execução
-
-Leia, na ordem necessária:
-
-- `README.md`
-- `CONTEXTO.md`
-- `SKILL-AUTORIA.md`
-
-Depois consulte as referências compartilhadas e o arquivo específico desta
-pasta. Se houver conflito entre fontes, registre a origem de cada informação e
-encaminhe a pergunta para a skill responsável pelo domínio.
+Para arquitetura de site, os campos próprios são: tipo de site, árvore de
+páginas, padrão de URL, navegação e redirecionamentos.

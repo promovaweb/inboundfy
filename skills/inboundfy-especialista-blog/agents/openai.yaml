@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Especialista Blog"
-  short_description: "Executa especialista blog no Inboundfy"
-  default_prompt: "Use $inboundfy-especialista-blog para executar especialista blog com as fontes do projeto."
+  display_name: "Inboundfy: Redação de artigos de blog"
+  short_description: "Produz artigos com fontes e metadata de busca"
+  default_prompt: "Use $inboundfy-especialista-blog para produzir artigos de blog a partir da entrada aprovada. Consulte o método e o exemplo completo; aplique os 11 itens do par, a revisão editorial e A5 antes de encaminhar a inboundfy-validador-blog."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inboundfy: SEO e busca"
+  short_description: "Encaminha pedidos de SEO e busca para a skill certa"
+  default_prompt: "Use $inboundfy-area-seo para entender meu pedido de seo e busca e encaminhar para a skill certa."

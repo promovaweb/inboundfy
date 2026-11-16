@@ -10,3 +10,11 @@ docs/user/07-peca-avulsa.md
 docs/user/08-validacao-e-correcoes.md
 docs/user/09-atualizacao-e-reparo.md
 docs/user/10-solucao-de-problemas.md
+docs/user/11-areas-de-trabalho.md
+docs/user/12-configuracoes-e-integracoes.md
+docs/user/13-tutorial-do-material-ao-post.md
+docs/user/14-tutorial-lancamento.md
+docs/user/15-tutorial-seo.md
+docs/user/16-tutorial-vendas-b2b.md
+docs/user/17-tutorial-medicao.md
+docs/user/18-exemplos-de-pedidos.md

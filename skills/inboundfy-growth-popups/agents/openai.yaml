@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Growth Popups"
-  short_description: "Executa growth popups no Inboundfy"
-  default_prompt: "Use $inboundfy-growth-popups para executar growth popups com as fontes do projeto."
+  display_name: "Inboundfy: Popups e formulários contextuais"
+  short_description: "Define convite contextual, frequência e captura acessível."
+  default_prompt: "Use $inboundfy-growth-popups para planejar popup com exibição contextual, saída simples, destino dos dados e aferição do efeito na página."

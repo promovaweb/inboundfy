@@ -1,4 +1,4 @@
 interface:
-  display_name: "Inboundfy Copy Edicao"
-  short_description: "Executa copy edicao no Inboundfy"
-  default_prompt: "Use $inboundfy-copy-edicao para executar copy edicao com as fontes do projeto."
+  display_name: "Inboundfy: Edição de Copy"
+  short_description: "Revisa e atualiza textos sem mudar a tese nem os fatos"
+  default_prompt: "Use $inboundfy-copy-edicao para revisar este texto no modo de edição adequado e me devolver a versão revisada com o relatório do que foi corrigido, mantido, sugerido e pendente."
