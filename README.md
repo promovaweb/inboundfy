@@ -41,58 +41,70 @@ O Inboundfy organiza o trabalho de marketing e conteúdo em um projeto com
 agente de IA. Ele instala 128 skills, sendo 127 diretórios com o prefixo
 `inboundfy-` mais a orquestradora. Elas cuidam do contexto do negócio, da
 pesquisa, do planejamento, da produção por canal, da revisão e da publicação.
-O CLI `inboundfy` cria e mantém a estrutura do projeto consumidor.
+
+O binário `inboundfy` instala o framework, mantém o acervo, as peças e o
+calendário do projeto e mostra os números desse trabalho. É um executável só,
+com três modos:
+
+| Modo | Como abrir | Para quê |
+| --- | --- | --- |
+| Painel (TUI) | `inboundfy` | ver acervo, canais, funil do pipeline, calendário e contexto num painel no terminal |
+| CLI | `inboundfy <command>` | instalar, conferir, registrar material, criar e mover peças, agendar e extrair números com `--json` |
+| MCP | `inboundfy mcp` | dar ao agente tools para ler e gravar acervo, peças e calendário |
+| Skills | `$inboundfy` no agente | conduzir brainstorm, campanha, pacote editorial e peça avulsa |
 
 O escopo cobre campanha, calendário editorial, copy, SEO, distribuição,
 imagens e auditoria. Cada skill produz um artefato observável. A publicação
 exige leitura crítica e adequação à voz registrada no projeto.
 
-| Modo | Como usar | Para quê |
-| --- | --- | --- |
-| CLI | `inboundfy <comando>` | registrar acervo, criar peças, montar calendário e conferir a instalação |
-| Skills | `$inboundfy` no agente | conduzir brainstorm, campanha, pacote editorial e peça avulsa |
-| Áreas | `$inboundfy-area-<área>` | diagnosticar um domínio e encaminhar para a skill certa |
-| Setup | `inboundfy-setup` | preencher o contexto, as integrações e as configurações do projeto |
-
 ### Separação entre framework e projeto
 
-O repositório guarda método, skills, templates, código e documentação
-reutilizável. Ao instalar, o framework vai para `.inboundfy/framework/`. Os
-dados da empresa e as escolhas do projeto ficam em `.inboundfy/context/`.
-Estratégia, pipeline, índices e estado da instalação ficam em `.inboundfy/`.
-O trabalho e as saídas ficam em `acervo/`, `canais/` e `calendario/`.
+O binário leva dentro dele o método, as skills, os templates e a
+documentação da versão. Ao instalar, o framework vai para
+`.inboundfy/framework/`. Os dados da empresa e as escolhas do projeto ficam
+em `.inboundfy/context/`. Estratégia, pipeline, índices e estado da
+instalação ficam em `.inboundfy/`. O trabalho e as saídas ficam em `acervo/`,
+`canais/` e `calendario/`.
 
 ## Instalação
 
-Na raiz do projeto consumidor, comece com uma simulação:
+Instale o binário por uma destas formas:
 
 ```bash
-npx @promovaweb/inboundfy@latest install --dry-run
+# npm: baixa e confere o binário da versão na primeira execução
+npm install -g @promovaweb/inboundfy
+
+# uso pontual, sem instalação global
+npx @promovaweb/inboundfy@latest --version
 ```
 
-Depois instale escolhendo o agente e o arquivo de instruções:
+Sem Node.js, baixe o executável da sua plataforma na
+[página de releases](https://github.com/promovaweb/inboundfy/releases)
+(linux-x64, linux-arm64, darwin-x64, darwin-arm64, windows-x64) e confira o
+`SHA256SUMS`.
+
+Na raiz do projeto consumidor, comece com uma simulação e depois instale
+escolhendo o agente e o arquivo de instruções:
 
 ```bash
-npx @promovaweb/inboundfy@latest install \
-  --agent codex \
-  --instruction-file AGENTS.md \
-  --yes
+inboundfy install --dry-run
+inboundfy install --agent codex --instruction-file AGENTS.md --yes
 ```
 
 `--agent` aceita `codex`, `claude` ou `agents`. `--instruction-file` aceita
 `AGENTS.md`, `CLAUDE.md` ou `none`. Use `--skills-dir` quando o projeto tiver
-um diretório de skills próprio.
-
-Requisitos: Node.js 22.14.0 ou superior, acesso ao npm e um agente que
-carregue skills no formato `SKILL.md`. Não é preciso instalar servidor nem
-banco de dados.
+um diretório de skills próprio. Não é preciso instalar servidor nem banco de
+dados.
 
 Para atualizar ou restaurar uma instalação:
 
 ```bash
-npx @promovaweb/inboundfy@latest update --yes
-npx @promovaweb/inboundfy@latest repair --dry-run
+inboundfy update --yes
+inboundfy repair --dry-run
 ```
+
+Projetos instalados pela 0.x continuam válidos: rode `inboundfy update` com o
+binário novo.
 
 ## Primeiros passos
 
@@ -100,12 +112,13 @@ npx @promovaweb/inboundfy@latest repair --dry-run
    empresa, produtos, serviços, personas, voz, proibições, canais, calendário,
    integrações por área e áreas de trabalho, sem apagar o que já estiver
    preenchido.
-2. Depois da entrevista, confira o projeto:
+2. Durante a entrevista, `inboundfy context check` mostra o que ainda falta.
+   Depois, confira o projeto:
 
 ```bash
-npx @promovaweb/inboundfy@latest project sync
-npx @promovaweb/inboundfy@latest context ready --yes
-npx @promovaweb/inboundfy@latest doctor --strict
+inboundfy project sync
+inboundfy context ready --yes
+inboundfy doctor --strict
 ```
 
 O setup exige empresa, site, voz, uma persona completa, objetivo e pelo menos
@@ -115,71 +128,89 @@ aponta para os arquivos que já existiam no projeto, como `README.md`,
 
 ## Uso
 
+### O painel
+
+Rode `inboundfy` na raiz do projeto. O painel abre com números grandes de
+acervo, peças, publicadas, em andamento, agendadas e atrasadas, o funil do
+pipeline, uma linha por canal, a entrada de material e as publicações dos
+últimos meses, o progresso das etapas e das auditorias anti-slop, o
+calendário e a prontidão do contexto. As abas Archive, Channels e Calendar
+abrem lista e detalhe. A tela recarrega quando o agente grava.
+
+### Números no terminal
+
+```bash
+inboundfy stats
+inboundfy stats --section channels
+inboundfy stats --months 12 --json
+```
+
 ### Acervo e peças
 
 ```bash
 # Preserva o material original e cria um item numerado
-npx @promovaweb/inboundfy@latest acervo add "Título do material" --file entrada.md
+inboundfy archive add "Título do material" --file entrada.md
 
-# Gera a versão processada e atualiza o índice
-npx @promovaweb/inboundfy@latest acervo process 0001
+# Mostra o andamento das etapas e das auditorias A0 a A6
+inboundfy archive show 1
 
 # Cria a pasta final do canal com README e frontmatter
-npx @promovaweb/inboundfy@latest content create blog "Título da peça" \
-  --persona persona-01 --acervo 0001
+inboundfy content create blog "Título da peça" --persona persona-01 --archive 1
 ```
 
 ### Pipeline e calendário
 
 ```bash
-npx @promovaweb/inboundfy@latest calendario add 2026-09-20 0001
-npx @promovaweb/inboundfy@latest content status 0001 revisao
-npx @promovaweb/inboundfy@latest content digest 0001
+inboundfy calendar add 2026-09-20 1
+inboundfy content status 1 revisao
+inboundfy content digest 1
 ```
 
 A aprovação depois da revisão exige o relatório da validadora com o ID, o
 caminho do asset e o SHA-256 atual:
 
 ```bash
-npx @promovaweb/inboundfy@latest content status 0001 aprovado \
-  --audit-report 06-auditoria/assets/blog-0001.md
+inboundfy content status 1 aprovado --audit-report auditoria/blog-0001.md
+inboundfy content status 1 agendado
+inboundfy content status 1 publicado --url https://exemplo.test/artigo --published-at 2026-09-20
 ```
 
-Para agendar e registrar a publicação:
-
-```bash
-npx @promovaweb/inboundfy@latest content status 0001 agendado
-npx @promovaweb/inboundfy@latest content status 0001 publicado \
-  --url https://exemplo.test/artigo --published-at 2026-09-20
-```
-
-O CLI recusa agendamento ou publicação quando o texto muda depois da
-auditoria. Use `--json` antes do comando para receber a resposta estruturada:
-
-```bash
-npx @promovaweb/inboundfy@latest --json acervo list
-```
+O binário recusa agendamento ou publicação quando o texto muda depois da
+auditoria. Com `--json`, toda resposta sai no envelope
+`{ ok, command, data }` e todo erro em `{ ok: false, error: { code, name,
+message } }`, com códigos de saída fixos.
 
 ### Diagnóstico
 
 ```bash
-npx @promovaweb/inboundfy@latest status
-npx @promovaweb/inboundfy@latest doctor --strict
-npx @promovaweb/inboundfy@latest doctor --json
+inboundfy status
+inboundfy doctor --strict
+inboundfy doctor --json
 ```
 
 `doctor` não altera arquivos. `--strict` trata avisos como falha.
 
 ## Uso com agentes
 
-O Inboundfy entrega skills, não um servidor MCP. Cada skill descreve
-ativação, contexto exigido, entrada, fluxo, saída e validação no próprio
-`SKILL.md`. O agente lê os arquivos do projeto em tempo de execução.
+As skills descrevem ativação, contexto exigido, entrada, fluxo, saída e
+validação no próprio `SKILL.md`. Com o servidor MCP ligado, elas leem e gravam
+o projeto pelas tools do binário:
+
+```bash
+claude mcp add inboundfy -- inboundfy mcp
+```
+
+No Codex, adicione `[mcp_servers.inboundfy]` com `command = "inboundfy"` e
+`args = ["mcp"]` em `~/.codex/config.toml`. As tools `project_stats`,
+`archive_*`, `content_*` e `calendar_*` seguem as mesmas regras do CLI, e os
+prompts `ingest_material`, `produce_piece` e `editorial_review` montam os
+roteiros do ciclo mestre. `inboundfy mcp --list` mostra tudo o que o servidor
+registra.
 
 Instale ou atualize somente as skills:
 
 ```bash
-npx @promovaweb/inboundfy@latest agent install --agent claude --yes
+inboundfy agent install --agent claude --yes
 ```
 
 A entrada recomendada é `$inboundfy`. Descreva o pedido em linguagem natural
@@ -217,6 +248,8 @@ artefatos.
 - [Áreas de trabalho](https://github.com/promovaweb/inboundfy/blob/main/docs/user/11-areas-de-trabalho.md)
 - [Configurações e integrações](https://github.com/promovaweb/inboundfy/blob/main/docs/user/12-configuracoes-e-integracoes.md)
 - [Exemplos de pedidos](https://github.com/promovaweb/inboundfy/blob/main/docs/user/18-exemplos-de-pedidos.md)
+- [Painel, estatísticas e MCP](https://github.com/promovaweb/inboundfy/blob/main/docs/user/19-painel-estatisticas-e-mcp.md)
+- [Referência do CLI](https://github.com/promovaweb/inboundfy/blob/main/docs/method/10-referencia-cli.md)
 - [Exemplos executáveis](https://github.com/promovaweb/inboundfy/blob/main/examples/README.md)
 - [Documentação do método](https://github.com/promovaweb/inboundfy/blob/main/docs/method/README.md)
 - [Edição em PDF e EPUB](https://github.com/promovaweb/inboundfy/blob/main/ebook/README.md)
@@ -228,16 +261,18 @@ artefatos.
 - [Escrita](https://github.com/promovaweb/inboundfy/blob/main/ESCRITA.md)
 - [Changelog](https://github.com/promovaweb/inboundfy/blob/main/CHANGELOG.md)
 
-A ajuda do CLI fica em `inboundfy --help` e em `inboundfy help <comando>`.
+A ajuda fica em `inboundfy --help` e em `inboundfy <command> --help`. O
+`inboundfy --skill` imprime a documentação completa do binário para agentes.
 
 ## Feito com
 
 | Projeto | Para quê |
 | --- | --- |
-| [Node.js](https://github.com/nodejs/node) | runtime do CLI e dos scripts |
-| [Commander](https://github.com/tj/commander.js) | parser de comandos e opções |
+| [Termfy](https://github.com/promovaweb/termfy) | framework do binário: TUI, CLI e MCP no mesmo executável |
+| [Bun](https://github.com/oven-sh/bun) | runtime, testes e compilação do binário |
+| [OpenTUI](https://github.com/sst/opentui) | interface de terminal do painel |
+| [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) | servidor MCP stdio |
 | [Zod](https://github.com/colinhacks/zod) | validação de esquemas do projeto |
-| [Inquirer](https://github.com/SBoudrias/Inquirer.js) | perguntas interativas da instalação |
 | [Codex](https://github.com/openai/codex) | agente suportado (`--agent codex`) |
 | [Claude Code](https://github.com/anthropics/claude-code) | agente suportado (`--agent claude`) |
 

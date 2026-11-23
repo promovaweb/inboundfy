@@ -21,4 +21,3 @@ inteiro, porque tem espaço para os seis blocos:
 Para convite mais curto (ex.: post anunciando o mesmo evento), use apenas
 título + promessa + CTA no formato **AIDA**, sem forçar os seis blocos de
 PASTOR num espaço que não comporta.
-

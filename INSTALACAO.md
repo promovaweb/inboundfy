@@ -2,9 +2,10 @@
 
 ## Pré-requisito
 
-O Inboundfy exige Node.js 22.14.0 ou superior para executar o CLI
-`@promovaweb/inboundfy`. As skills usam o formato `SKILL.md` de Codex,
-Claude Code e agentes compatíveis.
+O Inboundfy usa o binário `inboundfy`, instalado por
+`npm install -g @promovaweb/inboundfy` (Node.js 18.17 ou mais novo) ou pelo
+executável da GitHub Release, sem Node.js. As skills usam o formato
+`SKILL.md` de Codex, Claude Code e agentes compatíveis.
 
 ## Regra de separação
 
@@ -87,19 +88,19 @@ dicionário.
 Na raiz do projeto consumidor, simule primeiro:
 
 ```bash
-npx @promovaweb/inboundfy@latest install --dry-run
+inboundfy install --dry-run
 ```
 
 Depois instale escolhendo o agente:
 
 ```bash
-npx @promovaweb/inboundfy@latest install \
+inboundfy install \
   --agent codex \
   --instruction-file AGENTS.md \
   --yes
 ```
 
-O CLI instala as skills no diretório usado pelo agente, copia o método para
+O binário instala as skills no diretório usado pelo agente, copia o método para
 `.inboundfy/framework/`, cria os sete arquivos de configuração, os diretórios
 de trabalho, os índices e o bloco delimitado em `AGENTS.md` ou `CLAUDE.md`.
 Arquivos preenchidos pelo projeto permanecem intactos.
@@ -117,8 +118,8 @@ inboundfy doctor --strict
 Registre material bruto sem edição:
 
 ```bash
-inboundfy acervo add "Título do material" --file entrada.md --source "nota interna"
-inboundfy acervo process 0001
+inboundfy archive add "Título do material" --file entrada.md --source "nota interna"
+inboundfy archive process 0001
 ```
 
 O item recebe `bruto.md`, `processado.md`, `faq.md`, `base-editorial.md`,
@@ -129,12 +130,12 @@ Crie e mova uma peça pelo pipeline:
 
 ```bash
 inboundfy content create blog "Título da peça" \
-  --persona persona-01 --acervo 0001
+  --persona persona-01 --archive 0001
 inboundfy content status 0001 revisao
 inboundfy content digest 0001
 # Acrescente ID, caminho, SHA-256 e veredito ao relatório da validadora.
 inboundfy content status 0001 aprovado --audit-report 06-auditoria/assets/blog-0001.md
-inboundfy calendario add 2026-09-20 0001
+inboundfy calendar add 2026-09-20 0001
 inboundfy content status 0001 agendado
 inboundfy content status 0001 publicado \
   --url https://exemplo.test/artigo \
@@ -147,15 +148,15 @@ e data confirmadas.
 
 ## Atualização e reparo
 
-Use `inboundfy-setup` para atualizar ou reparar. O CLI preserva dados de
+Use `inboundfy-setup` para atualizar ou reparar. O binário preserva dados de
 `.inboundfy/`, acervo, canais, calendário e customizações, registra cópias em
 `.inboundfy/migracoes/` quando necessário e atualiza somente os arquivos do
 framework gerenciados pelo manifesto.
 
 ```bash
-npx @promovaweb/inboundfy@latest update --dry-run
-npx @promovaweb/inboundfy@latest update --yes
-npx @promovaweb/inboundfy@latest doctor --strict
+inboundfy update --dry-run
+inboundfy update --yes
+inboundfy doctor --strict
 ```
 
 Se o doctor apontar arquivo ausente ou divergente, faça a simulação de reparo,

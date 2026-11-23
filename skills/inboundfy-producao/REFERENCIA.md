@@ -112,7 +112,7 @@ filhotes. Canais marcados: blog, Instagram e e-mail.
 ### Comandos
 
 ```bash
-inboundfy content create blog "Calendário de vacinas do filhote mês a mês" --persona persona-01 --acervo 0012
+inboundfy content create blog "Calendário de vacinas do filhote mês a mês" --persona persona-01 --archive 0012
 # Peça 0021 criada em canais/blog/0021-2026-11-15-calendario-de-vacinas-do-filhote-mes-a-mes.
 ```
 

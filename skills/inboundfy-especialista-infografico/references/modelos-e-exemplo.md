@@ -172,4 +172,3 @@ além das cores. Não somar o bloco total novamente às três parcelas.
 A copy aguarda validação. A composição seguirá depois para
 inboundfy-especialista-infografico-imagem.
 ```
-

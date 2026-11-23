@@ -35,19 +35,18 @@ afterAll(async () => {
 });
 
 describe("tui", () => {
-  test("opens on the Overview tab with header, panels and key bar", async () => {
+  test("opens on the Dashboard tab with header, panels and key bar", async () => {
     const frame = setup.captureCharFrame();
     expect(frame).toContain(manifest.title);
     expect(frame).toContain(`v${manifest.version}`);
-    expect(frame).toContain("Overview");
+    expect(frame).toContain("Dashboard");
     expect(frame).toContain("About");
-    expect(frame).toContain("ENVIRONMENT");
-    expect(frame).toContain("STATE");
+    expect(frame).toMatch(/Dashboard[^\n]*\n *━{9,}/);
     expect(frame).toContain("quit");
   });
 
-  test("key 5 goes to About and ? opens the help", async () => {
-    setup.mockInput.pressKey("5");
+  test("key 9 goes to About and ? opens the help", async () => {
+    setup.mockInput.pressKey("9");
     await setup.renderOnce();
     let frame = setup.captureCharFrame();
     expect(frame).toContain("CREDITS");

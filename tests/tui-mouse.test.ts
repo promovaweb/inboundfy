@@ -5,20 +5,20 @@ import { button, listPanel, panel } from "../src/tui/components.ts";
 import { themes } from "../src/tui/theme.ts";
 import { framePoint, withTui } from "./tui-fixture.ts";
 
-test("clicking tab 5 opens About and the tab wheel moves in both directions", async () => {
+test("clicking tab 9 opens About and the tab wheel moves in both directions", async () => {
   await withTui(async (setup) => {
-    await setup.mockMouse.click(...framePoint(setup, "5 ℹ About"), 2);
+    await setup.mockMouse.click(...framePoint(setup, "9 ℹ About"), 2);
     await setup.renderOnce();
     expect(setup.captureCharFrame()).toContain("ENVIRONMENT");
-    await setup.mockMouse.click(...framePoint(setup, "5 ℹ About"));
+    await setup.mockMouse.click(...framePoint(setup, "9 ℹ About"));
     await setup.renderOnce();
     expect(setup.captureCharFrame()).toContain("CREDITS");
-    await setup.mockMouse.scroll(...framePoint(setup, "5 ℹ About"), "down");
+    await setup.mockMouse.scroll(...framePoint(setup, "9 ℹ About"), "down");
     await setup.renderOnce();
-    expect(setup.captureCharFrame()).toContain("ENVIRONMENT");
-    await setup.mockMouse.scroll(...framePoint(setup, "1 ⌂ Overview"), "down");
+    expect(setup.captureCharFrame()).toContain("Dashboard");
+    await setup.mockMouse.scroll(...framePoint(setup, "1 ⌂ Dashboard"), "down");
     await setup.renderOnce();
-    expect(setup.captureCharFrame()).toContain("SETTING DETAILS");
+    expect(setup.captureCharFrame()).toContain("Archive");
   });
 });
 test("clicking quit in the key bar destroys the renderer", async () => {
@@ -110,8 +110,8 @@ test("tabs after the ninth remain reachable by click and wheel", async () => {
       expect(setup.captureCharFrame()).toContain("Opened Extra10");
       await setup.mockMouse.scroll(...framePoint(setup, "Extra10"), "up");
       await setup.renderOnce();
-      expect(setup.captureCharFrame()).toContain("Opened Extra9");
-      setup.mockInput.pressKey("1");
+      expect(setup.captureCharFrame()).toContain("CREDITS");
+      setup.mockInput.pressKey("5");
       await setup.renderOnce();
       expect(setup.captureCharFrame()).toContain("ENVIRONMENT");
       setup.mockInput.pressKey("9");

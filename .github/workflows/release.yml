@@ -1,128 +1,81 @@
 name: Release
 
-# Cria a GitHub Release de uma tag vX.Y.Z e anexa PDF, EPUB, tarball e
-# SHA256SUMS. A publicação no npm é feita só pela máquina local, a partir do
-# tarball anexado (veja RELEASING.md). Este workflow não usa token do npm.
+# Cria a GitHub Release de uma tag vX.Y.Z com os binários de cada
+# plataforma, o ebook (PDF e EPUB) e o SHA256SUMS. O pacote npm
+# @promovaweb/inboundfy é um invólucro que baixa o binário desta release; a
+# publicação no npm é feita pela máquina local (veja RELEASING.md).
 
 on:
   push:
     tags:
       - "v*.*.*"
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: Tag existente para recriar os anexos da release (vX.Y.Z)
-        required: true
-        type: string
+
+permissions:
+  contents: write
 
 concurrency:
   group: release-inboundfy
   cancel-in-progress: false
 
 jobs:
-  publicar:
-    name: Criar GitHub Release e anexar artefatos
+  binarios:
+    name: Compilar binários e publicar a release
     runs-on: ubuntu-latest
-    permissions:
-      attestations: write
-      contents: write
-      id-token: write
-    env:
-      GH_TOKEN: ${{ github.token }}
-      RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
     steps:
-      - name: Conferir formato da tag
-        shell: bash
-        run: |
-          if [[ ! "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "::error::Informe uma tag no formato vX.Y.Z."
-            exit 1
-          fi
+      - name: Obter código
+        uses: actions/checkout@v4
 
-      - name: Obter a tag
-        uses: actions/checkout@v7
+      - name: Configurar Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          ref: refs/tags/${{ env.RELEASE_TAG }}
-          persist-credentials: false
-
-      - name: Configurar Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: npm
-
-      - name: Instalar ferramentas de verificação
-        run: sudo apt-get update && sudo apt-get install -y libxml2-utils poppler-utils unzip
+          bun-version: latest
 
       - name: Instalar dependências
-        run: npm ci
+        run: bun install --frozen-lockfile
 
-      - name: Validar versão, tag e implementação
+      # Pacotes nativos de todas as plataformas na versão do lockfile.
+      - name: Instalar pacotes nativos do OpenTUI para todos os alvos
+        run: bun install --frozen-lockfile --os="*" --cpu="*" --libc="*"
+
+      - name: Conferir versão da tag
         run: |
-          npm run skills:check
-          npm run typecheck
-          npm test
-          npm run build
-          npm run ebook:verify
-          npm run release:check -- "$RELEASE_TAG"
-          echo "RELEASE_VERSION=${RELEASE_TAG#v}" >> "$GITHUB_ENV"
+          versao="${GITHUB_REF_NAME#v}"
+          test "$(jq -r .version package.json)" = "$versao"
+          test "$(jq -r .version npm/package.json)" = "$versao"
+          test "$(cat ebook/VERSION)" = "$versao"
 
-      - name: Empacotar distribuição pública
+      - name: Validar projeto
+        run: bun run validate
+
+      # O validate deixa dist/inboundfy da máquina do runner; a release leva só os alvos nomeados.
+      - name: Limpar dist
+        run: rm -rf dist
+
+      - name: Compilar para todas as plataformas
+        run: bun run build:all
+
+      - name: Anexar ebook
         run: |
-          mkdir -p release-assets
-          npm pack --pack-destination release-assets
+          versao="${GITHUB_REF_NAME#v}"
+          cp "ebook/Inboundfy-Guia-do-Usuario-v${versao}.pdf" dist/
+          cp "ebook/Inboundfy-Guia-do-Usuario-v${versao}.epub" dist/
 
-      - name: Validar pacote em isolamento
-        run: npm run npm:validate-package -- "release-assets/promovaweb-inboundfy-${RELEASE_VERSION}.tgz"
+      - name: Gerar checksums
+        run: cd dist && sha256sum * > SHA256SUMS
 
-      - name: Reunir ebook e checksums
+      - name: Extrair notas do changelog
         run: |
-          cp "ebook/Inboundfy-Guia-do-Usuario-v${RELEASE_VERSION}.pdf" release-assets/
-          cp "ebook/Inboundfy-Guia-do-Usuario-v${RELEASE_VERSION}.epub" release-assets/
-          node scripts/generate-checksums.mjs release-assets
+          versao="${GITHUB_REF_NAME#v}"
+          awk -v v="$versao" '
+            $0 ~ "^## \\[" v "\\]" { imprimir = 1; next }
+            /^## \[/ { if (imprimir) exit }
+            imprimir { print }
+          ' CHANGELOG.md > notas.md
+          test -s notas.md || echo "Release ${GITHUB_REF_NAME}." > notas.md
 
-      - name: Atestar artefatos
-        if: github.event.repository.visibility == 'public'
-        uses: actions/attest@v4
+      - name: Publicar GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          subject-path: release-assets/*
-
-      - name: Criar GitHub Release
-        shell: bash
-        run: |
-          if gh release view "$RELEASE_TAG" > /dev/null 2>&1; then
-            echo "A release $RELEASE_TAG já existe."
-            exit 0
-          fi
-          # As notas vêm da seção da versão no CHANGELOG.md.
-          awk -v version="$RELEASE_VERSION" '
-            /^## / {
-              if (found) exit
-              heading = $2; sub(/^\[/, "", heading); sub(/\].*$/, "", heading)
-              if (heading == version) { found = 1; next }
-            }
-            found { print }
-          ' CHANGELOG.md > "$RUNNER_TEMP/notas.md"
-          gh release create "$RELEASE_TAG" --verify-tag --title "$RELEASE_TAG" \
-            --notes-file "$RUNNER_TEMP/notas.md"
-
-      - name: Anexar arquivos à GitHub Release
-        run: |
-          gh release view "$RELEASE_TAG" --json assets > "$RUNNER_TEMP/inboundfy-release-assets.json"
-          for asset in release-assets/*; do
-            name="$(basename "$asset")"
-            if jq -e --arg name "$name" '.assets | any(.name == $name)' "$RUNNER_TEMP/inboundfy-release-assets.json" > /dev/null; then
-              existing="$(mktemp -d)"
-              gh release download "$RELEASE_TAG" --pattern "$name" --dir "$existing"
-              if ! cmp "$asset" "$existing/$name"; then
-                echo "::error::O anexo $name já existe com conteúdo diferente."
-                exit 1
-              fi
-              rm -rf "$existing"
-            else
-              gh release upload "$RELEASE_TAG" "$asset"
-            fi
-          done
-
-      - name: Conferir anexos
-        run: gh release view "$RELEASE_TAG" --json assets --jq '.assets[].name'
+          body_path: notas.md
+          files: |
+            dist/*

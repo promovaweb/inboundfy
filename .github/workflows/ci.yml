@@ -1,6 +1,7 @@
 name: CI
 
 on:
+  workflow_dispatch:
   pull_request:
   push:
     branches:
@@ -11,49 +12,19 @@ permissions:
 
 jobs:
   validar:
-    name: Validar Node.js e pacote npm
+    name: Validar com Bun
     runs-on: ubuntu-latest
     steps:
       - name: Obter código
-        uses: actions/checkout@v7
+        uses: actions/checkout@v5
 
-      - name: Configurar Node.js
-        uses: actions/setup-node@v7
+      - name: Configurar Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: 24
-          cache: npm
-
-      - name: Instalar ferramentas de verificação do ebook
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y fontconfig imagemagick jq libxml2-utils pipx poppler-utils unzip
-          curl -fsSL https://github.com/jgm/pandoc/releases/download/3.10.2/pandoc-3.10.2-1-amd64.deb -o "$RUNNER_TEMP/pandoc.deb"
-          sudo apt-get install -y "$RUNNER_TEMP/pandoc.deb"
-          pipx install weasyprint==69.0
-          mkdir -p "$RUNNER_TEMP/inboundfy-bin"
-          printf '#!/bin/sh\nexec convert "$@"\n' > "$RUNNER_TEMP/inboundfy-bin/magick"
-          chmod +x "$RUNNER_TEMP/inboundfy-bin/magick"
-          echo "$RUNNER_TEMP/inboundfy-bin" >> "$GITHUB_PATH"
+          bun-version: latest
 
       - name: Instalar dependências
-        run: npm ci
+        run: bun install --frozen-lockfile
 
-      - name: Validar framework e CLI
-        run: npm run validar
-
-      - name: Empacotar distribuição npm
-        run: |
-          mkdir -p artifacts
-          npm pack --pack-destination artifacts
-
-      - name: Validar instalação isolada
-        run: |
-          version="$(node -p "require('./package.json').version")"
-          npm run npm:validate-package -- "artifacts/promovaweb-inboundfy-${version}.tgz"
-
-      - name: Guardar pacote validado
-        uses: actions/upload-artifact@v7
-        with:
-          name: pacote-npm
-          path: artifacts/*.tgz
-          if-no-files-found: error
+      - name: Validar projeto
+        run: bun run validate

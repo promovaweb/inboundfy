@@ -114,8 +114,8 @@ saída, validação e encaminhamento.
 Use `scripts/gerenciar-skills.mjs` para aplicar ou conferir a arquitetura:
 
 ```bash
-npm run skills:enriquecer
-npm run skills:check
+bun run framework:enrich
+bun run framework:check
 ```
 
 O modo de escrita mantém conteúdo específico já existente, acrescenta somente
@@ -310,7 +310,7 @@ Antes de considerar uma skill pronta:
    é citado em algum passo do `Fluxo`.
 8. `REFERENCIA.md` traz conteúdo próprio do tema nas seções Template,
    Exemplo, Checklist e Erros comuns, sem texto genérico que serviria para
-   qualquer skill. O `npm run skills:check` acusa as sobras do esqueleto
+   qualquer skill. O `bun run framework:check` acusa as sobras do esqueleto
    antigo.
 9. `agents/openai.yaml` existe, usa o nome da skill no prompt e mantém a
    interface compatível com o agente adotado.
@@ -320,7 +320,7 @@ Depois da revisão manual, execute:
 
 ```bash
 node scripts/validar-framework.mjs
-npm run skills:check
+bun run framework:check
 npm run validar:skills-prohibited
 ```
 

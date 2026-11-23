@@ -135,4 +135,3 @@ Quando o brief pedir artigo, desenvolva a implantação completa: seleção de
 ordens para revisar, definição de responsável, mudança de previsão e conferência
 no turno seguinte. Cada seção precisa responder uma dúvida nova e consultar
 a fonte correspondente. Repetir o post com sinônimos não cria profundidade.
-

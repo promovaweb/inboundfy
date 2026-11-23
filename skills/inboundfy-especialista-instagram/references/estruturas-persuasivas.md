@@ -18,4 +18,3 @@
   também funciona.
 - Sempre que qualquer formato apresentar um produto, aplique **FAB** dentro
   do bloco correspondente: característica, vantagem, benefício.
-

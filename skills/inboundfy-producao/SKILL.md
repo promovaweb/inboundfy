@@ -80,8 +80,9 @@ receba o ID existente, relatório de reprovação e campos a corrigir.
 3. Se o recorte editorial estiver aberto, apresente três direções
    materialmente diferentes, com a recomendada primeiro e aguarde a escolha.
    Registre escolha e rejeições no README da peça.
-4. Use `inboundfy content create <canal> "Título" --persona persona-01 --acervo 0001`.
-   Repita `--persona` e `--acervo` para mais de um valor.
+4. Use a tool `content_create` ou
+   `inboundfy content create <canal> "Título" --persona persona-01 --archive 0001`.
+   Repita `--persona` e `--archive` para mais de um valor.
 5. Entregue à especialista a pasta `canais/<canal>/<id>-<data>-<slug>/README.md` para redação.
    Monte o pacote de insumos com o template do [REFERENCIA.md](REFERENCIA.md):
    `processado.md`, `base-editorial.md`, `faq.md`, `pesquisa.md`, brief, CTA e

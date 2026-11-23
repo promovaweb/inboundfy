@@ -4,32 +4,75 @@ A interface de terminal abre com `{{bin}}` sem argumentos ou com
 `{{bin}} tui`. Ela exige stdin e stdout em um TTY; fora disso o processo
 encerra com exit code 8.
 
+A TUI abre em `dashboard`. Para consultar outro projeto, use
+`{{bin}} -C <pasta> tui` ou defina `INBOUNDFY_PROJECT`. Sem essas opções,
+ela consulta a pasta atual. As quatro abas de projeto são de leitura.
+Se faltar a instalação, a tela mostra o comando `inboundfy install`.
+Depois de instalar ou corrigir um erro de leitura, pressione `r`.
+
 ## Abas
 
-| Aba | Ícone | Conteúdo |
+| Aba | ID | Conteúdo |
 | --- | --- | --- |
+| Dashboard | `dashboard` | Totais do acervo e das peças, publicações, peças em andamento, agendadas e entradas atrasadas. Role para consultar funil, canais, séries dos últimos seis meses, etapas e auditorias, calendário, contexto e versões. |
+| Archive | `archive` | Materiais por ID, estado, data, canais e título. Use `f` para filtrar por estado. No detalhe, consulte a pasta, as etapas e as auditorias A0 a A6. |
+| Channels | `channels` | Seis canais com contagens de rascunhos, revisões, aprovações, agendamentos, publicações e arquivamentos. Abra um canal para listar peças e depois uma peça para consultar os dados. |
+| Calendar | `calendar` | Entradas do mês escolhido, atrasadas e próximas. Use `[` e `]` para mudar o mês. As setas horizontais trocam de aba. |
 | Overview | `overview` | Environment (binary, runtime e platform), State (settings e cofre) e Next steps com comandos de terminal, configuração MCP e ações de copiar/recarregar. |
 | Settings | `settings` | Tabela com key, valor e padrão de cada setting, com painel de detalhe. |
-| Credentials | `vault` | Nomes das credenciais do cofre, origem da master key e total de credenciais. Valores não aparecem. |
+| Credentials | `credentials` | Nomes das credenciais do cofre, origem da master key e total de credenciais. Valores não aparecem. |
 | Docs | `docs` | Índice dos tópicos da documentação embutida e o documento em Markdown. |
 | About | `about` | Binary, project, license, credits, standards seguidos e links. |
 
-Cada aba mostra o número e o ícone do papel: ` 1 ⌂ Overview ` e
-` 2 ⚙ Settings `. No layout compacto, a aba inativa mostra só o número e o
-ícone. O clique abre a aba. A roda do mouse sobre a barra de abas troca de
-aba. A aba inicial vem de `tui.initialTab` em settings.json ou de `--tab`,
-com os valores `overview`, `settings`, `credentials`, `docs` e `about`.
+O número indica a tecla da aba, de `1` (Dashboard) a `9` (About).
+Quando os nomes excedem a largura disponível, as abas inativas mostram
+rótulos abreviados. O clique abre a aba e a roda sobre a barra troca de aba.
+Use `{{bin}} tui --tab archive` para escolher a aba ao abrir. Os valores
+aceitos por `--tab` e `tui.initialTab` são `dashboard`, `archive`,
+`channels`, `calendar`, `overview`, `settings`, `credentials`, `docs` e `about`.
+
+Em Archive e Channels, use `↑` e `↓` para escolher a linha e `Enter` ou
+clique para abrir. `Esc` retorna um nível. Dashboard e Calendar rolam com
+as setas verticais ou a roda. No Dashboard, os blocos se distribuem em uma,
+duas ou três colunas conforme a largura. O vermelho destaca entradas
+atrasadas, e os canais desmarcados na estratégia aparecem em cor atenuada.
+As telas de projeto acompanham os índices de acervo, conteúdos e calendário
+e o arquivo de estratégia. A tecla `r` relê os dados da aba ativa.
+
+### Acervo, canais e calendário
+
+A faixa superior de Archive conta os materiais em cada estado, inclusive com
+um filtro aplicado à lista. A partir de 120 colunas, mover o destaque com
+`↑` ou `↓` mostra à direita o material selecionado. As duas barras indicam
+quantas etapas e auditorias estão completas, com o total e o percentual.
+A linha A0–A6 identifica cada auditoria concluída. Em janelas menores,
+`Enter` abre o detalhe e `Esc` volta à lista.
+
+Channels resume canais ativos, peças, publicações e peças em revisão. Cada
+barra mostra o volume em relação ao canal com mais peças. As cores dos
+segmentos representam os estados do pipeline. As colunas D, R, A, S, P e X
+mostram os números de rascunhos, revisões, aprovadas, agendadas, publicadas
+e arquivadas. Ao lado aparecem o total, o número de publicações e a data da
+última publicação. Em 120 colunas ou mais, mover o destaque exibe as peças
+do canal ao lado. Clique em uma peça para abrir o registro.
+
+Calendar inclui uma grade mensal a partir de 80 colunas. As semanas começam
+na segunda-feira, o dia atual tem fundo destacado e os dias com peças recebem
+um ponto (asterisco no modo ASCII). Na lista, cada linha mostra data, canal,
+ID, título e estado. Entradas em aberto com data anterior à de hoje aparecem
+em vermelho, inclusive na seção do mês. Use `[` e `]` para consultar outro
+mês, inclusive na virada do ano.
 
 ## Teclas
 
 | Tecla | Ação |
 | --- | --- |
-| `←` `→` `[` `]` | aba anterior ou seguinte |
+| `←` `→` `[` `]` | aba anterior ou seguinte (em Calendar, os colchetes mudam o mês) |
 | `Tab` `Shift+Tab` | próximo painel ou painel anterior da tela |
 | `1` … `9` | ir para a aba de mesmo número |
 | `Ctrl+K` `:` | abrir a paleta de comandos |
 | `?` | mostrar ou esconder o help |
-| `Esc` | fechar o diálogo ou o help; sem modal aberto, sair |
+| `Esc` | fechar o diálogo ou o help; voltar nos detalhes de projeto ou sair no nível inicial |
 | `q` `Ctrl+C` | sair |
 
 Dentro de um campo de texto, letras e números vão para o campo. `Esc` sai do

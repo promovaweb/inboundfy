@@ -9,4 +9,3 @@ visual: cada bloco nomeia uma característica, o texto mínimo do bloco indica
 a vantagem. A legenda de acompanhamento (que passa por `inboundfy-copy-editor`)
 fecha no benefício real para o leitor; sem transformar o bloco visual em
 parágrafo longo.
-

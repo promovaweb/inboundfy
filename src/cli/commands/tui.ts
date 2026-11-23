@@ -10,11 +10,11 @@ import type { Command } from "../registry.ts";
 
 export const tuiCommand: Command = {
   name: "tui",
-  description: "Open the terminal interface (Overview and About). Requires a TTY.",
+  description: "Open the terminal interface. Requires a TTY.",
   options: [
     {
       name: "--tab",
-      argument: { name: "tab", values: ["overview", "about"] },
+      argument: { name: "tab", values: ["dashboard", "archive", "channels", "calendar", "overview", "settings", "credentials", "docs", "about"] },
       description: "Initial tab. Overrides tui.initialTab from settings.json.",
     },
   ],
@@ -25,6 +25,7 @@ export const tuiCommand: Command = {
     if (!process.stdin.isTTY || !process.stdout.isTTY) {
       throw error.noTty(`The TUI needs an interactive terminal. Use "${manifest.bin} --help" for the commands.`);
     }
+    if (typeof ctx.options.project === "string") process.env.INBOUNDFY_PROJECT = ctx.options.project;
     const { startTui } = await import("../../tui/index.ts");
     const tab = typeof ctx.options.tab === "string" ? ctx.options.tab : undefined;
     await startTui({ initialTab: tab });

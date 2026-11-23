@@ -43,7 +43,11 @@ capacidade transversal conforme o estado da entrada.
 ## Fluxo
 
 1. Execute `inboundfy doctor --strict`. Se o setup não estiver pronto, acione
-   `inboundfy-setup` e pare na entrevista necessária.
+   `inboundfy-setup` e pare na entrevista necessária. Com o setup pronto, leia
+   os números do projeto pela tool `project_stats` ou por
+   `inboundfy stats --json`: material sem uso, peças paradas em `revisao`,
+   entradas atrasadas no calendário e canais sem publicação recente orientam a
+   sugestão quando o pedido for vago.
 2. Para uma ideia ainda sem tese, acione `inboundfy-brainstorm`; para campanha
    nova, acione `inboundfy-estrategia`; para material novo ou pedido de saída
    baseado em material, acione `inboundfy-acervo`. Essa skill chama as etapas

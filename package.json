@@ -1,6 +1,6 @@
 {
   "name": "inboundfy",
-  "version": "0.8.3",
+  "version": "1.0.0",
   "description": "Inbound marketing framework with AI skills: CLI, TUI and MCP stdio server to install the framework and manage the archive, channels and editorial calendar.",
   "type": "module",
   "private": true,
@@ -39,7 +39,9 @@
     "ebook": "bun .ebook/build-ebook.mjs",
     "ebook:verify": "bun .ebook/build-ebook.mjs --check",
     "npm:readme": "bun run scripts/npm-readme.ts",
-    "validate": "bun run typecheck && bun test && bun run skills:check && bun run framework:check && bun run opencli:check && bun run docs:check && bun run build"
+    "validate": "bun run typecheck && bun test && bun run skills:check && bun run framework:check && bun run opencli:check && bun run docs:check && bun run build",
+    "release:sync": "bun scripts/sync-release-version.mjs && bun run npm:readme && bun run ebook",
+    "release:check": "bun run scripts/check-release.ts"
   },
   "engines": {
     "bun": ">=1.4.4"

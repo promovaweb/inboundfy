@@ -11,7 +11,6 @@ Stable Diffusion ou ferramenta de geração sintética. Peça visual composta
 com texto sobreposto (card, slide, thumbnail com título) usa
 `inboundfy-base-imagem` em vez desta skill.
 
-
 ## Perguntas antes da composição
 
 1. Qual objeto ou atividade o artigo realmente descreve?

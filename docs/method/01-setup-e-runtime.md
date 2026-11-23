@@ -1,7 +1,9 @@
 # Setup e runtime instalado
 
 `inboundfy-setup` é o proprietário exclusivo da instalação e da reconciliação.
-O CLI `inboundfy` é o executor determinístico usado por essa skill.
+O binário `inboundfy` é o executor determinístico usado por essa skill. Ele
+leva o framework embutido e expõe as mesmas operações pelo CLI e pelo
+servidor MCP.
 
 ## Grupos reconciliados
 

@@ -86,6 +86,9 @@ ausente ou fora do caminho canônico, interrompa e acione `inboundfy-setup`.
 ## Fluxo
 
 1. Faça o preflight, leia os contextos e identifique o modo pela tabela.
+   Antes de propor datas, leia a agenda com `calendar_list` (ou
+   `inboundfy calendar list <AAAA-MM> --json`) e as atrasadas em
+   `project_stats`.
 2. Leia [REFERENCIA.md](REFERENCIA.md) e o arquivo da etapa atual.
 3. Modo pacote: execute as etapas 00 a 06 na ordem, com o marco anti-slop de
    cada etapa. Uma etapa só começa depois que o marco anterior foi

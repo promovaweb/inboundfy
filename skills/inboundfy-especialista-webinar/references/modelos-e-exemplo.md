@@ -205,4 +205,3 @@ dias após a sessão. O acesso chega por e-mail depois da inscrição.
 Inscreva-se no encontro:
 https://linhadeforno.example/encontro
 ```
-

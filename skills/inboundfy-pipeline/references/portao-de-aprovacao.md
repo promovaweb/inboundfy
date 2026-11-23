@@ -50,7 +50,7 @@ inboundfy content status 0007 revisao
 inboundfy content digest 0007
 # o hash vai para a linha "SHA-256 da peça" do relatório
 inboundfy content status 0007 aprovado --audit-report canais/blog/0007-2026-11-10-como-emitir-nota-fiscal-de-mei/README.auditoria.md
-inboundfy calendario add 2026-11-24 0007
+inboundfy calendar add 2026-11-24 0007
 inboundfy content status 0007 agendado
 inboundfy content status 0007 publicado --url https://exemplo.com.br/blog/nota-fiscal-mei --published-at 2026-11-24
 ```

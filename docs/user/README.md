@@ -19,8 +19,8 @@ Os capítulos deste diretório também formam o
 leitura, compartilhamento e impressão, enquanto o EPUB permite ajustar fonte e
 tamanho no leitor digital.
 
-- [Baixe o PDF](../../ebook/Inboundfy-Guia-do-Usuario-v0.8.3.pdf).
-- [Baixe o EPUB](../../ebook/Inboundfy-Guia-do-Usuario-v0.8.3.epub).
+- [Baixe o PDF](../../ebook/Inboundfy-Guia-do-Usuario-v1.0.0.pdf).
+- [Baixe o EPUB](../../ebook/Inboundfy-Guia-do-Usuario-v1.0.0.epub).
 - [Consulte a edição e os hashes](../../ebook/README.md).
 
 ## Percurso completo
@@ -46,6 +46,7 @@ Leia na ordem:
 17. [Tutorial: vendas B2B](16-tutorial-vendas-b2b.md)
 18. [Tutorial: medição de ponta a ponta](17-tutorial-medicao.md)
 19. [Exemplos de pedidos](18-exemplos-de-pedidos.md)
+20. [Painel, estatísticas e MCP](19-painel-estatisticas-e-mcp.md)
 
 Os itens de 1 a 11 formam o percurso de instalação e primeiras entregas. Os
 itens de 12 a 19 ampliam a operação depois que o projeto já está rodando.

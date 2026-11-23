@@ -136,13 +136,13 @@ for (const [width, height] of sizes) {
           expect(content).toMatch(/\[r\] reload/);
           const reading = scrollPanels(setup.renderer.root).find(panel => panel.verticalScrollBar.visible)!;
           expect(reading).toBeDefined();
-          expect(content).toContain("termfy --help");
+          expect(content).toContain("inboundfy --help");
           reading.scrollTo(Infinity);
           await setup.renderOnce();
-          expect(setup.captureCharFrame()).toContain("termfy --skill");
+          expect(setup.captureCharFrame()).toContain("inboundfy --skill");
         }
         if (tab === "overview" && width >= 80 && height >= 30) {
-          for (const text of ["IN THE TERMINAL", "FOR AGENTS", "termfy credentials set <name>", "termfy --skill", '"args": ["mcp"]']) expect(frame).toContain(text);
+          for (const text of ["IN THE TERMINAL", "FOR AGENTS", "inboundfy credentials set <name>", "inboundfy --skill", '"args": ["mcp"]']) expect(frame).toContain(text);
         }
         if (tab === "docs") {
           const checkDocument = (node: Renderable): void => {
@@ -150,7 +150,7 @@ for (const [width, height] of sizes) {
             node.getChildren().forEach(checkDocument);
           };
           checkDocument(setup.renderer.root);
-          if (width === 80) expect(frame).toMatch(/│\s{4,}\[options\]\./);
+          if (width === 80) expect(frame).toMatch(/│\s{4,}(?:arguments\] )?\[options\]\./);
         }
         if (tab === "overview" && width === 200) {
           const borders = lines.filter(line => /^\s*╰/.test(line));

@@ -47,6 +47,43 @@ Em erro:
 O exit code do processo é sempre o mesmo de `error.code`. Um agente deve ler
 os dois: o envelope para a mensagem, o code para a classe da falha.
 
+## Projeto
+
+Os commands de projeto leem e gravam a pasta atual. `--project <dir>` (ou
+`-C <dir>`) aponta outra pasta; `{{BIN}}_PROJECT` faz o mesmo pelo ambiente.
+IDs aceitam `7` ou `0007`.
+
+| Command | Função |
+| --- | --- |
+| `install` | instala framework, skills, pastas de dados, índices e o bloco de instruções. Options: `--dry-run`, `--yes`, `--force`, `--agent <codex\|claude\|agents>`, `--skills-dir <dir>`, `--instruction-file <AGENTS.md\|CLAUDE.md\|none>` |
+| `update` | aplica ao projeto a versão do framework embutida no binário (`--dry-run`, `--yes`, `--force`) |
+| `repair` | restaura arquivos gerenciados ausentes ou alterados, com backup em `.inboundfy/migracoes/` |
+| `agent install` | instala ou atualiza só as skills |
+| `doctor` | diagnóstico do projeto e do runtime; `--strict` faz avisos falharem, `--env` confere só o runtime |
+| `status` | versão instalada e resumo do diagnóstico |
+| `stats` | números do acervo, dos canais e do calendário; `--months <n>`, `--section <overview\|archive\|channels\|calendar>`, `--fast` |
+| `context scan\|check\|ready` | fontes locais, prontidão do contexto mínimo e fim do setup (`ready --yes`) |
+| `project sync` | cria `canais/<canal>/` para os canais marcados na estratégia |
+| `archive add\|process\|list\|show\|status` | acervo: registra material (`--file`, `--text` ou stdin, `--source`), processa, lista (`--status`, `--channel`), detalha e muda o estado |
+| `content create\|list\|show\|status\|digest` | peças: cria (`--persona` e `--archive` repetíveis), lista (`--channel`, `--status`), detalha, move no pipeline (`--audit-report`, `--url`, `--published-at`) e calcula o SHA-256 |
+| `calendar add\|list` | agenda uma peça numa data e lista o calendário ou um mês |
+
+O pipeline aceita `rascunho → revisao|arquivado`, `revisao →
+rascunho|aprovado|arquivado`, `aprovado → revisao|agendado|publicado|arquivado`,
+`agendado → revisao|aprovado|publicado|arquivado` e `publicado → arquivado`.
+Aprovar a partir de `revisao` exige `--audit-report` com `ID da peça`,
+`Asset`, `SHA-256 da peça` (de `content digest`) e `Veredito: aprovado`;
+`publicado` exige `--url` e `--published-at`.
+
+```bash
+{{bin}} install --agent claude --yes
+{{bin}} archive add "Transcrição" --file notas.md --source https://exemplo.test
+{{bin}} content create blog "Título" --persona persona-01 --archive 1
+{{bin}} content status 1 revisao
+{{bin}} calendar add 2026-12-01 1
+{{bin}} stats --json
+```
+
 ## Commands do esqueleto
 
 | Command | Função |
@@ -57,7 +94,6 @@ os dois: o envelope para a mensagem, o code para a classe da falha.
 | `credentials set\|get\|list\|remove\|status\|clear\|rotate-key` | Cofre cifrado em credentials.json. |
 | `mcp [--list]` | Servidor MCP via stdio, ou listagem do que ele registra. |
 | `skill [topic]` | Mesmo efeito de `--skill`. |
-| `doctor` | Confere runtime, TTY, pasta, settings, chave e cofre. |
 | `completion <shell>` | Gera script para `bash`, `zsh` ou `fish`. |
 
 ## Como adicionar um command

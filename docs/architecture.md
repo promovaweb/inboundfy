@@ -17,6 +17,19 @@ src/
     input.ts              leitura de segredos e confirmações
     commands.ts           raiz da árvore de commands
     commands/             um arquivo por command
+  core/                   domínio do Inboundfy, compartilhado por CLI, MCP e TUI
+    types.ts, schemas.ts  registros dos índices e do estado da instalação
+    io.ts                 escrita atômica, trava, caminhos portáveis, sem symlink
+    project.ts            layout do projeto, canais e leitura dos índices
+    payload*.ts           framework embutido (generated/payload.gz) ou lido do repositório
+    installer.ts          install, update, repair e agent install
+    doctor.ts             diagnóstico do projeto
+    context.ts            fontes locais e contexto mínimo
+    archive.ts            acervo: registro, processamento e andamento das etapas
+    content.ts            peças por canal
+    pipeline.ts           estados, transições e aprovação vinculada ao SHA-256
+    calendar.ts           calendário mensal
+    stats.ts              números do acervo, dos canais e do calendário
   config/
     paths.ts              ~/.<bin>/ e variáveis de ambiente
     settings.ts           settings.json e SETTINGS_SCHEMA
@@ -36,11 +49,15 @@ src/
     icons.ts              conjuntos de ícones nerd, unicode e ascii
     screen.ts             contrato Screen e ScreenContext
     components.ts         panel, table, listPanel, stateView, spinner, link
-    screens/              uma aba por arquivo: overview, settings,
-                          credentials, docs e about
+    project.ts            projeto aberto, carga assíncrona e observação dos índices
+    screens/              uma aba por arquivo: dashboard, archive, channels,
+                          calendar, overview, settings, credentials, docs e about
   skill/
     index.ts              docs/ embutida + referência gerada do registry
-docs/                     documentação do binário; entra no --skill
+docs/                     documentação do binário (entra no --skill), guia do usuário e método
+generated/                payload.gz gerado no build (fora do Git)
+npm/                      invólucro @promovaweb/inboundfy que baixa o binário da release
+skills/, context/, templates/, brand/, ebook/  framework distribuído no payload
 template/                 stubs de command, screen, tool e banco SQLite opcional
 .agents/skills/           skills do framework Termfy, instaladas via npx skills
 scripts/                  build, init e checks
@@ -66,6 +83,8 @@ transporte ou o renderer fechar.
 
 - `app/` não importa de nenhuma outra camada.
 - `config/` importa só de `app/`.
+- `core/` importa só de `app/`. `cli/`, `mcp/` e `tui/` chamam `core/` para
+  toda regra de negócio e toda leitura do projeto.
 - `cli/`, `mcp/` e `tui/` importam de `app/` e `config/`. `mcp/` e `tui/`
   podem reutilizar funções de `cli/commands/*` que coletam dados (como
   `aboutData`). Fora do command `tui`, `cli/` não importa de `tui/`.

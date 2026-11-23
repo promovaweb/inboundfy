@@ -23,6 +23,7 @@ import {
   type KeyEvent,
   LinearScrollAccel,
   StyledText,
+  stringToStyledText,
   link as styledLink,
 } from "@opentui/core";
 import { spacingFor, controlSpacing } from "./spacing.ts";
@@ -294,7 +295,8 @@ export function listPanel(
   theme: Theme,
   options: {
     title: string;
-    items: string[];
+    items: (string | StyledText)[];
+    onHighlight?: (index: number) => void;
     onSelect?: (index: number) => void;
   },
 ) {
@@ -303,12 +305,13 @@ export function listPanel(
   let index = options.items.length ? 0 : -1;
   let hovered = -1;
   /** Builds one row with mouse selection and hover routed through shared state. */
-  function createRow(item: string, i: number): TextRenderable {
+  function createRow(item: string | StyledText, i: number): TextRenderable {
     const row = new TextRenderable(renderer, {
       content: item,
       height: 1,
       flexShrink: 0,
       wrapMode: "none",
+      width: "100%",
       fg: theme.text,
       selectable: false,
     });
@@ -326,22 +329,37 @@ export function listPanel(
   }
 
   const rows = options.items.map(createRow);
+  if (options.items.some(item => typeof item !== "string")) box.content.onSizeChange = paint;
 
   /** Repaints selection and hover without activating an item. */
-  function paint(): void {
-    for (const [i, row] of rows.entries()) {
-      row.content = `${i === index ? ">" : " "} ${options.items[i]}`;
-      row.fg = i === index ? theme.accent : i === hovered ? theme.textStrong : theme.text;
-      row.bg = i === index ? theme.surfaceHigh : theme.surface;
+  function paintRow(row: TextRenderable, i: number) {
+    const prefix = i === index ? "> " : "  ";
+    const item = options.items[i]!;
+    if (typeof item === "string") row.content = prefix + item;
+    else {
+      const chunks = [...item.chunks];
+      const tail = chunks.pop();
+      const used = chunks.reduce((n, chunk) => n + Bun.stringWidth(chunk.text), prefix.length);
+      const padding = spacingFor(renderer.width).cardPadX * 2;
+      if (tail) chunks.push({ ...tail, text: fitText(tail.text, box.content.width - padding - used) });
+      row.content = new StyledText([...stringToStyledText(prefix).chunks, ...chunks]);
     }
+    row.fg = i === index ? theme.accent : i === hovered ? theme.textStrong : theme.text;
+    row.bg = i === index ? theme.surfaceHigh : theme.surface;
+  }
+
+  function paint(): void {
+    rows.forEach(paintRow);
   }
 
   /** Clamps the selection and keeps it inside the scroll viewport. */
   function highlight(next: number): void {
     if (!rows.length || !Number.isFinite(next)) return;
+    const previous = index;
     index = Math.max(0, Math.min(rows.length - 1, Math.trunc(next)));
     paint();
     box.scrollChildIntoView(rows[index]!);
+    if (index !== previous) options.onHighlight?.(index);
   }
 
   /** Selects a display index and reports it without activating the row. */

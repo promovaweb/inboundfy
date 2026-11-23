@@ -172,7 +172,7 @@ test("small-terminal state and resize remount the screen at each layout boundary
 test("Settings and Credentials focus cycles with Tab and leaves tab navigation available", async () => {
   await withTui(async (setup) => {
     setCredential("service.token", "private");
-    for (const key of ["2", "3"]) {
+    for (const key of ["6", "7"]) {
       setup.mockInput.pressKey(key); await setup.renderOnce();
       setup.mockInput.pressTab(); const focused = setup.renderer.currentFocusedRenderable;
       expect(focused).not.toBeNull(); expect(focused?.constructor.name).toBe("ScrollBoxRenderable");
@@ -186,7 +186,7 @@ test("Settings and Credentials focus cycles with Tab and leaves tab navigation a
       setup.mockInput.pressTab({ shift: true });
       expect(setup.renderer.currentFocusedRenderable).toBe(details);
     }
-    setup.mockInput.pressKey("1"); await setup.renderOnce(); expect(setup.captureCharFrame()).toContain("ENVIRONMENT"); expect(setup.renderer.currentFocusedRenderable === null).toBe(true);
+    setup.mockInput.pressKey("5"); await setup.renderOnce(); expect(setup.captureCharFrame()).toContain("ENVIRONMENT"); expect(setup.renderer.currentFocusedRenderable === null).toBe(true);
   });
 });
 
@@ -255,7 +255,7 @@ test("Tab includes a focusable root and Shift+Tab starts at the last actual pane
 
 test("cached tabs restore status and modal paste cannot reach a focused editor", async () => {
   await withTui(async (setup) => {
-    setup.mockInput.pressKey("5"); setup.mockInput.pressKey("1"); await setup.renderOnce();
+    setup.mockInput.pressKey("9"); setup.mockInput.pressKey("5"); await setup.renderOnce();
     const bar = setup.captureCharFrame().trimEnd().split("\n").at(-1)!;
     expect(bar).toContain("credentials · defaults");
   });
@@ -278,7 +278,7 @@ test("watch discovers a HOME directory created after mounting and closes on shut
     const nested = join(original, "created-later", "data"); process.env[HOME_VARIABLE] = nested;
     // Switching away and back remounts Settings at another width and registers
     // its watches against the nearest existing ancestor of the future HOME.
-    setup.mockInput.pressKey("1"); setup.mockInput.pressKey("2");
+    setup.mockInput.pressKey("5"); setup.mockInput.pressKey("6");
     const settings = defaultSettings(); setPath(settings, "custom.marker", "first-write-marker"); writeSettings(settings);
     await Bun.sleep(350); await setup.renderOnce(); expect(setup.captureCharFrame()).toContain("first-write-marker");
     setup.renderer.destroy(); setPath(settings, "custom.marker", "after-shutdown"); writeSettings(settings);

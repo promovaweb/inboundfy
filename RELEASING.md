@@ -1,16 +1,17 @@
 # Releases do Inboundfy
 
-O Inboundfy publica CLI e framework como um único produto. `package.json` é a
-fonte canônica do SemVer. O mesmo número identifica:
+O Inboundfy publica binário e framework como um único produto. `package.json`
+é a fonte canônica do SemVer. O mesmo número identifica:
 
-- o pacote npm `@promovaweb/inboundfy`;
-- o binário `inboundfy`;
-- o framework, as skills e a metodologia;
-- a instalação registrada em `.inboundfy/`;
-- a tag Git `vX.Y.Z` e a GitHub Release;
+- o binário `inboundfy` e os executáveis da GitHub Release;
+- o pacote npm `@promovaweb/inboundfy` (`npm/package.json`), que baixa o
+  binário da versão;
+- o framework, as skills e a metodologia embutidos no binário;
+- a instalação registrada em `.inboundfy/` de cada projeto;
+- a tag Git `vX.Y.Z`;
 - a edição PDF e EPUB do guia do usuário.
 
-Uma release não pode misturar versões. `npm run release:check` interrompe a
+Uma release não pode misturar versões. `bun run release:check` interrompe a
 entrega quando encontra qualquer divergência.
 
 ## Quem faz o quê
@@ -18,16 +19,13 @@ entrega quando encontra qualquer divergência.
 | Etapa | Onde roda |
 | --- | --- |
 | Versão, changelog, ebook, commit e tag | máquina local |
-| GitHub Release e anexos (PDF, EPUB, tarball, `SHA256SUMS`) | workflow `.github/workflows/release.yml`, disparado pela tag |
-| Publicação no npm | somente a máquina local, logada como `contatopromovaweb` |
+| Binários das cinco plataformas, ebook e `SHA256SUMS` na GitHub Release | workflow `.github/workflows/release.yml`, disparado pela tag |
+| Publicação do invólucro no npm | somente a máquina local, logada como `contatopromovaweb` |
 
-O workflow de release não roda `npm publish` e não guarda token do npm. O
-`npm run release:check` recusa um `release.yml` que publique no npm.
+O workflow não roda `npm publish` e não guarda token do npm. O
+`release:check` recusa um `release.yml` que publique no npm.
 
 ## Convenção de commits
-
-Os commits seguem Conventional Commits. O tipo indica o tamanho da próxima
-versão:
 
 - `fix:` pede patch;
 - `feat:` pede minor;
@@ -42,108 +40,76 @@ versão:
    git switch main && git pull --ff-only && git status --short
    ```
 
-2. Atualize a versão em `package.json` e `package-lock.json` sem criar tag:
-
-   ```bash
-   npm version 0.7.0 --no-git-tag-version
-   ```
-
+2. Atualize `version` no `package.json`.
 3. Escreva a entrada da versão no topo do `CHANGELOG.md`, no formato
    `## [X.Y.Z](https://github.com/promovaweb/inboundfy/compare/vA.B.C...vX.Y.Z) (AAAA-MM-DD)`.
    O workflow usa essa seção como notas da GitHub Release.
-4. Sincronize o ebook e os links da edição:
+4. Sincronize o invólucro, o README do npm e o ebook:
 
    ```bash
-   npm run release:sync
+   bun run release:sync
    ```
 
-   O comando grava `ebook/VERSION`, recompila PDF e EPUB e atualiza
-   `ebook/README.md` e `docs/user/README.md`.
-5. Rode a validação completa:
+   O comando grava `npm/package.json`, `ebook/VERSION` e `npm/README.md`,
+   recompila PDF e EPUB e atualiza os links da edição.
+5. Rode a validação completa e a conferência da release:
 
    ```bash
-   npm run validar
+   bun run validate
+   bun run release:check
    ```
 
 6. Faça o commit da release, crie a tag e envie os dois juntos:
 
    ```bash
    git add -A
-   git commit -m "chore(release): v0.7.0"
-   git tag v0.7.0
-   git fetch origin && git status -sb   # main não pode estar atrás de origin
-   git push --atomic origin HEAD:main v0.7.0
+   git commit -m "release: vX.Y.Z — resumo"
+   git tag vX.Y.Z
+   git push --atomic origin HEAD:main vX.Y.Z
    ```
 
-7. O push da tag dispara o workflow `Release`. Ele valida a tag, empacota,
-   instala o tarball em isolamento, gera `SHA256SUMS`, atesta os arquivos,
-   cria a GitHub Release com as notas do changelog e anexa PDF, EPUB,
-   tarball e `SHA256SUMS`. Acompanhe e confira:
+7. O push da tag dispara o workflow `Release`. Ele confere a versão em
+   `package.json`, `npm/package.json` e `ebook/VERSION`, roda o `validate`,
+   compila `inboundfy-linux-x64`, `-linux-arm64`, `-darwin-x64`,
+   `-darwin-arm64` e `-windows-x64.exe`, anexa o PDF e o EPUB, gera
+   `SHA256SUMS` e cria a GitHub Release com as notas do changelog:
 
    ```bash
    gh run watch --repo promovaweb/inboundfy
-   gh release view v0.7.0 --repo promovaweb/inboundfy
+   gh release view vX.Y.Z --repo promovaweb/inboundfy
    ```
 
-8. Publique no npm pela máquina local (próxima seção).
+8. Publique o invólucro no npm (próxima seção).
 
 ## Publicação no npm
 
-A publicação usa o mesmo tarball anexado à GitHub Release:
+O pacote npm tem só o lançador e o baixador (`npm/bin`, `npm/lib`). Publique
+depois que a GitHub Release tiver os binários, porque o `postinstall` baixa o
+executável da release da mesma versão:
 
 ```bash
 npm whoami                     # contatopromovaweb
-mkdir -p release-assets
-gh release download v0.7.0 --repo promovaweb/inboundfy \
-  --pattern 'promovaweb-inboundfy-*.tgz' --pattern SHA256SUMS \
-  --dir release-assets
-(cd release-assets && sha256sum --check --ignore-missing SHA256SUMS)
-npm run publish:npm -- release-assets/promovaweb-inboundfy-0.7.0.tgz
+cd npm && npm publish --access public && cd ..
 npm view @promovaweb/inboundfy version license
 ```
 
-`npm run publish:npm` consulta o registry público antes de publicar e não
-repete uma versão que já existe. Depois do upload, ele espera a versão
-aparecer no registry por até cinco minutos. Somente `E404` conta como versão
-ausente. Erros de rede e autenticação interrompem o comando. O
-`npm publish <tgz> --access public` direto também funciona, mas não faz essas
-conferências.
-
-A release só está completa quando `npm view` mostra a versão da tag e a
-licença `AGPL-3.0-only`. Confira também qual versão o `@latest` instala:
+Confira a instalação limpa:
 
 ```bash
-npm view @promovaweb/inboundfy dist-tags --json
-npx @promovaweb/inboundfy@0.7.0 install --dry-run
+INBOUNDFY_BINARY_DIR=$(mktemp -d) npx -y @promovaweb/inboundfy@X.Y.Z --version
 ```
 
-## Validação local do pacote
+Variáveis do invólucro:
 
-Para conferir o tarball antes da tag:
-
-```bash
-mkdir -p artifacts
-npm pack --pack-destination artifacts
-npm run npm:validate-package -- artifacts/promovaweb-inboundfy-0.7.0.tgz
-npm run release:check -- v0.7.0
-```
-
-Troque `0.7.0` pela versão atual.
+| Variável | Efeito |
+| --- | --- |
+| `INBOUNDFY_BINARY_PATH` | usa um binário já existente e pula o download |
+| `INBOUNDFY_BINARY_DIR` | pasta do cache (padrão `~/.inboundfy/bin/v<versão>/`) |
+| `INBOUNDFY_RELEASE_BASE_URL` | troca a URL da release (espelhos e testes) |
 
 ## Recuperação
 
-Se o workflow falhar depois da tag, corrija a causa na `main` sem mover a tag
-e recrie os anexos a partir dela:
-
-```bash
-gh workflow run release.yml --repo promovaweb/inboundfy --ref main -f tag=v0.7.0
-```
-
-O campo `tag` recebe uma tag estável existente no formato `vX.Y.Z`. O
-workflow faz checkout da tag, cria a GitHub Release quando ela ainda não
-existe e compara os anexos existentes com os arquivos gerados. Anexos
-idênticos são preservados. Se o mesmo nome tiver conteúdo diferente, a
-execução para sem sobrescrever o anexo.
-
-A recuperação mantém os PDFs e EPUBs do commit publicado. Para alterar o
-código ou os ebooks, prepare uma nova versão. Não mova tags existentes.
+Se o workflow falhar depois da tag, corrija a causa numa nova versão. Tags
+existentes não são movidas. Uma release que saiu sem binários não deve ter o
+invólucro publicado no npm, porque o `postinstall` não encontraria o
+executável.

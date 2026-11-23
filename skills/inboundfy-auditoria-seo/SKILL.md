@@ -82,7 +82,6 @@ acione `inboundfy-contexto-institucional`.
   rastreador (Screaming Frog, Sitebulb ou similar), quando o projeto tiver.
 - ID do acervo quando a auditoria fizer parte de um trabalho maior.
 
-
 Aceite o piloto de `inboundfy-seo-programatico`, o mapa de migração de `inboundfy-arquitetura-site`, a marcação publicada de `inboundfy-dados-estruturados` e os links alterados de `inboundfy-seo-links-externos`. Cada pacote informa URLs, data da alteração, alcance e resultado a conferir.
 
 ## Fluxo

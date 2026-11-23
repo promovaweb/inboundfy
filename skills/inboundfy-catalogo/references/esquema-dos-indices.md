@@ -79,7 +79,7 @@ Valores `PREENCHER` ou `não informado` no frontmatter viram lista vazia no
 | `path` | `calendario/AAAA-MM.md` |
 | `status` | trecho `estado: ...` no fim da linha |
 
-Formato da linha gravada pelo `inboundfy calendario add`:
+Formato da linha gravada pelo `inboundfy calendar add`:
 
 ```markdown
 ## 2026-11-24
@@ -104,9 +104,9 @@ Formato da linha gravada pelo `inboundfy calendario add`:
 | Peças de um acervo | `conteudos.items` com `acervo` contendo o ID |
 | Peças para uma persona | `conteudos.items` com `personas` contendo o ID |
 | O que já saiu em um canal | `channel` igual ao canal e `status` igual a `publicado` |
-| Agenda do mês | `inboundfy calendario list AAAA-MM` ou `calendario.items` com `date` iniciando no mês |
+| Agenda do mês | `inboundfy calendar list AAAA-MM` ou `calendario.items` com `date` iniciando no mês |
 | Candidatas a link interno | peças `publicado` com acervo ou persona em comum e `url` preenchida |
 | Acervo sem uso | `acervo.items` com `channels` vazio e `status` `processado` |
 
-O CLI também oferece `inboundfy acervo list` e a opção global `--json` para
+O CLI também oferece `inboundfy archive list` e a opção global `--json` para
 leitura estruturada.

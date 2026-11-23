@@ -20,7 +20,7 @@ comparação com concorrentes.
 Preserve a transcrição antes de qualquer edição:
 
 ```bash
-npx @promovaweb/inboundfy@latest acervo add "Reunião sobre desistência de projeto" \
+inboundfy archive add "Reunião sobre desistência de projeto" \
   --file reuniao-comercial-outubro.txt
 ```
 
@@ -55,7 +55,7 @@ Perguntas do agente neste ponto:
 Com as respostas, o processamento roda:
 
 ```bash
-npx @promovaweb/inboundfy@latest acervo process 0007
+inboundfy archive process 0007
 ```
 
 Arquivos gerados:
@@ -129,9 +129,9 @@ Direção editorial registrada em `acervo/0007-.../estrategia.md`:
 ## Passo 4: criar a pasta do canal
 
 ```bash
-npx @promovaweb/inboundfy@latest content create blog \
+inboundfy content create blog \
   "Por que projetos de móveis planejados atrasam" \
-  --persona persona-01 --acervo 0007
+  --persona persona-01 --archive 0007
 ```
 
 ```text
@@ -184,13 +184,13 @@ com estado aprovado.
 ## Passo 6: registrar o estado
 
 ```bash
-npx @promovaweb/inboundfy@latest content status 0007 revisao
+inboundfy content status 0007 revisao
 ```
 
 Depois da aprovação, com o relatório no caminho indicado:
 
 ```bash
-npx @promovaweb/inboundfy@latest content status 0007 aprovado \
+inboundfy content status 0007 aprovado \
   --audit-report canais/blog/0007-2026-10-30-por-que-projetos-de-moveis-planejados-atrasam/auditoria.md
 ```
 
@@ -200,13 +200,13 @@ conferência usa o SHA-256 do arquivo.
 Para entrar no calendário:
 
 ```bash
-npx @promovaweb/inboundfy@latest calendario add 2026-11-06 0007
+inboundfy calendar add 2026-11-06 0007
 ```
 
 E depois da publicação:
 
 ```bash
-npx @promovaweb/inboundfy@latest content status 0007 publicado \
+inboundfy content status 0007 publicado \
   --url https://oficinapilar.test/blog/prazos-moveis-planejados \
   --published-at 2026-11-06
 ```

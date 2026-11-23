@@ -16,4 +16,3 @@ objeto real do vídeo. Use estrutura quando o brief marcar objetivo comercial:
 - Toda cena que demonstra uma funcionalidade aplica **FAB**: mostrar a
   característica na tela, narrar a vantagem prática e fechar a cena no
 benefício real para o espectador.
-

@@ -46,7 +46,7 @@ Período a planejar, campanhas ativas em `context/campanhas.md` e o
 ## Formato canônico de `calendario/AAAA-MM.md`
 
 O formato é lido por `inboundfy-catalogo` e gravado pelo comando
-`inboundfy calendario add <data> <peca>`. Cada data é um heading de nível 2.
+`inboundfy calendar add <data> <peca>`. Cada data é um heading de nível 2.
 Cada peça é uma linha de checklist com o ID em negrito.
 
 ```markdown

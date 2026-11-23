@@ -83,7 +83,6 @@ acione `inboundfy-contexto-oferta`.
 - CMS ou framework do site e se já existe plugin gerando marcação.
 - ID do acervo quando houver.
 
-
 Aceite URL e conteúdo visível já revisado de `inboundfy-seo` ou `inboundfy-geo`. O plano de `inboundfy-arquitetura-site` fornece hierarquia para breadcrumbs; só gere marcação após receber também o conteúdo visível aprovado. Achados de `inboundfy-auditoria-seo` informam URL e erro ou aviso observado.
 
 ## Fluxo

@@ -1,0 +1,43 @@
+{
+  "name": "@promovaweb/inboundfy",
+  "version": "1.0.0",
+  "description": "Inbound marketing framework with AI skills: CLI, TUI and MCP stdio server to install the framework and manage the archive, channels and editorial calendar.",
+  "license": "AGPL-3.0-only",
+  "author": "Promovaweb",
+  "homepage": "https://promovaweb.com/docs/inboundfy",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/promovaweb/inboundfy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/promovaweb/inboundfy/issues"
+  },
+  "keywords": [
+    "ai-agents",
+    "inbound-marketing",
+    "content",
+    "copywriting",
+    "skills",
+    "cli",
+    "mcp",
+    "tui"
+  ],
+  "bin": {
+    "inboundfy": "bin/inboundfy.cjs"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "postinstall": "node lib/binary.cjs"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

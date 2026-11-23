@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "version": "0.8.3",
-  "edition": "v0.8.3",
-  "generated_at": "2026-11-23T02:03:09Z",
-  "source_sha256": "bc9133da74d62bb06dd9d10715da9ba9d9d2dcfa21a3da315265a363450febc2",
+  "version": "1.0.0",
+  "edition": "v1.0.0",
+  "generated_at": "2026-11-23T18:05:51Z",
+  "source_sha256": "ae681422f6a63a1c5f01408711ad8d657f3692c3aec65b0512c5868c44c3fd7d",
   "sources": [
     ".ebook/build-ebook.mjs",
     ".ebook/epub.css",
@@ -36,6 +36,7 @@
     "docs/user/16-tutorial-vendas-b2b.md",
     "docs/user/17-tutorial-medicao.md",
     "docs/user/18-exemplos-de-pedidos.md",
+    "docs/user/19-painel-estatisticas-e-mcp.md",
     "docs/user/README.md",
     "docs/user/reading-order.txt",
     "ebook/VERSION"
@@ -140,16 +141,21 @@
       "natureza": "demonstrativo",
       "escopo": "pedidos em linguagem natural e destinos no catálogo",
       "autoridade": "`skills/catalogo.json` e os `SKILL.md` de cada área"
+    },
+    "docs/user/19-painel-estatisticas-e-mcp.md": {
+      "natureza": "referência",
+      "escopo": "painel da TUI, command `stats` e servidor MCP",
+      "autoridade": "`docs/tui.md`, `docs/mcp.md` e o registry do binário"
     }
   },
   "artifacts": {
     "pdf": {
-      "file": "Inboundfy-Guia-do-Usuario-v0.8.3.pdf",
-      "sha256": "c23da3fcf08bb73a9ce579fc2b51fe97d6bb11029e688ea653cc08b13aacd76b"
+      "file": "Inboundfy-Guia-do-Usuario-v1.0.0.pdf",
+      "sha256": "66afbc2c3b69eb58d5c2df8ab79e46f57b67aedf72239efbdaf94e62fc3d06e2"
     },
     "epub": {
-      "file": "Inboundfy-Guia-do-Usuario-v0.8.3.epub",
-      "sha256": "bb2c6efedcc8f4973d25de870729d0db9a3ffddaf33a7e657b8227fd6aa77de0"
+      "file": "Inboundfy-Guia-do-Usuario-v1.0.0.epub",
+      "sha256": "de6cd8fd72f6ad84064c3e552894876ca04d3c0609db1d87565a72c92faf464c"
     }
   }
 }

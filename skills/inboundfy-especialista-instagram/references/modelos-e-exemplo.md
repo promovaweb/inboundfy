@@ -5,6 +5,7 @@ Leia na redação; use apenas o formato do brief.
 ## Envelope e arquivos
 
 Complete o envelope compartilhado. Acrescente:
+
 ```yaml
 formato: "<post|carrossel|video-curto>"
 brief: "<brief aprovado>"
@@ -220,4 +221,3 @@ temperatura e transporte dependem do modelo. Salve para a próxima montagem.
 Notas: leitura deve ser cronometrada na produção; 30 segundos são a meta do
 brief, não uma medição realizada neste manual. Prever legendagem da fala.
 Não há prescrição de cortes, música ou efeitos nesta entrega.
-

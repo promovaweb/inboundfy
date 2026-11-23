@@ -42,8 +42,8 @@ export const SETTINGS_SCHEMA: readonly SettingDefinition[] = Object.freeze([
   {
     key: "tui.initialTab",
     type: "enum",
-    default: "overview",
-    values: ["overview", "settings", "credentials", "docs", "about"],
+    default: "dashboard",
+    values: ["dashboard", "archive", "channels", "calendar", "overview", "settings", "credentials", "docs", "about"],
     description: "Tab opened when the TUI starts.",
   },
   {

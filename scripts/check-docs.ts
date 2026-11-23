@@ -67,7 +67,9 @@ for (const screen of screens) {
 const mcp = read("docs/mcp.md");
 const catalog = describeServer();
 for (const tool of catalog.tools) if (!mentions(mcp, tool.name)) errors.push(`docs/mcp.md does not mention tool "${tool.name}"`);
-for (const resource of catalog.resources) if (!mentions(mcp, resource.uri.replace(/\{[^}]+\}/g, "{topic}"))) errors.push(`docs/mcp.md does not mention resource "${resource.uri}"`);
+// Template parameters are compared by position, not by name: `{id}` and `{topic}` both count.
+const mcpTemplates = mcp.replace(/\{[a-z]+\}/g, "{topic}");
+for (const resource of catalog.resources) if (!mentions(mcpTemplates, resource.uri.replace(/\{[^}]+\}/g, "{topic}"))) errors.push(`docs/mcp.md does not mention resource "${resource.uri}"`);
 for (const prompt of catalog.prompts) if (!mentions(mcp, prompt.name)) errors.push(`docs/mcp.md does not mention prompt "${prompt.name}"`);
 
 const configuration = read("docs/configuration.md");

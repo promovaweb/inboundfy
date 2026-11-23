@@ -54,9 +54,9 @@ Esta referência usa o contrato comum para a skill **inboundfy-pipeline**, do gr
 | Ver o hash atual | `inboundfy content digest <id>` |
 | Mudar estado | `inboundfy content status <id> <estado>` |
 | Aprovar | `inboundfy content status <id> aprovado --audit-report <arquivo>` |
-| Registrar data | `inboundfy calendario add <AAAA-MM-DD> <id>` |
+| Registrar data | `inboundfy calendar add <AAAA-MM-DD> <id>` |
 | Publicar | `inboundfy content status <id> publicado --url <url> --published-at <AAAA-MM-DD>` |
-| Agenda do mês | `inboundfy calendario list <AAAA-MM>` |
+| Agenda do mês | `inboundfy calendar list <AAAA-MM>` |
 
 A opção global `--json` devolve o registro atualizado em JSON, útil para
 conferir os campos depois da passagem.
@@ -124,7 +124,7 @@ digest, nova aprovação. Só então a peça volta a ser agendada.
 ### Agendamento e publicação
 
 ```bash
-inboundfy calendario add 2026-11-24 0007
+inboundfy calendar add 2026-11-24 0007
 inboundfy content status 0007 agendado
 inboundfy content status 0007 publicado --url https://fiscalize.exemplo.com.br/blog/nota-fiscal-mei --published-at 2026-11-24
 ```

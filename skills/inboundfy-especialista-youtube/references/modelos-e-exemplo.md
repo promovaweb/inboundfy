@@ -197,4 +197,3 @@ Destino de imagem: inboundfy-especialista-video-imagem.
 Domínios .example pertencem ao cenário didático; não são destinos reais.
 Auditorias de copy e A5 aguardam a versão final.
 ```
-

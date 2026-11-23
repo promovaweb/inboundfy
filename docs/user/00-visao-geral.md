@@ -7,6 +7,22 @@ que pretende produzir. A orquestradora verifica o setup e escolhe o fluxo, sem
 que você precise memorizar nomes de skills. As especialistas continuam
 disponíveis para tarefas isoladas quando você as chama diretamente.
 
+## O binário: painel, CLI e MCP
+
+As skills fazem o trabalho editorial. O binário `inboundfy` cuida do projeto:
+instala e confere o framework, guarda o acervo, as peças e o calendário nos
+índices de `.inboundfy/indices/` e mostra os números desse trabalho. Ele tem
+três modos no mesmo executável:
+
+| Modo | Como abrir | Para quê |
+| --- | --- | --- |
+| TUI | `inboundfy` | painel com acervo, canais, funil, calendário e contexto |
+| CLI | `inboundfy stats`, `inboundfy archive list` | consultas e operações no terminal ou em scripts (`--json`) |
+| MCP | `inboundfy mcp` | tools para o agente ler e gravar acervo, peças e calendário |
+
+O detalhamento está em
+[Painel, estatísticas e MCP](19-painel-estatisticas-e-mcp.md).
+
 ## Entrada por área
 
 Quando o pedido pertence a um domínio recorrente, você pode começar pela skill

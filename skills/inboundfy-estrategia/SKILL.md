@@ -130,7 +130,7 @@ kickoff ou um brief informal do cliente serve como ponto de partida da etapa
 - Etapa 01: `<pacote-de-campanha>/00-briefing/pesquisa-mercado.md`.
 - Etapa 02: `<pacote-de-campanha>/01-plano/plano-de-campanha.md`.
 - Etapa 03: `calendario/AAAA-MM.md`, no formato canônico lido por
-  `inboundfy-catalogo` e pelo comando `inboundfy calendario add`.
+  `inboundfy-catalogo` e pelo comando `inboundfy calendar add`.
 
 Todo pacote de conteúdo que nasce da campanha leva no `README.md` o nome da
 campanha e o caminho do plano, como pede `METODOLOGIA.md`.

@@ -6,7 +6,6 @@ Infográfico é composição gráfica de dados e blocos de texto sobre fundo de
 marca; caso de `inboundfy-base-imagem`, com a particularidade de comportar
 múltiplos blocos em vez de um único foco visual.
 
-
 ## Perguntas antes da composição
 
 1. Quantos blocos e qual ordem foram aprovados?

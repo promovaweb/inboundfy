@@ -1,0 +1,311 @@
+dashboard  120×32
+                                                                                                                        
+   ▌ Inboundfy  v1.0.0                                                                          linux-x64 · Bun 1.4.4   
+                                                                                                                        
+   1 ⌂ Dashboard 2 ◉ Archive 3 ⇄ Channels 4 ≡ Calendar 5 ⌂ Overview 6 ⚙ Settings 7 ◈ Credentials 8 ≡ Docs 9 ℹ About     
+   ━━━━━━━━━━━━━                                                                                                        
+                                                                                                                        
+   ARCHIVE            PIECES             PUBLISHED          IN PROGRESS        SCHEDULED          OVERDUE           █   
+   ╭────────────────╮ ╭────────────────╮ ╭────────────────╮ ╭────────────────╮ ╭────────────────╮ ╭────────────────╮█   
+   │  ▀█            │ │  ▀▀█           │ │  ▄█            │ │  ▀█            │ │  ▞█▚           │ │  ▄█            │█   
+   │  █▄            │ │  ▄██           │ │   █            │ │  █▄            │ │  ▚█▞           │ │   █            │█   
+   ╰────────────────╯ ╰────────────────╯ ╰────────────────╯ ╰────────────────╯ ╰────────────────╯ ╰────────────────╯█   
+                                                                                                                    █   
+   ≡ PIPELINE                            ⇄ CHANNELS                             ◉ LAST SIX MONTHS                   █   
+   ╭──────────────────────────────────╮  ╭───────────────────────────────────╮  ╭──────────────────────────────────╮█   
+   │                                  │  │                                   │  │                                  │█   
+   │  rascunho  █████████  1          │  │  Volume   total/pub   last        │  │  Jun Jul Aug Sep Oct Nov         │█   
+   │  revisao   █████████  1          │  │  blog      ███ 2/1 2026-11-22     │  │  Archive intake                  │█   
+   │  aprovado  ░░░░░░░░░  0          │  │  email     ░░░ 0/0 —              │  │  ▁   ▁   ▁   ▁   ▁   █           │█   
+   │  agendado  ░░░░░░░░░  0          │  │  linkedin  ██░ 1/0 —              │  │  Publications                    │█   
+   │  publicado █████████  1          │  │  instagram ░░░ 0/0 —              │  │  ▁   ▁   ▁   ▁   ▁   █           │█   
+   │                                  │  │  substack  ░░░ 0/0 —              │  │                                  │█   
+   ╰──────────────────────────────────╯  │  youtube   ░░░ 0/0 —              │  ╰──────────────────────────────────╯█   
+                                         │                                   │                                      █   
+   ≡ ARCHIVE PROGRESS                    ╰───────────────────────────────────╯  ✓ PROJECT CONTEXT                   █   
+   ╭──────────────────────────────────╮                                         ╭──────────────────────────────────╮█   
+   │                                  │  ≡ CALENDAR                             │                                  │█   
+   │  Stages  1/10                    │  ╭───────────────────────────────────╮  │  ✗  company                      │▀   
+   │  █░░░░░░░░░░░  10%               │  │                                   │  │  ✗  voice                        │    
+   │  Anti-slop audits  0/14          │  │  Upcoming · 1                     │  │  ✗  personas                     │    
+   │  ░░░░░░░░░░░░  0%                │  │  2026-11-23  Workshop takeaways   │  │  ✗  strategy                     │    
+                                                                                                                        
+   2 archive · 3 pieces  r reload  ? help  q quit                                                        ^K commands
+
+archive  120×32
+                                                                                                                        
+   ▌ Inboundfy  v1.0.0                                                                          linux-x64 · Bun 1.4.4   
+                                                                                                                        
+   1 ⌂ Dashboard 2 ◉ Archive 3 ⇄ Channels 4 ≡ Calendar 5 ⌂ Overview 6 ⚙ Settings 7 ◈ Credentials 8 ≡ Docs 9 ℹ About     
+                 ━━━━━━━━━━━                                                                                            
+                                                                                                                        
+   RECEBIDO                     PROCESSANDO                  PROCESSADO                   ARQUIVADO                     
+   ╭─────────────────────────╮  ╭─────────────────────────╮  ╭─────────────────────────╮  ╭─────────────────────────╮   
+   │  1                      │  │  0                      │  │  1                      │  │  0                      │   
+   ╰─────────────────────────╯  ╰─────────────────────────╯  ╰─────────────────────────╯  ╰─────────────────────────╯   
+                                                                                                                        
+   ARCHIVE · ALL                                                     ARCHIVE · 0001                                     
+   ╭──────────────────────────────────────────────────────────────╮  ╭──────────────────────────────────────────────╮   
+   │                                                              │  │                                             ┃│   
+   │    ID   STATUS     DATE       CHANNEL    TITLE               │  │  Founder interview                          ┃│   
+   │  > 0001 recebido   2026-11-23 blog       Founder interview   │  │  recebido                                   ┃│   
+   │    0002 processado 2026-11-23 linkedin,… Workshop notes      │  │  Stages                                     ┃│   
+   │                                                              │  │  ░░░░░░░░░░░░  0/5  0%                      ┃│   
+   ╰──────────────────────────────────────────────────────────────╯  │  ·  Material processado                     ┃│   
+                                                                     │  ·  FAQ extraído                            ┃│   
+                                                                     │  ·  Base editorial                          ┃│   
+                                                                     │  ·  Pesquisa externa                        ┃│   
+                                                                     │  ·  Possibilidades de distribuição          ┃│   
+                                                                     │  Anti-slop audits                           ┃│   
+                                                                     │  ░░░░░░░░░░░░  0/7  0%                      ┃│   
+                                                                     │  A0 · A1 · A2 · A3 · A4 · A5 · A6 ·         ┃│   
+                                                                     │                                             ┃│   
+                                                                     │  Channels  blog                             ││   
+                                                                     │  Folder    acervo/0001-2026-11-23-founder-  ││   
+                                                                     ╰──────────────────────────────────────────────╯   
+                                                                                                                        
+   2 archive items · All  Enter open  f filter  r reload  ? help  q quit                                 ^K commands
+
+channels  120×32
+                                                                                                                        
+   ▌ Inboundfy  v1.0.0                                                                          linux-x64 · Bun 1.4.4   
+                                                                                                                        
+   1 ⌂ Dashboard 2 ◉ Archive 3 ⇄ Channels 4 ≡ Calendar 5 ⌂ Overview 6 ⚙ Settings 7 ◈ Credentials 8 ≡ Docs 9 ℹ About     
+                             ━━━━━━━━━━━━                                                                               
+                                                                                                                        
+   ACTIVE CHANNELS              PIECES                       PUBLISHED                    IN REVIEW                     
+   ╭─────────────────────────╮  ╭─────────────────────────╮  ╭─────────────────────────╮  ╭─────────────────────────╮   
+   │  2                      │  │  3                      │  │  1                      │  │  1                      │   
+   ╰─────────────────────────╯  ╰─────────────────────────╯  ╰─────────────────────────╯  ╰─────────────────────────╯   
+                                                                                                                        
+   CHANNELS · PIPELINE                                          BLOG · PIECES                                           
+   ╭─────────────────────────────────────────────────────────╮  ╭───────────────────────────────────────────────────╮   
+   │                                                         │  │                                                   │   
+   │    CHANNEL   VOLUME D R A S P X ALL PUB LAST DATE       │  │    ID   STATUS    DATE       TITLE                │   
+   │  > blog      ██████ 0 1 0 0 1 0 2   1   2026-11-22      │  │  > 0001 revisao   2026-11-23 First field report   │   
+   │    email     ░░░░░░ 0 0 0 0 0 0 0   0   —               │  │    0003 publicado 2026-11-23 Reader questions     │   
+   │    linkedin  ███░░░ 1 0 0 0 0 0 1   0   —               │  │                                                   │   
+   │    instagram ░░░░░░ 0 0 0 0 0 0 0   0   —               │  ╰───────────────────────────────────────────────────╯   
+   │    substack  ░░░░░░ 0 0 0 0 0 0 0   0   —               │                                                          
+   │    youtube   ░░░░░░ 0 0 0 0 0 0 0   0   —               │                                                          
+   │                                                         │                                                          
+   ╰─────────────────────────────────────────────────────────╯                                                          
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+   2 active channels  Enter open  r reload  ? help  q quit                                               ^K commands
+
+calendar  120×32
+                                                                                                                        
+   ▌ Inboundfy  v1.0.0                                                                          linux-x64 · Bun 1.4.4   
+                                                                                                                        
+   1 ⌂ Dashboard 2 ◉ Archive 3 ⇄ Channels 4 ≡ Calendar 5 ⌂ Overview 6 ⚙ Settings 7 ◈ Credentials 8 ≡ Docs 9 ℹ About     
+                                          ━━━━━━━━━━━━                                                                  
+                                                                                                                        
+   2026-11                                  EDITORIAL CALENDAR · 2026-11                                                
+   ╭─────────────────────────────────────╮  ╭───────────────────────────────────────────────────────────────────────╮   
+   │                                     │  │                                                                       │   
+   │  Mon  Tue Wed  Thu  Fri Sat  Sun    │  │  This month · 2                                                       │   
+   │                               1     │  │  DATE       CHANNEL   ID   TITLE                           STATUS     │   
+   │   2    3   4    5    6   7    8     │  │  2026-11-21 blog      0001 First field report              revisao    │   
+   │   9   10  11   12   13  14   15     │  │  2026-11-23 linkedin  0002 Workshop takeaways              rascunho   │   
+   │  16   17  18   19   20  21●  22     │  │                                                                       │   
+   │  23●  24  25   26   27  28   29     │  │  Overdue · 1                                                          │   
+   │  30                                 │  │  DATE       CHANNEL   ID   TITLE                           STATUS     │   
+   │                                     │  │  2026-11-21 blog      0001 First field report              revisao    │   
+   ╰─────────────────────────────────────╯  │                                                                       │   
+                                            │  Upcoming · 1                                                         │   
+                                            │  DATE       CHANNEL   ID   TITLE                           STATUS     │   
+                                            │  2026-11-23 linkedin  0002 Workshop takeaways              rascunho   │   
+                                            │                                                                       │   
+                                            │                                                                       │   
+                                            │                                                                       │   
+                                            │                                                                       │   
+                                            │                                                                       │   
+                                            │                                                                       │   
+                                            │                                                                       │   
+                                            │                                                                       │   
+                                            ╰───────────────────────────────────────────────────────────────────────╯   
+                                                                                                                        
+   2026-11 · 2 entries  [ prev month  ] next month  r reload  ? help  q quit                             ^K commands
+
+dashboard  80×24
+                                                                                
+   ▌ Inboundfy  v1.0.0                                  linux-x64 · Bun 1.4.4   
+                                                                                
+   1 ⌂ Dashboard 2 ◉ 3 ⇄ 4 ≡ 5 ⌂ 6 ⚙ 7 ◈ 8 ≡ 9 ℹ                                
+   ━━━━━━━━━━━━━                                                                
+                                                                                
+   ARCHIVE     PIECES       PUBLISHED   IN PROGRESS SCHEDULED    OVERDUE    █   
+   ╭─────────╮ ╭──────────╮ ╭─────────╮ ╭─────────╮ ╭──────────╮ ╭─────────╮█   
+   │ ▀█      │ │ ▀▀█      │ │ ▄█      │ │ ▀█      │ │ ▞█▚      │ │ ▄█      │█   
+   │ █▄      │ │ ▄██      │ │  █      │ │ █▄      │ │ ▚█▞      │ │  █      │█   
+   ╰─────────╯ ╰──────────╯ ╰─────────╯ ╰─────────╯ ╰──────────╯ ╰─────────╯█   
+                                                                            █   
+   ≡ PIPELINE                            ⇄ CHANNELS                             
+   ╭──────────────────────────────────╮  ╭─────────────────────────────────╮    
+   │                                  │  │                                 │    
+   │  rascunho  █████████  1          │  │  Volume   total/pub   last      │    
+   │  revisao   █████████  1          │  │  blog      ███ 2/1 2026-11-22   │    
+   │  aprovado  ░░░░░░░░░  0          │  │  email     ░░░ 0/0 —            │    
+   │  agendado  ░░░░░░░░░  0          │  │  linkedin  ██░ 1/0 —            │    
+   │  publicado █████████  1          │  │  instagram ░░░ 0/0 —            │    
+   │                                  │  │  substack  ░░░ 0/0 —            │    
+   ╰──────────────────────────────────╯  │  youtube   ░░░ 0/0 —            │    
+                                                                                
+   2 archive · 3 pieces  r reload  ? help  q quit                ^K commands
+
+archive  80×24
+                                                                                
+   ▌ Inboundfy  v1.0.0                                  linux-x64 · Bun 1.4.4   
+                                                                                
+   1 ⌂ 2 ◉ Archive 3 ⇄ 4 ≡ 5 ⌂ 6 ⚙ 7 ◈ 8 ≡ 9 ℹ                                  
+       ━━━━━━━━━━━                                                              
+                                                                                
+   RECEBIDO           PROCESSANDO        PROCESSADO         ARQUIVADO           
+   ╭───────────────╮  ╭───────────────╮  ╭───────────────╮  ╭───────────────╮   
+   │  1            │  │  0            │  │  1            │  │  0            │   
+   ╰───────────────╯  ╰───────────────╯  ╰───────────────╯  ╰───────────────╯   
+                                                                                
+   ARCHIVE · ALL                                                                
+   ╭────────────────────────────────────────────────────────────────────────╮   
+   │                                                                        │   
+   │    ID   STATUS     DATE       CHANNEL    TITLE                         │   
+   │  > 0001 recebido   2026-11-23 blog       Founder interview             │   
+   │    0002 processado 2026-11-23 linkedin,… Workshop notes                │   
+   │                                                                        │   
+   ╰────────────────────────────────────────────────────────────────────────╯   
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+   2 archive items · All  Enter open  ? help  q quit             ^K commands
+
+channels  80×24
+                                                                                
+   ▌ Inboundfy  v1.0.0                                  linux-x64 · Bun 1.4.4   
+                                                                                
+   1 ⌂ 2 ◉ 3 ⇄ Channels 4 ≡ 5 ⌂ 6 ⚙ 7 ◈ 8 ≡ 9 ℹ                                 
+           ━━━━━━━━━━━━                                                         
+                                                                                
+   ACTIVE CHANNELS    PIECES             PUBLISHED          IN REVIEW           
+   ╭───────────────╮  ╭───────────────╮  ╭───────────────╮  ╭───────────────╮   
+   │  2            │  │  3            │  │  1            │  │  1            │   
+   ╰───────────────╯  ╰───────────────╯  ╰───────────────╯  ╰───────────────╯   
+                                                                                
+   CHANNELS · PIPELINE                                                          
+   ╭────────────────────────────────────────────────────────────────────────╮   
+   │                                                                       ┃│   
+   │    CHANNEL   VOLUME D R A S P X ALL PUB LAST DATE                     ┃│   
+   │  > blog      ██████ 0 1 0 0 1 0 2   1   2026-11-22                    ┃│   
+   │    email     ░░░░░░ 0 0 0 0 0 0 0   0   —                             ┃│   
+   │    linkedin  ███░░░ 1 0 0 0 0 0 1   0   —                             ┃│   
+   │    instagram ░░░░░░ 0 0 0 0 0 0 0   0   —                             ┃│   
+   │    substack  ░░░░░░ 0 0 0 0 0 0 0   0   —                             ┃│   
+   │    youtube   ░░░░░░ 0 0 0 0 0 0 0   0   —                             ││   
+   ╰────────────────────────────────────────────────────────────────────────╯   
+                                                                                
+   2 active channels  Enter open  r reload  ? help  q quit       ^K commands
+
+calendar  80×24
+                                                                                
+   ▌ Inboundfy  v1.0.0                                  linux-x64 · Bun 1.4.4   
+                                                                                
+   1 ⌂ 2 ◉ 3 ⇄ 4 ≡ Calendar 5 ⌂ 6 ⚙ 7 ◈ 8 ≡ 9 ℹ                                 
+               ━━━━━━━━━━━━                                                     
+                                                                                
+   EDITORIAL CALENDAR · 2026-11                                                 
+   ╭────────────────────────────────────────────────────────────────────────╮   
+   │                                                                       ┃│   
+   │  Mon       Tue      Wed       Thu      Fri       Sat      Sun         ┃│   
+   │                                                            1          ┃│   
+   │   2         3        4         5        6         7        8          ┃│   
+   │   9        10       11        12       13        14       15          ┃│   
+   │  16        17       18        19       20        21●      22          ┃│   
+   │  23●       24       25        26       27        28       29          ┃│   
+   │  30                                                                   ││   
+   │                                                                       ││   
+   │  This month · 2                                                       ││   
+   │  DATE       CHANNEL   ID   TITLE                           STATUS     ││   
+   │  2026-11-21 blog      0001 First field report              revisao    ││   
+   │  2026-11-23 linkedin  0002 Workshop takeaways              rascunho   ││   
+   ╰────────────────────────────────────────────────────────────────────────╯   
+                                                                                
+   2026-11 · 2 entries  [ prev month  ? help  q quit             ^K commands
+
+dashboard  60×16
+ ▌ Inboundfy  v1.0.0                                        
+ 1 ⌂ Dashboard 2 ◉ 3 ⇄ 4 ≡ 5 ⌂ 6 ⚙ 7 ◈ 8 ≡ 9 ℹ              
+ ━━━━━━━━━━━━━                                              
+ ARCHIVE            PIECES              PUBLISHED         █ 
+ ╭────────────────╮ ╭─────────────────╮ ╭────────────────╮█ 
+ │ ▀█             │ │ ▀▀█             │ │ ▄█             │  
+ │ █▄             │ │ ▄██             │ │  █             │  
+ ╰────────────────╯ ╰─────────────────╯ ╰────────────────╯  
+ IN PROGRESS        SCHEDULED           OVERDUE             
+ ╭────────────────╮ ╭─────────────────╮ ╭────────────────╮  
+ │ ▀█             │ │ ▞█▚             │ │ ▄█             │  
+ │ █▄             │ │ ▚█▞             │ │  █             │  
+ ╰────────────────╯ ╰─────────────────╯ ╰────────────────╯  
+ ≡ PIPELINE                                                 
+ ╭───────────────────────────────────────────────────────╮  
+ 2 archive · 3 pieces  ? help  q quit          ^K commands
+
+archive  60×16
+ ▌ Inboundfy  v1.0.0                                        
+ 1 ⌂ 2 ◉ Archive 3 ⇄ 4 ≡ 5 ⌂ 6 ⚙ 7 ◈ 8 ≡ 9 ℹ                
+     ━━━━━━━━━━━                                            
+ RECEBIDO       PROCESSANDO    PROCESSADO    ARQUIVADO      
+ ╭────────────╮ ╭────────────╮ ╭───────────╮ ╭────────────╮ 
+ │ 1          │ │ 0          │ │ 1         │ │ 0          │ 
+ ╰────────────╯ ╰────────────╯ ╰───────────╯ ╰────────────╯ 
+ ARCHIVE · ALL                                              
+ ╭────────────────────────────────────────────────────────╮ 
+ │   ID   STATUS     DATE       CHANNEL TITLE             │ 
+ │ > 0001 recebido   2026-11-23 blog    Founder interview │ 
+ │   0002 processado 2026-11-23 linked… Workshop notes    │ 
+ ╰────────────────────────────────────────────────────────╯ 
+                                                            
+                                                            
+ 2 archive items · All  ? help  q quit         ^K commands
+
+channels  60×16
+ ▌ Inboundfy  v1.0.0                                        
+ 1 ⌂ 2 ◉ 3 ⇄ Channels 4 ≡ 5 ⌂ 6 ⚙ 7 ◈ 8 ≡ 9 ℹ               
+         ━━━━━━━━━━━━                                       
+ ACTIVE         PIECES         PUBLISHED     IN REVIEW      
+ ╭────────────╮ ╭────────────╮ ╭───────────╮ ╭────────────╮ 
+ │ 2          │ │ 3          │ │ 1         │ │ 1          │ 
+ ╰────────────╯ ╰────────────╯ ╰───────────╯ ╰────────────╯ 
+ CHANNELS · PIPELINE                                        
+ ╭────────────────────────────────────────────────────────╮ 
+ │   CHANNEL   VOLUME D R A S P X ALL PUB LAST DATE      ┃│ 
+ │ > blog      ██████ 0 1 0 0 1 0 2   1   2026-11-22     ┃│ 
+ │   email     ░░░░░░ 0 0 0 0 0 0 0   0   —              ┃│ 
+ │   linkedin  ███░░░ 1 0 0 0 0 0 1   0   —              ││ 
+ │   instagram ░░░░░░ 0 0 0 0 0 0 0   0   —              ││ 
+ ╰────────────────────────────────────────────────────────╯ 
+ 2 active channels  ? help  q quit             ^K commands
+
+calendar  60×16
+ ▌ Inboundfy  v1.0.0                                        
+ 1 ⌂ 2 ◉ 3 ⇄ 4 ≡ Calendar 5 ⌂ 6 ⚙ 7 ◈ 8 ≡ 9 ℹ               
+             ━━━━━━━━━━━━                                   
+ EDITORIAL CALENDAR · 2026-11                               
+ ╭────────────────────────────────────────────────────────╮ 
+ │ This month · 2                                        ┃│ 
+ │ DATE       CHANNEL   ID   TITLE             STATUS    ┃│ 
+ │ 2026-11-21 blog      0001 First f... report revisao   ┃│ 
+ │ 2026-11-23 linkedin  0002 Worksho...keaways rascunho  ┃│ 
+ │ Overdue · 1                                           ┃│ 
+ │ DATE       CHANNEL   ID   TITLE             STATUS    ┃│ 
+ │ 2026-11-21 blog      0001 First f... report revisao   ┃│ 
+ │ Upcoming · 1                                          ┃│ 
+ │ DATE       CHANNEL   ID   TITLE             STATUS    ││ 
+ ╰────────────────────────────────────────────────────────╯ 
+ 2026-11 · 2 entries  ? help  q quit           ^K commands

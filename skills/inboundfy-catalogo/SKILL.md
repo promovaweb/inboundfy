@@ -80,7 +80,10 @@ Faça antes de gravar. Registre as respostas no relatório:
 ## Fluxo
 
 1. Rode o preflight e confirme que `.inboundfy/indices/` existe. Se faltar,
-   pare e acione `inboundfy-setup`.
+   pare e acione `inboundfy-setup`. Para consulta, prefira `project_stats`,
+   `archive_list`, `content_list` e `calendar_list` (ou os commands `stats`,
+   `archive list`, `content list` e `calendar list` com `--json`): eles já
+   validam o esquema e devolvem os números agregados.
 2. Leia [references/esquema-dos-indices.md](references/esquema-dos-indices.md)
    e carregue os três índices. Se um JSON estiver inválido, guarde uma cópia
    `<nome>.json.bak-AAAAMMDD` antes de qualquer gravação.

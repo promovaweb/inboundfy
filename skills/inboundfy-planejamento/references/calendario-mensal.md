@@ -2,7 +2,7 @@
 
 Leia no modo acervo, ao registrar a data de uma peça, e na etapa 05 quando a
 peça de um pacote ganhar data. O formato é o mesmo gravado pelo comando
-`inboundfy calendario add <data> <peca>` e lido por `inboundfy-catalogo`.
+`inboundfy calendar add <data> <peca>` e lido por `inboundfy-catalogo`.
 
 ## Formato canônico
 

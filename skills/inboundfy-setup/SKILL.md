@@ -28,7 +28,9 @@ Leia [REFERENCIA.md](REFERENCIA.md), `AGENTS.md`, `.inboundfy/README.md`,
 `.inboundfy/context/publico.md`, `.inboundfy/context/links.md`, `.inboundfy/context/proibicoes.md`, `.inboundfy/context/glossario.md`,
 `.inboundfy/context/aprendizado.md`, `.inboundfy/context/integracoes.md` e
 `.inboundfy/pipeline.md`. Confira `inboundfy doctor` antes e depois. Na etapa
-de integrações, leia [references/integracoes.md](references/integracoes.md).
+de integrações, leia [references/integracoes.md](references/integracoes.md);
+para o binário, o MCP e os códigos de saída, leia
+[references/binario-e-mcp.md](references/binario-e-mcp.md).
 
 Esta é a única skill que cria ou altera configuração. As demais skills leem
 os arquivos acima e devolvem para cá qualquer configuração ausente.
@@ -44,9 +46,12 @@ usadas em cada área. Aproveite arquivos existentes sem apagar respostas.
 
 ## Fluxo
 
-1. Rode `inboundfy install --yes --agent codex` ou a variante do agente do
+1. Confira `inboundfy --version` e siga
+   [references/binario-e-mcp.md](references/binario-e-mcp.md) quando o
+   binário faltar ou estiver atrás da versão do projeto. Rode
+   `inboundfy install --yes --agent codex` ou a variante do agente do
    projeto. Use `--dry-run` antes quando a instalação ainda não for conhecida.
-2. Confirme que o CLI criou `.inboundfy/framework/` para o material do produto
+2. Confirme que o binário criou `.inboundfy/framework/` para o material do produto
    e os arquivos específicos em `.inboundfy/`. A documentação fica em
    `.inboundfy/framework/docs/`, o ebook em `.inboundfy/framework/ebook/`, a
    identidade visual em `.inboundfy/framework/brand/` e os templates em
@@ -72,9 +77,14 @@ usadas em cada área. Aproveite arquivos existentes sem apagar respostas.
    vendas, dados, pesquisa), registre em `estrategia.md` e apresente a skill
    `inboundfy-area-*` de cada área ativa como porta de entrada.
 8. Garanta pelo menos uma persona completa. Registre uma fonte para cada bloco
-   factual e deixe perguntas abertas onde a resposta não chegou.
+   factual e deixe perguntas abertas onde a resposta não chegou. Use
+   `inboundfy context check` (ou a tool `context_check`) para mostrar à
+   pessoa o que ainda falta.
 9. Quando os campos mínimos estiverem preenchidos, rode
    `inboundfy context ready --yes` e depois `inboundfy doctor --strict`.
+10. Ofereça ligar o MCP do Inboundfy ao agente e apresente o painel
+    (`inboundfy`, sem argumentos), conforme
+    [references/binario-e-mcp.md](references/binario-e-mcp.md).
 
 ## Saída
 

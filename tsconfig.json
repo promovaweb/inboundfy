@@ -12,7 +12,8 @@
     "allowImportingTsExtensions": true,
     "noEmit": true,
     "resolveJsonModule": true,
-    "allowJs": false,
+    "allowJs": true,
+    "checkJs": false,
     "verbatimModuleSyntax": true
   },
   "include": ["src", "scripts", "tests", "template", "bun-env.d.ts"]

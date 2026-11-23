@@ -2,16 +2,16 @@
   "$schema": "https://opencli.org/draft.json",
   "opencli": "0.1",
   "info": {
-    "title": "Termfy",
-    "version": "0.13.4",
-    "summary": "CLI, TUI and MCP stdio server skeleton in Bun, with the Termfy framework skills installed.",
-    "description": "CLI, TUI and MCP stdio server skeleton in Bun, with the Termfy framework skills installed. Without arguments it opens the TUI; \"termfy mcp\" starts the MCP server over stdio; any other command runs as a CLI with text or --json output.",
+    "title": "Inboundfy",
+    "version": "1.0.0",
+    "summary": "Inbound marketing framework with AI skills: CLI, TUI and MCP stdio server to install the framework and manage the archive, channels and editorial calendar.",
+    "description": "Inbound marketing framework with AI skills: CLI, TUI and MCP stdio server to install the framework and manage the archive, channels and editorial calendar. Without arguments it opens the TUI; \"inboundfy mcp\" starts the MCP server over stdio; any other command runs as a CLI with text or --json output.",
     "contact": {
       "name": "Promovaweb",
-      "url": "https://promovaweb.com"
+      "url": "https://promovaweb.com/docs/inboundfy"
     },
     "license": {
-      "name": "MIT"
+      "name": "AGPL-3.0-only"
     }
   },
   "conventions": {
@@ -19,8 +19,8 @@
     "optionSeparator": " "
   },
   "command": {
-    "name": "termfy",
-    "description": "CLI, TUI and MCP stdio server skeleton in Bun, with the Termfy framework skills installed.",
+    "name": "inboundfy",
+    "description": "Inbound marketing framework with AI skills: CLI, TUI and MCP stdio server to install the framework and manage the archive, channels and editorial calendar.",
     "options": [
       {
         "name": "--help",
@@ -75,12 +75,30 @@
         "name": "--no-color",
         "description": "Disable ANSI colors in text output. Same as NO_COLOR=1.",
         "recursive": true
+      },
+      {
+        "name": "--project",
+        "description": "Project root (default: INBOUNDFY_PROJECT or the current directory).",
+        "aliases": [
+          "-C"
+        ],
+        "recursive": true,
+        "arguments": [
+          {
+            "name": "dir",
+            "required": true,
+            "arity": {
+              "minimum": 1,
+              "maximum": 1
+            }
+          }
+        ]
       }
     ],
     "commands": [
       {
         "name": "tui",
-        "description": "Open the terminal interface (Overview and About). Requires a TTY.",
+        "description": "Open the terminal interface. Requires a TTY.",
         "options": [
           {
             "name": "--tab",
@@ -94,7 +112,14 @@
                   "maximum": 1
                 },
                 "acceptedValues": [
+                  "dashboard",
+                  "archive",
+                  "channels",
+                  "calendar",
                   "overview",
+                  "settings",
+                  "credentials",
+                  "docs",
                   "about"
                 ]
               }
@@ -102,8 +127,8 @@
           }
         ],
         "examples": [
-          "termfy",
-          "termfy tui --tab about"
+          "inboundfy",
+          "inboundfy tui --tab about"
         ],
         "interactive": true,
         "exitCodes": [
@@ -126,11 +151,1351 @@
         ]
       },
       {
+        "name": "install",
+        "description": "Install the framework, the skills and the project data folders.",
+        "options": [
+          {
+            "name": "--dry-run",
+            "description": "Show the planned changes without writing."
+          },
+          {
+            "name": "--yes",
+            "description": "Accept the defaults without questions (also the behavior off a TTY).",
+            "aliases": [
+              "-y"
+            ]
+          },
+          {
+            "name": "--force",
+            "description": "Back up files that do not belong to a known installation and continue."
+          },
+          {
+            "name": "--agent",
+            "description": "Agent that receives the skills (.codex/skills, .claude/skills or .agents/skills).",
+            "arguments": [
+              {
+                "name": "agent",
+                "required": true,
+                "arity": {
+                  "minimum": 1,
+                  "maximum": 1
+                },
+                "acceptedValues": [
+                  "codex",
+                  "claude",
+                  "agents"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "--skills-dir",
+            "description": "Skills directory relative to the project, overriding --agent.",
+            "arguments": [
+              {
+                "name": "dir",
+                "required": true,
+                "arity": {
+                  "minimum": 1,
+                  "maximum": 1
+                }
+              }
+            ]
+          },
+          {
+            "name": "--instruction-file",
+            "description": "File that receives the delimited Inboundfy block.",
+            "arguments": [
+              {
+                "name": "file",
+                "required": true,
+                "arity": {
+                  "minimum": 1,
+                  "maximum": 1
+                },
+                "acceptedValues": [
+                  "AGENTS.md",
+                  "CLAUDE.md",
+                  "none"
+                ]
+              }
+            ]
+          }
+        ],
+        "examples": [
+          "inboundfy install",
+          "inboundfy install --agent claude --yes",
+          "inboundfy install --dry-run --json"
+        ],
+        "exitCodes": [
+          {
+            "code": 0,
+            "description": "SUCCESS: Operation completed."
+          },
+          {
+            "code": 1,
+            "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+          },
+          {
+            "code": 2,
+            "description": "USAGE: Invalid arguments, options or subcommand."
+          },
+          {
+            "code": 7,
+            "description": "PERMISSION: Permission denied on the file system."
+          },
+          {
+            "code": 10,
+            "description": "NOT_INSTALLED: Inboundfy is not installed in the project or its install state is invalid."
+          },
+          {
+            "code": 12,
+            "description": "CONFLICT: The operation conflicts with the project state: lock held, file not owned, invalid transition or approval mismatch."
+          }
+        ]
+      },
+      {
+        "name": "update",
+        "description": "Apply the framework version shipped by this binary to the project.",
+        "options": [
+          {
+            "name": "--dry-run",
+            "description": "Show the planned changes without writing."
+          },
+          {
+            "name": "--yes",
+            "description": "Accept the defaults without questions (also the behavior off a TTY).",
+            "aliases": [
+              "-y"
+            ]
+          },
+          {
+            "name": "--force",
+            "description": "Back up files that do not belong to a known installation and continue."
+          }
+        ],
+        "examples": [
+          "inboundfy update",
+          "inboundfy update --dry-run"
+        ],
+        "exitCodes": [
+          {
+            "code": 0,
+            "description": "SUCCESS: Operation completed."
+          },
+          {
+            "code": 1,
+            "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+          },
+          {
+            "code": 2,
+            "description": "USAGE: Invalid arguments, options or subcommand."
+          },
+          {
+            "code": 7,
+            "description": "PERMISSION: Permission denied on the file system."
+          },
+          {
+            "code": 10,
+            "description": "NOT_INSTALLED: Inboundfy is not installed in the project or its install state is invalid."
+          },
+          {
+            "code": 12,
+            "description": "CONFLICT: The operation conflicts with the project state: lock held, file not owned, invalid transition or approval mismatch."
+          }
+        ]
+      },
+      {
+        "name": "repair",
+        "description": "Restore managed files that are missing or changed, backing up the changed ones.",
+        "options": [
+          {
+            "name": "--dry-run",
+            "description": "Show the planned changes without writing."
+          },
+          {
+            "name": "--yes",
+            "description": "Accept the defaults without questions (also the behavior off a TTY).",
+            "aliases": [
+              "-y"
+            ]
+          },
+          {
+            "name": "--force",
+            "description": "Back up files that do not belong to a known installation and continue."
+          }
+        ],
+        "examples": [
+          "inboundfy repair"
+        ],
+        "exitCodes": [
+          {
+            "code": 0,
+            "description": "SUCCESS: Operation completed."
+          },
+          {
+            "code": 1,
+            "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+          },
+          {
+            "code": 2,
+            "description": "USAGE: Invalid arguments, options or subcommand."
+          },
+          {
+            "code": 7,
+            "description": "PERMISSION: Permission denied on the file system."
+          },
+          {
+            "code": 10,
+            "description": "NOT_INSTALLED: Inboundfy is not installed in the project or its install state is invalid."
+          },
+          {
+            "code": 12,
+            "description": "CONFLICT: The operation conflicts with the project state: lock held, file not owned, invalid transition or approval mismatch."
+          }
+        ]
+      },
+      {
+        "name": "agent",
+        "description": "Manage the agent skills of the project.",
+        "commands": [
+          {
+            "name": "install",
+            "description": "Install or update only the skills.",
+            "options": [
+              {
+                "name": "--dry-run",
+                "description": "Show the planned changes without writing."
+              },
+              {
+                "name": "--yes",
+                "description": "Accept the defaults without questions (also the behavior off a TTY).",
+                "aliases": [
+                  "-y"
+                ]
+              },
+              {
+                "name": "--force",
+                "description": "Back up files that do not belong to a known installation and continue."
+              },
+              {
+                "name": "--agent",
+                "description": "Agent that receives the skills (.codex/skills, .claude/skills or .agents/skills).",
+                "arguments": [
+                  {
+                    "name": "agent",
+                    "required": true,
+                    "arity": {
+                      "minimum": 1,
+                      "maximum": 1
+                    },
+                    "acceptedValues": [
+                      "codex",
+                      "claude",
+                      "agents"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "--skills-dir",
+                "description": "Skills directory relative to the project, overriding --agent.",
+                "arguments": [
+                  {
+                    "name": "dir",
+                    "required": true,
+                    "arity": {
+                      "minimum": 1,
+                      "maximum": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "--instruction-file",
+                "description": "File that receives the delimited Inboundfy block.",
+                "arguments": [
+                  {
+                    "name": "file",
+                    "required": true,
+                    "arity": {
+                      "minimum": 1,
+                      "maximum": 1
+                    },
+                    "acceptedValues": [
+                      "AGENTS.md",
+                      "CLAUDE.md",
+                      "none"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "examples": [
+              "inboundfy agent install --agent codex"
+            ],
+            "exitCodes": [
+              {
+                "code": 0,
+                "description": "SUCCESS: Operation completed."
+              },
+              {
+                "code": 1,
+                "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+              },
+              {
+                "code": 2,
+                "description": "USAGE: Invalid arguments, options or subcommand."
+              },
+              {
+                "code": 7,
+                "description": "PERMISSION: Permission denied on the file system."
+              },
+              {
+                "code": 10,
+                "description": "NOT_INSTALLED: Inboundfy is not installed in the project or its install state is invalid."
+              },
+              {
+                "code": 12,
+                "description": "CONFLICT: The operation conflicts with the project state: lock held, file not owned, invalid transition or approval mismatch."
+              }
+            ]
+          }
+        ],
+        "exitCodes": [
+          {
+            "code": 0,
+            "description": "SUCCESS: Operation completed."
+          },
+          {
+            "code": 1,
+            "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+          },
+          {
+            "code": 2,
+            "description": "USAGE: Invalid arguments, options or subcommand."
+          }
+        ]
+      },
+      {
+        "name": "doctor",
+        "description": "Diagnose the project installation (state, manifest hashes, instruction block, data folders, context) and the runtime, without changing files.",
+        "options": [
+          {
+            "name": "--strict",
+            "description": "Treat warnings as failures."
+          },
+          {
+            "name": "--env",
+            "description": "Check only the runtime, terminal, settings and vault."
+          }
+        ],
+        "examples": [
+          "inboundfy doctor",
+          "inboundfy doctor --strict --json",
+          "inboundfy doctor --env"
+        ],
+        "exitCodes": [
+          {
+            "code": 0,
+            "description": "SUCCESS: Operation completed."
+          },
+          {
+            "code": 1,
+            "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+          },
+          {
+            "code": 2,
+            "description": "USAGE: Invalid arguments, options or subcommand."
+          },
+          {
+            "code": 3,
+            "description": "CONFIG: settings.json missing, invalid or unknown key."
+          },
+          {
+            "code": 10,
+            "description": "NOT_INSTALLED: Inboundfy is not installed in the project or its install state is invalid."
+          },
+          {
+            "code": 11,
+            "description": "INTEGRITY: doctor found errors in managed files, project files or context."
+          }
+        ]
+      },
+      {
+        "name": "status",
+        "description": "Show the installed version and the health summary of the project.",
+        "examples": [
+          "inboundfy status",
+          "inboundfy status --json"
+        ],
+        "exitCodes": [
+          {
+            "code": 0,
+            "description": "SUCCESS: Operation completed."
+          },
+          {
+            "code": 1,
+            "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+          },
+          {
+            "code": 2,
+            "description": "USAGE: Invalid arguments, options or subcommand."
+          },
+          {
+            "code": 10,
+            "description": "NOT_INSTALLED: Inboundfy is not installed in the project or its install state is invalid."
+          }
+        ]
+      },
+      {
+        "name": "stats",
+        "description": "Show statistics of the archive, the channels and the calendar, computed from the indices.",
+        "options": [
+          {
+            "name": "--months",
+            "description": "Months in each time series, 1 to 24.",
+            "arguments": [
+              {
+                "name": "n",
+                "required": true,
+                "arity": {
+                  "minimum": 1,
+                  "maximum": 1
+                }
+              }
+            ],
+            "metadata": [
+              {
+                "name": "x-default",
+                "value": "6"
+              }
+            ]
+          },
+          {
+            "name": "--section",
+            "description": "Print only one section of the text output.",
+            "arguments": [
+              {
+                "name": "section",
+                "required": true,
+                "arity": {
+                  "minimum": 1,
+                  "maximum": 1
+                },
+                "acceptedValues": [
+                  "overview",
+                  "archive",
+                  "channels",
+                  "calendar"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "--fast",
+            "description": "Skip reading the archive files (stage and audit progress stay at 0)."
+          }
+        ],
+        "examples": [
+          "inboundfy stats",
+          "inboundfy stats --section channels",
+          "inboundfy stats --months 12 --json"
+        ],
+        "exitCodes": [
+          {
+            "code": 0,
+            "description": "SUCCESS: Operation completed."
+          },
+          {
+            "code": 1,
+            "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+          },
+          {
+            "code": 2,
+            "description": "USAGE: Invalid arguments, options or subcommand."
+          }
+        ]
+      },
+      {
+        "name": "context",
+        "description": "Discover local sources and track the initial context setup.",
+        "commands": [
+          {
+            "name": "scan",
+            "description": "Refresh .inboundfy/fontes-candidatas.json with the local Markdown sources (upper-case files and brand/).",
+            "examples": [
+              "inboundfy context scan"
+            ],
+            "exitCodes": [
+              {
+                "code": 0,
+                "description": "SUCCESS: Operation completed."
+              },
+              {
+                "code": 1,
+                "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+              },
+              {
+                "code": 2,
+                "description": "USAGE: Invalid arguments, options or subcommand."
+              },
+              {
+                "code": 10,
+                "description": "NOT_INSTALLED: Inboundfy is not installed in the project or its install state is invalid."
+              }
+            ]
+          },
+          {
+            "name": "check",
+            "description": "Check the minimum context (company, voice, personas, strategy) without changing files.",
+            "examples": [
+              "inboundfy context check",
+              "inboundfy context check --json"
+            ],
+            "exitCodes": [
+              {
+                "code": 0,
+                "description": "SUCCESS: Operation completed."
+              },
+              {
+                "code": 1,
+                "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+              },
+              {
+                "code": 2,
+                "description": "USAGE: Invalid arguments, options or subcommand."
+              },
+              {
+                "code": 11,
+                "description": "INTEGRITY: doctor found errors in managed files, project files or context."
+              }
+            ]
+          },
+          {
+            "name": "ready",
+            "description": "Mark the inboundfy-setup interview as done; requires --yes and a complete minimum context.",
+            "options": [
+              {
+                "name": "--yes",
+                "description": "Confirm after inboundfy-setup filled and reviewed the minimum context.",
+                "aliases": [
+                  "-y"
+                ]
+              }
+            ],
+            "examples": [
+              "inboundfy context ready --yes"
+            ],
+            "exitCodes": [
+              {
+                "code": 0,
+                "description": "SUCCESS: Operation completed."
+              },
+              {
+                "code": 1,
+                "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+              },
+              {
+                "code": 2,
+                "description": "USAGE: Invalid arguments, options or subcommand."
+              },
+              {
+                "code": 10,
+                "description": "NOT_INSTALLED: Inboundfy is not installed in the project or its install state is invalid."
+              },
+              {
+                "code": 12,
+                "description": "CONFLICT: The operation conflicts with the project state: lock held, file not owned, invalid transition or approval mismatch."
+              }
+            ]
+          }
+        ],
+        "exitCodes": [
+          {
+            "code": 0,
+            "description": "SUCCESS: Operation completed."
+          },
+          {
+            "code": 1,
+            "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+          },
+          {
+            "code": 2,
+            "description": "USAGE: Invalid arguments, options or subcommand."
+          }
+        ]
+      },
+      {
+        "name": "project",
+        "description": "Maintain the data layout of the project.",
+        "commands": [
+          {
+            "name": "sync",
+            "description": "Create canais/<channel>/ for every channel checked in .inboundfy/estrategia.md.",
+            "examples": [
+              "inboundfy project sync"
+            ],
+            "exitCodes": [
+              {
+                "code": 0,
+                "description": "SUCCESS: Operation completed."
+              },
+              {
+                "code": 1,
+                "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+              },
+              {
+                "code": 2,
+                "description": "USAGE: Invalid arguments, options or subcommand."
+              }
+            ]
+          }
+        ],
+        "exitCodes": [
+          {
+            "code": 0,
+            "description": "SUCCESS: Operation completed."
+          },
+          {
+            "code": 1,
+            "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+          },
+          {
+            "code": 2,
+            "description": "USAGE: Invalid arguments, options or subcommand."
+          }
+        ]
+      },
+      {
+        "name": "archive",
+        "description": "Receive and organize raw materials in acervo/.",
+        "commands": [
+          {
+            "name": "add",
+            "description": "Register a numbered archive item, preserving the raw material in bruto.md.",
+            "arguments": [
+              {
+                "name": "title",
+                "description": "Item title, used in the folder slug.",
+                "required": true
+              }
+            ],
+            "options": [
+              {
+                "name": "--file",
+                "description": "Local file with the material (relative to the project).",
+                "arguments": [
+                  {
+                    "name": "path",
+                    "required": true,
+                    "arity": {
+                      "minimum": 1,
+                      "maximum": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "--text",
+                "description": "Material given inline.",
+                "arguments": [
+                  {
+                    "name": "text",
+                    "required": true,
+                    "arity": {
+                      "minimum": 1,
+                      "maximum": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "--source",
+                "description": "URL or description of the origin.",
+                "arguments": [
+                  {
+                    "name": "source",
+                    "required": true,
+                    "arity": {
+                      "minimum": 1,
+                      "maximum": 1
+                    }
+                  }
+                ]
+              }
+            ],
+            "examples": [
+              "inboundfy archive add \"Webinar transcript\" --file notes/webinar.md --source https://example.com",
+              "cat idea.md | inboundfy archive add \"Idea\""
+            ],
+            "exitCodes": [
+              {
+                "code": 0,
+                "description": "SUCCESS: Operation completed."
+              },
+              {
+                "code": 1,
+                "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+              },
+              {
+                "code": 2,
+                "description": "USAGE: Invalid arguments, options or subcommand."
+              },
+              {
+                "code": 6,
+                "description": "NOT_FOUND: Requested resource does not exist."
+              }
+            ]
+          },
+          {
+            "name": "process",
+            "description": "Write processado.md from the normalized raw material and mark the item processado.",
+            "arguments": [
+              {
+                "name": "id",
+                "description": "Archive item id (7 or 0007).",
+                "required": true
+              }
+            ],
+            "examples": [
+              "inboundfy archive process 7"
+            ],
+            "exitCodes": [
+              {
+                "code": 0,
+                "description": "SUCCESS: Operation completed."
+              },
+              {
+                "code": 1,
+                "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+              },
+              {
+                "code": 2,
+                "description": "USAGE: Invalid arguments, options or subcommand."
+              },
+              {
+                "code": 6,
+                "description": "NOT_FOUND: Requested resource does not exist."
+              }
+            ]
+          },
+          {
+            "name": "list",
+            "description": "List archive items, optionally filtered by status or channel.",
+            "aliases": [
+              "ls"
+            ],
+            "options": [
+              {
+                "name": "--status",
+                "description": "Only items in this status.",
+                "arguments": [
+                  {
+                    "name": "status",
+                    "required": true,
+                    "arity": {
+                      "minimum": 1,
+                      "maximum": 1
+                    },
+                    "acceptedValues": [
+                      "recebido",
+                      "processando",
+                      "processado",
+                      "arquivado"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "--channel",
+                "description": "Only items already used by this channel.",
+                "arguments": [
+                  {
+                    "name": "channel",
+                    "required": true,
+                    "arity": {
+                      "minimum": 1,
+                      "maximum": 1
+                    },
+                    "acceptedValues": [
+                      "blog",
+                      "email",
+                      "linkedin",
+                      "instagram",
+                      "substack",
+                      "youtube"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "examples": [
+              "inboundfy archive list",
+              "inboundfy archive list --status recebido --json"
+            ],
+            "exitCodes": [
+              {
+                "code": 0,
+                "description": "SUCCESS: Operation completed."
+              },
+              {
+                "code": 1,
+                "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+              },
+              {
+                "code": 2,
+                "description": "USAGE: Invalid arguments, options or subcommand."
+              }
+            ]
+          },
+          {
+            "name": "show",
+            "description": "Show one item with the progress of its stage files and anti-slop audits.",
+            "arguments": [
+              {
+                "name": "id",
+                "description": "Archive item id (7 or 0007).",
+                "required": true
+              }
+            ],
+            "examples": [
+              "inboundfy archive show 7"
+            ],
+            "exitCodes": [
+              {
+                "code": 0,
+                "description": "SUCCESS: Operation completed."
+              },
+              {
+                "code": 1,
+                "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+              },
+              {
+                "code": 2,
+                "description": "USAGE: Invalid arguments, options or subcommand."
+              },
+              {
+                "code": 6,
+                "description": "NOT_FOUND: Requested resource does not exist."
+              }
+            ]
+          },
+          {
+            "name": "status",
+            "description": "Set the status of an archive item without touching its files.",
+            "arguments": [
+              {
+                "name": "id",
+                "description": "Archive item id (7 or 0007).",
+                "required": true
+              },
+              {
+                "name": "status",
+                "description": "New status.",
+                "required": true,
+                "acceptedValues": [
+                  "recebido",
+                  "processando",
+                  "processado",
+                  "arquivado"
+                ]
+              }
+            ],
+            "examples": [
+              "inboundfy archive status 7 arquivado"
+            ],
+            "exitCodes": [
+              {
+                "code": 0,
+                "description": "SUCCESS: Operation completed."
+              },
+              {
+                "code": 1,
+                "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+              },
+              {
+                "code": 2,
+                "description": "USAGE: Invalid arguments, options or subcommand."
+              },
+              {
+                "code": 6,
+                "description": "NOT_FOUND: Requested resource does not exist."
+              }
+            ]
+          }
+        ],
+        "exitCodes": [
+          {
+            "code": 0,
+            "description": "SUCCESS: Operation completed."
+          },
+          {
+            "code": 1,
+            "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+          },
+          {
+            "code": 2,
+            "description": "USAGE: Invalid arguments, options or subcommand."
+          }
+        ]
+      },
+      {
+        "name": "content",
+        "description": "Create and move channel pieces through the editorial pipeline.",
+        "commands": [
+          {
+            "name": "create",
+            "description": "Create a piece folder with README and frontmatter in canais/<channel>/.",
+            "arguments": [
+              {
+                "name": "channel",
+                "description": "Channel checked in .inboundfy/estrategia.md.",
+                "required": true,
+                "acceptedValues": [
+                  "blog",
+                  "email",
+                  "linkedin",
+                  "instagram",
+                  "substack",
+                  "youtube"
+                ]
+              },
+              {
+                "name": "title",
+                "description": "Piece title.",
+                "required": true
+              }
+            ],
+            "options": [
+              {
+                "name": "--persona",
+                "description": "Persona the piece serves; repeat or separate with commas. At least one.",
+                "arguments": [
+                  {
+                    "name": "id",
+                    "required": true,
+                    "arity": {
+                      "minimum": 1,
+                      "maximum": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "--archive",
+                "description": "Archive item used as source; repeat or separate with commas.",
+                "arguments": [
+                  {
+                    "name": "id",
+                    "required": true,
+                    "arity": {
+                      "minimum": 1,
+                      "maximum": 1
+                    }
+                  }
+                ]
+              }
+            ],
+            "examples": [
+              "inboundfy content create blog \"Why inbound beats ads\" --persona founder --archive 7"
+            ],
+            "exitCodes": [
+              {
+                "code": 0,
+                "description": "SUCCESS: Operation completed."
+              },
+              {
+                "code": 1,
+                "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+              },
+              {
+                "code": 2,
+                "description": "USAGE: Invalid arguments, options or subcommand."
+              },
+              {
+                "code": 6,
+                "description": "NOT_FOUND: Requested resource does not exist."
+              },
+              {
+                "code": 12,
+                "description": "CONFLICT: The operation conflicts with the project state: lock held, file not owned, invalid transition or approval mismatch."
+              }
+            ]
+          },
+          {
+            "name": "list",
+            "description": "List content pieces, optionally filtered by channel or status.",
+            "aliases": [
+              "ls"
+            ],
+            "options": [
+              {
+                "name": "--channel",
+                "description": "Only pieces of this channel.",
+                "arguments": [
+                  {
+                    "name": "channel",
+                    "required": true,
+                    "arity": {
+                      "minimum": 1,
+                      "maximum": 1
+                    },
+                    "acceptedValues": [
+                      "blog",
+                      "email",
+                      "linkedin",
+                      "instagram",
+                      "substack",
+                      "youtube"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "--status",
+                "description": "Only pieces in this status.",
+                "arguments": [
+                  {
+                    "name": "status",
+                    "required": true,
+                    "arity": {
+                      "minimum": 1,
+                      "maximum": 1
+                    },
+                    "acceptedValues": [
+                      "rascunho",
+                      "revisao",
+                      "aprovado",
+                      "agendado",
+                      "publicado",
+                      "arquivado"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "examples": [
+              "inboundfy content list --channel blog",
+              "inboundfy content list --status revisao --json"
+            ],
+            "exitCodes": [
+              {
+                "code": 0,
+                "description": "SUCCESS: Operation completed."
+              },
+              {
+                "code": 1,
+                "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+              },
+              {
+                "code": 2,
+                "description": "USAGE: Invalid arguments, options or subcommand."
+              }
+            ]
+          },
+          {
+            "name": "show",
+            "description": "Show one piece with its personas, archive links and publication data.",
+            "arguments": [
+              {
+                "name": "id",
+                "description": "Content piece id (12 or 0012).",
+                "required": true
+              }
+            ],
+            "examples": [
+              "inboundfy content show 12"
+            ],
+            "exitCodes": [
+              {
+                "code": 0,
+                "description": "SUCCESS: Operation completed."
+              },
+              {
+                "code": 1,
+                "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+              },
+              {
+                "code": 2,
+                "description": "USAGE: Invalid arguments, options or subcommand."
+              },
+              {
+                "code": 6,
+                "description": "NOT_FOUND: Requested resource does not exist."
+              }
+            ]
+          },
+          {
+            "name": "status",
+            "description": "Move a piece to another pipeline status, updating README, indices and calendar.",
+            "arguments": [
+              {
+                "name": "id",
+                "description": "Content piece id (12 or 0012).",
+                "required": true
+              },
+              {
+                "name": "status",
+                "description": "New status.",
+                "required": true,
+                "acceptedValues": [
+                  "rascunho",
+                  "revisao",
+                  "aprovado",
+                  "agendado",
+                  "publicado",
+                  "arquivado"
+                ]
+              }
+            ],
+            "options": [
+              {
+                "name": "--audit-report",
+                "description": "Approved validation report bound to the piece (required to approve from revisao).",
+                "arguments": [
+                  {
+                    "name": "path",
+                    "required": true,
+                    "arity": {
+                      "minimum": 1,
+                      "maximum": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "--url",
+                "description": "Publication URL (HTTP or HTTPS).",
+                "arguments": [
+                  {
+                    "name": "url",
+                    "required": true,
+                    "arity": {
+                      "minimum": 1,
+                      "maximum": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "--published-at",
+                "description": "Publication date in YYYY-MM-DD.",
+                "arguments": [
+                  {
+                    "name": "date",
+                    "required": true,
+                    "arity": {
+                      "minimum": 1,
+                      "maximum": 1
+                    }
+                  }
+                ]
+              }
+            ],
+            "examples": [
+              "inboundfy content status 12 revisao",
+              "inboundfy content status 12 aprovado --audit-report canais/blog/0012-.../validacao.md",
+              "inboundfy content status 12 publicado --url https://example.com/post --published-at 2026-11-23"
+            ],
+            "exitCodes": [
+              {
+                "code": 0,
+                "description": "SUCCESS: Operation completed."
+              },
+              {
+                "code": 1,
+                "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+              },
+              {
+                "code": 2,
+                "description": "USAGE: Invalid arguments, options or subcommand."
+              },
+              {
+                "code": 6,
+                "description": "NOT_FOUND: Requested resource does not exist."
+              },
+              {
+                "code": 12,
+                "description": "CONFLICT: The operation conflicts with the project state: lock held, file not owned, invalid transition or approval mismatch."
+              }
+            ]
+          },
+          {
+            "name": "digest",
+            "description": "Print the SHA-256 of the piece that the validation report must quote.",
+            "arguments": [
+              {
+                "name": "id",
+                "description": "Content piece id (12 or 0012).",
+                "required": true
+              }
+            ],
+            "examples": [
+              "inboundfy content digest 12"
+            ],
+            "exitCodes": [
+              {
+                "code": 0,
+                "description": "SUCCESS: Operation completed."
+              },
+              {
+                "code": 1,
+                "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+              },
+              {
+                "code": 2,
+                "description": "USAGE: Invalid arguments, options or subcommand."
+              },
+              {
+                "code": 6,
+                "description": "NOT_FOUND: Requested resource does not exist."
+              }
+            ]
+          }
+        ],
+        "exitCodes": [
+          {
+            "code": 0,
+            "description": "SUCCESS: Operation completed."
+          },
+          {
+            "code": 1,
+            "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+          },
+          {
+            "code": 2,
+            "description": "USAGE: Invalid arguments, options or subcommand."
+          }
+        ]
+      },
+      {
+        "name": "calendar",
+        "description": "Schedule pieces in the monthly editorial calendar.",
+        "commands": [
+          {
+            "name": "add",
+            "description": "Add a piece to calendario/YYYY-MM.md on a date (idempotent).",
+            "arguments": [
+              {
+                "name": "date",
+                "description": "Date in YYYY-MM-DD.",
+                "required": true
+              },
+              {
+                "name": "id",
+                "description": "Content piece id.",
+                "required": true
+              }
+            ],
+            "examples": [
+              "inboundfy calendar add 2026-12-01 12"
+            ],
+            "exitCodes": [
+              {
+                "code": 0,
+                "description": "SUCCESS: Operation completed."
+              },
+              {
+                "code": 1,
+                "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+              },
+              {
+                "code": 2,
+                "description": "USAGE: Invalid arguments, options or subcommand."
+              },
+              {
+                "code": 6,
+                "description": "NOT_FOUND: Requested resource does not exist."
+              }
+            ]
+          },
+          {
+            "name": "list",
+            "description": "List the whole calendar or one month.",
+            "aliases": [
+              "ls"
+            ],
+            "arguments": [
+              {
+                "name": "month",
+                "description": "Month in YYYY-MM.",
+                "required": false
+              }
+            ],
+            "examples": [
+              "inboundfy calendar list",
+              "inboundfy calendar list 2026-12 --json"
+            ],
+            "exitCodes": [
+              {
+                "code": 0,
+                "description": "SUCCESS: Operation completed."
+              },
+              {
+                "code": 1,
+                "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+              },
+              {
+                "code": 2,
+                "description": "USAGE: Invalid arguments, options or subcommand."
+              }
+            ]
+          }
+        ],
+        "exitCodes": [
+          {
+            "code": 0,
+            "description": "SUCCESS: Operation completed."
+          },
+          {
+            "code": 1,
+            "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+          },
+          {
+            "code": 2,
+            "description": "USAGE: Invalid arguments, options or subcommand."
+          }
+        ]
+      },
+      {
+        "name": "mcp",
+        "description": "Start the MCP server (stdio) with tools, resources and prompts for agents.",
+        "options": [
+          {
+            "name": "--list",
+            "description": "Instead of starting the server, list registered tools, resources and prompts and exit."
+          }
+        ],
+        "examples": [
+          "inboundfy mcp",
+          "inboundfy mcp --list --json"
+        ],
+        "exitCodes": [
+          {
+            "code": 0,
+            "description": "SUCCESS: Operation completed."
+          },
+          {
+            "code": 1,
+            "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
+          },
+          {
+            "code": 2,
+            "description": "USAGE: Invalid arguments, options or subcommand."
+          },
+          {
+            "code": 9,
+            "description": "MCP: The MCP server failed to start or lost the stdio transport."
+          }
+        ]
+      },
+      {
         "name": "about",
         "description": "Show version, executable, runtime, platform and credits.",
         "examples": [
-          "termfy about",
-          "termfy about --json"
+          "inboundfy about",
+          "inboundfy about --json"
         ],
         "exitCodes": [
           {
@@ -149,7 +1514,7 @@
       },
       {
         "name": "config",
-        "description": "Read and write preferences in ~/.termfy/settings.json.",
+        "description": "Read and write preferences in ~/.inboundfy/settings.json.",
         "commands": [
           {
             "name": "list",
@@ -158,8 +1523,8 @@
               "ls"
             ],
             "examples": [
-              "termfy config list",
-              "termfy config list --json"
+              "inboundfy config list",
+              "inboundfy config list --json"
             ],
             "exitCodes": [
               {
@@ -199,7 +1564,7 @@
               }
             ],
             "examples": [
-              "termfy config get tui.initialTab"
+              "inboundfy config get tui.initialTab"
             ],
             "exitCodes": [
               {
@@ -244,8 +1609,8 @@
               }
             ],
             "examples": [
-              "termfy config set output.format json",
-              "termfy config set output.colors false"
+              "inboundfy config set output.format json",
+              "inboundfy config set output.colors false"
             ],
             "exitCodes": [
               {
@@ -288,7 +1653,7 @@
               }
             ],
             "examples": [
-              "termfy config unset telemetry.enabled"
+              "inboundfy config unset telemetry.enabled"
             ],
             "exitCodes": [
               {
@@ -321,7 +1686,7 @@
             "name": "path",
             "description": "Print the data directory and file paths.",
             "examples": [
-              "termfy config path"
+              "inboundfy config path"
             ],
             "exitCodes": [
               {
@@ -342,7 +1707,7 @@
             "name": "schema",
             "description": "List the known keys with type, default and description.",
             "examples": [
-              "termfy config schema --json"
+              "inboundfy config schema --json"
             ],
             "exitCodes": [
               {
@@ -389,7 +1754,7 @@
       },
       {
         "name": "credentials",
-        "description": "Store encrypted secrets (AES-256-GCM) in ~/.termfy/credentials.json.",
+        "description": "Store encrypted secrets (AES-256-GCM) in ~/.inboundfy/credentials.json.",
         "aliases": [
           "cred"
         ],
@@ -411,8 +1776,8 @@
               }
             ],
             "examples": [
-              "termfy credentials set openai.api_key",
-              "printf '%s' \"$TOKEN\" | termfy credentials set github.token --stdin"
+              "inboundfy credentials set openai.api_key",
+              "printf '%s' \"$TOKEN\" | inboundfy credentials set github.token --stdin"
             ],
             "interactive": true,
             "exitCodes": [
@@ -459,8 +1824,8 @@
               }
             ],
             "examples": [
-              "termfy credentials get openai.api_key",
-              "termfy credentials get openai.api_key --reveal"
+              "inboundfy credentials get openai.api_key",
+              "inboundfy credentials get openai.api_key --reveal"
             ],
             "exitCodes": [
               {
@@ -496,7 +1861,7 @@
               "ls"
             ],
             "examples": [
-              "termfy credentials list --json"
+              "inboundfy credentials list --json"
             ],
             "exitCodes": [
               {
@@ -539,7 +1904,7 @@
               }
             ],
             "examples": [
-              "termfy credentials remove github.token"
+              "inboundfy credentials remove github.token"
             ],
             "exitCodes": [
               {
@@ -572,7 +1937,7 @@
             "name": "status",
             "description": "Show file, master key source and number of credentials.",
             "examples": [
-              "termfy credentials status"
+              "inboundfy credentials status"
             ],
             "exitCodes": [
               {
@@ -602,7 +1967,7 @@
               }
             ],
             "examples": [
-              "termfy credentials clear --yes"
+              "inboundfy credentials clear --yes"
             ],
             "interactive": true,
             "exitCodes": [
@@ -638,7 +2003,7 @@
             "options": [
               {
                 "name": "--from-env",
-                "description": "Use TERMFY_MASTER_KEY (64 hex characters) as the new key; read the current key from master.key."
+                "description": "Use INBOUNDFY_MASTER_KEY (64 hex characters) as the new key; read the current key from master.key."
               }
             ],
             "exitCodes": [
@@ -697,38 +2062,6 @@
         ]
       },
       {
-        "name": "mcp",
-        "description": "Start the MCP server (stdio) with tools, resources and prompts for agents.",
-        "options": [
-          {
-            "name": "--list",
-            "description": "Instead of starting the server, list registered tools, resources and prompts and exit."
-          }
-        ],
-        "examples": [
-          "termfy mcp",
-          "termfy mcp --list --json"
-        ],
-        "exitCodes": [
-          {
-            "code": 0,
-            "description": "SUCCESS: Operation completed."
-          },
-          {
-            "code": 1,
-            "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
-          },
-          {
-            "code": 2,
-            "description": "USAGE: Invalid arguments, options or subcommand."
-          },
-          {
-            "code": 9,
-            "description": "MCP: The MCP server failed to start or lost the stdio transport."
-          }
-        ]
-      },
-      {
         "name": "skill",
         "description": "Print the embedded documentation, whole or by topic. Same effect as --skill.",
         "arguments": [
@@ -747,9 +2080,9 @@
           }
         ],
         "examples": [
-          "termfy skill",
-          "termfy skill mcp",
-          "termfy --skill cli"
+          "inboundfy skill",
+          "inboundfy skill mcp",
+          "inboundfy --skill cli"
         ],
         "exitCodes": [
           {
@@ -763,28 +2096,6 @@
           {
             "code": 2,
             "description": "USAGE: Invalid arguments, options or subcommand."
-          }
-        ]
-      },
-      {
-        "name": "doctor",
-        "description": "Check runtime, terminal, settings, key source and vault readability without changing files.",
-        "exitCodes": [
-          {
-            "code": 0,
-            "description": "SUCCESS: Operation completed."
-          },
-          {
-            "code": 1,
-            "description": "GENERIC_ERROR: Unexpected failure without a specific classification."
-          },
-          {
-            "code": 2,
-            "description": "USAGE: Invalid arguments, options or subcommand."
-          },
-          {
-            "code": 3,
-            "description": "CONFIG: settings.json missing, invalid or unknown key."
           }
         ]
       },
@@ -820,12 +2131,13 @@
       }
     ],
     "examples": [
-      "termfy",
-      "termfy about --json",
-      "termfy config set output.format json",
-      "termfy credentials set openai.api_key",
-      "termfy mcp",
-      "termfy --skill"
+      "inboundfy",
+      "inboundfy install --agent claude",
+      "inboundfy stats",
+      "inboundfy archive add \"Webinar notes\" --file notes.md",
+      "inboundfy content create blog \"Title\" --persona founder --archive 1",
+      "inboundfy mcp",
+      "inboundfy --skill"
     ],
     "exitCodes": [
       {
@@ -867,6 +2179,18 @@
       {
         "code": 9,
         "description": "MCP: The MCP server failed to start or lost the stdio transport."
+      },
+      {
+        "code": 10,
+        "description": "NOT_INSTALLED: Inboundfy is not installed in the project or its install state is invalid."
+      },
+      {
+        "code": 11,
+        "description": "INTEGRITY: doctor found errors in managed files, project files or context."
+      },
+      {
+        "code": 12,
+        "description": "CONFLICT: The operation conflicts with the project state: lock held, file not owned, invalid transition or approval mismatch."
       },
       {
         "code": 130,

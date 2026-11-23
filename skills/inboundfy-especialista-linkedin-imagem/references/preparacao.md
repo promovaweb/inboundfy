@@ -9,7 +9,6 @@ o brief pedir explicitamente uma foto real (ex.: bastidor de evento), use
 busca de banco de fotos em vez desta skill, seguindo o padrão de
 `inboundfy-especialista-blog-imagem`.
 
-
 ## Perguntas antes da composição
 
 1. O destino é post nativo ou capa de artigo?

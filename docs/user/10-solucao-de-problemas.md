@@ -2,7 +2,7 @@
 
 ## A skill exige o setup
 
-Execute `npx @promovaweb/inboundfy@latest doctor`. A presença das skills no
+Execute `inboundfy doctor`. A presença das skills no
 agente não substitui uma instalação válida. Depois, peça ao agente para usar
 `inboundfy-setup`.
 
@@ -36,6 +36,23 @@ permanecem disponíveis no caminho original.
 Confira o estado do pacote e a [sequência documentada](00-visao-geral.md).
 Só peça avulsa com brief claro ou retomada explícita pode evitar etapas do
 pipeline completo.
+
+## O comando terminou com um código diferente de zero
+
+O binário sai sempre com um código fixo, igual no CLI e no MCP. Com `--json`,
+o erro vem em `{ ok: false, error: { code, name, message } }`.
+
+| Código | Nome | O que fazer |
+| --- | --- | --- |
+| 2 | `USAGE` | confira argumentos e options com `inboundfy <command> --help` |
+| 6 | `NOT_FOUND` | o ID de acervo, peça ou arquivo não existe; liste com `archive list` ou `content list` |
+| 7 | `PERMISSION` | a escrita sairia do projeto ou passaria por link simbólico |
+| 10 | `NOT_INSTALLED` | rode `inboundfy install` ou `inboundfy doctor` para ver o estado inválido |
+| 11 | `INTEGRITY` | `doctor` ou `context check` achou erros; siga as linhas marcadas com ✗ |
+| 12 | `CONFLICT` | trava ativa, arquivo sem dono, transição inválida ou aprovação divergente; leia a mensagem |
+
+Uma trava esquecida fica em `.inboundfy/.cli.lock`. Apague o arquivo só
+quando nenhuma operação do Inboundfy estiver rodando.
 
 ## Consulta rápida
 
@@ -71,7 +88,7 @@ validação completa antes de agendar ou publicar.
 Gere um diagnóstico estruturado:
 
 ```bash
-npx @promovaweb/inboundfy@latest --json doctor
+inboundfy --json doctor
 ```
 
 Reúna esse resultado, o caminho do pacote e a fase atual. Com esses elementos,

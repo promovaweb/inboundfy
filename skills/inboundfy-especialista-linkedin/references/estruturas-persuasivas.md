@@ -17,4 +17,3 @@ posicionamento do autor (`context/pessoas.md`).
 Artigo longo de LinkedIn segue a mesma lógica de `inboundfy-especialista-blog`; raramente precisa de AIDA/PAS/PASTOR inteiros, mas aplica **FAB** sempre que
 descrever uma funcionalidade de produto: característica, vantagem e
 benefício antes de fechar o parágrafo.
-

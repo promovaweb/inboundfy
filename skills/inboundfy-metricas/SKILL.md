@@ -97,6 +97,9 @@ coletados nos últimos 30 dias.
    disparos. Para atribuição, junte período, conversão e exportações de receita.
 9. Na leitura periódica, compare por canal, persona e oferta sem somar
    números de fontes diferentes, sempre com número absoluto e denominador.
+   Os números de produção (peças por estado, publicações por mês, acervo sem
+   uso) vêm de `project_stats` ou `inboundfy stats --json`; mantenha-os
+   separados das métricas de audiência das plataformas.
 
 ## Saída
 

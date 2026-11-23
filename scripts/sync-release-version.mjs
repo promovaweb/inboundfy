@@ -1,5 +1,6 @@
 /**
- * Alinha os arquivos públicos à versão canônica do `package.json`.
+ * Alinha os arquivos públicos à versão canônica do `package.json`:
+ * `npm/package.json`, `ebook/VERSION` e os links da edição do ebook.
  */
 
 import { readFile, writeFile } from "node:fs/promises";
@@ -16,6 +17,11 @@ if (!/^\d+\.\d+\.\d+$/.test(version)) {
   throw new Error(`A versão estável esperada é inválida: ${String(version)}.`);
 }
 
+const npmPath = join(root, "npm", "package.json");
+const npmPackage = JSON.parse(await readFile(npmPath, "utf8"));
+npmPackage.version = version;
+await writeFile(npmPath, `${JSON.stringify(npmPackage, null, 2)}\n`);
+
 await writeFile(
   join(root, "ebook", "VERSION"),
   `${version}\n`,
@@ -31,4 +37,4 @@ for (const relative of ["ebook/README.md", "docs/user/README.md"]) {
   await writeFile(path, updated);
 }
 
-process.stdout.write(`Versão ${version} aplicada ao framework e ao ebook.\n`);
+process.stdout.write(`Versão ${version} aplicada ao binário, ao pacote npm e ao ebook.\n`);

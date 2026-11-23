@@ -266,8 +266,10 @@ async function validateSkills() {
 async function validateProjectContract() {
   const errors = [];
   const packageData = JSON.parse(await fileText(join(ROOT, "package.json")));
-  if (packageData.name !== "@promovaweb/inboundfy") errors.push("package.json: name não é @promovaweb/inboundfy");
-  if (packageData.bin?.inboundfy !== "bin/inboundfy.cjs") errors.push("package.json: binário inboundfy ausente");
+  const npmData = JSON.parse(await fileText(join(ROOT, "npm", "package.json")));
+  if (packageData.bin?.inboundfy !== "src/main.ts") errors.push("package.json: binário inboundfy ausente");
+  if (npmData.name !== "@promovaweb/inboundfy") errors.push("npm/package.json: name não é @promovaweb/inboundfy");
+  if (npmData.bin?.inboundfy !== "bin/inboundfy.cjs") errors.push("npm/package.json: invólucro inboundfy ausente");
   for (const name of PROJECT_TEMPLATES) {
     try { await fileText(join(ROOT, "templates", "project", name)); } catch { errors.push(`template ausente: templates/project/${name}`); }
   }

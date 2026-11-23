@@ -44,7 +44,7 @@ test("corrupt settings and undecryptable vault fail without exposing content", a
   expect(data.checks.find((c) => c.name === "credentials")?.status).toBe("fail");
   expect(JSON.stringify(data)).not.toContain("private");
   expect(readFileSync(paths.credentials(), "utf8")).toBe(original);
-  const result = await doctorCommand.run!({} as Context);
+  const result = await doctorCommand.run!({ options: { env: true } } as unknown as Context);
   expect(result.code).toBe(ExitCode.CONFIG);
   expect(result.text).toContain("✗ settings");
 });
@@ -65,8 +65,8 @@ test("MCP returns the shared checks and marks failures", async () => {
   } finally { await client.close(); await server.close(); }
 });
 
-test("CLI without a TTY exits successfully with warnings and fails only for failed checks", () => {
-  const run = () => Bun.spawnSync([process.execPath, "run", "src/main.ts", "doctor", "--json"], {
+test("doctor --env without a TTY exits successfully with warnings and fails only for failed checks", () => {
+  const run = () => Bun.spawnSync([process.execPath, "run", "src/main.ts", "doctor", "--env", "--json"], {
     env: { ...process.env }, stdin: "ignore",
   });
   const success = run();

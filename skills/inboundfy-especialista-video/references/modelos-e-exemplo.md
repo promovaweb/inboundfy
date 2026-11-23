@@ -191,4 +191,3 @@ fala literal para criar um formato intermediário sem autorização.
 
 Ensaio de talking head pendente. A tabela reserva tempo para tópicos;
 não comprova duração da fala improvisada.
-

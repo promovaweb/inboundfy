@@ -15,6 +15,9 @@ devem tratar o code antes de interpretar a mensagem.
 | 7 | `PERMISSION` | permissão negada no sistema de arquivos |
 | 8 | `NO_TTY` | a TUI exige um terminal interativo |
 | 9 | `MCP` | o servidor MCP falhou ao iniciar ou perdeu o transporte |
+| 10 | `NOT_INSTALLED` | o Inboundfy não está instalado no projeto ou `.inboundfy/install.json` é inválido |
+| 11 | `INTEGRITY` | `doctor` ou `context check` encontrou erros (ou avisos, com `doctor --strict`) |
+| 12 | `CONFLICT` | trava ativa, arquivo sem dono, transição inválida, canal fora da estratégia ou aprovação divergente |
 | 130 | `INTERRUPTED` | entrada cancelada ou processo interrompido com Ctrl+C |
 
 A fonte única é `src/app/exit-codes.ts`. A mesma tabela aparece em `--help`,

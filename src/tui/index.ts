@@ -40,7 +40,7 @@ import { glyphs, currentTheme, resolveTheme, type Theme } from "./theme.ts";
 import { currentIcons, withIcon, type IconSet } from "./icons.ts";
 import { clickable } from "./pointer.ts";
 import { Overlays, type HelpSection, type PaletteEntry } from "./overlays.ts";
-import { screens } from "./screens/index.ts";
+import { createScreens } from "./screens/index.ts";
 import { spacing, controlSpacing } from "./spacing.ts";
 import { fitText } from "./components.ts";
 import type { Layout, ScreenAction, ScreenContext, Screen } from "./screen.ts";
@@ -74,7 +74,7 @@ function setting(key: string): unknown {
 
 function defaultInitialTab(): string {
   const value = setting("tui.initialTab");
-  return typeof value === "string" ? value : (screens[0]?.id ?? "overview");
+  return typeof value === "string" ? value : "dashboard";
 }
 
 /** Reads `tui.mouse`. Any failure keeps the mouse on. */
@@ -133,6 +133,7 @@ export async function startTui(options: TuiOptions = {}): Promise<void> {
  * `@opentui/core/testing` and capture frames without a real terminal.
  */
 export async function mountTui(renderer: CliRenderer, options: TuiOptions = {}, theme: Theme = currentTheme()): Promise<void> {
+  const screens = createScreens();
   const initialSpace = spacing(layoutFor(renderer.width));
   const icons = options.icons ?? currentIcons();
   const motion = options.motion ?? motionEnabled();
@@ -216,7 +217,8 @@ export async function mountTui(renderer: CliRenderer, options: TuiOptions = {}, 
   const bar = new BoxRenderable(renderer, { height: 1, flexDirection: "row", paddingLeft: initialSpace.pageX, paddingRight: initialSpace.pageX, gap: controlSpacing.gap });
   const statusText = new TextRenderable(renderer, { content: "", fg: theme.textDim, wrapMode: "none", flexShrink: 1, minWidth: 0, selectable: false });
   let barItems = new BoxRenderable(renderer, { flexDirection: "row", gap: controlSpacing.gap, flexGrow: 1, flexShrink: 1, minWidth: 0 });
-  const paletteHint = new BoxRenderable(renderer, { flexDirection: "row", flexShrink: 0, width: 12 });
+  const paletteWidth = 12;
+  const paletteHint = new BoxRenderable(renderer, { flexDirection: "row", flexShrink: 0, width: paletteWidth });
   paletteHint.add(new TextRenderable(renderer, { content: "^K", fg: theme.accent, attributes: TextAttributes.BOLD, selectable: false }));
   const paletteLabel = new TextRenderable(renderer, { content: " commands", fg: theme.textDim, selectable: false });
   paletteHint.add(paletteLabel);
@@ -233,12 +235,14 @@ export async function mountTui(renderer: CliRenderer, options: TuiOptions = {}, 
     const globals = globalActions.reduce((sum, action) => sum + actionWidth(action), 0)
       + Math.max(0, globalActions.length - 1) * 2;
     // Outer padding, palette, and the gaps around the action area and status.
-    const max = Math.max(0, renderer.width - spacing(currentLayout).pageX * 2 - paletteHint.width - 4 - globals);
+    const max = Math.max(0, renderer.width - spacing(currentLayout).pageX * 2 - paletteWidth - 4 - globals);
     const shown = fitText(fullStatus, max);
-    statusText.width = Bun.stringWidth(shown);
+    const width = Bun.stringWidth(shown);
+    statusText.width = width;
     statusText.flexShrink = 0;
     statusText.content = shown;
     statusText.visible = shown.length > 0;
+    return width;
   };
   bar.add(barItems);
   bar.add(paletteHint);
@@ -311,11 +315,18 @@ export async function mountTui(renderer: CliRenderer, options: TuiOptions = {}, 
   };
 
   const paintTabs = () => {
+    const fullWidth = tabItems.reduce((sum, { screen }, index) => sum + Bun.stringWidth(withIcon(icons, screen.icon ?? "list", screen.title)) + (index < 9 ? 2 : 0), 0);
+    const space = spacing(currentLayout);
+    const available = renderer.width - space.pageX * 2;
+    const gaps = Math.max(1, tabItems.length - 1);
+    const gap = Math.max(1, Math.min(space.tabGap, Math.floor((available - fullWidth) / gaps)));
+    const abbreviated = fullWidth + gaps * gap > available;
+    tabBar.gap = gap;
     for (const { item, label, indicator, screen, index } of tabItems) {
       const selected = index === activeIndex;
       const number = index < 9 ? `${index + 1} ` : "";
       // Compact terminals show the title only on the active tab.
-      const title = currentLayout === "compact" && !selected ? (icons[screen.icon ?? "list"] || screen.title.slice(0, 3)) : withIcon(icons, screen.icon ?? "list", screen.title);
+      const title = abbreviated && !selected ? (icons[screen.icon ?? "list"] || screen.title.slice(0, 3)) : withIcon(icons, screen.icon ?? "list", screen.title);
       const text = `${number}${title}`;
       label.content = text;
       indicator.content = selected ? "━".repeat(Bun.stringWidth(text)) : "";
@@ -341,14 +352,13 @@ export async function mountTui(renderer: CliRenderer, options: TuiOptions = {}, 
   const actionWidth = (action: ScreenAction) => Bun.stringWidth(keyLabel(action)) + Bun.stringWidth(action.description) + 1;
 
   const refreshBar = () => {
-    fitStatus();
+    const shownWidth = fitStatus();
     barItems.destroyRecursively();
     bar.remove(paletteHint);
     barItems = new BoxRenderable(renderer, { flexDirection: "row", gap: controlSpacing.gap, flexGrow: 1, flexShrink: 1, minWidth: 0 });
     // Compact terminals keep only the global commands; the palette lists the rest.
     const own = currentLayout === "compact" ? [] : screenActions().filter((action) => !action.hidden);
-    const statusWidth = statusText.visible ? statusText.width + 2 : 0;
-    const paletteWidth = paletteHint.width;
+    const statusWidth = shownWidth ? shownWidth + 2 : 0;
     const globalWidth = globalActions.reduce((sum, action) => sum + actionWidth(action), 0) + Math.max(0, globalActions.length - 1) * 2;
     let budget = renderer.width - spacing(currentLayout).pageX * 2 - paletteWidth - 4 - statusWidth - globalWidth;
     for (const action of own) {
@@ -541,7 +551,7 @@ export async function mountTui(renderer: CliRenderer, options: TuiOptions = {}, 
     fitStatus();
     refreshBar();
   };
-  const onResize = () => applySize();
+  const onResize = () => { applySize(); paintTabs(); };
   renderer.on("resize", onResize);
 
   // Files watched by the active screen: refresh on change (debounced).

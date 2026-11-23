@@ -18,3 +18,4 @@ docs/user/15-tutorial-seo.md
 docs/user/16-tutorial-vendas-b2b.md
 docs/user/17-tutorial-medicao.md
 docs/user/18-exemplos-de-pedidos.md
+docs/user/19-painel-estatisticas-e-mcp.md

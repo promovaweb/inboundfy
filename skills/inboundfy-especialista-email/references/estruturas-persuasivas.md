@@ -25,4 +25,3 @@ desenvolve o Interesse com um fato concreto; o parágrafo seguinte cria o
   aplique **FAB** dentro do parágrafo correspondente: característica (o que
   o produto tem, de `context/produtos.md`), vantagem (o que muda no uso) e
   benefício (o ganho real para a persona); nunca pare no primeiro passo.
-

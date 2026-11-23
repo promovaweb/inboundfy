@@ -34,6 +34,7 @@ export type IconName =
   | "quit"
   | "tabs"
   | "terminal"
+  | "scheduledDay"
   | "state"
   | "vault"
   | "agent"
@@ -63,6 +64,7 @@ export const iconSets: Readonly<Record<Exclude<IconMode, "auto">, IconSet>> = {
     quit: "", // nf-fa-power_off
     tabs: "", // nf-fa-exchange
     terminal: "", // nf-fa-terminal
+    scheduledDay: "●",
     state: "", // nf-fa-database
     vault: "", // nf-fa-lock
     agent: "", // nf-fa-plug
@@ -88,6 +90,7 @@ export const iconSets: Readonly<Record<Exclude<IconMode, "auto">, IconSet>> = {
     quit: "✕",
     tabs: "⇄",
     terminal: "❯",
+    scheduledDay: "●",
     state: "◉",
     vault: "◈",
     agent: "⇌",
@@ -113,6 +116,7 @@ export const iconSets: Readonly<Record<Exclude<IconMode, "auto">, IconSet>> = {
     quit: "x",
     tabs: "",
     terminal: ">",
+    scheduledDay: "*",
     state: "",
     vault: "",
     agent: "",

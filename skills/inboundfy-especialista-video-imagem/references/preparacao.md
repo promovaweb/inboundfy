@@ -6,7 +6,6 @@ Thumbnail de vídeo é composição gráfica com texto grande, foco visual únic
 e alto contraste, otimizada para ser lida em miniatura; caso central de
 `inboundfy-base-imagem`, não de fotografia de banco de imagens.
 
-
 ## Perguntas antes da composição
 
 1. O vídeo realmente entrega o assunto prometido pela thumbnail?

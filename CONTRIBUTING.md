@@ -3,17 +3,19 @@
 Este guia é para quem desenvolve, revisa ou mantém o Inboundfy. Para instalar
 e usar, leia o [README](README.md).
 
-O projeto combina um CLI em [Node.js](https://github.com/nodejs/node) e
-[TypeScript](https://github.com/microsoft/TypeScript) com uma biblioteca de 117
-skills em Markdown. O CLI usa [Commander](https://github.com/tj/commander.js),
-[Zod](https://github.com/colinhacks/zod) e
-[Inquirer](https://github.com/SBoudrias/Inquirer.js). O guia do usuário é
-compilado em PDF e EPUB com Pandoc e WeasyPrint.
+O projeto combina o binário `inboundfy`, construído com o
+[Termfy](https://github.com/promovaweb/termfy) sobre
+[Bun](https://github.com/oven-sh/bun) e
+[TypeScript](https://github.com/microsoft/TypeScript), com uma biblioteca de
+128 skills em Markdown. O binário tem TUI ([OpenTUI](https://github.com/sst/opentui)),
+CLI e servidor MCP ([MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk))
+no mesmo executável e valida os dados com [Zod](https://github.com/colinhacks/zod).
+O guia do usuário é compilado em PDF e EPUB com Pandoc e WeasyPrint.
 
 ## Antes de começar
 
 - Converse no [Discord](https://promovaweb.com/discord) antes de mexer em algo
-  grande ou de mudar o contrato de uma skill, do CLI ou dos estados do
+  grande ou de mudar o contrato de uma skill, do binário ou dos estados do
   pipeline.
 - Para um bug ou uma ideia, abra uma
   [issue](https://github.com/promovaweb/inboundfy/issues) com a versão, o
@@ -23,144 +25,137 @@ compilado em PDF e EPUB com Pandoc e WeasyPrint.
 
 ## Ambiente
 
-Requisitos: Node.js 22.14.0 ou superior, npm e Git.
+Requisitos: Bun 1.4.4 ou superior e Git. O Node.js só entra no invólucro npm
+(`npm/`) e no `npx skills`.
 
 ```bash
 git clone https://github.com/promovaweb/inboundfy.git
 cd inboundfy
-npm ci
-npm run dev -- --help
+bun install
+bun run dev -- --help        # CLI a partir do código
+bun run dev                  # painel (TUI)
+bun run dev -- mcp --list    # o que o servidor MCP registra
+bun run dev -- -C /tmp/projeto install --yes
 ```
 
-`npm run dev` executa `src/cli.ts` com `tsx`. `npm run build` compila para
-`dist/` com `tsc`.
+`bun run dev` lê o framework (skills, contexto, templates, docs) direto do
+repositório. `bun run build` gera `generated/payload.gz` com esses arquivos e
+compila `dist/inboundfy` com o payload embutido.
 
-Para gerar o ebook, instale também Pandoc 3.10.2, WeasyPrint 69.0,
-ImageMagick, `jq`, `xmllint`, `unzip` e `pdftotext`. A CI instala as duas
-primeiras nas versões fixadas do workflow e as demais pela distribuição. Sem
-essas ferramentas, a validação completa não roda.
-
-Não há banco de dados nem serviço externo obrigatório. Trabalhe numa pasta
-temporária quando quiser testar uma instalação sem tocar no seu projeto real:
-
-```bash
-mkdir -p /tmp/inboundfy-teste
-cd /tmp/inboundfy-teste
-npx @promovaweb/inboundfy@latest install --dry-run
-```
-
-## Organização do código
+## Organização
 
 ```text
-bin/                launcher CommonJS do binário inboundfy
-src/                CLI TypeScript, instalador, pipeline, acervo, conteúdo e calendário
-skills/             117 skills, referências compartilhadas e catálogo
-context/            templates dos arquivos de contexto do projeto consumidor
-templates/          modelos de projeto, skills, acervo, canais e calendário
-docs/               guia do usuário, documentação do método e ordem de leitura
-scripts/            validação do framework, pacote npm e release
-tests/              testes Vitest do CLI, publicação e ativos
-ebook/              PDF e EPUB versionados do guia do usuário
-.ebook/             script de geração do guia em PDF e EPUB
-examples/           pacotes de demonstração com dados fictícios
+src/main.ts         entrada: sem argumentos abre a TUI, com argumentos roda o CLI
+src/core/           domínio: instalador, payload, doctor, acervo, peças, pipeline, calendário e stats
+src/cli/            registry de commands, parser, ajuda, OpenCLI e commands em commands/
+src/mcp/            servidor MCP: tools, resources e prompts
+src/tui/            telas (screens/), tema, componentes e leitura do projeto
+src/app/, src/config/ manifesto, exit codes, erros, settings e cofre herdados do Termfy
+skills/             biblioteca de skills, catálogo e referências compartilhadas
+context/, templates/ modelos copiados para o projeto consumidor
+docs/               documentação embutida no binário (cli.md, mcp.md, tui.md...),
+                    guia do usuário (user/) e documentação do método (method/)
+CLISPEC.md, specs/  visão macro do binário e specs de cada evolução
+npm/                invólucro @promovaweb/inboundfy, que baixa o binário da release
+scripts/            build, payload, verificações do Termfy, do framework e da release
+tests/              testes Bun do núcleo, do CLI, do MCP, da TUI e do framework
+ebook/, .ebook/     PDF e EPUB do guia e o gerador
 brand/              manual, tokens e logos do Inboundfy
 .github/workflows/  CI e release
 ```
 
 O contrato entre método e dados do projeto está no
-[README](README.md#separação-entre-framework-e-projeto). A arquitetura técnica
-está em [docs/method/00-arquitetura.md](docs/method/00-arquitetura.md).
+[README](README.md#separação-entre-framework-e-projeto). A arquitetura do
+binário está em [docs/architecture.md](docs/architecture.md) e a do método em
+[docs/method/00-arquitetura.md](docs/method/00-arquitetura.md).
 
 ## Fluxo de trabalho
 
 1. Abra ou localize a issue que descreve a mudança.
 2. Crie uma branch a partir de `main`, com um nome curto como
    `fix/estado-publicado` ou `docs/guia-instalacao`.
-3. Faça a alteração no menor escopo possível.
-4. Rode a validação do escopo alterado. Para mudança em skill, rode
-   `npm run skills:check`. Para mudança no CLI, rode `npm run typecheck` e
-   `npm test`.
-5. Abra o pull request com a issue relacionada e os comandos executados.
+3. Para mudança no binário, leia o [CLISPEC.md](CLISPEC.md) e a spec aberta em
+   `specs/`; sem spec que cubra o pedido, escreva uma com a skill
+   `termfy-spec`. As skills do Termfy ficam em `.agents/skills/termfy-*`.
+4. Faça a alteração no menor escopo possível.
+5. Rode a validação do escopo alterado (veja abaixo).
+6. Abra o pull request com a issue relacionada e os comandos executados.
 
 Para uma skill nova, leia [SKILL-AUTORIA.md](SKILL-AUTORIA.md) e
 [SKILLS.md](SKILLS.md). A skill precisa das seções de contexto exigido,
 entrada esperada, fluxo, saída, validação e idempotência, além de referência,
 interface em `agents/openai.yaml` e registro em `skills/catalogo.json`.
-`scripts/gerenciar-skills.mjs` confere esse contrato.
+`bun run framework:check` confere esse contrato.
 
 ## Regras do código
 
-- Escreva código, comentários, mensagens de erro e documentação em português
-  do Brasil. Preserve termos técnicos em inglês usados pelo ecossistema.
-- Use somente Node.js. Não introduza Python em scripts, geração, validação ou
-  teste.
-- Mantenha o TypeScript em modo estrito. O `tsconfig.json` liga `strict`,
-  `noUncheckedIndexedAccess` e `exactOptionalPropertyTypes`.
-- Erros esperados do CLI passam por `CliError`, com código de saída
-  controlado. Falha inesperada encerra com código diferente de zero.
-- Use `--json` para a saída estruturada. O resumo legível fica no padrão.
-- Não edite à mão `dist/`, `.ebook/build/`, `artifacts/` nem os PDFs e EPUBs
-  gerados. Esses arquivos vêm do build.
-- Não edite a versão nem o `CHANGELOG.md` em uma mudança comum. Quem
-  prepara a release atualiza `package.json`, `package-lock.json`,
-  `CHANGELOG.md` e `ebook/VERSION` no commit da versão.
+- Código, identificadores, comentários, mensagens do binário, commands,
+  options e campos do `--json` em inglês, como pede o Termfy. Documentação,
+  skills e textos gerados no projeto consumidor em português do Brasil.
+- Os valores persistidos no projeto consumidor (estados como `rascunho` e
+  `publicado`, pastas `acervo/`, `canais/`, `calendario/`, campos dos
+  relatórios de validação) seguem em português: skills e projetos existentes
+  dependem deles.
+- Regras de negócio ficam em `src/core/`. CLI, MCP e TUI só chamam essas
+  funções; nenhuma tela lê arquivo do projeto direto.
+- Erros esperados são `AppError` com um código de `src/app/exit-codes.ts`.
+  Não invente números em commands.
+- Um arquivo por command, por tela e por grupo de tools. Cores da TUI só em
+  `src/tui/theme.ts`.
+- Toda option, argument, tool, resource e prompt nasce documentada em
+  `docs/` (o `docs:check` confere) e no registry.
+- Não use Python em scripts, geração, validação ou teste.
+- Não edite à mão `dist/`, `generated/`, `.ebook/build/` nem os PDFs e EPUBs
+  gerados.
+- Não edite a versão nem o `CHANGELOG.md` numa mudança comum; isso é do
+  commit de release.
 - Não grave segredo, token ou credencial no repositório. Nenhum workflow
-  publica no npm nem guarda token do npm.
-- Ao mudar um comando, confira `--help` e a
-  [referência do CLI](docs/method/10-referencia-cli.md).
+  publica no npm.
 
 ## Validar
 
-A validação completa executa as etapas na ordem do `package.json`:
-
 ```bash
-npm run validar
+bun run validate
 ```
 
-Ela cobre `skills:check`, `typecheck`, geração do ebook, testes, build,
-`ebook:verify` e `release:check`.
+Encadeia `typecheck`, `bun test`, `skills:check` (skills do Termfy),
+`framework:check` (skills e contrato do Inboundfy), `opencli:check`,
+`docs:check` e `build`.
 
 Comandos auxiliares:
 
 ```bash
-npm run skills:check      # confere a biblioteca sem escrever
-npm run typecheck         # tsc sem emitir arquivos
-npm test                  # Vitest e validação estrutural do framework
-npm run build             # compila src/ para dist/
-npm run ebook             # regenera PDF e EPUB
-npm run ebook:verify      # confere ordem, hashes e navegação do ebook
-npm run release:check     # confere versão, changelog, ebook e workflow
+bun test tests/workflow.test.ts   # um arquivo de teste
+bun run opencli                   # regenera docs/opencli.json depois de mudar commands
+bun run framework:enrich          # amplia arquivos de skills e atualiza o catálogo
+bun run payload                   # regenera generated/payload.gz
+bun run ebook                     # regenera PDF e EPUB depois de mudar docs/user/
+bun run ebook:verify              # confere ordem, hashes e navegação do ebook
+bun run release:check             # confere versão, npm, ebook e changelog
 ```
 
-`npm run skills:enriquecer` amplia arquivos existentes e atualiza o catálogo.
-Ele escreve no repositório e preserva referências já presentes.
-
-Para validar o pacote npm em isolamento:
+Para ver a TUI de um projeto de exemplo:
 
 ```bash
-mkdir -p artifacts
-npm pack --pack-destination artifacts
-VERSION=$(node -p "require('./package.json').version")
-npm run npm:validate-package -- "artifacts/promovaweb-inboundfy-${VERSION}.tgz"
+T=$(mktemp -d)
+bun run dev -- -C "$T" install --yes
+bun run dev -- -C "$T" archive add "Exemplo" --text "material"
+bun run dev -- -C "$T"
 ```
 
 ## Documentação
 
 - [README](README.md): instalação e uso.
+- [docs/](docs/README.md): documentação embutida no binário (`inboundfy --skill`).
 - [docs/user](docs/user/README.md): manual do usuário, compilado no ebook.
-- [docs/method](docs/method/README.md): arquitetura, contratos, testes e
-  evolução do framework.
-- [RELEASING.md](RELEASING.md): versão, tag, GitHub Release e publicação
-  local no npm.
+- [docs/method](docs/method/README.md): arquitetura, contratos, referência do
+  CLI e evolução do framework.
+- [RELEASING.md](RELEASING.md): versão, tag, GitHub Release e npm.
 - [SKILLS.md](SKILLS.md): catálogo completo das skills.
 - [CONTEXTO.md](CONTEXTO.md): arquivos de contexto e precedência entre eles.
 - [METODOLOGIA.md](METODOLOGIA.md): fases do pipeline editorial.
 
-A documentação publicada fica em
-<https://promovaweb.com/docs/inboundfy/>.
-
-Depois de mudar `docs/user/`, rode `npm run ebook` para regenerar PDF e EPUB.
-O comando `npm run release:sync` repete essa geração na release.
+A documentação publicada fica em <https://promovaweb.com/docs/inboundfy/>.
 
 ## Commits e pull requests
 
@@ -177,32 +172,13 @@ Um pull request deve trazer:
 - a issue relacionada;
 - o que mudou e por quê, em texto curto;
 - os comandos de validação executados e o resultado;
-- um exemplo de saída quando a mudança afetar a interface do CLI.
+- um exemplo de saída ou um frame da TUI quando a mudança afetar a interface.
 
 ## Releases
 
-CLI, framework, skills, ebook e pacote npm compartilham o mesmo SemVer. A
-fonte da versão é `package.json`.
-
-1. Atualize a versão com `npm version X.Y.Z --no-git-tag-version` e escreva
-   a entrada no `CHANGELOG.md`.
-2. Rode `npm run release:sync` para recompilar PDF e EPUB e
-   `npm run validar`.
-3. Faça o commit `chore(release): vX.Y.Z`, crie a tag `vX.Y.Z` e envie com
-   `git push --atomic origin HEAD:main vX.Y.Z`.
-4. O workflow `Release`, disparado pela tag, cria a GitHub Release e anexa
-   PDF, EPUB, tarball e `SHA256SUMS`. Ele não publica no npm.
-5. Na máquina local, logado como `contatopromovaweb`, baixe o tarball da
-   release, confira o hash com o `SHA256SUMS`, publique com
-   `npm run publish:npm -- <tgz>` e confirme com
-   `npm view @promovaweb/inboundfy version license`.
-
-O guia completo, com os comandos, está em [RELEASING.md](RELEASING.md). Para
-conferir uma tag existente:
-
-```bash
-npm run release:check -- v0.7.0  # troque pela versão atual
-```
+Binário, framework, skills, ebook e pacote npm compartilham o mesmo SemVer. A
+fonte da versão é `package.json`. O fluxo completo está em
+[RELEASING.md](RELEASING.md).
 
 ## Licença
 

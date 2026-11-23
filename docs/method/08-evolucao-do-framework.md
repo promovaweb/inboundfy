@@ -34,8 +34,9 @@ Toda pesquisa que altera uma afirmação salva fonte e data no item do acervo.
 
 A versão muda em `package.json` e `package-lock.json` no commit da release,
 como descreve o [RELEASING.md](../../RELEASING.md). O comando
-`npm run release:sync` sincroniza o ebook e seus links. A validação recusa a
-release se algum número divergir. Não crie versão separada para o CLI.
+`bun run release:sync` sincroniza o invólucro npm, o ebook e seus links. A
+validação recusa a release se algum número divergir. Não crie versão separada
+para o binário.
 
 ## Alterar uma skill
 
@@ -47,13 +48,13 @@ release se algum número divergir. Não crie versão separada para o CLI.
 6. Atualize `SKILLS.md` e esta documentação.
 7. Acrescente ou ajuste um caso em `tests/` e, quando o comportamento for
    observável, um pacote fictício em `examples/`.
-8. Execute `npm run skills:check` e toda a validação.
+8. Execute `bun run framework:check` e toda a validação.
 
 Para uma ampliação mecânica da biblioteca, use:
 
 ```bash
-npm run skills:enriquecer
-npm run skills:check
+bun run framework:enrich
+bun run framework:check
 ```
 
 O script adiciona apenas blocos ausentes, preserva material específico e
@@ -93,6 +94,6 @@ estado anterior obrigatório e avanço cronológico verificável.
 - [ ] Documentação começa no pré-requisito e termina na operação.
 - [ ] Exemplos usam dados fictícios e representam o comportamento real.
 - [ ] Unit tests, validador estrutural e Markdown lint foram aprovados.
-- [ ] `npm run release:check` confirmou a versão única.
-- [ ] O tarball npm foi instalado e exercitado em isolamento.
+- [ ] `bun run release:check` confirmou a versão única.
+- [ ] Os binários da GitHub Release e o invólucro npm foram exercitados.
 - [ ] Estado do Git foi revisado sem incorporar mudanças alheias.

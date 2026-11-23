@@ -91,8 +91,8 @@ das respostas ausentes.
 ### 2. Registrar a entrada sem alteração semântica
 
 1. Consulte `.inboundfy/indices/acervo.json` para evitar duplicação.
-2. Use `inboundfy acervo add "Título" --file entrada.md --source "origem"`
-   ou a entrada equivalente do CLI.
+2. Use a tool `archive_add` ou
+   `inboundfy archive add "Título" --file entrada.md --source "origem"`.
 3. Preserve o texto recebido em `acervo/<id>-<data>-<slug>/bruto.md`. O bruto
    é a fonte imutável e nunca recebe correção, limpeza ou reescrita.
 4. Acione `inboundfy-anti-slop` no marco A0, somente leitura. Salve
@@ -195,11 +195,11 @@ usuário como manda
 2. Mude para `revisao`, `aprovado`, `agendado`, `publicado` ou `arquivado`
    conforme o estado real, usando `inboundfy-pipeline`.
 3. Para publicação, exija URL e data confirmadas.
-4. Com a data confirmada, use `inboundfy calendario add` e registre a
+4. Com a data confirmada, use `inboundfy calendar add` e registre a
    checklist em `calendario/AAAA-MM.md`, com ID, canal, personas e caminho do
    `README.md`.
-5. Acione `inboundfy-catalogo` para atualizar os índices de acervo, conteúdos
-   e calendário.
+5. Confira o andamento com `archive_show` (ou `inboundfy archive show <id>`)
+   e acione `inboundfy-catalogo` só quando houver divergência nos índices.
 
 ### 11. Entregar o relatório da execução
 

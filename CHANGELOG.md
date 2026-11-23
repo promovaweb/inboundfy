@@ -1,8 +1,40 @@
 # Changelog
 
 As mudanças relevantes do Inboundfy são registradas neste arquivo. A versão do
-framework, do CLI, do pacote npm, da tag Git e da GitHub Release é sempre a
+framework, do binário, do pacote npm, da tag Git e da GitHub Release é sempre a
 mesma.
+
+## [1.0.0](https://github.com/promovaweb/inboundfy/compare/v0.8.3...v1.0.0) (2026-11-23)
+
+O Inboundfy passa a ser um binário [Termfy](https://github.com/promovaweb/termfy):
+painel no terminal, CLI e servidor MCP no mesmo executável, com o framework
+embutido. O formato dos dados do projeto não muda; projetos da 0.x atualizam
+com `inboundfy update`.
+
+### Funcionalidades
+
+- Painel na TUI (`inboundfy` sem argumentos): números de acervo, peças, publicadas, em andamento, agendadas e atrasadas, funil do pipeline, canais, entrada do acervo e publicações por mês, progresso das etapas e das auditorias anti-slop, calendário e prontidão do contexto. Abas Archive, Channels e Calendar com lista e detalhe; a tela recarrega quando um índice muda.
+- Servidor MCP (`inboundfy mcp`) com 17 tools de projeto (`project_stats`, `project_doctor`, `context_check`, `context_scan`, `archive_*`, `content_*`, `calendar_*`), os resources `inboundfy://stats`, `inboundfy://archive`, `inboundfy://channels` e `inboundfy://calendar` e os prompts `ingest_material`, `produce_piece` e `editorial_review`.
+- Command `stats` com os mesmos números do painel, em texto com barras e sparklines ou em `--json`.
+- Commands novos: `archive show` (andamento das etapas e auditorias A0 a A6), `archive status`, `content list`, `content show` e `context check`.
+- `--project` (`-C`) e `INBOUNDFY_PROJECT` em todos os commands de projeto, na TUI e no MCP.
+- Códigos de saída fixos: `10` não instalado, `11` integridade, `12` conflito, além dos códigos do Termfy.
+- Binários para linux-x64, linux-arm64, darwin-x64, darwin-arm64 e windows-x64 na GitHub Release.
+- Skills de setup, orquestração, acervo, pipeline, catálogo, planejamento, produção e métricas usam as tools MCP e o `stats`; referência nova `inboundfy-setup/references/binario-e-mcp.md`.
+- Guia do usuário com o capítulo "Painel, estatísticas e MCP".
+
+### Mudanças incompatíveis
+
+- Commands, options, mensagens e campos do `--json` em inglês: `acervo` virou `archive`, `calendario` virou `calendar` e `content create --acervo` virou `--archive`.
+- `--json` responde no envelope `{ ok, command, data }` ou `{ ok: false, error }`.
+- O pacote npm `@promovaweb/inboundfy` virou um invólucro que baixa e confere o binário da release; ele não leva mais as skills nem os ebooks antigos.
+- `doctor` junta o diagnóstico do projeto e o do runtime; `doctor --env` confere só o runtime.
+
+### Correções
+
+- `calendar add` insere a peça sob o título da própria data, mesmo quando outra data foi adicionada depois.
+- O arquivo `pesquisa.md` do acervo aponta para a skill `inboundfy-pesquisa-acervo`, que existe.
+- Lint de Markdown corrigido nas skills.
 
 ## [0.8.3] - 2026-11-22
 
@@ -20,29 +52,29 @@ mesma.
 
 ### Funcionalidades
 
-* Sete skills de entrada por área, no grupo novo `area`: `inboundfy-area-conteudo`, `inboundfy-area-seo`, `inboundfy-area-copy`, `inboundfy-area-growth`, `inboundfy-area-vendas`, `inboundfy-area-dados` e `inboundfy-area-pesquisa`. Cada uma faz as perguntas de diagnóstico que faltam e encaminha o pedido para uma única skill da área.
-* Quatro skills novas: `inboundfy-growth-diretorios` (cadastro em diretórios, marketplaces e catálogos), `inboundfy-seo-links-externos` (conquista de links e menções), `inboundfy-engenharia-reversa` (estudo do marketing de um concorrente ou referência) e `inboundfy-rastreamento-conversao` (eventos, UTMs, pixels, API de conversões e consentimento).
-* `inboundfy-setup` passa a concentrar todas as configurações do projeto, com as etapas de configurações gerais, integrações e áreas de trabalho. O catálogo `skills/inboundfy-setup/references/integracoes.md` cobre 12 áreas e cerca de 50 ferramentas, com os nomes das variáveis de ambiente e um modelo de `.env.example`.
-* Novo modelo de contexto `.inboundfy/context/integracoes.md`, que registra ferramenta, estado do acesso, variáveis e escopo, sem guardar valores de segredo.
-* `.inboundfy/estrategia.md` ganha a seção Áreas de trabalho.
-* As 117 skills existentes foram reescritas com conteúdo próprio de cada tema: perguntas de diagnóstico, fluxos concretos, modelos para preencher, exemplos completos com empresas brasileiras fictícias e referências aprofundadas em `references/`.
-* O orquestrador `inboundfy` e o alias `inboundfy-iniciar` encaminham pedidos de área para as novas skills de entrada.
+- Sete skills de entrada por área, no grupo novo `area`: `inboundfy-area-conteudo`, `inboundfy-area-seo`, `inboundfy-area-copy`, `inboundfy-area-growth`, `inboundfy-area-vendas`, `inboundfy-area-dados` e `inboundfy-area-pesquisa`. Cada uma faz as perguntas de diagnóstico que faltam e encaminha o pedido para uma única skill da área.
+- Quatro skills novas: `inboundfy-growth-diretorios` (cadastro em diretórios, marketplaces e catálogos), `inboundfy-seo-links-externos` (conquista de links e menções), `inboundfy-engenharia-reversa` (estudo do marketing de um concorrente ou referência) e `inboundfy-rastreamento-conversao` (eventos, UTMs, pixels, API de conversões e consentimento).
+- `inboundfy-setup` passa a concentrar todas as configurações do projeto, com as etapas de configurações gerais, integrações e áreas de trabalho. O catálogo `skills/inboundfy-setup/references/integracoes.md` cobre 12 áreas e cerca de 50 ferramentas, com os nomes das variáveis de ambiente e um modelo de `.env.example`.
+- Novo modelo de contexto `.inboundfy/context/integracoes.md`, que registra ferramenta, estado do acesso, variáveis e escopo, sem guardar valores de segredo.
+- `.inboundfy/estrategia.md` ganha a seção Áreas de trabalho.
+- As 117 skills existentes foram reescritas com conteúdo próprio de cada tema: perguntas de diagnóstico, fluxos concretos, modelos para preencher, exemplos completos com empresas brasileiras fictícias e referências aprofundadas em `references/`.
+- O orquestrador `inboundfy` e o alias `inboundfy-iniciar` encaminham pedidos de área para as novas skills de entrada.
 
 ### Documentação
 
-* Guia do usuário com oito capítulos novos: áreas de trabalho, configurações e integrações, cinco tutoriais passo a passo (do material ao post, lançamento, SEO, vendas B2B e medição) e um catálogo de exemplos de pedidos. Os capítulos entram também no ebook em PDF e EPUB.
-* Exemplos de conversa com as skills de área em `examples/areas/`.
-* `SKILLS.md`, `README.md` e `docs/method/09-arquitetura-das-skills.md` atualizados.
+- Guia do usuário com oito capítulos novos: áreas de trabalho, configurações e integrações, cinco tutoriais passo a passo (do material ao post, lançamento, SEO, vendas B2B e medição) e um catálogo de exemplos de pedidos. Os capítulos entram também no ebook em PDF e EPUB.
+- Exemplos de conversa com as skills de área em `examples/areas/`.
+- `SKILLS.md`, `README.md` e `docs/method/09-arquitetura-das-skills.md` atualizados.
 
 ### Correções
 
-* Os modelos `context/empresa.md`, `context/marca-voz.md` e `context/publico.md` passam a usar os rótulos que o `inboundfy doctor` confere. Antes, um projeto preenchido pelo modelo não chegava ao estado `ready`.
-* Travessões e termos vetados removidos dos modelos de contexto e dos templates.
+- Os modelos `context/empresa.md`, `context/marca-voz.md` e `context/publico.md` passam a usar os rótulos que o `inboundfy doctor` confere. Antes, um projeto preenchido pelo modelo não chegava ao estado `ready`.
+- Travessões e termos vetados removidos dos modelos de contexto e dos templates.
 
 ### Validação
 
-* `npm run skills:check` deixa de exigir o bloco genérico de especificação e passa a acusar qualquer sobra do esqueleto antigo. O modo `--write` só acrescenta os blocos de arquitetura ausentes e recompõe o catálogo.
-* Testes de assets com contagem dinâmica de skills, exigência de idempotência e teste novo para o setup e as integrações.
+- `npm run skills:check` deixa de exigir o bloco genérico de especificação e passa a acusar qualquer sobra do esqueleto antigo. O modo `--write` só acrescenta os blocos de arquitetura ausentes e recompõe o catálogo.
+- Testes de assets com contagem dinâmica de skills, exigência de idempotência e teste novo para o setup e as integrações.
 
 ## [0.7.2] - 2026-11-14
 
@@ -55,34 +87,32 @@ mesma.
 
 ### Correções
 
-* Corrige os PNGs do logotipo, que mostravam o nome antigo.
+- Corrige os PNGs do logotipo, que mostravam o nome antigo.
 
 ## [0.7.0](https://github.com/promovaweb/inboundfy/compare/v0.6.1...v0.7.0) (2026-11-13)
 
 ### Funcionalidades
 
-* passa a distribuir o Inboundfy sob a GNU AGPL 3.0 (SPDX `AGPL-3.0-only`), com o texto oficial no `LICENSE`, o campo `license` do pacote, o badge e a seção Licença do README e a seção Licença do CONTRIBUTING. A partir desta versão, o projeto é distribuído sob a GNU AGPL 3.0; versões anteriores continuam sob a licença com que foram publicadas.
+- passa a distribuir o Inboundfy sob a GNU AGPL 3.0 (SPDX `AGPL-3.0-only`), com o texto oficial no `LICENSE`, o campo `license` do pacote, o badge e a seção Licença do README e a seção Licença do CONTRIBUTING. A partir desta versão, o projeto é distribuído sob a GNU AGPL 3.0; versões anteriores continuam sob a licença com que foram publicadas.
 
 ### Integração contínua
 
-* a publicação no npm passa a ser feita só pela máquina local; o workflow de release não publica mais no npm. O workflow agora é disparado pela tag `vX.Y.Z`, cria a GitHub Release com as notas do changelog e anexa PDF, EPUB, tarball e `SHA256SUMS`.
-* remove o Release Please, que não conseguia abrir a Release PR neste repositório. Versão, changelog e tag são preparados na máquina local, como descreve o `RELEASING.md`.
-* `npm run release:check` passa a exigir a licença `AGPL-3.0-only` e a recusar um workflow de release que publique no npm.
-* `npm run publish:npm` espera a versão aparecer no registry por até cinco minutos antes de confirmar a publicação.
+- a publicação no npm passa a ser feita só pela máquina local; o workflow de release não publica mais no npm. O workflow agora é disparado pela tag `vX.Y.Z`, cria a GitHub Release com as notas do changelog e anexa PDF, EPUB, tarball e `SHA256SUMS`.
+- remove o Release Please, que não conseguia abrir a Release PR neste repositório. Versão, changelog e tag são preparados na máquina local, como descreve o `RELEASING.md`.
+- `npm run release:check` passa a exigir a licença `AGPL-3.0-only` e a recusar um workflow de release que publique no npm.
+- `npm run publish:npm` espera a versão aparecer no registry por até cinco minutos antes de confirmar a publicação.
 
 ## [0.6.1](https://github.com/promovaweb/inboundfy/compare/v0.6.0...v0.6.1) (2026-11-13)
 
-
 ### Documentação
 
-* reorganiza o README para quem usa (cabeçalho da Promovaweb, Discord, documentação, planos, repositórios usados e licença proprietária) e cria o CONTRIBUTING para quem contribui ([12290c0](https://github.com/promovaweb/inboundfy/commit/12290c0b64681f89ef0163539d5f497355906878))
+- reorganiza o README para quem usa (cabeçalho da Promovaweb, Discord, documentação, planos, repositórios usados e licença proprietária) e cria o CONTRIBUTING para quem contribui ([12290c0](https://github.com/promovaweb/inboundfy/commit/12290c0b64681f89ef0163539d5f497355906878))
 
 ## [0.6.0](https://github.com/promovaweb/inboundfy/compare/v0.5.3...v0.6.0) (2026-10-29)
 
-
 ### Funcionalidades
 
-* acrescenta STEPPS às estruturas persuasivas das skills de copy ([1076bc3](https://github.com/promovaweb/inboundfy/commit/1076bc306b42034904a41f18f63df742010d34fb))
+- acrescenta STEPPS às estruturas persuasivas das skills de copy ([1076bc3](https://github.com/promovaweb/inboundfy/commit/1076bc306b42034904a41f18f63df742010d34fb))
 
 ## [0.5.3](https://github.com/promovaweb/inboundfy/compare/v0.5.2...v0.5.3) (2026-10-20)
 

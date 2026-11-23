@@ -63,4 +63,3 @@ Entrada: o asset anuncia “Revisão por R$ 80 com entrega no mesmo dia”. A of
 O marcador do SHA-256 existe apenas para não inventar um digest de arquivo ausente nesta documentação. Numa execução, obtenha o valor real com `inboundfy content digest 0042`. Um relatório com esse marcador não permite aprovação.
 
 Após a produtora corrigir a oferta para “Revisão por R$ 120. O prazo será informado após avaliação”, a segunda rodada repete todas as leituras. Ela atualiza digest e histórico. Só registra `Veredito: aprovado` se todos os achados desaparecerem. A auditoria aprova aquela versão específica; qualquer alteração posterior exige novo digest e nova rodada.
-

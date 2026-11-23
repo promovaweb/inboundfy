@@ -230,8 +230,8 @@ resultado no calendário e no índice de conteúdos.
 Use os comandos na raiz de `inboundfy/`:
 
 ```bash
-npm run skills:check
-npm run skills:enriquecer
+bun run framework:check
+bun run framework:enrich
 node scripts/validar-framework.mjs
 ```
 

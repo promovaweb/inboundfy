@@ -87,8 +87,9 @@ ID da peça e estado desejado: `rascunho`, `revisao`, `aprovado`, `agendado`,
 
 ## Fluxo
 
-1. Rode o preflight. Leia o estado atual em `conteudos.json` e no
-   frontmatter. Se divergirem, pare e acione `inboundfy-catalogo` para o
+1. Rode o preflight. Leia o estado atual com `content_show` (ou
+   `inboundfy content show <id> --json`) e no frontmatter. As passagens usam
+   `content_set_status` e `content_digest` quando o MCP estiver ativo. Se divergirem, pare e acione `inboundfy-catalogo` para o
    relatório antes de mudar qualquer coisa.
 2. Confira a passagem na tabela de estados. Passagem fora da tabela é
    recusada com a lista de estados permitidos.
@@ -97,7 +98,7 @@ ID da peça e estado desejado: `rascunho`, `revisao`, `aprovado`, `agendado`,
    rode `inboundfy content digest <id>`, compare com o relatório e só então
    execute `inboundfy content status <id> aprovado --audit-report <caminho>`.
 4. Para agendar, registre primeiro a data com
-   `inboundfy calendario add <AAAA-MM-DD> <id>` e depois execute
+   `inboundfy calendar add <AAAA-MM-DD> <id>` e depois execute
    `inboundfy content status <id> agendado`. O CLI sincroniza o estado na linha
    do calendário.
 5. Para publicar, execute
@@ -135,7 +136,7 @@ Depois do comando, confira:
 ## Idempotência
 
 Repetir a atualização do mesmo estado não cria registro duplicado. Repetir
-`calendario add` com a mesma data e ID devolve o registro existente. A skill
+`calendar add` com a mesma data e ID devolve o registro existente. A skill
 nunca apaga a peça, nunca reescreve o corpo e nunca reaproveita um relatório
 antigo depois de o texto mudar.
 

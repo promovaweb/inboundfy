@@ -20,25 +20,26 @@ posteriores ao ponto alterado.
 Execute na raiz do repositório:
 
 ```bash
-npm run skills:check
-npm run typecheck
-npm test
-npm run build
-npm run ebook:verify
-npm run release:check
-npm run validar
+bun run framework:check
+bun run typecheck
+bun test
+bun run docs:check
+bun run build
+bun run ebook:verify
+bun run release:check
+bun run validate
 ```
 
 Para aplicar blocos de arquitetura ausentes antes da conferência:
 
 ```bash
-npm run skills:enriquecer
+bun run framework:enrich
 ```
 
 O validador verifica:
 
-- 117 skills, seus contratos individuais e a arquitetura compartilhada;
-- cinco referências comuns, 117 interfaces de agente e o catálogo estruturado;
+- 128 skills, seus contratos individuais e a arquitetura compartilhada;
+- cinco referências comuns, 128 interfaces de agente e o catálogo estruturado;
 - referências internas e continuidade das três sequências;
 - ausência de diretórios públicos para etapas agrupadas;
 - 20 pares produtora–validadora;
@@ -47,19 +48,20 @@ O validador verifica:
 - documentação de usuário e método;
 - exemplos executáveis e links Markdown locais.
 - instalação, atualização, reparo, descoberta, contexto mínimo e segurança de
-  caminhos do CLI;
+  caminhos do binário;
 - fluxo instalado de acervo, peça, relatório de auditoria, calendário e
   publicação em projeto temporário isolado;
-- versão única entre `package.json`, lockfile, ebook e tag, licença
-  `AGPL-3.0-only` e workflow de release sem publicação no npm;
-- instalação do tarball npm em um projeto temporário isolado.
+- commands, tools MCP e telas da TUI com envelopes JSON e códigos de saída
+  fixos, conferidos por `bun test` e cobertos pela documentação embutida
+  (`docs:check`);
+- versão única entre `package.json`, `npm/package.json`, ebook, changelog e
+  tag, e workflow de release sem publicação no npm (`release:check`).
 
-Para conferir exatamente o arquivo que será publicado:
+Para conferir o binário compilado, com o payload embutido:
 
 ```bash
-mkdir -p artifacts
-npm pack --pack-destination artifacts
-npm run npm:validate-package -- artifacts/promovaweb-inboundfy-0.2.0.tgz
+bun run build
+./dist/inboundfy -C "$(mktemp -d)" install --yes
 ```
 
 ## Regra para mudança

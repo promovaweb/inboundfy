@@ -1,27 +1,42 @@
 # Instalação e preparação
 
 Disponibilizar skills ao agente não prepara o projeto. A primeira execução
-deve ser conduzida por `inboundfy-setup`, que usa o CLI para criar e conferir
-os arquivos.
+deve ser conduzida por `inboundfy-setup`, que usa o binário `inboundfy` para
+criar e conferir os arquivos.
 
-## Instalação rápida
+## Instalar o binário
+
+O `inboundfy` é um executável único com três modos: sem argumentos abre a
+TUI com o painel do projeto, com argumentos roda como CLI e `inboundfy mcp`
+vira servidor MCP para o agente. Escolha uma forma de instalar:
+
+| Forma | Comando | Quando usar |
+| --- | --- | --- |
+| npm | `npm install -g @promovaweb/inboundfy` | você já usa Node.js; o pacote baixa e confere o binário da versão |
+| npx | `npx @promovaweb/inboundfy@latest <command>` | uso pontual, sem instalação global |
+| Release | baixe `inboundfy-<plataforma>` na página de releases do repositório `promovaweb/inboundfy` no GitHub | máquina sem Node.js; confira o `SHA256SUMS` |
+
+Os binários publicados cobrem linux-x64, linux-arm64, darwin-x64,
+darwin-arm64 e windows-x64. Confira com `inboundfy --version`.
+
+## Instalação no projeto
 
 Na raiz do projeto, faça primeiro uma simulação:
 
 ```bash
-npx @promovaweb/inboundfy@latest install --dry-run
+inboundfy install --dry-run
 ```
 
 Depois instale escolhendo o agente e o arquivo de instruções:
 
 ```bash
-npx @promovaweb/inboundfy@latest install \
+inboundfy install \
   --agent codex \
   --instruction-file AGENTS.md \
   --yes
 ```
 
-O CLI instala as skills no diretório usado pelo agente e copia o método para
+O binário instala as skills no diretório usado pelo agente e copia o método para
 `.inboundfy/framework/`. Depois cria a configuração viva, os diretórios de
 acervo, canais e calendário, os índices e o bloco do agente.
 
@@ -68,8 +83,8 @@ inboundfy doctor --strict
 Registre o material sem edição, porque o fluxo preserva o texto original:
 
 ```bash
-inboundfy acervo add "Título do material" --file entrada.md
-inboundfy acervo process 0001
+inboundfy archive add "Título do material" --file entrada.md
+inboundfy archive process 0001
 ```
 
 O diretório numerado contém:
@@ -105,7 +120,7 @@ e o resultado de cada uma. Escolha uma ou mais antes de escrever. Crie a pasta f
 
 ```bash
 inboundfy content create blog "Título da peça" \
-  --persona persona-01 --acervo 0001
+  --persona persona-01 --archive 0001
 ```
 
 O caminho segue `canais/<canal>/<id>-<data>-<slug>/README.md`. O frontmatter
@@ -114,7 +129,7 @@ registra canal, persona, acervo, estado, datas e vínculos editoriais.
 Use o pipeline e o calendário:
 
 ```bash
-inboundfy calendario add 2026-09-20 0001
+inboundfy calendar add 2026-09-20 0001
 inboundfy content status 0001 revisao
 inboundfy content digest 0001
 ```
@@ -125,7 +140,7 @@ caminho retornado pelo comando e o SHA-256 atual, neste formato:
 ```markdown
 - **ID da peça:** `0001`
 - **Asset:** `canais/blog/0001-AAAA-MM-DD-titulo/README.md`
-- **SHA-256 da peça:** `<hash de 64 caracteres retornado pelo CLI>`
+- **SHA-256 da peça:** `<hash de 64 caracteres retornado pelo binário>`
 - **Veredito:** aprovado
 ```
 
@@ -137,7 +152,7 @@ inboundfy content status 0001 aprovado \
 inboundfy content status 0001 agendado
 ```
 
-O CLI recusa aprovação sem esse relatório, confere se ID, caminho e hash
+O binário recusa aprovação sem esse relatório, confere se ID, caminho e hash
 correspondem à peça e invalida a aprovação se o conteúdo mudar. Se houver
 correção posterior, retorne para `revisao`, repita a auditoria completa e
 atualize o relatório.
@@ -153,18 +168,20 @@ inboundfy content status 0001 publicado \
 ```
 
 Consulte [a referência do CLI e dos estados](../method/10-referencia-cli.md)
-para as passagens permitidas e as respostas completas dos comandos.
+para as passagens permitidas e as respostas completas dos comandos, e
+[o painel, as estatísticas e o MCP](19-painel-estatisticas-e-mcp.md) para
+acompanhar o projeto pela TUI e ligar o binário ao agente.
 
 ## Atualização e reparo
 
 Mande o agente executar `inboundfy-setup` quando a instalação precisar de
-atualização ou reparo. O CLI preserva as informações preenchidas e registra
+atualização ou reparo. O binário preserva as informações preenchidas e registra
 customizações em `.inboundfy/migracoes/`.
 
 ```bash
-npx @promovaweb/inboundfy@latest update --dry-run
-npx @promovaweb/inboundfy@latest update --yes
-npx @promovaweb/inboundfy@latest doctor --strict
+inboundfy update --dry-run
+inboundfy update --yes
+inboundfy doctor --strict
 ```
 
 ## Classificação
