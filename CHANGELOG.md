@@ -4,6 +4,10 @@ As mudanças relevantes do Inboundfy são registradas neste arquivo. A versão d
 framework, do CLI, do pacote npm, da tag Git e da GitHub Release é sempre a
 mesma.
 
+## [0.8.3] - 2026-11-22
+
+- Confere que o instalador copia para cada projeto o mesmo símbolo distribuído com o framework.
+
 ## [0.8.2] - 2026-11-22
 
 - Atualiza a identidade visual do projeto e sua apresentação no README.

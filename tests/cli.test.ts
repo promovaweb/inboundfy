@@ -84,7 +84,7 @@ describe("CLI do Inboundfy", () => {
         join(project, ".inboundfy", "framework", "brand", "logo", "icon.svg"),
         "utf8",
       ),
-    ).toContain('<rect width="512" height="512" rx="112"');
+    ).toBe(await readFile(new URL("../brand/logo/icon.svg", import.meta.url), "utf8"));
     expect(await readFile(join(project, "AGENTS.md"), "utf8")).toContain(
       "<!-- inboundfy:inicio -->",
     );
