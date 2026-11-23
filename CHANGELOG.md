@@ -4,6 +4,10 @@ As mudanças relevantes do Inboundfy são registradas neste arquivo. A versão d
 framework, do CLI, do pacote npm, da tag Git e da GitHub Release é sempre a
 mesma.
 
+## [0.8.2] - 2026-11-22
+
+- Atualiza a identidade visual do projeto e sua apresentação no README.
+
 ## [0.8.1] - 2026-11-22
 
 - Documenta a atualização das tarefas do ClickUp para pronto após o commit e publicado após o push.

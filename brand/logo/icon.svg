@@ -1,9 +1,5 @@
-<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title description">
-  <title id="title">Ícone principal do Inboundfy</title>
-  <desc id="description">Letra T modular com blocos editoriais nas cores petróleo, turquesa e laranja.</desc>
-  <rect width="512" height="512" rx="112" fill="#00161E"/>
-  <rect x="82" y="104" width="348" height="66" rx="33" fill="#2AD5BE"/>
-  <rect x="218" y="138" width="76" height="270" rx="38" fill="#2AD5BE"/>
-  <rect x="326" y="212" width="104" height="70" rx="22" fill="#FA7F4B"/>
-  <path d="M326 322h68c20 0 36 16 36 36v50h-68c-20 0-36-16-36-36v-50z" fill="#FA7F4B"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 64 64" role="img" aria-label="Inboundfy">
+  <title>Inboundfy</title>
+  <desc>Funil de três estágios com boca tangerina, seção intermediária âmbar e saída turquesa.</desc>
+  <rect width="64" height="64" rx="12" fill="#00161E"/><g><path fill="#FA7F4B" d="M8 11h48l-8 13H16z"/><path fill="#FFC46F" d="M18.5 28h27l-7 11h-13z"/><path fill="#2AD5BE" d="M27.5 43h9v10l-9 3z"/></g>
 </svg>

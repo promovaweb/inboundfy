@@ -1,4 +1,9 @@
 {
+  "projectColor": {
+    "name": "Tangerina",
+    "hex": "#FA7F4B",
+    "meaning": "A faixa tangerina marca a boca do funil, onde o público entra. Âmbar e turquesa distinguem os estágios seguintes."
+  },
   "name": "Inboundfy",
   "families": {
     "primary": {

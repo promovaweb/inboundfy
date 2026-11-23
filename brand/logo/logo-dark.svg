@@ -1,11 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" role="img" aria-labelledby="title desc">
   <title id="title">Logo do Inboundfy para fundo escuro</title>
-  <desc id="desc">Símbolo editorial e nome Inboundfy em assinatura horizontal clara.</desc>
-  <g transform="translate(24 24) scale(.53125)">
-    <rect x="82" y="104" width="348" height="66" rx="33" fill="#F2F8F9"/>
-    <rect x="218" y="138" width="76" height="270" rx="38" fill="#F2F8F9"/>
-    <rect x="326" y="212" width="104" height="70" rx="22" fill="#FDBA74"/>
-    <path d="M326 322h68c20 0 36 16 36 36v50h-68c-20 0-36-16-36-36v-50z" fill="#FDBA74"/>
-  </g>
+  <desc id="desc">Funil de três estágios com boca tangerina, seção intermediária âmbar e saída turquesa.</desc>
+  <g transform="translate(16 16) scale(4.5)"><g><path fill="#FA7F4B" d="M8 11h48l-8 13H16z"/><path fill="#FFC46F" d="M18.5 28h27l-7 11h-13z"/><path fill="#2AD5BE" d="M27.5 43h9v10l-9 3z"/></g></g>
   <text x="350" y="213" fill="#F2F8F9" font-family="Manrope, Inter, Arial, sans-serif" font-size="150" font-weight="750" letter-spacing="-5">Inboundfy</text>
 </svg>

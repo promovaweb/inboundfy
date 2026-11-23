@@ -6,61 +6,61 @@
       "path": "logo/icon-dark.png",
       "format": "png",
       "role": "icon-dark",
-      "sha256": "aa53f17d7a9a558707d9363cde66acb2fd267c83400b05f3975b60f890cb1aed"
+      "sha256": "82fea24e93d5d1af750b1daf7e698c131a497d98197168f174a1dd9aadde9333"
     },
     {
       "path": "logo/icon-dark.svg",
       "format": "svg",
       "role": "icon-dark",
-      "sha256": "54e489aef45a9e636382f66e6c7ba92dc36be6ca6dcf5930b6c2bf39af8c2a98"
+      "sha256": "a048a6510a8163f2d67dc267fe300a0a5226eb9376b6458fe4818f026dd68811"
     },
     {
       "path": "logo/icon-light.png",
       "format": "png",
       "role": "icon-light",
-      "sha256": "64ab25af49fcf898afb310875f07b531fe6456855e892e414b1104644186c57f"
+      "sha256": "003a64006358652a76f20a0c29e15ce803e0d59bdeb24f1d977c169a37b056c7"
     },
     {
       "path": "logo/icon-light.svg",
       "format": "svg",
       "role": "icon-light",
-      "sha256": "456e31d60e7ae64351b47e253d993e5cc684b23319b704e83ec9a7d7bb7ea108"
+      "sha256": "8b0601fb2a4b05dbe4452bbc7311a64bcee3a27c505283f6ee81ff44ea07e430"
     },
     {
       "path": "logo/icon.png",
       "format": "png",
       "role": "icon",
-      "sha256": "a8260fb07e3fff4cd70cd62a9a01c84b68ee93096a45756b2790ec0a7017e4bd"
+      "sha256": "85762189df664e02c97964ecb91b3a4a5792b5ca714bd9579746d6d900a53884"
     },
     {
       "path": "logo/icon.svg",
       "format": "svg",
       "role": "icon",
-      "sha256": "cdfb549946d3c07c202aa71537b8eab1361b07f547227b261cdd34e8e21608cd"
+      "sha256": "eb270e0aff0830e4946d6af6aa351ed40b07241e3fd65a5f881ecf32f507e1ce"
     },
     {
       "path": "logo/logo-dark.png",
       "format": "png",
       "role": "logo-dark",
-      "sha256": "0f2c9ea960d32f15a4f0b274f6e17da498f8a99ba2734399a364606c3792e14e"
+      "sha256": "1158ab0676029424ed3b6955ba0f0bc3c0eb833bba7e2720e8ded1408ddd669e"
     },
     {
       "path": "logo/logo-dark.svg",
       "format": "svg",
       "role": "logo-dark",
-      "sha256": "087ae5ea5d2f45903fd02d8cb89ac0bde5468d10156def9ec937eafb53e9efac"
+      "sha256": "61b55b805c613c434c601c753be3bd42632abb870a4d64f75824158384371a60"
     },
     {
       "path": "logo/logo-light.png",
       "format": "png",
       "role": "logo-light",
-      "sha256": "5b6175512765b17fb866eb0c50e38d929a457a45f73f1f1f54384ee4098d5b9d"
+      "sha256": "9b1b3fefeae20a0d75a81996ddb7d99cc20134015ec2648c5f755d235205bbfb"
     },
     {
       "path": "logo/logo-light.svg",
       "format": "svg",
       "role": "logo-light",
-      "sha256": "45f8a2bc9aa42bdffb73973321a384492aabe545218cc58af486f220f31a01f9"
+      "sha256": "005cd55fe4ef4f824face950a97386c60956045148d66816002de642b9592483"
     }
   ]
 }

@@ -6,12 +6,7 @@ laranja, variação associada a conteúdo, energia editorial e decisão.
 
 ## Conceito visual
 
-O símbolo é um **T construído como fluxo editorial**. A barra e a haste
-turquesa formam a estrutura; os dois módulos laranja representam entrada e
-saída, da orientação à peça produzida.
-
-A versão principal usa a placa de `512 × 512 px`, com cantos de raio `112 px`,
-adotada pelos ícones do SetupVibe e do Specsfy.
+Funil de três estágios com boca tangerina, seção intermediária âmbar e saída turquesa. A cor de identificação é `#FA7F4B`.
 
 ## Arquivos oficiais
 
@@ -40,6 +35,6 @@ o ícone e 120 px para a assinatura horizontal.
 
 1. Use laranja para conteúdo e decisão editorial; turquesa para o sistema.
 2. Use tokens semânticos e a variante correta para light ou dark mode.
-3. Preserve os dois módulos laranja como parte do conceito.
+3. Preserve as três faixas preenchidas e o espaço entre os estágios.
 4. Não aplique filtros, gradientes, sombras, rotações ou deformações.
 5. Novos templates devem apontar para esta pasta como fonte canônica.
