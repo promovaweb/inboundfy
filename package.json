@@ -1,85 +1,70 @@
 {
-  "name": "@promovaweb/inboundfy",
+  "name": "inboundfy",
   "version": "0.8.3",
-  "description": "CLI e framework de skills para instalar, validar e manter o Inboundfy em projetos.",
+  "description": "Inbound marketing framework with AI skills: CLI, TUI and MCP stdio server to install the framework and manage the archive, channels and editorial calendar.",
   "type": "module",
+  "private": true,
+  "license": "AGPL-3.0-only",
   "bin": {
-    "inboundfy": "bin/inboundfy.cjs"
+    "inboundfy": "src/main.ts"
   },
-  "files": [
-    "bin",
-    "dist",
-    "skills",
-    "context",
-    "templates",
-    "docs",
-    "ebook",
-    "brand",
-    "examples",
-    "BRAINSTORM.md",
-    "CONTEXTO.md",
-    "ESCRITA.md",
-    "ESTRATEGIA.md",
-    "ESTRUTURAS-PERSUASIVAS.md",
-    "INSTALACAO.md",
-    "LIMPEZA-MATERIAL-BRUTO.md",
-    "METODOLOGIA.md",
-    "README.md",
-    "RELEASING.md",
-    "SKILL-AUTORIA.md",
-    "SKILLS.md",
-    "TRADUCAO.md",
-    "CHANGELOG.md",
-    "LICENSE"
-  ],
+  "termfy": {
+    "bin": "inboundfy",
+    "title": "Inboundfy",
+    "author": "Promovaweb",
+    "site": "https://promovaweb.com/docs/inboundfy",
+    "repository": "https://github.com/promovaweb/inboundfy",
+    "framework": "https://github.com/promovaweb/termfy",
+    "starterKit": "0.13.4"
+  },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "dev": "tsx src/cli.ts",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "skills:check": "node scripts/gerenciar-skills.mjs --check",
-    "skills:enriquecer": "node scripts/gerenciar-skills.mjs --write",
-    "test": "vitest run && node scripts/validar-framework.mjs",
-    "ebook": "node .ebook/build-ebook.mjs",
-    "ebook:verify": "node .ebook/build-ebook.mjs --check",
-    "release:sync": "node scripts/sync-release-version.mjs && npm run ebook",
-    "release:check": "node scripts/validate-release.mjs",
-    "npm:validate-package": "node scripts/validate-npm-package.mjs",
-    "publish:npm": "node scripts/publish-npm-package.mjs",
-    "prepack": "npm run build && npm run release:check",
-    "validar": "npm run skills:check && npm run typecheck && npm run ebook && npm test && npm run build && npm run ebook:verify && npm run release:check"
+    "dev": "bun run src/main.ts",
+    "start": "bun run src/main.ts",
+    "tui": "bun run src/main.ts",
+    "mcp": "bun run src/main.ts mcp",
+    "payload": "bun run scripts/build-payload.ts",
+    "payload:check": "bun run scripts/build-payload.ts --check",
+    "build": "bun run scripts/build-payload.ts && bun run scripts/build.ts",
+    "build:all": "bun run scripts/build-payload.ts && bun run scripts/build.ts --all",
+    "test": "bun test",
+    "typecheck": "bunx tsc --noEmit",
+    "opencli": "bun run src/main.ts --opencli > docs/opencli.json",
+    "opencli:check": "bun run scripts/check-opencli.ts",
+    "skills:install": "npx -y skills add https://github.com/promovaweb/termfy -y -a universal -a claude-code -a codex -a opencode -a cursor -a gemini-cli",
+    "skills:update": "npx -y skills update -y -p",
+    "skills:check": "bun run scripts/check-skills.ts",
+    "framework:check": "bun scripts/gerenciar-skills.mjs --check && bun scripts/validar-framework.mjs",
+    "framework:enrich": "bun scripts/gerenciar-skills.mjs --write",
+    "docs:check": "bun run scripts/check-docs.ts",
+    "ebook": "bun .ebook/build-ebook.mjs",
+    "ebook:verify": "bun .ebook/build-ebook.mjs --check",
+    "npm:readme": "bun run scripts/npm-readme.ts",
+    "validate": "bun run typecheck && bun test && bun run skills:check && bun run framework:check && bun run opencli:check && bun run docs:check && bun run build"
   },
   "engines": {
-    "node": ">=22.14.0"
+    "bun": ">=1.4.4"
   },
-  "keywords": [
-    "ai-agents",
-    "cli",
-    "content",
-    "copywriting",
-    "marketing",
-    "skills"
-  ],
-  "license": "AGPL-3.0-only",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/promovaweb/inboundfy.git"
   },
-  "bugs": {
-    "url": "https://github.com/promovaweb/inboundfy/issues"
-  },
-  "homepage": "https://github.com/promovaweb/inboundfy#readme",
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
-    "@inquirer/prompts": "^8.5.2",
-    "commander": "^15.0.0",
-    "zod": "^4.4.3"
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "@opentui/core": "^0.8.4",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@types/node": "^24.10.0",
-    "tsx": "^4.20.6",
-    "typescript": "^7.0.2",
-    "vitest": "^4.1.0"
-  }
+    "@types/bun": "^1.4.4",
+    "typescript": "^7.0.2"
+  },
+  "keywords": [
+    "ai-agents",
+    "inbound-marketing",
+    "content",
+    "copywriting",
+    "skills",
+    "cli",
+    "mcp",
+    "tui"
+  ]
 }

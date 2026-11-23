@@ -4,3 +4,12 @@ dist/
 artifacts/
 release-assets/
 *.tgz
+
+# Framework payload packed by scripts/build-payload.ts
+generated/
+*.log
+tmp/
+.env
+.env.*
+!.env.example
+.termfy-home/
